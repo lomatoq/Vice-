@@ -1,0 +1,268 @@
+{
+  "dataset": "corner_gt_text_glyph_pilot",
+  "summary": {
+    "version": 4,
+    "definition": "C0/occlusion vertex labels grouped into point and short-span perceptual events",
+    "files": 30,
+    "requested_files": 30,
+    "resolutions": [
+      12,
+      16,
+      20,
+      24,
+      32,
+      48
+    ],
+    "loops": 252,
+    "vertices": 27024,
+    "structural": 1885,
+    "occlusion": 0,
+    "zero_corner_loops": 25,
+    "events": 1296,
+    "short_spans": 656,
+    "negative_vertices": 25139,
+    "rejects": {},
+    "by_resolution": {
+      "12": {
+        "loops": 42,
+        "structural": 261,
+        "occlusion": 0,
+        "zero_corner_loops": 4,
+        "events": 191,
+        "short_spans": 91
+      },
+      "16": {
+        "loops": 42,
+        "structural": 290,
+        "occlusion": 0,
+        "zero_corner_loops": 4,
+        "events": 204,
+        "short_spans": 97
+      },
+      "20": {
+        "loops": 42,
+        "structural": 358,
+        "occlusion": 0,
+        "zero_corner_loops": 4,
+        "events": 230,
+        "short_spans": 148
+      },
+      "24": {
+        "loops": 42,
+        "structural": 308,
+        "occlusion": 0,
+        "zero_corner_loops": 4,
+        "events": 216,
+        "short_spans": 107
+      },
+      "32": {
+        "loops": 42,
+        "structural": 327,
+        "occlusion": 0,
+        "zero_corner_loops": 4,
+        "events": 230,
+        "short_spans": 97
+      },
+      "48": {
+        "loops": 42,
+        "structural": 341,
+        "occlusion": 0,
+        "zero_corner_loops": 5,
+        "events": 225,
+        "short_spans": 116
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\07_0048_H.svg",
+      "name": "07_0048_H",
+      "split": "train",
+      "id": "00000_07_0048_H"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\18_0053_S.svg",
+      "name": "18_0053_S",
+      "split": "train",
+      "id": "00001_18_0053_S"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\12_004d_M.svg",
+      "name": "12_004d_M",
+      "split": "train",
+      "id": "00002_12_004d_M"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\22_0057_W.svg",
+      "name": "22_0057_W",
+      "split": "train",
+      "id": "00003_22_0057_W"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\02_0043_C.svg",
+      "name": "02_0043_C",
+      "split": "train",
+      "id": "00004_02_0043_C"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\14_004f_O.svg",
+      "name": "14_004f_O",
+      "split": "train",
+      "id": "00005_14_004f_O"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\17_0052_R.svg",
+      "name": "17_0052_R",
+      "split": "train",
+      "id": "00006_17_0052_R"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\08_0049_I.svg",
+      "name": "08_0049_I",
+      "split": "train",
+      "id": "00007_08_0049_I"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\27_0065_e.svg",
+      "name": "27_0065_e",
+      "split": "train",
+      "id": "00008_27_0065_e"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\25_005a_Z.svg",
+      "name": "25_005a_Z",
+      "split": "test",
+      "id": "00009_25_005a_Z"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\04_0045_E.svg",
+      "name": "04_0045_E",
+      "split": "train",
+      "id": "00010_04_0045_E"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\00_0041_A.svg",
+      "name": "00_0041_A",
+      "split": "train",
+      "id": "00011_00_0041_A"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\09_004a_J.svg",
+      "name": "09_004a_J",
+      "split": "train",
+      "id": "00012_09_004a_J"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\20_0055_U.svg",
+      "name": "20_0055_U",
+      "split": "train",
+      "id": "00013_20_0055_U"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\10_004b_K.svg",
+      "name": "10_004b_K",
+      "split": "train",
+      "id": "00014_10_004b_K"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\05_0046_F.svg",
+      "name": "05_0046_F",
+      "split": "train",
+      "id": "00015_05_0046_F"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\01_0042_B.svg",
+      "name": "01_0042_B",
+      "split": "train",
+      "id": "00016_01_0042_B"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\26_0061_a.svg",
+      "name": "26_0061_a",
+      "split": "train",
+      "id": "00017_26_0061_a"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\29_006f_o.svg",
+      "name": "29_006f_o",
+      "split": "train",
+      "id": "00018_29_006f_o"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\24_0059_Y.svg",
+      "name": "24_0059_Y",
+      "split": "train",
+      "id": "00019_24_0059_Y"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\11_004c_L.svg",
+      "name": "11_004c_L",
+      "split": "val",
+      "id": "00020_11_004c_L"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\06_0047_G.svg",
+      "name": "06_0047_G",
+      "split": "train",
+      "id": "00021_06_0047_G"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\19_0054_T.svg",
+      "name": "19_0054_T",
+      "split": "val",
+      "id": "00022_19_0054_T"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\23_0058_X.svg",
+      "name": "23_0058_X",
+      "split": "train",
+      "id": "00023_23_0058_X"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\28_0067_g.svg",
+      "name": "28_0067_g",
+      "split": "train",
+      "id": "00024_28_0067_g"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\15_0050_P.svg",
+      "name": "15_0050_P",
+      "split": "train",
+      "id": "00025_15_0050_P"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\03_0044_D.svg",
+      "name": "03_0044_D",
+      "split": "test",
+      "id": "00026_03_0044_D"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\16_0051_Q.svg",
+      "name": "16_0051_Q",
+      "split": "val",
+      "id": "00027_16_0051_Q"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\13_004e_N.svg",
+      "name": "13_004e_N",
+      "split": "train",
+      "id": "00028_13_004e_N"
+    },
+    {
+      "path": "datasets\\text_glyph_pilot_sources\\21_0056_V.svg",
+      "name": "21_0056_V",
+      "split": "train",
+      "id": "00029_21_0056_V"
+    }
+  ],
+  "shards": [
+    {
+      "file": "shard_0000.npz",
+      "loops": 252,
+      "vertices": 27024,
+      "corners": 1885,
+      "events": 1296,
+      "short_spans": 656
+    }
+  ]
+}

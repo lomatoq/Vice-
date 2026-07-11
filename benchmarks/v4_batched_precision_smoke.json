@@ -1,0 +1,346 @@
+{
+  "dataset": "datasets\\corner_gt_v4_perceptual_events",
+  "splits": [
+    "test",
+    "val"
+  ],
+  "tolerance": 3.0,
+  "detectors": {
+    "cnn:corner_cnn.pt@0.28": {
+      "P": 0.6303,
+      "R": 0.8559,
+      "F1": 0.726,
+      "tp_events": 1741,
+      "fp_predictions": 1021,
+      "fn_events": 293,
+      "loops": 500,
+      "fp_per_loop": 2.042,
+      "zero_event": {
+        "loops": 65,
+        "fp": 173,
+        "fp_per_loop": 2.6615
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8077,
+        "point": 0.846,
+        "short-span": 0.8665
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.6586,
+          "R": 0.7455,
+          "events": 220
+        },
+        "48": {
+          "P": 0.6364,
+          "R": 0.725,
+          "events": 280
+        },
+        "64": {
+          "P": 0.6397,
+          "R": 0.8333,
+          "events": 360
+        },
+        "96": {
+          "P": 0.5821,
+          "R": 0.906,
+          "events": 266
+        },
+        "128": {
+          "P": 0.6041,
+          "R": 0.8841,
+          "events": 302
+        },
+        "192": {
+          "P": 0.652,
+          "R": 0.9017,
+          "events": 295
+        },
+        "256": {
+          "P": 0.6593,
+          "R": 0.9646,
+          "events": 311
+        }
+      },
+      "by_family": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 6.0,
+          "zero_event_loops": 1,
+          "zero_event_fp_per_loop": 6.0
+        },
+        "Default": {
+          "P": 0.153,
+          "R": 0.9861,
+          "F1": 0.2649,
+          "fp_per_loop": 4.9747,
+          "zero_event_loops": 31,
+          "zero_event_fp_per_loop": 2.4516
+        },
+        "bridge": {
+          "P": 0.8571,
+          "R": 1.0,
+          "F1": 0.9231,
+          "fp_per_loop": 1.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dark": {
+          "P": 0.6645,
+          "R": 0.8726,
+          "F1": 0.7544,
+          "fp_per_loop": 1.8053,
+          "zero_event_loops": 33,
+          "zero_event_fp_per_loop": 2.7576
+        },
+        "default": {
+          "P": 0.8151,
+          "R": 0.7728,
+          "F1": 0.7934,
+          "fp_per_loop": 0.9921,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dress2": {
+          "P": 0.5227,
+          "R": 0.9583,
+          "F1": 0.6765,
+          "fp_per_loop": 5.25,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "l45": {
+          "P": 0.6,
+          "R": 1.0,
+          "F1": 0.75,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "light": {
+          "P": 0.7043,
+          "R": 0.9099,
+          "F1": 0.794,
+          "fp_per_loop": 1.5478,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "mailbox": {
+          "P": 0.5645,
+          "R": 1.0,
+          "F1": 0.7216,
+          "fp_per_loop": 6.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "simple-icons": {
+          "P": 0.8387,
+          "R": 0.9811,
+          "F1": 0.9043,
+          "fp_per_loop": 1.4286,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "square45": {
+          "P": 0.5,
+          "R": 1.0,
+          "F1": 0.6667,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "squaresmall": {
+          "P": 1.0,
+          "R": 1.0,
+          "F1": 1.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "streamline-logos": {
+          "P": 0.8279,
+          "R": 0.7891,
+          "F1": 0.808,
+          "fp_per_loop": 0.6,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    },
+    "cnn:corner_cnn_primitives_batched_precision_candidate.pt@0.28": {
+      "P": 0.5914,
+      "R": 0.8766,
+      "F1": 0.7063,
+      "tp_events": 1783,
+      "fp_predictions": 1232,
+      "fn_events": 251,
+      "loops": 500,
+      "fp_per_loop": 2.464,
+      "zero_event": {
+        "loops": 65,
+        "fp": 202,
+        "fp_per_loop": 3.1077
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8077,
+        "point": 0.8571,
+        "short-span": 0.8959
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.6388,
+          "R": 0.7636,
+          "events": 220
+        },
+        "48": {
+          "P": 0.6091,
+          "R": 0.7679,
+          "events": 280
+        },
+        "64": {
+          "P": 0.6016,
+          "R": 0.8556,
+          "events": 360
+        },
+        "96": {
+          "P": 0.5473,
+          "R": 0.9135,
+          "events": 266
+        },
+        "128": {
+          "P": 0.5694,
+          "R": 0.9106,
+          "events": 302
+        },
+        "192": {
+          "P": 0.604,
+          "R": 0.9254,
+          "events": 295
+        },
+        "256": {
+          "P": 0.5996,
+          "R": 0.9678,
+          "events": 311
+        }
+      },
+      "by_family": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 6.0,
+          "zero_event_loops": 1,
+          "zero_event_fp_per_loop": 6.0
+        },
+        "Default": {
+          "P": 0.1351,
+          "R": 1.0,
+          "F1": 0.238,
+          "fp_per_loop": 5.8354,
+          "zero_event_loops": 31,
+          "zero_event_fp_per_loop": 2.9355
+        },
+        "bridge": {
+          "P": 0.9231,
+          "R": 1.0,
+          "F1": 0.96,
+          "fp_per_loop": 0.5,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dark": {
+          "P": 0.5963,
+          "R": 0.8963,
+          "F1": 0.7161,
+          "fp_per_loop": 2.4867,
+          "zero_event_loops": 33,
+          "zero_event_fp_per_loop": 3.1818
+        },
+        "default": {
+          "P": 0.8017,
+          "R": 0.805,
+          "F1": 0.8034,
+          "fp_per_loop": 1.127,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dress2": {
+          "P": 0.4182,
+          "R": 0.9583,
+          "F1": 0.5823,
+          "fp_per_loop": 8.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "l45": {
+          "P": 0.6154,
+          "R": 1.0,
+          "F1": 0.7619,
+          "fp_per_loop": 3.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "light": {
+          "P": 0.652,
+          "R": 0.9206,
+          "F1": 0.7633,
+          "fp_per_loop": 1.9913,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "mailbox": {
+          "P": 0.5932,
+          "R": 1.0,
+          "F1": 0.7447,
+          "fp_per_loop": 6.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "simple-icons": {
+          "P": 0.8525,
+          "R": 0.9811,
+          "F1": 0.9123,
+          "fp_per_loop": 1.2857,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "square45": {
+          "P": 0.5,
+          "R": 1.0,
+          "F1": 0.6667,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "squaresmall": {
+          "P": 1.0,
+          "R": 1.0,
+          "F1": 1.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "streamline-logos": {
+          "P": 0.8729,
+          "R": 0.8047,
+          "F1": 0.8374,
+          "fp_per_loop": 0.4286,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    }
+  }
+}

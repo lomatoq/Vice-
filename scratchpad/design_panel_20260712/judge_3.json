@@ -1,0 +1,112 @@
+{
+ "scores": [
+  {
+   "design_key": "global-energy",
+   "perceptual_ceiling": 9,
+   "feasibility": 4,
+   "small_and_text": 8,
+   "artifact_immunity": 9.5,
+   "risk_adjusted_total": 5.5,
+   "strongest_ideas": [
+    "Joint corner+primitive DP over (sample, tangent bin, corner flag) with CNN log-odds as unaries — no threshold, NMS, or collapse window ever freezes an error; adjacent letter corners survive by paying their way. This composes with ANY spine and is the single best corner fix on the panel.",
+    "Regularity selection as a small ILP (CP-SAT) with feasibility pre-check — order-independent, replaces sequential snapshot-and-revert; mutually reinforcing regularities activate together instead of the first pass eating the budget.",
+    "Prototype pooling as super-resolution: n instances of a tiny glyph fit as one prototype against n evidence tubes — sqrt(n) noise reduction nothing else on the panel matches.",
+    "Tiny-shape template MAP against the anti-aliased coverage field with exact area-integral likelihood (shared with render-loss/scene-layers — the highest-consensus idea on the panel)."
+   ],
+   "fatal_flaws": [
+    "Hard interval tube anchored to segmentation output: on JPEG ringing or photo-ish input the segmentation boundary itself is wrong, and hard +-0.5px constraints then force EXACT fidelity to corrupted evidence — the one design where degraded input makes the system more rigid, not less. The stage-6 relabel loop that fixes this is the most complex, least specified component.",
+    "Coupled CP-SAT <-> G2-hard-equality SQP with lazy no-good cuts is a research-grade solver stack; on gradient-mesh or poster-size input it breaks by latency and numerical rattle (acknowledged), and the 'complexity router' answer is hand-waved. Highest never-converges risk on the panel.",
+    "Big-bang replacement of the entire corner/fit/regularize chain before the first perceptual win ships; certified-logo regression risk is concentrated rather than amortized.",
+    "37 estimated days is fantasy for interval-constrained SQP with G2 equalities on Windows/CPU; realistically 2-3x."
+   ]
+  },
+  {
+   "design_key": "render-loss",
+   "perceptual_ceiling": 9,
+   "feasibility": 5.5,
+   "small_and_text": 9,
+   "artifact_immunity": 8.5,
+   "risk_adjusted_total": 7,
+   "strongest_ideas": [
+    "Deterministic coverage unmixing in linear RGB + per-image ESF calibration -> subpixel evidence field (0.03-0.08px on clean input) with honest per-probe sigma. Four days of work, no training, no domain gap on the clean-input majority; degrades exactly to today's +-0.5px corridors when confidence collapses. The best evidence mechanism on the panel — it makes ml-first's SEF-Net partially redundant.",
+    "One acceptance law: DeltaL_perc <= lambda_mdl * DeltaMDL + floor, scored by actual tile re-render. Scale-adaptive idealization pricing for free (1.3px symmetry passes on a 400px logo, fails on a 24px icon) — replaces the entire zoo of fixed budgets.",
+    "Painter's-stack with per-interface 0.75px under-inflation of the losing shape — seams unrepresentable, and correct even when depth order is arbitrary on abutting flat art.",
+    "Fallback ladder whose terminal rung is a differentiable closed B-spline fit — the pixel staircase becomes unreachable, not just rare.",
+    "2x-render-then-ESF-downsample scoring channel that exposes subpixel misplacement 1x comparison aliases away — this is what makes template fits at 6px provably right."
+   ],
+   "fatal_flaws": [
+    "diffvg on Windows is a known build tarpit; the in-house boundary-integral fallback is '+4 days' optimism for a differentiable coverage renderer over lines/arcs/cubics.",
+    "The flagship evidence (2-color unmixing) is invalid exactly where inputs get hard: gradients, 3-color junctions, JPEG mosquito noise — sigma inflation degrades gracefully but the design's superiority evaporates on those inputs, leaving roughly the current pipeline plus a court.",
+    "Court runtime on photo-ish / 500-region input: even with the analytic pre-filter, escalation cascades can blow the interactive budget; the edit-budget cap changes results nondeterministically vs image complexity.",
+    "Cyclic depth orders force keeping the partition/paper-regions mode alive as a second full pipeline — double maintenance surface, and seams return inside that fallback island.",
+    "Re-basing the certified IoU harness onto rendered output (required by the apron) invalidates the existing floors mid-migration — a subtle but real regression-blindness window."
+   ]
+  },
+  {
+   "design_key": "scene-layers",
+   "perceptual_ceiling": 7.5,
+   "feasibility": 6,
+   "small_and_text": 7,
+   "artifact_immunity": 7.5,
+   "risk_adjusted_total": 6,
+   "strongest_ideas": [
+    "Single-owner boundaries + apron under the occluder: the cheapest structural seam kill on the panel, and its 'abut = occlusion with zero hidden area' reduction handles flat design without needing z-order to be right. Stage 1 of this design is graftable in days.",
+    "Regularizers on amodally COMPLETED outlines: mirror/rotation/template detection on a shape that is 60% hidden — a genuine capability no other design states as crisply.",
+    "T-junction tangent-continuation voting for depth order, trained/boosted from the existing occlusion corpus generators.",
+    "Glyphs as always-topmost layer owning 100% of their outline — kills the letter-shaped-bite artifact class and matches the VAI forensic finding directly."
+   ],
+   "fatal_flaws": [
+    "No subpixel evidence upgrade anywhere: owned arcs are still fit to quantized integer crack midpoints, so the wobble root cause, tiny-circle squareness, and shallow-curve quality ceiling are all inherited unchanged — this design cleans up structure but cannot out-draw VAI at 16px.",
+    "Corner plan is explicitly non-ambitious (gate: 'event-F1 >= current 0.73') — the audited main perceptual ceiling is left standing.",
+    "The expensive core (8 days of amodal completion + merged-region hypotheses) pays off only on the occlusion-heavy subset; on the flat-abutting majority it reduces to the seam fix, which pragmatist gets in 3 days.",
+    "Z-order inference on photo-ish or busy gradient input: feedback-arc-set over noisy continuation votes plus combinatorial merged-region hypotheses is the first thing to break, and the ring-splitting fallback for cyclic clusters is acknowledged 'genuinely fiddly'.",
+    "Over-merge of same-color shapes across an occluder can silently fuse distinct objects; the verifier catches raster mismatch but not semantically wrong-but-raster-identical fusions."
+   ]
+  },
+  {
+   "design_key": "ml-first",
+   "perceptual_ceiling": 8.5,
+   "feasibility": 6,
+   "small_and_text": 9,
+   "artifact_immunity": 8,
+   "risk_adjusted_total": 7.5,
+   "strongest_ideas": [
+    "The graceful-degradation contract as an ARCHITECTURAL rule: tanh-clamped offsets, confidence gate w<=0.7 reverts to exact current behavior, Hausdorff measured against RAW cracks no model touches — worst case on any adversarial input is today's output. Under a stress-test lens this is the single most valuable design decision on the panel.",
+    "Posteriors flowing into Algorithm-2 removal as gamma*log-odds — fixes gap 11 with a 3-line energy change, independent of everything else.",
+    "Analytic GT extension: tangent/curvature/primitive-class labels fall out of the existing svg_corner_gt path walk for free, and the phase-preserving rasterizer already exists — the training-data story is unusually credible for this codebase.",
+    "Teacher-student regularity proposals (exact offline RANSAC searcher -> fast student) verified by the EXISTING budget machinery — recall added, precision provably unchanged.",
+    "Per-stage millisecond budget as a harness gate — the only design that makes latency a first-class regression."
+   ],
+   "fatal_flaws": [
+    "Five trained models for a small team is the real schedule risk; the 8-week plan assumes every training run converges first try, and calibration (BT temperature, gamma, SEF confidence) is a new global tuning surface that can silently shift the corner equilibrium.",
+    "SEF-Net spends its entire domain-gap risk budget learning what render-loss's deterministic unmixing computes exactly on clean input — ML where arithmetic suffices, keeping the model only where unmixing genuinely fails (JPEG) would halve the risk.",
+    "Staircase elimination is practical, not structural: rung 3 (Taubin polyline) and rung 4 (raw chain, counted as failure) still exist as shippable outputs.",
+    "Universal crack graph deletion of the >=16-crack gate exposes junction/saddle edge cases the gate was hiding — acknowledged, but it lands in week 1 before any compensating machinery exists.",
+    "On gradient-mesh and photo-ish input the design offers nothing new (by design) — safe, but the 'beats VAI' claim silently narrows to icons/logos/text."
+   ]
+  },
+  {
+   "design_key": "pragmatist",
+   "perceptual_ceiling": 6.5,
+   "feasibility": 9,
+   "small_and_text": 7,
+   "artifact_immunity": 7,
+   "risk_adjusted_total": 7,
+   "strongest_ideas": [
+    "benchmark_vai.py FIRST: a frozen 50-image VAI reference set with staircase/wobble/roundness/fairness/seam meters. Every other design's staged gates presuppose this harness and none of them scheduled it first — this is the mandatory Stage 0 for whatever wins.",
+    "Worst-artifact-salience thesis: eliminating the bottom of our distribution (staircases, seams) buys more human preference than raising the top — correct psychology, and it orders the whole roadmap.",
+    "Scale-aware collapse window min(16*spacing, 0.35*extent, 3px) — a one-line fix for the adjacent-letter-corner eraser that every other design rebuilds elaborate machinery to solve.",
+    "Hough transform-voting symmetry (any axis, any center, similarity repeats via turning-function clustering) INSIDE the existing budgets and snapshot+revert — full symmetry-group coverage without new solver risk.",
+    "Per-glyph IoU>=0.85 verified font_match substitution with precision-1.0 gate — the cheapest credible route to genuinely beating VAI on small text."
+   ],
+   "fatal_flaws": [
+    "No subpixel evidence field: fitting stays anchored to integer crack midpoints, so the quantization root cause of wobble and the 16px roundness ceiling are untouched — the design raises the floor to VAI parity but its ceiling arguments (G2 fairing, symmetry group) sit on unchanged evidence and likely plateau at 'tie', not 'win'.",
+    "The 0.25px stroke=fill paint-order bleed is a rendering hack: it fattens every shape, double-paints at self-adjacent boundaries, and breaks outright under semi-transparency — a structural seam fix (single-owner interface, which Stage C half-builds) is the same cost done right.",
+    "Corner ambition capped at F1 0.76-0.78 via a confidence margin on the OLD threshold->collapse chain — the audited main ceiling is nudged, not removed.",
+    "JPEG, gradient-mesh, and photo-ish inputs get exactly today's behavior; the design has no answer where VAI is currently strongest on degraded input."
+   ]
+  }
+ ],
+ "best_overall": "ml-first",
+ "synthesis_advice": "Spine: ml-first's staged, gated architecture — because under adversarial stress it is the only design whose failure mode on EVERY hard case (JPEG ringing, photo-ish, gradient mesh) is provably 'today's output, never worse', while still reaching top-tier ceiling on the two decisive battlegrounds (16px icons, small text). But modify the spine with five grafts, in this order. (1) Do pragmatist's Stage 0 first, verbatim: benchmark_vai.py + frozen 50-image VAI reference set + staircase/wobble/roundness/seam meters — no other stage anywhere is measurable without it; then pragmatist's week-1 no-ML strikes (alpha/color fixes, backstop ladder, text-safe flip, scale-aware collapse window, elliptical arc) as ml-first's Stage A already largely mirrors. (2) Replace SEF-Net's role on clean input with render-loss's DETERMINISTIC coverage unmixing (linear RGB + ESF calibration + honest per-probe sigma) — 4 days, no training, no domain gap; train SEF later only as a specialist for JPEG/degraded input where unmixing confidence collapses, feeding the identical interval-narrowing interface. This halves the ML surface and removes the keystone model from the critical path. (3) Take scene-layers' single-owner-interface + 0.75px apron painter's emission instead of pragmatist's stroke-bleed hack and instead of full depth inference: 'abut = occlusion with zero hidden area' makes it correct on flat art without solving z-order; defer full amodal completion (it only pays on the occlusion-heavy subset). (4) Graft global-energy's joint corner+primitive DP (corner flag in the DP state, log-odds unaries, no threshold/NMS/collapse) as the Stage-C replacement for ml-first's patched removal chain — it is the one PRISM component that is exact, local, per-interface, milliseconds, and it subsumes both the confidence-margin and glyph-aware-window patches; keep ml-first's BT as the probability source when it lands, corner_cnn until then. (5) Adopt render-loss's single MDL acceptance law (DeltaL_perc <= lambda*DeltaMDL, scored by tile re-render) as the acceptance test for regularity proposals — sourced from pragmatist's Hough symmetry generators now and ml-first's RPN later — replacing the scattered 0.8px/1px/2px budgets with one scale-adaptive knob while keeping snapshot+revert as the hard wall. Explicitly reject for now: PRISM's global SQP with hard G2 equalities (use ml-first's bounded deterministic fairing instead), full CP-SAT selection (greedy court first; upgrade only if order-dependence provably costs quality on the harness), diffvg polish (add only after the discrete pipeline beats VAI on the meters, with the in-house gradient fallback pre-scoped), and scene-layers' merged-region amodal hypotheses (highest hallucination-adjacent risk for lowest coverage). Tiny loops: coverage-field template tournament with analytic-coverage acceptance gate — three designs independently converged on this; it is the highest-confidence single component on the panel and should ship early."
+}

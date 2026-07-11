@@ -1,0 +1,163 @@
+{
+  "dataset": "datasets\\corner_gt_v4_perceptual_events",
+  "splits": [
+    "test",
+    "val"
+  ],
+  "tolerance": 3.0,
+  "detectors": {
+    "cnn:corner_cnn.pt@0.20": {
+      "P": 0.5977,
+      "R": 0.9374,
+      "F1": 0.73,
+      "tp_events": 419,
+      "fp_predictions": 282,
+      "fn_events": 28,
+      "loops": 100,
+      "fp_per_loop": 2.82,
+      "recall_by_kind": {
+        "point": 0.9395,
+        "short-span": 0.9353
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.6916,
+          "R": 0.881,
+          "events": 84
+        },
+        "48": {
+          "P": 0.7123,
+          "R": 0.8387,
+          "events": 62
+        },
+        "64": {
+          "P": 0.5595,
+          "R": 0.9691,
+          "events": 97
+        },
+        "96": {
+          "P": 0.6126,
+          "R": 0.9577,
+          "events": 71
+        },
+        "128": {
+          "P": 0.5389,
+          "R": 0.9798,
+          "events": 99
+        },
+        "256": {
+          "P": 0.6071,
+          "R": 1.0,
+          "events": 34
+        }
+      }
+    },
+    "cnn:corner_cnn.pt@0.28": {
+      "P": 0.6672,
+      "R": 0.9195,
+      "F1": 0.7733,
+      "tp_events": 411,
+      "fp_predictions": 205,
+      "fn_events": 36,
+      "loops": 100,
+      "fp_per_loop": 2.05,
+      "recall_by_kind": {
+        "point": 0.9209,
+        "short-span": 0.9181
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.72,
+          "R": 0.8571,
+          "events": 84
+        },
+        "48": {
+          "P": 0.7612,
+          "R": 0.8226,
+          "events": 62
+        },
+        "64": {
+          "P": 0.6233,
+          "R": 0.9381,
+          "events": 97
+        },
+        "96": {
+          "P": 0.6768,
+          "R": 0.9437,
+          "events": 71
+        },
+        "128": {
+          "P": 0.6316,
+          "R": 0.9697,
+          "events": 99
+        },
+        "256": {
+          "P": 0.7391,
+          "R": 1.0,
+          "events": 34
+        }
+      }
+    },
+    "paper-perres-rf": {
+      "P": 0.6829,
+      "R": 0.7517,
+      "F1": 0.7157,
+      "tp_events": 336,
+      "fp_predictions": 156,
+      "fn_events": 111,
+      "loops": 100,
+      "fp_per_loop": 1.56,
+      "recall_by_kind": {
+        "point": 0.8047,
+        "short-span": 0.7026
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.6145,
+          "R": 0.6071,
+          "events": 84
+        },
+        "48": {
+          "P": 0.9118,
+          "R": 0.5,
+          "events": 62
+        },
+        "64": {
+          "P": 0.6281,
+          "R": 0.7835,
+          "events": 97
+        },
+        "96": {
+          "P": 0.7534,
+          "R": 0.7746,
+          "events": 71
+        },
+        "128": {
+          "P": 0.6794,
+          "R": 0.899,
+          "events": 99
+        },
+        "256": {
+          "P": 0.68,
+          "R": 1.0,
+          "events": 34
+        }
+      }
+    }
+  }
+}

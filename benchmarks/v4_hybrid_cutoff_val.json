@@ -1,0 +1,744 @@
+{
+  "dataset": "datasets\\corner_gt_v4_perceptual_events",
+  "splits": [
+    "val"
+  ],
+  "tolerance": 3.0,
+  "detectors": {
+    "cnn:corner_cnn.pt@0.28": {
+      "P": 0.6352,
+      "R": 0.8364,
+      "F1": 0.722,
+      "tp_events": 2714,
+      "fp_predictions": 1559,
+      "fn_events": 531,
+      "loops": 769,
+      "fp_per_loop": 2.0273,
+      "zero_event": {
+        "loops": 137,
+        "fp": 514,
+        "fp_per_loop": 3.7518
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8382,
+        "point": 0.8119,
+        "short-span": 0.8544
+      },
+      "by_resolution": {
+        "32": {
+          "P": 0.6006,
+          "R": 0.7212,
+          "events": 269
+        },
+        "48": {
+          "P": 0.6425,
+          "R": 0.7447,
+          "events": 333
+        },
+        "64": {
+          "P": 0.6271,
+          "R": 0.8184,
+          "events": 446
+        },
+        "96": {
+          "P": 0.6575,
+          "R": 0.8168,
+          "events": 524
+        },
+        "128": {
+          "P": 0.6195,
+          "R": 0.8579,
+          "events": 556
+        },
+        "192": {
+          "P": 0.6201,
+          "R": 0.8748,
+          "events": 543
+        },
+        "256": {
+          "P": 0.6629,
+          "R": 0.9181,
+          "events": 574
+        }
+      },
+      "by_family": {
+        "bridge": {
+          "P": 0.8571,
+          "R": 1.0,
+          "F1": 0.9231,
+          "fp_per_loop": 1.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dark": {
+          "P": 0.6944,
+          "R": 0.885,
+          "F1": 0.7782,
+          "fp_per_loop": 1.5851,
+          "zero_event_loops": 47,
+          "zero_event_fp_per_loop": 2.8936
+        },
+        "default": {
+          "P": 0.7422,
+          "R": 0.798,
+          "F1": 0.7691,
+          "fp_per_loop": 1.8589,
+          "zero_event_loops": 4,
+          "zero_event_fp_per_loop": 3.25
+        },
+        "dress2": {
+          "P": 0.5227,
+          "R": 0.9583,
+          "F1": 0.6765,
+          "fp_per_loop": 5.25,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "fluent-emoji-flat": {
+          "P": 0.4046,
+          "R": 0.8734,
+          "F1": 0.553,
+          "fp_per_loop": 2.4904,
+          "zero_event_loops": 51,
+          "zero_event_fp_per_loop": 4.0784
+        },
+        "l45": {
+          "P": 0.6,
+          "R": 1.0,
+          "F1": 0.75,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "logos": {
+          "P": 0.332,
+          "R": 0.7545,
+          "F1": 0.4611,
+          "fp_per_loop": 2.6508,
+          "zero_event_loops": 35,
+          "zero_event_fp_per_loop": 4.4857
+        },
+        "mailbox": {
+          "P": 0.5645,
+          "R": 1.0,
+          "F1": 0.7216,
+          "fp_per_loop": 6.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "simple-icons": {
+          "P": 0.8387,
+          "R": 0.9811,
+          "F1": 0.9043,
+          "fp_per_loop": 1.4286,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "square45": {
+          "P": 0.5,
+          "R": 1.0,
+          "F1": 0.6667,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "streamline-logos": {
+          "P": 0.8279,
+          "R": 0.7891,
+          "F1": 0.808,
+          "fp_per_loop": 0.6,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    },
+    "hybrid:corner_cnn.pt@0.28<=8px/corner_cnn_primitives_batched_precision_candidate.pt@0.36": {
+      "P": 0.6481,
+      "R": 0.8407,
+      "F1": 0.732,
+      "tp_events": 2728,
+      "fp_predictions": 1481,
+      "fn_events": 517,
+      "loops": 769,
+      "fp_per_loop": 1.9259,
+      "zero_event": {
+        "loops": 137,
+        "fp": 465,
+        "fp_per_loop": 3.3942
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8353,
+        "point": 0.8127,
+        "short-span": 0.8628
+      },
+      "by_resolution": {
+        "32": {
+          "P": 0.6146,
+          "R": 0.7175,
+          "events": 269
+        },
+        "48": {
+          "P": 0.6568,
+          "R": 0.7297,
+          "events": 333
+        },
+        "64": {
+          "P": 0.6296,
+          "R": 0.8004,
+          "events": 446
+        },
+        "96": {
+          "P": 0.6459,
+          "R": 0.8321,
+          "events": 524
+        },
+        "128": {
+          "P": 0.6368,
+          "R": 0.8705,
+          "events": 556
+        },
+        "192": {
+          "P": 0.6402,
+          "R": 0.8913,
+          "events": 543
+        },
+        "256": {
+          "P": 0.6923,
+          "R": 0.9251,
+          "events": 574
+        }
+      },
+      "by_family": {
+        "bridge": {
+          "P": 0.96,
+          "R": 1.0,
+          "F1": 0.9796,
+          "fp_per_loop": 0.25,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dark": {
+          "P": 0.6894,
+          "R": 0.885,
+          "F1": 0.775,
+          "fp_per_loop": 1.6223,
+          "zero_event_loops": 47,
+          "zero_event_fp_per_loop": 2.617
+        },
+        "default": {
+          "P": 0.7461,
+          "R": 0.8112,
+          "F1": 0.7773,
+          "fp_per_loop": 1.8508,
+          "zero_event_loops": 4,
+          "zero_event_fp_per_loop": 3.25
+        },
+        "dress2": {
+          "P": 0.5111,
+          "R": 0.9583,
+          "F1": 0.6667,
+          "fp_per_loop": 5.5,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "fluent-emoji-flat": {
+          "P": 0.4242,
+          "R": 0.8685,
+          "F1": 0.57,
+          "fp_per_loop": 2.2837,
+          "zero_event_loops": 51,
+          "zero_event_fp_per_loop": 3.7059
+        },
+        "l45": {
+          "P": 0.6154,
+          "R": 1.0,
+          "F1": 0.7619,
+          "fp_per_loop": 3.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "logos": {
+          "P": 0.3392,
+          "R": 0.7,
+          "F1": 0.457,
+          "fp_per_loop": 2.381,
+          "zero_event_loops": 35,
+          "zero_event_fp_per_loop": 4.0
+        },
+        "mailbox": {
+          "P": 0.6481,
+          "R": 1.0,
+          "F1": 0.7865,
+          "fp_per_loop": 4.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "simple-icons": {
+          "P": 0.8966,
+          "R": 0.9811,
+          "F1": 0.9369,
+          "fp_per_loop": 0.8571,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "square45": {
+          "P": 0.5,
+          "R": 1.0,
+          "F1": 0.6667,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "streamline-logos": {
+          "P": 0.886,
+          "R": 0.7891,
+          "F1": 0.8347,
+          "fp_per_loop": 0.3714,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    },
+    "hybrid:corner_cnn.pt@0.28<=12px/corner_cnn_primitives_batched_precision_candidate.pt@0.36": {
+      "P": 0.6407,
+      "R": 0.8401,
+      "F1": 0.7269,
+      "tp_events": 2726,
+      "fp_predictions": 1529,
+      "fn_events": 519,
+      "loops": 769,
+      "fp_per_loop": 1.9883,
+      "zero_event": {
+        "loops": 137,
+        "fp": 481,
+        "fp_per_loop": 3.5109
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8353,
+        "point": 0.8111,
+        "short-span": 0.8628
+      },
+      "by_resolution": {
+        "32": {
+          "P": 0.6113,
+          "R": 0.7249,
+          "events": 269
+        },
+        "48": {
+          "P": 0.6397,
+          "R": 0.7357,
+          "events": 333
+        },
+        "64": {
+          "P": 0.6235,
+          "R": 0.8094,
+          "events": 446
+        },
+        "96": {
+          "P": 0.6497,
+          "R": 0.8282,
+          "events": 524
+        },
+        "128": {
+          "P": 0.6336,
+          "R": 0.8615,
+          "events": 556
+        },
+        "192": {
+          "P": 0.6202,
+          "R": 0.884,
+          "events": 543
+        },
+        "256": {
+          "P": 0.6856,
+          "R": 0.9268,
+          "events": 574
+        }
+      },
+      "by_family": {
+        "bridge": {
+          "P": 0.96,
+          "R": 1.0,
+          "F1": 0.9796,
+          "fp_per_loop": 0.25,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dark": {
+          "P": 0.6925,
+          "R": 0.8889,
+          "F1": 0.7785,
+          "fp_per_loop": 1.6064,
+          "zero_event_loops": 47,
+          "zero_event_fp_per_loop": 2.7021
+        },
+        "default": {
+          "P": 0.741,
+          "R": 0.807,
+          "F1": 0.7726,
+          "fp_per_loop": 1.8911,
+          "zero_event_loops": 4,
+          "zero_event_fp_per_loop": 3.25
+        },
+        "dress2": {
+          "P": 0.5111,
+          "R": 0.9583,
+          "F1": 0.6667,
+          "fp_per_loop": 5.5,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "fluent-emoji-flat": {
+          "P": 0.407,
+          "R": 0.8685,
+          "F1": 0.5542,
+          "fp_per_loop": 2.4519,
+          "zero_event_loops": 51,
+          "zero_event_fp_per_loop": 3.9412
+        },
+        "l45": {
+          "P": 0.6154,
+          "R": 1.0,
+          "F1": 0.7619,
+          "fp_per_loop": 3.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "logos": {
+          "P": 0.345,
+          "R": 0.7182,
+          "F1": 0.4661,
+          "fp_per_loop": 2.381,
+          "zero_event_loops": 35,
+          "zero_event_fp_per_loop": 4.0
+        },
+        "mailbox": {
+          "P": 0.6481,
+          "R": 1.0,
+          "F1": 0.7865,
+          "fp_per_loop": 4.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "simple-icons": {
+          "P": 0.8966,
+          "R": 0.9811,
+          "F1": 0.9369,
+          "fp_per_loop": 0.8571,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "square45": {
+          "P": 0.5,
+          "R": 1.0,
+          "F1": 0.6667,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "streamline-logos": {
+          "P": 0.8417,
+          "R": 0.7891,
+          "F1": 0.8145,
+          "fp_per_loop": 0.5429,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    },
+    "hybrid:corner_cnn.pt@0.28<=16px/corner_cnn_primitives_batched_precision_candidate.pt@0.36": {
+      "P": 0.6422,
+      "R": 0.8376,
+      "F1": 0.727,
+      "tp_events": 2718,
+      "fp_predictions": 1514,
+      "fn_events": 527,
+      "loops": 769,
+      "fp_per_loop": 1.9688,
+      "zero_event": {
+        "loops": 137,
+        "fp": 489,
+        "fp_per_loop": 3.5693
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8382,
+        "point": 0.8095,
+        "short-span": 0.8586
+      },
+      "by_resolution": {
+        "32": {
+          "P": 0.6151,
+          "R": 0.7249,
+          "events": 269
+        },
+        "48": {
+          "P": 0.6406,
+          "R": 0.7387,
+          "events": 333
+        },
+        "64": {
+          "P": 0.6231,
+          "R": 0.8117,
+          "events": 446
+        },
+        "96": {
+          "P": 0.6539,
+          "R": 0.8149,
+          "events": 524
+        },
+        "128": {
+          "P": 0.6313,
+          "R": 0.8561,
+          "events": 556
+        },
+        "192": {
+          "P": 0.6283,
+          "R": 0.884,
+          "events": 543
+        },
+        "256": {
+          "P": 0.6829,
+          "R": 0.9268,
+          "events": 574
+        }
+      },
+      "by_family": {
+        "bridge": {
+          "P": 0.96,
+          "R": 1.0,
+          "F1": 0.9796,
+          "fp_per_loop": 0.25,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dark": {
+          "P": 0.6933,
+          "R": 0.8863,
+          "F1": 0.778,
+          "fp_per_loop": 1.5957,
+          "zero_event_loops": 47,
+          "zero_event_fp_per_loop": 2.7234
+        },
+        "default": {
+          "P": 0.7446,
+          "R": 0.8028,
+          "F1": 0.7726,
+          "fp_per_loop": 1.8468,
+          "zero_event_loops": 4,
+          "zero_event_fp_per_loop": 3.25
+        },
+        "dress2": {
+          "P": 0.5111,
+          "R": 0.9583,
+          "F1": 0.6667,
+          "fp_per_loop": 5.5,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "fluent-emoji-flat": {
+          "P": 0.4086,
+          "R": 0.871,
+          "F1": 0.5563,
+          "fp_per_loop": 2.4423,
+          "zero_event_loops": 51,
+          "zero_event_fp_per_loop": 4.0784
+        },
+        "l45": {
+          "P": 0.6154,
+          "R": 1.0,
+          "F1": 0.7619,
+          "fp_per_loop": 3.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "logos": {
+          "P": 0.345,
+          "R": 0.7182,
+          "F1": 0.4661,
+          "fp_per_loop": 2.381,
+          "zero_event_loops": 35,
+          "zero_event_fp_per_loop": 4.0
+        },
+        "mailbox": {
+          "P": 0.6481,
+          "R": 1.0,
+          "F1": 0.7865,
+          "fp_per_loop": 4.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "simple-icons": {
+          "P": 0.8966,
+          "R": 0.9811,
+          "F1": 0.9369,
+          "fp_per_loop": 0.8571,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "square45": {
+          "P": 0.5,
+          "R": 1.0,
+          "F1": 0.6667,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "streamline-logos": {
+          "P": 0.8417,
+          "R": 0.7891,
+          "F1": 0.8145,
+          "fp_per_loop": 0.5429,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    },
+    "hybrid:corner_cnn.pt@0.28<=24px/corner_cnn_primitives_batched_precision_candidate.pt@0.36": {
+      "P": 0.6412,
+      "R": 0.8354,
+      "F1": 0.7255,
+      "tp_events": 2711,
+      "fp_predictions": 1517,
+      "fn_events": 534,
+      "loops": 769,
+      "fp_per_loop": 1.9727,
+      "zero_event": {
+        "loops": 137,
+        "fp": 494,
+        "fp_per_loop": 3.6058
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8353,
+        "point": 0.8111,
+        "short-span": 0.8538
+      },
+      "by_resolution": {
+        "32": {
+          "P": 0.6025,
+          "R": 0.7212,
+          "events": 269
+        },
+        "48": {
+          "P": 0.6416,
+          "R": 0.7417,
+          "events": 333
+        },
+        "64": {
+          "P": 0.6254,
+          "R": 0.8161,
+          "events": 446
+        },
+        "96": {
+          "P": 0.6554,
+          "R": 0.8168,
+          "events": 524
+        },
+        "128": {
+          "P": 0.6308,
+          "R": 0.8543,
+          "events": 556
+        },
+        "192": {
+          "P": 0.633,
+          "R": 0.8766,
+          "events": 543
+        },
+        "256": {
+          "P": 0.6748,
+          "R": 0.9181,
+          "events": 574
+        }
+      },
+      "by_family": {
+        "bridge": {
+          "P": 0.8571,
+          "R": 1.0,
+          "F1": 0.9231,
+          "fp_per_loop": 1.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "dark": {
+          "P": 0.6936,
+          "R": 0.885,
+          "F1": 0.7777,
+          "fp_per_loop": 1.5904,
+          "zero_event_loops": 47,
+          "zero_event_fp_per_loop": 2.8298
+        },
+        "default": {
+          "P": 0.7443,
+          "R": 0.798,
+          "F1": 0.7702,
+          "fp_per_loop": 1.8387,
+          "zero_event_loops": 4,
+          "zero_event_fp_per_loop": 3.25
+        },
+        "dress2": {
+          "P": 0.5111,
+          "R": 0.9583,
+          "F1": 0.6667,
+          "fp_per_loop": 5.5,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "fluent-emoji-flat": {
+          "P": 0.4056,
+          "R": 0.8685,
+          "F1": 0.5529,
+          "fp_per_loop": 2.4663,
+          "zero_event_loops": 51,
+          "zero_event_fp_per_loop": 4.0784
+        },
+        "l45": {
+          "P": 0.6154,
+          "R": 1.0,
+          "F1": 0.7619,
+          "fp_per_loop": 3.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "logos": {
+          "P": 0.355,
+          "R": 0.7455,
+          "F1": 0.4809,
+          "fp_per_loop": 2.3651,
+          "zero_event_loops": 35,
+          "zero_event_fp_per_loop": 4.0
+        },
+        "mailbox": {
+          "P": 0.6481,
+          "R": 1.0,
+          "F1": 0.7865,
+          "fp_per_loop": 4.75,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "simple-icons": {
+          "P": 0.8966,
+          "R": 0.9811,
+          "F1": 0.9369,
+          "fp_per_loop": 0.8571,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "square45": {
+          "P": 0.5,
+          "R": 1.0,
+          "F1": 0.6667,
+          "fp_per_loop": 4.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "streamline-logos": {
+          "P": 0.8487,
+          "R": 0.7891,
+          "F1": 0.8178,
+          "fp_per_loop": 0.5143,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    }
+  }
+}

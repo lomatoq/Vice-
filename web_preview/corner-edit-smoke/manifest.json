@@ -1,0 +1,86 @@
+{
+  "dataset": "corner_edit_smoke",
+  "summary": {
+    "version": 2,
+    "definition": "C0 SVG tangent discontinuities + visible occlusion corners",
+    "files": 2,
+    "requested_files": 2,
+    "resolutions": [
+      32,
+      128
+    ],
+    "loops": 12,
+    "vertices": 1260,
+    "structural": 6,
+    "occlusion": 6,
+    "zero_corner_loops": 8,
+    "negative_vertices": 1248,
+    "rejects": {},
+    "by_resolution": {
+      "32": {
+        "loops": 6,
+        "structural": 3,
+        "occlusion": 4,
+        "zero_corner_loops": 4
+      },
+      "128": {
+        "loops": 6,
+        "structural": 3,
+        "occlusion": 2,
+        "zero_corner_loops": 4
+      }
+    }
+  },
+  "entries": [
+    {
+      "id": "00000_smooth",
+      "name": "smooth",
+      "views": [
+        {
+          "id": "00000_smooth@32",
+          "res": 32,
+          "image": "images/00000_smooth_32.png",
+          "annotation": "annotations/00000_smooth_32.json",
+          "corners": 0
+        },
+        {
+          "id": "00000_smooth@128",
+          "res": 128,
+          "image": "images/00000_smooth_128.png",
+          "annotation": "annotations/00000_smooth_128.json",
+          "corners": 0
+        }
+      ],
+      "loops": 6,
+      "structural": 0,
+      "occlusion": 0,
+      "zero_corner": true,
+      "source": "sources/00000_smooth.svg"
+    },
+    {
+      "id": "00001_occlusion",
+      "name": "occlusion",
+      "views": [
+        {
+          "id": "00001_occlusion@32",
+          "res": 32,
+          "image": "images/00001_occlusion_32.png",
+          "annotation": "annotations/00001_occlusion_32.json",
+          "corners": 7
+        },
+        {
+          "id": "00001_occlusion@128",
+          "res": 128,
+          "image": "images/00001_occlusion_128.png",
+          "annotation": "annotations/00001_occlusion_128.json",
+          "corners": 5
+        }
+      ],
+      "loops": 6,
+      "structural": 6,
+      "occlusion": 6,
+      "zero_corner": false,
+      "source": "sources/00001_occlusion.svg"
+    }
+  ]
+}

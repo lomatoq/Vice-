@@ -1,0 +1,124 @@
+{
+  "dataset": "datasets\\corner_gt_v4_perceptual_events",
+  "splits": [
+    "test",
+    "val"
+  ],
+  "tolerance": 3.0,
+  "detectors": {
+    "cnn:corner_cnn.pt@0.28": {
+      "P": 0.6303,
+      "R": 0.8559,
+      "F1": 0.726,
+      "tp_events": 1741,
+      "fp_predictions": 1021,
+      "fn_events": 293,
+      "loops": 500,
+      "fp_per_loop": 2.042,
+      "recall_by_kind": {
+        "occlusion": 0.8077,
+        "point": 0.846,
+        "short-span": 0.8665
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.6586,
+          "R": 0.7455,
+          "events": 220
+        },
+        "48": {
+          "P": 0.6364,
+          "R": 0.725,
+          "events": 280
+        },
+        "64": {
+          "P": 0.6397,
+          "R": 0.8333,
+          "events": 360
+        },
+        "96": {
+          "P": 0.5821,
+          "R": 0.906,
+          "events": 266
+        },
+        "128": {
+          "P": 0.6041,
+          "R": 0.8841,
+          "events": 302
+        },
+        "192": {
+          "P": 0.652,
+          "R": 0.9017,
+          "events": 295
+        },
+        "256": {
+          "P": 0.6593,
+          "R": 0.9646,
+          "events": 311
+        }
+      }
+    },
+    "cnn:corner_cnn_primitives_balanced_candidate.pt@0.28": {
+      "P": 0.6167,
+      "R": 0.821,
+      "F1": 0.7043,
+      "tp_events": 1670,
+      "fp_predictions": 1038,
+      "fn_events": 364,
+      "loops": 500,
+      "fp_per_loop": 2.076,
+      "recall_by_kind": {
+        "occlusion": 0.8269,
+        "point": 0.8069,
+        "short-span": 0.8324
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.695,
+          "R": 0.6318,
+          "events": 220
+        },
+        "48": {
+          "P": 0.6621,
+          "R": 0.6857,
+          "events": 280
+        },
+        "64": {
+          "P": 0.6659,
+          "R": 0.7861,
+          "events": 360
+        },
+        "96": {
+          "P": 0.5366,
+          "R": 0.8271,
+          "events": 266
+        },
+        "128": {
+          "P": 0.5651,
+          "R": 0.8907,
+          "events": 302
+        },
+        "192": {
+          "P": 0.61,
+          "R": 0.9119,
+          "events": 295
+        },
+        "256": {
+          "P": 0.6395,
+          "R": 0.9582,
+          "events": 311
+        }
+      }
+    }
+  }
+}

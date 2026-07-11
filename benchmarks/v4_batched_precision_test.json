@@ -1,0 +1,129 @@
+{
+  "dataset": "datasets\\corner_gt_v4_perceptual_events",
+  "splits": [
+    "test"
+  ],
+  "tolerance": 3.0,
+  "detectors": {
+    "cnn:corner_cnn_primitives_batched_precision_candidate.pt@0.36": {
+      "P": 0.6511,
+      "R": 0.8299,
+      "F1": 0.7297,
+      "tp_events": 3172,
+      "fp_predictions": 1700,
+      "fn_events": 650,
+      "loops": 823,
+      "fp_per_loop": 2.0656,
+      "zero_event": {
+        "loops": 82,
+        "fp": 271,
+        "fp_per_loop": 3.3049
+      },
+      "recall_by_kind": {
+        "occlusion": 0.8025,
+        "point": 0.8045,
+        "short-span": 0.8542
+      },
+      "by_resolution": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "events": 0
+        },
+        "32": {
+          "P": 0.7375,
+          "R": 0.7375,
+          "events": 259
+        },
+        "48": {
+          "P": 0.6539,
+          "R": 0.7405,
+          "events": 393
+        },
+        "64": {
+          "P": 0.6752,
+          "R": 0.7345,
+          "events": 501
+        },
+        "96": {
+          "P": 0.6296,
+          "R": 0.7619,
+          "events": 609
+        },
+        "128": {
+          "P": 0.6392,
+          "R": 0.8304,
+          "events": 672
+        },
+        "192": {
+          "P": 0.6376,
+          "R": 0.9115,
+          "events": 689
+        },
+        "256": {
+          "P": 0.6537,
+          "R": 0.9614,
+          "events": 699
+        }
+      },
+      "by_family": {
+        "8": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 1,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "Dark": {
+          "P": 0.9021,
+          "R": 0.7794,
+          "F1": 0.8363,
+          "fp_per_loop": 0.7143,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "Default": {
+          "P": 0.436,
+          "R": 0.857,
+          "F1": 0.5779,
+          "fp_per_loop": 3.0855,
+          "zero_event_loops": 59,
+          "zero_event_fp_per_loop": 2.6271
+        },
+        "Light": {
+          "P": 0.5709,
+          "R": 0.8322,
+          "F1": 0.6773,
+          "fp_per_loop": 2.8029,
+          "zero_event_loops": 22,
+          "zero_event_fp_per_loop": 5.2727
+        },
+        "default": {
+          "P": 0.833,
+          "R": 0.8438,
+          "F1": 0.8384,
+          "fp_per_loop": 0.8298,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "light": {
+          "P": 0.7025,
+          "R": 0.912,
+          "F1": 0.7937,
+          "fp_per_loop": 1.5652,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "squaresmall": {
+          "P": 1.0,
+          "R": 1.0,
+          "F1": 1.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "summary": {
+    "version": 2,
+    "definition": "C0 SVG tangent discontinuities + visible occlusion corners",
+    "files": 3,
+    "requested_files": 3,
+    "resolutions": [
+      32,
+      64,
+      128
+    ],
+    "loops": 156,
+    "vertices": 5450,
+    "structural": 349,
+    "occlusion": 62,
+    "zero_corner_loops": 9,
+    "negative_vertices": 5039,
+    "rejects": {
+      "clipPath": 1
+    },
+    "by_resolution": {
+      "32": {
+        "loops": 23,
+        "structural": 55,
+        "occlusion": 6,
+        "zero_corner_loops": 0
+      },
+      "64": {
+        "loops": 59,
+        "structural": 120,
+        "occlusion": 24,
+        "zero_corner_loops": 3
+      },
+      "128": {
+        "loops": 74,
+        "structural": 174,
+        "occlusion": 32,
+        "zero_corner_loops": 6
+      }
+    }
+  },
+  "entries": [
+    {
+      "id": "00000_plankgaming",
+      "name": "plankgaming",
+      "views": [
+        {
+          "res": 32,
+          "image": "images/00000_plankgaming_32.png",
+          "corners": 38
+        },
+        {
+          "res": 64,
+          "image": "images/00000_plankgaming_64.png",
+          "corners": 56
+        },
+        {
+          "res": 128,
+          "image": "images/00000_plankgaming_128.png",
+          "corners": 69
+        }
+      ],
+      "loops": 42,
+      "structural": 162,
+      "occlusion": 1,
+      "zero_corner": false,
+      "source": "sources/00000_plankgaming.svg"
+    },
+    {
+      "id": "00001_apollogames",
+      "name": "apollogames",
+      "views": [
+        {
+          "res": 32,
+          "image": "images/00001_apollogames_32.png",
+          "corners": 7
+        },
+        {
+          "res": 64,
+          "image": "images/00001_apollogames_64.png",
+          "corners": 25
+        },
+        {
+          "res": 128,
+          "image": "images/00001_apollogames_128.png",
+          "corners": 42
+        }
+      ],
+      "loops": 35,
+      "structural": 43,
+      "occlusion": 31,
+      "zero_corner": false,
+      "source": "sources/00001_apollogames.svg"
+    },
+    {
+      "id": "00002_local-default-novomatic",
+      "name": "local-default-novomatic",
+      "views": [
+        {
+          "res": 32,
+          "image": "images/00002_local-default-novomatic_32.png",
+          "corners": 16
+        },
+        {
+          "res": 64,
+          "image": "images/00002_local-default-novomatic_64.png",
+          "corners": 63
+        },
+        {
+          "res": 128,
+          "image": "images/00002_local-default-novomatic_128.png",
+          "corners": 95
+        }
+      ],
+      "loops": 79,
+      "structural": 144,
+      "occlusion": 30,
+      "zero_corner": false,
+      "source": "sources/00002_local-default-novomatic.svg"
+    }
+  ]
+}

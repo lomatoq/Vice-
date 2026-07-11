@@ -1,0 +1,109 @@
+{
+ "scores": [
+  {
+   "design_key": "global-energy",
+   "perceptual_ceiling": 9,
+   "feasibility": 3,
+   "small_and_text": 8.5,
+   "artifact_immunity": 9.5,
+   "risk_adjusted_total": 5,
+   "strongest_ideas": [
+    "Joint corner+primitive shortest-cycle DP per interface with the corner CNN as raw log-odds unaries — no threshold, no NMS, no collapse window; this is the principled fix for the 0.73 F1 ceiling and is graftable WITHOUT the rest of PRISM (it slots where paper_corner_positions + _iterated_removal + fit_segment_midpoints meet, reusing the existing interval machinery as the feasibility oracle)",
+    "Subpixel evidence tube as the ONE fidelity gate, with the crack polyline always feasible — the cleanest structural proof that a staircase fallback can never be needed",
+    "Regularity-as-hypothesis + exact one-shot selection (order-independent) replacing the sequential snapshot-and-revert chain — even a greedy selector over the same hypothesis schema would beat today's order-dependent budget-eating",
+    "Prototype pooling: fit one shared curve chain against all instances' evidence simultaneously (n glyphs = sqrt(n) noise reduction) — the best text-quality idea in the pool"
+   ],
+   "fatal_flaws": [
+    "The global interval-constrained SQP with hard G2 equalities across mixed line/arc/clothoid/ellipse chains is a standalone research project; the design itself admits it 'will rattle' near degenerate configurations, and a rattling SQP is the least debuggable failure mode imaginable for this team",
+    "Effort estimates (37 days total for 8 components including the SQP at 7 days) are 3-5x optimistic; the certified gates go dark for months during the stage C/D/E swaps with no shippable intermediate",
+    "It replaces essentially everything after segmentation at once — the 4225-line calibrated pipeline becomes scaffolding for a new solver stack (CP-SAT + SQP + lazy-cut loop); when output is wrong, the debugging surface is an active-set trace, not a function you can step through",
+    "The CP-SAT/SQP lazy-feasibility interplay and the outer relabel-and-rebuild alternation are two nested fixpoint loops on top of each other; 'monotone and terminating' on paper, but the interaction bugs will consume the schedule"
+   ]
+  },
+  {
+   "design_key": "render-loss",
+   "perceptual_ceiling": 9.5,
+   "feasibility": 4.5,
+   "small_and_text": 9,
+   "artifact_immunity": 9,
+   "risk_adjusted_total": 6,
+   "strongest_ideas": [
+    "Linear-RGB coverage unmixing + erf-ESF calibration → a DETERMINISTIC subpixel evidence field with per-probe sigma, no training required; feeding this into the existing DP (interval center moved to the probe, width shrunk where confident, unchanged where not) is the single highest leverage-per-day graft available — it attacks wobble, tiny-circle roundness, and staircase collapse at the root cause (fitting to quantized crack midpoints)",
+    "One acceptance law (DeltaL_perc <= lambda_mdl * DeltaMDL + floor) replacing the zoo of per-regularizer thresholds — a maintenance win the tech lead should covet even in a heuristic pipeline",
+    "Template fitting directly to the anti-aliased coverage field (analytic pixel coverage vs observed alpha) for small loops — over-determined 4:1 at 6px; strictly better than any mask-IoU tournament for tiny shapes",
+    "Fallback ladder terminating in a direct spline fit — the worst output becomes a smooth raster-faithful curve by construction",
+    "Audit metrics that run identically on vectorizer.ai's SVGs — turns 'beat VAI' from an assertion into a measurement"
+   ],
+   "fatal_flaws": [
+    "diffvg on Windows is a known build hazard (custom CUDA extension); the in-house fallback is honest but the '+4 days' estimate is fantasy — this is the load-bearing polish stage sitting on the shakiest dependency",
+    "The court's runtime is unbounded in principle: edit-queue-to-fixpoint with render escalation on a 500-region image needs the edit-budget cap they only mention as a mitigation; interactive latency is a hope, not a design property",
+    "Gradient-descent polish (Adam, GPU) sits in tension with the team's determinism requirement — bitwise reproducibility across driver versions is not something Adam-on-CUDA gives you for free",
+    "Re-basing the entire certification harness from region-mask IoU to rendered output is a disruptive prerequisite buried in the risks list; until it's done, every stage gate is ambiguous"
+   ]
+  },
+  {
+   "design_key": "scene-layers",
+   "perceptual_ceiling": 8.5,
+   "feasibility": 5,
+   "small_and_text": 8,
+   "artifact_immunity": 8.5,
+   "risk_adjusted_total": 6,
+   "strongest_ideas": [
+    "Single-owner boundaries + 0.75px under-apron: the cheapest structural seam kill in the pool — Stage 1 of its plan (ownership + apron in paper-regions mode, no amodal completion yet) is graftable in days and makes seams unrepresentable without any z-order inference",
+    "Glyphs as a top z-layer with their own fitting profile — matches the VAI forensic finding, localizes the text-safe/tiny-safe/collapse-window changes to the one layer where they matter, and lets underlying shapes complete smoothly beneath letters",
+    "Regularizers on COMPLETE outlines: arbitrary-axis mirror and Procrustes repeat unification become cheap once shapes are whole — the observation that completeness is what makes the full symmetry group affordable is correct and transferable",
+    "Per-shape fallback ladder: a failed fit costs one shape, not the image — the right blast-radius discipline"
+   ],
+   "fatal_flaws": [
+    "Z-order inference is the load-bearing new subsystem and flat design is exactly the domain where its cues (T-junctions, continuation) are weakest; the 'abut = zero-hidden-area occlusion' reduction papers over the fact that ownership choices will flip between near-identical inputs and every flip changes corner placement — a determinism/stability tarpit the design waves at with tie-break-by-index",
+    "Amodal completion creates a NEW artifact class this pipeline has never had (false merges, completed shapes peeking through, wrong bridges under occluders); the verifier catches them, but frequent rejection pushes shapes down the ladder and the debugging loop for 'why did these two regions fuse' is slow and adversarial",
+    "Staircases are not actually abolished: the ladder's last rung is region-native fitting, which still exits through _finish_loop's _pixel_faithful_curves path — the design fixes the text/tiny CAUSES but keeps the mechanism",
+    "Interlocking/cyclic occlusion handling (ring splitting) is acknowledged as 'genuinely fiddly to get pixel-right' — that is where the schedule goes to die"
+   ]
+  },
+  {
+   "design_key": "ml-first",
+   "perceptual_ceiling": 9,
+   "feasibility": 5.5,
+   "small_and_text": 9,
+   "artifact_immunity": 8.5,
+   "risk_adjusted_total": 6.5,
+   "strongest_ideas": [
+    "Stage A (week 1, zero ML): universal crack graph, backstop ladder, alpha fix, color re-estimation, elliptic arc, clothoid Gauss-Newton, text/tiny-safe auto-routing — this is independently valuable and nearly identical to the pragmatist plan's core, proving the two designs share a spine",
+    "The safety contract done right: tanh-bounded ±0.5px architectural clamp on SEF offsets + confidence gate (w<=0.7 → exactly today's behavior) + Hausdorff measured against RAW cracks — worst case is provably the current output; this is the correct template for ANY ML graft into this pipeline",
+    "Posterior term gamma*log((1-p)/p) in the Algorithm-2 removal energy — finally lets detector confidence and geometric parsimony argue in one energy (closes gap 11 properly, not with a margin hack)",
+    "Analytic GT byproducts: svg_corner_gt.py already walks paths, so tangent/curvature/primitive-class labels are FREE — the cheapest training-data insight in the pool",
+    "Teacher-student regularity proposals where the teacher is an exact offline searcher — labels contain no perceptual wishfulness, and the verifier means the student can only add recall"
+   ],
+   "fatal_flaws": [
+    "Five models = five data generators, five training loops, five calibration procedures, five domain-gap monitors — on one GPU box with a small team the 49-day estimate is realistically 100+; the schedule is dominated by training iteration, which is unplannable",
+    "Model failures are silent quality regressions visible only in aggregate metrics; when SEF is confidently wrong on a JPEG texture class, root-causing it is model archaeology, not a stack trace — a real step down in debuggability from the current all-geometric pipeline",
+    "BT event-F1 >= 0.85 is a target, not a mechanism — if the transformer plateaus at 0.78 the whole text story shrinks to the Stage-A heuristics; the plan has no fallback for perception-model underperformance other than 'today's behavior'",
+    "The RPN's exact offline teacher (RANSAC correspondence search over iconify + 365 logos) is a multi-week build hiding inside one line item, needed before the student can even start"
+   ]
+  },
+  {
+   "design_key": "pragmatist",
+   "perceptual_ceiling": 7,
+   "feasibility": 9,
+   "small_and_text": 7.5,
+   "artifact_immunity": 7.5,
+   "risk_adjusted_total": 8,
+   "strongest_ideas": [
+    "benchmark_vai.py FIRST (staircase rate, wobble, roundness, curvature-fairness, seam pixels, measured against frozen VAI references) — the only design that fixes the actual process failure: today an aesthetic regression passes every gate; every other design needs this harness too and none prioritizes it at day 1.5",
+    "Every line number verified against the real file — the strikes land in known functions with known revert paths; this is the only plan where 'keep the gates green while shipping' is a property of the plan rather than a promise",
+    "Text-safe default flip: the codebase's own docstring at _finish_loop:2702 documents the 29-86 staircase-line failure and the fix already exists behind a flag — hours of work for one of the largest single perceptual wins available",
+    "Worst-artifact-salience thesis: eliminating the bottom of our distribution (staircases, seams) buys more human preference than raising the top — the correct prioritization theory for beating a mature competitor",
+    "Scale-aware collapse window min(16*spacing, 0.35*extent, 3px) and the kappa*(p-0.5) removal margin — small, calibratable, revertible corner fixes"
+   ],
+   "fatal_flaws": [
+    "No subpixel evidence anywhere: it keeps fitting to quantized crack midpoints, so the root cause of wobble and tiny-circle squareness survives all nine strikes — the tiny-icon and smooth-silhouette ceilings stay below what render-loss/ml-first reach, and those are two of the three declared battlegrounds",
+    "The 0.25px paint-order stroke bleed is a patch, not a structural fix — it fattens shapes, breaks under future transparency, complicates the IoU certification it must itself defend, and the seam problem regresses the moment someone changes emission",
+    "Corner ceiling raised only to ~0.78 target with the same threshold→NMS→collapse architecture; the design has no answer if the confidence-margin tweak plateaus — the joint-DP fix exists only in competing designs",
+    "'After the floor is fixed, our ceiling is higher than VAI's' is the plan's weakest claim: G2 fairing at joins + a wider symmetry group may still lose the ceiling comparison on large smooth silhouettes and 16px icons, exactly where the harness it builds will prove it"
+   ]
+  }
+ ],
+ "best_overall": "pragmatist",
+ "synthesis_advice": "Spine: PUNCHLIST, in its own order — Stage 0 harness (benchmark_vai.py) is non-negotiable and must land before anything else from ANY design, because it is the only instrument that can gate the grafts. Then Stages 1-3 (backstop ladder, text-safe flip, always-on region graph, text/tiny path, alpha/color) largely as written — note ml-first's Stage A independently converged on the same list, which is strong evidence it is the right week-one core. Two modifications to the spine: (1) replace the 0.25px stroke-bleed seam hack with scene-layers' Stage-1 graft — single-owner interfaces plus a 0.75px under-apron on the losing shape in write_svgs; it is barely more work, structurally sound rather than cosmetic, and doesn't fatten topmost regions; (2) adopt scene-layers' glyph-top-layer z-order for the font_match substitution path (pragmatist already emits substituted runs top-z; make it a real layer policy). Graft 1 (highest leverage per day, do right after Stage 3): render-loss's DETERMINISTIC evidence extractor — linear-RGB coverage unmixing + erf-ESF calibration producing per-crack subpixel offsets and confidence — wired into fit_segment_midpoints exactly under ml-first's safety contract (move interval center to the probe, shrink width only where confidence is high, keep ±0.5px elsewhere, Hausdorff still measured against raw cracks). This closes the pragmatist's biggest ceiling gap (wobble, tiny roundness) with zero training, zero new dependencies, and graceful degradation to today's behavior; only if it measurably fails on JPEG should SEF-Net be considered. Graft 2: render-loss/scene-layers' coverage-field template fitting (analytic pixel coverage vs observed alpha, Adam or Gauss-Newton over 3-7 params) replacing the pragmatist's 4x-mask-IoU tiny tournament — same slot in fit_loop_paper, strictly better evidence at ≤24px. Graft 3 (only after the harness shows the corner ceiling binding, i.e. if the kappa*(p-0.5) margin + scale-aware collapse plateaus below ~0.80 F1): global-energy's joint corner+primitive DP as a scoped replacement for threshold→NMS→collapse→Algorithm-2 on a per-loop basis, reusing the existing interval machinery as the feasibility oracle and the Platt-calibrated CNN as unaries — take the Cornucopia-style DP alone, NOT the ILP/SQP superstructure. Defer indefinitely: global SQP with hard G2 (use pragmatist's bounded per-join fairing with interval-recheck revert instead), diffvg polish, z-order inference/amodal completion beyond the ownership+apron slice, and all five ARGUS models except as later, individually-gated upgrades. Sequencing rule throughout: nothing lands without a benchmark_vai.py delta and green certified-logo floors, and every graft must inherit the confidence-gated 'worst case = today's output' contract."
+}

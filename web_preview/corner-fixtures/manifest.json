@@ -1,0 +1,236 @@
+{
+  "summary": {
+    "version": 2,
+    "definition": "C0 SVG tangent discontinuities + visible occlusion corners",
+    "files": 5,
+    "requested_files": 5,
+    "resolutions": [
+      24,
+      32,
+      64,
+      128,
+      256
+    ],
+    "loops": 55,
+    "vertices": 9792,
+    "structural": 198,
+    "occlusion": 15,
+    "zero_corner_loops": 24,
+    "negative_vertices": 9579,
+    "rejects": {},
+    "by_resolution": {
+      "24": {
+        "loops": 11,
+        "structural": 27,
+        "occlusion": 4,
+        "zero_corner_loops": 5
+      },
+      "32": {
+        "loops": 11,
+        "structural": 29,
+        "occlusion": 5,
+        "zero_corner_loops": 4
+      },
+      "64": {
+        "loops": 11,
+        "structural": 26,
+        "occlusion": 2,
+        "zero_corner_loops": 5
+      },
+      "128": {
+        "loops": 11,
+        "structural": 58,
+        "occlusion": 2,
+        "zero_corner_loops": 5
+      },
+      "256": {
+        "loops": 11,
+        "structural": 58,
+        "occlusion": 2,
+        "zero_corner_loops": 5
+      }
+    }
+  },
+  "entries": [
+    {
+      "id": "00000_smooth",
+      "name": "smooth",
+      "views": [
+        {
+          "res": 24,
+          "image": "images/00000_smooth_24.png",
+          "corners": 0
+        },
+        {
+          "res": 32,
+          "image": "images/00000_smooth_32.png",
+          "corners": 1
+        },
+        {
+          "res": 64,
+          "image": "images/00000_smooth_64.png",
+          "corners": 0
+        },
+        {
+          "res": 128,
+          "image": "images/00000_smooth_128.png",
+          "corners": 0
+        },
+        {
+          "res": 256,
+          "image": "images/00000_smooth_256.png",
+          "corners": 0
+        }
+      ],
+      "loops": 15,
+      "structural": 0,
+      "occlusion": 1,
+      "zero_corner": false,
+      "source": "sources/00000_smooth.svg"
+    },
+    {
+      "id": "00001_occlusion",
+      "name": "occlusion",
+      "views": [
+        {
+          "res": 24,
+          "image": "images/00001_occlusion_24.png",
+          "corners": 7
+        },
+        {
+          "res": 32,
+          "image": "images/00001_occlusion_32.png",
+          "corners": 7
+        },
+        {
+          "res": 64,
+          "image": "images/00001_occlusion_64.png",
+          "corners": 5
+        },
+        {
+          "res": 128,
+          "image": "images/00001_occlusion_128.png",
+          "corners": 5
+        },
+        {
+          "res": 256,
+          "image": "images/00001_occlusion_256.png",
+          "corners": 5
+        }
+      ],
+      "loops": 15,
+      "structural": 15,
+      "occlusion": 14,
+      "zero_corner": false,
+      "source": "sources/00001_occlusion.svg"
+    },
+    {
+      "id": "00002_staircase",
+      "name": "staircase",
+      "views": [
+        {
+          "res": 24,
+          "image": "images/00002_staircase_24.png",
+          "corners": 8
+        },
+        {
+          "res": 32,
+          "image": "images/00002_staircase_32.png",
+          "corners": 10
+        },
+        {
+          "res": 64,
+          "image": "images/00002_staircase_64.png",
+          "corners": 7
+        },
+        {
+          "res": 128,
+          "image": "images/00002_staircase_128.png",
+          "corners": 39
+        },
+        {
+          "res": 256,
+          "image": "images/00002_staircase_256.png",
+          "corners": 39
+        }
+      ],
+      "loops": 5,
+      "structural": 103,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00002_staircase.svg"
+    },
+    {
+      "id": "00003_rounded",
+      "name": "rounded",
+      "views": [
+        {
+          "res": 24,
+          "image": "images/00003_rounded_24.png",
+          "corners": 3
+        },
+        {
+          "res": 32,
+          "image": "images/00003_rounded_32.png",
+          "corners": 3
+        },
+        {
+          "res": 64,
+          "image": "images/00003_rounded_64.png",
+          "corners": 3
+        },
+        {
+          "res": 128,
+          "image": "images/00003_rounded_128.png",
+          "corners": 3
+        },
+        {
+          "res": 256,
+          "image": "images/00003_rounded_256.png",
+          "corners": 3
+        }
+      ],
+      "loops": 10,
+      "structural": 15,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00003_rounded.svg"
+    },
+    {
+      "id": "00004_polygon",
+      "name": "polygon",
+      "views": [
+        {
+          "res": 24,
+          "image": "images/00004_polygon_24.png",
+          "corners": 13
+        },
+        {
+          "res": 32,
+          "image": "images/00004_polygon_32.png",
+          "corners": 13
+        },
+        {
+          "res": 64,
+          "image": "images/00004_polygon_64.png",
+          "corners": 13
+        },
+        {
+          "res": 128,
+          "image": "images/00004_polygon_128.png",
+          "corners": 13
+        },
+        {
+          "res": 256,
+          "image": "images/00004_polygon_256.png",
+          "corners": 13
+        }
+      ],
+      "loops": 10,
+      "structural": 65,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00004_polygon.svg"
+    }
+  ]
+}

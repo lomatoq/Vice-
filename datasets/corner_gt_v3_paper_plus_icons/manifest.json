@@ -1,0 +1,1194 @@
+{
+  "dataset": "corner_gt_v3_paper_plus_icons",
+  "summary": {
+    "version": 3,
+    "definition": "paper human perceptual GT + diverse reviewed SVG C0/occlusion extension",
+    "files": 132,
+    "paper_families": 52,
+    "svg_files": 80,
+    "loops": 9322,
+    "vertices": 784240,
+    "structural": 23329,
+    "occlusion": 4279,
+    "zero_corner_loops": 2255,
+    "negative_vertices": 756632,
+    "by_source": {
+      "paper-human": {
+        "loops": 157,
+        "vertices": 68930,
+        "structural": 1254
+      },
+      "svg-extended": {
+        "loops": 9165,
+        "vertices": 715310,
+        "structural": 22075,
+        "occlusion": 4279,
+        "zero_corner_loops": 2255
+      }
+    },
+    "by_resolution": {
+      "8": {
+        "loops": 8,
+        "vertices": 248,
+        "structural": 3
+      },
+      "16": {
+        "loops": 9,
+        "vertices": 530,
+        "structural": 31
+      },
+      "24": {
+        "loops": 590,
+        "vertices": 14574,
+        "structural": 1062,
+        "occlusion": 379,
+        "zero_corner_loops": 99
+      },
+      "32": {
+        "loops": 811,
+        "vertices": 26314,
+        "structural": 1781,
+        "occlusion": 436,
+        "zero_corner_loops": 132
+      },
+      "48": {
+        "loops": 1017,
+        "vertices": 37068,
+        "structural": 2212,
+        "occlusion": 534,
+        "zero_corner_loops": 202
+      },
+      "64": {
+        "loops": 1170,
+        "vertices": 60712,
+        "structural": 2977,
+        "occlusion": 557,
+        "zero_corner_loops": 226
+      },
+      "96": {
+        "loops": 1351,
+        "vertices": 81706,
+        "structural": 3231,
+        "occlusion": 602,
+        "zero_corner_loops": 352
+      },
+      "128": {
+        "loops": 1477,
+        "vertices": 130022,
+        "structural": 3847,
+        "occlusion": 580,
+        "zero_corner_loops": 411
+      },
+      "192": {
+        "loops": 1441,
+        "vertices": 169740,
+        "structural": 3838,
+        "occlusion": 599,
+        "zero_corner_loops": 431
+      },
+      "256": {
+        "loops": 1448,
+        "vertices": 263326,
+        "structural": 4347,
+        "occlusion": 592,
+        "zero_corner_loops": 402
+      }
+    }
+  },
+  "files": [
+    {
+      "id": "paper_axe",
+      "name": "axe",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\axe\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_bow",
+      "name": "bow",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\bow\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_bridge",
+      "name": "bridge",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\bridge\\bridge_32.png",
+      "split": "val",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_bridge45",
+      "name": "bridge45",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\bridge45\\bridgelow45_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_castle",
+      "name": "castle",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\castle\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_circle",
+      "name": "circle",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\circle\\circle_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_circlesmall",
+      "name": "circlesmall",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\circlesmall\\circlesmall_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_curve",
+      "name": "curve",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\curve\\curve_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_dress2",
+      "name": "dress2",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\dress2\\32_image.png",
+      "split": "val",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_dumbbell",
+      "name": "dumbbell",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\dumbbell\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_ellipse",
+      "name": "ellipse",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\ellipse\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_ellipse45",
+      "name": "ellipse45",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\ellipse45\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_enterprise",
+      "name": "enterprise",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\enterprise\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_fighter",
+      "name": "fighter",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\fighter\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_fragile",
+      "name": "fragile",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\fragile\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_guitar2",
+      "name": "guitar2",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\guitar2\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_headphone2",
+      "name": "headphone2",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\headphone2\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_key",
+      "name": "key",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\key\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_l",
+      "name": "l",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\l\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_l45",
+      "name": "l45",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\l45\\l45_32.png",
+      "split": "val",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_lamp",
+      "name": "lamp",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\lamp\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_lipstick",
+      "name": "lipstick",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\lipstick\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_mailbox",
+      "name": "mailbox",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\mailbox\\32_image.png",
+      "split": "val",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_pin",
+      "name": "pin",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\pin\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_plane",
+      "name": "plane",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\plane\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_ringbell",
+      "name": "ringbell",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\ringbell\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_sfont2",
+      "name": "sfont2",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\sfont2\\sfont2_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_square",
+      "name": "square",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\square\\square_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_square30",
+      "name": "square30",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\square30\\square30_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_square45",
+      "name": "square45",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\square45\\square45_32.png",
+      "split": "val",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_squaresmall",
+      "name": "squaresmall",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\squaresmall\\squaresmall_32.png",
+      "split": "test",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_squaresmall45",
+      "name": "squaresmall45",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\squaresmall45\\squaresmall45_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_tie",
+      "name": "tie",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\tie\\tie_32.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_whale",
+      "name": "whale",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\whale\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_zeppelin",
+      "name": "zeppelin",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\decent-res\\zeppelin\\32_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape0",
+      "name": "small 8px / shape0",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape0_image.png",
+      "split": "test",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape1",
+      "name": "small 8px / shape1",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape1_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape2",
+      "name": "small 8px / shape2",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape2_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape3",
+      "name": "small 8px / shape3",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape3_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape4",
+      "name": "small 8px / shape4",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape4_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape5",
+      "name": "small 8px / shape5",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape5_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape6",
+      "name": "small 8px / shape6",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape6_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-8-shape7",
+      "name": "small 8px / shape7",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\8\\shape7_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape0",
+      "name": "small 16px / shape0",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape0_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape1",
+      "name": "small 16px / shape1",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape1_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape2",
+      "name": "small 16px / shape2",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape2_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape3",
+      "name": "small 16px / shape3",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape3_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape4",
+      "name": "small 16px / shape4",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape4_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape5",
+      "name": "small 16px / shape5",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape5_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape6",
+      "name": "small 16px / shape6",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape6_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape7",
+      "name": "small 16px / shape7",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape7_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "id": "paper_small-16-shape8",
+      "name": "small 16px / shape8",
+      "path": "C:\\Users\\nirrt\\Toolset\\Paper_training\\small-res\\16\\shape8_image.png",
+      "split": "train",
+      "source_layer": "paper-human",
+      "annotation": "released-human-gold"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\local-light-redrake.svg",
+      "name": "local-light-redrake",
+      "split": "test",
+      "id": "00000_local-light-redrake",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\streamline-logos\\streamline-logos-kakao-talk-logo.svg",
+      "name": "streamline-logos-kakao-talk-logo",
+      "split": "val",
+      "id": "00001_streamline-logos-kakao-talk-logo",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\token-branded\\spank.svg",
+      "name": "spank",
+      "split": "train",
+      "id": "00002_spank",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\n2games-novomatic.svg",
+      "name": "n2games-novomatic",
+      "split": "train",
+      "id": "00003_n2games-novomatic",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\twemoji\\twemoji-woman-in-motorized-wheelchair-facing-right.svg",
+      "name": "twemoji-woman-in-motorized-wheelchair-facing-right",
+      "split": "train",
+      "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-vala.svg",
+      "name": "simple-icons-vala",
+      "split": "val",
+      "id": "00005_simple-icons-vala",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\local-dark-caleta.svg",
+      "name": "local-dark-caleta",
+      "split": "train",
+      "id": "00006_local-dark-caleta",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\gcp\\gcp-network-topology.svg",
+      "name": "gcp-network-topology",
+      "split": "train",
+      "id": "00007_gcp-network-topology",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\poggiplay.svg",
+      "name": "poggiplay",
+      "split": "train",
+      "id": "00008_poggiplay",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\material-icon-theme\\material-icon-theme-folder-snippet.svg",
+      "name": "material-icon-theme-folder-snippet",
+      "split": "train",
+      "id": "00009_material-icon-theme-folder-snippet",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\eyecon.svg",
+      "name": "eyecon",
+      "split": "train",
+      "id": "00010_eyecon",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\twemoji\\twemoji-lady-beetle.svg",
+      "name": "twemoji-lady-beetle",
+      "split": "train",
+      "id": "00011_twemoji-lady-beetle",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\hollegames@playzia.svg",
+      "name": "hollegames@playzia",
+      "split": "train",
+      "id": "00012_hollegames_playzia",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\quickspin.svg",
+      "name": "quickspin",
+      "split": "train",
+      "id": "00013_quickspin",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\fluent-emoji-flat-atm-sign.svg",
+      "name": "fluent-emoji-flat-atm-sign",
+      "split": "train",
+      "id": "00014_fluent-emoji-flat-atm-sign",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\beterlive.svg",
+      "name": "beterlive",
+      "split": "test",
+      "id": "00015_beterlive",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\luckystreak.svg",
+      "name": "luckystreak",
+      "split": "train",
+      "id": "00016_luckystreak",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\fluent-emoji-flat-man-cook-medium-dark.svg",
+      "name": "fluent-emoji-flat-man-cook-medium-dark",
+      "split": "train",
+      "id": "00017_fluent-emoji-flat-man-cook-medium-dark",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\nucleus.svg",
+      "name": "nucleus",
+      "split": "train",
+      "id": "00018_nucleus",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\token-branded\\token-branded-paw.svg",
+      "name": "token-branded-paw",
+      "split": "train",
+      "id": "00019_token-branded-paw",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\fantasma.svg",
+      "name": "fantasma",
+      "split": "train",
+      "id": "00020_fantasma",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-color\\fluent-color-people-sync-24.svg",
+      "name": "fluent-color-people-sync-24",
+      "split": "train",
+      "id": "00021_fluent-color-people-sync-24",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\hacksaw-backseatgaming.svg",
+      "name": "hacksaw-backseatgaming",
+      "split": "train",
+      "id": "00022_hacksaw-backseatgaming",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\gonggaming.svg",
+      "name": "gonggaming",
+      "split": "train",
+      "id": "00023_gonggaming",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fxemoji\\fxemoji-lastquartermoon.svg",
+      "name": "fxemoji-lastquartermoon",
+      "split": "train",
+      "id": "00024_fxemoji-lastquartermoon",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\slotmatrix.svg",
+      "name": "slotmatrix",
+      "split": "val",
+      "id": "00025_slotmatrix",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\goldcoinstudios.svg",
+      "name": "goldcoinstudios",
+      "split": "test",
+      "id": "00026_goldcoinstudios",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\emojione\\emojione-ten-thirty.svg",
+      "name": "emojione-ten-thirty",
+      "split": "train",
+      "id": "00027_emojione-ten-thirty",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-hacksaw.svg",
+      "name": "local-default-hacksaw",
+      "split": "val",
+      "id": "00028_local-default-hacksaw",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\ortiz.svg",
+      "name": "ortiz",
+      "split": "train",
+      "id": "00029_ortiz",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-truenas.svg",
+      "name": "simple-icons-truenas",
+      "split": "train",
+      "id": "00030_simple-icons-truenas",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\neonvalley.svg",
+      "name": "neonvalley",
+      "split": "train",
+      "id": "00031_neonvalley",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\theearcasino.svg",
+      "name": "theearcasino",
+      "split": "train",
+      "id": "00032_theearcasino",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\muo.svg",
+      "name": "muo",
+      "split": "train",
+      "id": "00033_muo",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\local-dark-octoplay.svg",
+      "name": "local-dark-octoplay",
+      "split": "train",
+      "id": "00034_local-dark-octoplay",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\expansestudios.svg",
+      "name": "expansestudios",
+      "split": "train",
+      "id": "00035_expansestudios",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\shields.svg",
+      "name": "shields",
+      "split": "train",
+      "id": "00036_shields",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\leander.svg",
+      "name": "leander",
+      "split": "train",
+      "id": "00037_leander",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\woman-farmer.svg",
+      "name": "woman-farmer",
+      "split": "train",
+      "id": "00038_woman-farmer",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\egtdigitalgames.svg",
+      "name": "egtdigitalgames",
+      "split": "train",
+      "id": "00039_egtdigitalgames",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\rsmq.svg",
+      "name": "rsmq",
+      "split": "val",
+      "id": "00040_rsmq",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\100hp.svg",
+      "name": "100hp",
+      "split": "test",
+      "id": "00041_100hp",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\vscode-icons\\vscode-icons-file-type-docusaurus.svg",
+      "name": "vscode-icons-file-type-docusaurus",
+      "split": "train",
+      "id": "00042_vscode-icons-file-type-docusaurus",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\quickfire@fantasma.svg",
+      "name": "quickfire@fantasma",
+      "split": "test",
+      "id": "00043_quickfire_fantasma",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-fontawesome.svg",
+      "name": "simple-icons-fontawesome",
+      "split": "train",
+      "id": "00044_simple-icons-fontawesome",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\kagaming.svg",
+      "name": "kagaming",
+      "split": "train",
+      "id": "00045_kagaming",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\twemoji\\twemoji-railway-track.svg",
+      "name": "twemoji-railway-track",
+      "split": "train",
+      "id": "00046_twemoji-railway-track",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\gamomat.svg",
+      "name": "gamomat",
+      "split": "train",
+      "id": "00047_gamomat",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\noto\\noto-locked-with-pen.svg",
+      "name": "noto-locked-with-pen",
+      "split": "train",
+      "id": "00048_noto-locked-with-pen",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\eurasian.svg",
+      "name": "eurasian",
+      "split": "train",
+      "id": "00049_eurasian",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\jftw.svg",
+      "name": "jftw",
+      "split": "train",
+      "id": "00050_jftw",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\zerotier.svg",
+      "name": "zerotier",
+      "split": "train",
+      "id": "00051_zerotier",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-yggdrasil.svg",
+      "name": "local-default-yggdrasil",
+      "split": "val",
+      "id": "00052_local-default-yggdrasil",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-xamarin.svg",
+      "name": "simple-icons-xamarin",
+      "split": "train",
+      "id": "00053_simple-icons-xamarin",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-high5games.svg",
+      "name": "local-default-high5games",
+      "split": "train",
+      "id": "00054_local-default-high5games",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\spinplay.svg",
+      "name": "spinplay",
+      "split": "test",
+      "id": "00055_spinplay",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\expressvpn.svg",
+      "name": "expressvpn",
+      "split": "train",
+      "id": "00056_expressvpn",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\oryx.svg",
+      "name": "oryx",
+      "split": "train",
+      "id": "00057_oryx",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\stormcraft.svg",
+      "name": "stormcraft",
+      "split": "train",
+      "id": "00058_stormcraft",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\shortcut-icon.svg",
+      "name": "shortcut-icon",
+      "split": "train",
+      "id": "00059_shortcut-icon",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\gamingcorps.svg",
+      "name": "gamingcorps",
+      "split": "train",
+      "id": "00060_gamingcorps",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\bigtime.svg",
+      "name": "bigtime",
+      "split": "train",
+      "id": "00061_bigtime",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\fluent-emoji-flat-woman-pouting-light.svg",
+      "name": "fluent-emoji-flat-woman-pouting-light",
+      "split": "val",
+      "id": "00062_fluent-emoji-flat-woman-pouting-light",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\local-light-thunderspin.svg",
+      "name": "local-light-thunderspin",
+      "split": "train",
+      "id": "00063_local-light-thunderspin",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\web3dotjs.svg",
+      "name": "web3dotjs",
+      "split": "train",
+      "id": "00064_web3dotjs",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-gamatron.svg",
+      "name": "local-default-gamatron",
+      "split": "train",
+      "id": "00065_local-default-gamatron",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\kiron.svg",
+      "name": "kiron",
+      "split": "val",
+      "id": "00066_kiron",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\vibra.svg",
+      "name": "vibra",
+      "split": "train",
+      "id": "00067_vibra",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\logos-dailydev-icon.svg",
+      "name": "logos-dailydev-icon",
+      "split": "train",
+      "id": "00068_logos-dailydev-icon",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\local-dark-red7slots.svg",
+      "name": "local-dark-red7slots",
+      "split": "train",
+      "id": "00069_local-dark-red7slots",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\redrake.svg",
+      "name": "redrake",
+      "split": "train",
+      "id": "00070_redrake",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\emojione-v1\\emojione-v1-exclamation-mark.svg",
+      "name": "emojione-v1-exclamation-mark",
+      "split": "train",
+      "id": "00071_emojione-v1-exclamation-mark",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\gamesinc.svg",
+      "name": "gamesinc",
+      "split": "val",
+      "id": "00072_gamesinc",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\swintt.svg",
+      "name": "swintt",
+      "split": "train",
+      "id": "00073_swintt",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\noto\\noto-man-curly-hair.svg",
+      "name": "noto-man-curly-hair",
+      "split": "train",
+      "id": "00074_noto-man-curly-hair",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\local-light-enterra.svg",
+      "name": "local-light-enterra",
+      "split": "train",
+      "id": "00075_local-light-enterra",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\habanero.svg",
+      "name": "habanero",
+      "split": "test",
+      "id": "00076_habanero",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\popiplay.svg",
+      "name": "popiplay",
+      "split": "train",
+      "id": "00077_popiplay",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\stylelint.svg",
+      "name": "stylelint",
+      "split": "train",
+      "id": "00078_stylelint",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\kiron.svg",
+      "name": "kiron",
+      "split": "train",
+      "id": "00079_kiron",
+      "source_layer": "svg-extended",
+      "annotation": "analytic-plus-review"
+    }
+  ],
+  "shards": [
+    {
+      "file": "shard_0000.npz",
+      "loops": 1800,
+      "vertices": 206744,
+      "corners": 5743
+    },
+    {
+      "file": "shard_0001.npz",
+      "loops": 1800,
+      "vertices": 129944,
+      "corners": 4157
+    },
+    {
+      "file": "shard_0002.npz",
+      "loops": 1800,
+      "vertices": 135054,
+      "corners": 5724
+    },
+    {
+      "file": "shard_0003.npz",
+      "loops": 1800,
+      "vertices": 140812,
+      "corners": 5422
+    },
+    {
+      "file": "shard_0004.npz",
+      "loops": 1800,
+      "vertices": 149570,
+      "corners": 5672
+    },
+    {
+      "file": "shard_0005.npz",
+      "loops": 322,
+      "vertices": 22116,
+      "corners": 890
+    }
+  ]
+}

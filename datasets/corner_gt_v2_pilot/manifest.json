@@ -1,0 +1,601 @@
+{
+  "dataset": "corner_gt_v2_pilot",
+  "summary": {
+    "version": 2,
+    "definition": "C0 SVG tangent discontinuities + visible occlusion corners",
+    "files": 80,
+    "requested_files": 80,
+    "resolutions": [
+      24,
+      32,
+      48,
+      64,
+      96,
+      128,
+      192,
+      256
+    ],
+    "loops": 9165,
+    "vertices": 715310,
+    "structural": 22075,
+    "occlusion": 4279,
+    "zero_corner_loops": 2255,
+    "negative_vertices": 688956,
+    "rejects": {
+      "clipPath": 22,
+      "no-loops": 2,
+      "transform": 2,
+      "mask": 1
+    },
+    "by_resolution": {
+      "24": {
+        "loops": 590,
+        "structural": 1062,
+        "occlusion": 379,
+        "zero_corner_loops": 99
+      },
+      "32": {
+        "loops": 776,
+        "structural": 1504,
+        "occlusion": 436,
+        "zero_corner_loops": 132
+      },
+      "48": {
+        "loops": 1017,
+        "structural": 2212,
+        "occlusion": 534,
+        "zero_corner_loops": 202
+      },
+      "64": {
+        "loops": 1135,
+        "structural": 2649,
+        "occlusion": 557,
+        "zero_corner_loops": 226
+      },
+      "96": {
+        "loops": 1351,
+        "structural": 3231,
+        "occlusion": 602,
+        "zero_corner_loops": 352
+      },
+      "128": {
+        "loops": 1442,
+        "structural": 3540,
+        "occlusion": 580,
+        "zero_corner_loops": 411
+      },
+      "192": {
+        "loops": 1441,
+        "structural": 3838,
+        "occlusion": 599,
+        "zero_corner_loops": 431
+      },
+      "256": {
+        "loops": 1413,
+        "structural": 4039,
+        "occlusion": 592,
+        "zero_corner_loops": 402
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\local-light-redrake.svg",
+      "name": "local-light-redrake",
+      "split": "test",
+      "id": "00000_local-light-redrake"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\streamline-logos\\streamline-logos-kakao-talk-logo.svg",
+      "name": "streamline-logos-kakao-talk-logo",
+      "split": "val",
+      "id": "00001_streamline-logos-kakao-talk-logo"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\token-branded\\spank.svg",
+      "name": "spank",
+      "split": "train",
+      "id": "00002_spank"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\n2games-novomatic.svg",
+      "name": "n2games-novomatic",
+      "split": "train",
+      "id": "00003_n2games-novomatic"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\twemoji\\twemoji-woman-in-motorized-wheelchair-facing-right.svg",
+      "name": "twemoji-woman-in-motorized-wheelchair-facing-right",
+      "split": "train",
+      "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-vala.svg",
+      "name": "simple-icons-vala",
+      "split": "val",
+      "id": "00005_simple-icons-vala"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\local-dark-caleta.svg",
+      "name": "local-dark-caleta",
+      "split": "train",
+      "id": "00006_local-dark-caleta"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\gcp\\gcp-network-topology.svg",
+      "name": "gcp-network-topology",
+      "split": "train",
+      "id": "00007_gcp-network-topology"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\poggiplay.svg",
+      "name": "poggiplay",
+      "split": "train",
+      "id": "00008_poggiplay"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\material-icon-theme\\material-icon-theme-folder-snippet.svg",
+      "name": "material-icon-theme-folder-snippet",
+      "split": "train",
+      "id": "00009_material-icon-theme-folder-snippet"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\eyecon.svg",
+      "name": "eyecon",
+      "split": "train",
+      "id": "00010_eyecon"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\twemoji\\twemoji-lady-beetle.svg",
+      "name": "twemoji-lady-beetle",
+      "split": "train",
+      "id": "00011_twemoji-lady-beetle"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\hollegames@playzia.svg",
+      "name": "hollegames@playzia",
+      "split": "train",
+      "id": "00012_hollegames_playzia"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\quickspin.svg",
+      "name": "quickspin",
+      "split": "train",
+      "id": "00013_quickspin"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\fluent-emoji-flat-atm-sign.svg",
+      "name": "fluent-emoji-flat-atm-sign",
+      "split": "train",
+      "id": "00014_fluent-emoji-flat-atm-sign"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\beterlive.svg",
+      "name": "beterlive",
+      "split": "test",
+      "id": "00015_beterlive"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\luckystreak.svg",
+      "name": "luckystreak",
+      "split": "train",
+      "id": "00016_luckystreak"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\fluent-emoji-flat-man-cook-medium-dark.svg",
+      "name": "fluent-emoji-flat-man-cook-medium-dark",
+      "split": "train",
+      "id": "00017_fluent-emoji-flat-man-cook-medium-dark"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\nucleus.svg",
+      "name": "nucleus",
+      "split": "train",
+      "id": "00018_nucleus"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\token-branded\\token-branded-paw.svg",
+      "name": "token-branded-paw",
+      "split": "train",
+      "id": "00019_token-branded-paw"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\fantasma.svg",
+      "name": "fantasma",
+      "split": "train",
+      "id": "00020_fantasma"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-color\\fluent-color-people-sync-24.svg",
+      "name": "fluent-color-people-sync-24",
+      "split": "train",
+      "id": "00021_fluent-color-people-sync-24"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\hacksaw-backseatgaming.svg",
+      "name": "hacksaw-backseatgaming",
+      "split": "train",
+      "id": "00022_hacksaw-backseatgaming"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\gonggaming.svg",
+      "name": "gonggaming",
+      "split": "train",
+      "id": "00023_gonggaming"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fxemoji\\fxemoji-lastquartermoon.svg",
+      "name": "fxemoji-lastquartermoon",
+      "split": "train",
+      "id": "00024_fxemoji-lastquartermoon"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\slotmatrix.svg",
+      "name": "slotmatrix",
+      "split": "val",
+      "id": "00025_slotmatrix"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\goldcoinstudios.svg",
+      "name": "goldcoinstudios",
+      "split": "test",
+      "id": "00026_goldcoinstudios"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\emojione\\emojione-ten-thirty.svg",
+      "name": "emojione-ten-thirty",
+      "split": "train",
+      "id": "00027_emojione-ten-thirty"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-hacksaw.svg",
+      "name": "local-default-hacksaw",
+      "split": "val",
+      "id": "00028_local-default-hacksaw"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\ortiz.svg",
+      "name": "ortiz",
+      "split": "train",
+      "id": "00029_ortiz"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-truenas.svg",
+      "name": "simple-icons-truenas",
+      "split": "train",
+      "id": "00030_simple-icons-truenas"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\neonvalley.svg",
+      "name": "neonvalley",
+      "split": "train",
+      "id": "00031_neonvalley"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\theearcasino.svg",
+      "name": "theearcasino",
+      "split": "train",
+      "id": "00032_theearcasino"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\muo.svg",
+      "name": "muo",
+      "split": "train",
+      "id": "00033_muo"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\local-dark-octoplay.svg",
+      "name": "local-dark-octoplay",
+      "split": "train",
+      "id": "00034_local-dark-octoplay"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\expansestudios.svg",
+      "name": "expansestudios",
+      "split": "train",
+      "id": "00035_expansestudios"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\shields.svg",
+      "name": "shields",
+      "split": "train",
+      "id": "00036_shields"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\leander.svg",
+      "name": "leander",
+      "split": "train",
+      "id": "00037_leander"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\woman-farmer.svg",
+      "name": "woman-farmer",
+      "split": "train",
+      "id": "00038_woman-farmer"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\egtdigitalgames.svg",
+      "name": "egtdigitalgames",
+      "split": "train",
+      "id": "00039_egtdigitalgames"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\rsmq.svg",
+      "name": "rsmq",
+      "split": "val",
+      "id": "00040_rsmq"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\100hp.svg",
+      "name": "100hp",
+      "split": "test",
+      "id": "00041_100hp"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\vscode-icons\\vscode-icons-file-type-docusaurus.svg",
+      "name": "vscode-icons-file-type-docusaurus",
+      "split": "train",
+      "id": "00042_vscode-icons-file-type-docusaurus"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\quickfire@fantasma.svg",
+      "name": "quickfire@fantasma",
+      "split": "test",
+      "id": "00043_quickfire_fantasma"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-fontawesome.svg",
+      "name": "simple-icons-fontawesome",
+      "split": "train",
+      "id": "00044_simple-icons-fontawesome"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\kagaming.svg",
+      "name": "kagaming",
+      "split": "train",
+      "id": "00045_kagaming"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\twemoji\\twemoji-railway-track.svg",
+      "name": "twemoji-railway-track",
+      "split": "train",
+      "id": "00046_twemoji-railway-track"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\gamomat.svg",
+      "name": "gamomat",
+      "split": "train",
+      "id": "00047_gamomat"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\noto\\noto-locked-with-pen.svg",
+      "name": "noto-locked-with-pen",
+      "split": "train",
+      "id": "00048_noto-locked-with-pen"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\eurasian.svg",
+      "name": "eurasian",
+      "split": "train",
+      "id": "00049_eurasian"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\jftw.svg",
+      "name": "jftw",
+      "split": "train",
+      "id": "00050_jftw"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\zerotier.svg",
+      "name": "zerotier",
+      "split": "train",
+      "id": "00051_zerotier"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-yggdrasil.svg",
+      "name": "local-default-yggdrasil",
+      "split": "val",
+      "id": "00052_local-default-yggdrasil"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\simple-icons-xamarin.svg",
+      "name": "simple-icons-xamarin",
+      "split": "train",
+      "id": "00053_simple-icons-xamarin"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-high5games.svg",
+      "name": "local-default-high5games",
+      "split": "train",
+      "id": "00054_local-default-high5games"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\spinplay.svg",
+      "name": "spinplay",
+      "split": "test",
+      "id": "00055_spinplay"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\expressvpn.svg",
+      "name": "expressvpn",
+      "split": "train",
+      "id": "00056_expressvpn"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\oryx.svg",
+      "name": "oryx",
+      "split": "train",
+      "id": "00057_oryx"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\stormcraft.svg",
+      "name": "stormcraft",
+      "split": "train",
+      "id": "00058_stormcraft"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\shortcut-icon.svg",
+      "name": "shortcut-icon",
+      "split": "train",
+      "id": "00059_shortcut-icon"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\gamingcorps.svg",
+      "name": "gamingcorps",
+      "split": "train",
+      "id": "00060_gamingcorps"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Light\\bigtime.svg",
+      "name": "bigtime",
+      "split": "train",
+      "id": "00061_bigtime"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\fluent-emoji-flat\\fluent-emoji-flat-woman-pouting-light.svg",
+      "name": "fluent-emoji-flat-woman-pouting-light",
+      "split": "val",
+      "id": "00062_fluent-emoji-flat-woman-pouting-light"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\local-light-thunderspin.svg",
+      "name": "local-light-thunderspin",
+      "split": "train",
+      "id": "00063_local-light-thunderspin"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\web3dotjs.svg",
+      "name": "web3dotjs",
+      "split": "train",
+      "id": "00064_web3dotjs"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\local-default-gamatron.svg",
+      "name": "local-default-gamatron",
+      "split": "train",
+      "id": "00065_local-default-gamatron"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\kiron.svg",
+      "name": "kiron",
+      "split": "val",
+      "id": "00066_kiron"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\vibra.svg",
+      "name": "vibra",
+      "split": "train",
+      "id": "00067_vibra"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\logos\\logos-dailydev-icon.svg",
+      "name": "logos-dailydev-icon",
+      "split": "train",
+      "id": "00068_logos-dailydev-icon"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\local-dark-red7slots.svg",
+      "name": "local-dark-red7slots",
+      "split": "train",
+      "id": "00069_local-dark-red7slots"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\redrake.svg",
+      "name": "redrake",
+      "split": "train",
+      "id": "00070_redrake"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\emojione-v1\\emojione-v1-exclamation-mark.svg",
+      "name": "emojione-v1-exclamation-mark",
+      "split": "train",
+      "id": "00071_emojione-v1-exclamation-mark"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\default\\gamesinc.svg",
+      "name": "gamesinc",
+      "split": "val",
+      "id": "00072_gamesinc"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Dark\\swintt.svg",
+      "name": "swintt",
+      "split": "train",
+      "id": "00073_swintt"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\noto\\noto-man-curly-hair.svg",
+      "name": "noto-man-curly-hair",
+      "split": "train",
+      "id": "00074_noto-man-curly-hair"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\light\\local-light-enterra.svg",
+      "name": "local-light-enterra",
+      "split": "train",
+      "id": "00075_local-light-enterra"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\habanero.svg",
+      "name": "habanero",
+      "split": "test",
+      "id": "00076_habanero"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\local\\local-train-corpus\\dark\\popiplay.svg",
+      "name": "popiplay",
+      "split": "train",
+      "id": "00077_popiplay"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\icons\\iconify\\simple-icons\\stylelint.svg",
+      "name": "stylelint",
+      "split": "train",
+      "id": "00078_stylelint"
+    },
+    {
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\ground truth\\Default\\kiron.svg",
+      "name": "kiron",
+      "split": "train",
+      "id": "00079_kiron"
+    }
+  ],
+  "shards": [
+    {
+      "file": "shard_0000.npz",
+      "loops": 1800,
+      "vertices": 145906,
+      "corners": 4990
+    },
+    {
+      "file": "shard_0001.npz",
+      "loops": 1800,
+      "vertices": 135834,
+      "corners": 3903
+    },
+    {
+      "file": "shard_0002.npz",
+      "loops": 1800,
+      "vertices": 130046,
+      "corners": 6075
+    },
+    {
+      "file": "shard_0003.npz",
+      "loops": 1800,
+      "vertices": 137762,
+      "corners": 5320
+    },
+    {
+      "file": "shard_0004.npz",
+      "loops": 1800,
+      "vertices": 150128,
+      "corners": 5599
+    },
+    {
+      "file": "shard_0005.npz",
+      "loops": 165,
+      "vertices": 15634,
+      "corners": 467
+    }
+  ]
+}

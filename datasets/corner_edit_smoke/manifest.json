@@ -1,0 +1,56 @@
+{
+  "dataset": "corner_edit_smoke",
+  "summary": {
+    "version": 2,
+    "definition": "C0 SVG tangent discontinuities + visible occlusion corners",
+    "files": 2,
+    "requested_files": 2,
+    "resolutions": [
+      32,
+      128
+    ],
+    "loops": 12,
+    "vertices": 1260,
+    "structural": 6,
+    "occlusion": 6,
+    "zero_corner_loops": 8,
+    "negative_vertices": 1248,
+    "rejects": {},
+    "by_resolution": {
+      "32": {
+        "loops": 6,
+        "structural": 3,
+        "occlusion": 4,
+        "zero_corner_loops": 4
+      },
+      "128": {
+        "loops": 6,
+        "structural": 3,
+        "occlusion": 2,
+        "zero_corner_loops": 4
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "test_runs\\corner_gt_fixtures\\smooth.svg",
+      "name": "smooth",
+      "split": "train",
+      "id": "00000_smooth"
+    },
+    {
+      "path": "test_runs\\corner_gt_fixtures\\occlusion.svg",
+      "name": "occlusion",
+      "split": "train",
+      "id": "00001_occlusion"
+    }
+  ],
+  "shards": [
+    {
+      "file": "shard_0000.npz",
+      "loops": 12,
+      "vertices": 1260,
+      "corners": 12
+    }
+  ]
+}

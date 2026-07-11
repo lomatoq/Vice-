@@ -1,0 +1,5443 @@
+{
+  "dataset": "corner_gt_v2_pilot",
+  "summary": {
+    "version": 2,
+    "definition": "C0 SVG tangent discontinuities + visible occlusion corners",
+    "files": 80,
+    "requested_files": 80,
+    "resolutions": [
+      24,
+      32,
+      48,
+      64,
+      96,
+      128,
+      192,
+      256
+    ],
+    "loops": 9165,
+    "vertices": 715310,
+    "structural": 22075,
+    "occlusion": 4279,
+    "zero_corner_loops": 2255,
+    "negative_vertices": 688956,
+    "rejects": {
+      "clipPath": 22,
+      "no-loops": 2,
+      "transform": 2,
+      "mask": 1
+    },
+    "by_resolution": {
+      "24": {
+        "loops": 590,
+        "structural": 1062,
+        "occlusion": 379,
+        "zero_corner_loops": 99
+      },
+      "32": {
+        "loops": 776,
+        "structural": 1504,
+        "occlusion": 436,
+        "zero_corner_loops": 132
+      },
+      "48": {
+        "loops": 1017,
+        "structural": 2212,
+        "occlusion": 534,
+        "zero_corner_loops": 202
+      },
+      "64": {
+        "loops": 1135,
+        "structural": 2649,
+        "occlusion": 557,
+        "zero_corner_loops": 226
+      },
+      "96": {
+        "loops": 1351,
+        "structural": 3231,
+        "occlusion": 602,
+        "zero_corner_loops": 352
+      },
+      "128": {
+        "loops": 1442,
+        "structural": 3540,
+        "occlusion": 580,
+        "zero_corner_loops": 411
+      },
+      "192": {
+        "loops": 1441,
+        "structural": 3838,
+        "occlusion": 599,
+        "zero_corner_loops": 431
+      },
+      "256": {
+        "loops": 1413,
+        "structural": 4039,
+        "occlusion": 592,
+        "zero_corner_loops": 402
+      }
+    }
+  },
+  "entries": [
+    {
+      "id": "00000_local-light-redrake",
+      "name": "local-light-redrake",
+      "views": [
+        {
+          "id": "00000_local-light-redrake@24",
+          "res": 24,
+          "image": "images/00000_local-light-redrake_24.png",
+          "annotation": "annotations/00000_local-light-redrake_24.json",
+          "corners": 21
+        },
+        {
+          "id": "00000_local-light-redrake@32",
+          "res": 32,
+          "image": "images/00000_local-light-redrake_32.png",
+          "annotation": "annotations/00000_local-light-redrake_32.json",
+          "corners": 38
+        },
+        {
+          "id": "00000_local-light-redrake@48",
+          "res": 48,
+          "image": "images/00000_local-light-redrake_48.png",
+          "annotation": "annotations/00000_local-light-redrake_48.json",
+          "corners": 54
+        },
+        {
+          "id": "00000_local-light-redrake@64",
+          "res": 64,
+          "image": "images/00000_local-light-redrake_64.png",
+          "annotation": "annotations/00000_local-light-redrake_64.json",
+          "corners": 61
+        },
+        {
+          "id": "00000_local-light-redrake@96",
+          "res": 96,
+          "image": "images/00000_local-light-redrake_96.png",
+          "annotation": "annotations/00000_local-light-redrake_96.json",
+          "corners": 68
+        },
+        {
+          "id": "00000_local-light-redrake@128",
+          "res": 128,
+          "image": "images/00000_local-light-redrake_128.png",
+          "annotation": "annotations/00000_local-light-redrake_128.json",
+          "corners": 72
+        },
+        {
+          "id": "00000_local-light-redrake@192",
+          "res": 192,
+          "image": "images/00000_local-light-redrake_192.png",
+          "annotation": "annotations/00000_local-light-redrake_192.json",
+          "corners": 74
+        },
+        {
+          "id": "00000_local-light-redrake@256",
+          "res": 256,
+          "image": "images/00000_local-light-redrake_256.png",
+          "annotation": "annotations/00000_local-light-redrake_256.json",
+          "corners": 74
+        }
+      ],
+      "loops": 124,
+      "structural": 462,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00000_local-light-redrake.svg"
+    },
+    {
+      "id": "00001_streamline-logos-kakao-talk-logo",
+      "name": "streamline-logos-kakao-talk-logo",
+      "views": [
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@24",
+          "res": 24,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_24.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_24.json",
+          "corners": 16
+        },
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@32",
+          "res": 32,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_32.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_32.json",
+          "corners": 16
+        },
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@48",
+          "res": 48,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_48.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_48.json",
+          "corners": 15
+        },
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@64",
+          "res": 64,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_64.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_64.json",
+          "corners": 17
+        },
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@96",
+          "res": 96,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_96.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_96.json",
+          "corners": 18
+        },
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@128",
+          "res": 128,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_128.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_128.json",
+          "corners": 17
+        },
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@192",
+          "res": 192,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_192.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_192.json",
+          "corners": 17
+        },
+        {
+          "id": "00001_streamline-logos-kakao-talk-logo@256",
+          "res": 256,
+          "image": "images/00001_streamline-logos-kakao-talk-logo_256.png",
+          "annotation": "annotations/00001_streamline-logos-kakao-talk-logo_256.json",
+          "corners": 17
+        }
+      ],
+      "loops": 40,
+      "structural": 72,
+      "occlusion": 61,
+      "zero_corner": false,
+      "source": "sources/00001_streamline-logos-kakao-talk-logo.svg"
+    },
+    {
+      "id": "00002_spank",
+      "name": "spank",
+      "views": [
+        {
+          "id": "00002_spank@24",
+          "res": 24,
+          "image": "images/00002_spank_24.png",
+          "annotation": "annotations/00002_spank_24.json",
+          "corners": 40
+        },
+        {
+          "id": "00002_spank@32",
+          "res": 32,
+          "image": "images/00002_spank_32.png",
+          "annotation": "annotations/00002_spank_32.json",
+          "corners": 43
+        },
+        {
+          "id": "00002_spank@48",
+          "res": 48,
+          "image": "images/00002_spank_48.png",
+          "annotation": "annotations/00002_spank_48.json",
+          "corners": 66
+        },
+        {
+          "id": "00002_spank@64",
+          "res": 64,
+          "image": "images/00002_spank_64.png",
+          "annotation": "annotations/00002_spank_64.json",
+          "corners": 81
+        },
+        {
+          "id": "00002_spank@96",
+          "res": 96,
+          "image": "images/00002_spank_96.png",
+          "annotation": "annotations/00002_spank_96.json",
+          "corners": 93
+        },
+        {
+          "id": "00002_spank@128",
+          "res": 128,
+          "image": "images/00002_spank_128.png",
+          "annotation": "annotations/00002_spank_128.json",
+          "corners": 96
+        },
+        {
+          "id": "00002_spank@192",
+          "res": 192,
+          "image": "images/00002_spank_192.png",
+          "annotation": "annotations/00002_spank_192.json",
+          "corners": 96
+        },
+        {
+          "id": "00002_spank@256",
+          "res": 256,
+          "image": "images/00002_spank_256.png",
+          "annotation": "annotations/00002_spank_256.json",
+          "corners": 96
+        }
+      ],
+      "loops": 37,
+      "structural": 611,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00002_spank.svg"
+    },
+    {
+      "id": "00003_n2games-novomatic",
+      "name": "n2games-novomatic",
+      "views": [
+        {
+          "id": "00003_n2games-novomatic@24",
+          "res": 24,
+          "image": "images/00003_n2games-novomatic_24.png",
+          "annotation": "annotations/00003_n2games-novomatic_24.json",
+          "corners": 25
+        },
+        {
+          "id": "00003_n2games-novomatic@32",
+          "res": 32,
+          "image": "images/00003_n2games-novomatic_32.png",
+          "annotation": "annotations/00003_n2games-novomatic_32.json",
+          "corners": 25
+        },
+        {
+          "id": "00003_n2games-novomatic@48",
+          "res": 48,
+          "image": "images/00003_n2games-novomatic_48.png",
+          "annotation": "annotations/00003_n2games-novomatic_48.json",
+          "corners": 50
+        },
+        {
+          "id": "00003_n2games-novomatic@64",
+          "res": 64,
+          "image": "images/00003_n2games-novomatic_64.png",
+          "annotation": "annotations/00003_n2games-novomatic_64.json",
+          "corners": 63
+        },
+        {
+          "id": "00003_n2games-novomatic@96",
+          "res": 96,
+          "image": "images/00003_n2games-novomatic_96.png",
+          "annotation": "annotations/00003_n2games-novomatic_96.json",
+          "corners": 85
+        },
+        {
+          "id": "00003_n2games-novomatic@128",
+          "res": 128,
+          "image": "images/00003_n2games-novomatic_128.png",
+          "annotation": "annotations/00003_n2games-novomatic_128.json",
+          "corners": 105
+        },
+        {
+          "id": "00003_n2games-novomatic@192",
+          "res": 192,
+          "image": "images/00003_n2games-novomatic_192.png",
+          "annotation": "annotations/00003_n2games-novomatic_192.json",
+          "corners": 120
+        },
+        {
+          "id": "00003_n2games-novomatic@256",
+          "res": 256,
+          "image": "images/00003_n2games-novomatic_256.png",
+          "annotation": "annotations/00003_n2games-novomatic_256.json",
+          "corners": 132
+        }
+      ],
+      "loops": 191,
+      "structural": 605,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00003_n2games-novomatic.svg"
+    },
+    {
+      "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right",
+      "name": "twemoji-woman-in-motorized-wheelchair-facing-right",
+      "views": [
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@24",
+          "res": 24,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_24.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_24.json",
+          "corners": 36
+        },
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@32",
+          "res": 32,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_32.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_32.json",
+          "corners": 52
+        },
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@48",
+          "res": 48,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_48.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_48.json",
+          "corners": 79
+        },
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@64",
+          "res": 64,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_64.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_64.json",
+          "corners": 74
+        },
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@96",
+          "res": 96,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_96.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_96.json",
+          "corners": 82
+        },
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@128",
+          "res": 128,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_128.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_128.json",
+          "corners": 71
+        },
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@192",
+          "res": 192,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_192.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_192.json",
+          "corners": 72
+        },
+        {
+          "id": "00004_twemoji-woman-in-motorized-wheelchair-facing-right@256",
+          "res": 256,
+          "image": "images/00004_twemoji-woman-in-motorized-wheelchair-facing-right_256.png",
+          "annotation": "annotations/00004_twemoji-woman-in-motorized-wheelchair-facing-right_256.json",
+          "corners": 74
+        }
+      ],
+      "loops": 371,
+      "structural": 94,
+      "occlusion": 446,
+      "zero_corner": false,
+      "source": "sources/00004_twemoji-woman-in-motorized-wheelchair-facing-right.svg"
+    },
+    {
+      "id": "00005_simple-icons-vala",
+      "name": "simple-icons-vala",
+      "views": [
+        {
+          "id": "00005_simple-icons-vala@24",
+          "res": 24,
+          "image": "images/00005_simple-icons-vala_24.png",
+          "annotation": "annotations/00005_simple-icons-vala_24.json",
+          "corners": 6
+        },
+        {
+          "id": "00005_simple-icons-vala@32",
+          "res": 32,
+          "image": "images/00005_simple-icons-vala_32.png",
+          "annotation": "annotations/00005_simple-icons-vala_32.json",
+          "corners": 6
+        },
+        {
+          "id": "00005_simple-icons-vala@48",
+          "res": 48,
+          "image": "images/00005_simple-icons-vala_48.png",
+          "annotation": "annotations/00005_simple-icons-vala_48.json",
+          "corners": 7
+        },
+        {
+          "id": "00005_simple-icons-vala@64",
+          "res": 64,
+          "image": "images/00005_simple-icons-vala_64.png",
+          "annotation": "annotations/00005_simple-icons-vala_64.json",
+          "corners": 8
+        },
+        {
+          "id": "00005_simple-icons-vala@96",
+          "res": 96,
+          "image": "images/00005_simple-icons-vala_96.png",
+          "annotation": "annotations/00005_simple-icons-vala_96.json",
+          "corners": 8
+        },
+        {
+          "id": "00005_simple-icons-vala@128",
+          "res": 128,
+          "image": "images/00005_simple-icons-vala_128.png",
+          "annotation": "annotations/00005_simple-icons-vala_128.json",
+          "corners": 8
+        },
+        {
+          "id": "00005_simple-icons-vala@192",
+          "res": 192,
+          "image": "images/00005_simple-icons-vala_192.png",
+          "annotation": "annotations/00005_simple-icons-vala_192.json",
+          "corners": 8
+        },
+        {
+          "id": "00005_simple-icons-vala@256",
+          "res": 256,
+          "image": "images/00005_simple-icons-vala_256.png",
+          "annotation": "annotations/00005_simple-icons-vala_256.json",
+          "corners": 8
+        }
+      ],
+      "loops": 8,
+      "structural": 59,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00005_simple-icons-vala.svg"
+    },
+    {
+      "id": "00006_local-dark-caleta",
+      "name": "local-dark-caleta",
+      "views": [
+        {
+          "id": "00006_local-dark-caleta@24",
+          "res": 24,
+          "image": "images/00006_local-dark-caleta_24.png",
+          "annotation": "annotations/00006_local-dark-caleta_24.json",
+          "corners": 17
+        },
+        {
+          "id": "00006_local-dark-caleta@32",
+          "res": 32,
+          "image": "images/00006_local-dark-caleta_32.png",
+          "annotation": "annotations/00006_local-dark-caleta_32.json",
+          "corners": 19
+        },
+        {
+          "id": "00006_local-dark-caleta@48",
+          "res": 48,
+          "image": "images/00006_local-dark-caleta_48.png",
+          "annotation": "annotations/00006_local-dark-caleta_48.json",
+          "corners": 32
+        },
+        {
+          "id": "00006_local-dark-caleta@64",
+          "res": 64,
+          "image": "images/00006_local-dark-caleta_64.png",
+          "annotation": "annotations/00006_local-dark-caleta_64.json",
+          "corners": 29
+        },
+        {
+          "id": "00006_local-dark-caleta@96",
+          "res": 96,
+          "image": "images/00006_local-dark-caleta_96.png",
+          "annotation": "annotations/00006_local-dark-caleta_96.json",
+          "corners": 41
+        },
+        {
+          "id": "00006_local-dark-caleta@128",
+          "res": 128,
+          "image": "images/00006_local-dark-caleta_128.png",
+          "annotation": "annotations/00006_local-dark-caleta_128.json",
+          "corners": 40
+        },
+        {
+          "id": "00006_local-dark-caleta@192",
+          "res": 192,
+          "image": "images/00006_local-dark-caleta_192.png",
+          "annotation": "annotations/00006_local-dark-caleta_192.json",
+          "corners": 44
+        },
+        {
+          "id": "00006_local-dark-caleta@256",
+          "res": 256,
+          "image": "images/00006_local-dark-caleta_256.png",
+          "annotation": "annotations/00006_local-dark-caleta_256.json",
+          "corners": 44
+        }
+      ],
+      "loops": 82,
+      "structural": 236,
+      "occlusion": 30,
+      "zero_corner": false,
+      "source": "sources/00006_local-dark-caleta.svg"
+    },
+    {
+      "id": "00007_gcp-network-topology",
+      "name": "gcp-network-topology",
+      "views": [
+        {
+          "id": "00007_gcp-network-topology@24",
+          "res": 24,
+          "image": "images/00007_gcp-network-topology_24.png",
+          "annotation": "annotations/00007_gcp-network-topology_24.json",
+          "corners": 8
+        },
+        {
+          "id": "00007_gcp-network-topology@32",
+          "res": 32,
+          "image": "images/00007_gcp-network-topology_32.png",
+          "annotation": "annotations/00007_gcp-network-topology_32.json",
+          "corners": 12
+        },
+        {
+          "id": "00007_gcp-network-topology@48",
+          "res": 48,
+          "image": "images/00007_gcp-network-topology_48.png",
+          "annotation": "annotations/00007_gcp-network-topology_48.json",
+          "corners": 13
+        },
+        {
+          "id": "00007_gcp-network-topology@64",
+          "res": 64,
+          "image": "images/00007_gcp-network-topology_64.png",
+          "annotation": "annotations/00007_gcp-network-topology_64.json",
+          "corners": 16
+        },
+        {
+          "id": "00007_gcp-network-topology@96",
+          "res": 96,
+          "image": "images/00007_gcp-network-topology_96.png",
+          "annotation": "annotations/00007_gcp-network-topology_96.json",
+          "corners": 8
+        },
+        {
+          "id": "00007_gcp-network-topology@128",
+          "res": 128,
+          "image": "images/00007_gcp-network-topology_128.png",
+          "annotation": "annotations/00007_gcp-network-topology_128.json",
+          "corners": 8
+        },
+        {
+          "id": "00007_gcp-network-topology@192",
+          "res": 192,
+          "image": "images/00007_gcp-network-topology_192.png",
+          "annotation": "annotations/00007_gcp-network-topology_192.json",
+          "corners": 8
+        },
+        {
+          "id": "00007_gcp-network-topology@256",
+          "res": 256,
+          "image": "images/00007_gcp-network-topology_256.png",
+          "annotation": "annotations/00007_gcp-network-topology_256.json",
+          "corners": 8
+        }
+      ],
+      "loops": 37,
+      "structural": 81,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00007_gcp-network-topology.svg"
+    },
+    {
+      "id": "00008_poggiplay",
+      "name": "poggiplay",
+      "views": [
+        {
+          "id": "00008_poggiplay@24",
+          "res": 24,
+          "image": "images/00008_poggiplay_24.png",
+          "annotation": "annotations/00008_poggiplay_24.json",
+          "corners": 27
+        },
+        {
+          "id": "00008_poggiplay@32",
+          "res": 32,
+          "image": "images/00008_poggiplay_32.png",
+          "annotation": "annotations/00008_poggiplay_32.json",
+          "corners": 35
+        },
+        {
+          "id": "00008_poggiplay@48",
+          "res": 48,
+          "image": "images/00008_poggiplay_48.png",
+          "annotation": "annotations/00008_poggiplay_48.json",
+          "corners": 39
+        },
+        {
+          "id": "00008_poggiplay@64",
+          "res": 64,
+          "image": "images/00008_poggiplay_64.png",
+          "annotation": "annotations/00008_poggiplay_64.json",
+          "corners": 59
+        },
+        {
+          "id": "00008_poggiplay@96",
+          "res": 96,
+          "image": "images/00008_poggiplay_96.png",
+          "annotation": "annotations/00008_poggiplay_96.json",
+          "corners": 63
+        },
+        {
+          "id": "00008_poggiplay@128",
+          "res": 128,
+          "image": "images/00008_poggiplay_128.png",
+          "annotation": "annotations/00008_poggiplay_128.json",
+          "corners": 64
+        },
+        {
+          "id": "00008_poggiplay@192",
+          "res": 192,
+          "image": "images/00008_poggiplay_192.png",
+          "annotation": "annotations/00008_poggiplay_192.json",
+          "corners": 61
+        },
+        {
+          "id": "00008_poggiplay@256",
+          "res": 256,
+          "image": "images/00008_poggiplay_256.png",
+          "annotation": "annotations/00008_poggiplay_256.json",
+          "corners": 57
+        }
+      ],
+      "loops": 128,
+      "structural": 339,
+      "occlusion": 66,
+      "zero_corner": false,
+      "source": "sources/00008_poggiplay.svg"
+    },
+    {
+      "id": "00009_material-icon-theme-folder-snippet",
+      "name": "material-icon-theme-folder-snippet",
+      "views": [
+        {
+          "id": "00009_material-icon-theme-folder-snippet@24",
+          "res": 24,
+          "image": "images/00009_material-icon-theme-folder-snippet_24.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_24.json",
+          "corners": 20
+        },
+        {
+          "id": "00009_material-icon-theme-folder-snippet@32",
+          "res": 32,
+          "image": "images/00009_material-icon-theme-folder-snippet_32.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_32.json",
+          "corners": 31
+        },
+        {
+          "id": "00009_material-icon-theme-folder-snippet@48",
+          "res": 48,
+          "image": "images/00009_material-icon-theme-folder-snippet_48.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_48.json",
+          "corners": 29
+        },
+        {
+          "id": "00009_material-icon-theme-folder-snippet@64",
+          "res": 64,
+          "image": "images/00009_material-icon-theme-folder-snippet_64.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_64.json",
+          "corners": 24
+        },
+        {
+          "id": "00009_material-icon-theme-folder-snippet@96",
+          "res": 96,
+          "image": "images/00009_material-icon-theme-folder-snippet_96.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_96.json",
+          "corners": 24
+        },
+        {
+          "id": "00009_material-icon-theme-folder-snippet@128",
+          "res": 128,
+          "image": "images/00009_material-icon-theme-folder-snippet_128.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_128.json",
+          "corners": 25
+        },
+        {
+          "id": "00009_material-icon-theme-folder-snippet@192",
+          "res": 192,
+          "image": "images/00009_material-icon-theme-folder-snippet_192.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_192.json",
+          "corners": 25
+        },
+        {
+          "id": "00009_material-icon-theme-folder-snippet@256",
+          "res": 256,
+          "image": "images/00009_material-icon-theme-folder-snippet_256.png",
+          "annotation": "annotations/00009_material-icon-theme-folder-snippet_256.json",
+          "corners": 27
+        }
+      ],
+      "loops": 63,
+      "structural": 80,
+      "occlusion": 125,
+      "zero_corner": false,
+      "source": "sources/00009_material-icon-theme-folder-snippet.svg"
+    },
+    {
+      "id": "00010_eyecon",
+      "name": "eyecon",
+      "views": [
+        {
+          "id": "00010_eyecon@24",
+          "res": 24,
+          "image": "images/00010_eyecon_24.png",
+          "annotation": "annotations/00010_eyecon_24.json",
+          "corners": 0
+        },
+        {
+          "id": "00010_eyecon@32",
+          "res": 32,
+          "image": "images/00010_eyecon_32.png",
+          "annotation": "annotations/00010_eyecon_32.json",
+          "corners": 0
+        },
+        {
+          "id": "00010_eyecon@48",
+          "res": 48,
+          "image": "images/00010_eyecon_48.png",
+          "annotation": "annotations/00010_eyecon_48.json",
+          "corners": 0
+        },
+        {
+          "id": "00010_eyecon@64",
+          "res": 64,
+          "image": "images/00010_eyecon_64.png",
+          "annotation": "annotations/00010_eyecon_64.json",
+          "corners": 0
+        },
+        {
+          "id": "00010_eyecon@96",
+          "res": 96,
+          "image": "images/00010_eyecon_96.png",
+          "annotation": "annotations/00010_eyecon_96.json",
+          "corners": 0
+        },
+        {
+          "id": "00010_eyecon@128",
+          "res": 128,
+          "image": "images/00010_eyecon_128.png",
+          "annotation": "annotations/00010_eyecon_128.json",
+          "corners": 0
+        },
+        {
+          "id": "00010_eyecon@192",
+          "res": 192,
+          "image": "images/00010_eyecon_192.png",
+          "annotation": "annotations/00010_eyecon_192.json",
+          "corners": 0
+        },
+        {
+          "id": "00010_eyecon@256",
+          "res": 256,
+          "image": "images/00010_eyecon_256.png",
+          "annotation": "annotations/00010_eyecon_256.json",
+          "corners": 0
+        }
+      ],
+      "loops": 53,
+      "structural": 0,
+      "occlusion": 0,
+      "zero_corner": true,
+      "source": "sources/00010_eyecon.svg"
+    },
+    {
+      "id": "00011_twemoji-lady-beetle",
+      "name": "twemoji-lady-beetle",
+      "views": [
+        {
+          "id": "00011_twemoji-lady-beetle@24",
+          "res": 24,
+          "image": "images/00011_twemoji-lady-beetle_24.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_24.json",
+          "corners": 17
+        },
+        {
+          "id": "00011_twemoji-lady-beetle@32",
+          "res": 32,
+          "image": "images/00011_twemoji-lady-beetle_32.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_32.json",
+          "corners": 15
+        },
+        {
+          "id": "00011_twemoji-lady-beetle@48",
+          "res": 48,
+          "image": "images/00011_twemoji-lady-beetle_48.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_48.json",
+          "corners": 17
+        },
+        {
+          "id": "00011_twemoji-lady-beetle@64",
+          "res": 64,
+          "image": "images/00011_twemoji-lady-beetle_64.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_64.json",
+          "corners": 17
+        },
+        {
+          "id": "00011_twemoji-lady-beetle@96",
+          "res": 96,
+          "image": "images/00011_twemoji-lady-beetle_96.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_96.json",
+          "corners": 18
+        },
+        {
+          "id": "00011_twemoji-lady-beetle@128",
+          "res": 128,
+          "image": "images/00011_twemoji-lady-beetle_128.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_128.json",
+          "corners": 21
+        },
+        {
+          "id": "00011_twemoji-lady-beetle@192",
+          "res": 192,
+          "image": "images/00011_twemoji-lady-beetle_192.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_192.json",
+          "corners": 20
+        },
+        {
+          "id": "00011_twemoji-lady-beetle@256",
+          "res": 256,
+          "image": "images/00011_twemoji-lady-beetle_256.png",
+          "annotation": "annotations/00011_twemoji-lady-beetle_256.json",
+          "corners": 20
+        }
+      ],
+      "loops": 183,
+      "structural": 41,
+      "occlusion": 104,
+      "zero_corner": false,
+      "source": "sources/00011_twemoji-lady-beetle.svg"
+    },
+    {
+      "id": "00012_hollegames_playzia",
+      "name": "hollegames@playzia",
+      "views": [
+        {
+          "id": "00012_hollegames_playzia@24",
+          "res": 24,
+          "image": "images/00012_hollegames_playzia_24.png",
+          "annotation": "annotations/00012_hollegames_playzia_24.json",
+          "corners": 16
+        },
+        {
+          "id": "00012_hollegames_playzia@32",
+          "res": 32,
+          "image": "images/00012_hollegames_playzia_32.png",
+          "annotation": "annotations/00012_hollegames_playzia_32.json",
+          "corners": 38
+        },
+        {
+          "id": "00012_hollegames_playzia@48",
+          "res": 48,
+          "image": "images/00012_hollegames_playzia_48.png",
+          "annotation": "annotations/00012_hollegames_playzia_48.json",
+          "corners": 42
+        },
+        {
+          "id": "00012_hollegames_playzia@64",
+          "res": 64,
+          "image": "images/00012_hollegames_playzia_64.png",
+          "annotation": "annotations/00012_hollegames_playzia_64.json",
+          "corners": 54
+        },
+        {
+          "id": "00012_hollegames_playzia@96",
+          "res": 96,
+          "image": "images/00012_hollegames_playzia_96.png",
+          "annotation": "annotations/00012_hollegames_playzia_96.json",
+          "corners": 56
+        },
+        {
+          "id": "00012_hollegames_playzia@128",
+          "res": 128,
+          "image": "images/00012_hollegames_playzia_128.png",
+          "annotation": "annotations/00012_hollegames_playzia_128.json",
+          "corners": 61
+        },
+        {
+          "id": "00012_hollegames_playzia@192",
+          "res": 192,
+          "image": "images/00012_hollegames_playzia_192.png",
+          "annotation": "annotations/00012_hollegames_playzia_192.json",
+          "corners": 61
+        },
+        {
+          "id": "00012_hollegames_playzia@256",
+          "res": 256,
+          "image": "images/00012_hollegames_playzia_256.png",
+          "annotation": "annotations/00012_hollegames_playzia_256.json",
+          "corners": 68
+        }
+      ],
+      "loops": 105,
+      "structural": 390,
+      "occlusion": 6,
+      "zero_corner": false,
+      "source": "sources/00012_hollegames_playzia.svg"
+    },
+    {
+      "id": "00013_quickspin",
+      "name": "quickspin",
+      "views": [
+        {
+          "id": "00013_quickspin@24",
+          "res": 24,
+          "image": "images/00013_quickspin_24.png",
+          "annotation": "annotations/00013_quickspin_24.json",
+          "corners": 11
+        },
+        {
+          "id": "00013_quickspin@32",
+          "res": 32,
+          "image": "images/00013_quickspin_32.png",
+          "annotation": "annotations/00013_quickspin_32.json",
+          "corners": 18
+        },
+        {
+          "id": "00013_quickspin@48",
+          "res": 48,
+          "image": "images/00013_quickspin_48.png",
+          "annotation": "annotations/00013_quickspin_48.json",
+          "corners": 27
+        },
+        {
+          "id": "00013_quickspin@64",
+          "res": 64,
+          "image": "images/00013_quickspin_64.png",
+          "annotation": "annotations/00013_quickspin_64.json",
+          "corners": 27
+        },
+        {
+          "id": "00013_quickspin@96",
+          "res": 96,
+          "image": "images/00013_quickspin_96.png",
+          "annotation": "annotations/00013_quickspin_96.json",
+          "corners": 31
+        },
+        {
+          "id": "00013_quickspin@128",
+          "res": 128,
+          "image": "images/00013_quickspin_128.png",
+          "annotation": "annotations/00013_quickspin_128.json",
+          "corners": 31
+        },
+        {
+          "id": "00013_quickspin@192",
+          "res": 192,
+          "image": "images/00013_quickspin_192.png",
+          "annotation": "annotations/00013_quickspin_192.json",
+          "corners": 39
+        },
+        {
+          "id": "00013_quickspin@256",
+          "res": 256,
+          "image": "images/00013_quickspin_256.png",
+          "annotation": "annotations/00013_quickspin_256.json",
+          "corners": 47
+        }
+      ],
+      "loops": 97,
+      "structural": 231,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00013_quickspin.svg"
+    },
+    {
+      "id": "00014_fluent-emoji-flat-atm-sign",
+      "name": "fluent-emoji-flat-atm-sign",
+      "views": [
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@24",
+          "res": 24,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_24.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_24.json",
+          "corners": 19
+        },
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@32",
+          "res": 32,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_32.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_32.json",
+          "corners": 20
+        },
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@48",
+          "res": 48,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_48.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_48.json",
+          "corners": 25
+        },
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@64",
+          "res": 64,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_64.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_64.json",
+          "corners": 22
+        },
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@96",
+          "res": 96,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_96.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_96.json",
+          "corners": 20
+        },
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@128",
+          "res": 128,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_128.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_128.json",
+          "corners": 20
+        },
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@192",
+          "res": 192,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_192.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_192.json",
+          "corners": 20
+        },
+        {
+          "id": "00014_fluent-emoji-flat-atm-sign@256",
+          "res": 256,
+          "image": "images/00014_fluent-emoji-flat-atm-sign_256.png",
+          "annotation": "annotations/00014_fluent-emoji-flat-atm-sign_256.json",
+          "corners": 20
+        }
+      ],
+      "loops": 69,
+      "structural": 81,
+      "occlusion": 85,
+      "zero_corner": false,
+      "source": "sources/00014_fluent-emoji-flat-atm-sign.svg"
+    },
+    {
+      "id": "00015_beterlive",
+      "name": "beterlive",
+      "views": [
+        {
+          "id": "00015_beterlive@24",
+          "res": 24,
+          "image": "images/00015_beterlive_24.png",
+          "annotation": "annotations/00015_beterlive_24.json",
+          "corners": 9
+        },
+        {
+          "id": "00015_beterlive@32",
+          "res": 32,
+          "image": "images/00015_beterlive_32.png",
+          "annotation": "annotations/00015_beterlive_32.json",
+          "corners": 17
+        },
+        {
+          "id": "00015_beterlive@48",
+          "res": 48,
+          "image": "images/00015_beterlive_48.png",
+          "annotation": "annotations/00015_beterlive_48.json",
+          "corners": 36
+        },
+        {
+          "id": "00015_beterlive@64",
+          "res": 64,
+          "image": "images/00015_beterlive_64.png",
+          "annotation": "annotations/00015_beterlive_64.json",
+          "corners": 46
+        },
+        {
+          "id": "00015_beterlive@96",
+          "res": 96,
+          "image": "images/00015_beterlive_96.png",
+          "annotation": "annotations/00015_beterlive_96.json",
+          "corners": 54
+        },
+        {
+          "id": "00015_beterlive@128",
+          "res": 128,
+          "image": "images/00015_beterlive_128.png",
+          "annotation": "annotations/00015_beterlive_128.json",
+          "corners": 62
+        },
+        {
+          "id": "00015_beterlive@192",
+          "res": 192,
+          "image": "images/00015_beterlive_192.png",
+          "annotation": "annotations/00015_beterlive_192.json",
+          "corners": 82
+        },
+        {
+          "id": "00015_beterlive@256",
+          "res": 256,
+          "image": "images/00015_beterlive_256.png",
+          "annotation": "annotations/00015_beterlive_256.json",
+          "corners": 84
+        }
+      ],
+      "loops": 96,
+      "structural": 390,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00015_beterlive.svg"
+    },
+    {
+      "id": "00016_luckystreak",
+      "name": "luckystreak",
+      "views": [
+        {
+          "id": "00016_luckystreak@24",
+          "res": 24,
+          "image": "images/00016_luckystreak_24.png",
+          "annotation": "annotations/00016_luckystreak_24.json",
+          "corners": 35
+        },
+        {
+          "id": "00016_luckystreak@32",
+          "res": 32,
+          "image": "images/00016_luckystreak_32.png",
+          "annotation": "annotations/00016_luckystreak_32.json",
+          "corners": 47
+        },
+        {
+          "id": "00016_luckystreak@48",
+          "res": 48,
+          "image": "images/00016_luckystreak_48.png",
+          "annotation": "annotations/00016_luckystreak_48.json",
+          "corners": 62
+        },
+        {
+          "id": "00016_luckystreak@64",
+          "res": 64,
+          "image": "images/00016_luckystreak_64.png",
+          "annotation": "annotations/00016_luckystreak_64.json",
+          "corners": 77
+        },
+        {
+          "id": "00016_luckystreak@96",
+          "res": 96,
+          "image": "images/00016_luckystreak_96.png",
+          "annotation": "annotations/00016_luckystreak_96.json",
+          "corners": 87
+        },
+        {
+          "id": "00016_luckystreak@128",
+          "res": 128,
+          "image": "images/00016_luckystreak_128.png",
+          "annotation": "annotations/00016_luckystreak_128.json",
+          "corners": 74
+        },
+        {
+          "id": "00016_luckystreak@192",
+          "res": 192,
+          "image": "images/00016_luckystreak_192.png",
+          "annotation": "annotations/00016_luckystreak_192.json",
+          "corners": 68
+        },
+        {
+          "id": "00016_luckystreak@256",
+          "res": 256,
+          "image": "images/00016_luckystreak_256.png",
+          "annotation": "annotations/00016_luckystreak_256.json",
+          "corners": 68
+        }
+      ],
+      "loops": 328,
+      "structural": 518,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00016_luckystreak.svg"
+    },
+    {
+      "id": "00017_fluent-emoji-flat-man-cook-medium-dark",
+      "name": "fluent-emoji-flat-man-cook-medium-dark",
+      "views": [
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@24",
+          "res": 24,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_24.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_24.json",
+          "corners": 42
+        },
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@32",
+          "res": 32,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_32.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_32.json",
+          "corners": 51
+        },
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@48",
+          "res": 48,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_48.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_48.json",
+          "corners": 67
+        },
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@64",
+          "res": 64,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_64.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_64.json",
+          "corners": 74
+        },
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@96",
+          "res": 96,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_96.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_96.json",
+          "corners": 74
+        },
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@128",
+          "res": 128,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_128.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_128.json",
+          "corners": 78
+        },
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@192",
+          "res": 192,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_192.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_192.json",
+          "corners": 83
+        },
+        {
+          "id": "00017_fluent-emoji-flat-man-cook-medium-dark@256",
+          "res": 256,
+          "image": "images/00017_fluent-emoji-flat-man-cook-medium-dark_256.png",
+          "annotation": "annotations/00017_fluent-emoji-flat-man-cook-medium-dark_256.json",
+          "corners": 76
+        }
+      ],
+      "loops": 300,
+      "structural": 231,
+      "occlusion": 314,
+      "zero_corner": false,
+      "source": "sources/00017_fluent-emoji-flat-man-cook-medium-dark.svg"
+    },
+    {
+      "id": "00018_nucleus",
+      "name": "nucleus",
+      "views": [
+        {
+          "id": "00018_nucleus@24",
+          "res": 24,
+          "image": "images/00018_nucleus_24.png",
+          "annotation": "annotations/00018_nucleus_24.json",
+          "corners": 2
+        },
+        {
+          "id": "00018_nucleus@32",
+          "res": 32,
+          "image": "images/00018_nucleus_32.png",
+          "annotation": "annotations/00018_nucleus_32.json",
+          "corners": 3
+        },
+        {
+          "id": "00018_nucleus@48",
+          "res": 48,
+          "image": "images/00018_nucleus_48.png",
+          "annotation": "annotations/00018_nucleus_48.json",
+          "corners": 2
+        },
+        {
+          "id": "00018_nucleus@64",
+          "res": 64,
+          "image": "images/00018_nucleus_64.png",
+          "annotation": "annotations/00018_nucleus_64.json",
+          "corners": 2
+        },
+        {
+          "id": "00018_nucleus@96",
+          "res": 96,
+          "image": "images/00018_nucleus_96.png",
+          "annotation": "annotations/00018_nucleus_96.json",
+          "corners": 1
+        },
+        {
+          "id": "00018_nucleus@128",
+          "res": 128,
+          "image": "images/00018_nucleus_128.png",
+          "annotation": "annotations/00018_nucleus_128.json",
+          "corners": 2
+        },
+        {
+          "id": "00018_nucleus@192",
+          "res": 192,
+          "image": "images/00018_nucleus_192.png",
+          "annotation": "annotations/00018_nucleus_192.json",
+          "corners": 2
+        },
+        {
+          "id": "00018_nucleus@256",
+          "res": 256,
+          "image": "images/00018_nucleus_256.png",
+          "annotation": "annotations/00018_nucleus_256.json",
+          "corners": 2
+        }
+      ],
+      "loops": 72,
+      "structural": 7,
+      "occlusion": 9,
+      "zero_corner": false,
+      "source": "sources/00018_nucleus.svg"
+    },
+    {
+      "id": "00019_token-branded-paw",
+      "name": "token-branded-paw",
+      "views": [
+        {
+          "id": "00019_token-branded-paw@24",
+          "res": 24,
+          "image": "images/00019_token-branded-paw_24.png",
+          "annotation": "annotations/00019_token-branded-paw_24.json",
+          "corners": 72
+        },
+        {
+          "id": "00019_token-branded-paw@32",
+          "res": 32,
+          "image": "images/00019_token-branded-paw_32.png",
+          "annotation": "annotations/00019_token-branded-paw_32.json",
+          "corners": 56
+        },
+        {
+          "id": "00019_token-branded-paw@48",
+          "res": 48,
+          "image": "images/00019_token-branded-paw_48.png",
+          "annotation": "annotations/00019_token-branded-paw_48.json",
+          "corners": 69
+        },
+        {
+          "id": "00019_token-branded-paw@64",
+          "res": 64,
+          "image": "images/00019_token-branded-paw_64.png",
+          "annotation": "annotations/00019_token-branded-paw_64.json",
+          "corners": 70
+        },
+        {
+          "id": "00019_token-branded-paw@96",
+          "res": 96,
+          "image": "images/00019_token-branded-paw_96.png",
+          "annotation": "annotations/00019_token-branded-paw_96.json",
+          "corners": 60
+        },
+        {
+          "id": "00019_token-branded-paw@128",
+          "res": 128,
+          "image": "images/00019_token-branded-paw_128.png",
+          "annotation": "annotations/00019_token-branded-paw_128.json",
+          "corners": 63
+        },
+        {
+          "id": "00019_token-branded-paw@192",
+          "res": 192,
+          "image": "images/00019_token-branded-paw_192.png",
+          "annotation": "annotations/00019_token-branded-paw_192.json",
+          "corners": 62
+        },
+        {
+          "id": "00019_token-branded-paw@256",
+          "res": 256,
+          "image": "images/00019_token-branded-paw_256.png",
+          "annotation": "annotations/00019_token-branded-paw_256.json",
+          "corners": 65
+        }
+      ],
+      "loops": 400,
+      "structural": 153,
+      "occlusion": 364,
+      "zero_corner": false,
+      "source": "sources/00019_token-branded-paw.svg"
+    },
+    {
+      "id": "00020_fantasma",
+      "name": "fantasma",
+      "views": [
+        {
+          "id": "00020_fantasma@24",
+          "res": 24,
+          "image": "images/00020_fantasma_24.png",
+          "annotation": "annotations/00020_fantasma_24.json",
+          "corners": 22
+        },
+        {
+          "id": "00020_fantasma@32",
+          "res": 32,
+          "image": "images/00020_fantasma_32.png",
+          "annotation": "annotations/00020_fantasma_32.json",
+          "corners": 33
+        },
+        {
+          "id": "00020_fantasma@48",
+          "res": 48,
+          "image": "images/00020_fantasma_48.png",
+          "annotation": "annotations/00020_fantasma_48.json",
+          "corners": 54
+        },
+        {
+          "id": "00020_fantasma@64",
+          "res": 64,
+          "image": "images/00020_fantasma_64.png",
+          "annotation": "annotations/00020_fantasma_64.json",
+          "corners": 55
+        },
+        {
+          "id": "00020_fantasma@96",
+          "res": 96,
+          "image": "images/00020_fantasma_96.png",
+          "annotation": "annotations/00020_fantasma_96.json",
+          "corners": 76
+        },
+        {
+          "id": "00020_fantasma@128",
+          "res": 128,
+          "image": "images/00020_fantasma_128.png",
+          "annotation": "annotations/00020_fantasma_128.json",
+          "corners": 103
+        },
+        {
+          "id": "00020_fantasma@192",
+          "res": 192,
+          "image": "images/00020_fantasma_192.png",
+          "annotation": "annotations/00020_fantasma_192.json",
+          "corners": 102
+        },
+        {
+          "id": "00020_fantasma@256",
+          "res": 256,
+          "image": "images/00020_fantasma_256.png",
+          "annotation": "annotations/00020_fantasma_256.json",
+          "corners": 112
+        }
+      ],
+      "loops": 149,
+      "structural": 557,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00020_fantasma.svg"
+    },
+    {
+      "id": "00021_fluent-color-people-sync-24",
+      "name": "fluent-color-people-sync-24",
+      "views": [
+        {
+          "id": "00021_fluent-color-people-sync-24@24",
+          "res": 24,
+          "image": "images/00021_fluent-color-people-sync-24_24.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_24.json",
+          "corners": 8
+        },
+        {
+          "id": "00021_fluent-color-people-sync-24@32",
+          "res": 32,
+          "image": "images/00021_fluent-color-people-sync-24_32.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_32.json",
+          "corners": 12
+        },
+        {
+          "id": "00021_fluent-color-people-sync-24@48",
+          "res": 48,
+          "image": "images/00021_fluent-color-people-sync-24_48.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_48.json",
+          "corners": 9
+        },
+        {
+          "id": "00021_fluent-color-people-sync-24@64",
+          "res": 64,
+          "image": "images/00021_fluent-color-people-sync-24_64.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_64.json",
+          "corners": 10
+        },
+        {
+          "id": "00021_fluent-color-people-sync-24@96",
+          "res": 96,
+          "image": "images/00021_fluent-color-people-sync-24_96.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_96.json",
+          "corners": 10
+        },
+        {
+          "id": "00021_fluent-color-people-sync-24@128",
+          "res": 128,
+          "image": "images/00021_fluent-color-people-sync-24_128.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_128.json",
+          "corners": 10
+        },
+        {
+          "id": "00021_fluent-color-people-sync-24@192",
+          "res": 192,
+          "image": "images/00021_fluent-color-people-sync-24_192.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_192.json",
+          "corners": 10
+        },
+        {
+          "id": "00021_fluent-color-people-sync-24@256",
+          "res": 256,
+          "image": "images/00021_fluent-color-people-sync-24_256.png",
+          "annotation": "annotations/00021_fluent-color-people-sync-24_256.json",
+          "corners": 10
+        }
+      ],
+      "loops": 63,
+      "structural": 29,
+      "occlusion": 50,
+      "zero_corner": false,
+      "source": "sources/00021_fluent-color-people-sync-24.svg"
+    },
+    {
+      "id": "00022_hacksaw-backseatgaming",
+      "name": "hacksaw-backseatgaming",
+      "views": [
+        {
+          "id": "00022_hacksaw-backseatgaming@24",
+          "res": 24,
+          "image": "images/00022_hacksaw-backseatgaming_24.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_24.json",
+          "corners": 27
+        },
+        {
+          "id": "00022_hacksaw-backseatgaming@32",
+          "res": 32,
+          "image": "images/00022_hacksaw-backseatgaming_32.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_32.json",
+          "corners": 39
+        },
+        {
+          "id": "00022_hacksaw-backseatgaming@48",
+          "res": 48,
+          "image": "images/00022_hacksaw-backseatgaming_48.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_48.json",
+          "corners": 91
+        },
+        {
+          "id": "00022_hacksaw-backseatgaming@64",
+          "res": 64,
+          "image": "images/00022_hacksaw-backseatgaming_64.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_64.json",
+          "corners": 116
+        },
+        {
+          "id": "00022_hacksaw-backseatgaming@96",
+          "res": 96,
+          "image": "images/00022_hacksaw-backseatgaming_96.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_96.json",
+          "corners": 134
+        },
+        {
+          "id": "00022_hacksaw-backseatgaming@128",
+          "res": 128,
+          "image": "images/00022_hacksaw-backseatgaming_128.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_128.json",
+          "corners": 186
+        },
+        {
+          "id": "00022_hacksaw-backseatgaming@192",
+          "res": 192,
+          "image": "images/00022_hacksaw-backseatgaming_192.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_192.json",
+          "corners": 199
+        },
+        {
+          "id": "00022_hacksaw-backseatgaming@256",
+          "res": 256,
+          "image": "images/00022_hacksaw-backseatgaming_256.png",
+          "annotation": "annotations/00022_hacksaw-backseatgaming_256.json",
+          "corners": 192
+        }
+      ],
+      "loops": 196,
+      "structural": 984,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00022_hacksaw-backseatgaming.svg"
+    },
+    {
+      "id": "00023_gonggaming",
+      "name": "gonggaming",
+      "views": [
+        {
+          "id": "00023_gonggaming@24",
+          "res": 24,
+          "image": "images/00023_gonggaming_24.png",
+          "annotation": "annotations/00023_gonggaming_24.json",
+          "corners": 8
+        },
+        {
+          "id": "00023_gonggaming@32",
+          "res": 32,
+          "image": "images/00023_gonggaming_32.png",
+          "annotation": "annotations/00023_gonggaming_32.json",
+          "corners": 20
+        },
+        {
+          "id": "00023_gonggaming@48",
+          "res": 48,
+          "image": "images/00023_gonggaming_48.png",
+          "annotation": "annotations/00023_gonggaming_48.json",
+          "corners": 17
+        },
+        {
+          "id": "00023_gonggaming@64",
+          "res": 64,
+          "image": "images/00023_gonggaming_64.png",
+          "annotation": "annotations/00023_gonggaming_64.json",
+          "corners": 25
+        },
+        {
+          "id": "00023_gonggaming@96",
+          "res": 96,
+          "image": "images/00023_gonggaming_96.png",
+          "annotation": "annotations/00023_gonggaming_96.json",
+          "corners": 26
+        },
+        {
+          "id": "00023_gonggaming@128",
+          "res": 128,
+          "image": "images/00023_gonggaming_128.png",
+          "annotation": "annotations/00023_gonggaming_128.json",
+          "corners": 30
+        },
+        {
+          "id": "00023_gonggaming@192",
+          "res": 192,
+          "image": "images/00023_gonggaming_192.png",
+          "annotation": "annotations/00023_gonggaming_192.json",
+          "corners": 30
+        },
+        {
+          "id": "00023_gonggaming@256",
+          "res": 256,
+          "image": "images/00023_gonggaming_256.png",
+          "annotation": "annotations/00023_gonggaming_256.json",
+          "corners": 33
+        }
+      ],
+      "loops": 52,
+      "structural": 189,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00023_gonggaming.svg"
+    },
+    {
+      "id": "00024_fxemoji-lastquartermoon",
+      "name": "fxemoji-lastquartermoon",
+      "views": [
+        {
+          "id": "00024_fxemoji-lastquartermoon@24",
+          "res": 24,
+          "image": "images/00024_fxemoji-lastquartermoon_24.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_24.json",
+          "corners": 31
+        },
+        {
+          "id": "00024_fxemoji-lastquartermoon@32",
+          "res": 32,
+          "image": "images/00024_fxemoji-lastquartermoon_32.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_32.json",
+          "corners": 28
+        },
+        {
+          "id": "00024_fxemoji-lastquartermoon@48",
+          "res": 48,
+          "image": "images/00024_fxemoji-lastquartermoon_48.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_48.json",
+          "corners": 28
+        },
+        {
+          "id": "00024_fxemoji-lastquartermoon@64",
+          "res": 64,
+          "image": "images/00024_fxemoji-lastquartermoon_64.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_64.json",
+          "corners": 27
+        },
+        {
+          "id": "00024_fxemoji-lastquartermoon@96",
+          "res": 96,
+          "image": "images/00024_fxemoji-lastquartermoon_96.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_96.json",
+          "corners": 28
+        },
+        {
+          "id": "00024_fxemoji-lastquartermoon@128",
+          "res": 128,
+          "image": "images/00024_fxemoji-lastquartermoon_128.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_128.json",
+          "corners": 28
+        },
+        {
+          "id": "00024_fxemoji-lastquartermoon@192",
+          "res": 192,
+          "image": "images/00024_fxemoji-lastquartermoon_192.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_192.json",
+          "corners": 28
+        },
+        {
+          "id": "00024_fxemoji-lastquartermoon@256",
+          "res": 256,
+          "image": "images/00024_fxemoji-lastquartermoon_256.png",
+          "annotation": "annotations/00024_fxemoji-lastquartermoon_256.json",
+          "corners": 28
+        }
+      ],
+      "loops": 104,
+      "structural": 102,
+      "occlusion": 124,
+      "zero_corner": false,
+      "source": "sources/00024_fxemoji-lastquartermoon.svg"
+    },
+    {
+      "id": "00025_slotmatrix",
+      "name": "slotmatrix",
+      "views": [
+        {
+          "id": "00025_slotmatrix@24",
+          "res": 24,
+          "image": "images/00025_slotmatrix_24.png",
+          "annotation": "annotations/00025_slotmatrix_24.json",
+          "corners": 23
+        },
+        {
+          "id": "00025_slotmatrix@32",
+          "res": 32,
+          "image": "images/00025_slotmatrix_32.png",
+          "annotation": "annotations/00025_slotmatrix_32.json",
+          "corners": 27
+        },
+        {
+          "id": "00025_slotmatrix@48",
+          "res": 48,
+          "image": "images/00025_slotmatrix_48.png",
+          "annotation": "annotations/00025_slotmatrix_48.json",
+          "corners": 39
+        },
+        {
+          "id": "00025_slotmatrix@64",
+          "res": 64,
+          "image": "images/00025_slotmatrix_64.png",
+          "annotation": "annotations/00025_slotmatrix_64.json",
+          "corners": 43
+        },
+        {
+          "id": "00025_slotmatrix@96",
+          "res": 96,
+          "image": "images/00025_slotmatrix_96.png",
+          "annotation": "annotations/00025_slotmatrix_96.json",
+          "corners": 66
+        },
+        {
+          "id": "00025_slotmatrix@128",
+          "res": 128,
+          "image": "images/00025_slotmatrix_128.png",
+          "annotation": "annotations/00025_slotmatrix_128.json",
+          "corners": 68
+        },
+        {
+          "id": "00025_slotmatrix@192",
+          "res": 192,
+          "image": "images/00025_slotmatrix_192.png",
+          "annotation": "annotations/00025_slotmatrix_192.json",
+          "corners": 80
+        },
+        {
+          "id": "00025_slotmatrix@256",
+          "res": 256,
+          "image": "images/00025_slotmatrix_256.png",
+          "annotation": "annotations/00025_slotmatrix_256.json",
+          "corners": 79
+        }
+      ],
+      "loops": 124,
+      "structural": 425,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00025_slotmatrix.svg"
+    },
+    {
+      "id": "00026_goldcoinstudios",
+      "name": "goldcoinstudios",
+      "views": [
+        {
+          "id": "00026_goldcoinstudios@24",
+          "res": 24,
+          "image": "images/00026_goldcoinstudios_24.png",
+          "annotation": "annotations/00026_goldcoinstudios_24.json",
+          "corners": 4
+        },
+        {
+          "id": "00026_goldcoinstudios@32",
+          "res": 32,
+          "image": "images/00026_goldcoinstudios_32.png",
+          "annotation": "annotations/00026_goldcoinstudios_32.json",
+          "corners": 6
+        },
+        {
+          "id": "00026_goldcoinstudios@48",
+          "res": 48,
+          "image": "images/00026_goldcoinstudios_48.png",
+          "annotation": "annotations/00026_goldcoinstudios_48.json",
+          "corners": 8
+        },
+        {
+          "id": "00026_goldcoinstudios@64",
+          "res": 64,
+          "image": "images/00026_goldcoinstudios_64.png",
+          "annotation": "annotations/00026_goldcoinstudios_64.json",
+          "corners": 12
+        },
+        {
+          "id": "00026_goldcoinstudios@96",
+          "res": 96,
+          "image": "images/00026_goldcoinstudios_96.png",
+          "annotation": "annotations/00026_goldcoinstudios_96.json",
+          "corners": 7
+        },
+        {
+          "id": "00026_goldcoinstudios@128",
+          "res": 128,
+          "image": "images/00026_goldcoinstudios_128.png",
+          "annotation": "annotations/00026_goldcoinstudios_128.json",
+          "corners": 9
+        },
+        {
+          "id": "00026_goldcoinstudios@192",
+          "res": 192,
+          "image": "images/00026_goldcoinstudios_192.png",
+          "annotation": "annotations/00026_goldcoinstudios_192.json",
+          "corners": 12
+        },
+        {
+          "id": "00026_goldcoinstudios@256",
+          "res": 256,
+          "image": "images/00026_goldcoinstudios_256.png",
+          "annotation": "annotations/00026_goldcoinstudios_256.json",
+          "corners": 11
+        }
+      ],
+      "loops": 83,
+      "structural": 69,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00026_goldcoinstudios.svg"
+    },
+    {
+      "id": "00027_emojione-ten-thirty",
+      "name": "emojione-ten-thirty",
+      "views": [
+        {
+          "id": "00027_emojione-ten-thirty@24",
+          "res": 24,
+          "image": "images/00027_emojione-ten-thirty_24.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_24.json",
+          "corners": 0
+        },
+        {
+          "id": "00027_emojione-ten-thirty@32",
+          "res": 32,
+          "image": "images/00027_emojione-ten-thirty_32.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_32.json",
+          "corners": 0
+        },
+        {
+          "id": "00027_emojione-ten-thirty@48",
+          "res": 48,
+          "image": "images/00027_emojione-ten-thirty_48.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_48.json",
+          "corners": 0
+        },
+        {
+          "id": "00027_emojione-ten-thirty@64",
+          "res": 64,
+          "image": "images/00027_emojione-ten-thirty_64.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_64.json",
+          "corners": 5
+        },
+        {
+          "id": "00027_emojione-ten-thirty@96",
+          "res": 96,
+          "image": "images/00027_emojione-ten-thirty_96.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_96.json",
+          "corners": 0
+        },
+        {
+          "id": "00027_emojione-ten-thirty@128",
+          "res": 128,
+          "image": "images/00027_emojione-ten-thirty_128.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_128.json",
+          "corners": 0
+        },
+        {
+          "id": "00027_emojione-ten-thirty@192",
+          "res": 192,
+          "image": "images/00027_emojione-ten-thirty_192.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_192.json",
+          "corners": 0
+        },
+        {
+          "id": "00027_emojione-ten-thirty@256",
+          "res": 256,
+          "image": "images/00027_emojione-ten-thirty_256.png",
+          "annotation": "annotations/00027_emojione-ten-thirty_256.json",
+          "corners": 0
+        }
+      ],
+      "loops": 35,
+      "structural": 0,
+      "occlusion": 5,
+      "zero_corner": false,
+      "source": "sources/00027_emojione-ten-thirty.svg"
+    },
+    {
+      "id": "00028_local-default-hacksaw",
+      "name": "local-default-hacksaw",
+      "views": [
+        {
+          "id": "00028_local-default-hacksaw@24",
+          "res": 24,
+          "image": "images/00028_local-default-hacksaw_24.png",
+          "annotation": "annotations/00028_local-default-hacksaw_24.json",
+          "corners": 15
+        },
+        {
+          "id": "00028_local-default-hacksaw@32",
+          "res": 32,
+          "image": "images/00028_local-default-hacksaw_32.png",
+          "annotation": "annotations/00028_local-default-hacksaw_32.json",
+          "corners": 39
+        },
+        {
+          "id": "00028_local-default-hacksaw@48",
+          "res": 48,
+          "image": "images/00028_local-default-hacksaw_48.png",
+          "annotation": "annotations/00028_local-default-hacksaw_48.json",
+          "corners": 65
+        },
+        {
+          "id": "00028_local-default-hacksaw@64",
+          "res": 64,
+          "image": "images/00028_local-default-hacksaw_64.png",
+          "annotation": "annotations/00028_local-default-hacksaw_64.json",
+          "corners": 77
+        },
+        {
+          "id": "00028_local-default-hacksaw@96",
+          "res": 96,
+          "image": "images/00028_local-default-hacksaw_96.png",
+          "annotation": "annotations/00028_local-default-hacksaw_96.json",
+          "corners": 102
+        },
+        {
+          "id": "00028_local-default-hacksaw@128",
+          "res": 128,
+          "image": "images/00028_local-default-hacksaw_128.png",
+          "annotation": "annotations/00028_local-default-hacksaw_128.json",
+          "corners": 102
+        },
+        {
+          "id": "00028_local-default-hacksaw@192",
+          "res": 192,
+          "image": "images/00028_local-default-hacksaw_192.png",
+          "annotation": "annotations/00028_local-default-hacksaw_192.json",
+          "corners": 128
+        },
+        {
+          "id": "00028_local-default-hacksaw@256",
+          "res": 256,
+          "image": "images/00028_local-default-hacksaw_256.png",
+          "annotation": "annotations/00028_local-default-hacksaw_256.json",
+          "corners": 150
+        }
+      ],
+      "loops": 107,
+      "structural": 678,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00028_local-default-hacksaw.svg"
+    },
+    {
+      "id": "00029_ortiz",
+      "name": "ortiz",
+      "views": [
+        {
+          "id": "00029_ortiz@24",
+          "res": 24,
+          "image": "images/00029_ortiz_24.png",
+          "annotation": "annotations/00029_ortiz_24.json",
+          "corners": 1
+        },
+        {
+          "id": "00029_ortiz@32",
+          "res": 32,
+          "image": "images/00029_ortiz_32.png",
+          "annotation": "annotations/00029_ortiz_32.json",
+          "corners": 0
+        },
+        {
+          "id": "00029_ortiz@48",
+          "res": 48,
+          "image": "images/00029_ortiz_48.png",
+          "annotation": "annotations/00029_ortiz_48.json",
+          "corners": 1
+        },
+        {
+          "id": "00029_ortiz@64",
+          "res": 64,
+          "image": "images/00029_ortiz_64.png",
+          "annotation": "annotations/00029_ortiz_64.json",
+          "corners": 2
+        },
+        {
+          "id": "00029_ortiz@96",
+          "res": 96,
+          "image": "images/00029_ortiz_96.png",
+          "annotation": "annotations/00029_ortiz_96.json",
+          "corners": 2
+        },
+        {
+          "id": "00029_ortiz@128",
+          "res": 128,
+          "image": "images/00029_ortiz_128.png",
+          "annotation": "annotations/00029_ortiz_128.json",
+          "corners": 2
+        },
+        {
+          "id": "00029_ortiz@192",
+          "res": 192,
+          "image": "images/00029_ortiz_192.png",
+          "annotation": "annotations/00029_ortiz_192.json",
+          "corners": 2
+        },
+        {
+          "id": "00029_ortiz@256",
+          "res": 256,
+          "image": "images/00029_ortiz_256.png",
+          "annotation": "annotations/00029_ortiz_256.json",
+          "corners": 2
+        }
+      ],
+      "loops": 95,
+      "structural": 12,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00029_ortiz.svg"
+    },
+    {
+      "id": "00030_simple-icons-truenas",
+      "name": "simple-icons-truenas",
+      "views": [
+        {
+          "id": "00030_simple-icons-truenas@24",
+          "res": 24,
+          "image": "images/00030_simple-icons-truenas_24.png",
+          "annotation": "annotations/00030_simple-icons-truenas_24.json",
+          "corners": 22
+        },
+        {
+          "id": "00030_simple-icons-truenas@32",
+          "res": 32,
+          "image": "images/00030_simple-icons-truenas_32.png",
+          "annotation": "annotations/00030_simple-icons-truenas_32.json",
+          "corners": 25
+        },
+        {
+          "id": "00030_simple-icons-truenas@48",
+          "res": 48,
+          "image": "images/00030_simple-icons-truenas_48.png",
+          "annotation": "annotations/00030_simple-icons-truenas_48.json",
+          "corners": 20
+        },
+        {
+          "id": "00030_simple-icons-truenas@64",
+          "res": 64,
+          "image": "images/00030_simple-icons-truenas_64.png",
+          "annotation": "annotations/00030_simple-icons-truenas_64.json",
+          "corners": 20
+        },
+        {
+          "id": "00030_simple-icons-truenas@96",
+          "res": 96,
+          "image": "images/00030_simple-icons-truenas_96.png",
+          "annotation": "annotations/00030_simple-icons-truenas_96.json",
+          "corners": 20
+        },
+        {
+          "id": "00030_simple-icons-truenas@128",
+          "res": 128,
+          "image": "images/00030_simple-icons-truenas_128.png",
+          "annotation": "annotations/00030_simple-icons-truenas_128.json",
+          "corners": 19
+        },
+        {
+          "id": "00030_simple-icons-truenas@192",
+          "res": 192,
+          "image": "images/00030_simple-icons-truenas_192.png",
+          "annotation": "annotations/00030_simple-icons-truenas_192.json",
+          "corners": 20
+        },
+        {
+          "id": "00030_simple-icons-truenas@256",
+          "res": 256,
+          "image": "images/00030_simple-icons-truenas_256.png",
+          "annotation": "annotations/00030_simple-icons-truenas_256.json",
+          "corners": 19
+        }
+      ],
+      "loops": 40,
+      "structural": 165,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00030_simple-icons-truenas.svg"
+    },
+    {
+      "id": "00031_neonvalley",
+      "name": "neonvalley",
+      "views": [
+        {
+          "id": "00031_neonvalley@24",
+          "res": 24,
+          "image": "images/00031_neonvalley_24.png",
+          "annotation": "annotations/00031_neonvalley_24.json",
+          "corners": 2
+        },
+        {
+          "id": "00031_neonvalley@32",
+          "res": 32,
+          "image": "images/00031_neonvalley_32.png",
+          "annotation": "annotations/00031_neonvalley_32.json",
+          "corners": 15
+        },
+        {
+          "id": "00031_neonvalley@48",
+          "res": 48,
+          "image": "images/00031_neonvalley_48.png",
+          "annotation": "annotations/00031_neonvalley_48.json",
+          "corners": 31
+        },
+        {
+          "id": "00031_neonvalley@64",
+          "res": 64,
+          "image": "images/00031_neonvalley_64.png",
+          "annotation": "annotations/00031_neonvalley_64.json",
+          "corners": 39
+        },
+        {
+          "id": "00031_neonvalley@96",
+          "res": 96,
+          "image": "images/00031_neonvalley_96.png",
+          "annotation": "annotations/00031_neonvalley_96.json",
+          "corners": 72
+        },
+        {
+          "id": "00031_neonvalley@128",
+          "res": 128,
+          "image": "images/00031_neonvalley_128.png",
+          "annotation": "annotations/00031_neonvalley_128.json",
+          "corners": 76
+        },
+        {
+          "id": "00031_neonvalley@192",
+          "res": 192,
+          "image": "images/00031_neonvalley_192.png",
+          "annotation": "annotations/00031_neonvalley_192.json",
+          "corners": 78
+        },
+        {
+          "id": "00031_neonvalley@256",
+          "res": 256,
+          "image": "images/00031_neonvalley_256.png",
+          "annotation": "annotations/00031_neonvalley_256.json",
+          "corners": 102
+        }
+      ],
+      "loops": 135,
+      "structural": 415,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00031_neonvalley.svg"
+    },
+    {
+      "id": "00032_theearcasino",
+      "name": "theearcasino",
+      "views": [
+        {
+          "id": "00032_theearcasino@24",
+          "res": 24,
+          "image": "images/00032_theearcasino_24.png",
+          "annotation": "annotations/00032_theearcasino_24.json",
+          "corners": 37
+        },
+        {
+          "id": "00032_theearcasino@32",
+          "res": 32,
+          "image": "images/00032_theearcasino_32.png",
+          "annotation": "annotations/00032_theearcasino_32.json",
+          "corners": 39
+        },
+        {
+          "id": "00032_theearcasino@48",
+          "res": 48,
+          "image": "images/00032_theearcasino_48.png",
+          "annotation": "annotations/00032_theearcasino_48.json",
+          "corners": 62
+        },
+        {
+          "id": "00032_theearcasino@64",
+          "res": 64,
+          "image": "images/00032_theearcasino_64.png",
+          "annotation": "annotations/00032_theearcasino_64.json",
+          "corners": 63
+        },
+        {
+          "id": "00032_theearcasino@96",
+          "res": 96,
+          "image": "images/00032_theearcasino_96.png",
+          "annotation": "annotations/00032_theearcasino_96.json",
+          "corners": 73
+        },
+        {
+          "id": "00032_theearcasino@128",
+          "res": 128,
+          "image": "images/00032_theearcasino_128.png",
+          "annotation": "annotations/00032_theearcasino_128.json",
+          "corners": 80
+        },
+        {
+          "id": "00032_theearcasino@192",
+          "res": 192,
+          "image": "images/00032_theearcasino_192.png",
+          "annotation": "annotations/00032_theearcasino_192.json",
+          "corners": 94
+        },
+        {
+          "id": "00032_theearcasino@256",
+          "res": 256,
+          "image": "images/00032_theearcasino_256.png",
+          "annotation": "annotations/00032_theearcasino_256.json",
+          "corners": 94
+        }
+      ],
+      "loops": 105,
+      "structural": 379,
+      "occlusion": 163,
+      "zero_corner": false,
+      "source": "sources/00032_theearcasino.svg"
+    },
+    {
+      "id": "00033_muo",
+      "name": "muo",
+      "views": [
+        {
+          "id": "00033_muo@24",
+          "res": 24,
+          "image": "images/00033_muo_24.png",
+          "annotation": "annotations/00033_muo_24.json",
+          "corners": 18
+        },
+        {
+          "id": "00033_muo@32",
+          "res": 32,
+          "image": "images/00033_muo_32.png",
+          "annotation": "annotations/00033_muo_32.json",
+          "corners": 16
+        },
+        {
+          "id": "00033_muo@48",
+          "res": 48,
+          "image": "images/00033_muo_48.png",
+          "annotation": "annotations/00033_muo_48.json",
+          "corners": 24
+        },
+        {
+          "id": "00033_muo@64",
+          "res": 64,
+          "image": "images/00033_muo_64.png",
+          "annotation": "annotations/00033_muo_64.json",
+          "corners": 24
+        },
+        {
+          "id": "00033_muo@96",
+          "res": 96,
+          "image": "images/00033_muo_96.png",
+          "annotation": "annotations/00033_muo_96.json",
+          "corners": 21
+        },
+        {
+          "id": "00033_muo@128",
+          "res": 128,
+          "image": "images/00033_muo_128.png",
+          "annotation": "annotations/00033_muo_128.json",
+          "corners": 21
+        },
+        {
+          "id": "00033_muo@192",
+          "res": 192,
+          "image": "images/00033_muo_192.png",
+          "annotation": "annotations/00033_muo_192.json",
+          "corners": 17
+        },
+        {
+          "id": "00033_muo@256",
+          "res": 256,
+          "image": "images/00033_muo_256.png",
+          "annotation": "annotations/00033_muo_256.json",
+          "corners": 17
+        }
+      ],
+      "loops": 46,
+      "structural": 158,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00033_muo.svg"
+    },
+    {
+      "id": "00034_local-dark-octoplay",
+      "name": "local-dark-octoplay",
+      "views": [
+        {
+          "id": "00034_local-dark-octoplay@24",
+          "res": 24,
+          "image": "images/00034_local-dark-octoplay_24.png",
+          "annotation": "annotations/00034_local-dark-octoplay_24.json",
+          "corners": 0
+        },
+        {
+          "id": "00034_local-dark-octoplay@32",
+          "res": 32,
+          "image": "images/00034_local-dark-octoplay_32.png",
+          "annotation": "annotations/00034_local-dark-octoplay_32.json",
+          "corners": 0
+        },
+        {
+          "id": "00034_local-dark-octoplay@48",
+          "res": 48,
+          "image": "images/00034_local-dark-octoplay_48.png",
+          "annotation": "annotations/00034_local-dark-octoplay_48.json",
+          "corners": 10
+        },
+        {
+          "id": "00034_local-dark-octoplay@64",
+          "res": 64,
+          "image": "images/00034_local-dark-octoplay_64.png",
+          "annotation": "annotations/00034_local-dark-octoplay_64.json",
+          "corners": 18
+        },
+        {
+          "id": "00034_local-dark-octoplay@96",
+          "res": 96,
+          "image": "images/00034_local-dark-octoplay_96.png",
+          "annotation": "annotations/00034_local-dark-octoplay_96.json",
+          "corners": 20
+        },
+        {
+          "id": "00034_local-dark-octoplay@128",
+          "res": 128,
+          "image": "images/00034_local-dark-octoplay_128.png",
+          "annotation": "annotations/00034_local-dark-octoplay_128.json",
+          "corners": 28
+        },
+        {
+          "id": "00034_local-dark-octoplay@192",
+          "res": 192,
+          "image": "images/00034_local-dark-octoplay_192.png",
+          "annotation": "annotations/00034_local-dark-octoplay_192.json",
+          "corners": 36
+        },
+        {
+          "id": "00034_local-dark-octoplay@256",
+          "res": 256,
+          "image": "images/00034_local-dark-octoplay_256.png",
+          "annotation": "annotations/00034_local-dark-octoplay_256.json",
+          "corners": 44
+        }
+      ],
+      "loops": 117,
+      "structural": 156,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00034_local-dark-octoplay.svg"
+    },
+    {
+      "id": "00035_expansestudios",
+      "name": "expansestudios",
+      "views": [
+        {
+          "id": "00035_expansestudios@24",
+          "res": 24,
+          "image": "images/00035_expansestudios_24.png",
+          "annotation": "annotations/00035_expansestudios_24.json",
+          "corners": 21
+        },
+        {
+          "id": "00035_expansestudios@32",
+          "res": 32,
+          "image": "images/00035_expansestudios_32.png",
+          "annotation": "annotations/00035_expansestudios_32.json",
+          "corners": 31
+        },
+        {
+          "id": "00035_expansestudios@48",
+          "res": 48,
+          "image": "images/00035_expansestudios_48.png",
+          "annotation": "annotations/00035_expansestudios_48.json",
+          "corners": 45
+        },
+        {
+          "id": "00035_expansestudios@64",
+          "res": 64,
+          "image": "images/00035_expansestudios_64.png",
+          "annotation": "annotations/00035_expansestudios_64.json",
+          "corners": 55
+        },
+        {
+          "id": "00035_expansestudios@96",
+          "res": 96,
+          "image": "images/00035_expansestudios_96.png",
+          "annotation": "annotations/00035_expansestudios_96.json",
+          "corners": 75
+        },
+        {
+          "id": "00035_expansestudios@128",
+          "res": 128,
+          "image": "images/00035_expansestudios_128.png",
+          "annotation": "annotations/00035_expansestudios_128.json",
+          "corners": 83
+        },
+        {
+          "id": "00035_expansestudios@192",
+          "res": 192,
+          "image": "images/00035_expansestudios_192.png",
+          "annotation": "annotations/00035_expansestudios_192.json",
+          "corners": 83
+        },
+        {
+          "id": "00035_expansestudios@256",
+          "res": 256,
+          "image": "images/00035_expansestudios_256.png",
+          "annotation": "annotations/00035_expansestudios_256.json",
+          "corners": 85
+        }
+      ],
+      "loops": 126,
+      "structural": 476,
+      "occlusion": 2,
+      "zero_corner": false,
+      "source": "sources/00035_expansestudios.svg"
+    },
+    {
+      "id": "00036_shields",
+      "name": "shields",
+      "views": [
+        {
+          "id": "00036_shields@24",
+          "res": 24,
+          "image": "images/00036_shields_24.png",
+          "annotation": "annotations/00036_shields_24.json",
+          "corners": 10
+        },
+        {
+          "id": "00036_shields@32",
+          "res": 32,
+          "image": "images/00036_shields_32.png",
+          "annotation": "annotations/00036_shields_32.json",
+          "corners": 19
+        },
+        {
+          "id": "00036_shields@48",
+          "res": 48,
+          "image": "images/00036_shields_48.png",
+          "annotation": "annotations/00036_shields_48.json",
+          "corners": 39
+        },
+        {
+          "id": "00036_shields@64",
+          "res": 64,
+          "image": "images/00036_shields_64.png",
+          "annotation": "annotations/00036_shields_64.json",
+          "corners": 35
+        },
+        {
+          "id": "00036_shields@96",
+          "res": 96,
+          "image": "images/00036_shields_96.png",
+          "annotation": "annotations/00036_shields_96.json",
+          "corners": 36
+        },
+        {
+          "id": "00036_shields@128",
+          "res": 128,
+          "image": "images/00036_shields_128.png",
+          "annotation": "annotations/00036_shields_128.json",
+          "corners": 30
+        },
+        {
+          "id": "00036_shields@192",
+          "res": 192,
+          "image": "images/00036_shields_192.png",
+          "annotation": "annotations/00036_shields_192.json",
+          "corners": 39
+        },
+        {
+          "id": "00036_shields@256",
+          "res": 256,
+          "image": "images/00036_shields_256.png",
+          "annotation": "annotations/00036_shields_256.json",
+          "corners": 40
+        }
+      ],
+      "loops": 121,
+      "structural": 218,
+      "occlusion": 30,
+      "zero_corner": false,
+      "source": "sources/00036_shields.svg"
+    },
+    {
+      "id": "00037_leander",
+      "name": "leander",
+      "views": [
+        {
+          "id": "00037_leander@24",
+          "res": 24,
+          "image": "images/00037_leander_24.png",
+          "annotation": "annotations/00037_leander_24.json",
+          "corners": 11
+        },
+        {
+          "id": "00037_leander@32",
+          "res": 32,
+          "image": "images/00037_leander_32.png",
+          "annotation": "annotations/00037_leander_32.json",
+          "corners": 18
+        },
+        {
+          "id": "00037_leander@48",
+          "res": 48,
+          "image": "images/00037_leander_48.png",
+          "annotation": "annotations/00037_leander_48.json",
+          "corners": 65
+        },
+        {
+          "id": "00037_leander@64",
+          "res": 64,
+          "image": "images/00037_leander_64.png",
+          "annotation": "annotations/00037_leander_64.json",
+          "corners": 77
+        },
+        {
+          "id": "00037_leander@96",
+          "res": 96,
+          "image": "images/00037_leander_96.png",
+          "annotation": "annotations/00037_leander_96.json",
+          "corners": 111
+        },
+        {
+          "id": "00037_leander@128",
+          "res": 128,
+          "image": "images/00037_leander_128.png",
+          "annotation": "annotations/00037_leander_128.json",
+          "corners": 124
+        },
+        {
+          "id": "00037_leander@192",
+          "res": 192,
+          "image": "images/00037_leander_192.png",
+          "annotation": "annotations/00037_leander_192.json",
+          "corners": 139
+        },
+        {
+          "id": "00037_leander@256",
+          "res": 256,
+          "image": "images/00037_leander_256.png",
+          "annotation": "annotations/00037_leander_256.json",
+          "corners": 148
+        }
+      ],
+      "loops": 212,
+      "structural": 617,
+      "occlusion": 76,
+      "zero_corner": false,
+      "source": "sources/00037_leander.svg"
+    },
+    {
+      "id": "00038_woman-farmer",
+      "name": "woman-farmer",
+      "views": [
+        {
+          "id": "00038_woman-farmer@24",
+          "res": 24,
+          "image": "images/00038_woman-farmer_24.png",
+          "annotation": "annotations/00038_woman-farmer_24.json",
+          "corners": 57
+        },
+        {
+          "id": "00038_woman-farmer@32",
+          "res": 32,
+          "image": "images/00038_woman-farmer_32.png",
+          "annotation": "annotations/00038_woman-farmer_32.json",
+          "corners": 74
+        },
+        {
+          "id": "00038_woman-farmer@48",
+          "res": 48,
+          "image": "images/00038_woman-farmer_48.png",
+          "annotation": "annotations/00038_woman-farmer_48.json",
+          "corners": 81
+        },
+        {
+          "id": "00038_woman-farmer@64",
+          "res": 64,
+          "image": "images/00038_woman-farmer_64.png",
+          "annotation": "annotations/00038_woman-farmer_64.json",
+          "corners": 86
+        },
+        {
+          "id": "00038_woman-farmer@96",
+          "res": 96,
+          "image": "images/00038_woman-farmer_96.png",
+          "annotation": "annotations/00038_woman-farmer_96.json",
+          "corners": 98
+        },
+        {
+          "id": "00038_woman-farmer@128",
+          "res": 128,
+          "image": "images/00038_woman-farmer_128.png",
+          "annotation": "annotations/00038_woman-farmer_128.json",
+          "corners": 91
+        },
+        {
+          "id": "00038_woman-farmer@192",
+          "res": 192,
+          "image": "images/00038_woman-farmer_192.png",
+          "annotation": "annotations/00038_woman-farmer_192.json",
+          "corners": 97
+        },
+        {
+          "id": "00038_woman-farmer@256",
+          "res": 256,
+          "image": "images/00038_woman-farmer_256.png",
+          "annotation": "annotations/00038_woman-farmer_256.json",
+          "corners": 96
+        }
+      ],
+      "loops": 284,
+      "structural": 262,
+      "occlusion": 418,
+      "zero_corner": false,
+      "source": "sources/00038_woman-farmer.svg"
+    },
+    {
+      "id": "00039_egtdigitalgames",
+      "name": "egtdigitalgames",
+      "views": [
+        {
+          "id": "00039_egtdigitalgames@24",
+          "res": 24,
+          "image": "images/00039_egtdigitalgames_24.png",
+          "annotation": "annotations/00039_egtdigitalgames_24.json",
+          "corners": 24
+        },
+        {
+          "id": "00039_egtdigitalgames@32",
+          "res": 32,
+          "image": "images/00039_egtdigitalgames_32.png",
+          "annotation": "annotations/00039_egtdigitalgames_32.json",
+          "corners": 27
+        },
+        {
+          "id": "00039_egtdigitalgames@48",
+          "res": 48,
+          "image": "images/00039_egtdigitalgames_48.png",
+          "annotation": "annotations/00039_egtdigitalgames_48.json",
+          "corners": 34
+        },
+        {
+          "id": "00039_egtdigitalgames@64",
+          "res": 64,
+          "image": "images/00039_egtdigitalgames_64.png",
+          "annotation": "annotations/00039_egtdigitalgames_64.json",
+          "corners": 31
+        },
+        {
+          "id": "00039_egtdigitalgames@96",
+          "res": 96,
+          "image": "images/00039_egtdigitalgames_96.png",
+          "annotation": "annotations/00039_egtdigitalgames_96.json",
+          "corners": 33
+        },
+        {
+          "id": "00039_egtdigitalgames@128",
+          "res": 128,
+          "image": "images/00039_egtdigitalgames_128.png",
+          "annotation": "annotations/00039_egtdigitalgames_128.json",
+          "corners": 33
+        },
+        {
+          "id": "00039_egtdigitalgames@192",
+          "res": 192,
+          "image": "images/00039_egtdigitalgames_192.png",
+          "annotation": "annotations/00039_egtdigitalgames_192.json",
+          "corners": 33
+        },
+        {
+          "id": "00039_egtdigitalgames@256",
+          "res": 256,
+          "image": "images/00039_egtdigitalgames_256.png",
+          "annotation": "annotations/00039_egtdigitalgames_256.json",
+          "corners": 33
+        }
+      ],
+      "loops": 40,
+      "structural": 248,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00039_egtdigitalgames.svg"
+    },
+    {
+      "id": "00040_rsmq",
+      "name": "rsmq",
+      "views": [
+        {
+          "id": "00040_rsmq@24",
+          "res": 24,
+          "image": "images/00040_rsmq_24.png",
+          "annotation": "annotations/00040_rsmq_24.json",
+          "corners": 15
+        },
+        {
+          "id": "00040_rsmq@32",
+          "res": 32,
+          "image": "images/00040_rsmq_32.png",
+          "annotation": "annotations/00040_rsmq_32.json",
+          "corners": 13
+        },
+        {
+          "id": "00040_rsmq@48",
+          "res": 48,
+          "image": "images/00040_rsmq_48.png",
+          "annotation": "annotations/00040_rsmq_48.json",
+          "corners": 16
+        },
+        {
+          "id": "00040_rsmq@64",
+          "res": 64,
+          "image": "images/00040_rsmq_64.png",
+          "annotation": "annotations/00040_rsmq_64.json",
+          "corners": 16
+        },
+        {
+          "id": "00040_rsmq@96",
+          "res": 96,
+          "image": "images/00040_rsmq_96.png",
+          "annotation": "annotations/00040_rsmq_96.json",
+          "corners": 16
+        },
+        {
+          "id": "00040_rsmq@128",
+          "res": 128,
+          "image": "images/00040_rsmq_128.png",
+          "annotation": "annotations/00040_rsmq_128.json",
+          "corners": 16
+        },
+        {
+          "id": "00040_rsmq@192",
+          "res": 192,
+          "image": "images/00040_rsmq_192.png",
+          "annotation": "annotations/00040_rsmq_192.json",
+          "corners": 16
+        },
+        {
+          "id": "00040_rsmq@256",
+          "res": 256,
+          "image": "images/00040_rsmq_256.png",
+          "annotation": "annotations/00040_rsmq_256.json",
+          "corners": 16
+        }
+      ],
+      "loops": 72,
+      "structural": 119,
+      "occlusion": 5,
+      "zero_corner": false,
+      "source": "sources/00040_rsmq.svg"
+    },
+    {
+      "id": "00041_100hp",
+      "name": "100hp",
+      "views": [
+        {
+          "id": "00041_100hp@24",
+          "res": 24,
+          "image": "images/00041_100hp_24.png",
+          "annotation": "annotations/00041_100hp_24.json",
+          "corners": 50
+        },
+        {
+          "id": "00041_100hp@32",
+          "res": 32,
+          "image": "images/00041_100hp_32.png",
+          "annotation": "annotations/00041_100hp_32.json",
+          "corners": 70
+        },
+        {
+          "id": "00041_100hp@48",
+          "res": 48,
+          "image": "images/00041_100hp_48.png",
+          "annotation": "annotations/00041_100hp_48.json",
+          "corners": 102
+        },
+        {
+          "id": "00041_100hp@64",
+          "res": 64,
+          "image": "images/00041_100hp_64.png",
+          "annotation": "annotations/00041_100hp_64.json",
+          "corners": 144
+        },
+        {
+          "id": "00041_100hp@96",
+          "res": 96,
+          "image": "images/00041_100hp_96.png",
+          "annotation": "annotations/00041_100hp_96.json",
+          "corners": 177
+        },
+        {
+          "id": "00041_100hp@128",
+          "res": 128,
+          "image": "images/00041_100hp_128.png",
+          "annotation": "annotations/00041_100hp_128.json",
+          "corners": 214
+        },
+        {
+          "id": "00041_100hp@192",
+          "res": 192,
+          "image": "images/00041_100hp_192.png",
+          "annotation": "annotations/00041_100hp_192.json",
+          "corners": 226
+        },
+        {
+          "id": "00041_100hp@256",
+          "res": 256,
+          "image": "images/00041_100hp_256.png",
+          "annotation": "annotations/00041_100hp_256.json",
+          "corners": 259
+        }
+      ],
+      "loops": 182,
+      "structural": 1158,
+      "occlusion": 84,
+      "zero_corner": false,
+      "source": "sources/00041_100hp.svg"
+    },
+    {
+      "id": "00042_vscode-icons-file-type-docusaurus",
+      "name": "vscode-icons-file-type-docusaurus",
+      "views": [
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@24",
+          "res": 24,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_24.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_24.json",
+          "corners": 45
+        },
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@32",
+          "res": 32,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_32.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_32.json",
+          "corners": 47
+        },
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@48",
+          "res": 48,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_48.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_48.json",
+          "corners": 68
+        },
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@64",
+          "res": 64,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_64.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_64.json",
+          "corners": 66
+        },
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@96",
+          "res": 96,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_96.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_96.json",
+          "corners": 75
+        },
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@128",
+          "res": 128,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_128.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_128.json",
+          "corners": 76
+        },
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@192",
+          "res": 192,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_192.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_192.json",
+          "corners": 77
+        },
+        {
+          "id": "00042_vscode-icons-file-type-docusaurus@256",
+          "res": 256,
+          "image": "images/00042_vscode-icons-file-type-docusaurus_256.png",
+          "annotation": "annotations/00042_vscode-icons-file-type-docusaurus_256.json",
+          "corners": 78
+        }
+      ],
+      "loops": 257,
+      "structural": 229,
+      "occlusion": 303,
+      "zero_corner": false,
+      "source": "sources/00042_vscode-icons-file-type-docusaurus.svg"
+    },
+    {
+      "id": "00043_quickfire_fantasma",
+      "name": "quickfire@fantasma",
+      "views": [
+        {
+          "id": "00043_quickfire_fantasma@24",
+          "res": 24,
+          "image": "images/00043_quickfire_fantasma_24.png",
+          "annotation": "annotations/00043_quickfire_fantasma_24.json",
+          "corners": 22
+        },
+        {
+          "id": "00043_quickfire_fantasma@32",
+          "res": 32,
+          "image": "images/00043_quickfire_fantasma_32.png",
+          "annotation": "annotations/00043_quickfire_fantasma_32.json",
+          "corners": 33
+        },
+        {
+          "id": "00043_quickfire_fantasma@48",
+          "res": 48,
+          "image": "images/00043_quickfire_fantasma_48.png",
+          "annotation": "annotations/00043_quickfire_fantasma_48.json",
+          "corners": 54
+        },
+        {
+          "id": "00043_quickfire_fantasma@64",
+          "res": 64,
+          "image": "images/00043_quickfire_fantasma_64.png",
+          "annotation": "annotations/00043_quickfire_fantasma_64.json",
+          "corners": 55
+        },
+        {
+          "id": "00043_quickfire_fantasma@96",
+          "res": 96,
+          "image": "images/00043_quickfire_fantasma_96.png",
+          "annotation": "annotations/00043_quickfire_fantasma_96.json",
+          "corners": 76
+        },
+        {
+          "id": "00043_quickfire_fantasma@128",
+          "res": 128,
+          "image": "images/00043_quickfire_fantasma_128.png",
+          "annotation": "annotations/00043_quickfire_fantasma_128.json",
+          "corners": 103
+        },
+        {
+          "id": "00043_quickfire_fantasma@192",
+          "res": 192,
+          "image": "images/00043_quickfire_fantasma_192.png",
+          "annotation": "annotations/00043_quickfire_fantasma_192.json",
+          "corners": 102
+        },
+        {
+          "id": "00043_quickfire_fantasma@256",
+          "res": 256,
+          "image": "images/00043_quickfire_fantasma_256.png",
+          "annotation": "annotations/00043_quickfire_fantasma_256.json",
+          "corners": 111
+        }
+      ],
+      "loops": 149,
+      "structural": 556,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00043_quickfire_fantasma.svg"
+    },
+    {
+      "id": "00044_simple-icons-fontawesome",
+      "name": "simple-icons-fontawesome",
+      "views": [
+        {
+          "id": "00044_simple-icons-fontawesome@24",
+          "res": 24,
+          "image": "images/00044_simple-icons-fontawesome_24.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_24.json",
+          "corners": 5
+        },
+        {
+          "id": "00044_simple-icons-fontawesome@32",
+          "res": 32,
+          "image": "images/00044_simple-icons-fontawesome_32.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_32.json",
+          "corners": 5
+        },
+        {
+          "id": "00044_simple-icons-fontawesome@48",
+          "res": 48,
+          "image": "images/00044_simple-icons-fontawesome_48.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_48.json",
+          "corners": 5
+        },
+        {
+          "id": "00044_simple-icons-fontawesome@64",
+          "res": 64,
+          "image": "images/00044_simple-icons-fontawesome_64.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_64.json",
+          "corners": 5
+        },
+        {
+          "id": "00044_simple-icons-fontawesome@96",
+          "res": 96,
+          "image": "images/00044_simple-icons-fontawesome_96.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_96.json",
+          "corners": 5
+        },
+        {
+          "id": "00044_simple-icons-fontawesome@128",
+          "res": 128,
+          "image": "images/00044_simple-icons-fontawesome_128.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_128.json",
+          "corners": 6
+        },
+        {
+          "id": "00044_simple-icons-fontawesome@192",
+          "res": 192,
+          "image": "images/00044_simple-icons-fontawesome_192.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_192.json",
+          "corners": 6
+        },
+        {
+          "id": "00044_simple-icons-fontawesome@256",
+          "res": 256,
+          "image": "images/00044_simple-icons-fontawesome_256.png",
+          "annotation": "annotations/00044_simple-icons-fontawesome_256.json",
+          "corners": 6
+        }
+      ],
+      "loops": 8,
+      "structural": 43,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00044_simple-icons-fontawesome.svg"
+    },
+    {
+      "id": "00045_kagaming",
+      "name": "kagaming",
+      "views": [
+        {
+          "id": "00045_kagaming@24",
+          "res": 24,
+          "image": "images/00045_kagaming_24.png",
+          "annotation": "annotations/00045_kagaming_24.json",
+          "corners": 12
+        },
+        {
+          "id": "00045_kagaming@32",
+          "res": 32,
+          "image": "images/00045_kagaming_32.png",
+          "annotation": "annotations/00045_kagaming_32.json",
+          "corners": 22
+        },
+        {
+          "id": "00045_kagaming@48",
+          "res": 48,
+          "image": "images/00045_kagaming_48.png",
+          "annotation": "annotations/00045_kagaming_48.json",
+          "corners": 36
+        },
+        {
+          "id": "00045_kagaming@64",
+          "res": 64,
+          "image": "images/00045_kagaming_64.png",
+          "annotation": "annotations/00045_kagaming_64.json",
+          "corners": 44
+        },
+        {
+          "id": "00045_kagaming@96",
+          "res": 96,
+          "image": "images/00045_kagaming_96.png",
+          "annotation": "annotations/00045_kagaming_96.json",
+          "corners": 74
+        },
+        {
+          "id": "00045_kagaming@128",
+          "res": 128,
+          "image": "images/00045_kagaming_128.png",
+          "annotation": "annotations/00045_kagaming_128.json",
+          "corners": 74
+        },
+        {
+          "id": "00045_kagaming@192",
+          "res": 192,
+          "image": "images/00045_kagaming_192.png",
+          "annotation": "annotations/00045_kagaming_192.json",
+          "corners": 76
+        },
+        {
+          "id": "00045_kagaming@256",
+          "res": 256,
+          "image": "images/00045_kagaming_256.png",
+          "annotation": "annotations/00045_kagaming_256.json",
+          "corners": 72
+        }
+      ],
+      "loops": 210,
+      "structural": 193,
+      "occlusion": 217,
+      "zero_corner": false,
+      "source": "sources/00045_kagaming.svg"
+    },
+    {
+      "id": "00046_twemoji-railway-track",
+      "name": "twemoji-railway-track",
+      "views": [
+        {
+          "id": "00046_twemoji-railway-track@24",
+          "res": 24,
+          "image": "images/00046_twemoji-railway-track_24.png",
+          "annotation": "annotations/00046_twemoji-railway-track_24.json",
+          "corners": 34
+        },
+        {
+          "id": "00046_twemoji-railway-track@32",
+          "res": 32,
+          "image": "images/00046_twemoji-railway-track_32.png",
+          "annotation": "annotations/00046_twemoji-railway-track_32.json",
+          "corners": 53
+        },
+        {
+          "id": "00046_twemoji-railway-track@48",
+          "res": 48,
+          "image": "images/00046_twemoji-railway-track_48.png",
+          "annotation": "annotations/00046_twemoji-railway-track_48.json",
+          "corners": 61
+        },
+        {
+          "id": "00046_twemoji-railway-track@64",
+          "res": 64,
+          "image": "images/00046_twemoji-railway-track_64.png",
+          "annotation": "annotations/00046_twemoji-railway-track_64.json",
+          "corners": 62
+        },
+        {
+          "id": "00046_twemoji-railway-track@96",
+          "res": 96,
+          "image": "images/00046_twemoji-railway-track_96.png",
+          "annotation": "annotations/00046_twemoji-railway-track_96.json",
+          "corners": 60
+        },
+        {
+          "id": "00046_twemoji-railway-track@128",
+          "res": 128,
+          "image": "images/00046_twemoji-railway-track_128.png",
+          "annotation": "annotations/00046_twemoji-railway-track_128.json",
+          "corners": 57
+        },
+        {
+          "id": "00046_twemoji-railway-track@192",
+          "res": 192,
+          "image": "images/00046_twemoji-railway-track_192.png",
+          "annotation": "annotations/00046_twemoji-railway-track_192.json",
+          "corners": 64
+        },
+        {
+          "id": "00046_twemoji-railway-track@256",
+          "res": 256,
+          "image": "images/00046_twemoji-railway-track_256.png",
+          "annotation": "annotations/00046_twemoji-railway-track_256.json",
+          "corners": 64
+        }
+      ],
+      "loops": 201,
+      "structural": 142,
+      "occlusion": 313,
+      "zero_corner": false,
+      "source": "sources/00046_twemoji-railway-track.svg"
+    },
+    {
+      "id": "00047_gamomat",
+      "name": "gamomat",
+      "views": [
+        {
+          "id": "00047_gamomat@24",
+          "res": 24,
+          "image": "images/00047_gamomat_24.png",
+          "annotation": "annotations/00047_gamomat_24.json",
+          "corners": 14
+        },
+        {
+          "id": "00047_gamomat@32",
+          "res": 32,
+          "image": "images/00047_gamomat_32.png",
+          "annotation": "annotations/00047_gamomat_32.json",
+          "corners": 23
+        },
+        {
+          "id": "00047_gamomat@48",
+          "res": 48,
+          "image": "images/00047_gamomat_48.png",
+          "annotation": "annotations/00047_gamomat_48.json",
+          "corners": 41
+        },
+        {
+          "id": "00047_gamomat@64",
+          "res": 64,
+          "image": "images/00047_gamomat_64.png",
+          "annotation": "annotations/00047_gamomat_64.json",
+          "corners": 41
+        },
+        {
+          "id": "00047_gamomat@96",
+          "res": 96,
+          "image": "images/00047_gamomat_96.png",
+          "annotation": "annotations/00047_gamomat_96.json",
+          "corners": 52
+        },
+        {
+          "id": "00047_gamomat@128",
+          "res": 128,
+          "image": "images/00047_gamomat_128.png",
+          "annotation": "annotations/00047_gamomat_128.json",
+          "corners": 54
+        },
+        {
+          "id": "00047_gamomat@192",
+          "res": 192,
+          "image": "images/00047_gamomat_192.png",
+          "annotation": "annotations/00047_gamomat_192.json",
+          "corners": 53
+        },
+        {
+          "id": "00047_gamomat@256",
+          "res": 256,
+          "image": "images/00047_gamomat_256.png",
+          "annotation": "annotations/00047_gamomat_256.json",
+          "corners": 56
+        }
+      ],
+      "loops": 62,
+      "structural": 334,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00047_gamomat.svg"
+    },
+    {
+      "id": "00048_noto-locked-with-pen",
+      "name": "noto-locked-with-pen",
+      "views": [
+        {
+          "id": "00048_noto-locked-with-pen@24",
+          "res": 24,
+          "image": "images/00048_noto-locked-with-pen_24.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_24.json",
+          "corners": 45
+        },
+        {
+          "id": "00048_noto-locked-with-pen@32",
+          "res": 32,
+          "image": "images/00048_noto-locked-with-pen_32.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_32.json",
+          "corners": 62
+        },
+        {
+          "id": "00048_noto-locked-with-pen@48",
+          "res": 48,
+          "image": "images/00048_noto-locked-with-pen_48.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_48.json",
+          "corners": 71
+        },
+        {
+          "id": "00048_noto-locked-with-pen@64",
+          "res": 64,
+          "image": "images/00048_noto-locked-with-pen_64.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_64.json",
+          "corners": 76
+        },
+        {
+          "id": "00048_noto-locked-with-pen@96",
+          "res": 96,
+          "image": "images/00048_noto-locked-with-pen_96.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_96.json",
+          "corners": 89
+        },
+        {
+          "id": "00048_noto-locked-with-pen@128",
+          "res": 128,
+          "image": "images/00048_noto-locked-with-pen_128.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_128.json",
+          "corners": 85
+        },
+        {
+          "id": "00048_noto-locked-with-pen@192",
+          "res": 192,
+          "image": "images/00048_noto-locked-with-pen_192.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_192.json",
+          "corners": 79
+        },
+        {
+          "id": "00048_noto-locked-with-pen@256",
+          "res": 256,
+          "image": "images/00048_noto-locked-with-pen_256.png",
+          "annotation": "annotations/00048_noto-locked-with-pen_256.json",
+          "corners": 84
+        }
+      ],
+      "loops": 264,
+      "structural": 180,
+      "occlusion": 411,
+      "zero_corner": false,
+      "source": "sources/00048_noto-locked-with-pen.svg"
+    },
+    {
+      "id": "00049_eurasian",
+      "name": "eurasian",
+      "views": [
+        {
+          "id": "00049_eurasian@24",
+          "res": 24,
+          "image": "images/00049_eurasian_24.png",
+          "annotation": "annotations/00049_eurasian_24.json",
+          "corners": 23
+        },
+        {
+          "id": "00049_eurasian@32",
+          "res": 32,
+          "image": "images/00049_eurasian_32.png",
+          "annotation": "annotations/00049_eurasian_32.json",
+          "corners": 33
+        },
+        {
+          "id": "00049_eurasian@48",
+          "res": 48,
+          "image": "images/00049_eurasian_48.png",
+          "annotation": "annotations/00049_eurasian_48.json",
+          "corners": 47
+        },
+        {
+          "id": "00049_eurasian@64",
+          "res": 64,
+          "image": "images/00049_eurasian_64.png",
+          "annotation": "annotations/00049_eurasian_64.json",
+          "corners": 60
+        },
+        {
+          "id": "00049_eurasian@96",
+          "res": 96,
+          "image": "images/00049_eurasian_96.png",
+          "annotation": "annotations/00049_eurasian_96.json",
+          "corners": 67
+        },
+        {
+          "id": "00049_eurasian@128",
+          "res": 128,
+          "image": "images/00049_eurasian_128.png",
+          "annotation": "annotations/00049_eurasian_128.json",
+          "corners": 68
+        },
+        {
+          "id": "00049_eurasian@192",
+          "res": 192,
+          "image": "images/00049_eurasian_192.png",
+          "annotation": "annotations/00049_eurasian_192.json",
+          "corners": 86
+        },
+        {
+          "id": "00049_eurasian@256",
+          "res": 256,
+          "image": "images/00049_eurasian_256.png",
+          "annotation": "annotations/00049_eurasian_256.json",
+          "corners": 88
+        }
+      ],
+      "loops": 140,
+      "structural": 472,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00049_eurasian.svg"
+    },
+    {
+      "id": "00050_jftw",
+      "name": "jftw",
+      "views": [
+        {
+          "id": "00050_jftw@24",
+          "res": 24,
+          "image": "images/00050_jftw_24.png",
+          "annotation": "annotations/00050_jftw_24.json",
+          "corners": 19
+        },
+        {
+          "id": "00050_jftw@32",
+          "res": 32,
+          "image": "images/00050_jftw_32.png",
+          "annotation": "annotations/00050_jftw_32.json",
+          "corners": 27
+        },
+        {
+          "id": "00050_jftw@48",
+          "res": 48,
+          "image": "images/00050_jftw_48.png",
+          "annotation": "annotations/00050_jftw_48.json",
+          "corners": 36
+        },
+        {
+          "id": "00050_jftw@64",
+          "res": 64,
+          "image": "images/00050_jftw_64.png",
+          "annotation": "annotations/00050_jftw_64.json",
+          "corners": 52
+        },
+        {
+          "id": "00050_jftw@96",
+          "res": 96,
+          "image": "images/00050_jftw_96.png",
+          "annotation": "annotations/00050_jftw_96.json",
+          "corners": 57
+        },
+        {
+          "id": "00050_jftw@128",
+          "res": 128,
+          "image": "images/00050_jftw_128.png",
+          "annotation": "annotations/00050_jftw_128.json",
+          "corners": 61
+        },
+        {
+          "id": "00050_jftw@192",
+          "res": 192,
+          "image": "images/00050_jftw_192.png",
+          "annotation": "annotations/00050_jftw_192.json",
+          "corners": 89
+        },
+        {
+          "id": "00050_jftw@256",
+          "res": 256,
+          "image": "images/00050_jftw_256.png",
+          "annotation": "annotations/00050_jftw_256.json",
+          "corners": 97
+        }
+      ],
+      "loops": 114,
+      "structural": 438,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00050_jftw.svg"
+    },
+    {
+      "id": "00051_zerotier",
+      "name": "zerotier",
+      "views": [
+        {
+          "id": "00051_zerotier@24",
+          "res": 24,
+          "image": "images/00051_zerotier_24.png",
+          "annotation": "annotations/00051_zerotier_24.json",
+          "corners": 6
+        },
+        {
+          "id": "00051_zerotier@32",
+          "res": 32,
+          "image": "images/00051_zerotier_32.png",
+          "annotation": "annotations/00051_zerotier_32.json",
+          "corners": 8
+        },
+        {
+          "id": "00051_zerotier@48",
+          "res": 48,
+          "image": "images/00051_zerotier_48.png",
+          "annotation": "annotations/00051_zerotier_48.json",
+          "corners": 10
+        },
+        {
+          "id": "00051_zerotier@64",
+          "res": 64,
+          "image": "images/00051_zerotier_64.png",
+          "annotation": "annotations/00051_zerotier_64.json",
+          "corners": 9
+        },
+        {
+          "id": "00051_zerotier@96",
+          "res": 96,
+          "image": "images/00051_zerotier_96.png",
+          "annotation": "annotations/00051_zerotier_96.json",
+          "corners": 10
+        },
+        {
+          "id": "00051_zerotier@128",
+          "res": 128,
+          "image": "images/00051_zerotier_128.png",
+          "annotation": "annotations/00051_zerotier_128.json",
+          "corners": 10
+        },
+        {
+          "id": "00051_zerotier@192",
+          "res": 192,
+          "image": "images/00051_zerotier_192.png",
+          "annotation": "annotations/00051_zerotier_192.json",
+          "corners": 10
+        },
+        {
+          "id": "00051_zerotier@256",
+          "res": 256,
+          "image": "images/00051_zerotier_256.png",
+          "annotation": "annotations/00051_zerotier_256.json",
+          "corners": 10
+        }
+      ],
+      "loops": 31,
+      "structural": 73,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00051_zerotier.svg"
+    },
+    {
+      "id": "00052_local-default-yggdrasil",
+      "name": "local-default-yggdrasil",
+      "views": [
+        {
+          "id": "00052_local-default-yggdrasil@24",
+          "res": 24,
+          "image": "images/00052_local-default-yggdrasil_24.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_24.json",
+          "corners": 13
+        },
+        {
+          "id": "00052_local-default-yggdrasil@32",
+          "res": 32,
+          "image": "images/00052_local-default-yggdrasil_32.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_32.json",
+          "corners": 24
+        },
+        {
+          "id": "00052_local-default-yggdrasil@48",
+          "res": 48,
+          "image": "images/00052_local-default-yggdrasil_48.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_48.json",
+          "corners": 36
+        },
+        {
+          "id": "00052_local-default-yggdrasil@64",
+          "res": 64,
+          "image": "images/00052_local-default-yggdrasil_64.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_64.json",
+          "corners": 60
+        },
+        {
+          "id": "00052_local-default-yggdrasil@96",
+          "res": 96,
+          "image": "images/00052_local-default-yggdrasil_96.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_96.json",
+          "corners": 76
+        },
+        {
+          "id": "00052_local-default-yggdrasil@128",
+          "res": 128,
+          "image": "images/00052_local-default-yggdrasil_128.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_128.json",
+          "corners": 83
+        },
+        {
+          "id": "00052_local-default-yggdrasil@192",
+          "res": 192,
+          "image": "images/00052_local-default-yggdrasil_192.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_192.json",
+          "corners": 93
+        },
+        {
+          "id": "00052_local-default-yggdrasil@256",
+          "res": 256,
+          "image": "images/00052_local-default-yggdrasil_256.png",
+          "annotation": "annotations/00052_local-default-yggdrasil_256.json",
+          "corners": 95
+        }
+      ],
+      "loops": 69,
+      "structural": 480,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00052_local-default-yggdrasil.svg"
+    },
+    {
+      "id": "00053_simple-icons-xamarin",
+      "name": "simple-icons-xamarin",
+      "views": [
+        {
+          "id": "00053_simple-icons-xamarin@24",
+          "res": 24,
+          "image": "images/00053_simple-icons-xamarin_24.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_24.json",
+          "corners": 2
+        },
+        {
+          "id": "00053_simple-icons-xamarin@32",
+          "res": 32,
+          "image": "images/00053_simple-icons-xamarin_32.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_32.json",
+          "corners": 2
+        },
+        {
+          "id": "00053_simple-icons-xamarin@48",
+          "res": 48,
+          "image": "images/00053_simple-icons-xamarin_48.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_48.json",
+          "corners": 2
+        },
+        {
+          "id": "00053_simple-icons-xamarin@64",
+          "res": 64,
+          "image": "images/00053_simple-icons-xamarin_64.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_64.json",
+          "corners": 3
+        },
+        {
+          "id": "00053_simple-icons-xamarin@96",
+          "res": 96,
+          "image": "images/00053_simple-icons-xamarin_96.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_96.json",
+          "corners": 3
+        },
+        {
+          "id": "00053_simple-icons-xamarin@128",
+          "res": 128,
+          "image": "images/00053_simple-icons-xamarin_128.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_128.json",
+          "corners": 3
+        },
+        {
+          "id": "00053_simple-icons-xamarin@192",
+          "res": 192,
+          "image": "images/00053_simple-icons-xamarin_192.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_192.json",
+          "corners": 3
+        },
+        {
+          "id": "00053_simple-icons-xamarin@256",
+          "res": 256,
+          "image": "images/00053_simple-icons-xamarin_256.png",
+          "annotation": "annotations/00053_simple-icons-xamarin_256.json",
+          "corners": 3
+        }
+      ],
+      "loops": 16,
+      "structural": 21,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00053_simple-icons-xamarin.svg"
+    },
+    {
+      "id": "00054_local-default-high5games",
+      "name": "local-default-high5games",
+      "views": [
+        {
+          "id": "00054_local-default-high5games@24",
+          "res": 24,
+          "image": "images/00054_local-default-high5games_24.png",
+          "annotation": "annotations/00054_local-default-high5games_24.json",
+          "corners": 12
+        },
+        {
+          "id": "00054_local-default-high5games@32",
+          "res": 32,
+          "image": "images/00054_local-default-high5games_32.png",
+          "annotation": "annotations/00054_local-default-high5games_32.json",
+          "corners": 22
+        },
+        {
+          "id": "00054_local-default-high5games@48",
+          "res": 48,
+          "image": "images/00054_local-default-high5games_48.png",
+          "annotation": "annotations/00054_local-default-high5games_48.json",
+          "corners": 30
+        },
+        {
+          "id": "00054_local-default-high5games@64",
+          "res": 64,
+          "image": "images/00054_local-default-high5games_64.png",
+          "annotation": "annotations/00054_local-default-high5games_64.json",
+          "corners": 38
+        },
+        {
+          "id": "00054_local-default-high5games@96",
+          "res": 96,
+          "image": "images/00054_local-default-high5games_96.png",
+          "annotation": "annotations/00054_local-default-high5games_96.json",
+          "corners": 50
+        },
+        {
+          "id": "00054_local-default-high5games@128",
+          "res": 128,
+          "image": "images/00054_local-default-high5games_128.png",
+          "annotation": "annotations/00054_local-default-high5games_128.json",
+          "corners": 54
+        },
+        {
+          "id": "00054_local-default-high5games@192",
+          "res": 192,
+          "image": "images/00054_local-default-high5games_192.png",
+          "annotation": "annotations/00054_local-default-high5games_192.json",
+          "corners": 57
+        },
+        {
+          "id": "00054_local-default-high5games@256",
+          "res": 256,
+          "image": "images/00054_local-default-high5games_256.png",
+          "annotation": "annotations/00054_local-default-high5games_256.json",
+          "corners": 73
+        }
+      ],
+      "loops": 82,
+      "structural": 336,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00054_local-default-high5games.svg"
+    },
+    {
+      "id": "00055_spinplay",
+      "name": "spinplay",
+      "views": [
+        {
+          "id": "00055_spinplay@24",
+          "res": 24,
+          "image": "images/00055_spinplay_24.png",
+          "annotation": "annotations/00055_spinplay_24.json",
+          "corners": 2
+        },
+        {
+          "id": "00055_spinplay@32",
+          "res": 32,
+          "image": "images/00055_spinplay_32.png",
+          "annotation": "annotations/00055_spinplay_32.json",
+          "corners": 14
+        },
+        {
+          "id": "00055_spinplay@48",
+          "res": 48,
+          "image": "images/00055_spinplay_48.png",
+          "annotation": "annotations/00055_spinplay_48.json",
+          "corners": 27
+        },
+        {
+          "id": "00055_spinplay@64",
+          "res": 64,
+          "image": "images/00055_spinplay_64.png",
+          "annotation": "annotations/00055_spinplay_64.json",
+          "corners": 30
+        },
+        {
+          "id": "00055_spinplay@96",
+          "res": 96,
+          "image": "images/00055_spinplay_96.png",
+          "annotation": "annotations/00055_spinplay_96.json",
+          "corners": 44
+        },
+        {
+          "id": "00055_spinplay@128",
+          "res": 128,
+          "image": "images/00055_spinplay_128.png",
+          "annotation": "annotations/00055_spinplay_128.json",
+          "corners": 47
+        },
+        {
+          "id": "00055_spinplay@192",
+          "res": 192,
+          "image": "images/00055_spinplay_192.png",
+          "annotation": "annotations/00055_spinplay_192.json",
+          "corners": 48
+        },
+        {
+          "id": "00055_spinplay@256",
+          "res": 256,
+          "image": "images/00055_spinplay_256.png",
+          "annotation": "annotations/00055_spinplay_256.json",
+          "corners": 48
+        }
+      ],
+      "loops": 121,
+      "structural": 260,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00055_spinplay.svg"
+    },
+    {
+      "id": "00056_expressvpn",
+      "name": "expressvpn",
+      "views": [
+        {
+          "id": "00056_expressvpn@24",
+          "res": 24,
+          "image": "images/00056_expressvpn_24.png",
+          "annotation": "annotations/00056_expressvpn_24.json",
+          "corners": 4
+        },
+        {
+          "id": "00056_expressvpn@32",
+          "res": 32,
+          "image": "images/00056_expressvpn_32.png",
+          "annotation": "annotations/00056_expressvpn_32.json",
+          "corners": 5
+        },
+        {
+          "id": "00056_expressvpn@48",
+          "res": 48,
+          "image": "images/00056_expressvpn_48.png",
+          "annotation": "annotations/00056_expressvpn_48.json",
+          "corners": 5
+        },
+        {
+          "id": "00056_expressvpn@64",
+          "res": 64,
+          "image": "images/00056_expressvpn_64.png",
+          "annotation": "annotations/00056_expressvpn_64.json",
+          "corners": 5
+        },
+        {
+          "id": "00056_expressvpn@96",
+          "res": 96,
+          "image": "images/00056_expressvpn_96.png",
+          "annotation": "annotations/00056_expressvpn_96.json",
+          "corners": 5
+        },
+        {
+          "id": "00056_expressvpn@128",
+          "res": 128,
+          "image": "images/00056_expressvpn_128.png",
+          "annotation": "annotations/00056_expressvpn_128.json",
+          "corners": 5
+        },
+        {
+          "id": "00056_expressvpn@192",
+          "res": 192,
+          "image": "images/00056_expressvpn_192.png",
+          "annotation": "annotations/00056_expressvpn_192.json",
+          "corners": 5
+        },
+        {
+          "id": "00056_expressvpn@256",
+          "res": 256,
+          "image": "images/00056_expressvpn_256.png",
+          "annotation": "annotations/00056_expressvpn_256.json",
+          "corners": 5
+        }
+      ],
+      "loops": 8,
+      "structural": 39,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00056_expressvpn.svg"
+    },
+    {
+      "id": "00057_oryx",
+      "name": "oryx",
+      "views": [
+        {
+          "id": "00057_oryx@24",
+          "res": 24,
+          "image": "images/00057_oryx_24.png",
+          "annotation": "annotations/00057_oryx_24.json",
+          "corners": 3
+        },
+        {
+          "id": "00057_oryx@32",
+          "res": 32,
+          "image": "images/00057_oryx_32.png",
+          "annotation": "annotations/00057_oryx_32.json",
+          "corners": 16
+        },
+        {
+          "id": "00057_oryx@48",
+          "res": 48,
+          "image": "images/00057_oryx_48.png",
+          "annotation": "annotations/00057_oryx_48.json",
+          "corners": 27
+        },
+        {
+          "id": "00057_oryx@64",
+          "res": 64,
+          "image": "images/00057_oryx_64.png",
+          "annotation": "annotations/00057_oryx_64.json",
+          "corners": 42
+        },
+        {
+          "id": "00057_oryx@96",
+          "res": 96,
+          "image": "images/00057_oryx_96.png",
+          "annotation": "annotations/00057_oryx_96.json",
+          "corners": 54
+        },
+        {
+          "id": "00057_oryx@128",
+          "res": 128,
+          "image": "images/00057_oryx_128.png",
+          "annotation": "annotations/00057_oryx_128.json",
+          "corners": 50
+        },
+        {
+          "id": "00057_oryx@192",
+          "res": 192,
+          "image": "images/00057_oryx_192.png",
+          "annotation": "annotations/00057_oryx_192.json",
+          "corners": 65
+        },
+        {
+          "id": "00057_oryx@256",
+          "res": 256,
+          "image": "images/00057_oryx_256.png",
+          "annotation": "annotations/00057_oryx_256.json",
+          "corners": 68
+        }
+      ],
+      "loops": 113,
+      "structural": 324,
+      "occlusion": 1,
+      "zero_corner": false,
+      "source": "sources/00057_oryx.svg"
+    },
+    {
+      "id": "00058_stormcraft",
+      "name": "stormcraft",
+      "views": [
+        {
+          "id": "00058_stormcraft@24",
+          "res": 24,
+          "image": "images/00058_stormcraft_24.png",
+          "annotation": "annotations/00058_stormcraft_24.json",
+          "corners": 4
+        },
+        {
+          "id": "00058_stormcraft@32",
+          "res": 32,
+          "image": "images/00058_stormcraft_32.png",
+          "annotation": "annotations/00058_stormcraft_32.json",
+          "corners": 39
+        },
+        {
+          "id": "00058_stormcraft@48",
+          "res": 48,
+          "image": "images/00058_stormcraft_48.png",
+          "annotation": "annotations/00058_stormcraft_48.json",
+          "corners": 57
+        },
+        {
+          "id": "00058_stormcraft@64",
+          "res": 64,
+          "image": "images/00058_stormcraft_64.png",
+          "annotation": "annotations/00058_stormcraft_64.json",
+          "corners": 79
+        },
+        {
+          "id": "00058_stormcraft@96",
+          "res": 96,
+          "image": "images/00058_stormcraft_96.png",
+          "annotation": "annotations/00058_stormcraft_96.json",
+          "corners": 122
+        },
+        {
+          "id": "00058_stormcraft@128",
+          "res": 128,
+          "image": "images/00058_stormcraft_128.png",
+          "annotation": "annotations/00058_stormcraft_128.json",
+          "corners": 153
+        },
+        {
+          "id": "00058_stormcraft@192",
+          "res": 192,
+          "image": "images/00058_stormcraft_192.png",
+          "annotation": "annotations/00058_stormcraft_192.json",
+          "corners": 201
+        },
+        {
+          "id": "00058_stormcraft@256",
+          "res": 256,
+          "image": "images/00058_stormcraft_256.png",
+          "annotation": "annotations/00058_stormcraft_256.json",
+          "corners": 204
+        }
+      ],
+      "loops": 240,
+      "structural": 859,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00058_stormcraft.svg"
+    },
+    {
+      "id": "00059_shortcut-icon",
+      "name": "shortcut-icon",
+      "views": [
+        {
+          "id": "00059_shortcut-icon@24",
+          "res": 24,
+          "image": "images/00059_shortcut-icon_24.png",
+          "annotation": "annotations/00059_shortcut-icon_24.json",
+          "corners": 8
+        },
+        {
+          "id": "00059_shortcut-icon@32",
+          "res": 32,
+          "image": "images/00059_shortcut-icon_32.png",
+          "annotation": "annotations/00059_shortcut-icon_32.json",
+          "corners": 8
+        },
+        {
+          "id": "00059_shortcut-icon@48",
+          "res": 48,
+          "image": "images/00059_shortcut-icon_48.png",
+          "annotation": "annotations/00059_shortcut-icon_48.json",
+          "corners": 6
+        },
+        {
+          "id": "00059_shortcut-icon@64",
+          "res": 64,
+          "image": "images/00059_shortcut-icon_64.png",
+          "annotation": "annotations/00059_shortcut-icon_64.json",
+          "corners": 6
+        },
+        {
+          "id": "00059_shortcut-icon@96",
+          "res": 96,
+          "image": "images/00059_shortcut-icon_96.png",
+          "annotation": "annotations/00059_shortcut-icon_96.json",
+          "corners": 6
+        },
+        {
+          "id": "00059_shortcut-icon@128",
+          "res": 128,
+          "image": "images/00059_shortcut-icon_128.png",
+          "annotation": "annotations/00059_shortcut-icon_128.json",
+          "corners": 6
+        },
+        {
+          "id": "00059_shortcut-icon@192",
+          "res": 192,
+          "image": "images/00059_shortcut-icon_192.png",
+          "annotation": "annotations/00059_shortcut-icon_192.json",
+          "corners": 6
+        },
+        {
+          "id": "00059_shortcut-icon@256",
+          "res": 256,
+          "image": "images/00059_shortcut-icon_256.png",
+          "annotation": "annotations/00059_shortcut-icon_256.json",
+          "corners": 6
+        }
+      ],
+      "loops": 32,
+      "structural": 52,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00059_shortcut-icon.svg"
+    },
+    {
+      "id": "00060_gamingcorps",
+      "name": "gamingcorps",
+      "views": [
+        {
+          "id": "00060_gamingcorps@24",
+          "res": 24,
+          "image": "images/00060_gamingcorps_24.png",
+          "annotation": "annotations/00060_gamingcorps_24.json",
+          "corners": 14
+        },
+        {
+          "id": "00060_gamingcorps@32",
+          "res": 32,
+          "image": "images/00060_gamingcorps_32.png",
+          "annotation": "annotations/00060_gamingcorps_32.json",
+          "corners": 16
+        },
+        {
+          "id": "00060_gamingcorps@48",
+          "res": 48,
+          "image": "images/00060_gamingcorps_48.png",
+          "annotation": "annotations/00060_gamingcorps_48.json",
+          "corners": 42
+        },
+        {
+          "id": "00060_gamingcorps@64",
+          "res": 64,
+          "image": "images/00060_gamingcorps_64.png",
+          "annotation": "annotations/00060_gamingcorps_64.json",
+          "corners": 40
+        },
+        {
+          "id": "00060_gamingcorps@96",
+          "res": 96,
+          "image": "images/00060_gamingcorps_96.png",
+          "annotation": "annotations/00060_gamingcorps_96.json",
+          "corners": 46
+        },
+        {
+          "id": "00060_gamingcorps@128",
+          "res": 128,
+          "image": "images/00060_gamingcorps_128.png",
+          "annotation": "annotations/00060_gamingcorps_128.json",
+          "corners": 52
+        },
+        {
+          "id": "00060_gamingcorps@192",
+          "res": 192,
+          "image": "images/00060_gamingcorps_192.png",
+          "annotation": "annotations/00060_gamingcorps_192.json",
+          "corners": 55
+        },
+        {
+          "id": "00060_gamingcorps@256",
+          "res": 256,
+          "image": "images/00060_gamingcorps_256.png",
+          "annotation": "annotations/00060_gamingcorps_256.json",
+          "corners": 51
+        }
+      ],
+      "loops": 105,
+      "structural": 316,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00060_gamingcorps.svg"
+    },
+    {
+      "id": "00061_bigtime",
+      "name": "bigtime",
+      "views": [
+        {
+          "id": "00061_bigtime@24",
+          "res": 24,
+          "image": "images/00061_bigtime_24.png",
+          "annotation": "annotations/00061_bigtime_24.json",
+          "corners": 24
+        },
+        {
+          "id": "00061_bigtime@32",
+          "res": 32,
+          "image": "images/00061_bigtime_32.png",
+          "annotation": "annotations/00061_bigtime_32.json",
+          "corners": 17
+        },
+        {
+          "id": "00061_bigtime@48",
+          "res": 48,
+          "image": "images/00061_bigtime_48.png",
+          "annotation": "annotations/00061_bigtime_48.json",
+          "corners": 25
+        },
+        {
+          "id": "00061_bigtime@64",
+          "res": 64,
+          "image": "images/00061_bigtime_64.png",
+          "annotation": "annotations/00061_bigtime_64.json",
+          "corners": 41
+        },
+        {
+          "id": "00061_bigtime@96",
+          "res": 96,
+          "image": "images/00061_bigtime_96.png",
+          "annotation": "annotations/00061_bigtime_96.json",
+          "corners": 41
+        },
+        {
+          "id": "00061_bigtime@128",
+          "res": 128,
+          "image": "images/00061_bigtime_128.png",
+          "annotation": "annotations/00061_bigtime_128.json",
+          "corners": 43
+        },
+        {
+          "id": "00061_bigtime@192",
+          "res": 192,
+          "image": "images/00061_bigtime_192.png",
+          "annotation": "annotations/00061_bigtime_192.json",
+          "corners": 42
+        },
+        {
+          "id": "00061_bigtime@256",
+          "res": 256,
+          "image": "images/00061_bigtime_256.png",
+          "annotation": "annotations/00061_bigtime_256.json",
+          "corners": 40
+        }
+      ],
+      "loops": 140,
+      "structural": 273,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00061_bigtime.svg"
+    },
+    {
+      "id": "00062_fluent-emoji-flat-woman-pouting-light",
+      "name": "fluent-emoji-flat-woman-pouting-light",
+      "views": [
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@24",
+          "res": 24,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_24.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_24.json",
+          "corners": 40
+        },
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@32",
+          "res": 32,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_32.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_32.json",
+          "corners": 40
+        },
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@48",
+          "res": 48,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_48.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_48.json",
+          "corners": 42
+        },
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@64",
+          "res": 64,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_64.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_64.json",
+          "corners": 48
+        },
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@96",
+          "res": 96,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_96.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_96.json",
+          "corners": 74
+        },
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@128",
+          "res": 128,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_128.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_128.json",
+          "corners": 68
+        },
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@192",
+          "res": 192,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_192.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_192.json",
+          "corners": 61
+        },
+        {
+          "id": "00062_fluent-emoji-flat-woman-pouting-light@256",
+          "res": 256,
+          "image": "images/00062_fluent-emoji-flat-woman-pouting-light_256.png",
+          "annotation": "annotations/00062_fluent-emoji-flat-woman-pouting-light_256.json",
+          "corners": 62
+        }
+      ],
+      "loops": 220,
+      "structural": 114,
+      "occlusion": 321,
+      "zero_corner": false,
+      "source": "sources/00062_fluent-emoji-flat-woman-pouting-light.svg"
+    },
+    {
+      "id": "00063_local-light-thunderspin",
+      "name": "local-light-thunderspin",
+      "views": [
+        {
+          "id": "00063_local-light-thunderspin@24",
+          "res": 24,
+          "image": "images/00063_local-light-thunderspin_24.png",
+          "annotation": "annotations/00063_local-light-thunderspin_24.json",
+          "corners": 11
+        },
+        {
+          "id": "00063_local-light-thunderspin@32",
+          "res": 32,
+          "image": "images/00063_local-light-thunderspin_32.png",
+          "annotation": "annotations/00063_local-light-thunderspin_32.json",
+          "corners": 22
+        },
+        {
+          "id": "00063_local-light-thunderspin@48",
+          "res": 48,
+          "image": "images/00063_local-light-thunderspin_48.png",
+          "annotation": "annotations/00063_local-light-thunderspin_48.json",
+          "corners": 32
+        },
+        {
+          "id": "00063_local-light-thunderspin@64",
+          "res": 64,
+          "image": "images/00063_local-light-thunderspin_64.png",
+          "annotation": "annotations/00063_local-light-thunderspin_64.json",
+          "corners": 38
+        },
+        {
+          "id": "00063_local-light-thunderspin@96",
+          "res": 96,
+          "image": "images/00063_local-light-thunderspin_96.png",
+          "annotation": "annotations/00063_local-light-thunderspin_96.json",
+          "corners": 49
+        },
+        {
+          "id": "00063_local-light-thunderspin@128",
+          "res": 128,
+          "image": "images/00063_local-light-thunderspin_128.png",
+          "annotation": "annotations/00063_local-light-thunderspin_128.json",
+          "corners": 60
+        },
+        {
+          "id": "00063_local-light-thunderspin@192",
+          "res": 192,
+          "image": "images/00063_local-light-thunderspin_192.png",
+          "annotation": "annotations/00063_local-light-thunderspin_192.json",
+          "corners": 69
+        },
+        {
+          "id": "00063_local-light-thunderspin@256",
+          "res": 256,
+          "image": "images/00063_local-light-thunderspin_256.png",
+          "annotation": "annotations/00063_local-light-thunderspin_256.json",
+          "corners": 69
+        }
+      ],
+      "loops": 76,
+      "structural": 350,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00063_local-light-thunderspin.svg"
+    },
+    {
+      "id": "00064_web3dotjs",
+      "name": "web3dotjs",
+      "views": [
+        {
+          "id": "00064_web3dotjs@24",
+          "res": 24,
+          "image": "images/00064_web3dotjs_24.png",
+          "annotation": "annotations/00064_web3dotjs_24.json",
+          "corners": 16
+        },
+        {
+          "id": "00064_web3dotjs@32",
+          "res": 32,
+          "image": "images/00064_web3dotjs_32.png",
+          "annotation": "annotations/00064_web3dotjs_32.json",
+          "corners": 15
+        },
+        {
+          "id": "00064_web3dotjs@48",
+          "res": 48,
+          "image": "images/00064_web3dotjs_48.png",
+          "annotation": "annotations/00064_web3dotjs_48.json",
+          "corners": 17
+        },
+        {
+          "id": "00064_web3dotjs@64",
+          "res": 64,
+          "image": "images/00064_web3dotjs_64.png",
+          "annotation": "annotations/00064_web3dotjs_64.json",
+          "corners": 17
+        },
+        {
+          "id": "00064_web3dotjs@96",
+          "res": 96,
+          "image": "images/00064_web3dotjs_96.png",
+          "annotation": "annotations/00064_web3dotjs_96.json",
+          "corners": 17
+        },
+        {
+          "id": "00064_web3dotjs@128",
+          "res": 128,
+          "image": "images/00064_web3dotjs_128.png",
+          "annotation": "annotations/00064_web3dotjs_128.json",
+          "corners": 17
+        },
+        {
+          "id": "00064_web3dotjs@192",
+          "res": 192,
+          "image": "images/00064_web3dotjs_192.png",
+          "annotation": "annotations/00064_web3dotjs_192.json",
+          "corners": 17
+        },
+        {
+          "id": "00064_web3dotjs@256",
+          "res": 256,
+          "image": "images/00064_web3dotjs_256.png",
+          "annotation": "annotations/00064_web3dotjs_256.json",
+          "corners": 17
+        }
+      ],
+      "loops": 24,
+      "structural": 133,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00064_web3dotjs.svg"
+    },
+    {
+      "id": "00065_local-default-gamatron",
+      "name": "local-default-gamatron",
+      "views": [
+        {
+          "id": "00065_local-default-gamatron@24",
+          "res": 24,
+          "image": "images/00065_local-default-gamatron_24.png",
+          "annotation": "annotations/00065_local-default-gamatron_24.json",
+          "corners": 16
+        },
+        {
+          "id": "00065_local-default-gamatron@32",
+          "res": 32,
+          "image": "images/00065_local-default-gamatron_32.png",
+          "annotation": "annotations/00065_local-default-gamatron_32.json",
+          "corners": 18
+        },
+        {
+          "id": "00065_local-default-gamatron@48",
+          "res": 48,
+          "image": "images/00065_local-default-gamatron_48.png",
+          "annotation": "annotations/00065_local-default-gamatron_48.json",
+          "corners": 26
+        },
+        {
+          "id": "00065_local-default-gamatron@64",
+          "res": 64,
+          "image": "images/00065_local-default-gamatron_64.png",
+          "annotation": "annotations/00065_local-default-gamatron_64.json",
+          "corners": 41
+        },
+        {
+          "id": "00065_local-default-gamatron@96",
+          "res": 96,
+          "image": "images/00065_local-default-gamatron_96.png",
+          "annotation": "annotations/00065_local-default-gamatron_96.json",
+          "corners": 42
+        },
+        {
+          "id": "00065_local-default-gamatron@128",
+          "res": 128,
+          "image": "images/00065_local-default-gamatron_128.png",
+          "annotation": "annotations/00065_local-default-gamatron_128.json",
+          "corners": 42
+        },
+        {
+          "id": "00065_local-default-gamatron@192",
+          "res": 192,
+          "image": "images/00065_local-default-gamatron_192.png",
+          "annotation": "annotations/00065_local-default-gamatron_192.json",
+          "corners": 49
+        },
+        {
+          "id": "00065_local-default-gamatron@256",
+          "res": 256,
+          "image": "images/00065_local-default-gamatron_256.png",
+          "annotation": "annotations/00065_local-default-gamatron_256.json",
+          "corners": 52
+        }
+      ],
+      "loops": 78,
+      "structural": 286,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00065_local-default-gamatron.svg"
+    },
+    {
+      "id": "00066_kiron",
+      "name": "kiron",
+      "views": [
+        {
+          "id": "00066_kiron@24",
+          "res": 24,
+          "image": "images/00066_kiron_24.png",
+          "annotation": "annotations/00066_kiron_24.json",
+          "corners": 14
+        },
+        {
+          "id": "00066_kiron@32",
+          "res": 32,
+          "image": "images/00066_kiron_32.png",
+          "annotation": "annotations/00066_kiron_32.json",
+          "corners": 19
+        },
+        {
+          "id": "00066_kiron@48",
+          "res": 48,
+          "image": "images/00066_kiron_48.png",
+          "annotation": "annotations/00066_kiron_48.json",
+          "corners": 30
+        },
+        {
+          "id": "00066_kiron@64",
+          "res": 64,
+          "image": "images/00066_kiron_64.png",
+          "annotation": "annotations/00066_kiron_64.json",
+          "corners": 35
+        },
+        {
+          "id": "00066_kiron@96",
+          "res": 96,
+          "image": "images/00066_kiron_96.png",
+          "annotation": "annotations/00066_kiron_96.json",
+          "corners": 48
+        },
+        {
+          "id": "00066_kiron@128",
+          "res": 128,
+          "image": "images/00066_kiron_128.png",
+          "annotation": "annotations/00066_kiron_128.json",
+          "corners": 47
+        },
+        {
+          "id": "00066_kiron@192",
+          "res": 192,
+          "image": "images/00066_kiron_192.png",
+          "annotation": "annotations/00066_kiron_192.json",
+          "corners": 46
+        },
+        {
+          "id": "00066_kiron@256",
+          "res": 256,
+          "image": "images/00066_kiron_256.png",
+          "annotation": "annotations/00066_kiron_256.json",
+          "corners": 45
+        }
+      ],
+      "loops": 82,
+      "structural": 284,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00066_kiron.svg"
+    },
+    {
+      "id": "00067_vibra",
+      "name": "vibra",
+      "views": [
+        {
+          "id": "00067_vibra@24",
+          "res": 24,
+          "image": "images/00067_vibra_24.png",
+          "annotation": "annotations/00067_vibra_24.json",
+          "corners": 18
+        },
+        {
+          "id": "00067_vibra@32",
+          "res": 32,
+          "image": "images/00067_vibra_32.png",
+          "annotation": "annotations/00067_vibra_32.json",
+          "corners": 17
+        },
+        {
+          "id": "00067_vibra@48",
+          "res": 48,
+          "image": "images/00067_vibra_48.png",
+          "annotation": "annotations/00067_vibra_48.json",
+          "corners": 38
+        },
+        {
+          "id": "00067_vibra@64",
+          "res": 64,
+          "image": "images/00067_vibra_64.png",
+          "annotation": "annotations/00067_vibra_64.json",
+          "corners": 47
+        },
+        {
+          "id": "00067_vibra@96",
+          "res": 96,
+          "image": "images/00067_vibra_96.png",
+          "annotation": "annotations/00067_vibra_96.json",
+          "corners": 54
+        },
+        {
+          "id": "00067_vibra@128",
+          "res": 128,
+          "image": "images/00067_vibra_128.png",
+          "annotation": "annotations/00067_vibra_128.json",
+          "corners": 69
+        },
+        {
+          "id": "00067_vibra@192",
+          "res": 192,
+          "image": "images/00067_vibra_192.png",
+          "annotation": "annotations/00067_vibra_192.json",
+          "corners": 69
+        },
+        {
+          "id": "00067_vibra@256",
+          "res": 256,
+          "image": "images/00067_vibra_256.png",
+          "annotation": "annotations/00067_vibra_256.json",
+          "corners": 73
+        }
+      ],
+      "loops": 116,
+      "structural": 385,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00067_vibra.svg"
+    },
+    {
+      "id": "00068_logos-dailydev-icon",
+      "name": "logos-dailydev-icon",
+      "views": [
+        {
+          "id": "00068_logos-dailydev-icon@24",
+          "res": 24,
+          "image": "images/00068_logos-dailydev-icon_24.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_24.json",
+          "corners": 10
+        },
+        {
+          "id": "00068_logos-dailydev-icon@32",
+          "res": 32,
+          "image": "images/00068_logos-dailydev-icon_32.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_32.json",
+          "corners": 9
+        },
+        {
+          "id": "00068_logos-dailydev-icon@48",
+          "res": 48,
+          "image": "images/00068_logos-dailydev-icon_48.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_48.json",
+          "corners": 9
+        },
+        {
+          "id": "00068_logos-dailydev-icon@64",
+          "res": 64,
+          "image": "images/00068_logos-dailydev-icon_64.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_64.json",
+          "corners": 9
+        },
+        {
+          "id": "00068_logos-dailydev-icon@96",
+          "res": 96,
+          "image": "images/00068_logos-dailydev-icon_96.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_96.json",
+          "corners": 9
+        },
+        {
+          "id": "00068_logos-dailydev-icon@128",
+          "res": 128,
+          "image": "images/00068_logos-dailydev-icon_128.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_128.json",
+          "corners": 9
+        },
+        {
+          "id": "00068_logos-dailydev-icon@192",
+          "res": 192,
+          "image": "images/00068_logos-dailydev-icon_192.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_192.json",
+          "corners": 9
+        },
+        {
+          "id": "00068_logos-dailydev-icon@256",
+          "res": 256,
+          "image": "images/00068_logos-dailydev-icon_256.png",
+          "annotation": "annotations/00068_logos-dailydev-icon_256.json",
+          "corners": 9
+        }
+      ],
+      "loops": 16,
+      "structural": 73,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00068_logos-dailydev-icon.svg"
+    },
+    {
+      "id": "00069_local-dark-red7slots",
+      "name": "local-dark-red7slots",
+      "views": [
+        {
+          "id": "00069_local-dark-red7slots@24",
+          "res": 24,
+          "image": "images/00069_local-dark-red7slots_24.png",
+          "annotation": "annotations/00069_local-dark-red7slots_24.json",
+          "corners": 19
+        },
+        {
+          "id": "00069_local-dark-red7slots@32",
+          "res": 32,
+          "image": "images/00069_local-dark-red7slots_32.png",
+          "annotation": "annotations/00069_local-dark-red7slots_32.json",
+          "corners": 25
+        },
+        {
+          "id": "00069_local-dark-red7slots@48",
+          "res": 48,
+          "image": "images/00069_local-dark-red7slots_48.png",
+          "annotation": "annotations/00069_local-dark-red7slots_48.json",
+          "corners": 26
+        },
+        {
+          "id": "00069_local-dark-red7slots@64",
+          "res": 64,
+          "image": "images/00069_local-dark-red7slots_64.png",
+          "annotation": "annotations/00069_local-dark-red7slots_64.json",
+          "corners": 28
+        },
+        {
+          "id": "00069_local-dark-red7slots@96",
+          "res": 96,
+          "image": "images/00069_local-dark-red7slots_96.png",
+          "annotation": "annotations/00069_local-dark-red7slots_96.json",
+          "corners": 27
+        },
+        {
+          "id": "00069_local-dark-red7slots@128",
+          "res": 128,
+          "image": "images/00069_local-dark-red7slots_128.png",
+          "annotation": "annotations/00069_local-dark-red7slots_128.json",
+          "corners": 24
+        },
+        {
+          "id": "00069_local-dark-red7slots@192",
+          "res": 192,
+          "image": "images/00069_local-dark-red7slots_192.png",
+          "annotation": "annotations/00069_local-dark-red7slots_192.json",
+          "corners": 27
+        },
+        {
+          "id": "00069_local-dark-red7slots@256",
+          "res": 256,
+          "image": "images/00069_local-dark-red7slots_256.png",
+          "annotation": "annotations/00069_local-dark-red7slots_256.json",
+          "corners": 27
+        }
+      ],
+      "loops": 84,
+      "structural": 203,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00069_local-dark-red7slots.svg"
+    },
+    {
+      "id": "00070_redrake",
+      "name": "redrake",
+      "views": [
+        {
+          "id": "00070_redrake@24",
+          "res": 24,
+          "image": "images/00070_redrake_24.png",
+          "annotation": "annotations/00070_redrake_24.json",
+          "corners": 21
+        },
+        {
+          "id": "00070_redrake@32",
+          "res": 32,
+          "image": "images/00070_redrake_32.png",
+          "annotation": "annotations/00070_redrake_32.json",
+          "corners": 38
+        },
+        {
+          "id": "00070_redrake@48",
+          "res": 48,
+          "image": "images/00070_redrake_48.png",
+          "annotation": "annotations/00070_redrake_48.json",
+          "corners": 54
+        },
+        {
+          "id": "00070_redrake@64",
+          "res": 64,
+          "image": "images/00070_redrake_64.png",
+          "annotation": "annotations/00070_redrake_64.json",
+          "corners": 61
+        },
+        {
+          "id": "00070_redrake@96",
+          "res": 96,
+          "image": "images/00070_redrake_96.png",
+          "annotation": "annotations/00070_redrake_96.json",
+          "corners": 68
+        },
+        {
+          "id": "00070_redrake@128",
+          "res": 128,
+          "image": "images/00070_redrake_128.png",
+          "annotation": "annotations/00070_redrake_128.json",
+          "corners": 72
+        },
+        {
+          "id": "00070_redrake@192",
+          "res": 192,
+          "image": "images/00070_redrake_192.png",
+          "annotation": "annotations/00070_redrake_192.json",
+          "corners": 74
+        },
+        {
+          "id": "00070_redrake@256",
+          "res": 256,
+          "image": "images/00070_redrake_256.png",
+          "annotation": "annotations/00070_redrake_256.json",
+          "corners": 74
+        }
+      ],
+      "loops": 124,
+      "structural": 462,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00070_redrake.svg"
+    },
+    {
+      "id": "00071_emojione-v1-exclamation-mark",
+      "name": "emojione-v1-exclamation-mark",
+      "views": [
+        {
+          "id": "00071_emojione-v1-exclamation-mark@24",
+          "res": 24,
+          "image": "images/00071_emojione-v1-exclamation-mark_24.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_24.json",
+          "corners": 2
+        },
+        {
+          "id": "00071_emojione-v1-exclamation-mark@32",
+          "res": 32,
+          "image": "images/00071_emojione-v1-exclamation-mark_32.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_32.json",
+          "corners": 2
+        },
+        {
+          "id": "00071_emojione-v1-exclamation-mark@48",
+          "res": 48,
+          "image": "images/00071_emojione-v1-exclamation-mark_48.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_48.json",
+          "corners": 1
+        },
+        {
+          "id": "00071_emojione-v1-exclamation-mark@64",
+          "res": 64,
+          "image": "images/00071_emojione-v1-exclamation-mark_64.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_64.json",
+          "corners": 1
+        },
+        {
+          "id": "00071_emojione-v1-exclamation-mark@96",
+          "res": 96,
+          "image": "images/00071_emojione-v1-exclamation-mark_96.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_96.json",
+          "corners": 1
+        },
+        {
+          "id": "00071_emojione-v1-exclamation-mark@128",
+          "res": 128,
+          "image": "images/00071_emojione-v1-exclamation-mark_128.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_128.json",
+          "corners": 1
+        },
+        {
+          "id": "00071_emojione-v1-exclamation-mark@192",
+          "res": 192,
+          "image": "images/00071_emojione-v1-exclamation-mark_192.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_192.json",
+          "corners": 0
+        },
+        {
+          "id": "00071_emojione-v1-exclamation-mark@256",
+          "res": 256,
+          "image": "images/00071_emojione-v1-exclamation-mark_256.png",
+          "annotation": "annotations/00071_emojione-v1-exclamation-mark_256.json",
+          "corners": 0
+        }
+      ],
+      "loops": 16,
+      "structural": 8,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00071_emojione-v1-exclamation-mark.svg"
+    },
+    {
+      "id": "00072_gamesinc",
+      "name": "gamesinc",
+      "views": [
+        {
+          "id": "00072_gamesinc@24",
+          "res": 24,
+          "image": "images/00072_gamesinc_24.png",
+          "annotation": "annotations/00072_gamesinc_24.json",
+          "corners": 8
+        },
+        {
+          "id": "00072_gamesinc@32",
+          "res": 32,
+          "image": "images/00072_gamesinc_32.png",
+          "annotation": "annotations/00072_gamesinc_32.json",
+          "corners": 16
+        },
+        {
+          "id": "00072_gamesinc@48",
+          "res": 48,
+          "image": "images/00072_gamesinc_48.png",
+          "annotation": "annotations/00072_gamesinc_48.json",
+          "corners": 29
+        },
+        {
+          "id": "00072_gamesinc@64",
+          "res": 64,
+          "image": "images/00072_gamesinc_64.png",
+          "annotation": "annotations/00072_gamesinc_64.json",
+          "corners": 31
+        },
+        {
+          "id": "00072_gamesinc@96",
+          "res": 96,
+          "image": "images/00072_gamesinc_96.png",
+          "annotation": "annotations/00072_gamesinc_96.json",
+          "corners": 43
+        },
+        {
+          "id": "00072_gamesinc@128",
+          "res": 128,
+          "image": "images/00072_gamesinc_128.png",
+          "annotation": "annotations/00072_gamesinc_128.json",
+          "corners": 46
+        },
+        {
+          "id": "00072_gamesinc@192",
+          "res": 192,
+          "image": "images/00072_gamesinc_192.png",
+          "annotation": "annotations/00072_gamesinc_192.json",
+          "corners": 48
+        },
+        {
+          "id": "00072_gamesinc@256",
+          "res": 256,
+          "image": "images/00072_gamesinc_256.png",
+          "annotation": "annotations/00072_gamesinc_256.json",
+          "corners": 53
+        }
+      ],
+      "loops": 79,
+      "structural": 274,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00072_gamesinc.svg"
+    },
+    {
+      "id": "00073_swintt",
+      "name": "swintt",
+      "views": [
+        {
+          "id": "00073_swintt@24",
+          "res": 24,
+          "image": "images/00073_swintt_24.png",
+          "annotation": "annotations/00073_swintt_24.json",
+          "corners": 18
+        },
+        {
+          "id": "00073_swintt@32",
+          "res": 32,
+          "image": "images/00073_swintt_32.png",
+          "annotation": "annotations/00073_swintt_32.json",
+          "corners": 24
+        },
+        {
+          "id": "00073_swintt@48",
+          "res": 48,
+          "image": "images/00073_swintt_48.png",
+          "annotation": "annotations/00073_swintt_48.json",
+          "corners": 30
+        },
+        {
+          "id": "00073_swintt@64",
+          "res": 64,
+          "image": "images/00073_swintt_64.png",
+          "annotation": "annotations/00073_swintt_64.json",
+          "corners": 38
+        },
+        {
+          "id": "00073_swintt@96",
+          "res": 96,
+          "image": "images/00073_swintt_96.png",
+          "annotation": "annotations/00073_swintt_96.json",
+          "corners": 43
+        },
+        {
+          "id": "00073_swintt@128",
+          "res": 128,
+          "image": "images/00073_swintt_128.png",
+          "annotation": "annotations/00073_swintt_128.json",
+          "corners": 51
+        },
+        {
+          "id": "00073_swintt@192",
+          "res": 192,
+          "image": "images/00073_swintt_192.png",
+          "annotation": "annotations/00073_swintt_192.json",
+          "corners": 58
+        },
+        {
+          "id": "00073_swintt@256",
+          "res": 256,
+          "image": "images/00073_swintt_256.png",
+          "annotation": "annotations/00073_swintt_256.json",
+          "corners": 63
+        }
+      ],
+      "loops": 59,
+      "structural": 325,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00073_swintt.svg"
+    },
+    {
+      "id": "00074_noto-man-curly-hair",
+      "name": "noto-man-curly-hair",
+      "views": [
+        {
+          "id": "00074_noto-man-curly-hair@24",
+          "res": 24,
+          "image": "images/00074_noto-man-curly-hair_24.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_24.json",
+          "corners": 31
+        },
+        {
+          "id": "00074_noto-man-curly-hair@32",
+          "res": 32,
+          "image": "images/00074_noto-man-curly-hair_32.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_32.json",
+          "corners": 41
+        },
+        {
+          "id": "00074_noto-man-curly-hair@48",
+          "res": 48,
+          "image": "images/00074_noto-man-curly-hair_48.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_48.json",
+          "corners": 35
+        },
+        {
+          "id": "00074_noto-man-curly-hair@64",
+          "res": 64,
+          "image": "images/00074_noto-man-curly-hair_64.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_64.json",
+          "corners": 32
+        },
+        {
+          "id": "00074_noto-man-curly-hair@96",
+          "res": 96,
+          "image": "images/00074_noto-man-curly-hair_96.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_96.json",
+          "corners": 44
+        },
+        {
+          "id": "00074_noto-man-curly-hair@128",
+          "res": 128,
+          "image": "images/00074_noto-man-curly-hair_128.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_128.json",
+          "corners": 40
+        },
+        {
+          "id": "00074_noto-man-curly-hair@192",
+          "res": 192,
+          "image": "images/00074_noto-man-curly-hair_192.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_192.json",
+          "corners": 48
+        },
+        {
+          "id": "00074_noto-man-curly-hair@256",
+          "res": 256,
+          "image": "images/00074_noto-man-curly-hair_256.png",
+          "annotation": "annotations/00074_noto-man-curly-hair_256.json",
+          "corners": 50
+        }
+      ],
+      "loops": 131,
+      "structural": 175,
+      "occlusion": 146,
+      "zero_corner": false,
+      "source": "sources/00074_noto-man-curly-hair.svg"
+    },
+    {
+      "id": "00075_local-light-enterra",
+      "name": "local-light-enterra",
+      "views": [
+        {
+          "id": "00075_local-light-enterra@24",
+          "res": 24,
+          "image": "images/00075_local-light-enterra_24.png",
+          "annotation": "annotations/00075_local-light-enterra_24.json",
+          "corners": 20
+        },
+        {
+          "id": "00075_local-light-enterra@32",
+          "res": 32,
+          "image": "images/00075_local-light-enterra_32.png",
+          "annotation": "annotations/00075_local-light-enterra_32.json",
+          "corners": 20
+        },
+        {
+          "id": "00075_local-light-enterra@48",
+          "res": 48,
+          "image": "images/00075_local-light-enterra_48.png",
+          "annotation": "annotations/00075_local-light-enterra_48.json",
+          "corners": 33
+        },
+        {
+          "id": "00075_local-light-enterra@64",
+          "res": 64,
+          "image": "images/00075_local-light-enterra_64.png",
+          "annotation": "annotations/00075_local-light-enterra_64.json",
+          "corners": 44
+        },
+        {
+          "id": "00075_local-light-enterra@96",
+          "res": 96,
+          "image": "images/00075_local-light-enterra_96.png",
+          "annotation": "annotations/00075_local-light-enterra_96.json",
+          "corners": 52
+        },
+        {
+          "id": "00075_local-light-enterra@128",
+          "res": 128,
+          "image": "images/00075_local-light-enterra_128.png",
+          "annotation": "annotations/00075_local-light-enterra_128.json",
+          "corners": 49
+        },
+        {
+          "id": "00075_local-light-enterra@192",
+          "res": 192,
+          "image": "images/00075_local-light-enterra_192.png",
+          "annotation": "annotations/00075_local-light-enterra_192.json",
+          "corners": 55
+        },
+        {
+          "id": "00075_local-light-enterra@256",
+          "res": 256,
+          "image": "images/00075_local-light-enterra_256.png",
+          "annotation": "annotations/00075_local-light-enterra_256.json",
+          "corners": 60
+        }
+      ],
+      "loops": 81,
+      "structural": 333,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00075_local-light-enterra.svg"
+    },
+    {
+      "id": "00076_habanero",
+      "name": "habanero",
+      "views": [
+        {
+          "id": "00076_habanero@24",
+          "res": 24,
+          "image": "images/00076_habanero_24.png",
+          "annotation": "annotations/00076_habanero_24.json",
+          "corners": 13
+        },
+        {
+          "id": "00076_habanero@32",
+          "res": 32,
+          "image": "images/00076_habanero_32.png",
+          "annotation": "annotations/00076_habanero_32.json",
+          "corners": 25
+        },
+        {
+          "id": "00076_habanero@48",
+          "res": 48,
+          "image": "images/00076_habanero_48.png",
+          "annotation": "annotations/00076_habanero_48.json",
+          "corners": 35
+        },
+        {
+          "id": "00076_habanero@64",
+          "res": 64,
+          "image": "images/00076_habanero_64.png",
+          "annotation": "annotations/00076_habanero_64.json",
+          "corners": 55
+        },
+        {
+          "id": "00076_habanero@96",
+          "res": 96,
+          "image": "images/00076_habanero_96.png",
+          "annotation": "annotations/00076_habanero_96.json",
+          "corners": 72
+        },
+        {
+          "id": "00076_habanero@128",
+          "res": 128,
+          "image": "images/00076_habanero_128.png",
+          "annotation": "annotations/00076_habanero_128.json",
+          "corners": 79
+        },
+        {
+          "id": "00076_habanero@192",
+          "res": 192,
+          "image": "images/00076_habanero_192.png",
+          "annotation": "annotations/00076_habanero_192.json",
+          "corners": 77
+        },
+        {
+          "id": "00076_habanero@256",
+          "res": 256,
+          "image": "images/00076_habanero_256.png",
+          "annotation": "annotations/00076_habanero_256.json",
+          "corners": 83
+        }
+      ],
+      "loops": 111,
+      "structural": 439,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00076_habanero.svg"
+    },
+    {
+      "id": "00077_popiplay",
+      "name": "popiplay",
+      "views": [
+        {
+          "id": "00077_popiplay@24",
+          "res": 24,
+          "image": "images/00077_popiplay_24.png",
+          "annotation": "annotations/00077_popiplay_24.json",
+          "corners": 1
+        },
+        {
+          "id": "00077_popiplay@32",
+          "res": 32,
+          "image": "images/00077_popiplay_32.png",
+          "annotation": "annotations/00077_popiplay_32.json",
+          "corners": 6
+        },
+        {
+          "id": "00077_popiplay@48",
+          "res": 48,
+          "image": "images/00077_popiplay_48.png",
+          "annotation": "annotations/00077_popiplay_48.json",
+          "corners": 3
+        },
+        {
+          "id": "00077_popiplay@64",
+          "res": 64,
+          "image": "images/00077_popiplay_64.png",
+          "annotation": "annotations/00077_popiplay_64.json",
+          "corners": 12
+        },
+        {
+          "id": "00077_popiplay@96",
+          "res": 96,
+          "image": "images/00077_popiplay_96.png",
+          "annotation": "annotations/00077_popiplay_96.json",
+          "corners": 13
+        },
+        {
+          "id": "00077_popiplay@128",
+          "res": 128,
+          "image": "images/00077_popiplay_128.png",
+          "annotation": "annotations/00077_popiplay_128.json",
+          "corners": 13
+        },
+        {
+          "id": "00077_popiplay@192",
+          "res": 192,
+          "image": "images/00077_popiplay_192.png",
+          "annotation": "annotations/00077_popiplay_192.json",
+          "corners": 13
+        },
+        {
+          "id": "00077_popiplay@256",
+          "res": 256,
+          "image": "images/00077_popiplay_256.png",
+          "annotation": "annotations/00077_popiplay_256.json",
+          "corners": 11
+        }
+      ],
+      "loops": 106,
+      "structural": 72,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00077_popiplay.svg"
+    },
+    {
+      "id": "00078_stylelint",
+      "name": "stylelint",
+      "views": [
+        {
+          "id": "00078_stylelint@24",
+          "res": 24,
+          "image": "images/00078_stylelint_24.png",
+          "annotation": "annotations/00078_stylelint_24.json",
+          "corners": 13
+        },
+        {
+          "id": "00078_stylelint@32",
+          "res": 32,
+          "image": "images/00078_stylelint_32.png",
+          "annotation": "annotations/00078_stylelint_32.json",
+          "corners": 15
+        },
+        {
+          "id": "00078_stylelint@48",
+          "res": 48,
+          "image": "images/00078_stylelint_48.png",
+          "annotation": "annotations/00078_stylelint_48.json",
+          "corners": 18
+        },
+        {
+          "id": "00078_stylelint@64",
+          "res": 64,
+          "image": "images/00078_stylelint_64.png",
+          "annotation": "annotations/00078_stylelint_64.json",
+          "corners": 19
+        },
+        {
+          "id": "00078_stylelint@96",
+          "res": 96,
+          "image": "images/00078_stylelint_96.png",
+          "annotation": "annotations/00078_stylelint_96.json",
+          "corners": 23
+        },
+        {
+          "id": "00078_stylelint@128",
+          "res": 128,
+          "image": "images/00078_stylelint_128.png",
+          "annotation": "annotations/00078_stylelint_128.json",
+          "corners": 25
+        },
+        {
+          "id": "00078_stylelint@192",
+          "res": 192,
+          "image": "images/00078_stylelint_192.png",
+          "annotation": "annotations/00078_stylelint_192.json",
+          "corners": 23
+        },
+        {
+          "id": "00078_stylelint@256",
+          "res": 256,
+          "image": "images/00078_stylelint_256.png",
+          "annotation": "annotations/00078_stylelint_256.json",
+          "corners": 22
+        }
+      ],
+      "loops": 46,
+      "structural": 158,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00078_stylelint.svg"
+    },
+    {
+      "id": "00079_kiron",
+      "name": "kiron",
+      "views": [
+        {
+          "id": "00079_kiron@24",
+          "res": 24,
+          "image": "images/00079_kiron_24.png",
+          "annotation": "annotations/00079_kiron_24.json",
+          "corners": 14
+        },
+        {
+          "id": "00079_kiron@32",
+          "res": 32,
+          "image": "images/00079_kiron_32.png",
+          "annotation": "annotations/00079_kiron_32.json",
+          "corners": 19
+        },
+        {
+          "id": "00079_kiron@48",
+          "res": 48,
+          "image": "images/00079_kiron_48.png",
+          "annotation": "annotations/00079_kiron_48.json",
+          "corners": 30
+        },
+        {
+          "id": "00079_kiron@64",
+          "res": 64,
+          "image": "images/00079_kiron_64.png",
+          "annotation": "annotations/00079_kiron_64.json",
+          "corners": 35
+        },
+        {
+          "id": "00079_kiron@96",
+          "res": 96,
+          "image": "images/00079_kiron_96.png",
+          "annotation": "annotations/00079_kiron_96.json",
+          "corners": 48
+        },
+        {
+          "id": "00079_kiron@128",
+          "res": 128,
+          "image": "images/00079_kiron_128.png",
+          "annotation": "annotations/00079_kiron_128.json",
+          "corners": 47
+        },
+        {
+          "id": "00079_kiron@192",
+          "res": 192,
+          "image": "images/00079_kiron_192.png",
+          "annotation": "annotations/00079_kiron_192.json",
+          "corners": 46
+        },
+        {
+          "id": "00079_kiron@256",
+          "res": 256,
+          "image": "images/00079_kiron_256.png",
+          "annotation": "annotations/00079_kiron_256.json",
+          "corners": 45
+        }
+      ],
+      "loops": 82,
+      "structural": 284,
+      "occlusion": 0,
+      "zero_corner": false,
+      "source": "sources/00079_kiron.svg"
+    }
+  ]
+}

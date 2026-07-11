@@ -1,0 +1,3643 @@
+{
+  "dataset": "corner_gt_text_glyph_rotated_subpixel_pilot",
+  "summary": {
+    "version": 4,
+    "definition": "C0/occlusion vertex labels grouped into point and short-span perceptual events",
+    "files": 600,
+    "requested_files": 600,
+    "resolutions": [
+      32
+    ],
+    "loops": 840,
+    "vertices": 76314,
+    "structural": 7050,
+    "occlusion": 0,
+    "zero_corner_loops": 80,
+    "events": 4622,
+    "short_spans": 2762,
+    "negative_vertices": 69264,
+    "rejects": {},
+    "by_resolution": {
+      "32": {
+        "loops": 840,
+        "structural": 7050,
+        "occlusion": 0,
+        "zero_corner_loops": 80,
+        "events": 4622,
+        "short_spans": 2762
+      }
+    }
+  },
+  "files": [
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap0_xp0d25_yp0.svg",
+      "name": "0025_u00005a_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00000_0025_u00005a_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap15_xp0d25_yp0.svg",
+      "name": "0018_u000053_ap15_xp0d25_yp0",
+      "split": "test",
+      "id": "00001_0018_u000053_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap0_xp0_yp0.svg",
+      "name": "0003_u000044_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00002_0003_u000044_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap0_xp0d25_yp0.svg",
+      "name": "0019_u000054_ap0_xp0d25_yp0",
+      "split": "val",
+      "id": "00003_0019_u000054_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am30_xp0d25_yp0.svg",
+      "name": "0006_u000047_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00004_0006_u000047_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am30_xp0_yp0d25.svg",
+      "name": "0022_u000057_am30_xp0_yp0d25",
+      "split": "test",
+      "id": "00005_0022_u000057_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap30_xp0_yp0d25.svg",
+      "name": "0006_u000047_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00006_0006_u000047_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am30_xp0d25_yp0.svg",
+      "name": "0026_u000061_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00007_0026_u000061_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap30_xp0_yp0d25.svg",
+      "name": "0028_u000067_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00008_0028_u000067_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am30_xp0_yp0d25.svg",
+      "name": "0029_u00006f_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00009_0029_u00006f_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap15_xp0d5_yp0d5.svg",
+      "name": "0000_u000041_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00010_0000_u000041_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap30_xp0d25_yp0.svg",
+      "name": "0014_u00004f_ap30_xp0d25_yp0",
+      "split": "val",
+      "id": "00011_0014_u00004f_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap15_xp0d25_yp0.svg",
+      "name": "0008_u000049_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00012_0008_u000049_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am30_xp0_yp0.svg",
+      "name": "0029_u00006f_am30_xp0_yp0",
+      "split": "train",
+      "id": "00013_0029_u00006f_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap0_xp0_yp0.svg",
+      "name": "0019_u000054_ap0_xp0_yp0",
+      "split": "val",
+      "id": "00014_0019_u000054_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap0_xp0d25_yp0.svg",
+      "name": "0007_u000048_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00015_0007_u000048_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am30_xp0d25_yp0.svg",
+      "name": "0004_u000045_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00016_0004_u000045_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am15_xp0_yp0d25.svg",
+      "name": "0006_u000047_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00017_0006_u000047_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap15_xp0_yp0.svg",
+      "name": "0013_u00004e_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00018_0013_u00004e_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am15_xp0_yp0d25.svg",
+      "name": "0007_u000048_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00019_0007_u000048_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am30_xp0d5_yp0d5.svg",
+      "name": "0016_u000051_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00020_0016_u000051_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am15_xp0d25_yp0.svg",
+      "name": "0010_u00004b_am15_xp0d25_yp0",
+      "split": "val",
+      "id": "00021_0010_u00004b_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap0_xp0d25_yp0.svg",
+      "name": "0015_u000050_ap0_xp0d25_yp0",
+      "split": "val",
+      "id": "00022_0015_u000050_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap0_xp0d5_yp0d5.svg",
+      "name": "0005_u000046_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00023_0005_u000046_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap30_xp0d5_yp0d5.svg",
+      "name": "0027_u000065_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00024_0027_u000065_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap15_xp0_yp0d25.svg",
+      "name": "0020_u000055_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00025_0020_u000055_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap15_xp0d5_yp0d5.svg",
+      "name": "0003_u000044_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00026_0003_u000044_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap30_xp0d5_yp0d5.svg",
+      "name": "0019_u000054_ap30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00027_0019_u000054_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap15_xp0_yp0d25.svg",
+      "name": "0014_u00004f_ap15_xp0_yp0d25",
+      "split": "val",
+      "id": "00028_0014_u00004f_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am30_xp0d25_yp0.svg",
+      "name": "0025_u00005a_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00029_0025_u00005a_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap30_xp0_yp0.svg",
+      "name": "0027_u000065_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00030_0027_u000065_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am30_xp0_yp0d25.svg",
+      "name": "0019_u000054_am30_xp0_yp0d25",
+      "split": "val",
+      "id": "00031_0019_u000054_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am15_xp0_yp0.svg",
+      "name": "0020_u000055_am15_xp0_yp0",
+      "split": "train",
+      "id": "00032_0020_u000055_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap0_xp0_yp0.svg",
+      "name": "0014_u00004f_ap0_xp0_yp0",
+      "split": "val",
+      "id": "00033_0014_u00004f_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap15_xp0_yp0d25.svg",
+      "name": "0026_u000061_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00034_0026_u000061_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap0_xp0d25_yp0.svg",
+      "name": "0008_u000049_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00035_0008_u000049_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am30_xp0d25_yp0.svg",
+      "name": "0023_u000058_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00036_0023_u000058_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap15_xp0_yp0d25.svg",
+      "name": "0015_u000050_ap15_xp0_yp0d25",
+      "split": "val",
+      "id": "00037_0015_u000050_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am30_xp0d5_yp0d5.svg",
+      "name": "0010_u00004b_am30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00038_0010_u00004b_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap15_xp0d25_yp0.svg",
+      "name": "0003_u000044_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00039_0003_u000044_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap0_xp0_yp0.svg",
+      "name": "0024_u000059_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00040_0024_u000059_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap30_xp0_yp0.svg",
+      "name": "0028_u000067_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00041_0028_u000067_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap0_xp0_yp0d25.svg",
+      "name": "0023_u000058_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00042_0023_u000058_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am30_xp0d5_yp0d5.svg",
+      "name": "0002_u000043_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00043_0002_u000043_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am30_xp0_yp0d25.svg",
+      "name": "0027_u000065_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00044_0027_u000065_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap15_xp0d25_yp0.svg",
+      "name": "0017_u000052_ap15_xp0d25_yp0",
+      "split": "test",
+      "id": "00045_0017_u000052_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap0_xp0_yp0.svg",
+      "name": "0005_u000046_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00046_0005_u000046_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am15_xp0d5_yp0d5.svg",
+      "name": "0009_u00004a_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00047_0009_u00004a_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap30_xp0d5_yp0d5.svg",
+      "name": "0007_u000048_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00048_0007_u000048_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap30_xp0_yp0.svg",
+      "name": "0018_u000053_ap30_xp0_yp0",
+      "split": "test",
+      "id": "00049_0018_u000053_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap15_xp0d5_yp0d5.svg",
+      "name": "0006_u000047_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00050_0006_u000047_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am15_xp0d25_yp0.svg",
+      "name": "0015_u000050_am15_xp0d25_yp0",
+      "split": "val",
+      "id": "00051_0015_u000050_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am15_xp0d5_yp0d5.svg",
+      "name": "0003_u000044_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00052_0003_u000044_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap15_xp0_yp0d25.svg",
+      "name": "0027_u000065_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00053_0027_u000065_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am15_xp0_yp0.svg",
+      "name": "0001_u000042_am15_xp0_yp0",
+      "split": "train",
+      "id": "00054_0001_u000042_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am30_xp0_yp0d25.svg",
+      "name": "0025_u00005a_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00055_0025_u00005a_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am15_xp0_yp0d25.svg",
+      "name": "0027_u000065_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00056_0027_u000065_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am30_xp0_yp0.svg",
+      "name": "0012_u00004d_am30_xp0_yp0",
+      "split": "train",
+      "id": "00057_0012_u00004d_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap30_xp0d25_yp0.svg",
+      "name": "0005_u000046_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00058_0005_u000046_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am30_xp0d25_yp0.svg",
+      "name": "0003_u000044_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00059_0003_u000044_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap15_xp0d5_yp0d5.svg",
+      "name": "0018_u000053_ap15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00060_0018_u000053_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am15_xp0_yp0d25.svg",
+      "name": "0008_u000049_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00061_0008_u000049_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap30_xp0d25_yp0.svg",
+      "name": "0001_u000042_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00062_0001_u000042_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am30_xp0d25_yp0.svg",
+      "name": "0012_u00004d_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00063_0012_u00004d_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am30_xp0_yp0.svg",
+      "name": "0021_u000056_am30_xp0_yp0",
+      "split": "train",
+      "id": "00064_0021_u000056_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am30_xp0d5_yp0d5.svg",
+      "name": "0011_u00004c_am30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00065_0011_u00004c_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap30_xp0_yp0.svg",
+      "name": "0014_u00004f_ap30_xp0_yp0",
+      "split": "val",
+      "id": "00066_0014_u00004f_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap30_xp0d25_yp0.svg",
+      "name": "0012_u00004d_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00067_0012_u00004d_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap30_xp0d25_yp0.svg",
+      "name": "0018_u000053_ap30_xp0d25_yp0",
+      "split": "test",
+      "id": "00068_0018_u000053_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap15_xp0_yp0d25.svg",
+      "name": "0002_u000043_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00069_0002_u000043_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap30_xp0_yp0d25.svg",
+      "name": "0027_u000065_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00070_0027_u000065_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap30_xp0_yp0d25.svg",
+      "name": "0011_u00004c_ap30_xp0_yp0d25",
+      "split": "test",
+      "id": "00071_0011_u00004c_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap15_xp0d5_yp0d5.svg",
+      "name": "0028_u000067_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00072_0028_u000067_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am15_xp0d25_yp0.svg",
+      "name": "0006_u000047_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00073_0006_u000047_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap0_xp0d5_yp0d5.svg",
+      "name": "0007_u000048_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00074_0007_u000048_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am30_xp0_yp0d25.svg",
+      "name": "0009_u00004a_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00075_0009_u00004a_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am15_xp0d25_yp0.svg",
+      "name": "0026_u000061_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00076_0026_u000061_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap0_xp0_yp0d25.svg",
+      "name": "0001_u000042_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00077_0001_u000042_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap15_xp0d25_yp0.svg",
+      "name": "0002_u000043_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00078_0002_u000043_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap15_xp0d5_yp0d5.svg",
+      "name": "0019_u000054_ap15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00079_0019_u000054_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am30_xp0_yp0d25.svg",
+      "name": "0026_u000061_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00080_0026_u000061_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am15_xp0d25_yp0.svg",
+      "name": "0029_u00006f_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00081_0029_u00006f_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap0_xp0_yp0d25.svg",
+      "name": "0009_u00004a_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00082_0009_u00004a_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap30_xp0_yp0d25.svg",
+      "name": "0017_u000052_ap30_xp0_yp0d25",
+      "split": "test",
+      "id": "00083_0017_u000052_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap15_xp0_yp0.svg",
+      "name": "0028_u000067_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00084_0028_u000067_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap30_xp0_yp0.svg",
+      "name": "0002_u000043_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00085_0002_u000043_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am15_xp0d25_yp0.svg",
+      "name": "0009_u00004a_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00086_0009_u00004a_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap30_xp0_yp0d25.svg",
+      "name": "0008_u000049_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00087_0008_u000049_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am15_xp0_yp0.svg",
+      "name": "0005_u000046_am15_xp0_yp0",
+      "split": "train",
+      "id": "00088_0005_u000046_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap15_xp0_yp0.svg",
+      "name": "0024_u000059_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00089_0024_u000059_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap30_xp0_yp0.svg",
+      "name": "0022_u000057_ap30_xp0_yp0",
+      "split": "test",
+      "id": "00090_0022_u000057_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap15_xp0_yp0.svg",
+      "name": "0011_u00004c_ap15_xp0_yp0",
+      "split": "test",
+      "id": "00091_0011_u00004c_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap15_xp0d25_yp0.svg",
+      "name": "0021_u000056_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00092_0021_u000056_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am30_xp0d5_yp0d5.svg",
+      "name": "0005_u000046_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00093_0005_u000046_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am30_xp0d25_yp0.svg",
+      "name": "0015_u000050_am30_xp0d25_yp0",
+      "split": "val",
+      "id": "00094_0015_u000050_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap0_xp0d25_yp0.svg",
+      "name": "0014_u00004f_ap0_xp0d25_yp0",
+      "split": "val",
+      "id": "00095_0014_u00004f_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap15_xp0_yp0d25.svg",
+      "name": "0004_u000045_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00096_0004_u000045_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap15_xp0_yp0.svg",
+      "name": "0014_u00004f_ap15_xp0_yp0",
+      "split": "val",
+      "id": "00097_0014_u00004f_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap15_xp0d5_yp0d5.svg",
+      "name": "0008_u000049_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00098_0008_u000049_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am15_xp0_yp0d25.svg",
+      "name": "0003_u000044_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00099_0003_u000044_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap15_xp0_yp0d25.svg",
+      "name": "0016_u000051_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00100_0016_u000051_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am15_xp0d25_yp0.svg",
+      "name": "0016_u000051_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00101_0016_u000051_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am15_xp0d25_yp0.svg",
+      "name": "0004_u000045_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00102_0004_u000045_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap15_xp0_yp0.svg",
+      "name": "0020_u000055_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00103_0020_u000055_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap30_xp0_yp0d25.svg",
+      "name": "0015_u000050_ap30_xp0_yp0d25",
+      "split": "val",
+      "id": "00104_0015_u000050_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am30_xp0_yp0.svg",
+      "name": "0011_u00004c_am30_xp0_yp0",
+      "split": "test",
+      "id": "00105_0011_u00004c_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap15_xp0_yp0.svg",
+      "name": "0001_u000042_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00106_0001_u000042_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap30_xp0d25_yp0.svg",
+      "name": "0007_u000048_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00107_0007_u000048_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am30_xp0d5_yp0d5.svg",
+      "name": "0018_u000053_am30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00108_0018_u000053_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am15_xp0_yp0.svg",
+      "name": "0008_u000049_am15_xp0_yp0",
+      "split": "train",
+      "id": "00109_0008_u000049_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am30_xp0d25_yp0.svg",
+      "name": "0001_u000042_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00110_0001_u000042_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap0_xp0_yp0d25.svg",
+      "name": "0019_u000054_ap0_xp0_yp0d25",
+      "split": "val",
+      "id": "00111_0019_u000054_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap30_xp0d25_yp0.svg",
+      "name": "0011_u00004c_ap30_xp0d25_yp0",
+      "split": "test",
+      "id": "00112_0011_u00004c_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am30_xp0_yp0.svg",
+      "name": "0018_u000053_am30_xp0_yp0",
+      "split": "test",
+      "id": "00113_0018_u000053_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap30_xp0d5_yp0d5.svg",
+      "name": "0015_u000050_ap30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00114_0015_u000050_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap0_xp0d5_yp0d5.svg",
+      "name": "0006_u000047_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00115_0006_u000047_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am30_xp0_yp0d25.svg",
+      "name": "0001_u000042_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00116_0001_u000042_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap30_xp0d25_yp0.svg",
+      "name": "0029_u00006f_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00117_0029_u00006f_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am30_xp0d25_yp0.svg",
+      "name": "0018_u000053_am30_xp0d25_yp0",
+      "split": "test",
+      "id": "00118_0018_u000053_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am15_xp0d5_yp0d5.svg",
+      "name": "0004_u000045_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00119_0004_u000045_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am15_xp0_yp0d25.svg",
+      "name": "0016_u000051_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00120_0016_u000051_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap15_xp0_yp0d25.svg",
+      "name": "0028_u000067_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00121_0028_u000067_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am30_xp0d5_yp0d5.svg",
+      "name": "0026_u000061_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00122_0026_u000061_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap15_xp0_yp0.svg",
+      "name": "0017_u000052_ap15_xp0_yp0",
+      "split": "test",
+      "id": "00123_0017_u000052_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap15_xp0_yp0d25.svg",
+      "name": "0006_u000047_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00124_0006_u000047_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap0_xp0d5_yp0d5.svg",
+      "name": "0023_u000058_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00125_0023_u000058_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am15_xp0d25_yp0.svg",
+      "name": "0013_u00004e_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00126_0013_u00004e_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am15_xp0d25_yp0.svg",
+      "name": "0021_u000056_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00127_0021_u000056_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap0_xp0d25_yp0.svg",
+      "name": "0004_u000045_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00128_0004_u000045_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap30_xp0d25_yp0.svg",
+      "name": "0022_u000057_ap30_xp0d25_yp0",
+      "split": "test",
+      "id": "00129_0022_u000057_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am30_xp0_yp0.svg",
+      "name": "0016_u000051_am30_xp0_yp0",
+      "split": "train",
+      "id": "00130_0016_u000051_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am15_xp0d25_yp0.svg",
+      "name": "0018_u000053_am15_xp0d25_yp0",
+      "split": "test",
+      "id": "00131_0018_u000053_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am15_xp0_yp0.svg",
+      "name": "0025_u00005a_am15_xp0_yp0",
+      "split": "train",
+      "id": "00132_0025_u00005a_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am30_xp0_yp0d25.svg",
+      "name": "0006_u000047_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00133_0006_u000047_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap0_xp0d25_yp0.svg",
+      "name": "0018_u000053_ap0_xp0d25_yp0",
+      "split": "test",
+      "id": "00134_0018_u000053_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap15_xp0d5_yp0d5.svg",
+      "name": "0015_u000050_ap15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00135_0015_u000050_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap30_xp0d5_yp0d5.svg",
+      "name": "0028_u000067_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00136_0028_u000067_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap30_xp0d25_yp0.svg",
+      "name": "0025_u00005a_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00137_0025_u00005a_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap30_xp0d25_yp0.svg",
+      "name": "0003_u000044_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00138_0003_u000044_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap0_xp0d25_yp0.svg",
+      "name": "0013_u00004e_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00139_0013_u00004e_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap30_xp0d5_yp0d5.svg",
+      "name": "0008_u000049_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00140_0008_u000049_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap0_xp0_yp0d25.svg",
+      "name": "0003_u000044_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00141_0003_u000044_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am15_xp0_yp0.svg",
+      "name": "0002_u000043_am15_xp0_yp0",
+      "split": "train",
+      "id": "00142_0002_u000043_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am30_xp0d5_yp0d5.svg",
+      "name": "0022_u000057_am30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00143_0022_u000057_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am30_xp0_yp0d25.svg",
+      "name": "0012_u00004d_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00144_0012_u00004d_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am15_xp0_yp0d25.svg",
+      "name": "0000_u000041_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00145_0000_u000041_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap30_xp0d25_yp0.svg",
+      "name": "0026_u000061_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00146_0026_u000061_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap0_xp0_yp0d25.svg",
+      "name": "0002_u000043_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00147_0002_u000043_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap0_xp0_yp0d25.svg",
+      "name": "0014_u00004f_ap0_xp0_yp0d25",
+      "split": "val",
+      "id": "00148_0014_u00004f_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap15_xp0d25_yp0.svg",
+      "name": "0012_u00004d_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00149_0012_u00004d_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap0_xp0_yp0.svg",
+      "name": "0022_u000057_ap0_xp0_yp0",
+      "split": "test",
+      "id": "00150_0022_u000057_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am15_xp0d5_yp0d5.svg",
+      "name": "0001_u000042_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00151_0001_u000042_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am30_xp0_yp0d25.svg",
+      "name": "0002_u000043_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00152_0002_u000043_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am30_xp0_yp0.svg",
+      "name": "0005_u000046_am30_xp0_yp0",
+      "split": "train",
+      "id": "00153_0005_u000046_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap15_xp0d25_yp0.svg",
+      "name": "0015_u000050_ap15_xp0d25_yp0",
+      "split": "val",
+      "id": "00154_0015_u000050_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap0_xp0_yp0d25.svg",
+      "name": "0028_u000067_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00155_0028_u000067_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap0_xp0_yp0d25.svg",
+      "name": "0027_u000065_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00156_0027_u000065_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am30_xp0_yp0d25.svg",
+      "name": "0016_u000051_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00157_0016_u000051_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap15_xp0_yp0d25.svg",
+      "name": "0019_u000054_ap15_xp0_yp0d25",
+      "split": "val",
+      "id": "00158_0019_u000054_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap15_xp0d25_yp0.svg",
+      "name": "0029_u00006f_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00159_0029_u00006f_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap30_xp0d5_yp0d5.svg",
+      "name": "0026_u000061_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00160_0026_u000061_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap0_xp0d5_yp0d5.svg",
+      "name": "0012_u00004d_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00161_0012_u00004d_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am15_xp0_yp0d25.svg",
+      "name": "0029_u00006f_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00162_0029_u00006f_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap0_xp0d25_yp0.svg",
+      "name": "0000_u000041_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00163_0000_u000041_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am30_xp0d5_yp0d5.svg",
+      "name": "0028_u000067_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00164_0028_u000067_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap15_xp0_yp0d25.svg",
+      "name": "0023_u000058_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00165_0023_u000058_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap0_xp0_yp0.svg",
+      "name": "0021_u000056_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00166_0021_u000056_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap0_xp0_yp0.svg",
+      "name": "0027_u000065_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00167_0027_u000065_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am30_xp0_yp0.svg",
+      "name": "0017_u000052_am30_xp0_yp0",
+      "split": "test",
+      "id": "00168_0017_u000052_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am15_xp0d25_yp0.svg",
+      "name": "0027_u000065_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00169_0027_u000065_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap30_xp0_yp0.svg",
+      "name": "0012_u00004d_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00170_0012_u00004d_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap15_xp0d5_yp0d5.svg",
+      "name": "0010_u00004b_ap15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00171_0010_u00004b_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap30_xp0_yp0d25.svg",
+      "name": "0014_u00004f_ap30_xp0_yp0d25",
+      "split": "val",
+      "id": "00172_0014_u00004f_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am30_xp0d25_yp0.svg",
+      "name": "0029_u00006f_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00173_0029_u00006f_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap15_xp0_yp0d25.svg",
+      "name": "0022_u000057_ap15_xp0_yp0d25",
+      "split": "test",
+      "id": "00174_0022_u000057_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap0_xp0d25_yp0.svg",
+      "name": "0002_u000043_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00175_0002_u000043_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am15_xp0_yp0d25.svg",
+      "name": "0025_u00005a_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00176_0025_u00005a_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap0_xp0_yp0.svg",
+      "name": "0026_u000061_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00177_0026_u000061_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am15_xp0d5_yp0d5.svg",
+      "name": "0014_u00004f_am15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00178_0014_u00004f_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap30_xp0_yp0d25.svg",
+      "name": "0013_u00004e_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00179_0013_u00004e_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap30_xp0_yp0.svg",
+      "name": "0003_u000044_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00180_0003_u000044_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap15_xp0d25_yp0.svg",
+      "name": "0016_u000051_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00181_0016_u000051_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap15_xp0d5_yp0d5.svg",
+      "name": "0007_u000048_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00182_0007_u000048_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap15_xp0_yp0.svg",
+      "name": "0023_u000058_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00183_0023_u000058_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap30_xp0d25_yp0.svg",
+      "name": "0008_u000049_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00184_0008_u000049_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am30_xp0d5_yp0d5.svg",
+      "name": "0027_u000065_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00185_0027_u000065_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am30_xp0d25_yp0.svg",
+      "name": "0010_u00004b_am30_xp0d25_yp0",
+      "split": "val",
+      "id": "00186_0010_u00004b_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap30_xp0d25_yp0.svg",
+      "name": "0027_u000065_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00187_0027_u000065_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap15_xp0d25_yp0.svg",
+      "name": "0025_u00005a_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00188_0025_u00005a_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap0_xp0d5_yp0d5.svg",
+      "name": "0022_u000057_ap0_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00189_0022_u000057_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap30_xp0_yp0.svg",
+      "name": "0008_u000049_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00190_0008_u000049_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap15_xp0d5_yp0d5.svg",
+      "name": "0012_u00004d_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00191_0012_u00004d_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap0_xp0d25_yp0.svg",
+      "name": "0024_u000059_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00192_0024_u000059_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap15_xp0d5_yp0d5.svg",
+      "name": "0023_u000058_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00193_0023_u000058_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap15_xp0d5_yp0d5.svg",
+      "name": "0017_u000052_ap15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00194_0017_u000052_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap30_xp0d25_yp0.svg",
+      "name": "0017_u000052_ap30_xp0d25_yp0",
+      "split": "test",
+      "id": "00195_0017_u000052_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap0_xp0_yp0.svg",
+      "name": "0015_u000050_ap0_xp0_yp0",
+      "split": "val",
+      "id": "00196_0015_u000050_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap0_xp0d5_yp0d5.svg",
+      "name": "0028_u000067_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00197_0028_u000067_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am15_xp0_yp0.svg",
+      "name": "0004_u000045_am15_xp0_yp0",
+      "split": "train",
+      "id": "00198_0004_u000045_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap15_xp0d5_yp0d5.svg",
+      "name": "0014_u00004f_ap15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00199_0014_u00004f_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap15_xp0_yp0d25.svg",
+      "name": "0003_u000044_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00200_0003_u000044_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap15_xp0_yp0d25.svg",
+      "name": "0025_u00005a_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00201_0025_u00005a_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap30_xp0_yp0.svg",
+      "name": "0019_u000054_ap30_xp0_yp0",
+      "split": "val",
+      "id": "00202_0019_u000054_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap0_xp0d5_yp0d5.svg",
+      "name": "0000_u000041_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00203_0000_u000041_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap15_xp0d5_yp0d5.svg",
+      "name": "0029_u00006f_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00204_0029_u00006f_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap0_xp0_yp0d25.svg",
+      "name": "0015_u000050_ap0_xp0_yp0d25",
+      "split": "val",
+      "id": "00205_0015_u000050_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap0_xp0_yp0d25.svg",
+      "name": "0008_u000049_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00206_0008_u000049_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am15_xp0_yp0.svg",
+      "name": "0003_u000044_am15_xp0_yp0",
+      "split": "train",
+      "id": "00207_0003_u000044_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap30_xp0d5_yp0d5.svg",
+      "name": "0002_u000043_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00208_0002_u000043_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am15_xp0d25_yp0.svg",
+      "name": "0022_u000057_am15_xp0d25_yp0",
+      "split": "test",
+      "id": "00209_0022_u000057_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap15_xp0_yp0.svg",
+      "name": "0022_u000057_ap15_xp0_yp0",
+      "split": "test",
+      "id": "00210_0022_u000057_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am15_xp0d5_yp0d5.svg",
+      "name": "0015_u000050_am15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00211_0015_u000050_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am15_xp0_yp0d25.svg",
+      "name": "0011_u00004c_am15_xp0_yp0d25",
+      "split": "test",
+      "id": "00212_0011_u00004c_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap15_xp0d5_yp0d5.svg",
+      "name": "0027_u000065_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00213_0027_u000065_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap15_xp0d25_yp0.svg",
+      "name": "0028_u000067_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00214_0028_u000067_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap0_xp0_yp0.svg",
+      "name": "0011_u00004c_ap0_xp0_yp0",
+      "split": "test",
+      "id": "00215_0011_u00004c_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am15_xp0d5_yp0d5.svg",
+      "name": "0012_u00004d_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00216_0012_u00004d_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap30_xp0d5_yp0d5.svg",
+      "name": "0021_u000056_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00217_0021_u000056_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap30_xp0_yp0.svg",
+      "name": "0006_u000047_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00218_0006_u000047_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap15_xp0d25_yp0.svg",
+      "name": "0024_u000059_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00219_0024_u000059_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap0_xp0d5_yp0d5.svg",
+      "name": "0015_u000050_ap0_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00220_0015_u000050_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am30_xp0d5_yp0d5.svg",
+      "name": "0021_u000056_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00221_0021_u000056_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am30_xp0_yp0d25.svg",
+      "name": "0018_u000053_am30_xp0_yp0d25",
+      "split": "test",
+      "id": "00222_0018_u000053_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am15_xp0_yp0d25.svg",
+      "name": "0002_u000043_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00223_0002_u000043_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap0_xp0_yp0.svg",
+      "name": "0002_u000043_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00224_0002_u000043_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap30_xp0_yp0.svg",
+      "name": "0007_u000048_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00225_0007_u000048_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am15_xp0d5_yp0d5.svg",
+      "name": "0010_u00004b_am15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00226_0010_u00004b_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am15_xp0_yp0.svg",
+      "name": "0017_u000052_am15_xp0_yp0",
+      "split": "test",
+      "id": "00227_0017_u000052_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am30_xp0_yp0.svg",
+      "name": "0027_u000065_am30_xp0_yp0",
+      "split": "train",
+      "id": "00228_0027_u000065_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap15_xp0d5_yp0d5.svg",
+      "name": "0022_u000057_ap15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00229_0022_u000057_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am15_xp0d25_yp0.svg",
+      "name": "0012_u00004d_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00230_0012_u00004d_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am15_xp0d25_yp0.svg",
+      "name": "0020_u000055_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00231_0020_u000055_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap0_xp0_yp0.svg",
+      "name": "0029_u00006f_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00232_0029_u00006f_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap30_xp0_yp0d25.svg",
+      "name": "0010_u00004b_ap30_xp0_yp0d25",
+      "split": "val",
+      "id": "00233_0010_u00004b_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap0_xp0d5_yp0d5.svg",
+      "name": "0001_u000042_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00234_0001_u000042_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap15_xp0d25_yp0.svg",
+      "name": "0010_u00004b_ap15_xp0d25_yp0",
+      "split": "val",
+      "id": "00235_0010_u00004b_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap15_xp0d25_yp0.svg",
+      "name": "0023_u000058_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00236_0023_u000058_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am15_xp0_yp0.svg",
+      "name": "0016_u000051_am15_xp0_yp0",
+      "split": "train",
+      "id": "00237_0016_u000051_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am30_xp0_yp0d25.svg",
+      "name": "0007_u000048_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00238_0007_u000048_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap0_xp0d5_yp0d5.svg",
+      "name": "0008_u000049_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00239_0008_u000049_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap0_xp0_yp0.svg",
+      "name": "0018_u000053_ap0_xp0_yp0",
+      "split": "test",
+      "id": "00240_0018_u000053_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap15_xp0_yp0.svg",
+      "name": "0002_u000043_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00241_0002_u000043_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am30_xp0_yp0d25.svg",
+      "name": "0023_u000058_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00242_0023_u000058_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am15_xp0_yp0d25.svg",
+      "name": "0019_u000054_am15_xp0_yp0d25",
+      "split": "val",
+      "id": "00243_0019_u000054_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap15_xp0_yp0d25.svg",
+      "name": "0013_u00004e_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00244_0013_u00004e_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am30_xp0_yp0.svg",
+      "name": "0004_u000045_am30_xp0_yp0",
+      "split": "train",
+      "id": "00245_0004_u000045_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap15_xp0d5_yp0d5.svg",
+      "name": "0025_u00005a_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00246_0025_u00005a_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap30_xp0d5_yp0d5.svg",
+      "name": "0005_u000046_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00247_0005_u000046_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am15_xp0_yp0d25.svg",
+      "name": "0024_u000059_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00248_0024_u000059_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap15_xp0_yp0.svg",
+      "name": "0008_u000049_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00249_0008_u000049_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am15_xp0_yp0d25.svg",
+      "name": "0015_u000050_am15_xp0_yp0d25",
+      "split": "val",
+      "id": "00250_0015_u000050_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am30_xp0_yp0.svg",
+      "name": "0008_u000049_am30_xp0_yp0",
+      "split": "train",
+      "id": "00251_0008_u000049_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am30_xp0_yp0d25.svg",
+      "name": "0014_u00004f_am30_xp0_yp0d25",
+      "split": "val",
+      "id": "00252_0014_u00004f_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap15_xp0_yp0.svg",
+      "name": "0027_u000065_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00253_0027_u000065_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am15_xp0d5_yp0d5.svg",
+      "name": "0018_u000053_am15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00254_0018_u000053_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am15_xp0_yp0d25.svg",
+      "name": "0021_u000056_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00255_0021_u000056_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap30_xp0_yp0d25.svg",
+      "name": "0009_u00004a_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00256_0009_u00004a_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap0_xp0d5_yp0d5.svg",
+      "name": "0004_u000045_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00257_0004_u000045_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am15_xp0d5_yp0d5.svg",
+      "name": "0027_u000065_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00258_0027_u000065_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap30_xp0d5_yp0d5.svg",
+      "name": "0025_u00005a_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00259_0025_u00005a_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap0_xp0d25_yp0.svg",
+      "name": "0010_u00004b_ap0_xp0d25_yp0",
+      "split": "val",
+      "id": "00260_0010_u00004b_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am15_xp0d5_yp0d5.svg",
+      "name": "0020_u000055_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00261_0020_u000055_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap30_xp0_yp0.svg",
+      "name": "0024_u000059_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00262_0024_u000059_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am30_xp0_yp0.svg",
+      "name": "0019_u000054_am30_xp0_yp0",
+      "split": "val",
+      "id": "00263_0019_u000054_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap30_xp0_yp0d25.svg",
+      "name": "0001_u000042_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00264_0001_u000042_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am30_xp0_yp0d25.svg",
+      "name": "0028_u000067_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00265_0028_u000067_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am30_xp0d5_yp0d5.svg",
+      "name": "0029_u00006f_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00266_0029_u00006f_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap0_xp0d5_yp0d5.svg",
+      "name": "0011_u00004c_ap0_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00267_0011_u00004c_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am30_xp0_yp0.svg",
+      "name": "0023_u000058_am30_xp0_yp0",
+      "split": "train",
+      "id": "00268_0023_u000058_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am15_xp0d5_yp0d5.svg",
+      "name": "0005_u000046_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00269_0005_u000046_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am15_xp0d5_yp0d5.svg",
+      "name": "0017_u000052_am15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00270_0017_u000052_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap30_xp0d5_yp0d5.svg",
+      "name": "0012_u00004d_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00271_0012_u00004d_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap15_xp0_yp0.svg",
+      "name": "0000_u000041_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00272_0000_u000041_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap0_xp0_yp0d25.svg",
+      "name": "0012_u00004d_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00273_0012_u00004d_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap0_xp0_yp0.svg",
+      "name": "0012_u00004d_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00274_0012_u00004d_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap15_xp0d25_yp0.svg",
+      "name": "0004_u000045_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00275_0004_u000045_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am30_xp0d5_yp0d5.svg",
+      "name": "0025_u00005a_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00276_0025_u00005a_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am15_xp0d25_yp0.svg",
+      "name": "0011_u00004c_am15_xp0d25_yp0",
+      "split": "test",
+      "id": "00277_0011_u00004c_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am15_xp0_yp0.svg",
+      "name": "0014_u00004f_am15_xp0_yp0",
+      "split": "val",
+      "id": "00278_0014_u00004f_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap0_xp0_yp0.svg",
+      "name": "0007_u000048_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00279_0007_u000048_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap15_xp0d5_yp0d5.svg",
+      "name": "0016_u000051_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00280_0016_u000051_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap15_xp0d25_yp0.svg",
+      "name": "0005_u000046_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00281_0005_u000046_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap15_xp0d5_yp0d5.svg",
+      "name": "0020_u000055_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00282_0020_u000055_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap30_xp0_yp0.svg",
+      "name": "0021_u000056_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00283_0021_u000056_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap0_xp0_yp0d25.svg",
+      "name": "0021_u000056_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00284_0021_u000056_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap0_xp0_yp0.svg",
+      "name": "0010_u00004b_ap0_xp0_yp0",
+      "split": "val",
+      "id": "00285_0010_u00004b_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap0_xp0d25_yp0.svg",
+      "name": "0022_u000057_ap0_xp0d25_yp0",
+      "split": "test",
+      "id": "00286_0022_u000057_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap30_xp0d25_yp0.svg",
+      "name": "0020_u000055_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00287_0020_u000055_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap30_xp0d25_yp0.svg",
+      "name": "0023_u000058_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00288_0023_u000058_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap0_xp0_yp0.svg",
+      "name": "0008_u000049_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00289_0008_u000049_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am30_xp0_yp0.svg",
+      "name": "0001_u000042_am30_xp0_yp0",
+      "split": "train",
+      "id": "00290_0001_u000042_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am15_xp0_yp0d25.svg",
+      "name": "0004_u000045_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00291_0004_u000045_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap0_xp0d25_yp0.svg",
+      "name": "0016_u000051_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00292_0016_u000051_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap30_xp0d25_yp0.svg",
+      "name": "0019_u000054_ap30_xp0d25_yp0",
+      "split": "val",
+      "id": "00293_0019_u000054_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap15_xp0d25_yp0.svg",
+      "name": "0014_u00004f_ap15_xp0d25_yp0",
+      "split": "val",
+      "id": "00294_0014_u00004f_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am30_xp0_yp0d25.svg",
+      "name": "0020_u000055_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00295_0020_u000055_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap0_xp0_yp0.svg",
+      "name": "0004_u000045_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00296_0004_u000045_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am15_xp0d5_yp0d5.svg",
+      "name": "0000_u000041_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00297_0000_u000041_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap15_xp0d5_yp0d5.svg",
+      "name": "0002_u000043_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00298_0002_u000043_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am15_xp0d5_yp0d5.svg",
+      "name": "0028_u000067_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00299_0028_u000067_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap15_xp0_yp0.svg",
+      "name": "0007_u000048_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00300_0007_u000048_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap30_xp0d25_yp0.svg",
+      "name": "0015_u000050_ap30_xp0d25_yp0",
+      "split": "val",
+      "id": "00301_0015_u000050_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap0_xp0d25_yp0.svg",
+      "name": "0028_u000067_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00302_0028_u000067_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap0_xp0_yp0.svg",
+      "name": "0001_u000042_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00303_0001_u000042_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am15_xp0_yp0.svg",
+      "name": "0015_u000050_am15_xp0_yp0",
+      "split": "val",
+      "id": "00304_0015_u000050_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am30_xp0_yp0.svg",
+      "name": "0014_u00004f_am30_xp0_yp0",
+      "split": "val",
+      "id": "00305_0014_u00004f_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap30_xp0_yp0.svg",
+      "name": "0017_u000052_ap30_xp0_yp0",
+      "split": "test",
+      "id": "00306_0017_u000052_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap30_xp0_yp0d25.svg",
+      "name": "0000_u000041_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00307_0000_u000041_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am30_xp0_yp0.svg",
+      "name": "0024_u000059_am30_xp0_yp0",
+      "split": "train",
+      "id": "00308_0024_u000059_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am15_xp0_yp0d25.svg",
+      "name": "0013_u00004e_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00309_0013_u00004e_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am15_xp0_yp0.svg",
+      "name": "0019_u000054_am15_xp0_yp0",
+      "split": "val",
+      "id": "00310_0019_u000054_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am30_xp0_yp0d25.svg",
+      "name": "0004_u000045_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00311_0004_u000045_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am15_xp0_yp0.svg",
+      "name": "0000_u000041_am15_xp0_yp0",
+      "split": "train",
+      "id": "00312_0000_u000041_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap15_xp0_yp0.svg",
+      "name": "0003_u000044_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00313_0003_u000044_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am30_xp0_yp0.svg",
+      "name": "0013_u00004e_am30_xp0_yp0",
+      "split": "train",
+      "id": "00314_0013_u00004e_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am30_xp0d25_yp0.svg",
+      "name": "0028_u000067_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00315_0028_u000067_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am30_xp0d5_yp0d5.svg",
+      "name": "0015_u000050_am30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00316_0015_u000050_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap30_xp0d25_yp0.svg",
+      "name": "0002_u000043_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00317_0002_u000043_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap0_xp0d5_yp0d5.svg",
+      "name": "0009_u00004a_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00318_0009_u00004a_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap0_xp0d5_yp0d5.svg",
+      "name": "0016_u000051_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00319_0016_u000051_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap0_xp0_yp0.svg",
+      "name": "0013_u00004e_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00320_0013_u00004e_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap15_xp0d25_yp0.svg",
+      "name": "0013_u00004e_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00321_0013_u00004e_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap15_xp0_yp0.svg",
+      "name": "0018_u000053_ap15_xp0_yp0",
+      "split": "test",
+      "id": "00322_0018_u000053_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am15_xp0_yp0d25.svg",
+      "name": "0001_u000042_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00323_0001_u000042_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am30_xp0d5_yp0d5.svg",
+      "name": "0024_u000059_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00324_0024_u000059_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap30_xp0_yp0d25.svg",
+      "name": "0002_u000043_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00325_0002_u000043_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am15_xp0d25_yp0.svg",
+      "name": "0019_u000054_am15_xp0d25_yp0",
+      "split": "val",
+      "id": "00326_0019_u000054_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap15_xp0d5_yp0d5.svg",
+      "name": "0004_u000045_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00327_0004_u000045_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am15_xp0_yp0.svg",
+      "name": "0029_u00006f_am15_xp0_yp0",
+      "split": "train",
+      "id": "00328_0029_u00006f_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap0_xp0_yp0d25.svg",
+      "name": "0016_u000051_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00329_0016_u000051_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap15_xp0d25_yp0.svg",
+      "name": "0006_u000047_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00330_0006_u000047_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap30_xp0_yp0.svg",
+      "name": "0029_u00006f_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00331_0029_u00006f_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap15_xp0_yp0d25.svg",
+      "name": "0024_u000059_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00332_0024_u000059_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap30_xp0_yp0.svg",
+      "name": "0020_u000055_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00333_0020_u000055_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap30_xp0_yp0.svg",
+      "name": "0000_u000041_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00334_0000_u000041_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap30_xp0_yp0d25.svg",
+      "name": "0023_u000058_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00335_0023_u000058_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap15_xp0d25_yp0.svg",
+      "name": "0027_u000065_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00336_0027_u000065_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap30_xp0_yp0d25.svg",
+      "name": "0022_u000057_ap30_xp0_yp0d25",
+      "split": "test",
+      "id": "00337_0022_u000057_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap30_xp0_yp0d25.svg",
+      "name": "0020_u000055_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00338_0020_u000055_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am15_xp0d25_yp0.svg",
+      "name": "0003_u000044_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00339_0003_u000044_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am30_xp0d5_yp0d5.svg",
+      "name": "0020_u000055_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00340_0020_u000055_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am30_xp0d25_yp0.svg",
+      "name": "0000_u000041_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00341_0000_u000041_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap15_xp0d25_yp0.svg",
+      "name": "0001_u000042_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00342_0001_u000042_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am15_xp0d25_yp0.svg",
+      "name": "0005_u000046_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00343_0005_u000046_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am30_xp0d25_yp0.svg",
+      "name": "0022_u000057_am30_xp0d25_yp0",
+      "split": "test",
+      "id": "00344_0022_u000057_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap0_xp0d25_yp0.svg",
+      "name": "0021_u000056_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00345_0021_u000056_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap0_xp0d25_yp0.svg",
+      "name": "0026_u000061_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00346_0026_u000061_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am15_xp0d5_yp0d5.svg",
+      "name": "0007_u000048_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00347_0007_u000048_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap30_xp0d5_yp0d5.svg",
+      "name": "0011_u00004c_ap30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00348_0011_u00004c_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap30_xp0d25_yp0.svg",
+      "name": "0000_u000041_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00349_0000_u000041_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap0_xp0d5_yp0d5.svg",
+      "name": "0024_u000059_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00350_0024_u000059_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am30_xp0_yp0d25.svg",
+      "name": "0021_u000056_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00351_0021_u000056_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am30_xp0d25_yp0.svg",
+      "name": "0027_u000065_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00352_0027_u000065_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap0_xp0d25_yp0.svg",
+      "name": "0020_u000055_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00353_0020_u000055_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap0_xp0d25_yp0.svg",
+      "name": "0027_u000065_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00354_0027_u000065_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am15_xp0_yp0.svg",
+      "name": "0018_u000053_am15_xp0_yp0",
+      "split": "test",
+      "id": "00355_0018_u000053_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap0_xp0_yp0.svg",
+      "name": "0017_u000052_ap0_xp0_yp0",
+      "split": "test",
+      "id": "00356_0017_u000052_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap15_xp0_yp0d25.svg",
+      "name": "0017_u000052_ap15_xp0_yp0d25",
+      "split": "test",
+      "id": "00357_0017_u000052_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_am30_xp0d5_yp0d5.svg",
+      "name": "0004_u000045_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00358_0004_u000045_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am15_xp0d5_yp0d5.svg",
+      "name": "0022_u000057_am15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00359_0022_u000057_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am30_xp0d25_yp0.svg",
+      "name": "0021_u000056_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00360_0021_u000056_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap30_xp0d5_yp0d5.svg",
+      "name": "0029_u00006f_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00361_0029_u00006f_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap30_xp0_yp0d25.svg",
+      "name": "0026_u000061_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00362_0026_u000061_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am15_xp0d25_yp0.svg",
+      "name": "0023_u000058_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00363_0023_u000058_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap30_xp0_yp0.svg",
+      "name": "0001_u000042_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00364_0001_u000042_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap15_xp0d25_yp0.svg",
+      "name": "0022_u000057_ap15_xp0d25_yp0",
+      "split": "test",
+      "id": "00365_0022_u000057_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap30_xp0_yp0.svg",
+      "name": "0026_u000061_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00366_0026_u000061_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap30_xp0d5_yp0d5.svg",
+      "name": "0006_u000047_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00367_0006_u000047_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am15_xp0_yp0d25.svg",
+      "name": "0010_u00004b_am15_xp0_yp0d25",
+      "split": "val",
+      "id": "00368_0010_u00004b_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am30_xp0d5_yp0d5.svg",
+      "name": "0006_u000047_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00369_0006_u000047_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am15_xp0_yp0.svg",
+      "name": "0011_u00004c_am15_xp0_yp0",
+      "split": "test",
+      "id": "00370_0011_u00004c_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am30_xp0d5_yp0d5.svg",
+      "name": "0023_u000058_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00371_0023_u000058_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap0_xp0d5_yp0d5.svg",
+      "name": "0019_u000054_ap0_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00372_0019_u000054_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am30_xp0d25_yp0.svg",
+      "name": "0009_u00004a_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00373_0009_u00004a_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap0_xp0_yp0d25.svg",
+      "name": "0026_u000061_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00374_0026_u000061_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am30_xp0_yp0.svg",
+      "name": "0007_u000048_am30_xp0_yp0",
+      "split": "train",
+      "id": "00375_0007_u000048_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap30_xp0_yp0.svg",
+      "name": "0009_u00004a_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00376_0009_u00004a_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am30_xp0d25_yp0.svg",
+      "name": "0007_u000048_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00377_0007_u000048_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am30_xp0d5_yp0d5.svg",
+      "name": "0008_u000049_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00378_0008_u000049_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am15_xp0d25_yp0.svg",
+      "name": "0002_u000043_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00379_0002_u000043_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am15_xp0d25_yp0.svg",
+      "name": "0025_u00005a_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00380_0025_u00005a_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap0_xp0_yp0.svg",
+      "name": "0000_u000041_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00381_0000_u000041_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap0_xp0d5_yp0d5.svg",
+      "name": "0025_u00005a_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00382_0025_u00005a_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am30_xp0d5_yp0d5.svg",
+      "name": "0007_u000048_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00383_0007_u000048_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_am15_xp0d5_yp0d5.svg",
+      "name": "0029_u00006f_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00384_0029_u00006f_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap30_xp0_yp0d25.svg",
+      "name": "0012_u00004d_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00385_0012_u00004d_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap15_xp0_yp0d25.svg",
+      "name": "0009_u00004a_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00386_0009_u00004a_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap30_xp0d25_yp0.svg",
+      "name": "0009_u00004a_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00387_0009_u00004a_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap30_xp0_yp0.svg",
+      "name": "0010_u00004b_ap30_xp0_yp0",
+      "split": "val",
+      "id": "00388_0010_u00004b_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap30_xp0_yp0.svg",
+      "name": "0016_u000051_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00389_0016_u000051_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap15_xp0d25_yp0.svg",
+      "name": "0019_u000054_ap15_xp0d25_yp0",
+      "split": "val",
+      "id": "00390_0019_u000054_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap15_xp0d25_yp0.svg",
+      "name": "0009_u00004a_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00391_0009_u00004a_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap15_xp0_yp0.svg",
+      "name": "0009_u00004a_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00392_0009_u00004a_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap15_xp0_yp0.svg",
+      "name": "0019_u000054_ap15_xp0_yp0",
+      "split": "val",
+      "id": "00393_0019_u000054_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap15_xp0_yp0d25.svg",
+      "name": "0005_u000046_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00394_0005_u000046_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap30_xp0d5_yp0d5.svg",
+      "name": "0013_u00004e_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00395_0013_u00004e_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am30_xp0d25_yp0.svg",
+      "name": "0019_u000054_am30_xp0d25_yp0",
+      "split": "val",
+      "id": "00396_0019_u000054_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap15_xp0d25_yp0.svg",
+      "name": "0000_u000041_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00397_0000_u000041_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap15_xp0_yp0.svg",
+      "name": "0006_u000047_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00398_0006_u000047_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am15_xp0d5_yp0d5.svg",
+      "name": "0016_u000051_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00399_0016_u000051_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap15_xp0_yp0d25.svg",
+      "name": "0021_u000056_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00400_0021_u000056_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am15_xp0_yp0.svg",
+      "name": "0013_u00004e_am15_xp0_yp0",
+      "split": "train",
+      "id": "00401_0013_u00004e_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am15_xp0_yp0d25.svg",
+      "name": "0026_u000061_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00402_0026_u000061_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am15_xp0_yp0.svg",
+      "name": "0024_u000059_am15_xp0_yp0",
+      "split": "train",
+      "id": "00403_0024_u000059_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap15_xp0_yp0d25.svg",
+      "name": "0010_u00004b_ap15_xp0_yp0d25",
+      "split": "val",
+      "id": "00404_0010_u00004b_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am15_xp0_yp0d25.svg",
+      "name": "0017_u000052_am15_xp0_yp0d25",
+      "split": "test",
+      "id": "00405_0017_u000052_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am30_xp0_yp0.svg",
+      "name": "0020_u000055_am30_xp0_yp0",
+      "split": "train",
+      "id": "00406_0020_u000055_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap30_xp0d25_yp0.svg",
+      "name": "0028_u000067_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00407_0028_u000067_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap30_xp0_yp0.svg",
+      "name": "0011_u00004c_ap30_xp0_yp0",
+      "split": "test",
+      "id": "00408_0011_u00004c_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap30_xp0_yp0d25.svg",
+      "name": "0025_u00005a_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00409_0025_u00005a_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am15_xp0_yp0.svg",
+      "name": "0007_u000048_am15_xp0_yp0",
+      "split": "train",
+      "id": "00410_0007_u000048_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am15_xp0_yp0.svg",
+      "name": "0010_u00004b_am15_xp0_yp0",
+      "split": "val",
+      "id": "00411_0010_u00004b_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am30_xp0_yp0d25.svg",
+      "name": "0017_u000052_am30_xp0_yp0d25",
+      "split": "test",
+      "id": "00412_0017_u000052_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am30_xp0d25_yp0.svg",
+      "name": "0013_u00004e_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00413_0013_u00004e_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap30_xp0d25_yp0.svg",
+      "name": "0016_u000051_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00414_0016_u000051_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap0_xp0d5_yp0d5.svg",
+      "name": "0017_u000052_ap0_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00415_0017_u000052_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap15_xp0_yp0.svg",
+      "name": "0010_u00004b_ap15_xp0_yp0",
+      "split": "val",
+      "id": "00416_0010_u00004b_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap15_xp0_yp0d25.svg",
+      "name": "0029_u00006f_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00417_0029_u00006f_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap0_xp0d25_yp0.svg",
+      "name": "0012_u00004d_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00418_0012_u00004d_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am30_xp0_yp0.svg",
+      "name": "0000_u000041_am30_xp0_yp0",
+      "split": "train",
+      "id": "00419_0000_u000041_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am30_xp0_yp0d25.svg",
+      "name": "0024_u000059_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00420_0024_u000059_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap30_xp0d5_yp0d5.svg",
+      "name": "0009_u00004a_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00421_0009_u00004a_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap0_xp0d25_yp0.svg",
+      "name": "0003_u000044_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00422_0003_u000044_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am15_xp0_yp0.svg",
+      "name": "0022_u000057_am15_xp0_yp0",
+      "split": "test",
+      "id": "00423_0022_u000057_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_am30_xp0d25_yp0.svg",
+      "name": "0016_u000051_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00424_0016_u000051_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap0_xp0d25_yp0.svg",
+      "name": "0011_u00004c_ap0_xp0d25_yp0",
+      "split": "test",
+      "id": "00425_0011_u00004c_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am15_xp0_yp0d25.svg",
+      "name": "0014_u00004f_am15_xp0_yp0d25",
+      "split": "val",
+      "id": "00426_0014_u00004f_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap0_xp0d5_yp0d5.svg",
+      "name": "0021_u000056_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00427_0021_u000056_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap0_xp0d25_yp0.svg",
+      "name": "0006_u000047_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00428_0006_u000047_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am15_xp0_yp0d25.svg",
+      "name": "0028_u000067_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00429_0028_u000067_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am15_xp0_yp0.svg",
+      "name": "0012_u00004d_am15_xp0_yp0",
+      "split": "train",
+      "id": "00430_0012_u00004d_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am15_xp0d5_yp0d5.svg",
+      "name": "0026_u000061_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00431_0026_u000061_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap30_xp0d5_yp0d5.svg",
+      "name": "0000_u000041_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00432_0000_u000041_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap0_xp0d5_yp0d5.svg",
+      "name": "0029_u00006f_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00433_0029_u00006f_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap30_xp0_yp0.svg",
+      "name": "0025_u00005a_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00434_0025_u00005a_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap15_xp0d5_yp0d5.svg",
+      "name": "0011_u00004c_ap15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00435_0011_u00004c_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am15_xp0d25_yp0.svg",
+      "name": "0017_u000052_am15_xp0d25_yp0",
+      "split": "test",
+      "id": "00436_0017_u000052_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap30_xp0_yp0d25.svg",
+      "name": "0007_u000048_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00437_0007_u000048_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am30_xp0_yp0.svg",
+      "name": "0003_u000044_am30_xp0_yp0",
+      "split": "train",
+      "id": "00438_0003_u000044_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap0_xp0_yp0.svg",
+      "name": "0023_u000058_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00439_0023_u000058_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap0_xp0_yp0d25.svg",
+      "name": "0010_u00004b_ap0_xp0_yp0d25",
+      "split": "val",
+      "id": "00440_0010_u00004b_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap30_xp0d25_yp0.svg",
+      "name": "0021_u000056_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00441_0021_u000056_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap0_xp0_yp0d25.svg",
+      "name": "0011_u00004c_ap0_xp0_yp0d25",
+      "split": "test",
+      "id": "00442_0011_u00004c_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am30_xp0d25_yp0.svg",
+      "name": "0014_u00004f_am30_xp0d25_yp0",
+      "split": "val",
+      "id": "00443_0014_u00004f_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap0_xp0d25_yp0.svg",
+      "name": "0001_u000042_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00444_0001_u000042_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am15_xp0d5_yp0d5.svg",
+      "name": "0008_u000049_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00445_0008_u000049_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap15_xp0_yp0.svg",
+      "name": "0026_u000061_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00446_0026_u000061_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap0_xp0d5_yp0d5.svg",
+      "name": "0020_u000055_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00447_0020_u000055_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap0_xp0_yp0d25.svg",
+      "name": "0000_u000041_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00448_0000_u000041_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap0_xp0_yp0d25.svg",
+      "name": "0022_u000057_ap0_xp0_yp0d25",
+      "split": "test",
+      "id": "00449_0022_u000057_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap15_xp0_yp0d25.svg",
+      "name": "0007_u000048_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00450_0007_u000048_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap30_xp0_yp0.svg",
+      "name": "0005_u000046_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00451_0005_u000046_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am30_xp0_yp0d25.svg",
+      "name": "0003_u000044_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00452_0003_u000044_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am15_xp0_yp0d25.svg",
+      "name": "0023_u000058_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00453_0023_u000058_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am30_xp0_yp0.svg",
+      "name": "0015_u000050_am30_xp0_yp0",
+      "split": "val",
+      "id": "00454_0015_u000050_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am15_xp0_yp0d25.svg",
+      "name": "0005_u000046_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00455_0005_u000046_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap30_xp0d25_yp0.svg",
+      "name": "0006_u000047_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00456_0006_u000047_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap15_xp0_yp0.svg",
+      "name": "0004_u000045_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00457_0004_u000045_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am30_xp0d5_yp0d5.svg",
+      "name": "0001_u000042_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00458_0001_u000042_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_ap30_xp0d5_yp0d5.svg",
+      "name": "0022_u000057_ap30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00459_0022_u000057_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap30_xp0_yp0d25.svg",
+      "name": "0021_u000056_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00460_0021_u000056_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am15_xp0d5_yp0d5.svg",
+      "name": "0023_u000058_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00461_0023_u000058_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_ap30_xp0_yp0d25.svg",
+      "name": "0019_u000054_ap30_xp0_yp0d25",
+      "split": "val",
+      "id": "00462_0019_u000054_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap30_xp0d5_yp0d5.svg",
+      "name": "0023_u000058_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00463_0023_u000058_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap0_xp0_yp0d25.svg",
+      "name": "0020_u000055_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00464_0020_u000055_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_am30_xp0d5_yp0d5.svg",
+      "name": "0003_u000044_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00465_0003_u000044_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap30_xp0d5_yp0d5.svg",
+      "name": "0014_u00004f_ap30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00466_0014_u00004f_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am15_xp0d5_yp0d5.svg",
+      "name": "0006_u000047_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00467_0006_u000047_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am15_xp0d5_yp0d5.svg",
+      "name": "0021_u000056_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00468_0021_u000056_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap15_xp0_yp0.svg",
+      "name": "0016_u000051_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00469_0016_u000051_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_am30_xp0_yp0d25.svg",
+      "name": "0015_u000050_am30_xp0_yp0d25",
+      "split": "val",
+      "id": "00470_0015_u000050_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap30_xp0_yp0d25.svg",
+      "name": "0004_u000045_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00471_0004_u000045_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am15_xp0_yp0.svg",
+      "name": "0028_u000067_am15_xp0_yp0",
+      "split": "train",
+      "id": "00472_0028_u000067_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap30_xp0_yp0.svg",
+      "name": "0015_u000050_ap30_xp0_yp0",
+      "split": "val",
+      "id": "00473_0015_u000050_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap30_xp0d5_yp0d5.svg",
+      "name": "0003_u000044_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00474_0003_u000044_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap15_xp0_yp0.svg",
+      "name": "0029_u00006f_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00475_0029_u00006f_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap0_xp0_yp0.svg",
+      "name": "0020_u000055_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00476_0020_u000055_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap0_xp0d5_yp0d5.svg",
+      "name": "0018_u000053_ap0_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00477_0018_u000053_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am30_xp0_yp0d25.svg",
+      "name": "0010_u00004b_am30_xp0_yp0d25",
+      "split": "val",
+      "id": "00478_0010_u00004b_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap30_xp0d5_yp0d5.svg",
+      "name": "0020_u000055_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00479_0020_u000055_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap0_xp0d25_yp0.svg",
+      "name": "0009_u00004a_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00480_0009_u00004a_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap30_xp0d5_yp0d5.svg",
+      "name": "0016_u000051_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00481_0016_u000051_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_am15_xp0_yp0.svg",
+      "name": "0027_u000065_am15_xp0_yp0",
+      "split": "train",
+      "id": "00482_0027_u000065_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap15_xp0d5_yp0d5.svg",
+      "name": "0009_u00004a_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00483_0009_u00004a_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap30_xp0d5_yp0d5.svg",
+      "name": "0010_u00004b_ap30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00484_0010_u00004b_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap0_xp0_yp0.svg",
+      "name": "0006_u000047_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00485_0006_u000047_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap0_xp0_yp0d25.svg",
+      "name": "0029_u00006f_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00486_0029_u00006f_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_am15_xp0_yp0d25.svg",
+      "name": "0018_u000053_am15_xp0_yp0d25",
+      "split": "test",
+      "id": "00487_0018_u000053_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap30_xp0_yp0.svg",
+      "name": "0004_u000045_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00488_0004_u000045_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap30_xp0_yp0d25.svg",
+      "name": "0005_u000046_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00489_0005_u000046_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap30_xp0d25_yp0.svg",
+      "name": "0024_u000059_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00490_0024_u000059_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap15_xp0_yp0d25.svg",
+      "name": "0012_u00004d_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00491_0012_u00004d_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap0_xp0d25_yp0.svg",
+      "name": "0005_u000046_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00492_0005_u000046_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap15_xp0_yp0d25.svg",
+      "name": "0011_u00004c_ap15_xp0_yp0d25",
+      "split": "test",
+      "id": "00493_0011_u00004c_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap30_xp0_yp0.svg",
+      "name": "0013_u00004e_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00494_0013_u00004e_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap30_xp0d5_yp0d5.svg",
+      "name": "0017_u000052_ap30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00495_0017_u000052_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap0_xp0_yp0d25.svg",
+      "name": "0004_u000045_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00496_0004_u000045_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap30_xp0_yp0d25.svg",
+      "name": "0016_u000051_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00497_0016_u000051_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am15_xp0_yp0.svg",
+      "name": "0026_u000061_am15_xp0_yp0",
+      "split": "train",
+      "id": "00498_0026_u000061_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_ap0_xp0_yp0.svg",
+      "name": "0028_u000067_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00499_0028_u000067_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap30_xp0d25_yp0.svg",
+      "name": "0004_u000045_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00500_0004_u000045_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am30_xp0_yp0d25.svg",
+      "name": "0000_u000041_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00501_0000_u000041_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0027_u000065_ap0_xp0d5_yp0d5.svg",
+      "name": "0027_u000065_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00502_0027_u000065_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap15_xp0d5_yp0d5.svg",
+      "name": "0013_u00004e_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00503_0013_u00004e_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am30_xp0d5_yp0d5.svg",
+      "name": "0017_u000052_am30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00504_0017_u000052_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am15_xp0d5_yp0d5.svg",
+      "name": "0011_u00004c_am15_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00505_0011_u00004c_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am30_xp0d25_yp0.svg",
+      "name": "0005_u000046_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00506_0005_u000046_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_ap15_xp0d25_yp0.svg",
+      "name": "0011_u00004c_ap15_xp0d25_yp0",
+      "split": "test",
+      "id": "00507_0011_u00004c_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap0_xp0d25_yp0.svg",
+      "name": "0017_u000052_ap0_xp0d25_yp0",
+      "split": "test",
+      "id": "00508_0017_u000052_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am15_xp0_yp0d25.svg",
+      "name": "0009_u00004a_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00509_0009_u00004a_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_am30_xp0_yp0.svg",
+      "name": "0010_u00004b_am30_xp0_yp0",
+      "split": "val",
+      "id": "00510_0010_u00004b_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am30_xp0_yp0.svg",
+      "name": "0025_u00005a_am30_xp0_yp0",
+      "split": "train",
+      "id": "00511_0025_u00005a_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am15_xp0_yp0d25.svg",
+      "name": "0020_u000055_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00512_0020_u000055_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap15_xp0d25_yp0.svg",
+      "name": "0007_u000048_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00513_0007_u000048_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_ap0_xp0_yp0.svg",
+      "name": "0009_u00004a_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00514_0009_u00004a_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am30_xp0d25_yp0.svg",
+      "name": "0008_u000049_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00515_0008_u000049_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap30_xp0_yp0d25.svg",
+      "name": "0003_u000044_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00516_0003_u000044_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0015_u000050_ap15_xp0_yp0.svg",
+      "name": "0015_u000050_ap15_xp0_yp0",
+      "split": "val",
+      "id": "00517_0015_u000050_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am15_xp0d25_yp0.svg",
+      "name": "0008_u000049_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00518_0008_u000049_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_ap0_xp0_yp0d25.svg",
+      "name": "0007_u000048_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00519_0007_u000048_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap15_xp0_yp0.svg",
+      "name": "0025_u00005a_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00520_0025_u00005a_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap15_xp0d5_yp0d5.svg",
+      "name": "0005_u000046_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00521_0005_u000046_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am15_xp0_yp0d25.svg",
+      "name": "0022_u000057_am15_xp0_yp0d25",
+      "split": "test",
+      "id": "00522_0022_u000057_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_am15_xp0_yp0.svg",
+      "name": "0021_u000056_am15_xp0_yp0",
+      "split": "train",
+      "id": "00523_0021_u000056_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap15_xp0d5_yp0d5.svg",
+      "name": "0001_u000042_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00524_0001_u000042_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am15_xp0d25_yp0.svg",
+      "name": "0024_u000059_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00525_0024_u000059_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0003_u000044_ap0_xp0d5_yp0d5.svg",
+      "name": "0003_u000044_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00526_0003_u000044_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap15_xp0d5_yp0d5.svg",
+      "name": "0021_u000056_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00527_0021_u000056_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_ap15_xp0_yp0.svg",
+      "name": "0012_u00004d_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00528_0012_u00004d_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_ap15_xp0_yp0d25.svg",
+      "name": "0008_u000049_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00529_0008_u000049_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am30_xp0d5_yp0d5.svg",
+      "name": "0000_u000041_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00530_0000_u000041_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_ap15_xp0d25_yp0.svg",
+      "name": "0020_u000055_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00531_0020_u000055_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am30_xp0d25_yp0.svg",
+      "name": "0024_u000059_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00532_0024_u000059_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_ap0_xp0d5_yp0d5.svg",
+      "name": "0014_u00004f_ap0_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00533_0014_u00004f_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_am30_xp0d25_yp0.svg",
+      "name": "0017_u000052_am30_xp0d25_yp0",
+      "split": "test",
+      "id": "00534_0017_u000052_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap30_xp0_yp0d25.svg",
+      "name": "0029_u00006f_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00535_0029_u00006f_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap0_xp0_yp0d25.svg",
+      "name": "0013_u00004e_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00536_0013_u00004e_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am15_xp0d25_yp0.svg",
+      "name": "0028_u000067_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00537_0028_u000067_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am15_xp0d5_yp0d5.svg",
+      "name": "0013_u00004e_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00538_0013_u00004e_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap30_xp0_yp0.svg",
+      "name": "0023_u000058_ap30_xp0_yp0",
+      "split": "train",
+      "id": "00539_0023_u000058_ap30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am15_xp0d25_yp0.svg",
+      "name": "0014_u00004f_am15_xp0d25_yp0",
+      "split": "val",
+      "id": "00540_0014_u00004f_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_am15_xp0d5_yp0d5.svg",
+      "name": "0024_u000059_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00541_0024_u000059_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am30_xp0d5_yp0d5.svg",
+      "name": "0012_u00004d_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00542_0012_u00004d_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0029_u00006f_ap0_xp0d25_yp0.svg",
+      "name": "0029_u00006f_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00543_0029_u00006f_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap30_xp0d25_yp0.svg",
+      "name": "0013_u00004e_ap30_xp0d25_yp0",
+      "split": "train",
+      "id": "00544_0013_u00004e_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_ap0_xp0_yp0d25.svg",
+      "name": "0006_u000047_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00545_0006_u000047_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap0_xp0_yp0.svg",
+      "name": "0025_u00005a_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00546_0025_u00005a_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am30_xp0d5_yp0d5.svg",
+      "name": "0009_u00004a_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00547_0009_u00004a_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap15_xp0d5_yp0d5.svg",
+      "name": "0024_u000059_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00548_0024_u000059_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0007_u000048_am15_xp0d25_yp0.svg",
+      "name": "0007_u000048_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00549_0007_u000048_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0008_u000049_am30_xp0_yp0d25.svg",
+      "name": "0008_u000049_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00550_0008_u000049_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am30_xp0_yp0.svg",
+      "name": "0002_u000043_am30_xp0_yp0",
+      "split": "train",
+      "id": "00551_0002_u000043_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap30_xp0_yp0d25.svg",
+      "name": "0018_u000053_ap30_xp0_yp0d25",
+      "split": "test",
+      "id": "00552_0018_u000053_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap0_xp0d5_yp0d5.svg",
+      "name": "0026_u000061_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00553_0026_u000061_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am15_xp0_yp0.svg",
+      "name": "0009_u00004a_am15_xp0_yp0",
+      "split": "train",
+      "id": "00554_0009_u00004a_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0009_u00004a_am30_xp0_yp0.svg",
+      "name": "0009_u00004a_am30_xp0_yp0",
+      "split": "train",
+      "id": "00555_0009_u00004a_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_ap0_xp0d5_yp0d5.svg",
+      "name": "0002_u000043_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00556_0002_u000043_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0017_u000052_ap0_xp0_yp0d25.svg",
+      "name": "0017_u000052_ap0_xp0_yp0d25",
+      "split": "test",
+      "id": "00557_0017_u000052_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_ap0_xp0d25_yp0.svg",
+      "name": "0023_u000058_ap0_xp0d25_yp0",
+      "split": "train",
+      "id": "00558_0023_u000058_ap0_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am30_xp0_yp0d25.svg",
+      "name": "0011_u00004c_am30_xp0_yp0d25",
+      "split": "test",
+      "id": "00559_0011_u00004c_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0014_u00004f_am30_xp0d5_yp0d5.svg",
+      "name": "0014_u00004f_am30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00560_0014_u00004f_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am30_xp0_yp0.svg",
+      "name": "0006_u000047_am30_xp0_yp0",
+      "split": "train",
+      "id": "00561_0006_u000047_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am15_xp0d5_yp0d5.svg",
+      "name": "0002_u000043_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00562_0002_u000043_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap15_xp0d25_yp0.svg",
+      "name": "0026_u000061_ap15_xp0d25_yp0",
+      "split": "train",
+      "id": "00563_0026_u000061_ap15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_ap15_xp0d5_yp0d5.svg",
+      "name": "0026_u000061_ap15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00564_0026_u000061_ap15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap0_xp0_yp0d25.svg",
+      "name": "0024_u000059_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00565_0024_u000059_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap0_xp0_yp0d25.svg",
+      "name": "0005_u000046_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00566_0005_u000046_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0012_u00004d_am15_xp0_yp0d25.svg",
+      "name": "0012_u00004d_am15_xp0_yp0d25",
+      "split": "train",
+      "id": "00567_0012_u00004d_am15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0020_u000055_am30_xp0d25_yp0.svg",
+      "name": "0020_u000055_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00568_0020_u000055_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am30_xp0_yp0d25.svg",
+      "name": "0013_u00004e_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00569_0013_u00004e_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_am15_xp0d5_yp0d5.svg",
+      "name": "0025_u00005a_am15_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00570_0025_u00005a_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_am15_xp0d25_yp0.svg",
+      "name": "0000_u000041_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00571_0000_u000041_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap30_xp0d5_yp0d5.svg",
+      "name": "0018_u000053_ap30_xp0d5_yp0d5",
+      "split": "test",
+      "id": "00572_0018_u000053_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0000_u000041_ap15_xp0_yp0d25.svg",
+      "name": "0000_u000041_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00573_0000_u000041_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_ap0_xp0d5_yp0d5.svg",
+      "name": "0013_u00004e_ap0_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00574_0013_u00004e_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0004_u000045_ap30_xp0d5_yp0d5.svg",
+      "name": "0004_u000045_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00575_0004_u000045_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0011_u00004c_am30_xp0d25_yp0.svg",
+      "name": "0011_u00004c_am30_xp0d25_yp0",
+      "split": "test",
+      "id": "00576_0011_u00004c_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0002_u000043_am30_xp0d25_yp0.svg",
+      "name": "0002_u000043_am30_xp0d25_yp0",
+      "split": "train",
+      "id": "00577_0002_u000043_am30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0016_u000051_ap0_xp0_yp0.svg",
+      "name": "0016_u000051_ap0_xp0_yp0",
+      "split": "train",
+      "id": "00578_0016_u000051_ap0_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap30_xp0d25_yp0.svg",
+      "name": "0010_u00004b_ap30_xp0d25_yp0",
+      "split": "val",
+      "id": "00579_0010_u00004b_ap30_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0025_u00005a_ap0_xp0_yp0d25.svg",
+      "name": "0025_u00005a_ap0_xp0_yp0d25",
+      "split": "train",
+      "id": "00580_0025_u00005a_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0022_u000057_am30_xp0_yp0.svg",
+      "name": "0022_u000057_am30_xp0_yp0",
+      "split": "test",
+      "id": "00581_0022_u000057_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap15_xp0_yp0d25.svg",
+      "name": "0001_u000042_ap15_xp0_yp0d25",
+      "split": "train",
+      "id": "00582_0001_u000042_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0021_u000056_ap15_xp0_yp0.svg",
+      "name": "0021_u000056_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00583_0021_u000056_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0013_u00004e_am30_xp0d5_yp0d5.svg",
+      "name": "0013_u00004e_am30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00584_0013_u00004e_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap0_xp0_yp0d25.svg",
+      "name": "0018_u000053_ap0_xp0_yp0d25",
+      "split": "test",
+      "id": "00585_0018_u000053_ap0_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am30_xp0d5_yp0d5.svg",
+      "name": "0019_u000054_am30_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00586_0019_u000054_am30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_am30_xp0_yp0d25.svg",
+      "name": "0005_u000046_am30_xp0_yp0d25",
+      "split": "train",
+      "id": "00587_0005_u000046_am30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\test\\0018_u000053_ap15_xp0_yp0d25.svg",
+      "name": "0018_u000053_ap15_xp0_yp0d25",
+      "split": "test",
+      "id": "00588_0018_u000053_ap15_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0019_u000054_am15_xp0d5_yp0d5.svg",
+      "name": "0019_u000054_am15_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00589_0019_u000054_am15_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_am15_xp0d25_yp0.svg",
+      "name": "0001_u000042_am15_xp0d25_yp0",
+      "split": "train",
+      "id": "00590_0001_u000042_am15_xp0d25_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0006_u000047_am15_xp0_yp0.svg",
+      "name": "0006_u000047_am15_xp0_yp0",
+      "split": "train",
+      "id": "00591_0006_u000047_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap30_xp0_yp0d25.svg",
+      "name": "0024_u000059_ap30_xp0_yp0d25",
+      "split": "train",
+      "id": "00592_0024_u000059_ap30_xp0_yp0d25"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0023_u000058_am15_xp0_yp0.svg",
+      "name": "0023_u000058_am15_xp0_yp0",
+      "split": "train",
+      "id": "00593_0023_u000058_am15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0005_u000046_ap15_xp0_yp0.svg",
+      "name": "0005_u000046_ap15_xp0_yp0",
+      "split": "train",
+      "id": "00594_0005_u000046_ap15_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0026_u000061_am30_xp0_yp0.svg",
+      "name": "0026_u000061_am30_xp0_yp0",
+      "split": "train",
+      "id": "00595_0026_u000061_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0028_u000067_am30_xp0_yp0.svg",
+      "name": "0028_u000067_am30_xp0_yp0",
+      "split": "train",
+      "id": "00596_0028_u000067_am30_xp0_yp0"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0001_u000042_ap30_xp0d5_yp0d5.svg",
+      "name": "0001_u000042_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00597_0001_u000042_ap30_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\val\\0010_u00004b_ap0_xp0d5_yp0d5.svg",
+      "name": "0010_u00004b_ap0_xp0d5_yp0d5",
+      "split": "val",
+      "id": "00598_0010_u00004b_ap0_xp0d5_yp0d5"
+    },
+    {
+      "path": "datasets\\text_glyph_rotated_subpixel_pilot_sources\\train\\0024_u000059_ap30_xp0d5_yp0d5.svg",
+      "name": "0024_u000059_ap30_xp0d5_yp0d5",
+      "split": "train",
+      "id": "00599_0024_u000059_ap30_xp0d5_yp0d5"
+    }
+  ],
+  "shards": [
+    {
+      "file": "shard_0000.npz",
+      "loops": 840,
+      "vertices": 76314,
+      "corners": 7050,
+      "events": 4622,
+      "short_spans": 2762
+    }
+  ]
+}

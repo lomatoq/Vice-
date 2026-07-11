@@ -1,0 +1,4225 @@
+"""Geometry-first raster vectorizer with no vocabulary quotas.
+
+Colour components become SVG regions with shared holes.  Complete rectangles
+and ellipses are recognized globally; other boundaries are fitted adaptively.
+"""
+
+from __future__ import annotations
+
+import json
+import math
+from dataclasses import dataclass
+from pathlib import Path
+
+import cv2
+import numpy as np
+from PIL import Image, ImageDraw
+
+from vectorize_papers import (
+    Curve,
+    cad_regularize_ring,
+    circular_beziers,
+    eval_curve,
+    extract_shape_masks,
+    fit_circle,
+    interpolate_ring,
+    mask_loops,
+    point_line_distance,
+    resample_ring,
+    signed_area,
+    taubin_smooth_ring,
+)
+
+
+TYPE_COLORS = {"line": (38, 99, 235), "ellipse": (245, 145, 30), "curve": (196, 57, 173)}
+
+
+@dataclass
+class FittedLoop:
+    source: np.ndarray
+    curves: list[Curve]
+    template: str
+
+
+@dataclass
+class Region:
+    color: tuple[int, int, int]
+    area: int
+    loops: list[FittedLoop]
+    # optional gradient fill (audit P2: banded shading merges into ONE region):
+    #   ("linear", (x0, y0), (x1, y1), [(t, (r, g, b)), ...])
+    #   ("radial", (cx, cy), r0, r1, [(t, (r, g, b)), ...])
+    fill: tuple | None = None
+    # optional stroke representation (audit P2: a constant-width ribbon is a
+    # stroked CENTERLINE, not a filled outline): (width_px, [Curve, ...])
+    stroke: tuple | None = None
+
+
+def perimeter(loop: np.ndarray) -> float:
+    return float(np.sum(np.linalg.norm(np.diff(loop, axis=0), axis=1)))
+
+
+def _ellipse_curves(center: np.ndarray, axes: np.ndarray, angle: float) -> list[Curve]:
+    k = 0.5522847498307936
+    rotation = np.array([[math.cos(angle), -math.sin(angle)], [math.sin(angle), math.cos(angle)]])
+
+    def p(x: float, y: float) -> np.ndarray:
+        return center + rotation @ (np.array([x, y]) * axes)
+
+    return [
+        Curve(3, np.vstack((p(1, 0), p(1, k), p(k, 1), p(0, 1)))),
+        Curve(3, np.vstack((p(0, 1), p(-k, 1), p(-1, k), p(-1, 0)))),
+        Curve(3, np.vstack((p(-1, 0), p(-1, -k), p(-k, -1), p(0, -1)))),
+        Curve(3, np.vstack((p(0, -1), p(k, -1), p(1, -k), p(1, 0)))),
+    ]
+
+
+def _ellipse_candidate(loop: np.ndarray) -> tuple[float, float, list[Curve]] | None:
+    points = loop[:-1].astype(np.float32)
+    if len(points) < 12:
+        return None
+    try:
+        (cx, cy), (width, height), degrees = cv2.fitEllipseDirect(points.reshape(-1, 1, 2))
+    except cv2.error:
+        return None
+    if width < 2 or height < 2:
+        return None
+    angle = math.radians(degrees)
+    rotation = np.array([[math.cos(angle), math.sin(angle)], [-math.sin(angle), math.cos(angle)]])
+    local = (points - np.array([cx, cy])) @ rotation.T
+    axes = np.array([width / 2, height / 2])
+    radial = np.sqrt(np.sum((local / axes) ** 2, axis=1))
+    error = float(np.sqrt(np.mean(((radial - 1) * min(axes)) ** 2)))
+    return error, float(min(axes)), _ellipse_curves(np.array([cx, cy]), axes, angle)
+
+
+def _rectangle_candidate(loop: np.ndarray) -> tuple[float, list[Curve]] | None:
+    points = loop[:-1].astype(np.float32)
+    if len(points) < 8:
+        return None
+    rect = cv2.minAreaRect(points.reshape(-1, 1, 2))
+    box = cv2.boxPoints(rect).astype(float)
+    errors = []
+    for p in points:
+        errors.append(min(float(point_line_distance(p[None, :], box[i], box[(i + 1) % 4])[0]) for i in range(4)))
+    error = float(np.sqrt(np.mean(np.square(errors))))
+    curves = [Curve(1, np.vstack((box[i], box[(i + 1) % 4]))) for i in range(4)]
+    return error, curves
+
+
+def _unit(vector: np.ndarray) -> np.ndarray:
+    length = float(np.linalg.norm(vector))
+    return vector / length if length > 1e-9 else np.array([1.0, 0.0])
+
+
+def _ring_slice(ring: np.ndarray, start: int, end: int) -> np.ndarray:
+    if end >= start:
+        return ring[start : end + 1]
+    return np.vstack((ring[start:], ring[: end + 1]))
+
+
+def _multiscale_corners(ring: np.ndarray, feature_scale: float, spacing: float) -> list[int]:
+    """Find corners whose turn persists across two physical neighbourhoods."""
+    n = len(ring)
+    if n < 12:
+        return []
+    small = max(2, int(round(max(1.1, 1.25 * feature_scale) / spacing)))
+    large = max(small + 2, int(round(2.5 * max(1.1, feature_scale) / spacing)))
+    large = min(large, max(3, n // 7))
+    score = np.zeros(n, dtype=float)
+    signed = np.zeros(n, dtype=float)
+    for i in range(n):
+        turns = []
+        for step in (small, large):
+            incoming = _unit(ring[i] - ring[(i - step) % n])
+            outgoing = _unit(ring[(i + step) % n] - ring[i])
+            turns.append(math.atan2(float(np.cross(incoming, outgoing)), float(np.dot(incoming, outgoing))))
+        fine, coarse = turns
+        ratio = abs(fine) / max(abs(coarse), math.radians(2.0))
+        if abs(fine) >= math.radians(17.0) and abs(coarse) >= math.radians(23.0) and ratio >= 0.70:
+            score[i] = abs(fine) * min(ratio, 1.25)
+            signed[i] = fine
+
+    candidates = list(np.flatnonzero(score > 0))
+    candidates.sort(key=lambda i: score[i], reverse=True)
+    separation = max(small * 2, int(round(1.5 * feature_scale / spacing)))
+    chosen: list[int] = []
+    for index in candidates:
+        if all(min((index - old) % n, (old - index) % n) > separation for old in chosen):
+            chosen.append(int(index))
+    return sorted(chosen)
+
+
+def _cubic_control(points: np.ndarray, tangent_start: np.ndarray, tangent_end: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    segment = np.linalg.norm(np.diff(points, axis=0), axis=1)
+    parameter = np.concatenate(([0.0], np.cumsum(segment)))
+    parameter /= max(float(parameter[-1]), 1e-9)
+    t = parameter[:, None]
+    b0 = (1 - t) ** 3
+    b1 = 3 * (1 - t) ** 2 * t
+    b2 = 3 * (1 - t) * t**2
+    b3 = t**3
+    p0, p3 = points[0], points[-1]
+    fixed = (b0 + b1) * p0 + (b2 + b3) * p3
+    a = np.column_stack(((b1 * tangent_start).reshape(-1), (-b2 * tangent_end).reshape(-1)))
+    rhs = (points - fixed).reshape(-1)
+    # 2x2 normal equations instead of lstsq(SVD): same result for 2 unknowns, far cheaper
+    # (this is the DP's hottest call).
+    ata = a.T @ a
+    try:
+        alpha, beta = np.linalg.solve(ata, a.T @ rhs)
+    except np.linalg.LinAlgError:
+        alpha = beta = float(np.linalg.norm(p3 - p0)) / 3.0
+    chord = max(float(np.linalg.norm(p3 - p0)), 1e-6)
+    travel = max(float(np.sum(segment)), chord)
+    maximum_handle = max(chord / 3.0, 0.65 * travel)
+    replacement = min(maximum_handle, travel / 3.0)
+    if alpha <= 0 or alpha > maximum_handle:
+        alpha = replacement
+    if beta <= 0 or beta > maximum_handle:
+        beta = replacement
+    control = np.vstack((p0, p0 + alpha * tangent_start, p3 - beta * tangent_end, p3))
+    prediction = (
+        b0 * control[0]
+        + b1 * control[1]
+        + b2 * control[2]
+        + b3 * control[3]
+    )
+    return control, prediction
+
+
+def _arc_center(p0: np.ndarray, t0: np.ndarray, p1: np.ndarray):
+    """Centre+radius of the circle through p0 (tangent t0) and p1; None if straight."""
+    n0 = np.array([-t0[1], t0[0]])
+    w = p1 - p0
+    denom = 2.0 * float(w @ n0)
+    if abs(denom) < 1e-9:
+        return None
+    s = float(w @ w) / denom
+    return p0 + s * n0, abs(s)
+
+
+def _fit_biarc(p0: np.ndarray, t0: np.ndarray, p1: np.ndarray, t1: np.ndarray):
+    """Paper Sec 5.1 clothoid stand-in: two circular arcs meeting G1, from (p0,t0) to
+    (p1,t1).  Each arc has constant (so MONOTONE) curvature, so a biarc physically cannot
+    overshoot or loop the way a cubic Bezier does — it removes the S-hook artefacts.
+    Returns (joint, (c1,r1), (c2,r2)) or None when degenerate (caller falls back)."""
+    t0, t1 = _unit(t0), _unit(t1)
+    v = p1 - p0
+    dott = float(t0 @ t1)
+    b = float(v @ (t0 + t1))
+    vv = float(v @ v)
+    denom = 2.0 * (1.0 - dott)
+    if denom > 1e-6:
+        d = (-b + math.sqrt(max(0.0, b * b + denom * vv))) / denom
+    else:
+        db = float(v @ t0)
+        if abs(db) < 1e-9:
+            return None
+        d = vv / (4.0 * db)
+    if d <= 1e-6:
+        return None
+    joint = 0.5 * ((p0 + d * t0) + (p1 - d * t1))
+    c1 = _arc_center(p0, t0, joint)
+    c2 = _arc_center(p1, -t1, joint)
+    if c1 is None or c2 is None or c1[1] < 0.5 or c2[1] < 0.5:
+        return None
+    return joint, c1, c2
+
+
+def _biarc_curves(p0: np.ndarray, t0: np.ndarray, p1: np.ndarray, t1: np.ndarray, arc_pts: np.ndarray) -> list[Curve] | None:
+    """Draw a biarc as two arc-approximating cubic-Bezier runs; None if degenerate."""
+    fit = _fit_biarc(p0, t0, p1, t1)
+    if fit is None:
+        return None
+    joint, (c1, r1), (c2, r2) = fit
+    half = len(arc_pts) // 2
+    curves = circular_beziers(p0, joint, c1, r1, arc_pts[: half + 1] if half >= 1 else arc_pts)
+    curves += circular_beziers(joint, p1, c2, r2, arc_pts[half:] if half >= 1 else arc_pts)
+    return curves or None
+
+
+def _fit_g1_span(
+    points: np.ndarray,
+    tangent_start: np.ndarray,
+    tangent_end: np.ndarray,
+    tolerance: float,
+    depth: int = 0,
+) -> list[Curve]:
+    if len(points) <= 3:
+        chord = float(np.linalg.norm(points[-1] - points[0]))
+        return [Curve(3, np.vstack((points[0], points[0] + tangent_start * chord / 3, points[-1] - tangent_end * chord / 3, points[-1])))]
+    control, prediction = _cubic_control(points, tangent_start, tangent_end)
+    errors = np.linalg.norm(prediction - points, axis=1)
+    split = int(np.argmax(errors))
+    if float(errors[split]) <= tolerance or depth >= 12 or len(points) < 8:
+        return [Curve(3, control)]
+    split = max(3, min(len(points) - 4, split))
+    tangent = _unit(points[split + 1] - points[split - 1])
+    return _fit_g1_span(points[: split + 1], tangent_start, tangent, tolerance, depth + 1) + _fit_g1_span(
+        points[split:], tangent, tangent_end, tolerance, depth + 1
+    )
+
+
+def _fit_supported_span(
+    points: np.ndarray,
+    tangent_start: np.ndarray,
+    tangent_end: np.ndarray,
+    feature_scale: float,
+) -> tuple[str, list[Curve]]:
+    travel = float(np.sum(np.linalg.norm(np.diff(points, axis=0), axis=1)))
+    chord = float(np.linalg.norm(points[-1] - points[0]))
+    line_error = float(np.max(point_line_distance(points, points[0], points[-1])))
+    line_support = max(4.5, 5.5 * feature_scale)
+    line_tolerance = 0.16 + 0.035 * feature_scale
+    if travel >= line_support and line_error <= line_tolerance and travel <= chord * 1.018 + 1e-6:
+        return "line", [Curve(1, np.vstack((points[0], points[-1])))]
+
+    circle = fit_circle(points)
+    if circle is not None:
+        center, radius, residual = circle
+        sweep = travel / max(radius, 1e-6)
+        if travel >= max(4.0, 4.5 * feature_scale) and residual <= 0.17 + 0.04 * feature_scale and 0.32 <= sweep <= math.pi * 1.15:
+            return "arc", circular_beziers(points[0], points[-1], center, radius, points)
+
+    tolerance = 0.16 + 0.045 * feature_scale
+    return "curve", _fit_g1_span(points, tangent_start, tangent_end, tolerance)
+
+
+def _global_dp_span(
+    points: np.ndarray,
+    tangent_start: np.ndarray,
+    tangent_end: np.ndarray,
+    feature_scale: float,
+) -> list[Curve]:
+    """Globally choose Line/Arc/Cubic hypotheses inside an uncertainty band.
+
+    Unlike the recursive fitter, this keeps several explanations alive and
+    applies a description-length penalty.  A primitive must explain a complete
+    interval; fitting a tiny staircase fragment is therefore not rewarded.
+    """
+    if len(points) < 7:
+        return _fit_g1_span(points, tangent_start, tangent_end, 0.24 + 0.05 * feature_scale)
+    spacing = float(np.median(np.linalg.norm(np.diff(points, axis=0), axis=1)))
+    stride = max(3, int(round(max(1.8, 2.2 * feature_scale) / max(spacing, 0.2))))
+    nodes = list(range(0, len(points) - 1, stride))
+    if nodes[-1] != len(points) - 1:
+        nodes.append(len(points) - 1)
+    # This is a localization uncertainty, not a smoothing radius.  Keeping it
+    # below roughly half an original pixel prevents a compact solution from
+    # cutting across narrow notches and counters.
+    band = 0.28 + 0.08 * feature_scale
+    count = len(nodes)
+    inf = float("inf")
+    dp = [inf] * count
+    previous: list[tuple[int, list[Curve], str] | None] = [None] * count
+    dp[0] = 0.0
+
+    def tangent(index: int) -> np.ndarray:
+        if index <= 0:
+            return tangent_start
+        if index >= len(points) - 1:
+            return tangent_end
+        return _unit(points[index + 1] - points[index - 1])
+
+    for j in range(1, count):
+        # Long support remains possible, but quadratic work is bounded on very
+        # large outlines by considering the preceding 22 candidate nodes.
+        for i in range(max(0, j - 22), j):
+            a, b = nodes[i], nodes[j]
+            sample = points[a : b + 1]
+            if len(sample) < 3:
+                continue
+            travel = float(np.sum(np.linalg.norm(np.diff(sample, axis=0), axis=1)))
+            options: list[tuple[float, str, list[Curve]]] = []
+
+            line_errors = point_line_distance(sample, sample[0], sample[-1])
+            line_limit = min(band, 0.24 + 0.045 * feature_scale)
+            if travel >= max(2.2, 2.8 * feature_scale) and float(line_errors.max()) <= line_limit:
+                fidelity = 0.065 * float(np.sum((line_errors / band) ** 2))
+                options.append((0.34 + fidelity, "line", [Curve(1, np.vstack((sample[0], sample[-1])))]))
+
+            circle = fit_circle(sample)
+            if circle is not None:
+                center, radius, _ = circle
+                radial = np.abs(np.linalg.norm(sample - center, axis=1) - radius)
+                sweep = travel / max(radius, 1e-6)
+                arc_limit = min(band, 0.32 + 0.055 * feature_scale)
+                if travel >= max(3.0, 3.5 * feature_scale) and float(radial.max()) <= arc_limit and 0.28 <= sweep <= math.pi * 1.2:
+                    arc_curves = circular_beziers(sample[0], sample[-1], center, radius, sample)
+                    if arc_curves:
+                        rendered_arc = np.vstack(
+                            [chunk if index == 0 else chunk[1:] for index, chunk in enumerate(eval_curve(curve, 28) for curve in arc_curves)]
+                        )
+                        # A circle has two branches between its endpoints.  A
+                        # radial residual alone cannot detect choosing the wrong
+                        # branch, so verify the actual generated path too.
+                        branch_error = np.sqrt(
+                            np.min(np.sum((rendered_arc[:, None, :] - sample[None, :, :]) ** 2, axis=2), axis=1)
+                        )
+                        if float(branch_error.max()) <= band:
+                            fidelity = 0.06 * float(np.sum((radial / band) ** 2))
+                            options.append((0.56 + fidelity, "arc", arc_curves))
+
+            control, prediction = _cubic_control(sample, tangent(a), tangent(b))
+            cubic_errors = np.linalg.norm(prediction - sample, axis=1)
+            if float(cubic_errors.max()) <= band:
+                fidelity = 0.052 * float(np.sum((cubic_errors / band) ** 2))
+                options.append((0.92 + fidelity, "cubic", [Curve(3, control)]))
+
+            for local_cost, kind, curves in options:
+                cost = dp[i] + local_cost
+                if cost < dp[j]:
+                    dp[j] = cost
+                    previous[j] = (i, curves, kind)
+
+    if previous[-1] is None:
+        # If the strict uncertainty tube has no complete DP path, preserve the
+        # proven high-fidelity local solution instead of relaxing the tube.
+        _, fallback = _fit_supported_span(points, tangent_start, tangent_end, feature_scale)
+        return fallback
+    chunks: list[list[Curve]] = []
+    cursor = count - 1
+    while cursor > 0 and previous[cursor] is not None:
+        old, curves, _ = previous[cursor]
+        chunks.append(curves)
+        cursor = old
+    chunks.reverse()
+    return [curve for chunk in chunks for curve in chunk]
+
+
+def _smooth_closed_chain(ring: np.ndarray, feature_scale: float, global_fit: bool = False) -> list[Curve]:
+    """Fit a corner-free closed curve as four G1-compatible cubic spans."""
+    n = len(ring)
+    cuts = sorted(set(int(round(i * n / 4)) % n for i in range(4)))
+    curves: list[Curve] = []
+    for i, start in enumerate(cuts):
+        end = cuts[(i + 1) % len(cuts)]
+        points = _ring_slice(ring, start, end)
+        tangent_start = _unit(ring[(start + 1) % n] - ring[(start - 1) % n])
+        tangent_end = _unit(ring[(end + 1) % n] - ring[(end - 1) % n])
+        if global_fit:
+            fitted = _global_dp_span(points, tangent_start, tangent_end, feature_scale)
+        else:
+            _, fitted = _fit_supported_span(points, tangent_start, tangent_end, feature_scale)
+        curves.extend(fitted)
+    return curves
+
+
+def _rounded_corner_chain(
+    ring: np.ndarray,
+    corners: list[int],
+    feature_scale: float,
+    spacing: float,
+    global_fit: bool = False,
+) -> list[Curve]:
+    n = len(ring)
+    cuts = max(1, int(round(max(0.28, 0.55 * feature_scale) / spacing)))
+    records = []
+    for position, corner in enumerate(corners):
+        previous_corner = corners[position - 1]
+        next_corner = corners[(position + 1) % len(corners)]
+        distance_before = (corner - previous_corner) % n
+        distance_after = (next_corner - corner) % n
+        previous = ring[(corner - cuts) % n]
+        point = ring[corner]
+        following = ring[(corner + cuts) % n]
+        incoming = _unit(point - previous)
+        outgoing = _unit(following - point)
+        turn = abs(math.atan2(float(np.cross(incoming, outgoing)), float(np.dot(incoming, outgoing))))
+        # More acute corners receive a slightly larger fillet, but never enough
+        # to consume the neighbouring feature.
+        desired = max(1, int(round(cuts * (0.75 + 0.45 * min(turn / (math.pi / 2), 1.4)))))
+        # Adjacent tiny features must not have overlapping fillets: that would
+        # make the closed traversal wrap around the complete ring and produce a
+        # long diagonal across letters such as B or C.
+        adaptive = min(desired, max(1, min(distance_before, distance_after) // 3))
+        records.append(
+            {
+                "corner": corner,
+                "pre_i": (corner - adaptive) % n,
+                "post_i": (corner + adaptive) % n,
+                "pre": ring[(corner - adaptive) % n],
+                "point": point,
+                "post": ring[(corner + adaptive) % n],
+            }
+        )
+
+    curves: list[Curve] = []
+    for i, record in enumerate(records):
+        # A quadratic with its control at the detected vertex is tangent to both
+        # incident directions.  At icon scale it is an excellent circular
+        # fillet approximation and mirrors VAI's common Q/L corner structure.
+        curves.append(Curve(2, np.vstack((record["pre"], record["point"], record["post"]))))
+        following = records[(i + 1) % len(records)]
+        span = _ring_slice(ring, record["post_i"], following["pre_i"])
+        if len(span) < 2:
+            continue
+        tangent_start = _unit(record["post"] - record["point"])
+        tangent_end = _unit(following["point"] - following["pre"])
+        span_travel = float(np.sum(np.linalg.norm(np.diff(span, axis=0), axis=1)))
+        if global_fit and span_travel >= max(8.0, 8.0 * feature_scale):
+            fitted = _global_dp_span(span, tangent_start, tangent_end, feature_scale)
+        else:
+            _, fitted = _fit_supported_span(span, tangent_start, tangent_end, feature_scale)
+        curves.extend(fitted)
+    return curves
+
+
+# ------- Paper Sec 5: corner set = learned classifier (Sec 4) + iterated removal -------
+
+_CORNER_MODEL: tuple | None = None
+_PAPER_ACC = 0.7  # fitting accuracy bound to edge midpoints (native px)
+_OBTUSE_TURN = 60.0  # Sec 5.2.1: a corner with turn < 60 deg (interior > 120) is a gentle bend
+_AXIS_TOL = 1.0      # Sec 6: max px an axis/parallel snap may move the boundary (accuracy budget)
+
+
+def _corner_model():
+    global _CORNER_MODEL
+    if _CORNER_MODEL is None:
+        from corner_classifier import load
+
+        _CORNER_MODEL = load()
+    return _CORNER_MODEL
+
+
+_CORNER_THRESHOLDS: dict | None = None
+
+
+def _corner_threshold(resolution: float) -> float:
+    """Paper Fig 7 per-resolution operating point: the lax cutoff calibrated to ~95%
+    recall at the nearest trained resolution; falls back to the fixed lax default."""
+    global _CORNER_THRESHOLDS
+    if _CORNER_THRESHOLDS is None:
+        from corner_classifier import load_thresholds
+
+        _CORNER_THRESHOLDS = load_thresholds() or {}
+    if not _CORNER_THRESHOLDS:
+        return _CORNER_LAX_THRESHOLD
+    nearest = min(_CORNER_THRESHOLDS, key=lambda r: abs(float(r) - resolution))
+    return float(_CORNER_THRESHOLDS[nearest])
+
+
+def _arc_slice(loop: np.ndarray, a: int, b: int) -> np.ndarray:
+    return loop[a : b + 1] if b >= a else np.vstack((loop[a:], loop[: b + 1]))
+
+
+def _clothoid_fit(sub: np.ndarray):
+    """LSQ Euler-spiral (clothoid) fit — the paper's true Sec 5.1 r=4 primitive.
+
+    The tangent angle of a clothoid is QUADRATIC in arclength (curvature linear),
+    so the family is fitted EXACTLY by least squares on the step tangent angles:
+    theta(s) = a + b*s + c*s^2.  Positions are recovered by trapezoid integration
+    at the data arclengths (sub-0.01px at midpoint density) and translated to the
+    optimal overlay.  Returns (poly, t_start, t_end, (a, b, c, L)) or None."""
+    steps = np.diff(sub, axis=0)
+    ds = np.linalg.norm(steps, axis=1)
+    if len(ds) < 4 or float(ds.min()) <= 1e-9:
+        return None
+    s = np.concatenate(([0.0], np.cumsum(ds)))
+    length = float(s[-1])
+    if length < 1e-6:
+        return None
+    ang = np.unwrap(np.arctan2(steps[:, 1], steps[:, 0]))
+    sm = 0.5 * (s[:-1] + s[1:])                       # step tangent lives mid-step
+    basis = np.stack([np.ones_like(sm), sm, sm * sm], axis=1)
+    try:
+        coef, *_ = np.linalg.lstsq(basis, ang, rcond=None)
+    except np.linalg.LinAlgError:
+        return None
+    a0, b0, c0 = (float(v) for v in coef)
+    theta = a0 + b0 * s + c0 * s * s
+    dirs = np.stack([np.cos(theta), np.sin(theta)], axis=1)
+    poly = np.zeros_like(sub)
+    poly[1:] = np.cumsum(0.5 * (dirs[:-1] + dirs[1:]) * ds[:, None], axis=0)
+    # Similarity (Procrustes) alignment instead of pure translation: on raster
+    # cracks the polyline arclength is Manhattan-inflated (~1.3x for diagonals),
+    # so the integrated spiral overshoots.  A scaled/rotated clothoid is still a
+    # clothoid (k' = k/gamma), so aligning within the family fixes this exactly.
+    x = poly - poly.mean(axis=0)
+    y = sub - sub.mean(axis=0)
+    dot = float(np.sum(x * y))
+    crs = float(np.sum(x[:, 0] * y[:, 1] - x[:, 1] * y[:, 0]))
+    norm_x = float(np.sum(x * x))
+    if norm_x < 1e-9:
+        return None
+    phi = math.atan2(crs, dot)
+    gamma = (dot * math.cos(phi) + crs * math.sin(phi)) / norm_x
+    if not (0.5 <= gamma <= 2.0):
+        return None
+    rot = np.array([[math.cos(phi), -math.sin(phi)], [math.sin(phi), math.cos(phi)]])
+    poly = gamma * (x @ rot.T) + sub.mean(axis=0)
+    theta = theta + phi
+    a0, b0, c0, length = a0 + phi, b0 / gamma, c0 / (gamma * gamma), gamma * length
+    ts = np.array([math.cos(theta[0]), math.sin(theta[0])])
+    te = np.array([math.cos(theta[-1]), math.sin(theta[-1])])
+    return poly, ts, te, (a0, b0, c0, length)
+
+
+def _clothoid_curves(sub: np.ndarray, params: tuple, start: np.ndarray, end: np.ndarray) -> list[Curve]:
+    """Draw a fitted clothoid as 1-4 tangent-matched cubics (SVG has no spiral
+    primitive), each covering <=90 deg of turn; endpoints snap to the segment's
+    corner vertices with the sub-px closure drift distributed along the curve."""
+    a0, b0, c0, length = params
+    n = max(24, min(160, int(length * 2)))
+    s = np.linspace(0.0, length, n)
+    theta = a0 + b0 * s + c0 * s * s
+    dirs = np.stack([np.cos(theta), np.sin(theta)], axis=1)
+    ds = np.diff(s)[:, None]
+    poly = np.zeros((n, 2))
+    poly[1:] = np.cumsum(0.5 * (dirs[:-1] + dirs[1:]) * ds, axis=0)
+    poly += start - poly[0]
+    poly += np.linspace(0.0, 1.0, n)[:, None] * (end - poly[-1])
+    total_turn = abs(b0 * length + c0 * length * length)
+    pieces = max(1, min(4, int(math.ceil(total_turn / (0.5 * math.pi)))))
+    bounds = np.linspace(0, n - 1, pieces + 1).astype(int)
+    _ARC_RUN_ID[0] += 1
+    meta = ("clothoid", _ARC_RUN_ID[0], float(b0), float(b0 + 2.0 * c0 * length), float(length))
+    out: list[Curve] = []
+    for i in range(pieces):
+        piece = poly[bounds[i]: bounds[i + 1] + 1]
+        if len(piece) < 2:
+            continue
+        t0 = _unit(piece[min(1, len(piece) - 1)] - piece[0])
+        t1 = _unit(piece[-1] - piece[max(-2, -len(piece))])
+        control, _ = _cubic_control(piece, t0, t1)
+        curve = Curve(3, control)
+        curve.meta = meta
+        out.append(curve)
+    return out
+
+
+def _single_primitive_fit(points: np.ndarray, acc: float):
+    """Cheapest SINGLE primitive (line r=1 / arc r=2 / clothoid or cubic r=4) within
+    `acc`.  Returns (D, R, t_start, t_end) with unit end tangents of the FITTED
+    primitive (noise-free, unlike raw-polyline windows), or (inf, inf, None, None)."""
+    if len(points) < 3:
+        return 0.0, 1.0, None, None
+    mid = 0.5 * (points[:-1] + points[1:])
+    if len(mid) < 2:
+        return 0.0, 1.0, None, None
+    if len(mid) > 160:                                   # big spans (removal ring refits on
+        mid = mid[np.linspace(0, len(mid) - 1, 160).astype(int)]   # 1500-vert loops) dominated
+                                                         # runtime; a 160-pt subsample keeps
+                                                         # the cost estimate faithful
+    # LSQ line, not the endpoint chord — quantized endpoints tilt a long chord and
+    # its mid-span leaves `acc`, capping how much a removal merge can straighten.
+    centre_l = mid.mean(axis=0)
+    _, _, vt_l = np.linalg.svd(mid - centre_l, full_matrices=False)
+    du_l = vt_l[0]
+    if float(du_l @ (mid[-1] - mid[0])) < 0:
+        du_l = -du_l
+    line_dev = np.abs((mid - centre_l) @ np.array([-du_l[1], du_l[0]]))
+    if float(line_dev.max()) <= acc:                     # gate on max; D = L1 SUM (paper Eq 2)
+        return float(line_dev.sum()), 1.0, du_l, du_l
+    circle = fit_circle(mid)
+    if circle is not None:
+        center, radius, _ = circle
+        radial_dev = np.abs(np.linalg.norm(mid - center, axis=1) - radius)
+        radial = float(radial_dev.max())
+        if radial <= acc and radius >= 1.0:
+            def arc_tan(p: np.ndarray, travel: np.ndarray) -> np.ndarray:
+                rad = p - center
+                tang = np.array([-rad[1], rad[0]])
+                if float(tang @ travel) < 0:
+                    tang = -tang
+                return _unit(tang)
+            ts = arc_tan(mid[0], mid[1] - mid[0])
+            te = arc_tan(mid[-1], mid[-1] - mid[-2])
+            return float(radial_dev.sum()), 2.0, ts, te
+    clothoid = _clothoid_fit(mid)
+    if clothoid is not None:
+        poly, ts, te, _ = clothoid
+        clothoid_dev = np.linalg.norm(poly - mid, axis=1)
+        if float(clothoid_dev.max()) <= acc:
+            # variable-curvature spans (bar sides, letter bowls) fit ONE clothoid
+            # where neither line, arc nor a hooked cubic passes — this is what
+            # makes spurious lax corners on such spans removable (Sec 5.2)
+            return float(clothoid_dev.sum()), 4.0, ts, te
+    _, prediction = _cubic_control(mid, _unit(mid[1] - mid[0]), _unit(mid[-1] - mid[-2]))
+    cubic_dev = np.linalg.norm(prediction - mid, axis=1)
+    if float(cubic_dev.max()) <= acc:
+        return float(cubic_dev.sum()), 4.0, _unit(prediction[1] - prediction[0]), _unit(prediction[-1] - prediction[-2])
+    return float("inf"), float("inf"), None, None
+
+
+def _single_primitive_cost(points: np.ndarray, acc: float) -> tuple[float, float]:
+    d, r, _, _ = _single_primitive_fit(points, acc)
+    return d, r
+
+
+def _split_candidates(points: np.ndarray) -> list[int]:
+    """Candidate split vertices for a multi-primitive fit: quartiles + up to four local
+    TURNING PEAKS (line->arc tangencies live at local turning maxima — quartiles alone
+    never isolate a small cap on a long ring)."""
+    n = len(points)
+    cands = {n // 4, n // 2, (3 * n) // 4}
+    if n >= 16:
+        w = 6                                            # +-6: above staircase noise scale
+        a = points[w:-w] - points[:-2 * w]
+        b = points[2 * w:] - points[w:-w]
+        na = np.linalg.norm(a, axis=1)
+        nb = np.linalg.norm(b, axis=1)
+        ok = (na > 1e-9) & (nb > 1e-9)
+        if ok.any():
+            cosv = np.full(len(a), 1.0)
+            cosv[ok] = np.clip(np.einsum("ij,ij->i", a[ok], b[ok]) / (na[ok] * nb[ok]), -1.0, 1.0)
+            order = np.argsort(cosv)                     # sharpest first
+            picked: list[int] = []
+            for idx in order:
+                if cosv[idx] > math.cos(math.radians(12.0)):
+                    break                                # remaining are near-straight
+                k = int(idx) + w
+                if all(abs(k - q) >= 10 for q in picked):
+                    picked.append(k)
+                    if len(picked) >= 6:
+                        break
+            cands.update(picked)
+    return sorted(k for k in cands if 4 <= k <= n - 5)
+
+
+def _segment_cost(points: np.ndarray, acc: float = _PAPER_ACC, max_prims: int = 3) -> tuple[float, float]:
+    """Cheapest multi-primitive fit (D=summed max-deviations, R=summed type costs) of the
+    segment's edge midpoints within `acc` per piece; (inf, inf) if even `max_prims` pieces
+    cannot fit (a real corner is inside).
+
+    Paper Sec 5.2 RE-VECTORIZES the merged segment when scoring a corner removal — a single
+    primitive is the wrong surrogate: a bar CAP (side line + tangent arc) merges into
+    line+arc, and removing BOTH cap corners needs line+arc+line.  With the single-primitive
+    test those merges cost inf and cap corners were mathematically unremovable (audit probe).
+    Splits are searched recursively over quartile + sharpest-vertex candidates.
+
+    `acc` must exceed the raster staircase amplitude (~1px on the detection loop) so a
+    smooth arc split by a spurious corner CAN re-merge, yet stay below a real corner's
+    >=2px jut so true corners never merge away."""
+    n_total = len(points)
+    memo: dict[tuple[int, int], tuple] = {}
+    g1_cos = math.cos(math.radians(20.0))
+
+    def best(off: int, prims: int):
+        """(D, R, t_start, t_end) of the cheapest G1-legal decomposition of points[off:]."""
+        key = (off, prims)
+        if key in memo:
+            return memo[key]
+        sub = points[off:]
+        d, r, ts, te = _single_primitive_fit(sub, acc)
+        if math.isfinite(r):
+            memo[key] = (d, r, ts, te)
+            return memo[key]
+        if prims <= 1 or len(sub) < 10:
+            memo[key] = (float("inf"), float("inf"), None, None)
+            return memo[key]
+        found = (float("inf"), float("inf"), None, None)
+        for k in _split_candidates(sub):
+            d1, r1, ts1, te1 = _single_primitive_fit(sub[: k + 1], acc)
+            if not math.isfinite(r1):
+                continue
+            d2, r2, ts2, te2 = best(off + k, prims - 1)
+            if not math.isfinite(r2):
+                continue
+            # Paper Sec 5.1: primitives INSIDE a segment join G1 — gate on the FITTED
+            # primitives' end tangents (noise-free), so a decomposition can never hide the
+            # scored corner as a C0 kink (line|line at 45deg rejected; a cap tangency,
+            # where line and arc tangents agree exactly, passes).
+            if ts2 is not None and te1 is not None and float(te1 @ ts2) < g1_cos:
+                continue
+            if (r1 + r2, d1 + d2) < (found[1], found[0]):
+                found = (d1 + d2, r1 + r2, ts1, te2)
+        memo[key] = found
+        return memo[key]
+
+    d, r, _, _ = best(0, max_prims)
+    return d, r
+
+
+def _recenter_corners(loop: np.ndarray, indices: list[int], radius: int = 3, w: int = 4) -> list[int]:
+    """Snap each detected corner to the local windowed-turning maximum within
+    +-radius vertices — the same re-centring the human-label cleaner applies
+    (validated there: +0.11 F1).  The lax detector's NMS lands within ~1 vertex of
+    the true apex; a 1-off segment endpoint makes the first midpoints of BOTH
+    adjacent segments miss their Eq4-5 intervals, forcing spurious end-cubics on
+    otherwise straight sides."""
+    n = len(loop)
+    out: set[int] = set()
+    for i in indices:
+        best, best_turn = i % n, -1.0
+        for k in range(i - radius, i + radius + 1):
+            j = k % n
+            p, c, q = loop[(j - w) % n], loop[j], loop[(j + w) % n]
+            din, dout = c - p, q - c
+            ni, no = float(np.linalg.norm(din)), float(np.linalg.norm(dout))
+            if ni < 1e-9 or no < 1e-9:
+                continue
+            turn = math.acos(max(-1.0, min(1.0, float((din / ni) @ (dout / no)))))
+            if turn > best_turn:
+                best_turn, best = turn, j
+        out.add(best)
+    return sorted(out)
+
+
+def _collapse_short_corners(loop: np.ndarray, corners: list[int], threshold: float) -> list[int]:
+    """Sec 5.2.1: merge a close corner PAIR into one — but ONLY a genuine double
+    detection (both ends gentle bends, or within ~2.5px), never two distinct SHARP
+    corners that merely sit close (the two ends of a narrow bar like the I of IKEA);
+    collapsing those loses a real corner."""
+    corners = sorted(corners)
+    changed = True
+    while changed and len(corners) > 2:
+        changed = False
+        m = len(corners)
+        turns = _corner_turn_angles(loop, corners)
+        for i in range(m):
+            a, b = corners[i], corners[(i + 1) % m]
+            dist = float(np.linalg.norm(loop[a] - loop[b]))
+            if dist > threshold:
+                continue
+            both_gentle = turns[i] < 45.0 and turns[(i + 1) % m] < 45.0
+            if not (dist <= 2.5 or both_gentle):     # keep two distinct sharp corners
+                continue
+            span = list(range(a, b + 1)) if b >= a else list(range(a, len(loop))) + list(range(0, b + 1))
+            middle = (loop[a] + loop[b]) / 2
+            keep = min(span, key=lambda k: float(np.linalg.norm(loop[k] - middle)))
+            corners = sorted(set(corners) - {a, b} | {keep})
+            changed = True
+            break
+    return corners
+
+
+def _corner_turn_angles(loop: np.ndarray, corners: list[int]) -> np.ndarray:
+    """Turn angle (deg, 0=straight .. 180=hairpin) at each corner, from the directions
+    to its neighbouring corners; interior angle = 180 - turn (Sec 5.2.1 phi angles)."""
+    m = len(corners)
+    turns = np.zeros(m)
+    for i in range(m):
+        p, c, n = loop[corners[(i - 1) % m]], loop[corners[i]], loop[corners[(i + 1) % m]]
+        din, dout = c - p, n - c
+        ni, no = float(np.linalg.norm(din)), float(np.linalg.norm(dout))
+        if ni < 1e-9 or no < 1e-9:
+            continue
+        turns[i] = math.degrees(math.acos(max(-1.0, min(1.0, float((din / ni) @ (dout / no))))))
+    return turns
+
+
+def _local_corner_geometry(loop: np.ndarray, corners: list[int], w: int = 5) -> tuple[np.ndarray, np.ndarray]:
+    """(turn_deg, convex) per corner from the LOCAL boundary over a ±w-vertex window.
+
+    Sec 5.2.1's phi are angles of the fitted primitives at the corner — a chord to the
+    NEIGHBOURING CORNERS misreads them: at a bar-cap tangency the chords span the whole
+    cap and read 90 deg although the boundary is locally smooth (~15 deg), which blocked
+    the obtuse relaxation and locked cap corners in (audit).  A short local window is the
+    honest proxy: smooth tangency -> small turn, true corner -> its actual angle.
+    Convexity sign = cross(din,dout) normalized by the loop's shoelace winding, so outer
+    loops and holes read consistently (Sec 5.2.1 convex preference / Sec 5.3)."""
+    x, y = loop[:, 0], loop[:, 1]
+    winding = 1.0 if float(np.sum(x * np.roll(y, -1) - np.roll(x, -1) * y)) >= 0 else -1.0
+    n = len(loop)
+    m = len(corners)
+    turns = np.zeros(m)
+    convex = np.zeros(m, bool)
+    for i in range(m):
+        c = corners[i]
+        din = loop[c] - loop[(c - w) % n]
+        dout = loop[(c + w) % n] - loop[c]
+        ni, no = float(np.linalg.norm(din)), float(np.linalg.norm(dout))
+        if ni < 1e-9 or no < 1e-9:
+            continue
+        cosv = max(-1.0, min(1.0, float((din / ni) @ (dout / no))))
+        turns[i] = math.degrees(math.acos(cosv))
+        cross = float(din[0] * dout[1] - din[1] * dout[0])
+        convex[i] = (cross * winding) >= 0
+    return turns, convex
+
+
+def _closure_partners(loop: np.ndarray, corners: list[int], convex: np.ndarray,
+                      turns: np.ndarray, inside_fn) -> dict[int, int]:
+    """Sec 5.3 (compact): pair CONCAVE corners whose straight closure is an IMAGINED
+    contour — the chord between them lies inside the shape (inscribed-circle test at the
+    midpoint, x0.90) and the boundary direction continues across the gap (chord within
+    ~8 deg of the outgoing tangents).  Such corners are perceptually one occlusion event;
+    removal treats them as a GROUP (Algorithm 2 'corner + closure-paired corners')."""
+    res = max(1.0, float(np.ptp(loop[:, 0]) + np.ptp(loop[:, 1])) / 2)
+    conc = [i for i in range(len(corners)) if (not convex[i]) and turns[i] >= 25.0]
+    partners: dict[int, int] = {}
+    for a_pos in range(len(conc)):
+        i = conc[a_pos]
+        if i in partners:
+            continue
+        pi = loop[corners[i]]
+        for j in conc[a_pos + 1:]:
+            if j in partners:
+                continue
+            pj = loop[corners[j]]
+            gap = pj - pi
+            dist = float(np.hypot(gap[0], gap[1]))
+            if dist < 4.0 or dist > 0.5 * res:
+                continue
+            mid = 0.5 * (pi + pj)
+            radius = 0.45 * dist
+            angles = np.linspace(0.0, 2.0 * math.pi, 10, endpoint=False)
+            ring = mid[None, :] + radius * np.stack([np.cos(angles), np.sin(angles)], axis=1)
+            if not all(inside_fn(p) for p in ring):
+                continue
+            u = gap / dist
+            ti = _unit(loop[(corners[i] + 3) % len(loop)] - pi)     # outgoing side of the gap
+            tj = _unit(pj - loop[(corners[j] - 3) % len(loop)])     # incoming side of the gap
+            if abs(float(ti @ u)) < math.cos(math.radians(8.0)):
+                continue
+            if abs(float(tj @ u)) < math.cos(math.radians(8.0)):
+                continue
+            partners[i] = j
+            partners[j] = i
+            break
+    return partners
+
+
+def _iterated_removal(loop: np.ndarray, corners: list[int], alpha: float, acc: float = _PAPER_ACC,
+                      close_px: float | None = None) -> list[int]:
+    """Sec 5.2 + 5.2.1 + 5.3: greedily drop the corner GROUP whose removal most lowers
+    E=αD+R (Algorithm 2, lexicographic: argmin ΔR s.t. ΔR<0, else argmin ΔE s.t. ΔR=0,
+    ΔE<0, else the obtuse Sec-5.2.1 relaxation).  Candidate groups are:
+      * every single corner;
+      * every ADJACENT PAIR closer than `close_px` (paper: 10% of the resolution) whose
+        convexity signs agree (a mixed pair prefers removing the convex single);
+      * Sec-5.3 CLOSURE pairs (concave corners bridging an imagined contour) — those are
+        only ever removed together.
+    The merged-segment cost is a true multi-primitive re-fit (_segment_cost, up to 3
+    primitives), so a cap pair (line|arc|line) gets a finite honest cost."""
+    corners = sorted(corners)
+    res = max(1.0, float(np.ptp(loop[:, 0]) + np.ptp(loop[:, 1])) / 2)
+    if close_px is None:
+        close_px = 0.10 * res
+
+    # rasterize the loop once for the Sec-5.3 inside test (local frame, 1px grid)
+    lo = loop.min(axis=0) - 2.0
+    size = np.maximum(4, np.ceil(loop.max(axis=0) - lo + 4.0).astype(int))
+    mask_img = Image.new("1", (int(size[0]), int(size[1])), 0)
+    ImageDraw.Draw(mask_img).polygon([tuple(p - lo) for p in loop], fill=1)
+    mask_arr = np.asarray(mask_img, bool)
+
+    def inside(p) -> bool:
+        xi, yi = int(round(p[0] - lo[0])), int(round(p[1] - lo[1]))
+        return 0 <= yi < mask_arr.shape[0] and 0 <= xi < mask_arr.shape[1] and bool(mask_arr[yi, xi])
+
+    cost_cache: dict[tuple[int, int], tuple[float, float]] = {}
+
+    def seg_cost(a: int, b: int) -> tuple[float, float]:
+        key = (a, b)
+        if key not in cost_cache:
+            if a == b:                                   # full closed ring anchored at a
+                ring = np.roll(loop, -a, axis=0)
+                cost_cache[key] = _segment_cost(np.vstack([ring, ring[:1]]), acc, max_prims=6)
+            else:
+                cost_cache[key] = _segment_cost(_arc_slice(loop, a, b), acc)
+        return cost_cache[key]
+
+    while len(corners) > 1:
+        m = len(corners)
+        turns, convex = _local_corner_geometry(loop, corners)
+        closure = _closure_partners(loop, corners, convex, turns, inside)
+        costs = [seg_cost(corners[i], corners[(i + 1) % m]) for i in range(m)]
+        drop_r, drop_e, promote = None, None, None  # Algorithm 2 lexicographic phases
+
+        def consider(group: tuple[int, ...], dR: float, dD: float, obtuse_ok: bool) -> None:
+            nonlocal drop_r, drop_e, promote
+            dE = alpha * dD + dR
+            if dR < 0:
+                if drop_r is None or (dR, dE) < (drop_r[0], drop_r[1]):
+                    drop_r = (dR, dE, group)
+            elif dR == 0 and dD < 0:
+                if drop_e is None or dE < drop_e[0]:
+                    drop_e = (dE, dE, group)
+            elif dR <= 1.0 and obtuse_ok:
+                if promote is None or dE < promote[0]:
+                    promote = (dE, dE, group)
+
+        for i in range(m):
+            if closure.get(i) is not None:          # closure corners only leave with their partner
+                continue
+            a, b = corners[(i - 1) % m], corners[(i + 1) % m]
+            merged_d, merged_r = seg_cost(a, b)
+            if not np.isfinite(merged_r):
+                continue
+            old_d = costs[(i - 1) % m][0] + costs[i][0]
+            old_r = costs[(i - 1) % m][1] + costs[i][1]
+            # merged multi-primitive fits are G1-legal by construction (fitted-tangent gate
+            # inside _segment_cost), so a real corner can never be hidden as a C0 split —
+            # the obtuse relaxation only needs the paper's angle condition.
+            consider((i,), merged_r - old_r, merged_d - old_d, turns[i] < _OBTUSE_TURN)
+
+        if m > 3:
+            for i in range(m):
+                j = (i + 1) % m
+                pair_dist = float(np.linalg.norm(loop[corners[i]] - loop[corners[j]]))
+                is_closure = closure.get(i) == j
+                if not (is_closure or pair_dist <= close_px):
+                    continue
+                if not is_closure and convex[i] != convex[j]:
+                    continue                        # Sec 5.2.1: mixed pair -> convex single wins
+                a, b = corners[(i - 1) % m], corners[(j + 1) % m]
+                merged_d, merged_r = seg_cost(a, b)
+                if not np.isfinite(merged_r):
+                    continue
+                old_d = costs[(i - 1) % m][0] + costs[i][0] + costs[j][0]
+                old_r = costs[(i - 1) % m][1] + costs[i][1] + costs[j][1]
+                both_obtuse = turns[i] < _OBTUSE_TURN and turns[j] < _OBTUSE_TURN
+                consider((i, j), merged_r - old_r, merged_d - old_d, both_obtuse)
+
+        best = drop_r or drop_e or promote
+        if best is None:
+            break
+        for idx in sorted(best[2], reverse=True):
+            del corners[idx]
+    if len(corners) == 1:
+        # The LAST corner: geometry is the same closed ring with or without the C0 break, so
+        # dR=dD=0 and only the Sec-5.2.1 obtuse relaxation applies — a lone gentle bend on an
+        # otherwise-fittable smooth loop is spurious (the smooth branch then draws it G1-closed);
+        # a genuine lone tip (teardrop, >=_OBTUSE_TURN) stays.
+        turns, _ = _local_corner_geometry(loop, corners)
+        if turns[0] < _OBTUSE_TURN and math.isfinite(seg_cost(corners[0], corners[0])[1]):
+            corners = []
+    return corners
+
+
+_CORNER_LAX_THRESHOLD = 0.125  # paper Sec 4.1: lax, high-recall initial set; Sec 5 removal prunes
+_CORNER_NMS = 2.0              # greedy NMS radius; a pair EXACTLY 2px apart is suppressed to one
+                               # (Sec 4.2.1 both-endpoint pairs re-emerge via _collapse to the mid vertex)
+_CORNER_DETECT_RES = 200.0     # detector was trained on <=128px shapes: normalize large loops to this
+# The 1D CNN (corner_cnn) is the primary detector: on the human-annotated hold-in it beats the
+# RF on perceptual agreement and is far more precise (fewer spurious corners for Sec-5 removal
+# to prune).  The TILED model (short loops tiled into view; cleaned labels) reaches the paper's
+# Sec-4 LAX spec: detector recall 0.952 at thr 0.14 on the 60-logo casino held-out.
+# RECALIBRATED 2026-07-11 (after pair removal #19, clothoid removal #22, and the P0 fitting
+# fixes): the paper's 'lax >=95% + removal cleans up' lever is EXHAUSTED here — final
+# post-removal recall is FLAT across thresholds (0.28/0.20/0.14 -> R 0.728/0.731/0.732)
+# because removal prunes the extra lax candidates right back, while precision falls
+# (P 0.840/0.824/0.815, F1 0.780/0.774/0.771; synthetic score identical 0.913).  The
+# remaining misses are microtext at annotation scale, not threshold-gated.  0.28 is the
+# calibrated operating point; do NOT lower it without new evidence (e.g. event-level GT).
+_USE_CNN_DETECTOR = True
+_CNN_LAX_THRESHOLD = 0.28
+# Validated 2026-07-11 on untouched V4 + primitive tests.  The original model
+# is materially safer on raster-sized detail (Lacoste scales, tiny counters),
+# while the balanced primitive/text candidate is more precise on normal loops.
+# Use exactly one model per loop; this is not an expensive ensemble.
+_CNN_HYBRID_CUTOFF = 4.0
+_CNN_HYBRID_MAX_DENSITY = 8.0
+_CNN_HYBRID_THRESHOLD = 0.36
+_CNN_HYBRID_MODEL_PATH = Path(__file__).resolve().parent / "models" / "corner_cnn_hybrid_large_v1.pt"
+_DEBUG_CORNER_ROUTING = False
+_CORNER_POSTPROCESS_POLICIES = ("production", "tiny-safe", "cnn-conservative")
+# Keep the shipped behaviour unchanged.  Alternative policies are deliberately
+# opt-in until the event-level evaluator and real-logo A/B both pass.
+_CORNER_POSTPROCESS_POLICY = "production"
+_PAPER_FIT_PROFILES = ("production", "text-safe")
+_PAPER_FIT_PROFILE = "production"
+
+
+def _detect_lax_corners(work: np.ndarray, work_res: float, model, s: int,
+                        detector: str = "cnn") -> list[int]:
+    """Lax (high-recall) corner vertex indices for `work`.
+
+    detector="cnn" (default): the 1D CNN over the boundary turning sequence (corner_cnn),
+    RF fallback if unavailable.  detector="perres-paper": the paper's ORIGINAL setup — one RF
+    per resolution trained ONLY on the Hoshyari training set, auto-selected by loop extent
+    (corner_perres) — kept as a comparable alternative."""
+    if detector == "perres-paper":
+        try:
+            import corner_perres
+            mask = corner_perres.predict_corners_perres(work, threshold=None, nms_px=_CORNER_NMS)
+            return list(np.flatnonzero(mask))
+        except Exception:
+            pass                                   # bundle missing -> fall through to CNN/RF
+    if _USE_CNN_DETECTOR:
+        try:
+            import corner_cnn
+            if len(work) >= corner_cnn.MIN_LOOP:   # short loops are tiled inside predict_prob
+                density = len(work) / max(1.0, work_res)
+                use_large = (work_res > _CNN_HYBRID_CUTOFF
+                             and density <= _CNN_HYBRID_MAX_DENSITY
+                             and _CNN_HYBRID_MODEL_PATH.is_file())
+                if _DEBUG_CORNER_ROUTING:
+                    print(f"corner-route extent={work_res:.3f} vertices={len(work)} "
+                          f"density={density:.3f} model={'large' if use_large else 'small'}")
+                threshold = _CNN_HYBRID_THRESHOLD if use_large else _CNN_LAX_THRESHOLD
+                model_path = _CNN_HYBRID_MODEL_PATH if use_large else None
+                mask = corner_cnn.predict_corners(
+                    work, threshold=threshold, nms_px=_CORNER_NMS, model_path=model_path)
+                return list(np.flatnonzero(mask))
+        except Exception:
+            pass  # torch/model missing or a runtime error -> RF fallback below
+    from corner_classifier import predict_corners
+    threshold = _corner_threshold(work_res)         # Fig 7 per-resolution operating point
+    return list(np.flatnonzero(predict_corners(work, model, s, threshold=threshold, nms_radius=_CORNER_NMS)))
+
+
+def _postprocess_corner_candidates(
+    work: np.ndarray,
+    candidates: list[int],
+    work_res: float,
+    spacing: float,
+    policy: str = "production",
+    use_cnn: bool = True,
+) -> list[int]:
+    """Turn lax detector candidates into the final corner set.
+
+    ``production`` preserves the pre-existing Sec-5-inspired pipeline exactly.
+    The other policies are isolated ablations for the native-density CNN route;
+    RF/per-resolution detections intentionally keep their calibrated production
+    post-processing even when an experimental policy is requested.
+
+    ``tiny-safe`` tests the main failure found on reviewed glyphs: recentering and
+    short-pair collapse erased true nearby letter corners before removal could
+    score them.  At <=20 px it only performs a tight refit removal, at <=32 px it
+    leaves the detector result alone, and above that it falls back to production.
+
+    ``cnn-conservative`` is a less resolution-specific alternative: snap by just
+    one boundary vertex, never collapse a close pair, and use the paper's 0.7 px
+    accuracy rather than the current 1.6 px native-staircase tolerance.
+    """
+    if policy not in _CORNER_POSTPROCESS_POLICIES:
+        valid = ", ".join(_CORNER_POSTPROCESS_POLICIES)
+        raise ValueError(f"unknown corner postprocess policy {policy!r}; expected one of: {valid}")
+    n = len(work)
+    raw = sorted({int(index) % n for index in candidates}) if n else []
+    if not raw:
+        return []
+
+    # Alternative policies are CNN ablations, not silent changes to the paper RF.
+    if use_cnn and policy == "tiny-safe":
+        if work_res <= 20.0:
+            return _iterated_removal(
+                work, raw, 32.0 / work_res, acc=0.55,
+                close_px=0.10 * work_res,
+            )
+        if work_res <= 32.0:
+            return raw
+    elif use_cnn and policy == "cnn-conservative":
+        recentered = _recenter_corners(work, raw, radius=1, w=2)
+        return _iterated_removal(
+            work, recentered, 32.0 / work_res, acc=_PAPER_ACC,
+            close_px=0.10 * work_res,
+        )
+
+    # Original production path.  Keep this block mechanically identical to the
+    # implementation used before the opt-in A/B policies were added.
+    recentered = _recenter_corners(work, raw)
+    collapsed = _collapse_short_corners(work, recentered, max(4.0, 16.0 * spacing))
+    acc = max(1.3, 1.6 * spacing)
+    return _iterated_removal(
+        work, collapsed, 32.0 / work_res, acc,
+        close_px=0.10 * work_res,
+    )
+
+
+def paper_corner_positions(
+    loop: np.ndarray,
+    detector: str = "cnn",
+    postprocess_policy: str | None = None,
+) -> np.ndarray:
+    """xy positions of the perceptual corners of a native-resolution boundary loop.
+
+    The CNN detector's turning windows are in PIXELS and it is trained at ~1px vertex
+    spacing, so it must see the loop at NATIVE density: resampling a large loop to a
+    coarser spacing collapses its probabilities (audited: max prob 0.013 vs threshold
+    0.28 on a 720px icon -> zero corners -> the corner-rich shape fell into the smooth
+    branch and was fit with shape-crossing chords).  Only the RF FALLBACK (fixed s=14
+    VERTEX window, hence resolution-sensitive) still needs large loops resampled down to
+    ~_CORNER_DETECT_RES density.  Collapse/accuracy knobs scale with the loop's vertex
+    SPACING (the staircase amplitude), not its extents — at native density a 720px and a
+    64px loop have the same ~1px staircase."""
+    policy = _CORNER_POSTPROCESS_POLICY if postprocess_policy is None else postprocess_policy
+    if policy not in _CORNER_POSTPROCESS_POLICIES:
+        valid = ", ".join(_CORNER_POSTPROCESS_POLICIES)
+        raise ValueError(f"unknown corner postprocess policy {policy!r}; expected one of: {valid}")
+    model, s = _corner_model()
+    resolution = max(1.0, float(np.ptp(loop[:, 0]) + np.ptp(loop[:, 1])) / 2)
+    use_cnn = False
+    if detector == "cnn" and _USE_CNN_DETECTOR:
+        try:
+            import corner_cnn
+            use_cnn = len(loop) >= corner_cnn.MIN_LOOP
+        except Exception:
+            use_cnn = False
+    work = loop
+    if not use_cnn and resolution > _CORNER_DETECT_RES * 1.3 and len(loop) > 24:
+        work = resample_ring(np.vstack((loop, loop[0])), resolution / _CORNER_DETECT_RES)[:-1]
+    if detector == "perres-paper":
+        min_len = 24                                 # the res-8 model handles ~24-vertex loops
+    else:
+        min_len = 10 if use_cnn else 4 * s + 4
+    if len(work) < min_len:
+        return np.empty((0, 2))
+    work_res = max(1.0, float(np.ptp(work[:, 0]) + np.ptp(work[:, 1])) / 2)
+    lax = _detect_lax_corners(work, work_res, model, s, detector=detector)
+    if not lax:
+        return np.empty((0, 2))
+    # NO <3 early exit: removal now handles 1-2 corner loops via full-ring refits, so a
+    # lone spurious gentle bend on a smooth closed loop gets pruned like any other.
+    # Vertex spacing ~= staircase amplitude: 1-1.4px on a native marching-squares loop,
+    # resolution/_CORNER_DETECT_RES on a resampled one (16*sp / 1.6*sp reproduce the old
+    # 0.08*res / 0.008*res exactly on that path).
+    spacing = max(1.0, float(np.mean(np.linalg.norm(np.roll(work, -1, axis=0) - work, axis=1))))
+    kept = _postprocess_corner_candidates(
+        work, lax, work_res, spacing, policy=policy, use_cnn=use_cnn,
+    )
+    return work[sorted(kept)]
+
+
+def _positions_to_ring(ring: np.ndarray, positions: np.ndarray) -> list[int]:
+    if positions is None or len(positions) == 0:
+        return []
+    return sorted({int(np.argmin(np.sum((ring - p) ** 2, axis=1))) for p in positions})
+
+
+def fit_loop(
+    loop: np.ndarray,
+    feature_scale: float = 1.0,
+    prefer_ellipse: bool = False,
+    global_fit: bool = False,
+    corner_positions: np.ndarray | None = None,
+) -> FittedLoop:
+    spacing = max(0.42, min(0.68, 0.52 * feature_scale))
+    smooth = taubin_smooth_ring(resample_ring(loop, spacing), passes=4)
+    ring = smooth[:-1]
+    if corner_positions is not None:
+        corners = _positions_to_ring(ring, corner_positions)
+    else:
+        corners = _multiscale_corners(ring, feature_scale, spacing)
+
+    # Closed conics are decided globally.  Local staircase fragments are never
+    # allowed to vote a circle/ellipse into existence.  Three or more stable
+    # corners veto a conic, which prevents thin rounded rectangles and letters
+    # such as I/l from being mistaken for extremely eccentric ellipses.
+    ellipse = _ellipse_candidate(smooth)
+    if ellipse is not None and (prefer_ellipse or len(corners) < 3 or ellipse[0] <= 0.12):
+        error, minor_axis, curves = ellipse
+        tolerance = max(0.24, min(0.58, 0.06 * minor_axis + 0.16))
+        if prefer_ellipse:
+            tolerance = max(tolerance, min(0.82, 0.12 + 0.11 * minor_axis))
+        if error <= tolerance:
+            return FittedLoop(smooth, curves, "ellipse")
+
+    if len(corners) >= 2:
+        curves = _rounded_corner_chain(ring, corners, feature_scale, spacing, global_fit=global_fit)
+        return FittedLoop(smooth, curves, "uncertainty-dp" if global_fit else "rounded-g1")
+    return FittedLoop(
+        smooth,
+        _smooth_closed_chain(ring, feature_scale, global_fit=global_fit),
+        "uncertainty-dp" if global_fit else "g1-curve",
+    )
+
+
+_FIT_DEBUG = [False]       # print per-chunk Alg-1 violation devs (diagnostics only)
+_PAPER_FIT_ALPHA_K = 32.0  # paper's alpha = 32 / resolution (Sec 5.1)
+_DP_SPAN_PX = 110.0        # physical arc length one primitive's look-back can span (native px)
+_DP_MAX_NODES = 220        # cap DP break points per segment for speed on huge loops
+_PAPER_FIT_EPS = 0.1       # paper's interval relaxation epsilon (Sec 5.1, Eq 5), in raster px
+_PAPER_G1_W = 6.0          # weight of the G1-continuity term in the fit energy (Sec 5.1): a
+                           # corner-bounded segment is smooth INSIDE, so any tangent break
+                           # between two internal primitives is spurious and is penalised,
+                           # making one clean arc beat a wavy line/arc patchwork.
+_PAPER_G1_DEAD = 4.0       # deadzone (deg): sub-this tangent breaks read as smooth, no penalty
+
+
+def _tangent_out(curve: Curve) -> np.ndarray:
+    p = curve.control
+    v = p[-1] - p[-2]
+    n = float(np.linalg.norm(v))
+    if n < 1e-9:
+        v = p[-1] - p[0]; n = float(np.linalg.norm(v))
+    return v / n if n > 1e-9 else np.array([1.0, 0.0])
+
+
+def _tangent_in(curve: Curve) -> np.ndarray:
+    p = curve.control
+    v = p[1] - p[0]
+    n = float(np.linalg.norm(v))
+    if n < 1e-9:
+        v = p[-1] - p[0]; n = float(np.linalg.norm(v))
+    return v / n if n > 1e-9 else np.array([1.0, 0.0])
+
+
+def _enforce_g1_chain(curves: list[Curve], max_angle_deg: float = 35.0, closed: bool = False) -> list[Curve]:
+    """Paper Sec 5.1 G1 continuity between consecutive primitives WITHIN a segment.
+
+    A corner-bounded segment is smooth everywhere except its (corner) endpoints, so
+    internal joins where the DP split it should share a unit tangent.  We rotate the
+    flexible (cubic) handle(s) at each internal join to a common tangent — but ONLY
+    when the two incident tangents already nearly agree (angle < max_angle).  A large
+    tangent jump means a sharp feature the corner detector missed (e.g. a crocodile
+    tooth tip inside the back-ridge segment); we leave those C0 so G1 never rounds a
+    genuine sharp point."""
+    if len(curves) < 2:
+        return curves
+
+    def rigid(c: Curve) -> bool:
+        # Lines AND analytic runs (arc/clothoid beziers) are RIGID: their geometry
+        # IS the primitive.  Rotating an arc's bezier handle to a neighbour's
+        # tangent BOWS the drawn arc off its circle by 1-2px — Alg-1 then bans a
+        # perfectly good arc (and the ban misses when the re-run shifts the span).
+        meta = getattr(c, "meta", None)
+        return c.degree == 1 or (isinstance(meta, tuple) and len(meta) and meta[0] in ("arc", "clothoid"))
+
+    limit = math.cos(math.radians(max_angle_deg))
+    out = list(curves)
+    # closed chains also unify the wrap-around join (last -> first), which the open-range
+    # loop used to skip — the one kink §6 could never clear on a closed smooth loop.
+    joins = range(len(out)) if closed else range(len(out) - 1)
+    for i in joins:
+        a, b = out[i], out[(i + 1) % len(out)]
+        ta, tb = _tangent_out(a), _tangent_in(b)
+        if float(ta @ tb) < limit:
+            continue                       # sharp join = unmarked corner, keep C0
+        rigid_a, rigid_b = rigid(a), rigid(b)
+        if rigid_a and rigid_b:
+            continue                       # two rigid primitives: Sec 6 decides
+        # The RIGID side dictates the shared tangent; two free cubics average.
+        shared = tb if rigid_b else (ta if rigid_a else ta + tb)
+        norm = float(np.linalg.norm(shared))
+        if norm < 1e-9:
+            continue
+        shared = shared / norm
+        if a.degree == 3 and not rigid_a:
+            pa = a.control.copy()
+            length = max(1e-3, float(np.linalg.norm(pa[-1] - pa[-2])))
+            pa[-2] = pa[-1] - length * shared
+            meta_a = getattr(a, "meta", None)
+            out[i] = Curve(3, pa)
+            out[i].meta = meta_a
+        if b.degree == 3 and not rigid_b:
+            pb = b.control.copy()
+            length = max(1e-3, float(np.linalg.norm(pb[1] - pb[0])))
+            pb[1] = pb[0] + length * shared
+            meta_b = getattr(b, "meta", None)
+            out[(i + 1) % len(out)] = Curve(3, pb)
+            out[(i + 1) % len(out)].meta = meta_b
+    return out
+
+
+def _halfspace_ok(tangent: np.ndarray, poly: np.ndarray) -> bool:
+    """Paper Sec 5.1 half-space tangent constraint.
+
+    At a corner (poly[0]) the fitted curve's tangent must lie in the same half-space
+    as the polyline itself, w.r.t. the edge immediately emanating from the corner.
+    The half-space side is found from the first subsequent polyline edge orthogonal
+    to that emanating edge.  This is what rejects a curve that curves the WRONG way
+    at a corner (the arc that bulges out of a B counter) — a purely-accuracy fit can
+    still point its tangent backward / to the wrong side and look counter-intuitive."""
+    if len(poly) < 3:
+        return True
+    t = np.asarray(tangent, float)
+    nt = float(np.linalg.norm(t))
+    if nt < 1e-9:
+        return True
+    t = t / nt
+    e0 = poly[1] - poly[0]
+    ne0 = float(np.linalg.norm(e0))
+    if ne0 < 1e-9:
+        return True
+    e0 = e0 / ne0
+    if float(t @ e0) < -0.02:                       # tangent points backward -> wrong half-space
+        return False
+    perp = np.array([-e0[1], e0[0]])
+    hi = min(len(poly) - 1, 25)
+    seg = poly[2:hi + 1] - poly[1:hi]               # candidate edges after the emanating one
+    if len(seg) == 0:
+        return True
+    norms = np.linalg.norm(seg, axis=1)
+    good = norms > 1e-9
+    cos_e0 = np.where(good, np.abs(seg @ e0) / np.where(good, norms, 1.0), 1.0)
+    ortho = np.flatnonzero(cos_e0 < 0.5)            # first edge ~orthogonal to the emanating one
+    if len(ortho) == 0:
+        return True                                 # straight run: pointing forward suffices
+    j = ortho[0]
+    side = float((seg[j] @ perp) / norms[j])
+    if abs(side) < 1e-6:
+        return True
+    return float(t @ perp) * side >= -0.02          # tangent must be on the polyline's side
+
+
+def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float = 1.0,
+                          snap_ends: bool = True) -> list[Curve]:
+    """Paper Sec 5.1: fit a corner-bounded raster segment to its pixel-edge MIDPOINTS
+    with a Cornucopia-style shortest-path DP over line (r=1) / arc (r=2) / clothoid
+    (r=4; biarc and cubic remain as degenerate-case fallbacks); energy E = alpha*D + R.
+
+    Accuracy is the paper's DIRECTIONAL interval constraint (Eq 4-5), NOT a symmetric
+    band: each pixel-edge midpoint m carries an interval Im = m + (t-0.5)*um, where um
+    is the edge NORMAL ((1,0) for a vertical edge, (0,1) for a horizontal one), of
+    half-width 0.5 raster-px.  A primitive is accurate iff it crosses that interval
+    (or passes within eps of it) at every spanned midpoint.  This is what lets a
+    diagonal staircase collapse to ONE line — the tolerance runs along the step
+    direction — while a real >=1px feature (crocodile tooth) leaves the interval and
+    forces a break.  No pre-smoothing needed.
+
+    `px` is the size of one raster pixel in the fit's coordinates (1/analysis_scale):
+    a deblurred 4x boundary has px=0.25 native, so the interval is a tight 0.125 native,
+    which absorbs the 4x staircase yet keeps 1px-native detail (4 raster px)."""
+    if len(vertices) < 3:
+        return [Curve(1, np.vstack((vertices[0], vertices[-1])))]
+    mid = 0.5 * (vertices[:-1] + vertices[1:])
+    m = len(mid)
+    edges = np.diff(vertices, axis=0)
+    horizontal = np.abs(edges[:, 0]) >= np.abs(edges[:, 1])   # edge runs along x -> normal is y
+    um = np.where(horizontal[:, None], np.array([0.0, 1.0]), np.array([1.0, 0.0]))
+    half = 0.5 * px
+    eps = _PAPER_FIT_EPS * px
+    lo = mid - half * um   # interval end Im(0)
+    hi = mid + half * um   # interval end Im(1)
+
+    # DP break points ('nodes') and the look-back window are sized in PHYSICAL px, not
+    # in point counts — otherwise a long smooth arc on a high-res native boundary (a
+    # Pepsi wave) cannot be spanned by one primitive and collapses to a polyline of
+    # short lines.  ~1.5px node spacing keeps fine detail; the look-back covers a
+    # ~_DP_SPAN_PX arc regardless of resolution; total nodes are capped for speed.
+    spacing = float(np.median(np.linalg.norm(np.diff(mid, axis=0), axis=1))) if m > 1 else 1.0
+    spacing = max(spacing, 0.05)
+    seg_len = spacing * m
+    node_target = 1.5 if seg_len < 150.0 else 2.5      # long smooth segments: coarser breaks,
+    stride = max(1, int(round(node_target / spacing)))  # quadratically fewer candidate spans
+    if m // stride > _DP_MAX_NODES:
+        stride = max(stride, m // _DP_MAX_NODES)
+    nodes = list(range(0, m, stride))
+    if nodes[-1] != m - 1:
+        nodes.append(m - 1)
+    k = len(nodes)
+    node_px = stride * spacing
+    look_back = max(14, int(round(_DP_SPAN_PX / max(node_px, 0.3))))
+
+    span_cache: dict[tuple[int, int, bool], list] = {}
+
+    def fit_sub_all(a: int, b: int, force: bool, banned: set) -> list:
+        """ALL competing primitive candidates for span [a,b] (paper Sec 5.1: fit EVERY type
+        for every pair, then the shortest path chooses GLOBALLY — the lazy first-fit-wins
+        shortcut systematically over-picked lines on shallow curves, making wavy line
+        chains).  Domination pruning keeps it fast: on a genuinely straight span the line
+        dominates every pricier type (same tangents, smaller r), and when an ARC passes,
+        biarc/cubic (r=4 vs 2, same end tangents) are dominated too."""
+        span_banned = any(key[1] == a and key[2] == b for key in banned)
+        cache_key = (a, b, force)
+        if not span_banned and cache_key in span_cache:
+            return span_cache[cache_key]               # repair iterations reuse span fits
+        def _store(res):
+            if not span_banned:
+                span_cache[cache_key] = res
+            return res
+
+        out = []
+        sub = mid[a : b + 1]
+        lo_s, hi_s, um_s = lo[a : b + 1], hi[a : b + 1], um[a : b + 1]
+        rev = sub[::-1]  # polyline seen from the END corner, for the half-space test there
+
+        # --- line: interval crosses the segment normal, or is within eps of it ---
+        p0, p1 = sub[0], sub[-1]
+        d = p1 - p0
+        length = float(np.linalg.norm(d))
+        turn_total = 0.0
+        if len(sub) >= 7:
+            va = _unit(sub[min(3, len(sub) - 1)] - sub[0])
+            vb = _unit(sub[-1] - sub[max(-4, -len(sub))])
+            turn_total = math.degrees(math.acos(max(-1.0, min(1.0, float(va @ vb)))))
+        if length > 1e-9 and ("line", a, b) not in banned:
+            # LSQ line, not the endpoint chord (Cornucopia fits primitives by least
+            # squares): the chord's two endpoints carry +-0.5px raster quantization,
+            # tilting it so mid-span midpoints leave their intervals on long spans —
+            # which capped mergeable line length and let near-straight arcs win.
+            centre = sub.mean(axis=0)
+            sample_l = sub if len(sub) <= 200 else sub[np.linspace(0, len(sub) - 1, 200).astype(int)]
+            _, _, vt = np.linalg.svd(sample_l - sample_l.mean(axis=0), full_matrices=False)
+            du = vt[0]
+            if float(du @ d) < 0:
+                du = -du
+            normal = np.array([-du[1], du[0]])
+            da = (lo_s - centre) @ normal
+            db = (hi_s - centre) @ normal
+            ok = (da * db <= 0.0) | (np.minimum(np.abs(da), np.abs(db)) <= eps)
+            if bool(ok.all()) and _halfspace_ok(du, sub) and _halfspace_ok(-du, rev):
+                perp = np.abs((sub - centre) @ normal)
+                ep0 = centre + float((sub[0] - centre) @ du) * du
+                ep1 = centre + float((sub[-1] - centre) @ du) * du
+                out.append((alpha * float(perp.sum()) + 1.0, "line", (ep0, ep1), du, du))
+                if turn_total < 3.0 and float(perp.max()) < 0.3 * half:
+                    return _store(out)               # dead straight: line strictly dominates
+                if b - a < 14:
+                    return _store(out)               # short span: the arc-vs-line competition
+                                                     # is decided on LONG spans; skip the
+                                                     # expensive arc fit here for speed
+
+        # --- arc: interval straddles the circle AND its tangents obey the half-space ---
+        sample = sub if len(sub) <= 120 else sub[np.linspace(0, len(sub) - 1, 120).astype(int)]
+        circle = fit_circle(sample) if ("arc", a, b) not in banned else None
+        if circle is not None:
+            center, radius, _ = circle
+            ra = np.linalg.norm(lo_s - center, axis=1) - radius
+            rb = np.linalg.norm(hi_s - center, axis=1) - radius
+            ok = (ra * rb <= 0.0) | (np.minimum(np.abs(ra), np.abs(rb)) <= eps)
+            if bool(ok.all()) and radius >= 1.0:
+                angle = np.unwrap(np.arctan2(sub[:, 1] - center[1], sub[:, 0] - center[0]))
+                if abs(float(angle[-1] - angle[0])) <= math.radians(178):
+                    r0 = sub[0] - center
+                    t0 = np.array([-r0[1], r0[0]])
+                    if float(t0 @ (sub[1] - sub[0])) < 0:
+                        t0 = -t0
+                    r1 = sub[-1] - center
+                    t1 = np.array([-r1[1], r1[0]])
+                    if float(t1 @ (sub[-1] - sub[-2])) < 0:
+                        t1 = -t1
+                    if _halfspace_ok(t0, sub) and _halfspace_ok(-t1, rev):
+                        # NOTE: the DRAWN-arc bulge check (circular_beziers + sampling) used
+                        # to run here for EVERY candidate span — the DP's dominant cost.  It
+                        # moved to the Algorithm-1 repair phase: a bulging drawn arc fails
+                        # the post-selection accuracy re-check, gets banned, and the path
+                        # re-runs without it.
+                        radial = np.abs(np.linalg.norm(sub - center, axis=1) - radius)
+                        nt0 = float(np.linalg.norm(t0)); nt1 = float(np.linalg.norm(t1))
+                        ts = t0 / nt0 if nt0 > 1e-9 else _unit(sub[1] - sub[0])
+                        teA = t1 / nt1 if nt1 > 1e-9 else _unit(sub[-1] - sub[-2])
+                        out.append((alpha * float(radial.sum()) + 2.0, "arc", (center, radius), ts, teA))
+                        return _store(out)           # arc dominates biarc/cubic (r 2 vs 4)
+
+        # --- clothoid (the paper's TRUE Sec 5.1 r=4 primitive): curvature linear in
+        # arclength.  biarc/cubic below stay as fallbacks for spans where the LSQ
+        # spiral is degenerate (heavy staircase noise, ~180deg hooks). ---
+        if len(sub) >= 6 and ("clothoid", a, b) not in banned:
+            clothoid = _clothoid_fit(sub)
+            if clothoid is not None:
+                poly, cts, cte, cparams = clothoid
+                dev = np.abs(np.sum((poly - sub) * um_s, axis=1))
+                if bool((dev <= half + eps).all()) and _halfspace_ok(cts, sub) and _halfspace_ok(-cte, rev):
+                    out.append((alpha * float(np.linalg.norm(poly - sub, axis=1).sum()) + 4.0,
+                                "clothoid", cparams, cts, cte))
+                    return _store(out)   # r=4 family: the clothoid IS the paper primitive
+
+        # --- cubic: deviation ALONG um inside the interval, and half-space tangents ---
+        control, prediction = _cubic_control(sub, _unit(sub[1] - sub[0]), _unit(sub[-1] - sub[-2]))
+        dev_um = np.abs(np.sum((prediction - sub) * um_s, axis=1))
+        te0, te1 = _unit(sub[1] - sub[0]), _unit(sub[-1] - sub[-2])
+
+        # --- biarc (paper clothoid stand-in): two G1 arcs, monotone curvature so it
+        # physically CANNOT overshoot/hook the way a cubic does.  Preferred r=4 curve. ---
+        if len(sub) >= 5 and ("biarc", a, b) not in banned and _halfspace_ok(te0, sub) and _halfspace_ok(-te1, rev):
+            biarc = _biarc_curves(sub[0], te0, sub[-1], te1, sub)
+            if biarc is not None:
+                poly = np.vstack([eval_curve(c, 10) for c in biarc])
+                dmat = np.linalg.norm(poly[:, None, :] - sub[None, :, :], axis=2)  # drawn x sub
+                sub_to = np.min(dmat, axis=0)                # each midpoint -> nearest drawn pt
+                drawn_to = np.min(dmat, axis=1)              # each drawn pt -> nearest midpoint
+                near = np.argmin(dmat, axis=0)
+                dev = np.abs(np.sum((poly[near] - sub) * um_s, axis=1))
+                # accurate at every midpoint AND the drawn biarc never bulges off the boundary
+                if bool((dev <= half + eps).all()) and float(drawn_to.max()) <= half + eps + 0.35:
+                    out.append((alpha * float(sub_to.sum()) + 4.0, "biarc", (te0, te1), te0, te1))
+                    return _store(out)               # biarc and cubic share r=4: keep one
+
+        # --- cubic fallback (degenerate biarc, e.g. ~180° turn): with overshoot/cusp gate ---
+        if ("cubic", a, b) in banned and not force:
+            return _store(out)
+        accurate = bool((dev_um <= half + eps).all())
+        if accurate and len(sub) >= 4:
+            dense = eval_curve(Curve(3, control), max(16, 2 * len(sub)))
+            over = np.min(np.linalg.norm(dense[:, None, :] - sub[None, :, :], axis=2), axis=1)
+            steps = np.diff(dense, axis=0)
+            slen = np.linalg.norm(steps, axis=1, keepdims=True)
+            stepu = steps / np.maximum(slen, 1e-9)
+            cusp = len(stepu) > 1 and float(np.min(np.sum(stepu[:-1] * stepu[1:], axis=1))) < -0.55
+            if float(over.max()) > half + eps + 0.35 or cusp:
+                accurate = False
+        if (accurate and _halfspace_ok(control[1] - control[0], sub) and _halfspace_ok(control[2] - control[3], rev)) or force:
+            out.append((alpha * float(np.linalg.norm(prediction - sub, axis=1).sum()) + 4.0, "cubic", None, te0, te1))
+        return _store(out)
+
+    # Shortest-path (Cornucopia Sec 5.1) over PRIMITIVE states: a DP state is (node,
+    # tangent-bin of the incoming primitive), so two paths reaching the same break with
+    # different tangents both survive and the G1 term is charged EXACTLY per candidate
+    # pair (the old single-tangent memo was greedy/order-dependent).  All passing types
+    # compete; the paper's Algorithm-1 repair loop re-runs the path with violating
+    # candidates banned after continuity enforcement (<=4 iterations).
+    dead = math.radians(_PAPER_G1_DEAD)
+    BINS = 12
+
+    def tangent_bin(t) -> int:
+        if t is None:
+            return -1
+        return int(((math.atan2(float(t[1]), float(t[0])) + math.pi) / (2.0 * math.pi)) * BINS) % BINS
+
+    def run_dp(banned: set):
+        # dp[j]: bin -> (cost, exact_tangent, back=(ii, bin_in, kind, parameter))
+        dp: list[dict] = [dict() for _ in range(k)]
+        dp[0][-1] = (0.0, None, None)
+        for jj in range(1, k):
+            for ii in range(max(0, jj - look_back), jj):
+                if nodes[jj] - nodes[ii] < 1 or not dp[ii]:
+                    continue
+                cands = fit_sub_all(nodes[ii], nodes[jj], force=(ii == jj - 1), banned=banned)
+                for cost, kind, parameter, t_start, t_end in cands:
+                    for bin_in, (cost_in, tan_in, _) in dp[ii].items():
+                        penalty = 0.0
+                        if tan_in is not None and t_start is not None:
+                            cosang = max(-1.0, min(1.0, float(tan_in[0] * t_start[0] + tan_in[1] * t_start[1])))
+                            penalty = _PAPER_G1_W * max(0.0, math.acos(cosang) - dead)
+                        total = cost_in + cost + penalty
+                        nb = tangent_bin(t_end)
+                        cur = dp[jj].get(nb)
+                        if cur is None or total < cur[0]:
+                            dp[jj][nb] = (total, t_end, (ii, bin_in, kind, parameter))
+        if not dp[k - 1]:
+            return None
+        end_bin = min(dp[k - 1], key=lambda bkey: dp[k - 1][bkey][0])
+        chunks: list[tuple[int, int, str, object]] = []
+        jj, bkey = k - 1, end_bin
+        while jj > 0:
+            _, _, back = dp[jj][bkey]
+            if back is None:
+                break
+            ii, bin_in, kind, parameter = back
+            chunks.append((nodes[ii], nodes[jj], kind, parameter))
+            jj, bkey = ii, bin_in
+        chunks.reverse()
+        return chunks
+
+    def build_curves(chunks):
+        curves: list[Curve] = []
+        spans: list[tuple[int, int, int, str]] = []   # (curve_lo, curve_hi, chunk_idx, kind)
+        for index, (a, b, kind, parameter) in enumerate(chunks):
+            sub = mid[a : b + 1]
+            # snap_ends=True glues the chain ends to the segment's raster corner
+            # VERTICES.  The vertex carries +-0.5-1px quantization, which TILTS a
+            # long LSQ line beyond its interval budget (Alg-1 then bans it and a
+            # near-straight arc wins — the 'line became arc' defect).  Paper loops
+            # pass snap_ends=False and close corners at the INTERSECTION of the two
+            # adjacent primitives instead (see fit_loop_paper).
+            start = vertices[0] if (index == 0 and snap_ends) else sub[0]
+            end = vertices[-1] if (index == len(chunks) - 1 and snap_ends) else sub[-1]
+            c_lo = len(curves)
+            if kind == "line":
+                # endpoints ride the LSQ line (chord/vertex endpoints carry raster
+                # quantization); only snap_ends chains pin the outermost ones
+                ep0, ep1 = parameter if parameter is not None else (start, end)
+                p0 = start if (index == 0 and snap_ends) else ep0
+                p1 = end if (index == len(chunks) - 1 and snap_ends) else ep1
+                curves.append(Curve(1, np.vstack((p0, p1))))
+            elif kind == "arc":
+                center, radius = parameter
+                # draw ON the fitted circle: chunk-boundary midpoints sit +-0.5px off
+                # it, and a bezier arc forced through off-circle endpoints sags ~0.9px
+                s0 = start if (index == 0 and snap_ends) else center + radius * _unit(start - center)
+                s1 = end if (index == len(chunks) - 1 and snap_ends) else center + radius * _unit(end - center)
+                curves.extend(_tag_arcs(circular_beziers(s0, s1, center, radius, sub), center, radius))
+            elif kind == "clothoid":
+                drawn = _clothoid_curves(sub, parameter, start, end)
+                if drawn:
+                    curves.extend(drawn)
+                else:
+                    control, _ = _cubic_control(sub, _unit(sub[1] - sub[0]), _unit(sub[-1] - sub[-2]))
+                    control = control.copy(); control[0] = start; control[-1] = end
+                    curves.append(Curve(3, control))
+            elif kind == "biarc":
+                te0, te1 = parameter
+                drawn = _biarc_curves(start, te0, end, te1, sub)
+                if drawn:
+                    curves.extend(drawn)
+                else:
+                    control, _ = _cubic_control(sub, _unit(sub[1] - sub[0]), _unit(sub[-1] - sub[-2]))
+                    control = control.copy(); control[0] = start; control[-1] = end
+                    curves.append(Curve(3, control))
+            else:
+                control, _ = _cubic_control(sub, _unit(sub[1] - sub[0]), _unit(sub[-1] - sub[-2]))
+                control = control.copy()
+                control[0] = start
+                control[-1] = end
+                curves.append(Curve(3, control))
+            spans.append((c_lo, len(curves), index, kind))
+        return curves, spans
+
+    def chunk_violations(chunks, curves, spans) -> set:
+        """Paper Algorithm 1 repair test: after continuity enforcement, every primitive must
+        still satisfy the (slightly slackened) interval accuracy over its own span.
+
+        The drawn curve is sampled at <=~0.5px: with sparse samples the nearest drawn
+        point to a STEP midpoint (whose um runs ALONG the primitive) sits many px away
+        tangentially and its um-projection reads as a huge fake violation — the audit's
+        'accuracy not hard' hole traced back here."""
+        bad: set = set()
+        slack = 0.25
+        for c_lo, c_hi, index, kind in spans:
+            a, b, _, _ = chunks[index]
+            sub = mid[a : b + 1]
+            um_s = um[a : b + 1]
+            pieces = []
+            for c in curves[c_lo:c_hi]:
+                chord = float(np.linalg.norm(c.control[-1] - c.control[0]))
+                pieces.append(eval_curve(c, max(12, min(600, int(2.0 * chord) + 4))))
+            pts = np.vstack(pieces)
+            from scipy.spatial import cKDTree
+            near = cKDTree(pts).query(sub)[1]
+            dev = np.abs(np.sum((pts[near] - sub) * um_s, axis=1))
+            if _FIT_DEBUG[0]:
+                print(f"    chunk {kind:8s} [{a:4d},{b:4d}] dev={float(dev.max()):.2f} "
+                      f"(budget {half + eps + slack:.2f}) at mid {np.round(sub[int(np.argmax(dev))],1)}")
+            if float(dev.max()) > half + eps + slack:
+                bad.add((kind, a, b))
+        return bad
+
+    def merge_chunks(chunks, banned: set):
+        """Greedy union-refits beyond the DP horizon.  The look-back caps a single
+        primitive at ~_DP_SPAN_PX of arclength (a perf bound the paper does not
+        have), so a large smooth run comes out as many pieces with slightly
+        different parameters — a visibly jagged ring.  Re-fitting the union of two
+        adjacent chunks and accepting whenever the Sec 5.1 energy does not increase
+        is the same shortest-path objective applied at the scale the windowed DP
+        could not see.  Also demotes arc->line when the union passes as a line
+        (r 2 vs 1): 'almost straight arcs' cannot survive this pass."""
+        def piece_cost(a, b, kind):
+            for cost, k2, _p, _ts, _te in fit_sub_all(a, b, force=True, banned=banned):
+                if k2 == kind:
+                    return cost
+            return None
+        chunks = list(chunks)
+        changed = True
+        while changed and len(chunks) > 1:
+            changed = False
+            for i in range(len(chunks) - 1):
+                a1, b1, k1c, _p1 = chunks[i]
+                a2, b2, k2c, _p2 = chunks[i + 1]
+                if b1 != a2:
+                    continue
+                cands = fit_sub_all(a1, b2, force=False, banned=banned)
+                if not cands:
+                    continue
+                best = min(cands, key=lambda c: c[0])
+                c1, c2 = piece_cost(a1, b1, k1c), piece_cost(a2, b2, k2c)
+                if c1 is None or c2 is None:
+                    continue
+                # Conservative: the union must win even without crediting the G1
+                # seam penalty the two pieces currently pay between them.
+                if best[0] <= c1 + c2 + 1e-9:
+                    chunks[i] = (a1, b2, best[1], best[2])
+                    del chunks[i + 1]
+                    changed = True
+                    break
+        return chunks
+
+    banned: set = set()
+    curves: list[Curve] = []
+    for _ in range(3):                                  # Alg-1: repeat until constraints hold
+        chunks = run_dp(banned)
+        if chunks is None:
+            control, _ = _cubic_control(mid, _unit(mid[1] - mid[0]), _unit(mid[-1] - mid[-2]))
+            return [Curve(3, control)]
+        chunks = merge_chunks(chunks, banned)
+        fit_segment_midpoints.last_kinds = [c[2] for c in chunks]  # debug: true primitive kinds
+        raw_curves, spans = build_curves(chunks)
+        curves = _weld_chain(_enforce_g1_chain(raw_curves))
+        bad = chunk_violations(chunks, curves, spans)
+        if not bad:
+            return curves
+        banned |= bad
+    # Alg-1 exhausted with violations left: an inaccurate primitive must never ship
+    # (audit P0).  Replace each still-violating chunk with the pixel-faithful ~2px
+    # polyline of ITS OWN span; accurate neighbours are kept as fitted.
+    healed: list[Curve] = []
+    for c_lo, c_hi, index, kind in spans:
+        a, b, _, _ = chunks[index]
+        if (kind, a, b) in bad:
+            seg = vertices[a:b + 2]
+            dist = np.concatenate(([0.0], np.cumsum(np.linalg.norm(np.diff(seg, axis=0), axis=1))))
+            count = max(2, int(round(float(dist[-1]) / 2.0)) + 1)
+            target = np.linspace(0.0, float(dist[-1]), count)
+            chain = np.column_stack([np.interp(target, dist, seg[:, k]) for k in range(2)])
+            healed.extend(Curve(1, np.vstack((chain[i], chain[i + 1]))) for i in range(len(chain) - 1))
+        else:
+            healed.extend(curves[c_lo:c_hi])
+    return healed
+
+
+def _regularize_loop(curves: list[Curve], tol: float = 0.7, angle_deg: float = 15.0) -> list[Curve]:
+    """Paper §6 (collinear line regularization): merge consecutive near-collinear line
+    primitives into one, but only when the merged line still passes within `tol` of
+    both.  A curve's short pieces bow away from the merged chord, so they are left
+    alone — this cannot facet a genuine curve."""
+    curves = list(curves)
+    angle_limit = math.radians(angle_deg)
+    changed = True
+    while changed and len(curves) > 2:
+        changed = False
+        for i in range(len(curves)):
+            a, b = curves[i], curves[(i + 1) % len(curves)]
+            if a.degree != 1 or b.degree != 1:
+                continue
+            da, db = a.control[-1] - a.control[0], b.control[-1] - b.control[0]
+            if float(np.linalg.norm(da)) < 1e-6 or float(np.linalg.norm(db)) < 1e-6:
+                continue
+            turn = abs(math.atan2(float(np.cross(da, db)), float(np.dot(da, db))))
+            start, end = a.control[0], b.control[-1]
+            deviation = float(point_line_distance(np.vstack((a.control[0], a.control[-1], b.control[0])), start, end).max())
+            if turn <= angle_limit and deviation <= tol:
+                curves[i] = Curve(1, np.vstack((start, end)))
+                del curves[(i + 1) % len(curves)]
+                changed = True
+                break
+    return curves
+
+
+_ARC_RUN_ID = [0]
+
+
+def _tag_arcs(curves: list[Curve], center: np.ndarray, radius: float) -> list[Curve]:
+    """Mark a circular_beziers run as ONE arc so §6 can regularize it as a circular unit."""
+    _ARC_RUN_ID[0] += 1
+    meta = ("arc", _ARC_RUN_ID[0], np.asarray(center, float).copy(), float(radius))
+    for c in curves:
+        c.meta = meta
+    return curves
+
+
+def _map_curve(control: np.ndarray, new_start: np.ndarray, new_end: np.ndarray) -> np.ndarray:
+    """Rigidly map a curve's control points so its endpoints move to new_start/new_end
+    (similarity: rotate+scale about the old start).  Lets arcs/cubics ride along when
+    §6 regularization moves their bounding vertices."""
+    old_start, old_end = control[0], control[-1]
+    old_vec, new_vec = old_end - old_start, new_end - new_start
+    lo = float(np.linalg.norm(old_vec))
+    if lo < 1e-9:
+        return control + (new_start - old_start)
+    scale = float(np.linalg.norm(new_vec)) / lo
+    ang = math.atan2(new_vec[1], new_vec[0]) - math.atan2(old_vec[1], old_vec[0])
+    c, s = math.cos(ang) * scale, math.sin(ang) * scale
+    rot = np.array([[c, -s], [s, c]])
+    return np.array([new_start + rot @ (p - old_start) for p in control])
+
+
+def _regularize_axis_parallel(curves: list[Curve], axis_deg: float = 8.0, par_deg: float = 6.0, w_dir: float = 60.0,
+                              global_dirs: list | None = None,
+                              offset_targets: dict | None = None) -> list[Curve]:
+    """Paper §6: snap near-axis lines to exact horizontal/vertical and make near-parallel
+    lines parallel, via a constrained vertex least-squares that keeps the loop connected;
+    arcs/cubics ride along (an arc's whole bezier RUN is mapped as one circular unit).
+
+    `global_dirs` (unit vectors) are IMAGE-WIDE parallel-cluster directions: lines snap to
+    the nearest one within tolerance so strokes of DIFFERENT letters co-align (the paper's
+    global scope).  `offset_targets` maps a line curve index -> (normal, c*): the line is
+    additionally pulled onto a shared offset (same-line groups, e.g. a common baseline),
+    softly, in the same least-squares."""
+    n = len(curves)
+    if n < 3:
+        return curves
+    verts = np.array([c.control[0] for c in curves], dtype=float)
+    target: list[np.ndarray | None] = [None] * n
+    line_angles: list[tuple[int, float, float]] = []  # (i, angle, length)
+    for i in range(n):
+        if curves[i].degree == 1:
+            d = verts[(i + 1) % n] - verts[i]
+            length = float(np.linalg.norm(d))
+            if length > 1e-9:
+                line_angles.append((i, math.atan2(d[1], d[0]), length))
+
+    def _within_accuracy(length: float, dev_deg: float) -> bool:
+        # rotating a line of this length by dev degrees moves its far end this far off
+        # the raster boundary; only regularize if that stays within the accuracy budget.
+        return length * math.sin(math.radians(abs(dev_deg))) <= _AXIS_TOL
+
+    for i, a, length in line_angles:              # 1) axis snap — only if it stays accurate
+        deg = math.degrees(a) % 180
+        for axis in (0.0, 90.0, 180.0):
+            dev = abs(deg - axis)
+            if dev <= axis_deg and _within_accuracy(length, dev):
+                r = math.radians(axis)
+                target[i] = np.array([math.cos(r), math.sin(r)])
+                break
+    if global_dirs:
+        for i, a, length in line_angles:              # 1b) image-wide parallel clusters first
+            if target[i] is not None:
+                continue
+            for u in global_dirs:
+                ga = math.atan2(float(u[1]), float(u[0]))
+                dev = abs((math.degrees(a - ga) + 90) % 180 - 90)
+                if dev <= par_deg and _within_accuracy(length, dev):
+                    target[i] = np.asarray(u, float)
+                    break
+    rest = [(i, a, length) for i, a, length in line_angles if target[i] is None]
+    used = [False] * len(rest)
+    for j, (i, a, length) in enumerate(rest):     # 2) parallel clusters for the rest
+        if used[j]:
+            continue
+        group = [j]
+        used[j] = True
+        for k, (i2, a2, l2) in enumerate(rest):
+            if used[k]:
+                continue
+            if abs((math.degrees(a) - math.degrees(a2) + 90) % 180 - 90) <= par_deg:
+                group.append(k)
+                used[k] = True
+        if len(group) >= 2:
+            mean = math.atan2(sum(math.sin(2 * rest[g][1]) for g in group),
+                              sum(math.cos(2 * rest[g][1]) for g in group)) / 2
+            u = np.array([math.cos(mean), math.sin(mean)])
+            for g in group:                       # only members that stay accurate
+                dev = abs((math.degrees(rest[g][1]) - math.degrees(mean) + 90) % 180 - 90)
+                if _within_accuracy(rest[g][2], dev):
+                    target[rest[g][0]] = u
+    if not any(t is not None for t in target) and not offset_targets:
+        return curves
+    rows, rhs = [], []                            # 3) constrained least squares
+    for i in range(n):
+        r = np.zeros(2 * n); r[i] = 1.0; rows.append(r); rhs.append(verts[i, 0])
+        r = np.zeros(2 * n); r[n + i] = 1.0; rows.append(r); rhs.append(verts[i, 1])
+    for i in range(n):
+        if target[i] is None:
+            continue
+        ux, uy = target[i]; nx, ny = -uy, ux      # line dir constrained -> normal component 0
+        j = (i + 1) % n
+        r = np.zeros(2 * n)
+        r[j] += w_dir * nx; r[i] -= w_dir * nx
+        r[n + j] += w_dir * ny; r[n + i] -= w_dir * ny
+        rows.append(r); rhs.append(0.0)
+    if offset_targets:
+        w_off = 20.0                                  # softer than direction constraints
+        for i, (normal, c_star) in offset_targets.items():
+            if i >= n or curves[i].degree != 1:
+                continue
+            nx, ny = float(normal[0]), float(normal[1])
+            for v in (i, (i + 1) % n):                # both endpoints onto the shared line
+                r = np.zeros(2 * n)
+                r[v] = w_off * nx
+                r[n + v] = w_off * ny
+                rows.append(r); rhs.append(w_off * float(c_star))
+    sol = np.linalg.lstsq(np.array(rows), np.array(rhs), rcond=None)[0]
+    nv = np.column_stack([sol[:n], sol[n:]])
+    # Safety: if the joint solve dragged any vertex well beyond the accuracy budget
+    # (e.g. conflicting constraints on a curvy loop), abandon the regularization.
+    if float(np.linalg.norm(nv - verts, axis=1).max()) > 2.0 * _AXIS_TOL + 0.5:
+        return curves
+    out: list[Curve] = []
+    i = 0
+    while i < n:
+        meta = curves[i].meta
+        if meta is not None and isinstance(meta, tuple) and meta[0] == "arc":
+            j = i                                     # the arc's whole bezier RUN
+            while j + 1 < n and curves[j + 1].meta is meta:
+                j += 1
+            a, b = nv[i], nv[(j + 1) % n]
+            old_start, old_end = curves[i].control[0], curves[j].control[-1]
+            # ONE similarity for the entire run keeps it co-circular (mapping each bezier
+            # separately bent arcs mid-way — the audited _map_curve defect)
+            ov, nvec = old_end - old_start, b - a
+            lo_n = float(np.linalg.norm(ov))
+            if lo_n < 1e-9:
+                shift = a - old_start
+                for c in curves[i:j + 1]:
+                    out.append(Curve(3, c.control + shift, meta=meta))
+            else:
+                scale = float(np.linalg.norm(nvec)) / lo_n
+                ang = math.atan2(nvec[1], nvec[0]) - math.atan2(ov[1], ov[0])
+                co, si = math.cos(ang) * scale, math.sin(ang) * scale
+                rot = np.array([[co, -si], [si, co]])
+                new_meta = ("arc", meta[1], a + rot @ (meta[2] - old_start), meta[3] * scale)
+                for c in curves[i:j + 1]:
+                    mapped = np.array([a + rot @ (p - old_start) for p in c.control])
+                    out.append(Curve(3, mapped, meta=new_meta))
+            i = j + 1
+            continue
+        a, b = nv[i], nv[(i + 1) % n]
+        if curves[i].degree == 1:
+            out.append(Curve(1, np.vstack((a, b))))
+        else:
+            out.append(Curve(curves[i].degree, _map_curve(curves[i].control, a, b)))
+        i += 1
+    return out
+
+
+def _regularize_regions_global(regions: list) -> None:
+    """Paper Sec-6 GLOBAL scope: regularities are located across the WHOLE vectorization,
+    not per loop.  (1) image-wide PARALLEL clusters: line directions shared by >=2 loops
+    become common targets, so strokes of different letters co-align; (2) SAME-LINE groups:
+    lines of one direction whose carrier offsets agree within ~1.2px are pulled onto the
+    shared line (common baselines/stems); (3) CO-CIRCULAR reuse: arc runs whose circles
+    nearly coincide across loops are re-emitted from ONE shared circle (badge rings, split
+    O letters).  Mutates the FittedLoop.curves lists in place."""
+    line_info = []          # (loop_obj, curve_idx, angle, length, midpoint)
+    loops = [fl for region in regions for fl in region.loops]
+    for fl in loops:
+        for idx, c in enumerate(fl.curves):
+            if c.degree == 1:
+                d = c.control[-1] - c.control[0]
+                length = float(np.linalg.norm(d))
+                if length > 2.0:
+                    line_info.append((fl, idx, math.atan2(float(d[1]), float(d[0])), length,
+                                      0.5 * (c.control[0] + c.control[-1])))
+
+    # ---- (1) global parallel clusters (>=2 loops), excluding near-axis lines ----
+    global_dirs: list[np.ndarray] = []
+    dir_weights: list[float] = []
+    cand = [(fl, a, ln) for fl, _, a, ln, _ in line_info
+            if min(abs(math.degrees(a) % 90), 90 - abs(math.degrees(a) % 90)) > 8.0]
+    used = [False] * len(cand)
+    for i in range(len(cand)):
+        if used[i]:
+            continue
+        group = [i]
+        used[i] = True
+        for j in range(i + 1, len(cand)):
+            if used[j]:
+                continue
+            if abs((math.degrees(cand[i][1] - cand[j][1]) + 90) % 180 - 90) <= 6.0:
+                group.append(j)
+                used[j] = True
+        if len({id(cand[g][0]) for g in group}) >= 2:   # spans at least two loops
+            sin2 = sum(cand[g][2] * math.sin(2 * cand[g][1]) for g in group)
+            cos2 = sum(cand[g][2] * math.cos(2 * cand[g][1]) for g in group)
+            mean = 0.5 * math.atan2(sin2, cos2)
+            global_dirs.append(np.array([math.cos(mean), math.sin(mean)]))
+            dir_weights.append(sum(cand[g][2] for g in group))
+
+    # ---- (1b) ORTHOGONAL relations between direction families (paper Sec 6): two
+    # global families within 4 deg of perpendicular snap to an exactly-orthogonal
+    # weighted pair — the same relation axis-alignment gives 0/90 lines, extended
+    # to rotated designs.  4 deg of rotation moves a 60px line's ends ~2px at most;
+    # the per-line 1px offset budget and the loop-level re-check still gate it.
+    for i in range(len(global_dirs)):
+        for j in range(i + 1, len(global_dirs)):
+            ai = math.atan2(float(global_dirs[i][1]), float(global_dirs[i][0]))
+            aj = math.atan2(float(global_dirs[j][1]), float(global_dirs[j][0]))
+            diff = (aj - ai) % math.pi                  # undirected lines: mod 180 deg
+            err = diff - math.pi / 2.0                  # signed deviation from orthogonal
+            if abs(math.degrees(err)) > 4.0:
+                continue
+            wi, wj = dir_weights[i], dir_weights[j]
+            total = max(1e-9, wi + wj)
+            ai_new = ai + err * (wj / total)            # heavier family moves less
+            aj_new = aj - err * (wi / total)
+            global_dirs[i] = np.array([math.cos(ai_new), math.sin(ai_new)])
+            global_dirs[j] = np.array([math.cos(aj_new), math.sin(aj_new)])
+
+    # ---- (2) same-line offset groups per direction family ----
+    per_loop_offsets: dict[int, dict] = {}
+    families: list[np.ndarray] = [np.array([1.0, 0.0]), np.array([0.0, 1.0])] + global_dirs
+    for u in families:
+        normal = np.array([-u[1], u[0]])
+        members = []
+        for fl, idx, a, ln, mp in line_info:
+            dev = abs((math.degrees(a - math.atan2(float(u[1]), float(u[0]))) + 90) % 180 - 90)
+            if dev <= 6.0:
+                members.append((fl, idx, ln, float(normal @ mp)))
+        members.sort(key=lambda t: t[3])
+        i = 0
+        while i < len(members):
+            j = i
+            while j + 1 < len(members) and members[j + 1][3] - members[i][3] <= 1.2:
+                j += 1
+            group = members[i:j + 1]
+            if len(group) >= 2 and len({id(g[0]) for g in group}) >= 2:
+                c_star = sum(g[2] * g[3] for g in group) / max(1e-9, sum(g[2] for g in group))
+                for fl, idx, ln, off in group:
+                    if abs(off - c_star) <= 1.0:        # accuracy budget
+                        per_loop_offsets.setdefault(id(fl), {})[idx] = (normal.copy(), c_star)
+            i = j + 1
+
+    # ---- apply per loop: re-run the constrained solve with the GLOBAL targets ----
+    for fl in loops:
+        if len(fl.curves) >= 3:
+            fl.curves = _regularize_axis_parallel(
+                fl.curves, global_dirs=global_dirs or None,
+                offset_targets=per_loop_offsets.get(id(fl)))
+
+    # ---- (3) co-circular arc clusters across loops (after the solve settled) ----
+    arc_info = []
+    for fl in loops:
+        seen: dict[int, tuple[int, int]] = {}
+        for idx, c in enumerate(fl.curves):
+            meta = c.meta
+            if isinstance(meta, tuple) and meta and meta[0] == "arc":
+                if meta[1] in seen:
+                    seen[meta[1]] = (seen[meta[1]][0], idx)
+                else:
+                    seen[meta[1]] = (idx, idx)
+        for meta_id, (i0, i1) in seen.items():
+            arc_info.append((fl, fl.curves[i0].meta, i0, i1))
+    used_a = [False] * len(arc_info)
+    for i in range(len(arc_info)):
+        if used_a[i]:
+            continue
+        _, meta_i, _, _ = arc_info[i]
+        cluster = [i]
+        used_a[i] = True
+        for j in range(i + 1, len(arc_info)):
+            if used_a[j]:
+                continue
+            _, meta_j, _, _ = arc_info[j]
+            r_ref = max(meta_i[3], meta_j[3])
+            if (np.linalg.norm(meta_i[2] - meta_j[2]) <= max(2.0, 0.02 * r_ref)
+                    and abs(meta_i[3] - meta_j[3]) <= max(1.5, 0.04 * r_ref)):
+                cluster.append(j)
+                used_a[j] = True
+        if len(cluster) < 2:
+            continue
+        c_star = np.mean([arc_info[g][1][2] for g in cluster], axis=0)
+        r_star = float(np.mean([arc_info[g][1][3] for g in cluster]))
+        for g in cluster:
+            fl, meta, i0, i1 = arc_info[g]
+            if float(np.linalg.norm(meta[2] - c_star)) + abs(meta[3] - r_star) > 2.0:
+                continue                                # would move the boundary too far
+            start = fl.curves[i0].control[0]
+            end = fl.curves[i1].control[-1]
+            old_pts = np.vstack([eval_curve(c, 8) for c in fl.curves[i0:i1 + 1]])
+            drawn = circular_beziers(start, end, c_star, r_star, old_pts)
+            # arc_info stores indexes for every run before this loop.  Changing
+            # a run's curve count here invalidates later indexes in the same
+            # FittedLoop (graph mode commonly has several shared circle runs).
+            # Keep this regularization pass length-preserving; graph-level
+            # co-circular recovery already chooses the economical run count.
+            if drawn and len(drawn) == i1 - i0 + 1:
+                fl.curves[i0:i1 + 1] = _tag_arcs(drawn, c_star, r_star)
+
+    # ---- (4) CIRCLE REUSE for lines (paper Sec 6): a short line that lies ON an
+    # existing arc circle (both endpoints and midpoint within the co-circular
+    # tolerance) becomes an arc OF that circle — typically the flat piece the DP
+    # placed between two arcs of one ring.  Per-STEP accuracy guard: the swap is
+    # accepted only when the replacement stays within 0.8px of the old line.
+    circles: list[tuple[np.ndarray, float]] = []
+    for fl in loops:
+        for c in fl.curves:
+            meta = c.meta
+            if isinstance(meta, tuple) and len(meta) >= 4 and meta[0] == "arc":
+                if all(float(np.linalg.norm(meta[2] - cc)) > 1.0 or abs(meta[3] - rr) > 1.0
+                       for cc, rr in circles):
+                    circles.append((np.asarray(meta[2], float), float(meta[3])))
+    if circles:
+        for fl in loops:
+            for idx, c in enumerate(fl.curves):
+                if c.degree != 1:
+                    continue
+                p0, p1 = c.control[0], c.control[-1]
+                mid = 0.5 * (p0 + p1)
+                length = float(np.linalg.norm(p1 - p0))
+                if length < 2.0:
+                    continue
+                for cc, rr in circles:
+                    if length > 1.2 * rr:
+                        continue
+                    tol = max(1.0, 0.01 * rr)
+                    if (abs(float(np.linalg.norm(p0 - cc)) - rr) > tol
+                            or abs(float(np.linalg.norm(p1 - cc)) - rr) > tol
+                            or abs(float(np.linalg.norm(mid - cc)) - rr) > tol):
+                        continue
+                    chord = np.vstack((p0, mid, p1))
+                    drawn = circular_beziers(cc + rr * _unit(p0 - cc), cc + rr * _unit(p1 - cc),
+                                             cc, rr, chord)
+                    if not drawn:
+                        continue
+                    pts = np.vstack([eval_curve(dc, 10) for dc in drawn])
+                    dev = point_line_distance(pts, p0, p1)
+                    if float(dev.max()) <= 0.8:          # per-step interval guard
+                        fl.curves[idx:idx + 1] = _tag_arcs(drawn, cc, rr)
+                    break
+
+    # ---- (5) MIRROR SYMMETRY (audit P2): exact reflective regularity ----
+    _regularize_mirror(regions)
+
+    # ---- (6) N-fold ROTATIONAL symmetry + REPEATED shapes + glyph BASELINES ----
+    _regularize_rotation(regions)
+    _regularize_repeats(regions)
+    _regularize_baselines(regions)
+
+
+def _regularize_mirror(regions: list) -> None:
+    """Paper Sec 6 SYMMETRY: when the whole vectorization is mirror-symmetric
+    about a vertical or horizontal axis (dense curve cloud within 0.8px of its
+    own reflection), snap mirror curve PAIRS and self-symmetric curves to EXACT
+    symmetry.  Every move is bounded (<=2px per control point) and the Sec-6
+    accuracy re-check that wraps regularization reverts any loop that the snap
+    pushes past the loop tolerance."""
+    from scipy.spatial import cKDTree
+    loops = [fl for region in regions for fl in region.loops]
+    curves = [c for fl in loops for c in fl.curves]
+    if len(curves) < 4:
+        return
+    cloud = np.vstack([eval_curve(c, 10) for c in curves])
+    if len(cloud) < 40:
+        return
+    tree = cKDTree(cloud)
+    best = None
+    for axis in ("x", "y"):
+        k = 0 if axis == "x" else 1
+        c0 = float(cloud[:, k].mean())
+        for dc in np.arange(-3.0, 3.01, 0.5):
+            c = c0 + float(dc)
+            refl = cloud.copy()
+            refl[:, k] = 2.0 * c - refl[:, k]
+            score = float(np.mean(tree.query(refl)[0]))
+            if best is None or score < best[0]:
+                best = (score, k, c)
+    if best is None or best[0] > 0.8:
+        return
+    _, k, c = best
+
+    def reflect(pts: np.ndarray) -> np.ndarray:
+        out = np.array(pts, float, copy=True)
+        out[:, k] = 2.0 * c - out[:, k]
+        return out
+
+    eps = 1.5
+    starts = np.array([cv.control[0] for cv in curves], float)
+    tree_s = cKDTree(starts)
+    done: set[int] = set()
+    for i, a in enumerate(curves):
+        if i in done:
+            continue
+        r_start = reflect(a.control[:1])[0]
+        r_end = reflect(a.control[-1:])[0]
+        # a mirror partner runs the OPPOSITE orientation on a consistently
+        # oriented loop: partner.start ~ reflect(a.end), partner.end ~ reflect(a.start)
+        d_j, j = tree_s.query(r_end)
+        if j != i and j not in done and float(d_j) <= eps:
+            b = curves[int(j)]
+            if len(b.control) == len(a.control) and                     float(np.linalg.norm(b.control[-1] - r_start)) <= eps:
+                refl_b = reflect(b.control[::-1])
+                if float(np.max(np.linalg.norm(a.control - refl_b, axis=1))) <= 2.0:
+                    avg = 0.5 * (a.control + refl_b)
+                    a.control = avg
+                    b.control = reflect(avg[::-1])
+                    done.add(i)
+                    done.add(int(j))
+                    continue
+        # self-symmetric curve (crosses the axis)
+        if float(np.linalg.norm(r_start - a.control[-1])) <= eps and                 float(np.linalg.norm(r_end - a.control[0])) <= eps:
+            refl_a = reflect(a.control[::-1])
+            if float(np.max(np.linalg.norm(a.control - refl_a, axis=1))) <= 2.0:
+                a.control = 0.5 * (a.control + refl_a)
+                done.add(i)
+
+
+def _regularize_rotation(regions: list) -> None:
+    """Paper Sec 6 N-FOLD ROTATIONAL symmetry (stars, petals, gears): when the
+    drawn-curve cloud coincides with itself rotated by 2pi/N about its centroid
+    (mean residual <= 0.8px, N in 3..12), curve ORBITS under the rotation are
+    averaged in a canonical frame and written back exactly N-fold symmetric.
+    Moves bounded <= 2px; the Sec-6 re-check wrapper reverts damaged loops."""
+    from scipy.spatial import cKDTree
+    curves = [c for region in regions for fl in region.loops for c in fl.curves]
+    if len(curves) < 6:
+        return
+    cloud = np.vstack([eval_curve(c, 10) for c in curves])
+    if len(cloud) < 60:
+        return
+    centre = cloud.mean(axis=0)
+    tree = cKDTree(cloud)
+    best = None
+    for n in (12, 10, 8, 6, 5, 4, 3):
+        ang = 2.0 * math.pi / n
+        rot = np.array([[math.cos(ang), -math.sin(ang)], [math.sin(ang), math.cos(ang)]])
+        rc = (cloud - centre) @ rot.T + centre
+        score = float(np.mean(tree.query(rc)[0]))
+        if score <= 0.8:
+            best = (score, n)
+            break                                    # prefer the HIGHEST fold that fits
+    if best is None:
+        return
+    n_fold = best[1]
+    ang = 2.0 * math.pi / n_fold
+    rot = np.array([[math.cos(ang), -math.sin(ang)], [math.sin(ang), math.cos(ang)]])
+
+    def rotate(pts: np.ndarray, k: int = 1) -> np.ndarray:
+        out = np.array(pts, float, copy=True) - centre
+        for _ in range(k % n_fold):
+            out = out @ rot.T
+        return out + centre
+
+    starts = np.array([c.control[0] for c in curves], float)
+    tree_s = cKDTree(starts)
+    used: set[int] = set()
+    for i, a in enumerate(curves):
+        if i in used:
+            continue
+        orbit = [i]
+        ok = True
+        while len(orbit) < n_fold:
+            cur = curves[orbit[-1]]
+            target = rotate(cur.control[:1])[0]
+            d_j, j = tree_s.query(target)
+            j = int(j)
+            if float(d_j) > 1.5 or j in used or (j in orbit and j != i):
+                ok = False
+                break
+            if j == i:
+                ok = len(orbit) == n_fold - 1 or False
+                break
+            b = curves[j]
+            if len(b.control) != len(cur.control) or                     float(np.max(np.linalg.norm(rotate(cur.control) - b.control, axis=1))) > 2.0:
+                ok = False
+                break
+            orbit.append(j)
+        if not ok or len(orbit) != n_fold:
+            continue
+        canonical = np.mean([rotate(curves[orbit[k]].control, n_fold - k) for k in range(n_fold)], axis=0)
+        if float(np.max(np.linalg.norm(canonical - curves[i].control, axis=1))) > 2.0:
+            continue
+        for k, idx in enumerate(orbit):
+            curves[idx].control = rotate(canonical, k)
+            used.add(idx)
+
+
+def _regularize_repeats(regions: list) -> None:
+    """Audit P2 REPETITION + text/glyph structure: loops with the SAME SHAPE
+    (repeated elements, repeated letters of a wordmark) are unified to their
+    average shape, translation-aligned by centroid.  Matching is strict — same
+    curve count, same degree sequence up to a cyclic shift, per-control RMS
+    <= 1.2px and max <= 2px after centroid alignment."""
+    loops = [fl for region in regions for fl in region.loops
+             if 2 <= len(fl.curves) <= 40 and all(getattr(c, "meta", None) is None for c in fl.curves)]
+    if len(loops) < 2:
+        return
+
+    def stack(fl) -> np.ndarray:
+        return np.vstack([c.control for c in fl.curves])
+
+    def centroid(fl) -> np.ndarray:
+        return stack(fl).mean(axis=0)
+
+    def shifted(fl, shift: int) -> list:
+        return fl.curves[shift:] + fl.curves[:shift]
+
+    used: set[int] = set()
+    for i in range(len(loops)):
+        if i in used:
+            continue
+        base = loops[i]
+        base_rel = stack(base) - centroid(base)
+        degs_i = [c.degree for c in base.curves]
+        members = [(i, 0)]
+        for j in range(i + 1, len(loops)):
+            if j in used:
+                continue
+            other = loops[j]
+            if len(other.curves) != len(base.curves):
+                continue
+            degs_j = [c.degree for c in other.curves]
+            best_shift = None
+            for shift in range(len(other.curves)):
+                if degs_j[shift:] + degs_j[:shift] != degs_i:
+                    continue
+                rel = np.vstack([c.control for c in shifted(other, shift)]) - centroid(other)
+                if rel.shape != base_rel.shape:
+                    continue
+                delta = np.linalg.norm(rel - base_rel, axis=1)
+                if float(delta.max()) <= 2.0 and float(np.sqrt(np.mean(delta ** 2))) <= 1.2:
+                    best_shift = shift
+                    break
+            if best_shift is not None:
+                members.append((j, best_shift))
+        if len(members) < 2:
+            continue
+        rels = []
+        for j, shift in members:
+            fl = loops[j]
+            rels.append(np.vstack([c.control for c in shifted(fl, shift)]) - centroid(fl))
+        mean_rel = np.mean(rels, axis=0)
+        for j, shift in members:
+            fl = loops[j]
+            target = mean_rel + centroid(fl)
+            pos = 0
+            reordered = shifted(fl, shift)
+            for c in reordered:
+                m = len(c.control)
+                c.control = target[pos:pos + m].copy()
+                pos += m
+            used.add(j)
+
+
+def _regularize_baselines(regions: list) -> None:
+    """Text/glyph structure (audit P2): glyph-sized loops of a wordmark share
+    BASELINE and CAP-HEIGHT lines.  Cluster loop bottom/top extremes (1.2px
+    window, >=3 members) and translate each member loop VERTICALLY onto the
+    weighted line (shape-preserving whole-loop shift, bounded <= 1.0px)."""
+    loops = [fl for region in regions for fl in region.loops if len(fl.curves) >= 2]
+    if len(loops) < 3:
+        return
+    heights = []
+    for fl in loops:
+        pts = np.vstack([c.control for c in fl.curves])
+        heights.append((float(pts[:, 1].min()), float(pts[:, 1].max()), fl))
+
+    moved: set[int] = set()
+    for key in (1, 0):                                # BASELINE (bottoms) rules; tops
+        entries = sorted(((h[key], h[2]) for h in heights), key=lambda t: t[0])
+        i = 0
+        while i < len(entries):
+            j = i
+            while j + 1 < len(entries) and entries[j + 1][0] - entries[i][0] <= 1.2:
+                j += 1
+            group = entries[i:j + 1]
+            if len(group) >= 3:
+                target = float(np.mean([g[0] for g in group]))
+                for value, fl in group:
+                    if key == 0 and id(fl) in moved:
+                        continue                      # baseline already placed this glyph
+                    shift = target - value
+                    if 1e-4 < abs(shift) <= 1.0:
+                        for c in fl.curves:
+                            c.control = c.control + np.array([0.0, shift])
+                        moved.add(id(fl))
+            i = j + 1
+
+
+def _whole_loop_circle(loop: np.ndarray, px: float, slack: float = 0.35):
+    """(center, radius) if the WHOLE closed loop is one genuine circle, else None.
+
+    The radial residual alone is degenerate (audit P0 'circle catastrophe'): a thin
+    43x6 wordmark fit against an R~2000 circle lies entirely inside the tolerance
+    annulus with near-zero residual.  A genuine full circle must ALSO satisfy:
+      - square-ish bbox (aspect >= 0.6),
+      - radius commensurate with the bbox (0.7 <= 2R/extent <= 1.4),
+      - centre inside the bbox,
+      - full angular coverage around the centre (unwrapped span >= 330 deg).
+    Only then is the scale-relative residual tolerance (cf. Sec 6 co-circular %R)
+    safe: with 2R ~ extent it is ~0.5% of the shape, never a 20px annulus."""
+    mid = 0.5 * (loop[:-1] + loop[1:])
+    if len(mid) < 12:
+        return None
+    circle = fit_circle(mid)
+    if circle is None or circle[1] < 1.5:
+        return None
+    center, radius, _ = circle
+    w, h = float(np.ptp(loop[:, 0])), float(np.ptp(loop[:, 1]))
+    extent = max(w, h)
+    if extent < 1e-9 or min(w, h) / extent < 0.6:
+        return None
+    if not (0.7 <= (2.0 * radius) / extent <= 1.4):
+        return None
+    if not (loop[:, 0].min() <= center[0] <= loop[:, 0].max()
+            and loop[:, 1].min() <= center[1] <= loop[:, 1].max()):
+        return None
+    angles = np.unwrap(np.arctan2(mid[:, 1] - center[1], mid[:, 0] - center[0]))
+    if abs(float(angles[-1] - angles[0])) < math.radians(330.0):
+        return None
+    radial = np.abs(np.linalg.norm(mid - center, axis=1) - radius)
+    if float(radial.max()) > max(0.5 * px + slack, 0.01 * radius):
+        return None
+    return center, radius
+
+
+def _loop_is_circle(loop: np.ndarray, px: float) -> bool:
+    """Whole closed loop is a single circle within accuracy — so any corners the lax
+    detector left on its staircase are spurious and it should be fit as one co-circular
+    disc, not split.  (Corner removal floors at 2 corners because a full circle cannot
+    be one arc, so this catch is needed to reach the smooth branch.)"""
+    return _whole_loop_circle(loop, px) is not None
+
+
+def _flattest_index(loop: np.ndarray) -> int:
+    """Vertex where the boundary turns least over a window — the safest place to cut
+    a corner-free closed loop for the open-segment DP: the seam lands inside a long
+    straight or gently-curved run, where the closed G1 chain and Sec 6 heal it."""
+    n = len(loop)
+    w = max(4, n // 36)
+    prev = loop - np.roll(loop, w, axis=0)
+    nxt = np.roll(loop, -w, axis=0) - loop
+    cross = prev[:, 0] * nxt[:, 1] - prev[:, 1] * nxt[:, 0]
+    dot = np.sum(prev * nxt, axis=1)
+    return int(np.argmin(np.abs(np.arctan2(cross, dot))))
+
+
+def _fit_smooth_closed(loop: np.ndarray, alpha: float, px: float) -> list[Curve]:
+    """A corner-free closed loop.  Paper Sec 6 co-circular: if ONE circle fits the
+    whole boundary emit four arcs sharing that centre/radius (truly round disc).
+    Otherwise the loop is ONE cyclic Sec 5.1 segment: unroll it at its flattest
+    vertex and run the same line/arc/clothoid shortest path as everywhere else.
+
+    (The old cubic-spline branch bypassed both the interval accuracy and the type
+    competition: it reproduced raster/JPEG noise on large rings as wiggles — the
+    'jagged ring' — and drew long straight sides as strings of near-straight
+    cubics.  No other paper-mode path could emit those artefacts.)"""
+    circle = _whole_loop_circle(loop, px, slack=0.3)
+    if circle is not None:
+        center, radius = circle
+        n = len(loop)
+        cuts4 = [0, n // 4, n // 2, 3 * n // 4]
+        curves: list[Curve] = []
+        for k in range(4):
+            seg = _arc_slice(loop, cuts4[k], cuts4[(k + 1) % 4])
+            curves.extend(_tag_arcs(circular_beziers(seg[0], seg[-1], center, radius, seg), center, radius))
+        return _enforce_g1_chain(curves, closed=True)
+    start = _flattest_index(loop)
+    ring = np.vstack((loop[start:], loop[:start], loop[start:start + 1]))
+    curves = fit_segment_midpoints(ring, alpha, px, snap_ends=False)
+    if curves:
+        seam = _corner_intersection(curves[-1], curves[0], loop[start])
+        _shift_curve_end(curves[-1], seam)
+        _shift_curve_start(curves[0], seam)
+    return _enforce_g1_chain(_regularize_loop(curves), max_angle_deg=20.0, closed=True)
+
+
+def _support_of(curve: Curve):
+    """The analytic support of a rigid primitive: ('line', p, d) or ('circle', c, R)."""
+    meta = getattr(curve, "meta", None)
+    if curve.degree == 1:
+        d = curve.control[-1] - curve.control[0]
+        n = float(np.linalg.norm(d))
+        if n < 1e-9:
+            return None
+        return ("line", curve.control[0].astype(float), d / n)
+    if isinstance(meta, tuple) and len(meta) >= 4 and meta[0] == "arc":
+        return ("circle", np.asarray(meta[2], float), float(meta[3]))
+    return None
+
+
+def _intersect_supports(sa, sb, near: np.ndarray):
+    """Intersection of two analytic supports nearest to `near`, or None."""
+    kinds = (sa[0], sb[0])
+    if kinds == ("line", "line"):
+        _, p0, d0 = sa
+        _, p1, d1 = sb
+        cross = float(d0[0] * d1[1] - d0[1] * d1[0])
+        if abs(cross) < 0.17:
+            return None
+        d = p1 - p0
+        s = (d[0] * d1[1] - d[1] * d1[0]) / cross
+        return p0 + s * d0
+    if "line" in kinds and "circle" in kinds:
+        (_, p0, d0), (_, c, r) = (sa, sb) if sa[0] == "line" else (sb, sa)
+        f = p0 - c
+        b_half = float(f @ d0)
+        disc = b_half * b_half - (float(f @ f) - r * r)
+        if disc < 0:
+            return None
+        root = math.sqrt(disc)
+        cands = [p0 + (-b_half + root) * d0, p0 + (-b_half - root) * d0]
+        return min(cands, key=lambda q: float(np.linalg.norm(q - near)))
+    if kinds == ("circle", "circle"):
+        _, c0, r0 = sa
+        _, c1, r1 = sb
+        d = float(np.linalg.norm(c1 - c0))
+        if d < 1e-9 or d > r0 + r1 or d < abs(r0 - r1):
+            return None
+        a = (r0 * r0 - r1 * r1 + d * d) / (2 * d)
+        h2 = r0 * r0 - a * a
+        if h2 < 0:
+            return None
+        h = math.sqrt(h2)
+        u = (c1 - c0) / d
+        base = c0 + a * u
+        n = np.array([-u[1], u[0]])
+        cands = [base + h * n, base - h * n]
+        return min(cands, key=lambda q: float(np.linalg.norm(q - near)))
+    return None
+
+
+def _corner_intersection(a: Curve, b: Curve, vertex: np.ndarray, cap: float = 1.5) -> np.ndarray:
+    """Quantization-free corner position: the intersection of the two adjacent
+    primitives' SUPPORTS (line/circle — the point then lies exactly ON both, zero
+    tilt for either side), falling back to end-tangent-line intersection for free
+    cubics/clothoids.  Snapping to the raster vertex instead tilted long lines by
+    its +-0.5-1px quantization and made Alg-1 ban perfectly good primitives.
+    Falls back to the endpoint midpoint (then the vertex) when near-parallel or
+    the intersection strays more than `cap` px from the raster vertex."""
+    p = None
+    sa, sb = _support_of(a), _support_of(b)
+    if sa is not None and sb is not None:
+        p = _intersect_supports(sa, sb, np.asarray(vertex, float))
+    if p is None:
+        pa, ta = a.control[-1], _tangent_out(a)
+        pb, tb = b.control[0], _tangent_in(b)
+        cross = float(ta[0] * tb[1] - ta[1] * tb[0])
+        if abs(cross) >= 0.17:                 # tangents differ by >=~10 deg
+            d = pb - pa
+            s = (d[0] * tb[1] - d[1] * tb[0]) / cross
+            p = pa + s * ta
+        else:
+            p = 0.5 * (pa + pb)
+    if float(np.linalg.norm(p - vertex)) > cap:
+        p = 0.5 * (a.control[-1] + b.control[0])
+        if float(np.linalg.norm(p - vertex)) > cap:
+            p = np.asarray(vertex, float)
+    return p
+
+
+def _shift_curve_start(curve: Curve, p: np.ndarray) -> None:
+    delta = p - curve.control[0]
+    curve.control[0] = p
+    if curve.degree == 3:
+        curve.control[1] = curve.control[1] + delta
+
+
+def _shift_curve_end(curve: Curve, p: np.ndarray) -> None:
+    delta = p - curve.control[-1]
+    curve.control[-1] = p
+    if curve.degree == 3:
+        curve.control[-2] = curve.control[-2] + delta
+
+
+def _weld_chain(curves: list[Curve]) -> list[Curve]:
+    """Unify INTERIOR joins of an open chain at the intersection of the two sides'
+    supports (midpoint fallback): adjacent chunks project their shared boundary
+    midpoint onto DIFFERENT supports, so their drawn endpoints disagree by ~0.5px,
+    which reads as a gap/step at every type transition."""
+    for i in range(len(curves) - 1):
+        a, b = curves[i], curves[i + 1]
+        near = 0.5 * (a.control[-1] + b.control[0])
+        p = _corner_intersection(a, b, near, cap=1.2)
+        _shift_curve_end(a, p)
+        _shift_curve_start(b, p)
+    return curves
+
+
+def _close_chain_corners(seg_curves: list[list[Curve]], loop: np.ndarray, corner_indices: list[int]) -> list[Curve]:
+    """C0 closure of per-segment chains at their shared corners via primitive
+    intersection (see _corner_intersection)."""
+    m = len(seg_curves)
+    for k in range(m):
+        a_list, b_list = seg_curves[k], seg_curves[(k + 1) % m]
+        if not a_list or not b_list:
+            continue
+        vertex = loop[corner_indices[(k + 1) % m]]
+        p = _corner_intersection(a_list[-1], b_list[0], vertex)
+        _shift_curve_end(a_list[-1], p)
+        _shift_curve_start(b_list[0], p)
+    return [c for chain in seg_curves for c in chain]
+
+
+def _loop_fit_deviation(loop: np.ndarray, curves: list[Curve]) -> float:
+    """Bidirectional hard-accuracy of a DRAWN loop (audit P0):
+      fit->boundary — every drawn sample near the polyline (catches oval blobs and
+      bulges the per-chunk interval test cannot see once a whole loop mis-routes);
+      boundary->fit — every polyline vertex near the drawn curve (catches dropped
+      detail; the audit measured 9.75px here on a wordmark turned circle)."""
+    if not curves:
+        return float("inf")
+    from scipy.spatial import cKDTree
+    # sample every drawn curve at <=~0.7px so point-to-point distance approximates
+    # point-to-curve (a sparse 24-sample discretization reads tangential offset as
+    # 5px of 'error' on a large circle and would fail every good fit)
+    pieces = []
+    for c in curves:
+        chord = float(np.linalg.norm(c.control[-1] - c.control[0]))
+        pieces.append(eval_curve(c, max(8, min(400, int(2.0 * chord) + 4))))
+    drawn = np.vstack(pieces)
+    boundary_to_fit = float(cKDTree(drawn).query(loop)[0].max())
+    fit_to_boundary = float(cKDTree(loop).query(drawn)[0].max())
+    return max(boundary_to_fit, fit_to_boundary)
+
+
+def _pixel_faithful_curves(loop: np.ndarray) -> list[Curve]:
+    """Last-resort fallback: the boundary itself as a ~2px line chain.  Not pretty,
+    but pixel-faithful — the audit's rule is that an inaccurate primitive must never
+    ship, and the final fallback must be MORE detailed, not a forced loose cubic."""
+    ring = resample_ring(np.vstack((loop, loop[:1])), 2.0)[:-1]
+    if len(ring) < 3:
+        ring = loop
+    return [Curve(1, np.vstack((ring[i], ring[(i + 1) % len(ring)])))
+            for i in range(len(ring))]
+
+
+def _tiny_pixel_curves(loop: np.ndarray) -> list[Curve]:
+    """Exact crack-boundary chain for a tiny counter/detail.
+
+    At 2--4px scale there is not enough evidence to infer a prettier circle or
+    spline.  Resampling or smooth fitting can shrink a three-pixel A counter to a
+    subpixel speck and erase Lacoste scales.  Preserve the observed topology; a
+    later text/template stage may replace it when stronger evidence exists.
+    """
+    # Deblurred masks arrive at 4x density (0.25 native-px crack steps).  Keeping
+    # every such step preserves no extra source evidence and explodes one scale to
+    # hundreds of SVG lines, so collapse to roughly one native-pixel spacing first.
+    original = np.asarray(loop, float)
+    steps = np.linalg.norm(np.roll(original, -1, axis=0) - original, axis=1)
+    if len(steps) and float(np.median(steps)) < 0.75:
+        pts = resample_ring(np.vstack((original, original[:1])), 0.9)[:-1]
+    else:
+        # Native 1px loops (e.g. the three-pixel IKEA counter) are already the
+        # irreducible evidence.  Resampling them moves their fill off the source
+        # pixels and can erase the counter again.
+        pts = original
+    pts = np.asarray(pts, float)
+    keep = np.r_[True, np.linalg.norm(np.diff(pts, axis=0), axis=1) > 1e-9]
+    pts = pts[keep]
+    if len(pts) > 1 and np.allclose(pts[0], pts[-1]):
+        pts = pts[:-1]
+    return [Curve(1, np.vstack((pts[i], pts[(i + 1) % len(pts)])))
+            for i in range(len(pts))]
+
+
+def _loop_fill_iou(loop: np.ndarray, curves: list[Curve]) -> float:
+    """Fill IoU between the source polyline and the drawn loop.  The bidirectional
+    DISTANCE misses fill-visible failures (a bowtie self-intersection or a mis-routed
+    chain can stay Hausdorff-close yet paint the wrong region)."""
+    if not curves:
+        return 0.0
+    drawn = np.vstack([eval_curve(c, 16) for c in curves])
+    both = np.vstack((loop, drawn))
+    lo = np.floor(both.min(axis=0)) - 2.0
+    hi = np.ceil(both.max(axis=0)) + 2.0
+    size = (int(hi[0] - lo[0]), int(hi[1] - lo[1]))
+    if size[0] <= 2 or size[1] <= 2 or size[0] * size[1] > 4_000_000:
+        return 1.0
+    def rasterize(pts: np.ndarray) -> np.ndarray:
+        img = Image.new("1", size, 0)
+        ImageDraw.Draw(img).polygon([tuple(p) for p in (pts - lo)], fill=1)
+        return np.asarray(img, bool)
+    a, b = rasterize(loop), rasterize(drawn)
+    union = int(np.sum(a | b))
+    if union == 0:
+        return 1.0
+    return float(np.sum(a & b)) / union
+
+
+def _chain_self_intersects(curves: list[Curve]) -> bool:
+    """Explicit segment-intersection test on the drawn closed chain (audit P0):
+    the fill IoU catches most self-intersection damage, but a small bowtie can
+    survive both the IoU and the bidirectional distance.  Strict interior
+    crossings only — shared endpoints of adjacent segments do not count."""
+    if not curves:
+        return False
+    pts = np.vstack([eval_curve(c, 8)[:-1] for c in curves])
+    if len(pts) > 400:
+        pts = pts[np.linspace(0, len(pts) - 1, 400).astype(int)]
+    n = len(pts)
+    if n < 4:
+        return False
+    a = pts
+    d = np.roll(pts, -1, axis=0) - pts
+    eps = 1e-6
+    for i in range(n - 2):
+        j0 = i + 2
+        j1 = n - 1 if i == 0 else n          # closed chain: seg 0 is adjacent to seg n-1
+        if j0 >= j1:
+            continue
+        r = d[i]
+        qp = a[j0:j1] - a[i]
+        s = d[j0:j1]
+        denom = r[0] * s[:, 1] - r[1] * s[:, 0]
+        ok = np.abs(denom) > 1e-12
+        if not ok.any():
+            continue
+        t = (qp[:, 0] * s[:, 1] - qp[:, 1] * s[:, 0])
+        u = (qp[:, 0] * r[1] - qp[:, 1] * r[0])
+        with np.errstate(divide="ignore", invalid="ignore"):
+            tt = np.where(ok, t / denom, -1.0)
+            uu = np.where(ok, u / denom, -1.0)
+        if bool(np.any((tt > eps) & (tt < 1 - eps) & (uu > eps) & (uu < 1 - eps))):
+            return True
+    return False
+
+
+def _finish_loop(
+    loop: np.ndarray,
+    curves: list[Curve],
+    px: float,
+    template: str,
+    fit_profile: str | None = None,
+) -> FittedLoop:
+    """Loop-level accuracy backstop for every paper-mode exit path: bidirectional
+    hard distance PLUS fill IoU (skipped for tiny loops where IoU is noise) PLUS
+    an explicit self-intersection test.
+
+    ``text-safe`` is an opt-in A/B profile for compact glyph contours.  Reviewed
+    letters exposed valid 5--8 primitive fits with sub-1.1px boundary deviation
+    that the fixed IoU threshold replaced by 29--86 raster-staircase lines.  In
+    this profile low IoU triggers fallback only when the geometric deviation is
+    also above 1.25px.  The production profile remains byte-for-byte unchanged.
+    """
+    profile = _PAPER_FIT_PROFILE if fit_profile is None else fit_profile
+    if profile not in _PAPER_FIT_PROFILES:
+        valid = ", ".join(_PAPER_FIT_PROFILES)
+        raise ValueError(f"unknown paper fit profile {profile!r}; expected one of: {valid}")
+    tolerance = max(2.5, 2.0 * px + 1.0)
+    deviation = _loop_fit_deviation(loop, curves)
+    if deviation > tolerance:
+        return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
+    area = abs(float(np.sum(loop[:, 0] * np.roll(loop[:, 1], -1) - np.roll(loop[:, 0], -1) * loop[:, 1]))) / 2.0
+    perimeter_len = float(np.sum(np.linalg.norm(np.roll(loop, -1, axis=0) - loop, axis=1)))
+    thickness = 2.0 * area / max(perimeter_len, 1e-9)
+    # IoU is only informative for THICK shapes: a 4px-wide letter stem at a good
+    # 0.5px fit already reads ~0.75 IoU (the boundary band dominates its area), so
+    # gating thin loops on IoU sent every small letter into the polyline fallback.
+    # Thin shapes are guarded by the bidirectional distance above.
+    if area >= 60.0 and thickness >= 6.0:
+        poor_iou = _loop_fill_iou(loop, curves) < 0.90
+        if poor_iou and (profile == "production" or deviation > 1.25):
+            return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
+    if _chain_self_intersects(curves):
+        return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
+    return FittedLoop(loop, curves, template)
+
+
+def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.ndarray | None = None, px: float = 1.0) -> FittedLoop:
+    """Full paper boundary fit for one loop: Sec4/Sec5 corners split the loop into
+    segments, each fit to edge midpoints by Sec 5.1 with the directional interval
+    accuracy constraint.  A corner-free loop is a smooth curve split into four arcs.
+
+    The staircase is absorbed by the per-midpoint interval (`px` wide), not by any
+    pre-smoothing — so a genuine corner stays exactly sharp and a straight edge fits
+    as one clean line.  Corners may be supplied externally (detected on the raw loop);
+    only those lying on this loop are used."""
+    # Topology-first floor for tiny counters/details.  Both conditions are needed:
+    # do not turn a long one-pixel stroke into a staircase, but never let a compact
+    # 2x2--8x8 region disappear merely because its corner probabilities are weak.
+    signed = float(np.sum(loop[:, 0] * np.roll(loop[:, 1], -1)
+                          - np.roll(loop[:, 0], -1) * loop[:, 1]))
+    area = abs(signed) / 2.0
+    extent = float(max(np.ptp(loop[:, 0]), np.ptp(loop[:, 1])))
+    if area <= 18.0 and extent <= 8.0:
+        # Tiny round scales/dots still have strong ellipse evidence at 4x.  Keep
+        # them compact (four cubics) when the fit is genuinely close; angular or
+        # under-sampled counters such as IKEA's A remain exact pixel chains.
+        closed = np.vstack((loop, loop[:1]))
+        ellipse = _ellipse_candidate(closed)
+        if ellipse is not None and ellipse[0] <= 0.22:
+            return FittedLoop(loop, ellipse[2], "paper-tiny-ellipse")
+        return FittedLoop(loop, _tiny_pixel_curves(loop), "paper-tiny")
+    if corner_positions is None:
+        positions = paper_corner_positions(loop)
+    else:
+        candidates = np.asarray(corner_positions, dtype=float).reshape(-1, 2)
+        if len(candidates):
+            nearest = np.min(np.sum((loop[:, None, :] - candidates[None, :, :]) ** 2, axis=2), axis=0)
+            positions = candidates[nearest <= 4.0]
+        else:
+            positions = np.empty((0, 2))
+    n = len(loop)
+    if len(positions) == 0 or _loop_is_circle(loop, px):
+        # No corners, or a genuine full circle (spurious staircase corners on a disc
+        # are overridden) -> the cyclic Sec 5.1 segment / co-circular disc path.
+        return _finish_loop(loop, _fit_smooth_closed(loop, alpha, px), px, "paper-smooth")
+    indices = sorted({int(np.argmin(np.sum((loop - p) ** 2, axis=1))) for p in positions})
+    if len(indices) == 1:
+        # ONE corner: unroll the loop AT that corner and fit the whole ring as a
+        # single open Sec 5.1 segment — the corner stays C0 (an open chain never
+        # unifies its two ends), everything else joins G1.
+        i = indices[0]
+        ring = np.vstack((loop[i:], loop[:i], loop[i:i + 1]))
+        chain = fit_segment_midpoints(ring, alpha, px, snap_ends=False)
+        if chain:
+            p = _corner_intersection(chain[-1], chain[0], loop[i])
+            _shift_curve_end(chain[-1], p)
+            _shift_curve_start(chain[0], p)
+        curves = _regularize_axis_parallel(_regularize_loop(chain))
+        curves = _enforce_g1_chain(curves, max_angle_deg=20.0, closed=False)
+        return _finish_loop(loop, curves, px, "paper")
+    seg_curves = []
+    for k in range(len(indices)):
+        segment = _arc_slice(loop, indices[k], indices[(k + 1) % len(indices)])
+        seg_curves.append(fit_segment_midpoints(segment, alpha, px, snap_ends=False))
+    curves = _close_chain_corners(seg_curves, loop, indices)
+    curves = _regularize_axis_parallel(_regularize_loop(curves))
+    # Paper §6 continuity: a join whose two tangents differ by < 20 deg reads as smooth,
+    # so unify it to G1 — clears the visible kink of any spurious corner the detector /
+    # removal left on a curve, while genuine sharp corners (> 20 deg) stay C0.
+    curves = _enforce_g1_chain(curves, max_angle_deg=20.0, closed=True)
+    return _finish_loop(loop, curves, px, "paper")
+
+
+def fit_perceptual_loop(loop: np.ndarray, feature_scale: float = 1.0) -> FittedLoop:
+    """Interpolate a high-resolution boundary without simplifying its features.
+
+    Smooth locations only very lightly.  Perceptual corners are C0 anchors;
+    all other joins share a tangent and are therefore G1.  Every curve remains
+    local, so a thin notch cannot be traded for a globally cheaper primitive.
+    """
+    spacing = max(0.42, min(0.62, 0.48 * feature_scale))
+    smooth = taubin_smooth_ring(resample_ring(loop, spacing), passes=2)
+    ring = smooth[:-1]
+    n = len(ring)
+    if n < 3:
+        return FittedLoop(smooth, [Curve(1, np.vstack((ring[0], ring[-1])))], "perceptual-contour")
+    corners = set(_multiscale_corners(ring, feature_scale, spacing))
+    curves: list[Curve] = []
+    for i in range(n):
+        j = (i + 1) % n
+        chord_vector = ring[j] - ring[i]
+        chord = float(np.linalg.norm(chord_vector))
+        if chord < 1e-8:
+            continue
+        direction = chord_vector / chord
+        tangent_start = direction if i in corners else _unit(ring[j] - ring[(i - 1) % n])
+        tangent_end = direction if j in corners else _unit(ring[(j + 1) % n] - ring[i])
+        handle = chord / 3.0
+        curves.append(
+            Curve(
+                3,
+                np.vstack((ring[i], ring[i] + handle * tangent_start, ring[j] - handle * tangent_end, ring[j])),
+            )
+        )
+    return FittedLoop(smooth, curves, "perceptual-contour")
+
+
+def curve_command(curve: Curve, move: bool = False) -> str:
+    p = curve.control
+    prefix = f"M{p[0,0]:.2f} {p[0,1]:.2f}" if move else ""
+    if curve.degree == 1:
+        return f"{prefix}L{p[1,0]:.2f} {p[1,1]:.2f}"
+    if curve.degree == 2:
+        return f"{prefix}Q{p[1,0]:.2f} {p[1,1]:.2f} {p[2,0]:.2f} {p[2,1]:.2f}"
+    return f"{prefix}C{p[1,0]:.2f} {p[1,1]:.2f} {p[2,0]:.2f} {p[2,1]:.2f} {p[3,0]:.2f} {p[3,1]:.2f}"
+
+
+def loop_path(loop: FittedLoop) -> str:
+    return "".join(curve_command(curve, move=(i == 0)) for i, curve in enumerate(loop.curves)) + "Z"
+
+
+def chain_path(curves: list[Curve]) -> str:
+    """Open path (no Z) for a stroked centerline chain."""
+    return "".join(curve_command(curve, move=(i == 0)) for i, curve in enumerate(curves))
+
+
+def _gradient_svg_def(region_id: int, fill: tuple) -> tuple[str, str]:
+    """(defs_row, fill_attr) for a Region.fill gradient."""
+    gid = f"grad{region_id}"
+    stops = "".join(
+        f'<stop offset="{t:.4f}" stop-color="#{r:02x}{g:02x}{b:02x}"/>'
+        for t, (r, g, b) in fill[-1])
+    if fill[0] == "linear":
+        (x0, y0), (x1, y1) = fill[1], fill[2]
+        row = (f'<linearGradient id="{gid}" gradientUnits="userSpaceOnUse" '
+               f'x1="{x0:.2f}" y1="{y0:.2f}" x2="{x1:.2f}" y2="{y1:.2f}">{stops}</linearGradient>')
+    else:
+        (cx, cy), r0, r1 = fill[1], fill[2], fill[3]
+        # SVG radial gradients start at 0: renormalize stops onto [0, r1]
+        if r1 > 1e-9 and r0 > 1e-9:
+            stops = "".join(
+                f'<stop offset="{(r0 + t * (r1 - r0)) / r1:.4f}" stop-color="#{r:02x}{g:02x}{b:02x}"/>'
+                for t, (r, g, b) in fill[-1])
+        row = (f'<radialGradient id="{gid}" gradientUnits="userSpaceOnUse" '
+               f'cx="{cx:.2f}" cy="{cy:.2f}" r="{r1:.2f}">{stops}</radialGradient>')
+    return row, f"url(#{gid})"
+
+
+def write_svgs(output: Path, regions: list[Region], size: tuple[int, int]) -> None:
+    w, h = size
+    head = f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}">'
+    fill_rows = [head, '<rect width="100%" height="100%" fill="#ffffff"/>']
+    map_rows = [head, '<rect width="100%" height="100%" fill="#ffffff"/>']
+    defs: list[str] = []
+    for region_id, region in enumerate(regions):
+        data = "".join(loop_path(loop) for loop in region.loops)
+        fill = "#%02x%02x%02x" % region.color
+        if getattr(region, "fill", None):
+            def_row, fill = _gradient_svg_def(region_id, region.fill)
+            defs.append(def_row)
+        if getattr(region, "stroke", None):
+            width, stroke_curves, closed_s = region.stroke
+            sdata = chain_path(stroke_curves) + ("Z" if closed_s else "")
+            fill_rows.append(f'<path data-region="{region_id}" d="{sdata}" fill="none" stroke="{fill}" '
+                             f'stroke-width="{width:.2f}" stroke-linecap="round" stroke-linejoin="round"/>')
+            for curve in stroke_curves:
+                kind = "line" if curve.degree == 1 else "curve"
+                color = TYPE_COLORS[kind]
+                map_rows.append(f'<path data-type="{kind}" d="{curve_command(curve, True)}" fill="none" '
+                                f'stroke="rgb{color}" stroke-width="0.65"/>')
+        if data:
+            fill_rows.append(f'<path data-region="{region_id}" d="{data}" fill="{fill}" fill-rule="evenodd"/>')
+        for loop in region.loops:
+            for curve in loop.curves:
+                kind = "line" if curve.degree == 1 else ("ellipse" if loop.template == "ellipse" else "curve")
+                color = TYPE_COLORS[kind]
+                map_rows.append(f'<path data-type="{kind}" d="{curve_command(curve, True)}" fill="none" stroke="rgb{color}" stroke-width="0.65"/>')
+    if defs:
+        fill_rows.insert(1, "<defs>" + "".join(defs) + "</defs>")
+    fill_rows.append("</svg>")
+    map_rows.append("</svg>")
+    (output / "03_rebuilt_filled.svg").write_text("\n".join(fill_rows), encoding="utf-8")
+    (output / "02_primitive_map.svg").write_text("\n".join(map_rows), encoding="utf-8")
+
+
+def _sample_loop(loop: FittedLoop, scale: int) -> list[tuple[float, float]]:
+    chunks = [eval_curve(curve, 28) for curve in loop.curves]
+    points = np.vstack([chunk if i == 0 else chunk[1:] for i, chunk in enumerate(chunks)])
+    return [tuple(point * scale) for point in points]
+
+
+def render_regions(regions: list[Region], size: tuple[int, int], outline: bool = False, scale: int = 4) -> Image.Image:
+    canvas = Image.new("RGB", (size[0] * scale, size[1] * scale), "white")
+    for region in regions:
+        if outline:
+            draw = ImageDraw.Draw(canvas)
+            for loop in region.loops:
+                draw.line(_sample_loop(loop, scale), fill=(0, 0, 0), width=scale, joint="curve")
+            if getattr(region, "stroke", None):
+                _, stroke_curves, closed_s = region.stroke
+                pts = [tuple(q * scale) for q in np.vstack([eval_curve(c, 24) for c in stroke_curves])]
+                if closed_s:
+                    pts.append(pts[0])
+                draw.line(pts, fill=(0, 0, 0), width=scale, joint="curve")
+            continue
+        if getattr(region, "stroke", None):
+            width, stroke_curves, closed_s = region.stroke
+            draw = ImageDraw.Draw(canvas)
+            pts = [tuple(q * scale) for q in np.vstack([eval_curve(c, 24) for c in stroke_curves])]
+            w_px = max(1, int(round(width * scale)))
+            if closed_s:
+                pts.append(pts[0])
+                draw.line(pts, fill=region.color, width=w_px, joint="curve")
+            else:
+                draw.line(pts, fill=region.color, width=w_px, joint="curve")
+                r = w_px / 2.0
+                for cap in (pts[0], pts[-1]):
+                    draw.ellipse([cap[0] - r, cap[1] - r, cap[0] + r, cap[1] + r], fill=region.color)
+            continue
+        mask = Image.new("1", canvas.size, 0)
+        mask_array = np.zeros((canvas.height, canvas.width), dtype=np.uint8)
+        for loop in region.loops:
+            part = Image.new("1", canvas.size, 0)
+            ImageDraw.Draw(part).polygon(_sample_loop(loop, scale), fill=1)
+            mask_array ^= np.asarray(part, dtype=np.uint8)
+        mask = Image.fromarray(mask_array * 255, "L")
+        if getattr(region, "fill", None):
+            canvas.paste(_render_gradient_fill(region.fill, canvas.size, scale), (0, 0), mask)
+        else:
+            canvas.paste(Image.new("RGB", canvas.size, region.color), (0, 0), mask)
+    return canvas.resize(size, Image.Resampling.LANCZOS)
+
+
+def _render_gradient_fill(fill: tuple, size: tuple[int, int], scale: int) -> Image.Image:
+    """Rasterize a Region.fill gradient (coordinates are native px; canvas is scaled)."""
+    w, h = size
+    xs, ys = np.meshgrid(np.arange(w, dtype=np.float32) / scale,
+                         np.arange(h, dtype=np.float32) / scale)
+    if fill[0] == "linear":
+        (x0, y0), (x1, y1) = fill[1], fill[2]
+        vx, vy = x1 - x0, y1 - y0
+        denom = max(1e-9, vx * vx + vy * vy)
+        t = ((xs - x0) * vx + (ys - y0) * vy) / denom
+    else:
+        (cx, cy), r0, r1 = fill[1], fill[2], fill[3]
+        t = (np.hypot(xs - cx, ys - cy) - r0) / max(1e-9, r1 - r0)
+    t = np.clip(t, 0.0, 1.0)
+    stops = fill[-1]
+    offs = np.array([s[0] for s in stops], np.float32)
+    cols = np.array([s[1] for s in stops], np.float32)
+    out = np.empty((h, w, 3), np.uint8)
+    for ch in range(3):
+        out[..., ch] = np.clip(np.interp(t, offs, cols[:, ch]), 0, 255).astype(np.uint8)
+    return Image.fromarray(out, "RGB")
+
+
+def _merge_gradient_stacks(masks: list[np.ndarray], reference_rgb: np.ndarray,
+                           analysis_scale: int) -> tuple[list[np.ndarray], dict[int, tuple]]:
+    """Audit P2 'gradients замест сотняў flat fragments': detect QUANTIZED
+    GRADIENT stacks — chains of >=3 adjacent bands whose Lab colours form a
+    monotone, direction-consistent ramp — and merge each into ONE mask with a
+    linear or radial gradient fill.
+
+    `reference_rgb` must be the ORIGINAL image resampled to the mask grid — the
+    acceptance test compares against real pixels; against the anchor-quantized
+    render the flat bands are exact by construction and nothing ever merges.
+
+    Guards (each stack): chain topology (every interior band's two strongest
+    same-chain neighbours are its chain neighbours), colour-step consistency
+    (consecutive Lab steps within 45 deg of each other, magnitudes in [4, 60]
+    OpenCV-Lab and within x2.5 of each other), and an ACCEPTANCE render test:
+    the gradient must reproduce the ORIGINAL pixels at least as well as the
+    flat bands did (mean Lab error <= flat * 1.2 + 2).  A flag's blue/white/red
+    fails the direction test; two-tone designs fail the k>=3 requirement."""
+    n = len(masks)
+    if n < 3:
+        return masks, {}
+    lab_img = cv2.cvtColor(reference_rgb.astype(np.uint8), cv2.COLOR_RGB2LAB).astype(np.float32)
+    colors_lab = []
+    colors_rgb = []
+    centroids = []
+    for m in masks:
+        ys, xs = np.nonzero(m)
+        colors_lab.append(np.median(lab_img[ys, xs], axis=0))
+        colors_rgb.append(np.median(reference_rgb[ys, xs], axis=0))
+        centroids.append(np.array([xs.mean(), ys.mean()]))
+    kernel = np.ones((3, 3), np.uint8)
+    contact = np.zeros((n, n), np.int64)
+    dil = [cv2.dilate(m.astype(np.uint8), kernel) for m in masks]
+    for i in range(n):
+        for j in range(i + 1, n):
+            c = int(np.sum(dil[i] & masks[j].astype(np.uint8)))
+            contact[i, j] = contact[j, i] = c
+
+    def step_ok(a: int, b: int) -> bool:
+        d = colors_lab[b] - colors_lab[a]
+        # cap 90 OpenCV-Lab: palette compaction can collapse a long ramp into a
+        # few FAT bands with big steps; genuinely different inks (flag stripes)
+        # sit far beyond (blue->white ~170)
+        return 4.0 <= float(np.linalg.norm(d)) <= 90.0
+
+    def steps_aligned(a: int, b: int, c: int) -> bool:
+        d1 = colors_lab[b] - colors_lab[a]
+        d2 = colors_lab[c] - colors_lab[b]
+        n1, n2 = float(np.linalg.norm(d1)), float(np.linalg.norm(d2))
+        if n1 < 1e-6 or n2 < 1e-6 or not (0.4 <= n1 / n2 <= 2.5):
+            return False
+        return float(d1 @ d2) / (n1 * n2) >= math.cos(math.radians(45.0))
+
+    # graph of (adjacent AND gradient-step-sized) band pairs -> connected
+    # components -> each ordered along the principal axis of its Lab colours
+    min_contact = 8
+    adjacency: dict[int, set[int]] = {}
+    for i in range(n):
+        for j in range(i + 1, n):
+            if contact[i, j] >= min_contact and step_ok(i, j):
+                adjacency.setdefault(i, set()).add(j)
+                adjacency.setdefault(j, set()).add(i)
+    chains: list[list[int]] = []
+    seen: set[int] = set()
+    for s in range(n):
+        if s in seen or s not in adjacency:
+            continue
+        comp: list[int] = []
+        stack = [s]
+        while stack:
+            v = stack.pop()
+            if v in seen:
+                continue
+            seen.add(v)
+            comp.append(v)
+            stack.extend(adjacency.get(v, set()) - seen)
+        if len(comp) < 3:
+            continue
+        cl = np.array([colors_lab[k] for k in comp], np.float32)
+        _, _, vt = np.linalg.svd(cl - cl.mean(axis=0), full_matrices=False)
+        order = np.argsort(cl @ vt[0])
+        chain = [comp[o] for o in order]
+        if all(step_ok(chain[i], chain[i + 1]) for i in range(len(chain) - 1)) and \
+           all(steps_aligned(chain[i], chain[i + 1], chain[i + 2]) for i in range(len(chain) - 2)):
+            chains.append(chain)
+
+    used: set[int] = set()
+    fills: dict[int, tuple] = {}
+    out_masks = list(masks)
+    replaced: dict[int, int] = {}
+    for chain in chains:
+        if any(k in used for k in chain):
+            continue
+        # ---- fit linear AND radial models on band centroids, keep the better ----
+        idxs = np.arange(len(chain), dtype=np.float32)
+        cents = np.array([centroids[k] for k in chain], np.float32)
+        v = cents[-1] - cents[0]
+        vn = float(np.linalg.norm(v))
+        union = np.zeros_like(masks[0], bool)
+        for k in chain:
+            union |= masks[k].astype(bool)
+        ys, xs = np.nonzero(union)
+        pix_lab = lab_img[ys, xs]
+        flat_err = 0.0
+        for k in chain:
+            mys, mxs = np.nonzero(masks[k])
+            flat_err += float(np.sum(np.linalg.norm(lab_img[mys, mxs] - colors_lab[k], axis=1)))
+        flat_err /= max(1, len(ys))
+
+        def model_error(t_pix: np.ndarray, t_bands: np.ndarray) -> float:
+            order = np.argsort(t_bands)
+            tb = t_bands[order]
+            cl = np.array([colors_lab[chain[o]] for o in order], np.float32)
+            rec = np.stack([np.interp(t_pix, tb, cl[:, ch]) for ch in range(3)], axis=1)
+            return float(np.mean(np.linalg.norm(pix_lab - rec, axis=1)))
+
+        best = None
+        if vn > 2.0:
+            u = v / vn
+            t_pix = (np.stack([xs, ys], 1).astype(np.float32) - cents[0]) @ u
+            t_bands = (cents - cents[0]) @ u
+            err = model_error(t_pix, t_bands)
+            lo, hi = float(t_pix.min()), float(t_pix.max())
+            span = max(1e-6, hi - lo)
+            stops = sorted((max(0.0, min(1.0, (float(tb) - lo) / span)),
+                            tuple(int(c) for c in colors_rgb[chain[i]]))
+                           for i, tb in enumerate(t_bands))
+            p0 = (cents[0] + lo * u) / analysis_scale
+            p1 = (cents[0] + hi * u) / analysis_scale
+            best = (err, ("linear", tuple(np.round(p0, 2)), tuple(np.round(p1, 2)), stops))
+        # radial: centre from the innermost band (smallest mean radius spread)
+        centre = cents[0] if float(np.linalg.norm(cents[0] - cents.mean(0))) > float(np.linalg.norm(cents[-1] - cents.mean(0))) else cents[-1]
+        r_bands = np.array([float(np.mean(np.hypot(*(np.nonzero(masks[k])[::-1] - centre[:, None])))) for k in chain], np.float32)
+        if np.all(np.diff(np.sort(r_bands)) > 0.5):
+            t_pix = np.hypot(xs - centre[0], ys - centre[1]).astype(np.float32)
+            err = model_error(t_pix, r_bands)
+            if best is None or err < best[0]:
+                r0, r1 = float(r_bands.min()), float(r_bands.max())
+                span = max(1e-6, r1 - r0)
+                stops = sorted((max(0.0, min(1.0, (float(rb) - r0) / span)),
+                                tuple(int(c) for c in colors_rgb[chain[i]]))
+                               for i, rb in enumerate(r_bands))
+                best = (err, ("radial", tuple(np.round(centre / analysis_scale, 2)),
+                              r0 / analysis_scale, r1 / analysis_scale, stops))
+        if _FIT_DEBUG[0]:
+            print(f"    gradient chain {chain}: model={'none' if best is None else best[1][0]} "
+                  f"err={None if best is None else round(best[0], 2)} flat={round(flat_err, 2)}")
+        if best is None or best[0] > flat_err * 1.2 + 2.0:
+            continue                                    # gradient does NOT explain the pixels
+        keep = chain[0]
+        out_masks[keep] = union
+        fills[keep] = best[1]
+        used.update(chain)
+        for k in chain[1:]:
+            replaced[k] = keep
+    if not fills:
+        return masks, {}
+    final_masks: list[np.ndarray] = []
+    final_fills: dict[int, tuple] = {}
+    for i, m in enumerate(out_masks):
+        if i in replaced:
+            continue
+        if i in fills:
+            final_fills[len(final_masks)] = fills[i]
+        final_masks.append(m)
+    return final_masks, final_fills
+
+
+def _detect_stroke(mask, analysis_scale):
+    """Audit P2 'strokes замест вузкіх filled polygons': if the mask is a
+    near-constant-width, non-branching ribbon, return (width_native, curves) of
+    its stroked CENTERLINE (fit by the same Sec 5.1 machinery), else None.
+
+    Guards: skeleton must have exactly 2 endpoints and no branch points; core
+    width spread <= 20% of the median; length >= 2.5 widths.  ACCEPTANCE by
+    rendering: the drawn round-cap stroke must reproduce the mask (IoU >= 0.88
+    and boundary deviation <= max(1.5px, 18% of width)) — a fat square-butt
+    rectangle or a tapering wedge fails and stays a filled region."""
+    m8 = mask.astype(np.uint8)
+    area = int(m8.sum())
+    if area < 24:
+        return None
+    dist = cv2.distanceTransform(m8, cv2.DIST_L2, 5)
+    # skimage.skeletonize, NOT cv2.ximgproc.thinning: cv2 5.0 thinning DOUBLES
+    # the centerline of wide ribbons (two parallel lines joined at the ends — a
+    # long flat cycle), which breaks both the open-path walk and the ring test.
+    from skimage.morphology import skeletonize as _skeletonize
+    skel = _skeletonize(mask.astype(bool))
+    ys, xs = np.nonzero(skel)
+    if len(ys) < 8:
+        return None
+    # The thinned skeleton carries short SPURS at caps/AA bumps, so naїve
+    # endpoint/branch counting rejects every real stroke.  Take the LONGEST PATH
+    # through the skeleton graph instead (double BFS from the farthest ends) and
+    # require the off-path twig mass to be small.
+    skel_set = {(int(y), int(x)) for y, x in zip(ys, xs)}
+
+    # ---- CLOSED RING (annulus -> closed stroked path).  AA bumps leave short
+    # spurs with endpoint pixels on an otherwise clean ring, so PRUNE endpoints
+    # iteratively to ~w/2 depth first (cycle pixels always keep 2 neighbours and
+    # survive; a spur base recovers once its twig is consumed).  If the pruned
+    # skeleton has no endpoints left, walk the cycle and fit it closed.
+    w_guess = 2.0 * float(np.median(dist[skel])) if int(skel.sum()) else 0.0
+    pruned = skel.copy()
+    for _ in range(int(w_guess / 2.0) + 2):
+        nb_p = cv2.filter2D(pruned.astype(np.uint8), -1, np.ones((3, 3), np.uint8),
+                            borderType=cv2.BORDER_CONSTANT) - pruned.astype(np.uint8)
+        tips = pruned & (nb_p <= 1)
+        if not bool(tips.any()):
+            break
+        pruned &= ~tips
+    nb_p = cv2.filter2D(pruned.astype(np.uint8), -1, np.ones((3, 3), np.uint8),
+                        borderType=cv2.BORDER_CONSTANT) - pruned.astype(np.uint8)
+    pys, pxs = np.nonzero(pruned)
+    if len(pys) >= 12 and not bool(np.any(pruned & (nb_p == 1))):
+        skel_set = {(int(y), int(x)) for y, x in zip(pys, pxs)}
+        ys, xs = pys, pxs
+        start = (int(ys[0]), int(xs[0]))
+        cycle = [start]
+        seen_c = {start}
+        while True:
+            y, x = cycle[-1]
+            nxt = [(y + dy, x + dx) for dy in (-1, 0, 1) for dx in (-1, 0, 1)
+                   if (dy or dx) and (y + dy, x + dx) in skel_set and (y + dy, x + dx) not in seen_c]
+            if not nxt:
+                break
+            nxt.sort(key=lambda q: abs(q[0] - y) + abs(q[1] - x))
+            cycle.append(nxt[0])
+            seen_c.add(nxt[0])
+        if len(cycle) >= max(12, 0.9 * len(skel_set)):
+            radii_c = np.array([dist[y, x] for y, x in cycle], float)
+            w_c = 2.0 * float(np.median(radii_c))
+            if w_c >= 1.5 and float(np.std(2.0 * radii_c)) <= 0.20 * w_c:
+                pts_c = np.array([(x + 0.5, y + 0.5) for y, x in cycle], float)
+                ring_len = float(np.sum(np.linalg.norm(np.diff(pts_c, axis=0), axis=1)))
+                if ring_len >= 3.0 * w_c:
+                    dist_along = np.concatenate(([0.0], np.cumsum(np.linalg.norm(np.diff(pts_c, axis=0), axis=1))))
+                    count = max(12, int(round(float(dist_along[-1]) / 2.0)))
+                    target = np.linspace(0.0, float(dist_along[-1]), count, endpoint=False)
+                    pts_c = np.column_stack([np.interp(target, dist_along, pts_c[:, k]) for k in range(2)])
+                    win = int(np.clip(int(w_c / 4.0) * 2 + 1, 5, 41))
+                    if len(pts_c) > 2 * win:
+                        kernel = np.ones(win) / win
+                        pad = np.vstack((pts_c[-win:], pts_c, pts_c[:win]))
+                        sm = np.column_stack([np.convolve(pad[:, k], kernel, mode="same") for k in range(2)])
+                        pts_c = sm[win:-win]
+                    fl = fit_loop_paper(pts_c, 32.0 / max(16.0, (float(np.ptp(pts_c[:, 0])) + float(np.ptp(pts_c[:, 1]))) / 2),
+                                        corner_positions=np.empty((0, 2)), px=1.0)
+                    curves_c = list(fl.curves)
+                    if curves_c:
+                        canvas = Image.new("1", (mask.shape[1], mask.shape[0]), 0)
+                        draw = ImageDraw.Draw(canvas)
+                        chain = np.vstack([eval_curve(c, 24) for c in curves_c])
+                        draw.line([tuple(q) for q in np.vstack((chain, chain[:1]))],
+                                  fill=1, width=max(1, int(round(w_c))), joint="curve")
+                        rendered = np.asarray(canvas, bool)
+                        m_bool = mask.astype(bool)
+                        union = int(np.sum(rendered | m_bool))
+                        if union and float(np.sum(rendered & m_bool)) / union >= 0.88:
+                            tol_c = max(1.5, 0.18 * w_c)
+                            over = rendered & ~m_bool
+                            under = m_bool & ~rendered
+                            ok = True
+                            if over.any() and float(cv2.distanceTransform((~m_bool).astype(np.uint8), cv2.DIST_L2, 5)[over].max()) > tol_c:
+                                ok = False
+                            if ok and under.any() and float(cv2.distanceTransform((~rendered).astype(np.uint8), cv2.DIST_L2, 5)[under].max()) > tol_c:
+                                ok = False
+                            if ok:
+                                inv = 1.0 / float(analysis_scale)
+                                for c in curves_c:
+                                    c.control = c.control * inv
+                                return w_c * inv, curves_c, True
+    skel_set = {(int(y), int(x)) for y, x in zip(*np.nonzero(skel))}
+    ys, xs = np.nonzero(skel)
+
+    def bfs_farthest(start):
+        from collections import deque
+        parent = {start: None}
+        queue = deque([start])
+        last = start
+        while queue:
+            y, x = queue.popleft()
+            last = (y, x)
+            for dy in (-1, 0, 1):
+                for dx in (-1, 0, 1):
+                    if not (dy or dx):
+                        continue
+                    q = (y + dy, x + dx)
+                    if q in skel_set and q not in parent:
+                        parent[q] = (y, x)
+                        queue.append(q)
+        return last, parent
+
+    seed = (int(ys[0]), int(xs[0]))
+    end_a, _ = bfs_farthest(seed)
+    end_b, parent = bfs_farthest(end_a)
+    path = [end_b]
+    while parent[path[-1]] is not None:
+        path.append(parent[path[-1]])
+    if len(path) < 8:
+        return None
+    # Branch test by DISTANCE, not by twig pixel count: cap fans and AA-bump
+    # spurs always stay within ~w/2 of the main path, while a genuine side
+    # branch (Y/T shape) runs beyond the ribbon's own width.
+    off_path = np.array([q for q in skel_set if q not in set(path)], float)
+    if len(off_path):
+        from scipy.spatial import cKDTree
+        path_arr = np.array(path, float)
+        w_est = 2.0 * float(np.median([dist[y, x] for y, x in path]))
+        if float(cKDTree(path_arr).query(off_path)[0].max()) > 0.7 * max(2.0, w_est):
+            return None                               # genuinely branched shape
+    radii = np.array([dist[y, x] for y, x in path], float)
+    w = 2.0 * float(np.median(radii))
+    if w < 1.5:
+        return None
+    # TRIM the path ends to the true centerline: the double-BFS endpoints are
+    # the farthest skeleton pixels, i.e. CAP-FAN TIPS whose clearance is far
+    # below w/2 — a cap circle drawn there pokes outside the mask.  The real
+    # centerline end is where clearance reaches ~w/2.
+    lo = 0
+    while lo < len(path) - 1 and radii[lo] < 0.45 * w:
+        lo += 1
+    hi = len(path) - 1
+    while hi > lo and radii[hi] < 0.45 * w:
+        hi -= 1
+    if hi - lo < 6:
+        return None
+    path = path[lo:hi + 1]
+    widths = 2.0 * radii[lo:hi + 1]
+    if float(np.std(widths)) > 0.20 * w or float(widths.max() - widths.min()) > max(2.0, 0.45 * w):
+        return None                                   # tapering wedge / variable width
+    pts = np.array([(x + 0.5, y + 0.5) for y, x in path], float)
+    length = float(np.sum(np.linalg.norm(np.diff(pts, axis=0), axis=1)))
+    if length < 2.5 * w:
+        return None
+    # The skeleton is NOT a raster boundary: thinning zigzags +-1.5px with no
+    # crack statistics, so resample at ~2px and lightly smooth before the fit —
+    # the end-to-end acceptance below still guards fidelity against the mask.
+    dist_along = np.concatenate(([0.0], np.cumsum(np.linalg.norm(np.diff(pts, axis=0), axis=1))))
+    count = max(8, int(round(float(dist_along[-1]) / 2.0)) + 1)
+    target = np.linspace(0.0, float(dist_along[-1]), count)
+    pts = np.column_stack([np.interp(target, dist_along, pts[:, k]) for k in range(2)])
+    # Smoothing window scales with the WIDTH: thinning wanders ~+-1.5px and its
+    # low-frequency bow survives a short window, bowing the fitted centerline.
+    # A constant-width ribbon's centerline is smooth by nature, and stroke
+    # joins render rounded anyway (stroke-linejoin=round).
+    win = int(np.clip(int(w / 4.0) * 2 + 1, 5, 41))
+    if len(pts) > win + 2:
+        kernel = np.ones(win) / win
+        smooth = pts.copy()
+        half_w = win // 2
+        for k in range(2):
+            smooth[half_w:-half_w, k] = np.convolve(pts[:, k], kernel, mode="valid")
+        pts = smooth
+    curves = fit_segment_midpoints(
+        pts, 32.0 / max(16.0, (float(np.ptp(pts[:, 0])) + float(np.ptp(pts[:, 1]))) / 2),
+        px=1.0, snap_ends=False)
+    if not curves:
+        return None
+    canvas = Image.new("1", (mask.shape[1], mask.shape[0]), 0)
+    draw = ImageDraw.Draw(canvas)
+    chain = np.vstack([eval_curve(c, 24) for c in curves])
+    w_i = max(1, int(round(w)))
+    draw.line([tuple(q) for q in chain], fill=1, width=w_i, joint="curve")
+    r = w / 2.0
+    for cap in (chain[0], chain[-1]):
+        draw.ellipse([cap[0] - r, cap[1] - r, cap[0] + r, cap[1] + r], fill=1)
+    rendered = np.asarray(canvas, bool)
+    m_bool = mask.astype(bool)
+    union = int(np.sum(rendered | m_bool))
+    if union == 0 or float(np.sum(rendered & m_bool)) / union < 0.88:
+        return None
+    tol = max(1.5, 0.18 * w)
+    overshoot = rendered & ~m_bool
+    undershoot = m_bool & ~rendered
+    if overshoot.any():
+        if float(cv2.distanceTransform((~m_bool).astype(np.uint8), cv2.DIST_L2, 5)[overshoot].max()) > tol:
+            return None
+    if undershoot.any():
+        if float(cv2.distanceTransform((~rendered).astype(np.uint8), cv2.DIST_L2, 5)[undershoot].max()) > tol:
+            return None
+    inv = 1.0 / float(analysis_scale)
+    for c in curves:
+        c.control = c.control * inv
+    return w * inv, curves, False
+
+
+def _complete_occlusions(masks: list[np.ndarray], analysis_scale: int,
+                         rgb: np.ndarray) -> dict[int, tuple]:
+    """Audit P2 'occlusion/layer completion' for the paper modes: a region whose
+    completion to a SIMPLE TEMPLATE (axis-aligned rectangle or ellipse) hides
+    entirely behind the other masks is recovered as the full template, drawn
+    UNDER its occluders (the classic base-behind-overlay logo layering).
+
+    Acceptance per mask: (1) the hidden part is non-trivial (>=2% of the
+    template) yet fully covered by other masks (uncovered <= max(8px, 0.5%));
+    (2) every VISIBLE boundary pixel (not adjacent to another mask) lies within
+    1.5px of the template outline — an L-shape next to a square does not
+    'complete' to its bbox.  Returns {mask_index: ("rect", x0, y0, x1, y1) |
+    ("ellipse", cx, cy, ax, ay, angle_deg)} in ANALYSIS coordinates.
+
+    A base is often SPLIT by its overlay into several visible pieces (the IKEA
+    ellipse cuts the blue field into strips), so SAME-COLOUR mask groups are
+    tried as one union candidate too; every returned spec carries the member
+    index tuple — all members collapse into the one completed region."""
+    n = len(masks)
+    if n < 2:
+        return {}
+    total = np.zeros_like(masks[0], bool)
+    for m in masks:
+        total |= m.astype(bool)
+    kernel = np.ones((3, 3), np.uint8)
+    lab_full = cv2.cvtColor(rgb.astype(np.uint8), cv2.COLOR_RGB2LAB).astype(np.float32)
+    colors = [np.median(lab_full[np.nonzero(m)], axis=0) for m in masks]
+
+    # candidates: singles + same-colour groups (pairwise dLab <= 12, area >= 40).
+    # A group member must expose FREE boundary of its own (not be enclosed by
+    # other masks): the letters of a logo share the base's colour but are fully
+    # surrounded by the overlay — grouping them in would collapse them into the
+    # completed base and they would vanish under the occluder.
+    def _free_boundary_px(idx: int) -> int:
+        mb0 = masks[idx].astype(bool)
+        others0 = total & ~mb0
+        bnd0 = mb0 & ~(cv2.erode(mb0.astype(np.uint8), kernel) > 0)
+        near0 = cv2.dilate(others0.astype(np.uint8), kernel, iterations=2) > 0
+        return int(np.sum(bnd0 & ~near0))
+
+    candidates: list[tuple[int, ...]] = [(i,) for i in range(n)]
+    big = [i for i in range(n) if int(masks[i].sum()) >= 40 and _free_boundary_px(i) >= 4]
+    grouped: list[list[int]] = []
+    used_g: set[int] = set()
+    for i in big:
+        if i in used_g:
+            continue
+        group = [i]
+        used_g.add(i)
+        for j in big:
+            if j in used_g:
+                continue
+            if float(np.linalg.norm(colors[i] - colors[j])) <= 12.0:
+                group.append(j)
+                used_g.add(j)
+        if len(group) >= 2:
+            grouped.append(group)
+    candidates += [tuple(sorted(g)) for g in grouped]
+
+    out: dict[int, tuple] = {}
+    claimed: set[int] = set()
+    # groups FIRST (a whole base beats per-strip bboxes), then singles
+    for members in sorted(candidates, key=lambda t: -len(t)):
+        if any(k in claimed for k in members):
+            continue
+        mb = np.zeros_like(masks[0], bool)
+        for k in members:
+            mb |= masks[k].astype(bool)
+        others = total & ~mb
+        if not others.any():
+            continue
+        area_m = int(mb.sum())
+        if area_m < 40:
+            continue
+        boundary = mb & ~(cv2.erode(mb.astype(np.uint8), kernel) > 0)
+        near_others = cv2.dilate(others.astype(np.uint8), kernel, iterations=2) > 0
+        free_boundary = boundary & ~near_others
+
+        def accept(template: np.ndarray) -> bool:
+            tb = template.astype(bool)
+            if int(np.sum(mb & ~tb)) > max(4, 0.003 * area_m):
+                return False                     # template must contain the piece
+            hidden = tb & ~mb
+            h = int(hidden.sum())
+            if h < 0.02 * int(tb.sum()):
+                return False                     # nothing meaningful to complete
+            if int(np.sum(hidden & ~others)) > max(8, 0.005 * int(tb.sum())):
+                return False                     # completion would be VISIBLE
+            t_boundary = tb & ~(cv2.erode(tb.astype(np.uint8), kernel) > 0)
+            if not free_boundary.any():
+                return False                     # template outline never actually OBSERVED
+            gap = cv2.distanceTransform((~t_boundary).astype(np.uint8), cv2.DIST_L2, 5)
+            if float(gap[free_boundary].max()) > 1.5 * analysis_scale:
+                return False                     # visible outline is NOT the template's
+            # we must SEE a substantial part of the template outline, else the
+            # completion is speculation (a letter enclosed in another colour
+            # 'completes' to its bbox and silently becomes a layered rectangle)
+            matched = int(np.sum(gap[free_boundary] <= 1.5 * analysis_scale))
+            if matched < 0.4 * int(t_boundary.sum()):
+                return False
+            return True
+
+        ys, xs = np.nonzero(mb)
+        y0, y1, x0, x1 = int(ys.min()), int(ys.max()), int(xs.min()), int(xs.max())
+        rect = np.zeros_like(mb)
+        rect[y0:y1 + 1, x0:x1 + 1] = True
+        if accept(rect):
+            out[members[0]] = ("rect", x0, y0, x1, y1, members)
+            claimed.update(members)
+            continue
+        contours, _ = cv2.findContours(mb.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
+        if contours and len(max(contours, key=len)) >= 24:
+            outer = max(contours, key=len).reshape(-1, 2).astype(np.float32)
+            try:
+                (ecx, ecy), (dw, dh), angle = cv2.fitEllipseDirect(outer)
+            except cv2.error:
+                continue
+            if dw < 4 or dh < 4 or dw > 2.5 * mb.shape[1] or dh > 2.5 * mb.shape[0]:
+                continue
+            ell = np.zeros(mb.shape, np.uint8)
+            cv2.ellipse(ell, (int(round(ecx)), int(round(ecy))),
+                        (int(round(dw / 2)), int(round(dh / 2))), angle, 0, 360, 1, -1)
+            if accept(ell):
+                out[members[0]] = ("ellipse", float(ecx), float(ecy), float(dw / 2), float(dh / 2), float(angle), members)
+                claimed.update(members)
+    return out
+
+
+def complete_occluded_rectangles(
+    masks: list[np.ndarray], rgb: np.ndarray, analysis_scale: int, size: tuple[int, int]
+) -> tuple[list[Region], set[int]]:
+    """Recover a base rectangle split into visible pieces by an overlay.
+
+    This is the layer configuration used by many logos: a background rectangle
+    exists behind an ellipse even when the visible colour has two components.
+    """
+    entries = []
+    for index, mask in enumerate(masks):
+        color = tuple(int(value) for value in np.median(rgb[mask], axis=0))
+        entries.append((index, mask, color))
+    groups: list[list[tuple[int, np.ndarray, tuple[int, int, int]]]] = []
+    for entry in entries:
+        for group in groups:
+            if np.linalg.norm(np.asarray(entry[2], float) - np.asarray(group[0][2], float)) < 12:
+                group.append(entry)
+                break
+        else:
+            groups.append([entry])
+
+    layers: list[Region] = []
+    consumed: set[int] = set()
+    h, w = masks[0].shape if masks else (0, 0)
+    for group in groups:
+        if len(group) < 2:
+            continue
+        union = np.zeros((h, w), dtype=bool)
+        for _, mask, _ in group:
+            union |= mask
+        yy, xx = np.nonzero(union)
+        if not len(xx):
+            continue
+        x0, x1, y0, y1 = int(xx.min()), int(xx.max()), int(yy.min()), int(yy.max())
+        bw, bh = x1 - x0 + 1, y1 - y0 + 1
+        if bw < size[0] * analysis_scale * 0.35 or bh < size[1] * analysis_scale * 0.35:
+            continue
+        border_support = (
+            union[y0, x0 : x1 + 1].mean()
+            + union[y1, x0 : x1 + 1].mean()
+            + union[y0 : y1 + 1, x0].mean()
+            + union[y0 : y1 + 1, x1].mean()
+        ) / 4
+        if border_support < 0.58:
+            continue
+        corners = np.array([[x0, y0], [x1 + 1, y0], [x1 + 1, y1 + 1], [x0, y1 + 1]], dtype=float) / analysis_scale
+        curves = [Curve(1, np.vstack((corners[i], corners[(i + 1) % 4]))) for i in range(4)]
+        loop = np.vstack((corners, corners[0]))
+        layers.append(Region(group[0][2], bw * bh, [FittedLoop(loop, curves, "completed-rectangle")]))
+        for index, mask, _ in group:
+            my, mx = np.nonzero(mask)
+            touches = np.any(mx == x0) or np.any(mx == x1) or np.any(my == y0) or np.any(my == y1)
+            if touches and mask.sum() >= bw * bh * 0.03:
+                consumed.add(index)
+    return layers, consumed
+
+
+# Contrast-sensitive Potts parameters, tuned in OpenCV-Lab units (L,a,b in 0..255).
+# Verified safe on close-colour logos (Mastercard keeps all 5 inks): the data
+# term + sharp inter-region edges prevent bleeding, while gentle gradient edges
+# and AA speckle are absorbed.  Raising lambda cleans more but never merges
+# genuinely distinct anchors here.
+_ICM_LAMBDA = 45.0  # smoothness weight: ΔE a flip must beat across a same-colour edge
+_ICM_SIGMA = 36.0   # edge scale: neighbour ΔE >> sigma is treated as a real boundary
+_ICM_ITERS = 14
+
+
+def _shift2(array: np.ndarray, dy: int, dx: int) -> np.ndarray:
+    return np.roll(np.roll(array, dy, axis=0), dx, axis=1)
+
+
+def _icm_labels(
+    lab: np.ndarray,
+    anchor_lab: np.ndarray,
+    init_labels: np.ndarray,
+    lam: float = _ICM_LAMBDA,
+    sigma: float = _ICM_SIGMA,
+    iters: int = _ICM_ITERS,
+) -> np.ndarray:
+    """Contrast-sensitive Potts labelling via checkerboard ICM.
+
+    Minimises  E(L) = Σ_p ΔE(p, anchor_{L_p}) + λ Σ_{p~q} w_pq · [L_p ≠ L_q],
+    with w_pq = exp(−‖lab_p − lab_q‖² / 2σ²).  The data term anchors genuinely
+    dark/saturated marks; the pairwise term collapses weak-edge speckle and
+    gradient fragments while leaving strong-edge thin features intact.  Updates
+    run on a two-colour checkerboard, so each half is exact block coordinate
+    descent and the energy does not increase.
+    """
+    height, width = init_labels.shape
+    n = anchor_lab.shape[0]
+    data = np.sqrt(np.sum((lab[..., None, :] - anchor_lab[None, None, :, :]) ** 2, axis=3)).astype(np.float32)
+    offsets = [(-1, -1), (-1, 0), (-1, 1), (0, -1), (0, 1), (1, -1), (1, 0), (1, 1)]
+    affinity = []
+    for dy, dx in offsets:
+        diff = lab - _shift2(lab, dy, dx)
+        weight = np.exp(-np.sum(diff * diff, axis=2) / (2.0 * sigma * sigma)).astype(np.float32)
+        if dy and dx:
+            weight = weight * 0.7071  # keep the 8-neighbourhood roughly isotropic
+        affinity.append(weight)
+    labels = init_labels.astype(np.int16).copy()
+    yy, xx = np.mgrid[0:height, 0:width]
+    parity = ((yy + xx) & 1).astype(bool)
+    for _ in range(iters):
+        for turn in (False, True):
+            agree = np.zeros((height, width, n), np.float32)
+            for (dy, dx), weight in zip(offsets, affinity):
+                shifted = _shift2(labels, dy, dx)
+                for a in range(n):
+                    agree[..., a] += weight * (shifted == a)
+            choice = np.argmin(data - lam * agree, axis=2).astype(np.int16)
+            active = parity if turn else ~parity
+            labels = np.where(active, choice, labels)
+    return labels
+
+
+_MERGE_WEAK_DELTAE = 80.0  # OpenCV-Lab ΔE below which a shared edge is 'weak' (same ink family)
+_MERGE_KEEP_FRAC = 0.006   # a region above this fraction of the analysis area is never absorbed
+_MERGE_THIN = 1.5          # analysis-scale half-width below which a region is an AA / edge ribbon
+
+
+def _merge_regions(
+    labels: np.ndarray,
+    anchor_lab: np.ndarray,
+    minimum: int,
+    scale: int,
+    weak_de: float = _MERGE_WEAK_DELTAE,
+) -> np.ndarray:
+    """Contrast-aware region-adjacency merge (perceptual region simplification).
+
+    Absorbs the long tail of small fragments into their strongest-contact
+    neighbour when the fragment is a thin AA/edge ribbon or the shared edge is
+    weak (similar colour).  The discriminator is thickness, not area: a compact,
+    high-contrast small mark — a dot, an eye, a letter stroke — is neither thin
+    nor weak-edged, so it is preserved.  Runs after ICM and only ever recolours
+    small fragments, never the large shapes.
+    """
+    from collections import defaultdict
+
+    height, width = labels.shape
+    anchors = anchor_lab.shape[0]
+    min_keep = max(minimum * 8, int(height * width * _MERGE_KEEP_FRAC))
+    # _MERGE_THIN is calibrated for 4x analysis; scale it so a native thin stroke
+    # (thickness ~scale/2) is never treated as a sub-pixel AA ribbon.
+    thin_thresh = _MERGE_THIN * scale / 4.0
+    # A component only one pixel wide (thickness ~1) and of tiny area is aliasing —
+    # a warm/cool tint the palette snapped to a saturated anchor along a hard edge
+    # (e.g. red slivers riding the top of black text).  Genuine thin marks are
+    # >=~2px thick (thickness >1.2) or long (larger area), so they are exempt.
+    sliver_thick = 1.2 * max(1.0, scale / 4.0)
+    sliver_area = max(minimum * 4, int(round(30 * scale * scale)))
+
+    # 1) Give every connected component a unique id, plus its area and thickness
+    #    (max distance-to-boundary — how far from an AA ribbon it is).
+    rid = np.full((height, width), -1, np.int32)
+    areas: list[int] = []
+    region_anchor: list[int] = []
+    thickness: list[float] = []
+    touches_border: list[bool] = []
+    count = 0
+    for anchor_index in range(anchors):
+        mask = (labels == anchor_index).astype(np.uint8)
+        num, comp, stats, _ = cv2.connectedComponentsWithStats(mask, connectivity=8)
+        distance = cv2.distanceTransform(mask, cv2.DIST_L2, 3)
+        for component in range(1, num):
+            selection = comp == component
+            rid[selection] = count
+            areas.append(int(stats[component, cv2.CC_STAT_AREA]))
+            region_anchor.append(anchor_index)
+            thickness.append(float(distance[selection].max()))
+            x0, y0 = int(stats[component, cv2.CC_STAT_LEFT]), int(stats[component, cv2.CC_STAT_TOP])
+            w0, h0 = int(stats[component, cv2.CC_STAT_WIDTH]), int(stats[component, cv2.CC_STAT_HEIGHT])
+            touches_border.append(x0 == 0 or y0 == 0 or x0 + w0 == width or y0 + h0 == height)
+            count += 1
+    if count <= 1:
+        return labels
+    area = np.asarray(areas, np.int64)
+    region_anchor_arr = np.asarray(region_anchor)
+    thin = np.asarray(thickness, np.float32)
+
+    # 2) Shared-boundary counts between adjacent regions (4-neighbour).
+    adjacency: dict[int, dict[int, int]] = defaultdict(lambda: defaultdict(int))
+    for dy, dx in ((0, 1), (1, 0)):
+        shifted = np.roll(np.roll(rid, -dy, 0), -dx, 1)
+        valid = np.ones((height, width), bool)
+        if dy:
+            valid[-1, :] = False
+        else:
+            valid[:, -1] = False
+        edge = (rid != shifted) & (rid >= 0) & (shifted >= 0) & valid
+        lo = np.minimum(rid[edge], shifted[edge])
+        hi = np.maximum(rid[edge], shifted[edge])
+        key = lo.astype(np.int64) * count + hi
+        uniq, freq = np.unique(key, return_counts=True)
+        for k, f in zip(uniq, freq):
+            i, j = int(k // count), int(k % count)
+            adjacency[i][j] += int(f)
+            adjacency[j][i] += int(f)
+
+    # 3) Absorb small fragments into their best neighbour, smallest first.
+    parent = list(range(count))
+
+    def find(x: int) -> int:
+        while parent[x] != x:
+            parent[x] = parent[parent[x]]
+            x = parent[x]
+        return x
+
+    for region in np.argsort(area):
+        region = int(region)
+        if find(region) != region or area[region] >= min_keep:
+            continue
+        contacts: dict[int, int] = defaultdict(int)
+        for neighbour, shared in adjacency[region].items():
+            other = find(neighbour)
+            if other != region:
+                contacts[other] += shared
+        if not contacts:
+            continue
+        best = max(contacts, key=contacts.get)
+        delta = float(np.linalg.norm(anchor_lab[region_anchor_arr[region]] - anchor_lab[region_anchor_arr[best]]))
+        # A fully ENCLOSED strong-contrast island is a perceptual counter (the
+        # hole of an 'A', a pupil): signal, never aliasing.  Slivers ride an
+        # edge BETWEEN >=2 regions (or hug the image border); a counter has
+        # exactly one neighbour.  At native scale a 2x2 counter is otherwise
+        # indistinguishable from a sliver by thickness alone.
+        if len(contacts) == 1 and not touches_border[region] and delta >= weak_de and area[region] >= 2:
+            continue
+        is_sliver = thin[region] <= sliver_thick and area[region] <= sliver_area
+        # Absorb a 1px aliasing sliver (any contrast), a thin AA/edge ribbon, or a
+        # weak-colour-edge fragment; a compact high-contrast mark (eye, dot, letter
+        # stroke) satisfies none of these and is kept.
+        if is_sliver or thin[region] < thin_thresh or delta < weak_de:
+            parent[region] = best
+            area[best] += area[region]
+            for neighbour, shared in adjacency[region].items():
+                adjacency[best][neighbour] += shared
+                adjacency[neighbour][best] += shared
+
+    root_of = np.fromiter((find(i) for i in range(count)), dtype=np.int64, count=count)
+    return region_anchor_arr[root_of][rid]
+
+
+def _enclosed_counter(labels: np.ndarray, component_mask: np.ndarray, own: int,
+                      anchor_lab: np.ndarray, min_delta: float = _MERGE_WEAK_DELTAE) -> bool:
+    """True for a small island fully surrounded by ONE strong-contrast label.
+
+    Such an island is a perceptual counter (letter hole, pupil) and must be kept
+    regardless of area.  AA/JPEG slivers touch >=2 labels or the image border.
+    """
+    ys, xs = np.nonzero(component_mask)
+    if not len(ys):
+        return False
+    h, w = labels.shape
+    y0, y1, x0, x1 = int(ys.min()), int(ys.max()), int(xs.min()), int(xs.max())
+    if x0 == 0 or y0 == 0 or x1 == w - 1 or y1 == h - 1:
+        return False
+    window = (slice(y0 - 1, y1 + 2), slice(x0 - 1, x1 + 2))
+    sub = component_mask[window].astype(np.uint8)
+    ring = (cv2.dilate(sub, np.ones((3, 3), np.uint8)) > 0) & (sub == 0)
+    neighbours = np.unique(labels[window][ring])
+    neighbours = neighbours[neighbours != own]
+    if len(neighbours) != 1:
+        return False
+    return float(np.linalg.norm(anchor_lab[own] - anchor_lab[int(neighbours[0])])) >= min_delta
+
+
+def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: bool = False, deblur: bool = True) -> tuple[np.ndarray, list[np.ndarray], np.ndarray, tuple[int, int, int], float, int]:
+    """Segment continuous MiniNet output directly in perceptual Lab space.
+
+    The geometry is never generated from a palette-snapped RGB image.  Palette
+    colours are only region hypotheses, and connected components are retained
+    at a much lower threshold so thin, high-contrast marks survive.
+    """
+    from subpixel_mininet import compact_palette, deblur_4x
+
+    if deblur and max(source.size) <= 512:
+        analysis = deblur_4x(source, snap_palette=False)
+        scale = 4
+    else:
+        # Paper mode: fit on the HARD native raster (correct line/arc geometry).
+        # Colour speckle is cleaned downstream by the sliver merge, not by blurring
+        # the raster here (which would round the very edges we want hard).
+        analysis = source.convert("RGB")
+        scale = 1
+    pixels = np.asarray(analysis.convert("RGB"), dtype=np.uint8)
+    anchors = compact_palette(source).clip(0, 255).astype(np.uint8)
+    if not len(anchors):
+        anchors = np.array([[255, 255, 255], [0, 0, 0]], dtype=np.uint8)
+
+    lab = cv2.cvtColor(pixels, cv2.COLOR_RGB2LAB).astype(np.float32)
+    anchor_lab = cv2.cvtColor(anchors.reshape(1, -1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(np.float32)
+    distance = np.sum((lab[..., None, :] - anchor_lab[None, None, :, :]) ** 2, axis=3)
+    labels = np.argmin(distance, axis=2).astype(np.int16)
+    border = np.concatenate((pixels[0], pixels[-1], pixels[:, 0], pixels[:, -1]), axis=0)
+    border_color = np.median(border, axis=0).astype(np.uint8)
+    border_lab = cv2.cvtColor(border_color.reshape(1, 1, 3), cv2.COLOR_RGB2LAB).reshape(3).astype(float)
+    background_index = int(np.argmin(np.sum((anchor_lab - border_lab) ** 2, axis=1)))
+
+    source_area = source.width * source.height
+    minimum = max(4, int(source_area * scale * scale * 0.00006))
+
+    if use_icm:
+        # One global energy replaces the hand-tuned thin/tiny reassignment: the
+        # contrast-sensitive Potts prior absorbs speckle and gradient fragments
+        # while the data term keeps genuine high-contrast marks.
+        labels = _icm_labels(lab, anchor_lab, labels)
+    else:
+        # Do not simply discard tiny colour components: their pixels then become
+        # unowned holes in the vector output.  Reassign only thin/tiny components
+        # to a touching, perceptually similar region.  High-contrast small marks
+        # remain intact, including dots, narrow letters and genuine counters.
+        anchor_cie = cv2.cvtColor(
+            (anchors.reshape(1, -1, 3).astype(np.float32) / 255.0),
+            cv2.COLOR_RGB2LAB,
+        ).reshape(-1, 3)
+        artifact_limit = max(8, minimum * 6, int(labels.size * 0.00018))
+        clean_labels = labels.copy()
+        neighbourhood = np.ones((3, 3), np.uint8)
+        for anchor_index in range(len(anchors)):
+            original_region = (labels == anchor_index).astype(np.uint8)
+            count, component_labels, stats, _ = cv2.connectedComponentsWithStats(original_region, connectivity=8)
+            for component in range(1, count):
+                area = int(stats[component, cv2.CC_STAT_AREA])
+                width = int(stats[component, cv2.CC_STAT_WIDTH])
+                height = int(stats[component, cv2.CC_STAT_HEIGHT])
+                component_mask = component_labels == component
+                thickness = float(
+                    cv2.distanceTransform(component_mask.astype(np.uint8), cv2.DIST_L2, 3).max()
+                )
+                has_extent = max(width, height) >= max(6, int(2.0 * scale))
+                definitely_tiny = area < minimum and not has_extent
+
+                ring = cv2.dilate(component_mask.astype(np.uint8), neighbourhood, iterations=1).astype(bool)
+                ring &= ~component_mask
+                adjacent = clean_labels[ring]
+                adjacent = adjacent[adjacent != anchor_index]
+                if not len(adjacent):
+                    continue
+                neighbours, contacts = np.unique(adjacent, return_counts=True)
+                perceptual = np.linalg.norm(anchor_cie[neighbours] - anchor_cie[anchor_index], axis=1)
+                # Require useful boundary contact, then prefer a close colour over
+                # a coincidental one-pixel touch at a three-way junction.
+                useful = contacts >= max(1, int(contacts.max() * 0.20))
+                candidates = np.flatnonzero(useful)
+                contact_ratio = contacts.astype(np.float32) / float(contacts.max())
+                score = perceptual + 8.0 * (1.0 - contact_ratio)
+                best = int(candidates[np.argmin(score[candidates])])
+                nearest_label = int(neighbours[best])
+                nearest_delta = float(perceptual[best])
+                thin_similar_artifact = (
+                    area < artifact_limit
+                    and thickness < 1.5
+                    and nearest_delta < 24.0
+                )
+                if definitely_tiny or thin_similar_artifact:
+                    clean_labels[component_mask] = nearest_label
+
+        labels = clean_labels
+    if merge:
+        labels = _merge_regions(labels, anchor_lab, minimum, scale)
+    rendered = anchors[labels]
+    masks: list[np.ndarray] = []
+    for anchor_index in range(len(anchors)):
+        if anchor_index == background_index:
+            continue
+        region = (labels == anchor_index).astype(np.uint8)
+        count, component_labels, stats, _ = cv2.connectedComponentsWithStats(region, connectivity=8)
+        for component in range(1, count):
+            area = int(stats[component, cv2.CC_STAT_AREA])
+            width = int(stats[component, cv2.CC_STAT_WIDTH])
+            height = int(stats[component, cv2.CC_STAT_HEIGHT])
+            # Preserve a long one-pixel mark even when its area is tiny; reject
+            # only compact speckles that have neither area nor visual extent.
+            # An enclosed strong-contrast island (letter counter, pupil) is kept
+            # at ANY size: at native scale a real 2x2 counter fails every area
+            # gate a JPEG speckle fails, but a speckle is never cleanly enclosed.
+            has_extent = max(width, height) >= max(6, int(2.0 * scale))
+            if area < minimum and not (area >= max(2, scale) and has_extent):
+                component_mask = component_labels == component
+                if not (area >= 2 and _enclosed_counter(labels, component_mask, anchor_index, anchor_lab)):
+                    continue
+                masks.append(component_mask)
+                continue
+            masks.append(component_labels == component)
+
+    boundary = np.zeros(labels.shape, dtype=bool)
+    kernel = np.ones((3, 3), np.uint8)
+    for mask in masks:
+        eroded = cv2.erode(mask.astype(np.uint8), kernel, iterations=1).astype(bool)
+        boundary |= mask & ~eroded
+    return rendered, masks, boundary, tuple(int(v) for v in anchors[background_index]), 0.0, scale
+
+
+def _needs_shared_region_graph(masks: list[np.ndarray], analysis_scale: int) -> bool:
+    """Whether §7 shared-interface fitting is materially useful for this image.
+
+    A region graph is essential for IKEA's touching letters/badge and Mastercard's
+    overlapping discs.  It is needless overhead for isolated wordmarks and stroke
+    illustrations: there are no non-background seams to share, while graph fitting
+    bypasses the stronger stroke and loop-level validators.  Require both an absolute
+    and relative amount of direct 4-neighbour contact between different masks.
+    """
+    if len(masks) < 2:
+        return False
+    labels = np.full(masks[0].shape, -1, np.int32)
+    for index, mask in enumerate(masks):
+        labels[mask.astype(bool)] = index
+    shared = 0
+    boundary = 0
+    for a, b in ((labels[:, :-1], labels[:, 1:]), (labels[:-1, :], labels[1:, :])):
+        different = a != b
+        shared += int(np.sum(different & (a >= 0) & (b >= 0)))
+        boundary += int(np.sum(different & ((a >= 0) | (b >= 0))))
+    native_shared = shared / max(1.0, float(analysis_scale))
+    ratio = shared / max(1, boundary)
+    return native_shared >= 16.0 and ratio >= 0.08
+
+
+def process(image_path: Path, output_root: Path, extractor: str = "mininet", smoothing: str = "cad") -> dict:
+    image = Image.open(image_path)
+    analysis_scale = 1
+    extractor_used = extractor
+    perceptual = smoothing in {"perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}
+    if perceptual:
+        # paper-native = the CANONICAL Hoshyari reproduction: hard nearest-anchor
+        # labels at native resolution, NO MiniNet deblur, NO ICM, NO merge — so
+        # paper-reproduction regressions are attributable separately from the
+        # production input hybrid (audit P1).
+        use_icm = smoothing in {"perceptual-icm", "perceptual-merge", "paper", "paper-perc", "paper-perres", "paper-regions"}
+        do_merge = smoothing in {"perceptual-merge", "paper", "paper-perc", "paper-perres", "paper-regions"}
+        # Input routing for the paper modes (Sec 4-7), by NOISE CLASS of the raster:
+        #  - JPEG: ringing/blocking survives palette snapping as 1-2px boundary
+        #    ripple; MiniNet deblur (trained on clean rasterized art) AMPLIFIES it
+        #    into wobbly boundaries.  Fit the hard NATIVE raster with a noise-matched
+        #    interval (px=1.3) instead.
+        #  - Lossless small art (<=512): clean AA gradients carry true subpixel edge
+        #    positions and the 4x deblur RECOVERS them (crocodile scales, halftone
+        #    stripes, 2px counters) — at native res a 1px real detail is geometrically
+        #    indistinguishable from an aliasing sliver, so native LOSES detail there.
+        #  - Lossless >512: native as always (deblur is gated to <=512 anyway).
+        # paper-perc keeps the deblurred subpixel contour by design.
+        native_raster = smoothing in {"paper", "paper-perres", "paper-regions"}
+        jpeg_input = (getattr(image, "format", None) or "").upper() in {"JPEG", "MPO"}
+        force_native = smoothing == "paper-native"
+        rgb, masks, boundary, bg, threshold, analysis_scale = extract_perceptual_masks(
+            image, use_icm=use_icm, merge=do_merge,
+            deblur=not (force_native or (native_raster and jpeg_input)))
+        if smoothing == "paper":
+            extractor_used = "paper-hoshyari"
+        elif smoothing == "paper-perc":
+            extractor_used = "paper-hoshyari-perc"
+        elif smoothing == "paper-native":
+            extractor_used = "paper-hoshyari-native"
+        elif smoothing == "paper-perres":
+            extractor_used = "paper-hoshyari-perres"
+        elif smoothing == "paper-regions":
+            extractor_used = "paper-hoshyari-regions"
+        else:
+            extractor_used = "perceptual-lab-merge" if do_merge else ("perceptual-lab-icm" if use_icm else "perceptual-lab-soft")
+    else:
+        if extractor == "mininet" and max(image.size) <= 256:
+            from subpixel_mininet import deblur_4x
+
+            analysis = deblur_4x(image)
+            analysis_scale = 4
+        else:
+            analysis = image
+            if extractor == "mininet":
+                extractor_used = "palette-large-fallback"
+        rgb, masks, boundary, bg, threshold = extract_shape_masks(analysis)
+    if perceptual:
+        # extract_perceptual_masks already applied this exact area policy plus the
+        # enclosed-counter rescue; re-filtering here would re-kill tiny counters.
+        minimum_region = 2
+    else:
+        minimum_region = max(6 * analysis_scale * analysis_scale, int(image.width * image.height * analysis_scale**2 * 0.0005))
+    masks = [mask for mask in masks if int(mask.sum()) >= minimum_region]
+    masks = sorted(masks, key=lambda mask: int(mask.sum()), reverse=True)
+    region_graph_active = smoothing == "paper-regions" and _needs_shared_region_graph(masks, analysis_scale)
+    paper_loop_mode = smoothing in {"paper", "paper-native", "paper-perc", "paper-perres"} or (
+        smoothing == "paper-regions" and not region_graph_active)
+    if smoothing == "paper-regions" and not region_graph_active:
+        extractor_used = "paper-hoshyari-regions-isolated"
+    gradient_fills: dict[int, tuple] = {}
+    if paper_loop_mode:
+        # audit P2: quantized-gradient stacks (banded shading) merge into ONE
+        # region with a linear/radial gradient fill BEFORE any boundary is fit —
+        # this collapses the mask explosion at its source.  The acceptance test
+        # needs the ORIGINAL pixels (the quantized render is flat by construction).
+        if masks:
+            reference = np.asarray(image.convert("RGB").resize(
+                (masks[0].shape[1], masks[0].shape[0]), Image.Resampling.BILINEAR), np.uint8)
+            masks, gradient_fills = _merge_gradient_stacks(masks, reference, analysis_scale)
+    # Perceptual masks already preserve shared boundaries and holes.  Replacing
+    # them with a guessed hidden rectangle destroys white-on-colour artwork
+    # (Peugeot/Pepsi/Colgate) and can merge separate letters (Mobil).
+    if perceptual:
+        base_layers, consumed = [], set()
+    else:
+        base_layers, consumed = complete_occluded_rectangles(masks, rgb, analysis_scale, image.size)
+    regions: list[Region] = list(base_layers)
+    completed_regions: list[Region] = []             # occlusion-completed bases, drawn UNDER all
+    occlusion_completions: dict[int, tuple] = {}
+    if paper_loop_mode and len(masks) >= 2:
+        occlusion_completions = _complete_occlusions(masks, analysis_scale, rgb)
+    occlusion_members: dict[int, int] = {}
+    for rep, spec in occlusion_completions.items():
+        for k in spec[-1]:
+            occlusion_members[k] = rep
+    corner_dots: list[np.ndarray] = []               # Sec-4 detected corners (paper mode), native px
+    if region_graph_active:
+        # Paper Sec 7: ONE region-boundary graph; every interface fitted once and SHARED by
+        # its two regions (fit-once + junction rules + corner consensus) -> no seams.
+        from region_graph import vectorize_region_graph, OUTSIDE
+        label_map = np.full(masks[0].shape if masks else (1, 1), OUTSIDE, np.int32)
+        for mask_index, mask in enumerate(masks):
+            label_map[mask.astype(bool)] = mask_index
+        # alpha is computed PER POLYLINE inside (paper's rs = the shape's raster
+        # resolution, not the canvas size).  px stays 1.0 for JPEG too: the LSQ
+        # line, chunk-merge and relative circle tolerance absorb ringing ripple; a
+        # wider interval lets independently-fit neighbouring regions drift apart.
+        loops_by_label, dots = vectorize_region_graph(label_map, analysis_scale, px=1.0)
+        corner_dots.extend(dots)
+        for mask_index, mask in enumerate(masks):
+            loops = loops_by_label.get(mask_index, [])
+            if not loops:
+                continue
+            color = tuple(int(value) for value in np.median(rgb[mask], axis=0))
+            regions.append(Region(color, int(mask.sum()), loops))
+        masks = []                                   # handled; skip the per-mask loop below
+
+    for mask_index, mask in enumerate(masks):
+        if mask_index in consumed:
+            continue
+        if paper_loop_mode and mask_index not in gradient_fills:
+            if mask_index in occlusion_members:
+                rep = occlusion_members[mask_index]
+                if mask_index != rep:
+                    continue                     # collapsed into the representative
+                # audit P2: the region completes to a simple template hidden
+                # behind its occluders — emit the EXACT template geometry and
+                # draw it UNDER everything (front of the region list).
+                spec = occlusion_completions[rep]
+                group_mask = np.zeros_like(mask, bool)
+                for k in spec[-1]:
+                    group_mask |= masks[k].astype(bool)
+                color = tuple(int(value) for value in np.median(rgb[group_mask], axis=0))
+                inv_s = 1.0 / analysis_scale
+                if spec[0] == "rect":
+                    _, rx0, ry0, rx1, ry1, _members = spec
+                    corners_t = np.array([[rx0, ry0], [rx1 + 1, ry0], [rx1 + 1, ry1 + 1], [rx0, ry1 + 1]], float) * inv_s
+                    curves_t = [Curve(1, np.vstack((corners_t[k], corners_t[(k + 1) % 4]))) for k in range(4)]
+                    template_name = "occlusion-rect"
+                else:
+                    _, ecx, ecy, ax_, ay_, ang, _members = spec
+                    curves_t = _ellipse_curves(np.array([ecx, ecy]) * inv_s,
+                                               np.array([ax_, ay_]) * inv_s, math.radians(ang))
+                    template_name = "occlusion-ellipse"
+                source_pts = np.vstack([eval_curve(c, 16) for c in curves_t])
+                completed_regions.append(Region(color, int(group_mask.sum()),
+                                                [FittedLoop(source_pts, curves_t, template_name)]))
+                continue
+            # audit P2: a constant-width ribbon becomes a stroked centerline —
+            # 1-2 primitives instead of a filled outline with caps and sides
+            stroke_spec = _detect_stroke(mask, analysis_scale)
+            if stroke_spec is not None:
+                color = tuple(int(value) for value in np.median(rgb[mask], axis=0))
+                regions.append(Region(color, int(mask.sum()), [], stroke=stroke_spec))
+                continue
+        distance = cv2.distanceTransform(mask.astype(np.uint8), cv2.DIST_L2, 5)
+        interior = distance[distance > 0]
+        stroke = 2.0 * float(np.percentile(interior, 72)) / analysis_scale if len(interior) else 1.0
+        feature_scale = max(0.48, min(2.2, 0.18 * stroke))
+        loops = []
+        if paper_loop_mode:
+            # Per loop: detect Sec4/Sec5 corners on a native-density SUBSAMPLE of the
+            # loop itself (the classifier's training scale) but FIT the full-resolution
+            # loop.  Subsampling the loop — never the mask — keeps every fine feature
+            # (teeth, leg tips, the opening of a C) instead of filling it.
+            raw_loops = [raw for raw in mask_loops(mask) if perimeter(raw) >= 4 * analysis_scale]
+            # Paper Sec 5.1: alpha = 32/rs where rs is the SHAPE's raster resolution
+            # (in the paper the image IS the shape).  Per-loop extent — not the canvas
+            # size — keeps the D/R balance scale-invariant: with alpha tied to a big
+            # canvas, a small logo's D-term vanishes and primitive types are chosen
+            # by gate luck (lines<->arcs flips).  Removal already used per-loop alpha.
+            # px: the interval is a NATIVE pixel (the 4x deblur is interpolation, so
+            # its boundary is only accurate to ~0.5 native px).  It stays 1.0 for
+            # JPEG-native input too — the LSQ line, the chunk-merge pass and the
+            # relative circle tolerance absorb ringing ripple, while a wider interval
+            # lets independently-fit neighbouring regions drift visibly apart.
+            fit_px = 1.0
+            det = "perres-paper" if smoothing == "paper-perres" else "cnn"
+            for raw in raw_loops:
+                full = raw / analysis_scale
+                coarse = full[:: max(1, analysis_scale)]
+                corners = paper_corner_positions(coarse, detector=det)   # corners on the RAW staircase
+                if len(corners):
+                    corner_dots.append(np.asarray(corners, float))
+                fit_alpha = _PAPER_FIT_ALPHA_K / max(16.0, float(np.ptp(full[:, 0]) + np.ptp(full[:, 1])) / 2)
+                fit_input, px_in = full, fit_px
+                if smoothing == "paper-perc" and len(full) >= 12:
+                    # EXPERIMENT "paper on the perceptual contour": fit the same lightly
+                    # Taubin-smoothed subpixel curve the perceptual mode draws (detail kept,
+                    # staircase noise gone), with a tighter interval since the smoothing
+                    # already absorbed the raster quantization.  Corner DETECTION stays on
+                    # the raw staircase above — the CNN is staircase-trained.
+                    spacing = max(0.42, min(0.62, 0.48 * feature_scale))
+                    fit_input = taubin_smooth_ring(resample_ring(full, spacing), passes=2)[:-1]
+                    px_in = 0.6
+                loops.append(fit_loop_paper(fit_input, fit_alpha, corner_positions=corners, px=px_in))
+        else:
+            raw_loops = [raw for raw in mask_loops(mask) if perimeter(raw) >= 4 * analysis_scale]
+            prefer_ellipse = len(raw_loops) == 2
+            for raw in raw_loops:
+                source = raw / analysis_scale
+                # The old CAD pre-pass projected locally straight staircase pieces
+                # before it knew the global shape.  On tiny o/B/C glyphs this could
+                # move half a contour by several pixels.  The new fitter performs
+                # scale-aware line decisions downstream, so CAD mode starts from
+                # the unmodified subpixel boundary.
+                if perceptual:
+                    loops.append(fit_perceptual_loop(source, feature_scale))
+                else:
+                    regularized = source if smoothing in {"cad", "uncertainty"} else interpolate_ring(source, smoothing)
+                    loops.append(
+                        fit_loop(
+                            regularized,
+                            feature_scale,
+                            prefer_ellipse=prefer_ellipse,
+                            global_fit=smoothing == "uncertainty",
+                        )
+                    )
+        if not loops:
+            continue
+        color = tuple(int(value) for value in np.median(rgb[mask], axis=0))
+        regions.append(Region(color, int(mask.sum()), loops, fill=gradient_fills.get(mask_index)))
+
+    if completed_regions:
+        regions = completed_regions + regions        # completed bases render first (bottom layer)
+    if smoothing in {"paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}:
+        # paper Sec 6 GLOBAL-scope regularities — and the audit's rule: regularization
+        # must RE-PASS hard accuracy.  Snapshot每 loop, regularize, and revert any loop
+        # the moved primitives pushed past the loop tolerance.
+        snapshot = [[[Curve(c.degree, c.control.copy(), meta=getattr(c, "meta", None))
+                      for c in lp.curves] for lp in region.loops] for region in regions]
+        _regularize_regions_global(regions)
+        for region, region_snap in zip(regions, snapshot):
+            for lp, saved in zip(region.loops, region_snap):
+                source = np.asarray(lp.source, float)
+                if len(source) >= 3 and _loop_fit_deviation(source, lp.curves) > max(2.5, 3.0):
+                    lp.curves = saved            # Sec 6 must never trade accuracy away
+                # Graph welding may collapse a tiny connector to an exact point.
+                # It carries no geometry but survives as a 0px SVG primitive and
+                # pollutes editability/micro-fragment metrics.
+                lp.curves = [curve for curve in lp.curves
+                             if float(np.ptp(curve.control[:, 0]) + np.ptp(curve.control[:, 1])) > 1e-5]
+    output = output_root / image_path.stem
+    output.mkdir(parents=True, exist_ok=True)
+    write_svgs(output, regions, image.size)
+    render_regions(regions, image.size, outline=True, scale=8).save(output / "01_contour.png")
+    render_regions(regions, image.size, outline=True, scale=8).save(output / "02_primitive_map.png")
+    render_regions(regions, image.size, outline=False, scale=8).save(output / "03_rebuilt_filled.png")
+    if smoothing in {"paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}:
+        # Where the Sec-4 detector (+ Sec-5 removal) placed corners.  Underlay: the
+        # SOURCE raster upscaled NEAREST (pixel-crisp at any UI zoom — the honest
+        # bitmap the fit consumed), lightened; overlay: the fitted contour drawn
+        # directly in display coordinates (thin, no resampling blur) + blue dots.
+        up = max(2, 1200 // max(image.size))
+        base = image.convert("RGB").resize((image.size[0] * up, image.size[1] * up), Image.Resampling.NEAREST)
+        corners_img = Image.blend(base, Image.new("RGB", base.size, (255, 255, 255)), 0.45)
+        draw = ImageDraw.Draw(corners_img)
+        for region in regions:
+            for loop in region.loops:
+                for curve in loop.curves:
+                    pts = eval_curve(curve, 24) * up
+                    draw.line([tuple(map(float, p)) for p in pts], fill=(40, 40, 40), width=1)
+        radius = max(3, int(0.8 * up))
+        for p in (np.vstack(corner_dots) if corner_dots else np.zeros((0, 2))):
+            x, y = float(p[0]) * up, float(p[1]) * up
+            draw.ellipse([x - radius, y - radius, x + radius, y + radius],
+                         fill=(0, 110, 230), outline=(255, 255, 255), width=1)
+        corners_img.save(output / "04_corners.png")
+    templates = {}
+    degrees = {"L": 0, "Q": 0, "C": 0}
+    for region in regions:
+        if getattr(region, "stroke", None):
+            templates["stroke"] = templates.get("stroke", 0) + 1
+            for curve in region.stroke[1]:
+                degrees[{1: "L", 2: "Q", 3: "C"}[curve.degree]] += 1
+        for loop in region.loops:
+            templates[loop.template] = templates.get(loop.template, 0) + 1
+            for curve in loop.curves:
+                degrees[{1: "L", 2: "Q", 3: "C"}[curve.degree]] += 1
+    report = {
+        "input": image_path.name,
+        "pipeline": "geometry-first",
+        "extractor_used": extractor_used,
+        "analysis_scale": analysis_scale,
+        "smoothing": smoothing,
+        "regions": len(regions),
+        "closed_contours": sum(len(region.loops) for region in regions),
+        "rendered_primitive_count": sum(degrees.values()),
+        "actual": degrees,
+        "templates": templates,
+        "threshold": threshold,
+    }
+    if smoothing in {"paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}:
+        report["corner_detector"] = {
+            "type": "resolution-density-hybrid-cnn",
+            "small_model": "corner_cnn.pt",
+            "small_threshold": _CNN_LAX_THRESHOLD,
+            "large_model": _CNN_HYBRID_MODEL_PATH.name,
+            "large_threshold": _CNN_HYBRID_THRESHOLD,
+            "small_extent_max": _CNN_HYBRID_CUTOFF,
+            "small_density_min": _CNN_HYBRID_MAX_DENSITY,
+        }
+    (output / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
+    return report

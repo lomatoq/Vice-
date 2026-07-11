@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="be"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width">
+<title>Corner GT review</title><style>
+:root{color-scheme:dark;font-family:Inter,Segoe UI,sans-serif;background:#11151b;color:#e8edf5}
+body{margin:0}.top{position:sticky;top:0;z-index:4;background:#11151bf2;border-bottom:1px solid #303744;padding:12px 18px}
+.top h1{font-size:17px;margin:0 0 8px}.bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+button,select{background:#202733;color:#e8edf5;border:1px solid #3d4858;border-radius:7px;padding:7px 10px}
+.legend{margin-left:auto;font-size:12px;color:#aeb8c7}.s{color:#ff4545}.o{color:#ff2bda}
+#grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(440px,1fr));gap:12px;padding:12px}
+.card{background:#181e27;border:1px solid #303946;border-radius:10px;padding:10px}.card.rejected{opacity:.38}.card.approved{border-color:#2f9b65}
+.head{display:flex;gap:8px;align-items:center}.head b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.meta{font-size:11px;color:#9da8b8;margin-left:auto}
+.views{display:flex;gap:7px;overflow-x:auto;margin:9px 0}.view{min-width:145px}.view img{width:145px;height:145px;object-fit:contain;background:#0d1015;image-rendering:pixelated;border-radius:5px;cursor:zoom-in}.view span{font-size:10px;color:#9da8b8}
+.actions{display:flex;gap:7px}.actions button[data-v=approve]{color:#77dfa6}.actions button[data-v=reject]{color:#ff8b8b}
+#modal{display:none;position:fixed;inset:0;z-index:10;background:#000d;align-items:center;justify-content:center}#modal img{max-width:94vw;max-height:94vh;image-rendering:pixelated}
+</style></head><body><div class="top"><h1>SVG corner ground truth</h1><div class="bar">
+<select id="filter"><option value="all">усе</option><option value="pending">не правераныя</option><option value="smooth">zero-corner</option><option value="occlusion">occlusion</option></select>
+<button id="export">Export review JSON</button><span id="stats"></span><span class="legend"><b class="s">●</b> structural &nbsp; <b class="o">●</b> occlusion &nbsp; blue = boundary</span>
+</div></div><main id="grid"></main><div id="modal"><img></div><script>
+const state=JSON.parse(localStorage.getItem('cornerGtReview')||'{}');let data;
+const grid=document.querySelector('#grid'),filter=document.querySelector('#filter'),stats=document.querySelector('#stats');
+function render(){grid.innerHTML='';let shown=0;for(const e of data.entries){const s=state[e.id]||'pending',f=filter.value;if(f==='pending'&&s!=='pending'||f==='smooth'&&!e.zero_corner||f==='occlusion'&&!e.occlusion)continue;shown++;const c=document.createElement('section');c.className='card '+(s==='approve'?'approved':s==='reject'?'rejected':'');c.innerHTML=`<div class=head><b>${e.name}</b><span class=meta>${e.structural} S · ${e.occlusion} O · ${e.loops} loops · ${s}</span></div><div class=views>${e.views.map(v=>`<div class=view><img src="${v.image}"><span>${v.res}px · ${v.corners} corners</span></div>`).join('')}</div><div class=actions><button data-v=approve>approve</button><button data-v=reject>reject</button><button data-v=pending>reset</button><a href="${e.source}" target=_blank><button>SVG</button></a></div>`;c.querySelectorAll('[data-v]').forEach(b=>b.onclick=()=>{state[e.id]=b.dataset.v;localStorage.setItem('cornerGtReview',JSON.stringify(state));render()});c.querySelectorAll('img').forEach(i=>i.onclick=()=>{modal.style.display='flex';modal.querySelector('img').src=i.src});grid.append(c)}stats.textContent=`${shown}/${data.entries.length} · approved ${Object.values(state).filter(x=>x==='approve').length}`}
+filter.onchange=render;modal.onclick=()=>modal.style.display='none';document.querySelector('#export').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(state,null,2)],{type:'application/json'}));a.download='corner_review.json';a.click()};fetch('manifest.json?t='+Date.now()).then(r=>r.json()).then(x=>{data=x;render()});
+</script></body></html>

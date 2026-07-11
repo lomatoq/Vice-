@@ -1,0 +1,76 @@
+{
+ "attacks": [
+  {
+   "attack": "Coordinate precision downgrade %.2f -> %.3g in write_svgs is a self-inflicted seam generator: %g counts SIGNIFICANT digits, not decimals. Verified the current code emits %.2f (geometry_vectorizer.py:2846-2851) in native-pixel units, so any coordinate >=100 (nearly every logo) gets rounded to whole pixels under %.3g, and >=1000 to tens of pixels ('1.02e+03'). Two regions sharing an interface fit ONCE still diverge after independent path serialization rounding, producing up-to-0.5px cracks and visibly displaced vertices on the right/bottom of the canvas — an order of magnitude larger than the 0.25px bleed meant to cover residual rounding. The Stage-2 'seams impossible by construction' claim is false as specified.",
+   "severity": "fatal",
+   "fix": "Keep fixed-decimal formatting: %.2f or %.3f (VAI itself uses 0.01px rounding per the forensics). If output size matters, strip trailing zeros, never switch to %g."
+  },
+  {
+   "attack": "Sign error in confidence-weighted corner removal: acceptance 'E_after <= E_before + kappa*(p_i - 0.5)' gives POSITIVE extra slack to high-confidence corners (p=0.9 -> +0.4*kappa) and negative slack to weak ones — confident corners become EASIER to remove and weak ones harder, the exact inverse of 'confident corners resist removal'. Additionally p comes from two different CNNs operating at different thresholds (0.36/0.28) with uncalibrated, incompatible probability scales, so a single kappa cannot be calibrated for both; Stage 8's F1>=0.76 target quietly becomes a precision/recall trade governed by which model fired. And the +margin form doesn't compose with the lexicographic (D,R) energy ordering at all — it only applies to a scalar E.",
+   "severity": "serious",
+   "fix": "Flip the sign (E_after <= E_before - kappa*(p_i-0.5)); Platt-scale each CNN's logits separately on the V4 GT before mixing; define the margin on the scalarized energy alpha*D+R with the lexicographic tie-break kept as-is."
+  },
+  {
+   "attack": "The 0.25px stroke=fill paint-order bleed contradicts its own Stage-2 gate and fattens the wrong things. On the outer silhouette (region vs promoted background) the bleed adds 0.25px everywhere: delta-IoU ~ 0.25*perimeter/area ~ 0.5/r, i.e. ~1-2% on Mastercard-scale circles — two orders of magnitude beyond the 'within 0.002 of floors' gate, so Stage 2 red-lights itself. On topmost small text (glyphs are typically last-painted), +0.5px total width at 12px reads as a bolder weight. And stroke joins at acute glyph apexes (A, V, W) with SVG's default miter limit 4 produce miter spikes up to ~1px.",
+   "severity": "serious",
+   "fix": "Bleed only regions that have at least one LATER-painted neighbor (the bleed hides under upper layers and never reaches the flattened render); leave the topmost layer and the outer silhouette unstroked; set stroke-linejoin:round on any stroked path."
+  },
+  {
+   "attack": "Seam meter gate 'exactly 0 uncovered pixels' on a supersampled render is unachievable with any anti-aliased rasterizer: every boundary pixel is a blend that matches neither region's fill, so the gate is either permanently red (Stage 2 stalls) or gets silently redefined mid-project, defeating the 'harness the team trusts' premise. Even with AA off, scanline coverage tie-breaking on abutting paths leaves isolated 1-sample crack pixels from float rounding that are perceptually invisible.",
+   "severity": "serious",
+   "fix": "Render supersampled with AA disabled and gate on CONNECTED crack runs: count runs of >=2 consecutive boundary samples whose color deviates >deltaE 8 from BOTH incident regions; threshold = 0 such runs. Single-sample speckle is ignored by construction."
+  },
+  {
+   "attack": "Mirror symmetrization 'average paired control points with their reflected partners' is unimplementable as specified: the two sides of a near-symmetric shape are fit independently and routinely decompose differently (3 cubics vs arc+cubic, different knot counts), so there is no control-point correspondence to average. The op either silently no-ops on most real shapes (hit rate ~0, Stage 6 gate fails) or requires an unspecified re-parameterization that can shear curves when nearest-sample pairing crosses segment boundaries.",
+   "severity": "serious",
+   "fix": "Symmetrize by canonical-side refit, not averaging: pick the side with lower fit residual, reflect its GEOMETRY across the axis, and instance it as the partner (the same mechanism the repeats unification already uses); pin axis-crossing points. Correspondence problem disappears."
+  },
+  {
+   "attack": "font_match per-glyph IoU>=0.85 cannot deliver 'precision 1.0'. At 12-24px, near-neighbor fonts (Arial vs Helvetica vs Liberation Sans) exceed 0.9 mask IoU per glyph, and — worse — brand wordmarks with custom or modified letterforms will pass 0.85 against the closest commercial font, replacing the logo's actual letterforms with a lookalike. That is the single most trust-destroying artifact possible in a logo tool, and it is undetectable in deployment because real inputs have no font GT; the 20-wordmark probe (rendered FROM known fonts) is biased toward exactly the cases where substitution is safe.",
+   "severity": "serious",
+   "fix": "Raise the wall: per-glyph IoU>=0.93 measured at 4x supersampling, run-level consistency required (all glyphs resolve to one font with per-glyph similarity transforms agreeing within 2% scale / 1deg rotation), and minimum run length >=4 accepted glyphs before ANY substitution ships; below that keep the Layer-2 geometric fit. Add held-out custom-lettering wordmarks to the probe as mandatory true negatives."
+  },
+  {
+   "attack": "Ladder rung 3 (Chaikin x2 on the 2px resample, ungated 'floor') trades the staircase artifact for two new ones: corner-cutting Chaikin systematically SHRINKS convex loops (area loss on every pass — small fills get visibly thinner, threatening the fill-IoU character of tiny icons), and a 45deg staircase at 2px sampling smooths into a low-amplitude periodic ripple, i.e. wobble — moving the defect from the staircase meter to the wobble meter while rung 3 has no gate at all to notice.",
+   "severity": "serious",
+   "fix": "Rung 3 = least-squares fit between detected corners (line/cubic via the existing _fit_g1_span) on the resampled points, or Taubin (non-shrinking) smoothing instead of Chaikin; and give rung 3 a sanity gate (Hausdorff at 2x tolerance) with revert to rung-2 output on failure."
+  },
+  {
+   "attack": "Color re-estimation fallback poisons exactly the regions it was built to fix: 1-2px strokes and small letter stems are the regions whose 1px erosion empties, and the specced fallback (median over the FULL mask) then samples a boundary-dominated set where most pixels are anti-aliased blends with the background — thin dark text on white ships as gray, saturated thin strokes desaturate. The defect lands on the most common small-icon/text content while thick regions (which were fine anyway) get the good estimator.",
+   "severity": "serious",
+   "fix": "When erosion empties, estimate from the distance-transform ridge instead: median over pixels in the top 30% of the region's distance transform (>=3 pixels guaranteed for any region), never the full mask."
+  },
+  {
+   "attack": "Latency: always-on region graph + ladder refits + rung-1 corner RE-DETECTION multiply cost precisely on the worst inputs. A <=512px lossless input becomes a 2048^2 crack grid after MiniNet 4x; text-heavy images have hundreds of small regions and interfaces (graph build + per-interface fits), and noisy JPEG logos fail rung-0 gates on many loops, each triggering a full second DP fit plus a CNN re-run at threshold*0.8. The 'seconds per icon' budget slips to tens of seconds exactly on the text images Stage 3 targets, and no stage gate measures wall-clock except Stage 5's local 1.3x DP check.",
+   "severity": "serious",
+   "fix": "Build the crack graph on the native-resolution label map (masks derive from it anyway) and lift to fit coordinates; cache the corner CNN probability signal per loop at first detection so rung-1 're-detection' is a free re-threshold (Stage D already threads p); add a wall-clock budget (p95 per image) to the Stage-0 harness as a standing gate."
+  },
+  {
+   "attack": "Stage-0 ruler is misaligned with the goal: MAE/RMSE vs the source PENALIZES idealization. Symmetry snapping, font substitution, occlusion completion, and G2 fairing all deliberately move geometry away from the pixels, so Stages 3/4/6 will read as regressions on the headline meter that the harness anchors to (the gate is literally 'reproduces the IKEA MAE numbers'), inviting wrong reverts or gate erosion.",
+   "severity": "serious",
+   "fix": "Demote MAE/RMSE to a loose sanity floor (catch gross breakage only); make the artifact meters (staircase count, seam runs, wobble, roundness, fairness) plus a blinded 10-image human A/B the primary per-stage gate."
+  },
+  {
+   "attack": "Ellipse-arc admission tests Sampson distance of the IMPLICIT conic at interval endpoints, but the interval constraint must hold for the emitted ARC: the near branch of the fitted conic can be the complementary arc (common when Fitzgibbon fits a long low-curvature span with noise), so the DP accepts a span whose emitted geometry misses the midpoints by up to the ellipse's minor diameter, and the error only surfaces at the _finish_loop Hausdorff gate — burning a ladder rung on a healthy loop.",
+   "severity": "minor",
+   "fix": "After fitting, resolve the actual parameter range from the span endpoints, sample the arc (e.g. 16 points), and run the SAME point-in-interval straddle test used for lines/arcs on those samples; drop the Sampson shortcut."
+  },
+  {
+   "attack": "G2 fairing (Stage F) runs before Sec-6 regularization, which then moves handles (axis snap, co-circularity, mirror averaging) and destroys the continuity Stage 4's fairness gate just measured — only the interval re-check is re-run, not fairing. The shipped SVG can show the same curvature steps the stage 'fixed', while the gate stays green because it measured the pre-regularization state.",
+   "severity": "minor",
+   "fix": "Measure the fairness meter on the FINAL serialized SVG (the harness renders it anyway), and re-run _enforce_g2_joins only on joins whose curves were touched by a snap (snap ops already know what they moved) — the interval bound makes the re-pass safe."
+  },
+  {
+   "attack": "Tiny template tournament: at area<=18px^2 mask IoU is nearly non-discriminative — a 4px diamond vs an ellipse vs a rounded rect all clear 0.82 (the shapes differ by a handful of supersampled corner pixels), so the tournament confidently ships the wrong ideal, e.g. diamond->ellipse, which is precisely the gap-#4 artifact the stage exists to remove, now with an authoritative-looking template label.",
+   "severity": "minor",
+   "fix": "Require a best-vs-runner-up IoU margin (>=0.04) AND consistency with detected corner evidence (4 detected corners vetoes ellipse; 0 corners vetoes rect/diamond); on ambiguity keep the corner-preserving pixel curves."
+  },
+  {
+   "attack": "Interfaces <4 native cracks forced to a straight segment between junction pins creates a new artifact at smooth tri-junctions: when a thin third region (highlight sliver, hairline stroke) crosses a curved two-tone boundary, the 1-3-crack pieces of that curved boundary become flat chords — visible notches on an otherwise smooth silhouette, invisible to the seam meter because coverage is perfect.",
+   "severity": "minor",
+   "fix": "Instead of unconditional straight, extend the fitted supports of the two ADJACENT longer interfaces toward each other and place the short interface on their trimmed continuation (fall back to straight only when no adjacent fitted support exists)."
+  }
+ ],
+ "design_key": "pragmatist",
+ "survives": true
+}

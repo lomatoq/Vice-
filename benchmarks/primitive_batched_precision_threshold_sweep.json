@@ -1,0 +1,805 @@
+{
+  "dataset": "datasets\\primitive_corner_v1_pilot",
+  "splits": [
+    "val"
+  ],
+  "tolerance": 3.0,
+  "detectors": {
+    "cnn:corner_cnn_primitives_batched_precision_candidate.pt@0.30": {
+      "P": 0.5316,
+      "R": 0.9121,
+      "F1": 0.6717,
+      "tp_events": 1203,
+      "fp_predictions": 1060,
+      "fn_events": 116,
+      "loops": 800,
+      "fp_per_loop": 1.325,
+      "zero_event": {
+        "loops": 411,
+        "fp": 557,
+        "fp_per_loop": 1.3552
+      },
+      "recall_by_kind": {
+        "occlusion": 1.0,
+        "point": 0.8931,
+        "short-span": 0.9222
+      },
+      "by_resolution": {
+        "12": {
+          "P": 0.403,
+          "R": 0.8617,
+          "events": 94
+        },
+        "16": {
+          "P": 0.3966,
+          "R": 0.8313,
+          "events": 83
+        },
+        "20": {
+          "P": 0.4976,
+          "R": 0.7836,
+          "events": 134
+        },
+        "24": {
+          "P": 0.5,
+          "R": 0.7358,
+          "events": 159
+        },
+        "32": {
+          "P": 0.4765,
+          "R": 0.9496,
+          "events": 139
+        },
+        "48": {
+          "P": 0.4221,
+          "R": 0.9683,
+          "events": 126
+        },
+        "64": {
+          "P": 0.4979,
+          "R": 0.9675,
+          "events": 123
+        },
+        "96": {
+          "P": 0.6667,
+          "R": 0.9912,
+          "events": 113
+        },
+        "128": {
+          "P": 0.6747,
+          "R": 0.9825,
+          "events": 114
+        },
+        "192": {
+          "P": 0.7566,
+          "R": 1.0,
+          "events": 115
+        },
+        "256": {
+          "P": 0.7829,
+          "R": 1.0,
+          "events": 119
+        }
+      },
+      "by_family": {
+        "D_tangent_arc": {
+          "P": 0.9778,
+          "R": 1.0,
+          "F1": 0.9888,
+          "fp_per_loop": 0.0455,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "chevron": {
+          "P": 0.8889,
+          "R": 0.9449,
+          "F1": 0.916,
+          "fp_per_loop": 0.6818,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "circle_bar_occlusion": {
+          "P": 0.8077,
+          "R": 0.9767,
+          "F1": 0.8842,
+          "fp_per_loop": 0.6061,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "concave_notch": {
+          "P": 0.9885,
+          "R": 0.9885,
+          "F1": 0.9885,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "cross": {
+          "P": 0.9921,
+          "R": 0.9921,
+          "F1": 0.9921,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "flat_capsule": {
+          "P": 0.7458,
+          "R": 1.0,
+          "F1": 0.8544,
+          "fp_per_loop": 0.6818,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "half_disc": {
+          "P": 0.8462,
+          "R": 1.0,
+          "F1": 0.9167,
+          "fp_per_loop": 0.3636,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "overlap_circles": {
+          "P": 0.6111,
+          "R": 1.0,
+          "F1": 0.7586,
+          "fp_per_loop": 0.6364,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.3636
+        },
+        "smooth_arc_ribbon": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 3.061,
+          "zero_event_loops": 82,
+          "zero_event_fp_per_loop": 3.061
+        },
+        "smooth_ellipse": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.9796,
+          "zero_event_loops": 49,
+          "zero_event_fp_per_loop": 0.9796
+        },
+        "smooth_ring": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.8274,
+          "zero_event_loops": 226,
+          "zero_event_fp_per_loop": 0.8274
+        },
+        "smooth_roundrect": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.2727,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.2727
+        },
+        "star_saw": {
+          "P": 0.8466,
+          "R": 0.9739,
+          "F1": 0.9058,
+          "fp_per_loop": 2.4545,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "thin_quad": {
+          "P": 0.7833,
+          "R": 0.9338,
+          "F1": 0.852,
+          "fp_per_loop": 0.8667,
+          "zero_event_loops": 1,
+          "zero_event_fp_per_loop": 2.0
+        },
+        "zigzag": {
+          "P": 0.4575,
+          "R": 0.8009,
+          "F1": 0.5823,
+          "fp_per_loop": 1.955,
+          "zero_event_loops": 31,
+          "zero_event_fp_per_loop": 2.0
+        }
+      }
+    },
+    "cnn:corner_cnn_primitives_batched_precision_candidate.pt@0.32": {
+      "P": 0.5463,
+      "R": 0.8992,
+      "F1": 0.6797,
+      "tp_events": 1186,
+      "fp_predictions": 985,
+      "fn_events": 133,
+      "loops": 800,
+      "fp_per_loop": 1.2312,
+      "zero_event": {
+        "loops": 411,
+        "fp": 524,
+        "fp_per_loop": 1.2749
+      },
+      "recall_by_kind": {
+        "occlusion": 1.0,
+        "point": 0.8915,
+        "short-span": 0.8963
+      },
+      "by_resolution": {
+        "12": {
+          "P": 0.4263,
+          "R": 0.8617,
+          "events": 94
+        },
+        "16": {
+          "P": 0.4224,
+          "R": 0.8193,
+          "events": 83
+        },
+        "20": {
+          "P": 0.5155,
+          "R": 0.7463,
+          "events": 134
+        },
+        "24": {
+          "P": 0.5202,
+          "R": 0.7296,
+          "events": 159
+        },
+        "32": {
+          "P": 0.4921,
+          "R": 0.8921,
+          "events": 139
+        },
+        "48": {
+          "P": 0.4281,
+          "R": 0.9683,
+          "events": 126
+        },
+        "64": {
+          "P": 0.5021,
+          "R": 0.9593,
+          "events": 123
+        },
+        "96": {
+          "P": 0.6667,
+          "R": 0.9912,
+          "events": 113
+        },
+        "128": {
+          "P": 0.6914,
+          "R": 0.9825,
+          "events": 114
+        },
+        "192": {
+          "P": 0.76,
+          "R": 0.9913,
+          "events": 115
+        },
+        "256": {
+          "P": 0.7881,
+          "R": 1.0,
+          "events": 119
+        }
+      },
+      "by_family": {
+        "D_tangent_arc": {
+          "P": 1.0,
+          "R": 1.0,
+          "F1": 1.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "chevron": {
+          "P": 0.9077,
+          "R": 0.9291,
+          "F1": 0.9183,
+          "fp_per_loop": 0.5455,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "circle_bar_occlusion": {
+          "P": 0.84,
+          "R": 0.9767,
+          "F1": 0.9032,
+          "fp_per_loop": 0.4848,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "concave_notch": {
+          "P": 0.9884,
+          "R": 0.977,
+          "F1": 0.9827,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "cross": {
+          "P": 0.9921,
+          "R": 0.9921,
+          "F1": 0.9921,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "flat_capsule": {
+          "P": 0.7586,
+          "R": 1.0,
+          "F1": 0.8627,
+          "fp_per_loop": 0.6364,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "half_disc": {
+          "P": 0.88,
+          "R": 1.0,
+          "F1": 0.9362,
+          "fp_per_loop": 0.2727,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "overlap_circles": {
+          "P": 0.6471,
+          "R": 1.0,
+          "F1": 0.7857,
+          "fp_per_loop": 0.5455,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.2727
+        },
+        "smooth_arc_ribbon": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 2.939,
+          "zero_event_loops": 82,
+          "zero_event_fp_per_loop": 2.939
+        },
+        "smooth_ellipse": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.9388,
+          "zero_event_loops": 49,
+          "zero_event_fp_per_loop": 0.9388
+        },
+        "smooth_ring": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.7478,
+          "zero_event_loops": 226,
+          "zero_event_fp_per_loop": 0.7478
+        },
+        "smooth_roundrect": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.0909
+        },
+        "star_saw": {
+          "P": 0.8663,
+          "R": 0.9739,
+          "F1": 0.9169,
+          "fp_per_loop": 2.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "thin_quad": {
+          "P": 0.8057,
+          "R": 0.9338,
+          "F1": 0.865,
+          "fp_per_loop": 0.7556,
+          "zero_event_loops": 1,
+          "zero_event_fp_per_loop": 2.0
+        },
+        "zigzag": {
+          "P": 0.4607,
+          "R": 0.7702,
+          "F1": 0.5766,
+          "fp_per_loop": 1.8559,
+          "zero_event_loops": 31,
+          "zero_event_fp_per_loop": 2.0
+        }
+      }
+    },
+    "cnn:corner_cnn_primitives_batched_precision_candidate.pt@0.34": {
+      "P": 0.5651,
+      "R": 0.8946,
+      "F1": 0.6927,
+      "tp_events": 1180,
+      "fp_predictions": 908,
+      "fn_events": 139,
+      "loops": 800,
+      "fp_per_loop": 1.135,
+      "zero_event": {
+        "loops": 411,
+        "fp": 495,
+        "fp_per_loop": 1.2044
+      },
+      "recall_by_kind": {
+        "occlusion": 1.0,
+        "point": 0.8884,
+        "short-span": 0.8898
+      },
+      "by_resolution": {
+        "12": {
+          "P": 0.4451,
+          "R": 0.8617,
+          "events": 94
+        },
+        "16": {
+          "P": 0.4595,
+          "R": 0.8193,
+          "events": 83
+        },
+        "20": {
+          "P": 0.5351,
+          "R": 0.7388,
+          "events": 134
+        },
+        "24": {
+          "P": 0.5399,
+          "R": 0.7233,
+          "events": 159
+        },
+        "32": {
+          "P": 0.5146,
+          "R": 0.8849,
+          "events": 139
+        },
+        "48": {
+          "P": 0.4586,
+          "R": 0.9683,
+          "events": 126
+        },
+        "64": {
+          "P": 0.5064,
+          "R": 0.9593,
+          "events": 123
+        },
+        "96": {
+          "P": 0.6667,
+          "R": 0.9912,
+          "events": 113
+        },
+        "128": {
+          "P": 0.7051,
+          "R": 0.9649,
+          "events": 114
+        },
+        "192": {
+          "P": 0.7651,
+          "R": 0.9913,
+          "events": 115
+        },
+        "256": {
+          "P": 0.7919,
+          "R": 0.9916,
+          "events": 119
+        }
+      },
+      "by_family": {
+        "D_tangent_arc": {
+          "P": 1.0,
+          "R": 1.0,
+          "F1": 1.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "chevron": {
+          "P": 0.912,
+          "R": 0.8976,
+          "F1": 0.9048,
+          "fp_per_loop": 0.5,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "circle_bar_occlusion": {
+          "P": 0.875,
+          "R": 0.9767,
+          "F1": 0.9231,
+          "fp_per_loop": 0.3636,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "concave_notch": {
+          "P": 0.9884,
+          "R": 0.977,
+          "F1": 0.9827,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "cross": {
+          "P": 0.9921,
+          "R": 0.9921,
+          "F1": 0.9921,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "flat_capsule": {
+          "P": 0.7719,
+          "R": 1.0,
+          "F1": 0.8713,
+          "fp_per_loop": 0.5909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "half_disc": {
+          "P": 0.9167,
+          "R": 1.0,
+          "F1": 0.9565,
+          "fp_per_loop": 0.1818,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "overlap_circles": {
+          "P": 0.6875,
+          "R": 1.0,
+          "F1": 0.8148,
+          "fp_per_loop": 0.4545,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.1818
+        },
+        "smooth_arc_ribbon": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 2.7561,
+          "zero_event_loops": 82,
+          "zero_event_fp_per_loop": 2.7561
+        },
+        "smooth_ellipse": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.8776,
+          "zero_event_loops": 49,
+          "zero_event_fp_per_loop": 0.8776
+        },
+        "smooth_ring": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.708,
+          "zero_event_loops": 226,
+          "zero_event_fp_per_loop": 0.708
+        },
+        "smooth_roundrect": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "star_saw": {
+          "P": 0.8869,
+          "R": 0.9739,
+          "F1": 0.9283,
+          "fp_per_loop": 1.7273,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "thin_quad": {
+          "P": 0.8424,
+          "R": 0.9205,
+          "F1": 0.8797,
+          "fp_per_loop": 0.5778,
+          "zero_event_loops": 1,
+          "zero_event_fp_per_loop": 2.0
+        },
+        "zigzag": {
+          "P": 0.4783,
+          "R": 0.7702,
+          "F1": 0.5901,
+          "fp_per_loop": 1.7297,
+          "zero_event_loops": 31,
+          "zero_event_fp_per_loop": 2.0
+        }
+      }
+    },
+    "cnn:corner_cnn_primitives_batched_precision_candidate.pt@0.36": {
+      "P": 0.5777,
+      "R": 0.8939,
+      "F1": 0.7018,
+      "tp_events": 1179,
+      "fp_predictions": 862,
+      "fn_events": 140,
+      "loops": 800,
+      "fp_per_loop": 1.0775,
+      "zero_event": {
+        "loops": 411,
+        "fp": 470,
+        "fp_per_loop": 1.1436
+      },
+      "recall_by_kind": {
+        "occlusion": 1.0,
+        "point": 0.8884,
+        "short-span": 0.8882
+      },
+      "by_resolution": {
+        "12": {
+          "P": 0.4576,
+          "R": 0.8617,
+          "events": 94
+        },
+        "16": {
+          "P": 0.4857,
+          "R": 0.8193,
+          "events": 83
+        },
+        "20": {
+          "P": 0.5531,
+          "R": 0.7388,
+          "events": 134
+        },
+        "24": {
+          "P": 0.5455,
+          "R": 0.717,
+          "events": 159
+        },
+        "32": {
+          "P": 0.5348,
+          "R": 0.8849,
+          "events": 139
+        },
+        "48": {
+          "P": 0.4729,
+          "R": 0.9683,
+          "events": 126
+        },
+        "64": {
+          "P": 0.5108,
+          "R": 0.9593,
+          "events": 123
+        },
+        "96": {
+          "P": 0.6829,
+          "R": 0.9912,
+          "events": 113
+        },
+        "128": {
+          "P": 0.7051,
+          "R": 0.9649,
+          "events": 114
+        },
+        "192": {
+          "P": 0.7651,
+          "R": 0.9913,
+          "events": 115
+        },
+        "256": {
+          "P": 0.7973,
+          "R": 0.9916,
+          "events": 119
+        }
+      },
+      "by_family": {
+        "D_tangent_arc": {
+          "P": 1.0,
+          "R": 1.0,
+          "F1": 1.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "chevron": {
+          "P": 0.9421,
+          "R": 0.8976,
+          "F1": 0.9194,
+          "fp_per_loop": 0.3182,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "circle_bar_occlusion": {
+          "P": 0.875,
+          "R": 0.9767,
+          "F1": 0.9231,
+          "fp_per_loop": 0.3636,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "concave_notch": {
+          "P": 0.9884,
+          "R": 0.977,
+          "F1": 0.9827,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "cross": {
+          "P": 0.9921,
+          "R": 0.9921,
+          "F1": 0.9921,
+          "fp_per_loop": 0.0909,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "flat_capsule": {
+          "P": 0.8,
+          "R": 1.0,
+          "F1": 0.8889,
+          "fp_per_loop": 0.5,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "half_disc": {
+          "P": 0.9167,
+          "R": 1.0,
+          "F1": 0.9565,
+          "fp_per_loop": 0.1818,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "overlap_circles": {
+          "P": 0.7333,
+          "R": 1.0,
+          "F1": 0.8462,
+          "fp_per_loop": 0.3636,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.0909
+        },
+        "smooth_arc_ribbon": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 2.622,
+          "zero_event_loops": 82,
+          "zero_event_fp_per_loop": 2.622
+        },
+        "smooth_ellipse": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.8163,
+          "zero_event_loops": 49,
+          "zero_event_fp_per_loop": 0.8163
+        },
+        "smooth_ring": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.6637,
+          "zero_event_loops": 226,
+          "zero_event_fp_per_loop": 0.6637
+        },
+        "smooth_roundrect": {
+          "P": 0.0,
+          "R": 0.0,
+          "F1": 0.0,
+          "fp_per_loop": 0.0,
+          "zero_event_loops": 11,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "star_saw": {
+          "P": 0.8922,
+          "R": 0.9739,
+          "F1": 0.9313,
+          "fp_per_loop": 1.6364,
+          "zero_event_loops": 0,
+          "zero_event_fp_per_loop": 0.0
+        },
+        "thin_quad": {
+          "P": 0.8466,
+          "R": 0.9139,
+          "F1": 0.879,
+          "fp_per_loop": 0.5556,
+          "zero_event_loops": 1,
+          "zero_event_fp_per_loop": 2.0
+        },
+        "zigzag": {
+          "P": 0.4862,
+          "R": 0.7702,
+          "F1": 0.5961,
+          "fp_per_loop": 1.6757,
+          "zero_event_loops": 31,
+          "zero_event_fp_per_loop": 2.0
+        }
+      }
+    }
+  }
+}
