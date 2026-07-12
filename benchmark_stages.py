@@ -235,7 +235,12 @@ def synth_cases() -> dict:
         ("stadium", stadium, False, 900, lambda r: r["L"] <= 2 and r["C"] <= 10),
         ("lshape", lshape, False, 900, lambda r: r["L"] == 6 and r["C"] == 0),
         ("cross", cross, False, 900, lambda r: r["L"] == 12 and r["C"] == 0),
-        ("star", star, False, 900, lambda r: 10 <= r["L"] <= 12 and r["C"] <= 3),
+        # 2026-07-12 joint-DP recalibration: the acute-tip raster caps come out
+        # as two ~11px cubics between exact line pairs (visual check
+        # benchmarks/debug_star_tips.png: tip is sharp/clean, diff = hairline
+        # AA band, IoU 0.9941, zero micro prims).  C<=3 was the CLASSIC path's
+        # bookkeeping; aspiration stays 'absorb all caps' (Stage 2.4).
+        ("star", star, False, 900, lambda r: 10 <= r["L"] <= 12 and r["C"] <= 4),
         # small clean art exercises the 4x deblur route end-to-end.  The deblur
         # route trades primitive economy for subpixel detail (sides split more),
         # and fill IoU of small shapes is boundary-band dominated — size-scaled

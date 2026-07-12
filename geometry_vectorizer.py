@@ -1014,6 +1014,37 @@ _CNN_HYBRID_MODEL_PATH = Path(__file__).resolve().parent / "models" / "corner_cn
 _DEBUG_CORNER_ROUTING = False
 # Elliptical-arc DP candidate (Stage 1.5).  Flag kept for A/B and fast revert.
 _EARC_ENABLED = True
+# Stage 2.3: corners as latent DP decisions (CNN log-odds priced against the
+# G1 bend penalty inside the shortest path) instead of threshold->NMS->
+# collapse->removal.  Flag for A/B and fast revert.
+_JOINT_CORNER_DP = True
+_JOINT_SUPERSET_THRESHOLD = 0.15
+
+
+def _corner_probabilities(loop: np.ndarray) -> np.ndarray | None:
+    """Raw per-vertex corner probabilities at native density (hybrid routing),
+    or None when the CNN path is unavailable (caller falls back to classic)."""
+    if not _USE_CNN_DETECTOR:
+        return None
+    try:
+        import corner_cnn
+        if len(loop) < corner_cnn.MIN_LOOP:
+            return None
+        res = max(1.0, float(np.ptp(loop[:, 0]) + np.ptp(loop[:, 1])) / 2)
+        density = len(loop) / res
+        use_large = (res > _CNN_HYBRID_CUTOFF and density <= _CNN_HYBRID_MAX_DENSITY
+                     and _CNN_HYBRID_MODEL_PATH.is_file())
+        return np.asarray(corner_cnn.predict_prob(
+            loop, model_path=_CNN_HYBRID_MODEL_PATH if use_large else None), float)
+    except Exception:
+        return None
+
+
+def _corner_price(p: float) -> float:
+    """Price of declaring a C0 corner, competed against the G1 bend penalty
+    (6.0/rad above 4deg).  p=0.9 -> 1.5 (cheap), p=0.5 -> 3.5 (a ~37deg bend),
+    p=0.15 -> 5.25 (only a sharp turn justifies it)."""
+    return 1.0 + 5.0 * (1.0 - float(np.clip(p, 0.0, 1.0)))
 _CORNER_POSTPROCESS_POLICIES = ("production", "tiny-safe", "cnn-conservative")
 # 2026-07-12 night A/B (benchmarks/vai_textsafe_probe.json + stages --fast):
 # tiny-safe + text-safe promoted to DEFAULT.  On wordmark stems fallbacks went
@@ -1250,7 +1281,8 @@ def _tangent_in(curve: Curve) -> np.ndarray:
     return v / n if n > 1e-9 else np.array([1.0, 0.0])
 
 
-def _enforce_g1_chain(curves: list[Curve], max_angle_deg: float = 35.0, closed: bool = False) -> list[Curve]:
+def _enforce_g1_chain(curves: list[Curve], max_angle_deg: float = 35.0, closed: bool = False,
+                      keep_c0: set | None = None) -> list[Curve]:
     """Paper Sec 5.1 G1 continuity between consecutive primitives WITHIN a segment.
 
     A corner-bounded segment is smooth everywhere except its (corner) endpoints, so
@@ -1277,6 +1309,8 @@ def _enforce_g1_chain(curves: list[Curve], max_angle_deg: float = 35.0, closed: 
     # loop used to skip — the one kink §6 could never clear on a closed smooth loop.
     joins = range(len(out)) if closed else range(len(out) - 1)
     for i in joins:
+        if keep_c0 and i in keep_c0:
+            continue                       # DP-paid corner: stays C0 at ANY angle
         a, b = out[i], out[(i + 1) % len(out)]
         ta, tb = _tangent_out(a), _tangent_in(b)
         if float(ta @ tb) < limit:
@@ -1418,7 +1452,8 @@ class _EvidenceField:
 
 
 def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float = 1.0,
-                          snap_ends: bool = True) -> list[Curve]:
+                          snap_ends: bool = True,
+                          corner_prices: dict[int, float] | None = None) -> list[Curve]:
     """Paper Sec 5.1: fit a corner-bounded raster segment to its pixel-edge MIDPOINTS
     with a Cornucopia-style shortest-path DP over line (r=1) / arc (r=2) / clothoid
     (r=4; biarc and cubic remain as degenerate-case fallbacks); energy E = alpha*D + R.
@@ -1491,6 +1526,19 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
     nodes = list(range(0, m, stride))
     if nodes[-1] != m - 1:
         nodes.append(m - 1)
+    if corner_prices:
+        # A paid corner must be able to break the chain EXACTLY at its apex —
+        # snapping the price to a ~1.5-2.5px node grid parks the C0 one or two
+        # mids off the true corner, and the flanking line candidates then fail
+        # their intervals AT the apex (polygon sides fragmented into cubics).
+        # Grid nodes hugging an inserted apex are DROPPED: a 1-2 mid stub that
+        # straddles the apex fits nothing but a forced cubic (star-tip C=4 bug).
+        wanted = {int(i) for i in corner_prices if 0 < int(i) < m - 1}
+        guard = max(2, stride)
+        nodes = [v for v in nodes
+                 if v in (0, m - 1) or v in wanted
+                 or all(abs(v - w) >= guard for w in wanted)]
+        nodes = sorted(set(nodes) | wanted)
     k = len(nodes)
     node_px = stride * spacing
     look_back = max(14, int(round(_DP_SPAN_PX / max(node_px, 0.3))))
@@ -1514,9 +1562,17 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
             return res
 
         out = []
-        sub = mid[a : b + 1]
-        lo_s, hi_s, um_s = lo[a : b + 1], hi[a : b + 1], um[a : b + 1]
-        half_s = half_arr[a : b + 1]     # per-midpoint interval half-width (evidence)
+        # A PAID corner's midpoints belong to the raster's ROUNDED CAP, not to
+        # either side: marching squares rounds an acute tip over 2-3px, so the
+        # last/first few mids bend away from the straight sides (star tips came
+        # out as cubic caps).  Chunks touching a priced corner drop up to 3 cap
+        # mids on that end — the support intersection weld reconstructs the
+        # EXACT sharp apex the raster could not render (same slack the classic
+        # corner-vertex split has always had).
+        start, end = chunk_slice(a, b)
+        sub = mid[start : end]
+        lo_s, hi_s, um_s = lo[start : end], hi[start : end], um[start : end]
+        half_s = half_arr[start : end]   # per-midpoint interval half-width (evidence)
         rev = sub[::-1]  # polyline seen from the END corner, for the half-space test there
 
         # --- line: interval crosses the segment normal, or is within eps of it ---
@@ -1659,13 +1715,44 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
     dead = math.radians(_PAPER_G1_DEAD)
     BINS = 12
 
+    # Stage 2.3 (METHOD_ICE 3.3): corner-as-DP-decision.  corner_prices maps a
+    # MID index to the price of declaring a C0 corner there (from calibrated
+    # CNN log-odds).  At a priced node the DP pays min(G1 penalty, price): a
+    # confident corner is cheaper than bending a primitive chain around it,
+    # a weak candidate loses to a smooth continuation — no threshold, no NMS,
+    # no collapse window ever pre-decides.
+    node_price: dict[int, float] = {}
+    if corner_prices:
+        node_set = set()
+        for mid_index, price in corner_prices.items():
+            # nearest DP node to the candidate's mid index
+            node_val = nodes[min(range(len(nodes)), key=lambda q: abs(nodes[q] - mid_index))]
+            if node_val in (0, m - 1):
+                continue                     # chain ends are C0 by construction
+            if node_val in node_set:
+                node_price[node_val] = min(node_price[node_val], float(price))
+            else:
+                node_set.add(node_val)
+                node_price[node_val] = float(price)
+
+    def chunk_slice(a: int, b: int) -> tuple[int, int]:
+        """Midpoint range of chunk [a,b]: at a priced corner the LAST midpoint
+        belongs to the outgoing edge (a 90-deg apex makes its interval parallel
+        to the incoming carrier), so ending chunks drop exactly one.  Wider cap
+        trims open multi-mid gaps between adjacent chunks that the 1.5px welds
+        cannot bridge (423-line heal cascade in the star probe)."""
+        end = b + 1
+        if node_price and b in node_price and b - a >= 3:
+            end = b
+        return a, end
+
     def tangent_bin(t) -> int:
         if t is None:
             return -1
         return int(((math.atan2(float(t[1]), float(t[0])) + math.pi) / (2.0 * math.pi)) * BINS) % BINS
 
     def run_dp(banned: set):
-        # dp[j]: bin -> (cost, exact_tangent, back=(ii, bin_in, kind, parameter))
+        # dp[j]: bin -> (cost, exact_tangent, back=(ii, bin_in, kind, parameter, corner_in))
         dp: list[dict] = [dict() for _ in range(k)]
         dp[0][-1] = (0.0, None, None)
         for jj in range(1, k):
@@ -1676,34 +1763,44 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
                 for cost, kind, parameter, t_start, t_end in cands:
                     for bin_in, (cost_in, tan_in, _) in dp[ii].items():
                         penalty = 0.0
+                        corner_in = False
                         if tan_in is not None and t_start is not None:
                             cosang = max(-1.0, min(1.0, float(tan_in[0] * t_start[0] + tan_in[1] * t_start[1])))
                             penalty = _PAPER_G1_W * max(0.0, math.acos(cosang) - dead)
+                            price = node_price.get(nodes[ii])
+                            if price is not None and price < penalty:
+                                penalty = price
+                                corner_in = True
                         total = cost_in + cost + penalty
                         nb = tangent_bin(t_end)
                         cur = dp[jj].get(nb)
                         if cur is None or total < cur[0]:
-                            dp[jj][nb] = (total, t_end, (ii, bin_in, kind, parameter))
+                            dp[jj][nb] = (total, t_end, (ii, bin_in, kind, parameter, corner_in))
         if not dp[k - 1]:
             return None
         end_bin = min(dp[k - 1], key=lambda bkey: dp[k - 1][bkey][0])
         chunks: list[tuple[int, int, str, object]] = []
+        corner_mids: set[int] = set()
         jj, bkey = k - 1, end_bin
         while jj > 0:
             _, _, back = dp[jj][bkey]
             if back is None:
                 break
-            ii, bin_in, kind, parameter = back
+            ii, bin_in, kind, parameter, corner_in = back
             chunks.append((nodes[ii], nodes[jj], kind, parameter))
+            if corner_in:
+                corner_mids.add(nodes[ii])
             jj, bkey = ii, bin_in
         chunks.reverse()
+        run_dp.last_corner_mids = corner_mids
         return chunks
 
     def build_curves(chunks):
         curves: list[Curve] = []
         spans: list[tuple[int, int, int, str]] = []   # (curve_lo, curve_hi, chunk_idx, kind)
         for index, (a, b, kind, parameter) in enumerate(chunks):
-            sub = mid[a : b + 1]
+            s_a, end_b = chunk_slice(a, b)
+            sub = mid[s_a : end_b]
             # snap_ends=True glues the chain ends to the segment's raster corner
             # VERTICES.  The vertex carries +-0.5-1px quantization, which TILTS a
             # long LSQ line beyond its interval budget (Alg-1 then bans it and a
@@ -1773,8 +1870,9 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
         slack = 0.25
         for c_lo, c_hi, index, kind in spans:
             a, b, _, _ = chunks[index]
-            sub = mid[a : b + 1]
-            um_s = um[a : b + 1]
+            s_a, end_b = chunk_slice(a, b)
+            sub = mid[s_a : end_b]
+            um_s = um[s_a : end_b]
             pieces = []
             for c in curves[c_lo:c_hi]:
                 chord = float(np.linalg.norm(c.control[-1] - c.control[0]))
@@ -1790,7 +1888,7 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
                 bad.add((kind, a, b))
         return bad
 
-    def merge_chunks(chunks, banned: set):
+    def merge_chunks(chunks, banned: set, protected: set | None = None):
         """Greedy union-refits beyond the DP horizon.  The look-back caps a single
         primitive at ~_DP_SPAN_PX of arclength (a perf bound the paper does not
         have), so a large smooth run comes out as many pieces with slightly
@@ -1813,6 +1911,8 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
                 a2, b2, k2c, _p2 = chunks[i + 1]
                 if b1 != a2:
                     continue
+                if protected and a2 in protected:
+                    continue                 # never merge across a PAID corner
                 cands = fit_sub_all(a1, b2, force=False, banned=banned)
                 if not cands:
                     continue
@@ -1831,17 +1931,28 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
 
     banned: set = set()
     curves: list[Curve] = []
+    fit_segment_midpoints.last_corner_joins = []
     for _ in range(3):                                  # Alg-1: repeat until constraints hold
         chunks = run_dp(banned)
         if chunks is None:
             control, _ = _cubic_control(mid, _unit(mid[1] - mid[0]), _unit(mid[-1] - mid[-2]))
             return [Curve(3, control)]
-        chunks = merge_chunks(chunks, banned)
+        corner_mids: set = getattr(run_dp, "last_corner_mids", set())
+        chunks = merge_chunks(chunks, banned, protected=corner_mids)
         fit_segment_midpoints.last_kinds = [c[2] for c in chunks]  # debug: true primitive kinds
         raw_curves, spans = build_curves(chunks)
-        curves = _weld_chain(_enforce_g1_chain(raw_curves))
+        # Paid corner joins stay C0 through the intra-segment G1 pass and are
+        # exported so the caller can weld them at analytic support intersections.
+        corner_joins: list[tuple[int, np.ndarray]] = []
+        for c_lo, _c_hi, index, _kind in spans:
+            a_chunk = chunks[index][0]
+            if a_chunk in corner_mids and c_lo > 0:
+                corner_joins.append((c_lo, mid[a_chunk].copy()))
+        keep = {c_lo - 1 for c_lo, _ in corner_joins}
+        curves = _weld_chain(_enforce_g1_chain(raw_curves, keep_c0=keep))
         bad = chunk_violations(chunks, curves, spans)
         if not bad:
+            fit_segment_midpoints.last_corner_joins = corner_joins
             return curves
         banned |= bad
     # Alg-1 exhausted with violations left: an inaccurate primitive must never ship
@@ -3154,6 +3265,128 @@ def _finish_loop(
     return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
 
 
+def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | None:
+    """Stage 2.3: the WHOLE loop as one open DP chain with corners as PRICED
+    latent decisions (METHOD_ICE 3.3).  Returns None whenever any prerequisite
+    is missing — the caller then runs the classic threshold->removal path.
+
+    Mechanism: raw CNN probabilities at native density -> local-max superset at
+    a LAX 0.15 threshold (no NMS radius, no collapse window) -> recentered to
+    the turning apex -> the loop is unrolled at the STRONGEST candidate (that
+    seam is C0 by construction, welded at the support intersection like the
+    classic 1-corner path) -> every other candidate becomes a corner PRICE at
+    its DP node: the shortest path pays min(G1 bend penalty, price), so two
+    adjacent true letter corners survive (two cheap corners beat one strained
+    clothoid) and a staircase artefact loses (smooth continuation is cheaper)."""
+    n = len(loop)
+    if n < 24:
+        return None
+    # Native-density ring for the CNN (its turning windows are in px).
+    spacing = float(np.median(np.linalg.norm(np.roll(loop, -1, axis=0) - loop, axis=1)))
+    stride = max(1, int(round(1.0 / max(spacing, 1e-6)))) if spacing < 0.6 else 1
+    coarse = loop[::stride]
+    if len(coarse) < 10:
+        return None
+    probs = _corner_probabilities(coarse)
+    if probs is None or len(probs) != len(coarse):
+        return None
+    above = probs >= _JOINT_SUPERSET_THRESHOLD
+    if not bool(above.any()):
+        return None                        # smooth loop: classic path handles it
+    # Local maxima of the probability signal (superset, deliberately lax).
+    prev_p = np.roll(probs, 1)
+    next_p = np.roll(probs, -1)
+    cand_coarse = np.flatnonzero(above & (probs >= prev_p) & (probs >= next_p))
+    if not len(cand_coarse):
+        return None
+    recentered = _recenter_corners(coarse, [int(c) for c in cand_coarse])
+    nc = len(coarse)
+    cand_pairs = []
+    for idx in recentered:
+        ring_dist = np.minimum((cand_coarse - idx) % nc, (idx - cand_coarse) % nc)
+        near = cand_coarse[ring_dist <= 4]
+        p_max = float(probs[near].max()) if len(near) else float(probs[idx])
+        cand_pairs.append(((int(idx) * stride) % n, p_max))
+    cand_pairs = sorted(dict(cand_pairs).items())
+    if stride > 1:
+        # coarse*stride is up to stride-1 vertices off the true apex on the
+        # full-density ring — re-snap there before pricing DP nodes.
+        refined: dict[int, float] = {}
+        for full_idx, p in cand_pairs:
+            snapped = _recenter_corners(loop, [full_idx], radius=stride + 2)
+            key = snapped[0] if snapped else full_idx
+            refined[key] = max(p, refined.get(key, 0.0))
+        cand_pairs = sorted(refined.items())
+    strongest = max(cand_pairs, key=lambda kv: kv[1])[0]
+    ring = np.vstack((loop[strongest:], loop[:strongest], loop[strongest:strongest + 1]))
+    prices: dict[int, float] = {}
+    w_turn = max(3, min(6, n // 8))
+    for full_idx, p in cand_pairs:
+        u = (full_idx - strongest) % n     # vertex index in the unrolled chain
+        if u == 0 or u >= n - 2:
+            continue                       # the seam corner is C0 already
+        price = _corner_price(p)
+        # The raster testifies too: at a hard local turn (star tip, box corner)
+        # a low CNN score must not price the corner out of reach — otherwise a
+        # single r=4 cubic threads the tip cheaper than corner + two lines.
+        va = loop[full_idx] - loop[(full_idx - w_turn) % n]
+        vb = loop[(full_idx + w_turn) % n] - loop[full_idx]
+        na, nb = float(np.linalg.norm(va)), float(np.linalg.norm(vb))
+        if na > 1e-9 and nb > 1e-9:
+            turn = math.degrees(math.acos(max(-1.0, min(1.0, float((va / na) @ (vb / nb))))))
+            if turn >= 45.0:
+                price = min(price, 1.2)
+        prices[u] = min(prices.get(u, float("inf")), price)
+    chain = fit_segment_midpoints(ring, alpha, px, snap_ends=False,
+                                  corner_prices=prices or None)
+    if not chain:
+        return None
+    corner_joins = list(getattr(fit_segment_midpoints, "last_corner_joins", []))
+    # Acute apexes: marching squares rounds a sharp tip over 2-4px, and the DP
+    # legitimately covers that cap with a short cubic between the two flanking
+    # lines.  The IDEAL shape has no cap — absorb it and extend the lines to
+    # their exact intersection (bounded: only <=4.5px caps at PAID corners).
+    if corner_joins and len(chain) >= 3:
+        absorbed: list[Curve] = []
+        cap_joins = {c_lo for c_lo, _ in corner_joins}
+        skip = False
+        for idx, curve in enumerate(chain):
+            if skip:
+                skip = False
+                continue
+            nxt = chain[(idx + 1) % len(chain)]
+            prev = absorbed[-1] if absorbed else None
+            chord = float(np.linalg.norm(curve.control[-1] - curve.control[0]))
+            if (idx + 1 in cap_joins or idx in cap_joins) and curve.degree == 3 \
+                    and chord <= 4.5 and prev is not None \
+                    and prev.degree == 1 and nxt.degree == 1 and idx + 1 < len(chain):
+                p_tip = _corner_intersection(prev, nxt, curve.control[0])
+                _shift_curve_end(prev, p_tip)
+                _shift_curve_start(nxt, p_tip)
+                absorbed.append(nxt)
+                skip = True
+                continue
+            absorbed.append(curve)
+        if len(absorbed) < len(chain):
+            chain = absorbed
+            corner_joins = []          # indices are stale after absorption
+    # Weld the wrap seam C0 at the strongest candidate (classic 1-corner move).
+    p_seam = _corner_intersection(chain[-1], chain[0], loop[strongest])
+    _shift_curve_end(chain[-1], p_seam)
+    _shift_curve_start(chain[0], p_seam)
+    # Weld every DP-paid corner at the analytic support intersection.
+    for c_lo, vertex in corner_joins:
+        if 0 < c_lo < len(chain):
+            p_c = _corner_intersection(chain[c_lo - 1], chain[c_lo], vertex)
+            _shift_curve_end(chain[c_lo - 1], p_c)
+            _shift_curve_start(chain[c_lo], p_c)
+    keep = {c_lo - 1 for c_lo, _ in corner_joins if 0 < c_lo < len(chain)}
+    curves = _regularize_axis_parallel(_regularize_loop(chain))
+    curves = _enforce_g1_chain(curves, max_angle_deg=20.0, closed=False,
+                               keep_c0=keep if len(curves) == len(chain) else None)
+    return _finish_loop(loop, curves, px, "paper-joint")
+
+
 def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.ndarray | None = None, px: float = 1.0) -> FittedLoop:
     """Full paper boundary fit for one loop: Sec4/Sec5 corners split the loop into
     segments, each fit to edge midpoints by Sec 5.1 with the directional interval
@@ -3179,6 +3412,10 @@ def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.n
         if ellipse is not None and ellipse[0] <= 0.22:
             return FittedLoop(loop, ellipse[2], "paper-tiny-ellipse")
         return FittedLoop(loop, _tiny_pixel_curves(loop), "paper-tiny")
+    if _JOINT_CORNER_DP:
+        joint = _fit_loop_joint(loop, alpha, px)
+        if joint is not None:
+            return joint
     if corner_positions is None:
         positions = paper_corner_positions(loop)
     else:
