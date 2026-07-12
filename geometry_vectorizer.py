@@ -1012,6 +1012,8 @@ _CNN_HYBRID_MAX_DENSITY = 8.0
 _CNN_HYBRID_THRESHOLD = 0.36
 _CNN_HYBRID_MODEL_PATH = Path(__file__).resolve().parent / "models" / "corner_cnn_hybrid_large_v1.pt"
 _DEBUG_CORNER_ROUTING = False
+# Elliptical-arc DP candidate (Stage 1.5).  Flag kept for A/B and fast revert.
+_EARC_ENABLED = True
 _CORNER_POSTPROCESS_POLICIES = ("production", "tiny-safe", "cnn-conservative")
 # 2026-07-12 night A/B (benchmarks/vai_textsafe_probe.json + stages --fast):
 # tiny-safe + text-safe promoted to DEFAULT.  On wordmark stems fallbacks went
@@ -1267,7 +1269,7 @@ def _enforce_g1_chain(curves: list[Curve], max_angle_deg: float = 35.0, closed: 
         # tangent BOWS the drawn arc off its circle by 1-2px — Alg-1 then bans a
         # perfectly good arc (and the ban misses when the re-run shifts the span).
         meta = getattr(c, "meta", None)
-        return c.degree == 1 or (isinstance(meta, tuple) and len(meta) and meta[0] in ("arc", "clothoid"))
+        return c.degree == 1 or (isinstance(meta, tuple) and len(meta) and meta[0] in ("arc", "clothoid", "earc"))
 
     limit = math.cos(math.radians(max_angle_deg))
     out = list(curves)
@@ -1486,6 +1488,18 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
                         out.append((alpha * float(radial.sum()) + 2.0, "arc", (center, radius), ts, teA))
                         return _store(out)           # arc dominates biarc/cubic (r 2 vs 4)
 
+        # --- elliptical arc (r=3, METHOD_ICE 3.3): reached only when the CIRCLE
+        # failed (the arc branch above early-returns on success), so this is the
+        # 'partial oval' slot that previously decomposed into clothoid/cubic
+        # patchwork.  Same hard feasibility as every other type. ---
+        if _EARC_ENABLED and len(sub) >= 10 and ("earc", a, b) not in banned:
+            earc = _earc_fit(sub, um_s, half, eps)
+            if earc is not None:
+                edev, eparams, ets, ete = earc
+                if _halfspace_ok(ets, sub) and _halfspace_ok(-ete, rev):
+                    out.append((alpha * edev + 3.0, "earc", eparams, ets, ete))
+                    return _store(out)   # exact conic beats the r=4 family on cost
+
         # --- clothoid (the paper's TRUE Sec 5.1 r=4 primitive): curvature linear in
         # arclength.  biarc/cubic below stay as fallbacks for spans where the LSQ
         # spiral is degenerate (heavy staircase noise, ~180deg hooks). ---
@@ -1614,6 +1628,14 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
                 s0 = start if (index == 0 and snap_ends) else center + radius * _unit(start - center)
                 s1 = end if (index == len(chunks) - 1 and snap_ends) else center + radius * _unit(end - center)
                 curves.extend(_tag_arcs(circular_beziers(s0, s1, center, radius, sub), center, radius))
+            elif kind == "earc":
+                drawn = _earc_curves(parameter, sub)
+                if drawn:
+                    curves.extend(drawn)
+                else:
+                    control, _ = _cubic_control(sub, _unit(sub[1] - sub[0]), _unit(sub[-1] - sub[-2]))
+                    control = control.copy(); control[0] = start; control[-1] = end
+                    curves.append(Curve(3, control))
             elif kind == "clothoid":
                 drawn = _clothoid_curves(sub, parameter, start, end)
                 if drawn:
@@ -1778,6 +1800,95 @@ def _tag_arcs(curves: list[Curve], center: np.ndarray, radius: float) -> list[Cu
     meta = ("arc", _ARC_RUN_ID[0], np.asarray(center, float).copy(), float(radius))
     for c in curves:
         c.meta = meta
+    return curves
+
+
+def _earc_fit(sub: np.ndarray, um_s: np.ndarray, half: float, eps: float):
+    """Elliptical-arc candidate (METHOD_ICE 3.3, VAI parity: partial ovals as ONE
+    primitive).  Direct LSQ ellipse (cv2.fitEllipseDirect — the stabilized
+    Fitzgibbon family), then the SAME hard feasibility the other curve types
+    use: um-projected deviation of the drawn arc at every midpoint plus the
+    biarc-style bulge test.  Returns (deviation_sum, params, t_start, t_end)
+    with params = (center, axes, theta, phi0, phi1), or None."""
+    if len(sub) < 8:
+        return None
+    try:
+        (cx, cy), (d0, d1), ang = cv2.fitEllipseDirect(sub.astype(np.float32))
+    except cv2.error:
+        return None
+    if not np.all(np.isfinite([cx, cy, d0, d1, ang])):
+        return None
+    a_ax, b_ax = 0.5 * float(d0), 0.5 * float(d1)
+    if min(a_ax, b_ax) < 0.8 or max(a_ax, b_ax) / max(min(a_ax, b_ax), 1e-9) > 12.0:
+        return None
+    chord = float(np.linalg.norm(sub[-1] - sub[0]))
+    if max(a_ax, b_ax) > 50.0 * max(2.0, chord):
+        return None                      # wild extrapolated fit: no evidence for it
+    theta = math.radians(float(ang))
+    ct, st = math.cos(theta), math.sin(theta)
+    rot = np.array([[ct, st], [-st, ct]])          # world -> ellipse frame
+    q = (sub - np.array([cx, cy])) @ rot.T
+    q[:, 0] /= a_ax
+    q[:, 1] /= b_ax
+    phi = np.unwrap(np.arctan2(q[:, 1], q[:, 0]))
+    dphi = np.diff(phi)
+    if not (np.all(dphi >= -1e-6) or np.all(dphi <= 1e-6)):
+        return None                      # midpoints wander back and forth in angle
+    sweep = float(phi[-1] - phi[0])
+    if abs(sweep) < 0.05 or abs(sweep) > math.radians(178):
+        return None
+    inv_rot = rot.T                                  # ellipse frame -> world
+    dense_phi = np.linspace(phi[0], phi[-1], max(24, 3 * len(sub)))
+    poly = (np.column_stack((a_ax * np.cos(dense_phi), b_ax * np.sin(dense_phi)))
+            @ inv_rot.T) + np.array([cx, cy])
+    dmat = np.linalg.norm(poly[:, None, :] - sub[None, :, :], axis=2)
+    sub_to = np.min(dmat, axis=0)
+    drawn_to = np.min(dmat, axis=1)
+    near = np.argmin(dmat, axis=0)
+    dev = np.abs(np.sum((poly[near] - sub) * um_s, axis=1))
+    if not bool((dev <= half + eps).all()) or float(drawn_to.max()) > half + eps + 0.35:
+        return None
+    def tangent_at(p: float, forward: np.ndarray) -> np.ndarray:
+        t = np.array([-a_ax * math.sin(p), b_ax * math.cos(p)]) @ inv_rot.T
+        t = _unit(t)
+        return t if float(t @ forward) >= 0 else -t
+    ts = tangent_at(float(phi[0]), sub[1] - sub[0])
+    te = tangent_at(float(phi[-1]), sub[-1] - sub[-2])
+    params = (np.array([cx, cy]), np.array([a_ax, b_ax]), theta,
+              float(phi[0]), float(phi[-1]))
+    return float(sub_to.sum()), params, ts, te
+
+
+def _earc_curves(params: tuple, sub: np.ndarray) -> list[Curve]:
+    """Draw an elliptical arc as <=90-degree tangent-matched cubics ON the fitted
+    ellipse (handle k = 4/3*tan(dphi/4) in PARAMETER space — exact construction),
+    tagged as ONE 'earc' unit so G1 enforcement treats it as rigid."""
+    center, axes, theta, phi0, phi1 = params
+    a_ax, b_ax = float(axes[0]), float(axes[1])
+    ct, st = math.cos(theta), math.sin(theta)
+    inv_rot = np.array([[ct, -st], [st, ct]])        # ellipse frame -> world
+
+    def point(p: float) -> np.ndarray:
+        return center + inv_rot @ np.array([a_ax * math.cos(p), b_ax * math.sin(p)])
+
+    def deriv(p: float) -> np.ndarray:
+        return inv_rot @ np.array([-a_ax * math.sin(p), b_ax * math.cos(p)])
+
+    sweep = phi1 - phi0
+    pieces = max(1, int(math.ceil(abs(sweep) / (0.5 * math.pi))))
+    _ARC_RUN_ID[0] += 1
+    meta = ("earc", _ARC_RUN_ID[0], np.asarray(center, float).copy(),
+            np.asarray(axes, float).copy(), float(theta))
+    curves: list[Curve] = []
+    for i in range(pieces):
+        f0 = phi0 + sweep * (i / pieces)
+        f1 = phi0 + sweep * ((i + 1) / pieces)
+        k = 4.0 / 3.0 * math.tan((f1 - f0) / 4.0)
+        p0, p1 = point(f0), point(f1)
+        control = np.vstack((p0, p0 + k * deriv(f0), p1 - k * deriv(f1), p1))
+        curve = Curve(3, control)
+        curve.meta = meta
+        curves.append(curve)
     return curves
 
 
