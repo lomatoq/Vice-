@@ -2468,6 +2468,7 @@ def _regularize_regions_global(regions: list) -> None:
 
     # ---- (6) N-fold ROTATIONAL symmetry + REPEATED shapes + glyph BASELINES ----
     _regularize_rotation(regions)
+    _unify_repeated_shapes(regions)      # Stage 2.6a: decomposition-independent
     _regularize_repeats(regions)
     _regularize_baselines(regions)
 
@@ -2634,6 +2635,81 @@ def _regularize_rotation(regions: list) -> None:
         for k, idx in enumerate(orbit):
             curves[idx].control = rotate(canonical, k)
             used.add(idx)
+
+
+def _unify_repeated_shapes(regions: list) -> None:
+    """Stage 2.6a (METHOD_ICE 3.7): repeated GLYPHS unify by canonical-side
+    INSTANCING, decomposition-independent.
+
+    _regularize_repeats demands identical curve counts and degree sequences —
+    two instances of the same letter fit with different primitive splits never
+    unify (the common case: the DP is threshold-sensitive).  Here sameness is
+    judged on the DRAWN OUTLINE (64 arclength samples, centroid-aligned, best
+    cyclic shift, RMS <= 0.8px); the member with the FEWEST curves becomes the
+    canonical instance and every other member is REPLACED by its translated
+    copy — but only when the translated canonical still passes that member's
+    own source-polyline accuracy (per-member gate, never a blind average)."""
+    loops = [fl for region in regions for fl in region.loops
+             if 2 <= len(fl.curves) <= 60 and len(fl.source) >= 12]
+    if len(loops) < 2:
+        return
+
+    def outline(fl) -> np.ndarray:
+        pts = np.vstack([eval_curve(c, 8)[:-1] for c in fl.curves])
+        closed = np.vstack((pts, pts[:1]))
+        dist = np.concatenate(([0.0], np.cumsum(np.linalg.norm(np.diff(closed, axis=0), axis=1))))
+        if dist[-1] < 1e-6:
+            return None
+        target = np.linspace(0.0, dist[-1], 64, endpoint=False)
+        return np.column_stack([np.interp(target, dist, closed[:, k]) for k in range(2)])
+
+    infos = []
+    for fl in loops:
+        o = outline(fl)
+        if o is None:
+            continue
+        c = o.mean(axis=0)
+        infos.append((fl, o - c, c, float(np.ptp(o[:, 0])), float(np.ptp(o[:, 1]))))
+
+    used: set[int] = set()
+    for i in range(len(infos)):
+        if i in used:
+            continue
+        fl_i, rel_i, c_i, w_i, h_i = infos[i]
+        group = [i]
+        for j in range(i + 1, len(infos)):
+            if j in used:
+                continue
+            fl_j, rel_j, c_j, w_j, h_j = infos[j]
+            if abs(w_i - w_j) > max(1.0, 0.06 * w_i) or abs(h_i - h_j) > max(1.0, 0.06 * h_i):
+                continue
+            best = None
+            for shift in range(0, 64, 2):
+                delta = np.linalg.norm(np.roll(rel_j, -shift, axis=0) - rel_i, axis=1)
+                rms = float(np.sqrt(np.mean(delta ** 2)))
+                if best is None or rms < best:
+                    best = rms
+            if best is not None and best <= 0.8:
+                group.append(j)
+        if len(group) < 2:
+            continue
+        canonical = min(group, key=lambda g: len(infos[g][0].curves))
+        can_fl, _, can_c, _, _ = infos[canonical]
+        for g in group:
+            used.add(g)
+            if g == canonical:
+                continue
+            fl_g, _, c_g, _, _ = infos[g]
+            offset = c_g - can_c
+            new_curves = []
+            for c in can_fl.curves:
+                nc = Curve(c.degree, c.control + offset)
+                nc.meta = getattr(c, "meta", None)
+                new_curves.append(nc)
+            # per-member accuracy gate: the instanced glyph must still explain
+            # THIS member's own raster boundary
+            if _loop_fit_deviation(fl_g.source, new_curves) <= 2.5:
+                fl_g.curves = new_curves
 
 
 def _regularize_repeats(regions: list) -> None:
