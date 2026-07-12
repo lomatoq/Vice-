@@ -449,8 +449,14 @@ def aggregate(rows: list[dict]) -> dict:
                 wins += 1
         if total:
             agg["wins"][meter] = f"{wins}+{ties}t/{total}"
+            # Mean AND median: wobble-class meters are unbounded, so one
+            # degenerate micro-segment icon can dominate the mean while the
+            # median tells the population truth (SalsaStarter night case).
             agg["means"][meter] = {"ours": round(float(np.mean(ours_vals)), 4),
                                    "vai": round(float(np.mean(vai_vals)), 4)}
+            agg.setdefault("medians", {})[meter] = {
+                "ours": round(float(np.median(ours_vals)), 4),
+                "vai": round(float(np.median(vai_vals)), 4)}
     return agg
 
 
@@ -505,11 +511,14 @@ def main() -> int:
               f"fb {row.get('fallback_loops')}  {row.get('secs')}s", flush=True)
 
     agg = aggregate([r for r in rows if "error" not in r])
-    print("\n=== OURS vs VAI (wins+ties/total; means ours|vai) ===")
+    print("\n=== OURS vs VAI (wins+ties/total; median ours|vai; mean ours|vai) ===")
     for meter in KEY_METERS:
         if meter in agg["wins"]:
             m = agg["means"][meter]
-            print(f"  {meter:18} {agg['wins'][meter]:>10}   {m['ours']} | {m['vai']}")
+            md = agg.get("medians", {}).get(meter, {})
+            print(f"  {meter:18} {agg['wins'][meter]:>10}   "
+                  f"med {md.get('ours')} | {md.get('vai')}   "
+                  f"mean {m['ours']} | {m['vai']}")
 
     snap = OUT / args.snapshot
     if snap.exists():

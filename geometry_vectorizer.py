@@ -1013,11 +1013,14 @@ _CNN_HYBRID_THRESHOLD = 0.36
 _CNN_HYBRID_MODEL_PATH = Path(__file__).resolve().parent / "models" / "corner_cnn_hybrid_large_v1.pt"
 _DEBUG_CORNER_ROUTING = False
 _CORNER_POSTPROCESS_POLICIES = ("production", "tiny-safe", "cnn-conservative")
-# Keep the shipped behaviour unchanged.  Alternative policies are deliberately
-# opt-in until the event-level evaluator and real-logo A/B both pass.
-_CORNER_POSTPROCESS_POLICY = "production"
+# 2026-07-12 night A/B (benchmarks/vai_textsafe_probe.json + stages --fast):
+# tiny-safe + text-safe promoted to DEFAULT.  On wordmark stems fallbacks went
+# 1->0, wobble 62.5->0.25 (Hyundai) and 5.5->0.8, ink-IoU +0.024/-0.014; all
+# non-text stems byte-identical; stages showed only the two pre-existing
+# failures.  The old defaults remain available for A/B via CLI overrides.
+_CORNER_POSTPROCESS_POLICY = "tiny-safe"
 _PAPER_FIT_PROFILES = ("production", "text-safe")
-_PAPER_FIT_PROFILE = "production"
+_PAPER_FIT_PROFILE = "text-safe"
 
 
 def _detect_lax_corners(work: np.ndarray, work_res: float, model, s: int,
