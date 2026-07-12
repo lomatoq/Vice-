@@ -131,7 +131,7 @@ class Handler(BaseHTTPRequestHandler):
                 raise ValueError("Файл слишком большой (максимум 25 MB)")
             payload = json.loads(self.rfile.read(length))
             filename = safe_name(payload["filename"])
-            smoothing = payload.get("smoothing", "cad")
+            smoothing = payload.get("smoothing", "paper-regions")
             extractor = payload.get("extractor", "mininet")
             if smoothing not in {"none", "corner", "chaikin", "bspline", "cad", "uncertainty", "perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}:
                 raise ValueError("Unknown contour interpolation mode")

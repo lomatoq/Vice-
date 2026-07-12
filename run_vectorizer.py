@@ -36,7 +36,7 @@ from geometry_vectorizer import process  # noqa: E402
 # The modes the underlying pipeline actually understands (mirrors server.py).
 SMOOTHING_MODES = ["none", "corner", "chaikin", "bspline", "cad", "uncertainty",
                    "perceptual", "perceptual-icm", "perceptual-merge", "paper",
-                   "paper-regions"]
+                   "paper-native", "paper-perc", "paper-perres", "paper-regions"]
 EXTRACTORS = ["mininet", "palette"]
 IMAGE_SUFFIXES = {".png", ".jpg", ".jpeg", ".webp", ".bmp"}
 PANEL_HEIGHT = 260  # contact-sheet row height in pixels
@@ -150,8 +150,9 @@ def main() -> None:
         epilog=__doc__,
     )
     parser.add_argument("inputs", nargs="+", help="image files, folders or glob patterns")
-    parser.add_argument("--smoothing", "-s", default="perceptual",
-                        help=f"one or more comma-separated modes ({', '.join(SMOOTHING_MODES)}); default perceptual")
+    parser.add_argument("--smoothing", "-s", default="paper-regions",
+                        help=f"one or more comma-separated modes ({', '.join(SMOOTHING_MODES)}); "
+                             "default paper-regions (the flagship Hoshyari pipeline + shared-interface graph)")
     parser.add_argument("--extractor", "-e", default="mininet", choices=EXTRACTORS,
                         help="mask extractor (default mininet)")
     parser.add_argument("--corner-model", type=Path, default=None,
