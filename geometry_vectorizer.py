@@ -2608,6 +2608,76 @@ def _pixel_faithful_curves(loop: np.ndarray) -> list[Curve]:
             for i in range(len(ring))]
 
 
+def _smooth_fallback_curves(loop: np.ndarray, px: float) -> list[Curve]:
+    """Degradation-ladder rung 1 (METHOD_ICE 3.5): corner-aware G1 cubic chain.
+
+    When the primary paper fit fails the backstop, the old behaviour shipped the
+    raw ~2px staircase polyline — perceptually the worst possible SVG.  This rung
+    keeps the accuracy discipline (the caller re-checks deviation/IoU/self-
+    intersection) but stays SMOOTH: gentle non-shrinking Taubin, two-scale corner
+    detection, recursive tangent-constrained cubics between corners (C0 only at
+    detected corners, G1 everywhere else)."""
+    closed = np.vstack((loop, loop[:1]))
+    spacing = 0.8
+    ring = taubin_smooth_ring(resample_ring(closed, spacing), passes=1)[:-1]
+    n = len(ring)
+    if n < 8:
+        return []
+    corner_idx = sorted(set(_multiscale_corners(ring, 1.2, spacing)))
+    corner_set = set(corner_idx)
+    if len(corner_idx) < 2:
+        # No reliable corners: quarter the ring so every join stays G1.
+        base = corner_idx[0] if corner_idx else 0
+        corner_idx = sorted({base % n, (base + n // 4) % n,
+                             (base + n // 2) % n, (base + 3 * n // 4) % n})
+        corner_set = set(corner_idx) & corner_set
+
+    def central_tangent(k: int) -> np.ndarray:
+        t = ring[(k + 1) % n] - ring[(k - 1) % n]
+        norm = float(np.linalg.norm(t))
+        return t / norm if norm > 1e-9 else np.array([1.0, 0.0])
+
+    curves: list[Curve] = []
+    bounds = list(zip(corner_idx, corner_idx[1:] + [corner_idx[0] + n]))
+    for a, b in bounds:
+        pts = ring[[k % n for k in range(a, b + 1)]]
+        if len(pts) < 2:
+            continue
+        ta = pts[1] - pts[0] if (a % n) in corner_set else central_tangent(a % n)
+        tb = pts[-1] - pts[-2] if (b % n) in corner_set else central_tangent(b % n)
+        for tangent in (ta, tb):
+            norm = float(np.linalg.norm(tangent))
+            if norm > 1e-9:
+                tangent /= norm
+        curves.extend(_fit_g1_span(pts, ta, tb, max(0.35, 0.5 * px)))
+    return curves
+
+
+def _dense_fallback_curves(loop: np.ndarray) -> list[Curve]:
+    """Degradation-ladder rung 2: dense-but-smooth interpolating cubic chain.
+
+    Near-interpolates the gently smoothed boundary (one cubic per ~1px edge,
+    central-difference tangents) — heavy on segments but free of staircase
+    jaggies; strictly better to look at than the raw polyline at equal
+    fidelity."""
+    ring = taubin_smooth_ring(resample_ring(np.vstack((loop, loop[:1])), 1.0),
+                              passes=2)[:-1]
+    n = len(ring)
+    if n < 4:
+        return []
+    tangents = np.roll(ring, -1, axis=0) - np.roll(ring, 1, axis=0)
+    norms = np.maximum(np.linalg.norm(tangents, axis=1, keepdims=True), 1e-9)
+    tangents = tangents / norms
+    curves: list[Curve] = []
+    for i in range(n):
+        j = (i + 1) % n
+        p0, p1 = ring[i], ring[j]
+        chord = float(np.linalg.norm(p1 - p0))
+        curves.append(Curve(3, np.vstack((p0, p0 + tangents[i] * chord / 3.0,
+                                          p1 - tangents[j] * chord / 3.0, p1))))
+    return curves
+
+
 def _tiny_pixel_curves(loop: np.ndarray) -> list[Curve]:
     """Exact crack-boundary chain for a tiny counter/detail.
 
@@ -2721,23 +2791,41 @@ def _finish_loop(
         valid = ", ".join(_PAPER_FIT_PROFILES)
         raise ValueError(f"unknown paper fit profile {profile!r}; expected one of: {valid}")
     tolerance = max(2.5, 2.0 * px + 1.0)
-    deviation = _loop_fit_deviation(loop, curves)
-    if deviation > tolerance:
-        return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
     area = abs(float(np.sum(loop[:, 0] * np.roll(loop[:, 1], -1) - np.roll(loop[:, 0], -1) * loop[:, 1]))) / 2.0
     perimeter_len = float(np.sum(np.linalg.norm(np.roll(loop, -1, axis=0) - loop, axis=1)))
     thickness = 2.0 * area / max(perimeter_len, 1e-9)
-    # IoU is only informative for THICK shapes: a 4px-wide letter stem at a good
-    # 0.5px fit already reads ~0.75 IoU (the boundary band dominates its area), so
-    # gating thin loops on IoU sent every small letter into the polyline fallback.
-    # Thin shapes are guarded by the bidirectional distance above.
-    if area >= 60.0 and thickness >= 6.0:
-        poor_iou = _loop_fill_iou(loop, curves) < 0.90
-        if poor_iou and (profile == "production" or deviation > 1.25):
-            return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
-    if _chain_self_intersects(curves):
-        return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
-    return FittedLoop(loop, curves, template)
+
+    def accepted(candidate: list[Curve]) -> bool:
+        """The unchanged accuracy discipline, applied to any candidate chain."""
+        if not candidate:
+            return False
+        deviation = _loop_fit_deviation(loop, candidate)
+        if deviation > tolerance:
+            return False
+        # IoU is only informative for THICK shapes: a 4px-wide letter stem at a
+        # good 0.5px fit already reads ~0.75 IoU (the boundary band dominates its
+        # area), so gating thin loops on IoU sent every small letter into the
+        # polyline fallback.  Thin shapes are guarded by the distance above.
+        if area >= 60.0 and thickness >= 6.0:
+            poor_iou = _loop_fill_iou(loop, candidate) < 0.90
+            if poor_iou and (profile == "production" or deviation > 1.25):
+                return False
+        return not _chain_self_intersects(candidate)
+
+    if accepted(curves):
+        return FittedLoop(loop, curves, template)
+
+    # Degradation ladder (METHOD_ICE 3.5): never ship a raster staircase while a
+    # smooth chain passes the very same accuracy gates.  Tiny loops keep the
+    # exact pixel chain — at 2-8px the crack polyline IS the evidence and
+    # smoothing it erased real counters before (the reverted subpixel-RDP).
+    extent = float(max(np.ptp(loop[:, 0]), np.ptp(loop[:, 1])))
+    if area > 18.0 or extent > 8.0:
+        for candidate, suffix in ((_smooth_fallback_curves(loop, px), "-g1-fallback"),
+                                  (_dense_fallback_curves(loop), "-dense-fallback")):
+            if accepted(candidate):
+                return FittedLoop(loop, candidate, template + suffix)
+    return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
 
 
 def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.ndarray | None = None, px: float = 1.0) -> FittedLoop:
@@ -3771,15 +3859,63 @@ def _enclosed_counter(labels: np.ndarray, component_mask: np.ndarray, own: int,
     return float(np.linalg.norm(anchor_lab[own] - anchor_lab[int(neighbours[0])])) >= min_delta
 
 
-def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: bool = False, deblur: bool = True) -> tuple[np.ndarray, list[np.ndarray], np.ndarray, tuple[int, int, int], float, int]:
+def _flatten_white(image: Image.Image) -> Image.Image:
+    """Composite transparency onto white BEFORE any colour analysis.
+
+    ``convert("RGB")`` drops alpha without compositing, so a transparent PNG
+    contributes whatever RGB lies under alpha=0 (often black) — poisoning the
+    palette anchors and the background estimate.  White matches deblur_4x's own
+    convention, keeping the deblur and native paths consistent."""
+    has_alpha = image.mode in ("RGBA", "LA", "PA") or (
+        image.mode == "P" and "transparency" in image.info)
+    if not has_alpha:
+        return image.convert("RGB")
+    rgba = image.convert("RGBA")
+    canvas = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+    canvas.alpha_composite(rgba)
+    return canvas.convert("RGB")
+
+
+def _region_color(analysis_pixels: np.ndarray, quantized: np.ndarray,
+                  mask: np.ndarray, scale: int) -> tuple[int, int, int]:
+    """Final region colour re-estimated from the ANALYSIS raster (METHOD_ICE 3.8).
+
+    Shipping the palette anchor as the fill inherits any palette-compaction hue
+    drift.  Median over the eroded interior avoids AA-contaminated boundary
+    pixels; when erosion empties (1-2px strokes and letter stems) fall back to
+    the top-30% distance-transform ridge — never the full mask, whose median is
+    boundary-dominated exactly on those thin regions."""
+    m = mask.astype(np.uint8)
+    radius = max(1, int(scale))
+    interior = cv2.erode(m, np.ones((2 * radius + 1, 2 * radius + 1), np.uint8)) > 0
+    if not interior.any():
+        distance = cv2.distanceTransform(m, cv2.DIST_L2, 3)
+        peak = float(distance.max())
+        interior = (distance >= 0.7 * peak) if peak > 0 else (m > 0)
+    # A tiny blob's ridge is a handful of blended pixels (JPEG ringing, AA soup):
+    # the analysis-raster median there is WORSE than the palette anchor that was
+    # chosen robustly over the whole family (ikea_jpeg counter: 0.9728 -> 0.437
+    # tiny-detail when re-estimated).  Re-estimate only with real interior
+    # support; long thin strokes clear the bar via their many ridge pixels.
+    if analysis_pixels.shape[:2] != mask.shape or int(interior.sum()) < 12:
+        return tuple(int(v) for v in np.median(quantized[mask], axis=0))
+    return tuple(int(v) for v in np.median(analysis_pixels[interior], axis=0))
+
+
+def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: bool = False, deblur: bool = True) -> tuple[np.ndarray, list[np.ndarray], np.ndarray, tuple[int, int, int], float, int, np.ndarray]:
     """Segment continuous MiniNet output directly in perceptual Lab space.
 
     The geometry is never generated from a palette-snapped RGB image.  Palette
     colours are only region hypotheses, and connected components are retained
     at a much lower threshold so thin, high-contrast marks survive.
+
+    Returns (rendered, masks, boundary, background_color, threshold, scale,
+    analysis_pixels) — the last element is the continuous analysis raster the
+    masks were cut from, for downstream colour re-estimation.
     """
     from subpixel_mininet import compact_palette, deblur_4x
 
+    flat = _flatten_white(source)
     if deblur and max(source.size) <= 512:
         analysis = deblur_4x(source, snap_palette=False)
         scale = 4
@@ -3787,10 +3923,10 @@ def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: 
         # Paper mode: fit on the HARD native raster (correct line/arc geometry).
         # Colour speckle is cleaned downstream by the sliver merge, not by blurring
         # the raster here (which would round the very edges we want hard).
-        analysis = source.convert("RGB")
+        analysis = flat
         scale = 1
     pixels = np.asarray(analysis.convert("RGB"), dtype=np.uint8)
-    anchors = compact_palette(source).clip(0, 255).astype(np.uint8)
+    anchors = compact_palette(flat).clip(0, 255).astype(np.uint8)
     if not len(anchors):
         anchors = np.array([[255, 255, 255], [0, 0, 0]], dtype=np.uint8)
 
@@ -3895,7 +4031,7 @@ def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: 
     for mask in masks:
         eroded = cv2.erode(mask.astype(np.uint8), kernel, iterations=1).astype(bool)
         boundary |= mask & ~eroded
-    return rendered, masks, boundary, tuple(int(v) for v in anchors[background_index]), 0.0, scale
+    return rendered, masks, boundary, tuple(int(v) for v in anchors[background_index]), 0.0, scale, pixels
 
 
 def _needs_shared_region_graph(masks: list[np.ndarray], analysis_scale: int) -> bool:
@@ -3949,7 +4085,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         native_raster = smoothing in {"paper", "paper-perres", "paper-regions"}
         jpeg_input = (getattr(image, "format", None) or "").upper() in {"JPEG", "MPO"}
         force_native = smoothing == "paper-native"
-        rgb, masks, boundary, bg, threshold, analysis_scale = extract_perceptual_masks(
+        rgb, masks, boundary, bg, threshold, analysis_scale, analysis_pixels = extract_perceptual_masks(
             image, use_icm=use_icm, merge=do_merge,
             deblur=not (force_native or (native_raster and jpeg_input)))
         if smoothing == "paper":
@@ -4032,7 +4168,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             loops = loops_by_label.get(mask_index, [])
             if not loops:
                 continue
-            color = tuple(int(value) for value in np.median(rgb[mask], axis=0))
+            color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
             regions.append(Region(color, int(mask.sum()), loops))
         masks = []                                   # handled; skip the per-mask loop below
 
@@ -4051,7 +4187,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                 group_mask = np.zeros_like(mask, bool)
                 for k in spec[-1]:
                     group_mask |= masks[k].astype(bool)
-                color = tuple(int(value) for value in np.median(rgb[group_mask], axis=0))
+                color = _region_color(analysis_pixels, rgb, group_mask, analysis_scale)
                 inv_s = 1.0 / analysis_scale
                 if spec[0] == "rect":
                     _, rx0, ry0, rx1, ry1, _members = spec
@@ -4071,7 +4207,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             # 1-2 primitives instead of a filled outline with caps and sides
             stroke_spec = _detect_stroke(mask, analysis_scale)
             if stroke_spec is not None:
-                color = tuple(int(value) for value in np.median(rgb[mask], axis=0))
+                color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
                 regions.append(Region(color, int(mask.sum()), [], stroke=stroke_spec))
                 continue
         distance = cv2.distanceTransform(mask.astype(np.uint8), cv2.DIST_L2, 5)
@@ -4139,7 +4275,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                     )
         if not loops:
             continue
-        color = tuple(int(value) for value in np.median(rgb[mask], axis=0))
+        color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
         regions.append(Region(color, int(mask.sum()), loops, fill=gradient_fills.get(mask_index)))
 
     if completed_regions:

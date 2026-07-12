@@ -106,7 +106,7 @@ def tiny_color_detail_score(report_dir: Path, src: Path) -> float:
     image = Image.open(src)
     jpeg = (getattr(image, "format", None) or "").upper() in {"JPEG", "MPO"}
     try:
-        rgb, masks, _boundary, _bg, _threshold, scale = gv.extract_perceptual_masks(
+        rgb, masks, _boundary, _bg, _threshold, scale, _pixels = gv.extract_perceptual_masks(
             image, use_icm=True, merge=True, deblur=not jpeg)
     except Exception:
         return 1.0

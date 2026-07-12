@@ -256,7 +256,17 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
     part.  Hue-family grouping removes duplicate shades, while the thickness
     test keeps compact petals/dots and rejects one-pixel transition ribbons.
     """
-    rgb = image.convert("RGB")
+    has_alpha = image.mode in ("RGBA", "LA", "PA") or (
+        image.mode == "P" and "transparency" in image.info)
+    if has_alpha:
+        # convert("RGB") reads garbage RGB under alpha=0 — composite on white
+        # (deblur_4x's own convention) so anchors come from visible pixels only.
+        rgba = image.convert("RGBA")
+        canvas = Image.new("RGBA", rgba.size, (255, 255, 255, 255))
+        canvas.alpha_composite(rgba)
+        rgb = canvas.convert("RGB")
+    else:
+        rgb = image.convert("RGB")
     quantized = rgb.quantize(colors=colors, method=Image.Quantize.MEDIANCUT, dither=Image.Dither.NONE)
     labels = np.asarray(quantized)
     palette = np.asarray(quantized.getpalette(), dtype=np.uint8).reshape(-1, 3)

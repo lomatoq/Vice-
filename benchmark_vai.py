@@ -378,14 +378,14 @@ def frozen_stems(n: int) -> list[str]:
     return stems[:n]
 
 
-def measure_one(stem: str, mode: str, reuse: bool) -> dict | None:
+def measure_one(stem: str, mode: str, reuse: bool, run_tag: str | None = None) -> dict | None:
     src = find_source(stem)
     if src is None:
         return {"stem": stem, "error": "no validated source raster"}
     vai_svg = VAI_DIR / f"{stem}_vai.svg"
     W = Image.open(src).size[0]
 
-    out_dir = WORK / mode / stem
+    out_dir = WORK / (run_tag or mode) / stem
     ours_svg = out_dir / src.stem / "03_rebuilt_filled.svg"
     row: dict = {"stem": stem}
     t0 = time.time()
@@ -462,7 +462,22 @@ def main() -> int:
     ap.add_argument("--reuse", action="store_true",
                     help="reuse existing outputs in benchmarks/vai_work")
     ap.add_argument("--stems", default=None, help="comma list overrides the subset")
+    ap.add_argument("--fit-profile", default=None,
+                    choices=["production", "text-safe"])
+    ap.add_argument("--corner-policy", default=None,
+                    choices=["production", "tiny-safe", "cnn-conservative"])
+    ap.add_argument("--snapshot", default="vai_snapshot.json",
+                    help="snapshot filename under benchmarks/")
     args = ap.parse_args()
+
+    if args.fit_profile or args.corner_policy:
+        import geometry_vectorizer as gv
+        if args.fit_profile:
+            gv._PAPER_FIT_PROFILE = args.fit_profile
+        if args.corner_policy:
+            gv._CORNER_POSTPROCESS_POLICY = args.corner_policy
+        print(f"A/B overrides: fit_profile={args.fit_profile} "
+              f"corner_policy={args.corner_policy}")
 
     if args.stems:
         stems = [s.strip() for s in args.stems.split(",") if s.strip()]
@@ -471,9 +486,13 @@ def main() -> int:
     OUT.mkdir(exist_ok=True)
     WORK.mkdir(parents=True, exist_ok=True)
 
+    run_tag = args.mode
+    if args.fit_profile or args.corner_policy:
+        run_tag += f"_{args.fit_profile or 'prod'}_{args.corner_policy or 'prod'}"
+
     rows = []
     for i, stem in enumerate(stems, 1):
-        row = measure_one(stem, args.mode, args.reuse)
+        row = measure_one(stem, args.mode, args.reuse, run_tag)
         if row is None:
             continue
         rows.append(row)
@@ -492,9 +511,9 @@ def main() -> int:
             m = agg["means"][meter]
             print(f"  {meter:18} {agg['wins'][meter]:>10}   {m['ours']} | {m['vai']}")
 
-    snap = OUT / "vai_snapshot.json"
+    snap = OUT / args.snapshot
     if snap.exists():
-        snap.replace(OUT / "vai_snapshot_prev.json")
+        snap.replace(snap.with_name(snap.stem + "_prev.json"))
     snap.write_text(json.dumps({"mode": args.mode, "rows": rows, "aggregate": agg},
                                indent=1), encoding="utf-8")
     print(f"\nSnapshot -> {snap}")
