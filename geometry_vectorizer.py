@@ -1348,6 +1348,75 @@ def _halfspace_ok(tangent: np.ndarray, poly: np.ndarray) -> bool:
     return float(t @ perp) * side >= -0.02          # tangent must be on the polyline's side
 
 
+# --- METHOD_ICE 3.2: deterministic sub-pixel evidence field ------------------
+# Anti-aliased coverage is a physical measurement of the edge position.  For a
+# crack midpoint whose two straddling pixels have coverages aM, aP of the
+# +normal-side colour, an ideal edge satisfies the conservation rule
+# offset = aM + aP - 1 (in native px along the normal).  Where the measurement
+# is trustworthy the DP interval is re-centered on it and narrowed; everywhere
+# else the classic +-0.5px midpoint corridor stays.  No ML, no training.
+_EVIDENCE_FIELD: list = [None]
+# 2026-07-12: EXPERIMENTAL, default OFF.  Night A/B: on the deblur path the 4x
+# loops are already subpixel (tug-of-war fragmented fits); scoped to the native
+# path it then broke 7 of the calibrated 900px synthetic decompositions
+# (rrect/bars/ellipse/stadium/star type gates).  The probe math itself is unit-
+# verified exact (+-0.3px edges recovered to 0.001) — the missing piece is
+# making the DP treat re-centered corridors consistently with type domination.
+# Kept as the measurement foundation for Stage-3 SEF work; enable via
+# gv._EVIDENCE_ENABLED = True for experiments.
+_EVIDENCE_ENABLED = False
+_EVIDENCE_HALF = 0.30          # narrowed interval half-width (native px)
+_EVIDENCE_MAX_OFF = 0.45       # clamp: never trust an offset beyond the crack cell
+
+
+class _EvidenceField:
+    """Bilinear probe of the NATIVE raster (the true physical measurement even
+    when fitting runs on 4x-deblurred coordinates — loops are in native px)."""
+
+    def __init__(self, pixels: np.ndarray, strict: bool = False):
+        self.img = np.asarray(pixels, np.float32) / 255.0
+        # JPEG ringing fakes coverage: demand twice the contrast before trusting.
+        self.min_contrast = 0.24 if strict else 0.12
+
+    def _sample(self, pts: np.ndarray) -> np.ndarray:
+        h, w = self.img.shape[:2]
+        x = np.clip(pts[:, 0] - 0.5, 0.0, w - 1.001)
+        y = np.clip(pts[:, 1] - 0.5, 0.0, h - 1.001)
+        x0 = np.floor(x).astype(int)
+        y0 = np.floor(y).astype(int)
+        x1 = np.minimum(x0 + 1, w - 1)
+        y1 = np.minimum(y0 + 1, h - 1)
+        fx = (x - x0)[:, None]
+        fy = (y - y0)[:, None]
+        return (self.img[y0, x0] * (1 - fx) * (1 - fy) + self.img[y0, x1] * fx * (1 - fy)
+                + self.img[y1, x0] * (1 - fx) * fy + self.img[y1, x1] * fx * fy)
+
+    def query(self, mid: np.ndarray, um: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+        """(offsets, trusted) per midpoint; offset in native px along +um."""
+        plus = self._sample(mid + 2.0 * um)      # pure colour on the +normal side
+        minus = self._sample(mid - 2.0 * um)     # pure colour on the -normal side
+        near_p = self._sample(mid + 0.5 * um)
+        near_m = self._sample(mid - 0.5 * um)
+        axis = plus - minus
+        contrast = np.linalg.norm(axis, axis=1)
+        denom = np.maximum(contrast * contrast, 1e-9)
+        # fraction of the +side colour in each straddling pixel
+        a_p = np.sum((near_p - minus) * axis, axis=1) / denom
+        a_m = np.sum((near_m - minus) * axis, axis=1) / denom
+        # off-axis residual: blend with a THIRD colour (junction, texture) = lie
+        res_p = np.linalg.norm(near_p - (minus + a_p[:, None] * axis), axis=1)
+        res_m = np.linalg.norm(near_m - (minus + a_m[:, None] * axis), axis=1)
+        res_budget = 0.25 * contrast + 0.02
+        # a_p/a_m are +side-colour coverages; the +side colour occupies x > edge,
+        # so its total coverage in the straddling pair is 1 - e  =>  e = 1 - sum.
+        offsets = 1.0 - (a_p + a_m)
+        trusted = ((contrast >= self.min_contrast)
+                   & (a_p > -0.1) & (a_p < 1.1) & (a_m > -0.1) & (a_m < 1.1)
+                   & (res_p <= res_budget) & (res_m <= res_budget)
+                   & (np.abs(offsets) <= _EVIDENCE_MAX_OFF))
+        return np.clip(offsets, -_EVIDENCE_MAX_OFF, _EVIDENCE_MAX_OFF), trusted
+
+
 def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float = 1.0,
                           snap_ends: bool = True) -> list[Curve]:
     """Paper Sec 5.1: fit a corner-bounded raster segment to its pixel-edge MIDPOINTS
@@ -1375,8 +1444,37 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
     um = np.where(horizontal[:, None], np.array([0.0, 1.0]), np.array([1.0, 0.0]))
     half = 0.5 * px
     eps = _PAPER_FIT_EPS * px
-    lo = mid - half * um   # interval end Im(0)
-    hi = mid + half * um   # interval end Im(1)
+    half_arr = np.full(m, half)
+    field = _EVIDENCE_FIELD[0]
+    if field is not None and px >= 0.99 and m >= 5:
+        # Sub-pixel evidence: re-center each interval on the coverage-derived
+        # edge position.  RAW per-pixel offsets are noisy (real AA/JPEG) — using
+        # them directly fragments the DP (first ship: Hyundai wobble 0.25 ->
+        # 28297, betsoft grew 2 fallbacks).  The offsets are a 1D signal along
+        # the boundary: low-pass over a ~3px window keeps the true subpixel
+        # trend and kills the per-pixel noise; the interval NARROWS only where
+        # the point agrees with its smoothed neighbourhood (coherence), and the
+        # narrowed width still exceeds the residual budget.
+        offsets, trusted = field.query(mid, um)
+        if int(trusted.sum()) >= max(5, int(0.4 * m)):
+            step = float(np.median(np.linalg.norm(np.diff(mid, axis=0), axis=1))) if m > 1 else 1.0
+            win = max(3, int(round(3.0 / max(step, 0.2))))
+            win = min(win, m - 1 if m % 2 == 0 else m)  # np.convolve('same') returns
+            win += 1 - win % 2                          # max(M,N): kernel must not
+            win = max(win, 3)                           # outgrow the signal
+            kernel = np.ones(win, float)
+            weights = trusted.astype(float)
+            num = np.convolve(offsets * weights, kernel, mode="same")
+            den = np.convolve(weights, kernel, mode="same")
+            smoothed = np.where(den > 0, num / np.maximum(den, 1e-9), 0.0)
+            support = den >= 0.6 * win                # enough trusted neighbours
+            coherent = trusted & support & (np.abs(offsets - smoothed) <= 0.10)
+            shift = np.where(trusted & support, smoothed, 0.0)
+            shift = np.clip(shift, -_EVIDENCE_MAX_OFF, _EVIDENCE_MAX_OFF)
+            mid = mid + shift[:, None] * um
+            half_arr = np.where(coherent, _EVIDENCE_HALF * px, half)
+    lo = mid - half_arr[:, None] * um   # interval end Im(0)
+    hi = mid + half_arr[:, None] * um   # interval end Im(1)
 
     # DP break points ('nodes') and the look-back window are sized in PHYSICAL px, not
     # in point counts — otherwise a long smooth arc on a high-res native boundary (a
@@ -1418,6 +1516,7 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
         out = []
         sub = mid[a : b + 1]
         lo_s, hi_s, um_s = lo[a : b + 1], hi[a : b + 1], um[a : b + 1]
+        half_s = half_arr[a : b + 1]     # per-midpoint interval half-width (evidence)
         rev = sub[::-1]  # polyline seen from the END corner, for the half-space test there
 
         # --- line: interval crosses the segment normal, or is within eps of it ---
@@ -1493,7 +1592,7 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
         # 'partial oval' slot that previously decomposed into clothoid/cubic
         # patchwork.  Same hard feasibility as every other type. ---
         if _EARC_ENABLED and len(sub) >= 10 and ("earc", a, b) not in banned:
-            earc = _earc_fit(sub, um_s, half, eps)
+            earc = _earc_fit(sub, um_s, half_s, eps)
             if earc is not None:
                 edev, eparams, ets, ete = earc
                 if _halfspace_ok(ets, sub) and _halfspace_ok(-ete, rev):
@@ -1508,7 +1607,7 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
             if clothoid is not None:
                 poly, cts, cte, cparams = clothoid
                 dev = np.abs(np.sum((poly - sub) * um_s, axis=1))
-                if bool((dev <= half + eps).all()) and _halfspace_ok(cts, sub) and _halfspace_ok(-cte, rev):
+                if bool((dev <= half_s + eps).all()) and _halfspace_ok(cts, sub) and _halfspace_ok(-cte, rev):
                     out.append((alpha * float(np.linalg.norm(poly - sub, axis=1).sum()) + 4.0,
                                 "clothoid", cparams, cts, cte))
                     return _store(out)   # r=4 family: the clothoid IS the paper primitive
@@ -1530,14 +1629,14 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
                 near = np.argmin(dmat, axis=0)
                 dev = np.abs(np.sum((poly[near] - sub) * um_s, axis=1))
                 # accurate at every midpoint AND the drawn biarc never bulges off the boundary
-                if bool((dev <= half + eps).all()) and float(drawn_to.max()) <= half + eps + 0.35:
+                if bool((dev <= half_s + eps).all()) and float(drawn_to.max()) <= half + eps + 0.35:
                     out.append((alpha * float(sub_to.sum()) + 4.0, "biarc", (te0, te1), te0, te1))
                     return _store(out)               # biarc and cubic share r=4: keep one
 
         # --- cubic fallback (degenerate biarc, e.g. ~180° turn): with overshoot/cusp gate ---
         if ("cubic", a, b) in banned and not force:
             return _store(out)
-        accurate = bool((dev_um <= half + eps).all())
+        accurate = bool((dev_um <= half_s + eps).all())
         if accurate and len(sub) >= 4:
             dense = eval_curve(Curve(3, control), max(16, 2 * len(sub)))
             over = np.min(np.linalg.norm(dense[:, None, :] - sub[None, :, :], axis=2), axis=1)
@@ -1846,7 +1945,8 @@ def _earc_fit(sub: np.ndarray, um_s: np.ndarray, half: float, eps: float):
     drawn_to = np.min(dmat, axis=1)
     near = np.argmin(dmat, axis=0)
     dev = np.abs(np.sum((poly[near] - sub) * um_s, axis=1))
-    if not bool((dev <= half + eps).all()) or float(drawn_to.max()) > half + eps + 0.35:
+    half_hi = float(np.max(half))            # half may be a per-midpoint array
+    if not bool((dev <= half + eps).all()) or float(drawn_to.max()) > half_hi + eps + 0.35:
         return None
     def tangent_at(p: float, forward: np.ndarray) -> np.ndarray:
         t = np.array([-a_ax * math.sin(p), b_ax * math.cos(p)]) @ inv_rot.T
@@ -2796,6 +2896,112 @@ def _dense_fallback_curves(loop: np.ndarray) -> list[Curve]:
         curves.append(Curve(3, np.vstack((p0, p0 + tangents[i] * chord / 3.0,
                                           p1 - tangents[j] * chord / 3.0, p1))))
     return curves
+
+
+def _tiny_template_curves(name: str, th: np.ndarray) -> list[Curve] | None:
+    """Exact analytic curves for a fitted tiny template (world native px)."""
+    if name == "circle":
+        center = np.array([th[0], th[1]])
+        return _earc_curves((center, np.array([th[2], th[2]]), 0.0, 0.0, 2.0 * math.pi), None)
+    if name == "ellipse":
+        return _earc_curves((np.array([th[0], th[1]]), np.array([th[2], th[3]]),
+                             float(th[4]), 0.0, 2.0 * math.pi), None)
+    if name in ("rect", "diamond"):
+        cx, cy, hw, hh, ang = float(th[0]), float(th[1]), float(th[2]), float(th[3]), float(th[4])
+        c, s = math.cos(ang), math.sin(ang)
+        rot = np.array([[c, -s], [s, c]])
+        if name == "rect":
+            base = np.array([[hw, hh], [-hw, hh], [-hw, -hh], [hw, -hh]])
+        else:
+            base = np.array([[hw, 0.0], [0.0, hh], [-hw, 0.0], [0.0, -hh]])
+        pts = base @ rot.T + np.array([cx, cy])
+        return [Curve(1, np.vstack((pts[k], pts[(k + 1) % 4]))) for k in range(4)]
+    if name == "rrect":
+        cx, cy, hw, hh, r, ang = (float(th[0]), float(th[1]), float(th[2]),
+                                  float(th[3]), float(th[4]), float(th[5]))
+        r = float(np.clip(r, 0.0, max(0.0, min(hw, hh) - 1e-3)))
+        if r < 0.35:                       # visually sharp at tiny scale
+            return _tiny_template_curves("rect", np.array([cx, cy, hw, hh, ang]))
+        c, s = math.cos(ang), math.sin(ang)
+        rot = np.array([[c, -s], [s, c]])
+        origin = np.array([cx, cy])
+        cw, ch = hw - r, hh - r
+        corners = [(np.array([cw, ch]), 0.0), (np.array([-cw, ch]), 0.5 * math.pi),
+                   (np.array([-cw, -ch]), math.pi), (np.array([cw, -ch]), 1.5 * math.pi)]
+        curves: list[Curve] = []
+        for i, (cc, a0) in enumerate(corners):
+            arc_start = cc + r * np.array([math.cos(a0), math.sin(a0)])
+            arc_end = cc + r * np.array([math.cos(a0 + 0.5 * math.pi), math.sin(a0 + 0.5 * math.pi)])
+            world_c = origin + rot @ cc
+            ws, we = origin + rot @ arc_start, origin + rot @ arc_end
+            sample = np.vstack((ws, origin + rot @ (cc + r * np.array(
+                [math.cos(a0 + 0.25 * math.pi), math.sin(a0 + 0.25 * math.pi)])), we))
+            curves.extend(circular_beziers(ws, we, world_c, r, sample))
+            nxt_cc, nxt_a0 = corners[(i + 1) % 4]
+            nxt_start = origin + rot @ (nxt_cc + r * np.array([math.cos(nxt_a0), math.sin(nxt_a0)]))
+            curves.append(Curve(1, np.vstack((we, nxt_start))))
+        return curves
+    return None
+
+
+def _try_tiny_template(mask: np.ndarray, analysis_pixels: np.ndarray,
+                       quantized: np.ndarray, scale: int,
+                       bg: tuple[int, int, int]) -> FittedLoop | None:
+    """Stage 2.2: fit the coverage template league to a tiny isolated region.
+
+    Two independent acceptance gates (either failing keeps today's behaviour):
+    coverage-MAE against the observed alpha map, and bidirectional Hausdorff
+    between the analytic outline and the crack chain."""
+    ys, xs = np.nonzero(mask)
+    if not len(xs):
+        return None
+    ex = (float(xs.max() - xs.min()) + 1.0) / scale
+    ey = (float(ys.max() - ys.min()) + 1.0) / scale
+    extent = max(ex, ey)
+    if not (3.0 <= extent <= 24.0):
+        return None                       # <3px: the pixel chain IS the evidence
+    loops = [lp for lp in mask_loops(mask) if len(lp) >= 4]
+    if len(loops) != 1:
+        return None                       # holes/multi-part: not league material
+    try:
+        from tiny_templates import fit_tiny_template, observed_alpha, template_outline
+    except Exception:
+        return None
+    if analysis_pixels.shape[:2] != mask.shape:
+        return None
+    nx0 = int(xs.min()) // scale
+    ny0 = int(ys.min()) // scale
+    nx1 = min(int(xs.max()) // scale + 2, analysis_pixels.shape[1] // scale - 1)
+    ny1 = min(int(ys.max()) // scale + 2, analysis_pixels.shape[0] // scale - 1)
+    nx0 = max(0, nx0 - 2)
+    ny0 = max(0, ny0 - 2)
+    ink = np.array(_region_color(analysis_pixels, quantized, mask, scale), float)
+    ring = cv2.dilate(mask.astype(np.uint8),
+                      np.ones((2 * scale + 1, 2 * scale + 1), np.uint8)).astype(bool) & ~mask.astype(bool)
+    bg_local = (np.median(analysis_pixels[ring], axis=0).astype(float)
+                if ring.any() else np.array(bg, float))
+    alpha = observed_alpha(analysis_pixels, mask, (nx0, ny0, nx1, ny1), scale, ink, bg_local)
+    if alpha is None or alpha.size < 9:
+        return None
+    fit = fit_tiny_template(alpha, (float(nx0), float(ny0)))
+    if fit is None:
+        return None
+    name, th, mae = fit
+    if mae > 0.045:
+        return None
+    outline = template_outline(name, th)
+    if outline is None or len(outline) < 8:
+        return None
+    loop_native = loops[0] / float(scale)
+    from scipy.spatial import cKDTree
+    d1 = float(cKDTree(outline).query(loop_native)[0].max())
+    d2 = float(cKDTree(loop_native).query(outline)[0].max())
+    if max(d1, d2) > max(0.9, 0.06 * extent):
+        return None
+    curves = _tiny_template_curves(name, th)
+    if not curves:
+        return None
+    return FittedLoop(loop_native, curves, f"tiny-{name}")
 
 
 def _tiny_pixel_curves(loop: np.ndarray) -> list[Curve]:
@@ -4232,6 +4438,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
     image = Image.open(image_path)
     analysis_scale = 1
     extractor_used = extractor
+    _EVIDENCE_FIELD[0] = None      # never inherit a stale field from a prior call
     perceptual = smoothing in {"perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}
     if perceptual:
         # paper-native = the CANONICAL Hoshyari reproduction: hard nearest-anchor
@@ -4257,6 +4464,20 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         rgb, masks, boundary, bg, threshold, analysis_scale, analysis_pixels = extract_perceptual_masks(
             image, use_icm=use_icm, merge=do_merge,
             deblur=not (force_native or (native_raster and jpeg_input)))
+        # METHOD_ICE 3.2: sub-pixel evidence for the DP intervals is probed from
+        # the NATIVE raster (loops live in native px).  Reset-then-set per call —
+        # legacy modes and exceptions can never inherit a stale field.
+        #
+        # SCOPE (night A/B, vai_ev_probe1-3): the field applies ONLY to the
+        # NATIVE path (analysis_scale == 1: JPEG and >512px inputs).  Deblurred
+        # 4x loops are ALREADY subpixel-positioned by MiniNet; re-centering them
+        # on coverage probes is a systematic tug-of-war between two subpixel
+        # estimates (betsoft wobble 0.013 -> 0.88, Hyundai 0.25 -> 7011) — and
+        # +-2px pure-colour probes cross 2px stems entirely on small text.
+        _EVIDENCE_FIELD[0] = None
+        if _EVIDENCE_ENABLED and smoothing != "paper-native" and analysis_scale == 1:
+            _EVIDENCE_FIELD[0] = _EvidenceField(
+                np.asarray(_flatten_white(image), np.float32), strict=jpeg_input)
         if smoothing == "paper":
             extractor_used = "paper-hoshyari"
         elif smoothing == "paper-perc":
@@ -4380,6 +4601,16 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             if stroke_spec is not None:
                 color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
                 regions.append(Region(color, int(mask.sum()), [], stroke=stroke_spec))
+                continue
+            # Stage 2.2 (METHOD_ICE 3.5): coverage template league — at <=24px
+            # the AA alpha map distinguishes circle/rrect/diamond far better
+            # than the crack chain; a fitted analytic template replaces the
+            # 'ellipse or pixel-chain' dichotomy.  Two hard gates inside.
+            tiny_loop = _try_tiny_template(mask, analysis_pixels, rgb, analysis_scale, bg)
+            if tiny_loop is not None:
+                color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
+                regions.append(Region(color, int(mask.sum()), [tiny_loop],
+                                      bleed=mask_bleed.get(mask_index, False)))
                 continue
         distance = cv2.distanceTransform(mask.astype(np.uint8), cv2.DIST_L2, 5)
         interior = distance[distance > 0]
