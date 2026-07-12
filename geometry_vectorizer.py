@@ -575,7 +575,27 @@ def _clothoid_curves(sub: np.ndarray, params: tuple, start: np.ndarray, end: np.
     poly = np.zeros((n, 2))
     poly[1:] = np.cumsum(0.5 * (dirs[:-1] + dirs[1:]) * ds, axis=0)
     poly += start - poly[0]
-    poly += np.linspace(0.0, 1.0, n)[:, None] * (end - poly[-1])
+    # Close the sub-px endpoint drift with a SIMILARITY about the start point:
+    # a rotated+scaled clothoid is still a clothoid (b/=gamma, c/=gamma^2 in
+    # arclength), whereas the old linear shear (+= linspace*(drift)) left the
+    # family and slightly bent the spiral (audited Stage-2.4 fix).
+    chord_have = poly[-1] - poly[0]
+    chord_want = np.asarray(end, float) - poly[0]
+    nh, nw = float(np.linalg.norm(chord_have)), float(np.linalg.norm(chord_want))
+    ang = 0.0
+    gamma = 1.0
+    if nh > 1e-9 and nw > 1e-9:
+        ang = math.atan2(chord_have[0] * chord_want[1] - chord_have[1] * chord_want[0],
+                         float(chord_have @ chord_want))
+        gamma = nw / nh
+    if abs(ang) <= math.radians(2.0) and 0.97 <= gamma <= 1.03:
+        # small drift: close it in-family (the rotation also turns the start
+        # tangent, so only a tiny one is legal — bigger drifts keep the shear)
+        ca, sa = math.cos(ang), math.sin(ang)
+        rot = np.array([[ca, -sa], [sa, ca]]) * gamma
+        poly = (poly - poly[0]) @ rot.T + poly[0]
+    else:
+        poly += np.linspace(0.0, 1.0, n)[:, None] * (end - poly[-1])
     total_turn = abs(b0 * length + c0 * length * length)
     pieces = max(1, min(4, int(math.ceil(total_turn / (0.5 * math.pi)))))
     bounds = np.linspace(0, n - 1, pieces + 1).astype(int)
@@ -2906,6 +2926,106 @@ def _close_chain_corners(seg_curves: list[list[Curve]], loop: np.ndarray, corner
     return [c for chain in seg_curves for c in chain]
 
 
+def _cubic_end_curvature(control: np.ndarray, at_start: bool) -> float:
+    """Signed curvature of a cubic Bezier at t=0 or t=1 (analytic)."""
+    if at_start:
+        h = control[1] - control[0]
+        v = control[2] - control[1]
+    else:
+        h = control[2] - control[3]
+        v = control[1] - control[2]
+    nh = float(np.linalg.norm(h))
+    if nh < 1e-9:
+        return 0.0
+    return (2.0 / 3.0) * float(h[0] * v[1] - h[1] * v[0]) / (nh ** 3)
+
+
+def _g2_fair_chain(curves: list[Curve]) -> list[Curve]:
+    """Stage 2.4 (METHOD_ICE 3.4): curvature agreement at G1-smooth joins.
+
+    At every join whose tangents already agree (<=8 deg), the FREE cubic side
+    rescales its tangent-handle length so its endpoint curvature meets the
+    neighbour's (rigid primitives — lines/arcs/clothoids/earcs — dictate
+    theirs; two free cubics meet at the geometric mean).  Handle DIRECTION is
+    untouched, so G1 survives by construction; the caller re-runs the FULL
+    accuracy gates on the faired chain and keeps the unfaired one if fairing
+    drifted.  This is what removes the visible curvature steps a G1-only chain
+    shows on large smooth silhouettes."""
+    if len(curves) < 2:
+        return curves
+
+    def is_rigid(c: Curve) -> bool:
+        meta = getattr(c, "meta", None)
+        return c.degree != 3 or (isinstance(meta, tuple) and len(meta)
+                                 and meta[0] in ("arc", "clothoid", "earc"))
+
+    def end_curvature(c: Curve, at_start: bool) -> float:
+        if c.degree == 1:
+            return 0.0
+        ctrl = c.control if c.degree == 3 else np.vstack(
+            (c.control[0], c.control[0] + (2.0 / 3.0) * (c.control[1] - c.control[0]),
+             c.control[2] + (2.0 / 3.0) * (c.control[1] - c.control[2]), c.control[2]))
+        return _cubic_end_curvature(ctrl, at_start)
+
+    def rescale_handle(c: Curve, at_start: bool, target_kappa: float) -> None:
+        ctrl = c.control
+        if at_start:
+            h = ctrl[1] - ctrl[0]
+            v = ctrl[2] - ctrl[1]
+        else:
+            h = ctrl[2] - ctrl[3]
+            v = ctrl[1] - ctrl[2]
+        nh = float(np.linalg.norm(h))
+        if nh < 1e-9:
+            return
+        # kappa(s) for handle length s*nh: (2/3)*cross(h_hat, P2-P1(s))/ (s*nh)^2
+        # solved numerically on a tight bracket — the cubic stays inside its
+        # own chunk so the caller's gates bound any drift.
+        best_s, best_err = 1.0, abs(end_curvature(c, at_start) - target_kappa)
+        for s in (0.7, 0.8, 0.9, 1.1, 1.25, 1.4):
+            trial = ctrl.copy()
+            if at_start:
+                trial[1] = trial[0] + s * (ctrl[1] - ctrl[0])
+            else:
+                trial[2] = trial[3] + s * (ctrl[2] - ctrl[3])
+            err = abs(_cubic_end_curvature(trial, at_start) - target_kappa)
+            if err < best_err:
+                best_err, best_s = err, s
+        if best_s != 1.0:
+            if at_start:
+                ctrl[1] = ctrl[0] + best_s * (ctrl[1] - ctrl[0])
+            else:
+                ctrl[2] = ctrl[3] + best_s * (ctrl[2] - ctrl[3])
+
+    out = [Curve(c.degree, c.control.copy()) for c in curves]
+    for src_c, dst in zip(curves, out):
+        dst.meta = getattr(src_c, "meta", None)
+    limit = math.cos(math.radians(8.0))
+    for i in range(len(out)):
+        a, b = out[i], out[(i + 1) % len(out)]
+        if i == len(out) - 1 and len(out) == 2:
+            break
+        ta, tb = _tangent_out(a), _tangent_in(b)
+        if float(ta @ tb) < limit:
+            continue                        # not a smooth join
+        rig_a, rig_b = is_rigid(a), is_rigid(b)
+        if rig_a and rig_b:
+            continue
+        ka, kb = end_curvature(a, False), end_curvature(b, True)
+        if abs(ka - kb) < 1e-4:
+            continue
+        if rig_a:
+            rescale_handle(b, True, ka)
+        elif rig_b:
+            rescale_handle(a, False, kb)
+        else:
+            sign = math.copysign(1.0, ka if abs(ka) > abs(kb) else kb)
+            target = sign * math.sqrt(abs(ka) * abs(kb)) if ka * kb > 0 else 0.5 * (ka + kb)
+            rescale_handle(a, False, target)
+            rescale_handle(b, True, target)
+    return out
+
+
 def _loop_fit_deviation(loop: np.ndarray, curves: list[Curve]) -> float:
     """Bidirectional hard-accuracy of a DRAWN loop (audit P0):
       fit->boundary — every drawn sample near the polyline (catches oval blobs and
@@ -3249,6 +3369,12 @@ def _finish_loop(
                 return False
         return not _chain_self_intersects(candidate)
 
+    # Stage 2.4: G2 fairing first — the faired chain ships ONLY if it passes
+    # the very same gates; otherwise the untouched fit competes as before.
+    if curves and template != "paper-tiny":
+        faired = _g2_fair_chain(curves)
+        if faired is not curves and accepted(faired):
+            return FittedLoop(loop, faired, template)
     if accepted(curves):
         return FittedLoop(loop, curves, template)
 
@@ -3347,28 +3473,31 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
     # lines.  The IDEAL shape has no cap — absorb it and extend the lines to
     # their exact intersection (bounded: only <=4.5px caps at PAID corners).
     if corner_joins and len(chain) >= 3:
-        absorbed: list[Curve] = []
-        cap_joins = {c_lo for c_lo, _ in corner_joins}
-        skip = False
-        for idx, curve in enumerate(chain):
-            if skip:
-                skip = False
-                continue
-            nxt = chain[(idx + 1) % len(chain)]
-            prev = absorbed[-1] if absorbed else None
-            chord = float(np.linalg.norm(curve.control[-1] - curve.control[0]))
-            if (idx + 1 in cap_joins or idx in cap_joins) and curve.degree == 3 \
-                    and chord <= 4.5 and prev is not None \
-                    and prev.degree == 1 and nxt.degree == 1 and idx + 1 < len(chain):
-                p_tip = _corner_intersection(prev, nxt, curve.control[0])
-                _shift_curve_end(prev, p_tip)
-                _shift_curve_start(nxt, p_tip)
-                absorbed.append(nxt)
-                skip = True
-                continue
-            absorbed.append(curve)
-        if len(absorbed) < len(chain):
-            chain = absorbed
+        # Single pass over the PAID join positions with consistent indexing —
+        # the first version scanned curves while mixing pre-/post-absorption
+        # neighbours and could drop a cap without welding its true flanks
+        # (latent in 7c7c4c9; surfaced as a spurious -g1-fallback on rects).
+        # Cap bound 8px: the sharper the tip, the longer the raster cap.
+        drop: set[int] = set()
+        for c_lo, _vertex in corner_joins:
+            for cap_idx in (c_lo, c_lo - 1):
+                if not (0 < cap_idx < len(chain)) or cap_idx in drop:
+                    continue
+                if (cap_idx - 1) in drop:
+                    continue
+                cap = chain[cap_idx]
+                prv = chain[cap_idx - 1]
+                nxt = chain[(cap_idx + 1) % len(chain)]
+                if (cap.degree == 3 and getattr(cap, "meta", None) is None
+                        and prv.degree == 1 and nxt.degree == 1
+                        and float(np.linalg.norm(cap.control[-1] - cap.control[0])) <= 8.0):
+                    p_tip = _corner_intersection(prv, nxt, cap.control[0])
+                    _shift_curve_end(prv, p_tip)
+                    _shift_curve_start(nxt, p_tip)
+                    drop.add(cap_idx)
+                    break
+        if drop:
+            chain = [c for i, c in enumerate(chain) if i not in drop]
             corner_joins = []          # indices are stale after absorption
     # Weld the wrap seam C0 at the strongest candidate (classic 1-corner move).
     p_seam = _corner_intersection(chain[-1], chain[0], loop[strongest])
