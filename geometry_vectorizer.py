@@ -53,6 +53,12 @@ class Region:
     # optional stroke representation (audit P2: a constant-width ribbon is a
     # stroked CENTERLINE, not a filled outline): (width_px, [Curve, ...])
     stroke: tuple | None = None
+    # METHOD_ICE 3.1 apron: abutting SVG paths leave an AA hairline where the
+    # background bleeds between fills.  A region that has a LATER-painted
+    # neighbour gets stroke=fill so its edge extends ~0.3px under that
+    # neighbour (the neighbour paints over the excess).  Topmost/isolated
+    # regions never bleed, so the outer silhouette stays crisp.
+    bleed: bool = False
 
 
 def perimeter(loop: np.ndarray) -> float:
@@ -2993,7 +2999,10 @@ def write_svgs(output: Path, regions: list[Region], size: tuple[int, int]) -> No
                 map_rows.append(f'<path data-type="{kind}" d="{curve_command(curve, True)}" fill="none" '
                                 f'stroke="rgb{color}" stroke-width="0.65"/>')
         if data:
-            fill_rows.append(f'<path data-region="{region_id}" d="{data}" fill="{fill}" fill-rule="evenodd"/>')
+            apron = (f' stroke="{fill}" stroke-width="0.6" stroke-linejoin="round"'
+                     if getattr(region, "bleed", False) and not str(fill).startswith("url(") else "")
+            fill_rows.append(f'<path data-region="{region_id}" d="{data}" fill="{fill}"'
+                             f' fill-rule="evenodd"{apron}/>')
         for loop in region.loops:
             for curve in loop.curves:
                 kind = "line" if curve.degree == 1 else ("ellipse" if loop.template == "ellipse" else "curve")
@@ -4034,6 +4043,47 @@ def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: 
     return rendered, masks, boundary, tuple(int(v) for v in anchors[background_index]), 0.0, scale, pixels
 
 
+def _bleed_flags(masks: list[np.ndarray], analysis_scale: int = 1) -> list[bool]:
+    """Which regions need the paint-order apron (METHOD_ICE 3.1).
+
+    masks arrive in paint order (area-descending); region i bleeds iff some
+    LATER-painted mask j>i touches it by 4-neighbour contact — the neighbour
+    then paints over the 0.3px excess, and the AA hairline between abutting
+    fills becomes unrepresentable.  Topmost and isolated regions stay crisp."""
+    if len(masks) < 2:
+        return [False] * len(masks)
+    labels = np.full(masks[0].shape, -1, np.int32)
+    for index, mask in enumerate(masks):
+        labels[mask.astype(bool)] = index
+    pairs: set[tuple[int, int]] = set()
+    for a, b in ((labels[:, :-1], labels[:, 1:]), (labels[:-1, :], labels[1:, :])):
+        touching = (a != b) & (a >= 0) & (b >= 0)
+        if not touching.any():
+            continue
+        lo = np.minimum(a[touching], b[touching])
+        hi = np.maximum(a[touching], b[touching])
+        for key in np.unique(lo.astype(np.int64) * len(masks) + hi):
+            pairs.add((int(key // len(masks)), int(key % len(masks))))
+    flags = [False] * len(masks)
+    for i, j in pairs:
+        flags[min(i, j)] = True
+    # Thin regions must not bleed: 0.3px of apron on a 2px letter stem is +15%
+    # stroke weight (the Hyundai wordmark visibly fattened).  The hairline-seam
+    # class the apron kills lives between THICK abutting fills anyway.
+    for index, mask in enumerate(masks):
+        if not flags[index]:
+            continue
+        m = mask.astype(np.uint8)
+        if not m.any():
+            flags[index] = False
+            continue
+        dist = cv2.distanceTransform(m, cv2.DIST_L2, 3)
+        width_native = 2.0 * float(np.median(dist[m > 0])) / max(1.0, float(analysis_scale))
+        if width_native < 2.5:
+            flags[index] = False
+    return flags
+
+
 def _needs_shared_region_graph(masks: list[np.ndarray], analysis_scale: int) -> bool:
     """Whether §7 shared-interface fitting is materially useful for this image.
 
@@ -4056,6 +4106,11 @@ def _needs_shared_region_graph(masks: list[np.ndarray], analysis_scale: int) -> 
         boundary += int(np.sum(different & ((a >= 0) | (b >= 0))))
     native_shared = shared / max(1.0, float(analysis_scale))
     ratio = shared / max(1, boundary)
+    # 2026-07-12 night A/B: lowering this gate to >=4 cracks flipped small noisy
+    # wordmarks (icon_group_4_78/-22) into graph fitting and cost them 0.10-0.14
+    # ink-IoU, while every measured seam win came from the paint-order APRON
+    # (Region.bleed), not from wider graph routing.  The AA-hairline class is
+    # solved at emission; the gate stays at the calibrated 16/0.08.
     return native_shared >= 16.0 and ratio >= 0.08
 
 
@@ -4164,14 +4219,16 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         # wider interval lets independently-fit neighbouring regions drift apart.
         loops_by_label, dots = vectorize_region_graph(label_map, analysis_scale, px=1.0)
         corner_dots.extend(dots)
+        bleed = _bleed_flags(masks, analysis_scale)
         for mask_index, mask in enumerate(masks):
             loops = loops_by_label.get(mask_index, [])
             if not loops:
                 continue
             color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
-            regions.append(Region(color, int(mask.sum()), loops))
+            regions.append(Region(color, int(mask.sum()), loops, bleed=bleed[mask_index]))
         masks = []                                   # handled; skip the per-mask loop below
 
+    mask_bleed = dict(enumerate(_bleed_flags(masks, analysis_scale))) if masks else {}
     for mask_index, mask in enumerate(masks):
         if mask_index in consumed:
             continue
@@ -4276,7 +4333,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         if not loops:
             continue
         color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
-        regions.append(Region(color, int(mask.sum()), loops, fill=gradient_fills.get(mask_index)))
+        regions.append(Region(color, int(mask.sum()), loops, fill=gradient_fills.get(mask_index),
+                              bleed=mask_bleed.get(mask_index, False)))
 
     if completed_regions:
         regions = completed_regions + regions        # completed bases render first (bottom layer)
