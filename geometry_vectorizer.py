@@ -1039,6 +1039,10 @@ _EARC_ENABLED = True
 # collapse->removal.  Flag for A/B and fast revert.
 _JOINT_CORNER_DP = True
 _JOINT_SUPERSET_THRESHOLD = 0.15
+# Stage 2.6b: gated font substitution (OCR -> font_match -> double iron gate
+# -> true vector glyphs as the TOP layer).  Faithful fit always kept when any
+# gate fails; flag for A/B and fast revert.
+_FONT_SNAP_ENABLED = True
 
 
 def _corner_probabilities(loop: np.ndarray) -> np.ndarray | None:
@@ -5169,6 +5173,48 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                 # pollutes editability/micro-fragment metrics.
                 lp.curves = [curve for curve in lp.curves
                              if float(np.ptp(curve.control[:, 0]) + np.ptp(curve.control[:, 1])) > 1e-5]
+    if _FONT_SNAP_ENABLED and smoothing in {"paper", "paper-perc", "paper-perres", "paper-regions"}:
+        # Stage 2.6b: OCR -> font retrieval -> DOUBLE iron gate -> the winning
+        # font's TRUE vector outlines replace the fitted letter regions as the
+        # TOP painter's-stack layer (VAI forensics: letters redrawn on top).
+        # Any exception or failed gate leaves the faithful fit untouched.
+        try:
+            from text_substitution import try_substitute_lines
+            for sub in try_substitute_lines(image, regions):
+                bx0, by0, bx1, by1 = sub["bbox"]
+                ink = np.array(sub["ink"], float)
+                kept: list[Region] = []
+                for region in regions:
+                    if region.fill is not None:
+                        kept.append(region)
+                        continue
+                    if region.stroke is not None:
+                        # letter bars often ship as stroked centerlines — they
+                        # must vanish under the glyphs too, or they double-draw
+                        _w, s_curves, _cl = region.stroke
+                        pts = np.vstack([eval_curve(c, 8) for c in s_curves]) if s_curves else None
+                    elif region.loops:
+                        pts = np.vstack([lp.source for lp in region.loops if len(lp.source)])
+                    else:
+                        kept.append(region)
+                        continue
+                    if pts is None or not len(pts):
+                        kept.append(region)
+                        continue
+                    inside = (pts[:, 0].min() >= bx0 - 1.5 and pts[:, 0].max() <= bx1 + 1.5
+                              and pts[:, 1].min() >= by0 - 1.5 and pts[:, 1].max() <= by1 + 1.5)
+                    same_ink = float(np.linalg.norm(np.asarray(region.color, float) - ink)) <= 60.0
+                    if not (inside and same_ink):
+                        kept.append(region)
+                glyph_loops = []
+                for curves in sub["loops"]:
+                    drawn = np.vstack([eval_curve(c, 8) for c in curves])
+                    glyph_loops.append(FittedLoop(drawn, curves, "font-snap"))
+                area_est = max(1, int(0.35 * (bx1 - bx0) * (by1 - by0)))
+                kept.append(Region(tuple(int(v) for v in sub["ink"]), area_est, glyph_loops))
+                regions = kept
+        except Exception:
+            pass
     output = output_root / image_path.stem
     output.mkdir(parents=True, exist_ok=True)
     write_svgs(output, regions, image.size)
