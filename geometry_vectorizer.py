@@ -2488,25 +2488,52 @@ def _regularize_mirror(regions: list) -> None:
     if len(cloud) < 40:
         return
     tree = cKDTree(cloud)
-    best = None
-    for axis in ("x", "y"):
-        k = 0 if axis == "x" else 1
+    candidates: list[tuple[np.ndarray, float]] = []
+    for k in (0, 1):                       # classic V/H offset grid (cheap, exact)
+        n_hat = np.array([1.0, 0.0]) if k == 0 else np.array([0.0, 1.0])
         c0 = float(cloud[:, k].mean())
         for dc in np.arange(-3.0, 3.01, 0.5):
-            c = c0 + float(dc)
-            refl = cloud.copy()
-            refl[:, k] = 2.0 * c - refl[:, k]
-            score = float(np.mean(tree.query(refl)[0]))
-            if best is None or score < best[0]:
-                best = (score, k, c)
+            candidates.append((n_hat, c0 + float(dc)))
+    # Stage 2.5 (METHOD_ICE 3.6, Mitra-style): ARBITRARY axes by transformation-
+    # space voting — every point pair votes for the axis that would swap it
+    # (normal = pair direction, offset = midpoint projection); dense vote
+    # clusters become hypotheses, verified by the same 0.8px reflected-cloud
+    # residual as V/H.  Diagonal shields/arrows stop being invisible to §6.
+    sub = cloud if len(cloud) <= 150 else cloud[np.linspace(0, len(cloud) - 1, 150).astype(int)]
+    iu = np.triu_indices(len(sub), 1)
+    vecs = (sub[:, None, :] - sub[None, :, :])[iu]
+    norms = np.linalg.norm(vecs, axis=1)
+    keep = norms > 2.0
+    if bool(keep.any()):
+        vecs = vecs[keep] / norms[keep][:, None]
+        mids = (0.5 * (sub[:, None, :] + sub[None, :, :]))[iu][keep]
+        theta = np.mod(np.arctan2(vecs[:, 1], vecs[:, 0]), np.pi)
+        rho = np.sum(mids * vecs, axis=1)
+        keys = (np.floor(theta / math.radians(2.0)).astype(np.int64) * 100003
+                + np.floor(rho / 2.0).astype(np.int64))
+        uniq, counts = np.unique(keys, return_counts=True)
+        for key in uniq[np.argsort(counts)[-4:]]:
+            sel = keys == key
+            n_mean = vecs[sel].mean(axis=0)
+            nn = float(np.linalg.norm(n_mean))
+            if nn < 1e-6:
+                continue
+            candidates.append((n_mean / nn, float(rho[sel].mean())))
+    best = None
+    for n_hat, c in candidates:
+        proj = cloud @ n_hat
+        refl = cloud - 2.0 * (proj - c)[:, None] * n_hat[None, :]
+        score = float(np.mean(tree.query(refl)[0]))
+        if best is None or score < best[0]:
+            best = (score, n_hat, c)
     if best is None or best[0] > 0.8:
         return
-    _, k, c = best
+    _, n_best, c_best = best
 
     def reflect(pts: np.ndarray) -> np.ndarray:
         out = np.array(pts, float, copy=True)
-        out[:, k] = 2.0 * c - out[:, k]
-        return out
+        proj = out @ n_best
+        return out - 2.0 * (proj - c_best)[:, None] * n_best[None, :]
 
     eps = 1.5
     starts = np.array([cv.control[0] for cv in curves], float)
