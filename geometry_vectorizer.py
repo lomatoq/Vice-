@@ -1643,7 +1643,32 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
             ra = np.linalg.norm(lo_s - center, axis=1) - radius
             rb = np.linalg.norm(hi_s - center, axis=1) - radius
             ok = (ra * rb <= 0.0) | (np.minimum(np.abs(ra), np.abs(rb)) <= eps)
-            if bool(ok.all()) and radius >= 1.0:
+            arc_feasible = bool(ok.all())
+            if not arc_feasible and radius >= 1.0:
+                # Outlier budget (kink hunt, spotify-711): binarization double-
+                # step jags leave 1-4 stray mids that block an otherwise perfect
+                # R~300 arc, and the DP then zigzags 26 lines with 44.5-deg
+                # joins THROUGH them.  Allow <=1 stray per 40 mids IFF its
+                # euclidean miss is bounded by the same slack the Alg-1 re-check
+                # already grants (half + 0.35) — the interval law still binds
+                # every other midpoint.
+                stray = ~ok
+                span_px = (b - a) * spacing          # PHYSICAL px, not mids —
+                if span_px >= 40.0 and int(stray.sum()) <= int(span_px // 40):  # 4x loops have 0.25px steps
+                    stray_mids = a + np.flatnonzero(stray)
+                    # a stray near a STRONG corner claim (p>=0.6 <=> price<=3)
+                    # is the apex, not noise — bridging it blunts the tip
+                    # (star L=10 -> 7).  Weak noise-level candidates must not
+                    # veto absorption (spotify's wavy runs are littered with
+                    # p~0.2 claims the DP already declined).
+                    near_strong = any(
+                        abs(int(s) - node) <= 6
+                        for s in stray_mids
+                        for node, pr in node_price.items() if pr <= 3.0)
+                    if not near_strong:
+                        miss = np.abs(np.linalg.norm(sub[stray] - center, axis=1) - radius)
+                        arc_feasible = bool((miss <= half + 0.35).all())
+            if arc_feasible and radius >= 1.0:
                 angle = np.unwrap(np.arctan2(sub[:, 1] - center[1], sub[:, 0] - center[0]))
                 if abs(float(angle[-1] - angle[0])) <= math.radians(178):
                     r0 = sub[0] - center
@@ -1905,6 +1930,24 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
             from scipy.spatial import cKDTree
             near = cKDTree(pts).query(sub)[1]
             dev = np.abs(np.sum((pts[near] - sub) * um_s, axis=1))
+            if kind in ("arc", "earc", "clothoid") and (b - a) * spacing >= 40.0:
+                # Same stray-outlier budget the candidate test grants (kink
+                # hunt): without it Alg-1 bans a perfect R~300 arc over 1-2
+                # binarization jags, and the re-run zigzags 26 lines through
+                # them.  Selection and re-check must judge by the SAME law —
+                # and neither may spend the budget near a corner CANDIDATE
+                # (a stray at a priced node is the apex, not noise).
+                order = np.argsort(dev)
+                budget_n = int((b - a) * spacing // 40)
+                strays = order[-budget_n:]
+                stray_mids = s_a + strays
+                near_strong = any(
+                    abs(int(s) - node) <= 6
+                    for s in stray_mids
+                    for node, pr in node_price.items() if pr <= 3.0)
+                keep = order[:-budget_n] if budget_n < len(dev) else order[:0]
+                if not near_strong and bool((dev[strays] <= half + eps + 0.45).all()):
+                    dev = dev[keep]
             if _FIT_DEBUG[0]:
                 print(f"    chunk {kind:8s} [{a:4d},{b:4d}] dev={float(dev.max()):.2f} "
                       f"(budget {half + eps + slack:.2f}) at mid {np.round(sub[int(np.argmax(dev))],1)}")
@@ -3526,6 +3569,13 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
     above = probs >= _JOINT_SUPERSET_THRESHOLD
     if not bool(above.any()):
         return None                        # smooth loop: classic path handles it
+    if float(probs.max()) < 0.30:
+        return None                        # noise-only claims: not corner territory
+    if _loop_is_circle(loop, px):
+        return None                        # a genuine circle outranks any corner
+                                           # claim (decision order: full ellipse
+                                           # first — G1 doc rule; the outlier
+                                           # budget must never chord a disc)
     # Local maxima of the probability signal (superset, deliberately lax).
     prev_p = np.roll(probs, 1)
     next_p = np.roll(probs, -1)
