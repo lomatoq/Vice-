@@ -301,6 +301,17 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
     def hsv(color: np.ndarray) -> tuple[float, float, float]:
         return colorsys.rgb_to_hsv(*(color / 255.0))
 
+    def perceptual_distance(first: np.ndarray, second: np.ndarray) -> float:
+        colors = np.asarray((first, second), dtype=np.float32).reshape(1, 2, 3) / 255.0
+        lab_colors = cv2.cvtColor(colors, cv2.COLOR_RGB2LAB).reshape(2, 3)
+        if deltaE_ciede2000 is not None:
+            return float(deltaE_ciede2000(lab_colors[0], lab_colors[1]))
+        return float(np.linalg.norm(lab_colors[0] - lab_colors[1]))
+
+    def entry_thickness(entry: dict) -> float:
+        mask = np.isin(labels, entry["labels"]).astype(np.uint8)
+        return float(cv2.distanceTransform(mask, cv2.DIST_L2, 3).max())
+
     # Merge anti-aliased shades that have the same hue.  Value is deliberately
     # ignored for saturated colours: an orange edge and orange interior belong
     # to one ink even when the edge was blended with white.
@@ -327,22 +338,30 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
             entry_dark_neutral = float(np.max(entry["color"])) < 85 and float(np.ptp(entry["color"])) < 20
             family_dark_neutral = float(np.max(family["color"])) < 85 and float(np.ptp(family["color"])) < 20
             same_dark_neutral = entry_dark_neutral and family_dark_neutral
+            # Blind-pack lesson (nested_containers h140: pastel fills covering
+            # 27% and 15% of the frame were swallowed by same_neutral, the
+            # extractor emitted ZERO regions).  The RAG stage below already
+            # holds the principle "two clusters with their own thick cores
+            # remain distinct" — apply it here too: a colour-space merge of
+            # two families that BOTH own a thick core and are globally
+            # distinguishable (dE >= the RAG's own 3.8) is not an AA cleanup,
+            # it is deleting artwork.  Dark neutrals are exempt: JPEG chroma
+            # noise in the dark range routinely exceeds dE 3.8 on one ink.
+            if (same_colour or same_neutral) and not same_dark_neutral:
+                if (perceptual_distance(entry["color"], family["color"]) >= 3.8
+                        and entry.setdefault("thickness", entry_thickness(entry)) >= 1.9
+                        and family.setdefault("thickness", entry_thickness(family)) >= 1.9):
+                    continue
             if same_colour or same_neutral or same_dark_neutral:
                 total = family["count"] + entry["count"]
                 family["color"] = (family["color"] * family["count"] + entry["color"] * entry["count"]) / total
                 family["count"] = total
                 family["labels"].extend(entry["labels"])
                 family["candidates"].extend(entry["candidates"])
+                family.pop("thickness", None)
                 break
         else:
             families.append(dict(entry))
-
-    def perceptual_distance(first: np.ndarray, second: np.ndarray) -> float:
-        colors = np.asarray((first, second), dtype=np.float32).reshape(1, 2, 3) / 255.0
-        lab_colors = cv2.cvtColor(colors, cv2.COLOR_RGB2LAB).reshape(2, 3)
-        if deltaE_ciede2000 is not None:
-            return float(deltaE_ciede2000(lab_colors[0], lab_colors[1]))
-        return float(np.linalg.norm(lab_colors[0] - lab_colors[1]))
 
     def family_geometry(family: dict) -> tuple[np.ndarray, float, float]:
         mask = np.isin(labels, family["labels"]).astype(np.uint8)
@@ -403,6 +422,8 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
 
     anchors = []
     minimum = max(3, int(labels.size * 0.0015))
+    full_lab_l = cv2.cvtColor(np.asarray(rgb, dtype=np.uint8), cv2.COLOR_RGB2LAB)[..., 0].astype(np.float32)
+    ring_kernel = np.ones((3, 3), np.uint8)
     for family in families:
         if family["count"] < minimum:
             continue
@@ -417,6 +438,27 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
         # to inherit the red symbol colour.
         dark_ink = value < 0.35 and share >= 0.001
         if share < 0.08 and thickness < 1.45 and saturation < 0.55 and not dark_ink:
+            # Blind-pack lesson (nested_containers h140: 1px frames/arrows are
+            # AA-diluted to value 0.435, dark_ink stays silent, the diagram's
+            # whole line-work is dropped).  Mechanism, not a threshold tweak:
+            # an AA/JPEG ribbon is a TRANSITION — it always lies between its
+            # two neighbours' lightness values — while stroke ink is an
+            # EXTREMUM, darker than practically ALL of its surroundings.  So a
+            # thin family survives iff its median L* sits below the 10th
+            # percentile of its ring (a halo around dark text fails this: the
+            # text itself anchors the ring's P10 at black).
+            component = mask.astype(bool)
+            ring = cv2.dilate(mask, ring_kernel, iterations=2).astype(bool) & ~component
+            if share >= 0.004 and ring.any():
+                l_family = float(np.median(full_lab_l[component]))
+                l_ring_low = float(np.percentile(full_lab_l[ring], 10))
+                if l_family <= l_ring_low - 8.0:
+                    canonical = max(
+                        family["candidates"],
+                        key=lambda item: item[1] * (0.35 + hsv(item[0])[1]),
+                    )[0]
+                    anchors.append(canonical)
+                    continue
             continue
         # Use a real quantizer core instead of an average contaminated by edge
         # blends.  Saturation is a useful tie-breaker for coloured artwork.

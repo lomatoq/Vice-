@@ -320,18 +320,37 @@ def corner_cases() -> dict:
 def icon_cases() -> dict:
     out = {}
     spotify = COR / "simple-icons/spotify.svg"
-    def spotify_corners(res: int) -> int:
+    def spotify_corners(res: int, production: bool = False) -> int:
+        # production=True measures what actually ships: the joint DP's kept C0
+        # joins (falling back to the classic detector only when the joint path
+        # itself defers).  The classic-only count stays as an ungated observer.
+        if production:
+            from eval_joint_corners import joint_corner_positions
         n = 0
         for m, _ in svg_region_masks(spotify, target=res):
             for lp in mask_loops(m):
                 lp = lp.astype(float)
                 if len(lp) > 1 and np.allclose(lp[0], lp[-1]):
                     lp = lp[:-1]
-                if len(lp) >= 8:
-                    n += len(gv.paper_corner_positions(_to_ccw(lp)))
+                if len(lp) < 8:
+                    continue
+                lp = _to_ccw(lp)
+                if production:
+                    pred = joint_corner_positions(lp)
+                    n += len(pred) if pred is not None else len(gv.paper_corner_positions(lp))
+                else:
+                    n += len(gv.paper_corner_positions(lp))
         return n
-    n380 = spotify_corners(380)
+    # 2026-07-13: gate moved from the legacy classic detector to the production
+    # joint path — a gate must measure what ships.  Truth after the move: the
+    # joint DP buys 2 cap corners on the 380px waves (loops 704/524), and an
+    # A/B showed the machine-searched prices did NOT cause it (old 0.15/1.2
+    # buys the same 2).  The eval probe's 711-length loop is clean; the FP is
+    # resolution-specific cap economics.  Target stays red until the price
+    # search runs with multi-resolution spotify probes (NEXT_STRIKES).
+    n380 = spotify_corners(380, production=True)
     out["spotify_smooth_fp"] = {"corners": n380, "pass": bool(n380 == 0)}
+    out["spotify_classic_observer"] = {"corners": spotify_corners(380), "pass": None}
     # Small-res corners tracked WITHOUT gating: measured 2026-07-11 that per-res
     # thresholds change nothing (removal makes the pipeline threshold-insensitive;
     # synthetic smoothFP = 0.000 at every band/threshold), and at 48px the wave
