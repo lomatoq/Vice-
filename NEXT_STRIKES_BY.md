@@ -52,51 +52,82 @@ wobble **1.13|4.80**, g2 **0.20|1.34**, micro **52|122**, seam 0|0,
 
 ## II. ПЛАН — тры хвалі
 
-### Хваля А: дзве blind-мішэні (пачатак наступнай сесіі)
+### Хваля А: дзве blind-мішэні (У ПРАЦЫ; узмоцнена рэсёрчам
+EXTERNAL_RESEARCH_ULTIMATE_20260713.md — ён пацвярджае менавіта гэты
+парадак як найвышэйшы ROI: «спачатку kink stack + roundness stack»)
 
 **А.1 Кінкі** (мэта: challenge-медыяна ≤1.5, корпус ≤3.0 = VAI-узровень)
-1. **Tortuosity-гейт мэрджу рэгіёнаў** — вочны доказ item075: два анкоры
-   аднаго JPEG-градыента б'юцца ўнутры літар рванай мяжой. Механізм:
-   сапраўдная мяжа дзвюх фарбаў — гладкая крывая; JPEG-мяжа паміж
-   адценнямі аднаго чарніла — фрактальная (perimeter²/area кантакту).
-   Проба: item075/079/068 кінкі ≤2.0 без IoU-страты >0.01 на кантролях.
-2. **Кароткаспанавая эканоміка + primitive-critic** (аўдыт п.3):
-   confusion-matrix прымітываў на V4-GT; прыёр супраць line-chain
-   паталогіі ў DP-кошты. Probe-набор пашырыць challenge-крапамі.
-3. **Перагнаць машынны пошук цэн** з новымі пробамі: мульты-рэзалюцыйны
-   spotify (380/128/48 — зачыняе 2 кап-куты), challenge-крапы,
-   star/lshape як раней. Прамоўшн толькі праз поўныя гейты.
+1. ✅ **Tortuosity-мэрдж** ЖЫВЫ (пробы: item075 kink 9.77→6.11, item079
+   9.54→7.86, IoU нават вырас) — з канцэнтрык-вета (hole-interior) і
+   па-кампанентнай агрэгацыяй. Рэсёрч: пашырыць да **evidence-ratio
+   пакета** (tortuosity + HF-энергія паваротаў + прывязка да 8×8
+   JPEG-рашоткі + стабільнасць нармаляў + Δкошт пасля фіту; «хоць два
+   сведчання рэальнай мяжы → мэрдж забаронены»).
+2. **Post-fit primitive critic** (рэсёрч + аўдыт п.3): штраф менавіта за
+   кароткаспанавую ламанасць без прапарцыйнага выйгрышу fit; трохступ:
+   кандыдатны мэрдж → лакальны refit 2–5 гіпотэз (split / merge+smooth /
+   merge+arc-biased / merge+long-spline) → крытык з surgical reopen
+   ТОЛЬКІ локуса кінку (не глабальны rerun). Рэшта item075 (6.11) —
+   знешні контур: гэта ЯГО тэрыторыя.
+3. **Перагнаць машынны пошук цэн**: у аб'ектыў дадаць p95 kink-score
+   (рэсёрч: «promotion аптымізуе не толькі медыяну, але і p95»);
+   пробы: мульты-рэз spotify (380/128/48), challenge-крапы, star/lshape.
 
 **А.2 Roundness** (мэта: challenge-медыяна ≤0.005, p95 ≤0.02)
-Механізм — **адносны суд** (не абсалютны бюджэт): residual ідэальнага
-круга vs residual бягучага фіту; снап толькі калі круг не горшы + бюджэт.
-Пакрыць УСЕ шляхі малых колаў: tiny ellipse branch (кропкі тэксту — там
-жывуць item021/023!), smooth_closed, corner-шлях з псеўда-кутамі.
-LSQ-цэнтр ратацыі — туды ж. Пробы: item031/033/021/023/068; гейт-крытэр:
-ніводнага пагаршэння (урок кроплі digital-ocean).
+1. ✅ **Адносны суд** ЖЫВЫ ў 3 месцах (_ellipse_candidate: кропкі
+   item021 0.0227→0.0155; _fit_smooth_closed; пасля joint) + **MDL-фора**
+   description cost (0.06px/прымітыў, кап 0.5 — q30-круг дэфармуецца
+   ~0.5px, сапраўдны авал жыве на 1.5px+ і недатыкальны).
+2. Рэсёрч-абагульненне: **адзіны турнір малых замкнёных форм**
+   circle / ellipse / rounded-rect / generic-loop па шкале
+   `relative residual + description cost + topology safety`, Fitzgibbon
+   стабільны фіт як стартар; + **text-aware veto** (glyph-гіпотэза
+   лініі мацнейшая за «прыгожы круг») + **group consensus** (shared
+   radius для кропак/bullets/вузлоў дыяграм — UI-бонус).
 
-### Хваля Б: валідацыя (аўдытава патрабаванне, пасля А)
+### Хваля Б: валідацыя (аўдыт + рэсёрч: «тры віды ісціны»)
 
 4. **stress_bench.py**: уласныя/публічныя SVG-GT × кантраляваная сетка
    дэградацый (гамы, kernels, blur/sharpen, JPEG Q30-90, chroma, alpha)
-   → інверсія супраць аналітычнай GT: boundary F-score, 95% Hausdorff,
+   → інверсія супраць аналітычнай GT: **boundary P/R/F-score
+   (BSDS-стыль) + 95% Hausdorff** (рэсёрч: абавязкова, не толькі IoU),
    Euler delta, corner event-F1 — справаздача па p90/p95 хвастах.
+   Тапалагічныя інварыянты лічыць на 1× І 4×-рэндэры (крохкасць
+   субпіксельных рашэнняў).
 5. **Blind hold-outs па дамену/рэндэрару** + публічныя бэйзлайны
-   (LIVE/StarVector/OmniSVG) + VLM-judge/DreamSim кільцо.
+   (Potrace/VTracer/LIVE + StarVector/OmniSVG/VFIG). Перцэпцыя:
+   **human pairwise side-by-side — адзіная фінальная прыёмка**;
+   DreamSim — дадатковая метрыка; **VLM — толькі triage-асістэнт**
+   (рэсёрч: ранжыруе лепш, чым дае стабільныя скаляры; не гейт).
 6. **Пакропны VAI-прагон** challenge-крапаў (зняць плэйт-агаворку) —
    патрэбна дапамога карыстальніка (скарміць асобныя крапы VAI).
 
-### Хваля В: глыбокія модулі (пасля валідацыі)
+### Хваля В: глыбокія модулі (пасля валідацыі; парадак з рэсёрчу)
 
-7. **Evidence-ON рэанімацыя** як probabilistic forward-model selector
-   (mixture: binary edge / soft alpha / gradient / subpixel text edge) —
-   галоўны бенефіцыяр jpeg_dirty (4/10) і кінк-хвост на q30.
-8. **Per-line glyph consensus** — лечыць 114_bank і падымае ўвесь дробны
-   тэкст (адна лінія тэксту галасуе за агульную геаметрыю гліфаў).
+7. **Per-line glyph consensus** (рэсёрч ставіць ПЕРАД evidence: дробны
+   тэкст — сістэмная крыніца другасных памылак — тапалогія, кропкі,
+   bullets, jitter межаў). Узровень над сімваламі: лінія атрымлівае
+   адну гіпотэзу font/size/x-height/baseline/tracking; shaping праз
+   **HarfBuzz** (Unicode→glyphs+positions), контуры праз **FreeType**;
+   лакальна даганяецца толькі што не села. Лечыць 114_bank.
+8. **Evidence-ON 2.0** = лакальны probabilistic forward-model selector,
+   НЕ глабальны рэжым (рэсёрч): **5 гіпотэз** — binary edge / soft
+   alpha / gradient boundary / subpixel text edge / **JPEG-corrupted
+   same-ink boundary**; маўчыць дзе structure-first упэўнены; вяртае
+   карэкцыю або veto. DiffVG/Bézier-Splatting — толькі як лакальны
+   repair-інструмент на цяжкіх вузлах, не асноўны solver.
 9. **MDL-суд**: greedy глабальная селекцыя рэгулярнасцяў (потым CP-SAT);
-   **topology-in-MDL** (Euler/holes/self-intersections як жорсткія члены).
-10. **Stage 3 perception loop** — толькі калі хвалі А–Б не дадуць
-    VAI-парытэту па кінках (парогавае правіла METHOD_ICE дзейнічае).
+   **topology-as-law**: Euler delta / кампаненты / дзіркі /
+   self-intersections правяраюцца ў КОЖНАЙ лакальнай канкурэнцыі
+   гіпотэз, не толькі ў фінале (рэсёрч).
+10. **Роутэр + 5 калей** (доўгатэрміновая форма ядра па рэсёрчы):
+    text / hard-edge / smooth-closed / line-topology / soft-appearance,
+    адзін арбітр J = data_fit + topology + simplicity + regularity +
+    editability + text_consensus + uncertainty_penalty; на падазроных
+    локусах трымаць 2–5 гіпотэз (multi-hypothesis, не greedy).
+11. **Stage 3 / learned specialists** (diagram specialist, semantic
+    layer peeling) — толькі калі А–Б не дадуць VAI-парытэту па кінках
+    (парогавае правіла METHOD_ICE дзейнічае; рэсёрч згодны).
 
 ---
 
