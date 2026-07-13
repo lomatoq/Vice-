@@ -1038,8 +1038,14 @@ _EARC_ENABLED = True
 # G1 bend penalty inside the shortest path) instead of threshold->NMS->
 # collapse->removal.  Flag for A/B and fast revert.
 _JOINT_CORNER_DP = True
-_JOINT_SUPERSET_THRESHOLD = 0.15
-_JOINT_CAP_PRICE = 1.2      # geometric-testimony price (searchable knob)
+# 2026-07-13 hunt #2 CLOSED BY MACHINE SEARCH (optimize_corner_prices.py,
+# 81 configs, objective = V4-val event-F1, constraints = star/lshape/spotify
+# probes; log benchmarks/price_search.jsonl).  F1 0.7361 -> 0.7434.  The
+# search says floor/slope barely matter (F1 flat across floor 1.6-2.8); the
+# drivers are FEWER noise candidates (superset 0.15 -> 0.20) and CHEAPER
+# geometric testimony (cap 1.2 -> 0.8).  Not hand-tuned.
+_JOINT_SUPERSET_THRESHOLD = 0.20
+_JOINT_CAP_PRICE = 0.8
 # Stage 2.6b: gated font substitution (OCR -> font_match -> double iron gate
 # -> true vector glyphs as the TOP layer).  Faithful fit always kept when any
 # gate fails; flag for A/B and fast revert.
