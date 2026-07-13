@@ -96,6 +96,22 @@ def _ellipse_candidate(loop: np.ndarray) -> tuple[float, float, list[Curve]] | N
     axes = np.array([width / 2, height / 2])
     radial = np.sqrt(np.sum((local / axes) ** 2, axis=1))
     error = float(np.sqrt(np.mean(((radial - 1) * min(axes)) ** 2)))
+    # Relative circle court (blind roundness target: our small discs shipped
+    # 0.02-0.03R eccentric while VAI snaps perfect circles; the failed
+    # absolute-budget rescue taught us the judgement must be RELATIVE).  When
+    # the fitted ellipse is nearly isotropic, refit an ideal circle and let
+    # the residuals compete: the circle wins unless it is measurably worse
+    # (+0.15px, well inside the 0.5px evidence tube).  A genuine oval
+    # (digital-ocean drop) keeps a big residual gap and survives untouched.
+    if float(min(axes)) / float(max(axes)) >= 0.75:
+        circ = fit_circle(points.astype(float))
+        if circ is not None:
+            c_center, c_radius, c_rms = circ
+            if (c_radius >= 1.0 and c_radius <= 1.3 * float(max(axes))
+                    and float(c_rms) <= error + 0.15):
+                return (float(c_rms), float(c_radius),
+                        _ellipse_curves(np.asarray(c_center, float),
+                                        np.array([c_radius, c_radius]), 0.0))
     return error, float(min(axes)), _ellipse_curves(np.array([cx, cy]), axes, angle)
 
 
@@ -2951,7 +2967,8 @@ def _regularize_baselines(regions: list) -> None:
             i = j + 1
 
 
-def _whole_loop_circle(loop: np.ndarray, px: float, slack: float = 0.35):
+def _whole_loop_circle(loop: np.ndarray, px: float, slack: float = 0.35,
+                       residual_gate: bool = True):
     """(center, radius) if the WHOLE closed loop is one genuine circle, else None.
 
     The radial residual alone is degenerate (audit P0 'circle catastrophe'): a thin
@@ -2983,7 +3000,7 @@ def _whole_loop_circle(loop: np.ndarray, px: float, slack: float = 0.35):
     if abs(float(angles[-1] - angles[0])) < math.radians(330.0):
         return None
     radial = np.abs(np.linalg.norm(mid - center, axis=1) - radius)
-    if float(radial.max()) > max(0.5 * px + slack, 0.01 * radius):
+    if residual_gate and float(radial.max()) > max(0.5 * px + slack, 0.01 * radius):
         return None
     return center, radius
 
@@ -3009,6 +3026,43 @@ def _flattest_index(loop: np.ndarray) -> int:
     return int(np.argmin(np.abs(np.arctan2(cross, dot))))
 
 
+def _relative_circle_court(loop: np.ndarray, curves: list[Curve], px: float) -> list[Curve] | None:
+    """RELATIVE circle court (roundness strike, take two).  The reverted
+    absolute-budget rescue mis-snapped a genuine drop; this court instead makes
+    the ideal circle COMPETE with the chain just fitted, on the same evidence:
+    p90 of each candidate's distance to the loop mids.  The circle wins only
+    when it explains the boundary essentially as well (+0.1px) — pure-noise
+    eccentricity loses to it, a real oval keeps a decisive residual gap and is
+    never touched."""
+    if not curves or len(curves) < 2:
+        return None
+    shape = _whole_loop_circle(loop, px, slack=0.3, residual_gate=False)
+    if shape is None:
+        return None
+    center, radius = shape
+    mid = 0.5 * (loop[:-1] + loop[1:])
+    p90_circle = float(np.percentile(
+        np.abs(np.linalg.norm(mid - center, axis=1) - radius), 90))
+    drawn = np.vstack([eval_curve(c, 12) for c in curves])
+    dmat = np.linalg.norm(mid[:, None, :] - drawn[None, :, :], axis=2)
+    p90_chain = float(np.percentile(np.min(dmat, axis=1), 90))
+    # Margin stays STRICT (+0.1px).  An MDL head start (0.06px/primitive) was
+    # probed 2026-07-13 and REVERTED: it bought non-circles on text dots
+    # (item021 roundness 0.0155 -> 0.0196, iou -0.007) while still not
+    # reaching the q30-deformed discs it aimed for.  Description cost only
+    # returns inside the full small-shape tournament with topology terms
+    # (NEXT_STRIKES A.2), not as a bare residual discount.
+    if p90_circle > p90_chain + 0.1:
+        return None
+    n = len(loop)
+    cuts4 = [0, n // 4, n // 2, 3 * n // 4]
+    ideal: list[Curve] = []
+    for k in range(4):
+        seg = _arc_slice(loop, cuts4[k], cuts4[(k + 1) % 4])
+        ideal.extend(_tag_arcs(circular_beziers(seg[0], seg[-1], center, radius, seg), center, radius))
+    return _enforce_g1_chain(ideal, closed=True)
+
+
 def _fit_smooth_closed(loop: np.ndarray, alpha: float, px: float) -> list[Curve]:
     """A corner-free closed loop.  Paper Sec 6 co-circular: if ONE circle fits the
     whole boundary emit four arcs sharing that centre/radius (truly round disc).
@@ -3032,6 +3086,9 @@ def _fit_smooth_closed(loop: np.ndarray, alpha: float, px: float) -> list[Curve]
     start = _flattest_index(loop)
     ring = np.vstack((loop[start:], loop[:start], loop[start:start + 1]))
     curves = fit_segment_midpoints(ring, alpha, px, snap_ends=False)
+    court = _relative_circle_court(loop, curves, px)
+    if court is not None:
+        return court
     if curves:
         seam = _corner_intersection(curves[-1], curves[0], loop[start])
         _shift_curve_end(curves[-1], seam)
@@ -3837,6 +3894,14 @@ def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.n
     if _JOINT_CORNER_DP:
         joint = _fit_loop_joint(loop, alpha, px)
         if joint is not None:
+            # A q30 disc often reaches the joint path via pseudo-corner claims;
+            # give the ideal circle the same relative day in court it gets on
+            # the smooth-closed path (it only wins when it explains the loop
+            # as well as the joint chain does).
+            closed = np.vstack((loop, loop[:1]))
+            court = _relative_circle_court(closed, joint.curves, px)
+            if court is not None:
+                return FittedLoop(loop, court, "paper-circle-court")
             return joint
     if corner_positions is None:
         positions = paper_corner_positions(loop)

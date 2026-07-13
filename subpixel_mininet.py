@@ -373,6 +373,46 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
     # when at least one cluster is an edge-only AA/JPEG ribbon.  Two clusters
     # with their own thick cores remain distinct (dark outline + light fill).
     graph_kernel = np.ones((3, 3), np.uint8)
+
+    def _hole_interior(mask: np.ndarray) -> np.ndarray:
+        """Pixels enclosed by `mask` (its topological holes)."""
+        inv = (mask == 0).astype(np.uint8)
+        h, w = inv.shape
+        border = np.concatenate((
+            np.column_stack((np.zeros(w, int), np.arange(w))),
+            np.column_stack((np.full(w, h - 1), np.arange(w))),
+            np.column_stack((np.arange(h), np.zeros(h, int))),
+            np.column_stack((np.arange(h), np.full(h, w - 1))),
+        ))
+        ff = np.zeros((h + 2, w + 2), np.uint8)
+        for y, x in border:
+            if inv[y, x] == 1:
+                cv2.floodFill(inv, ff, (int(x), int(y)), 2)
+                break
+        return inv == 1
+
+    def contact_tortuosity(left_mask: np.ndarray, right_mask: np.ndarray) -> float:
+        """How fractal the shared boundary is.  A real two-ink boundary is a
+        smooth curve: its 2px contact band has area ~= 2x its span, ratio ~1.
+        A JPEG boundary between two shades of ONE ink zigzags through the
+        artwork: area >> span.  Aggregated per connected contact component so
+        a boundary scattered across letters is not mistaken for a long one."""
+        contact = (cv2.dilate(left_mask, graph_kernel, iterations=1).astype(bool)
+                   & right_mask.astype(bool)).astype(np.uint8)
+        count, _, stats, _ = cv2.connectedComponentsWithStats(contact, connectivity=8)
+        area_sum, diag_sum = 0.0, 0.0
+        for component in range(1, count):
+            area = float(stats[component, cv2.CC_STAT_AREA])
+            if area < 8:
+                continue
+            width = float(stats[component, cv2.CC_STAT_WIDTH])
+            height = float(stats[component, cv2.CC_STAT_HEIGHT])
+            area_sum += area
+            diag_sum += math.hypot(width, height)
+        if diag_sum <= 0:
+            return 0.0
+        return area_sum / (2.0 * diag_sum)
+
     while len(families) > 1:
         geometry = [family_geometry(family) for family in families]
         best_pair: tuple[int, int] | None = None
@@ -404,7 +444,25 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
                     and min(left_share, right_share) < 0.012
                     and min(left_thickness, right_thickness) < 1.9
                 )
-                if (globally_indistinguishable or edge_transition or weak_small_variant) and delta_e < best_score:
+                # Blind kink lesson (7MOJOS q30 sheet): two thick anchors of
+                # ONE gradient ink fight inside the letters along a ragged
+                # JPEG boundary — the fitter then chases that boundary and
+                # ships the kink tail.  A real two-ink boundary is a smooth
+                # curve (tortuosity ~1); JPEG shade boundaries are fractal.
+                # Concentric layouts (a disc inside its ring) are exempt:
+                # their contact is legitimately closed, not ragged.
+                tortuous_same_ink = False
+                if (touching >= 24 and delta_e < 14.0
+                        and not globally_indistinguishable
+                        and min(left_share, right_share) >= 0.005):
+                    left_bool = left_mask.astype(bool)
+                    right_bool = right_mask.astype(bool)
+                    r_in_l = float(np.count_nonzero(right_bool & _hole_interior(left_mask))) / max(1.0, float(right_bool.sum()))
+                    l_in_r = float(np.count_nonzero(left_bool & _hole_interior(right_mask))) / max(1.0, float(left_bool.sum()))
+                    if max(r_in_l, l_in_r) < 0.85:
+                        tortuous_same_ink = contact_tortuosity(left_mask, right_mask) >= 2.0
+                if (globally_indistinguishable or edge_transition or weak_small_variant
+                        or tortuous_same_ink) and delta_e < best_score:
                     best_pair = left, right
                     best_score = delta_e
         if best_pair is None:
