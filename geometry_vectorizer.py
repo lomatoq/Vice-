@@ -4920,6 +4920,16 @@ def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: 
     border_color = np.median(border, axis=0).astype(np.uint8)
     border_lab = cv2.cvtColor(border_color.reshape(1, 1, 3), cv2.COLOR_RGB2LAB).reshape(3).astype(float)
     background_index = int(np.argmin(np.sum((anchor_lab - border_lab) ** 2, axis=1)))
+    # Blind-pack lesson (hipercard: red badge cropped edge-to-edge -> red
+    # declared 'background', DROPPED, white letters painted on white = EMPTY
+    # output while VAI was near-perfect).  Dropping the border anchor is only
+    # legal when the frame really is a uniform canvas; a mixed frame means the
+    # artwork reaches the edges, and every anchor must be emitted (the frame
+    # anchor becomes an ordinary bottom-layer region).
+    border_lab_px = cv2.cvtColor(border.reshape(1, -1, 3), cv2.COLOR_RGB2LAB).reshape(-1, 3).astype(float)
+    uniform_frac = float(np.mean(np.linalg.norm(border_lab_px - border_lab, axis=1) <= 18.0))
+    if uniform_frac < 0.85:
+        background_index = -1              # nothing is background: emit all anchors
 
     source_area = source.width * source.height
     minimum = max(4, int(source_area * scale * scale * 0.00006))
@@ -5013,7 +5023,8 @@ def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: 
     for mask in masks:
         eroded = cv2.erode(mask.astype(np.uint8), kernel, iterations=1).astype(bool)
         boundary |= mask & ~eroded
-    return rendered, masks, boundary, tuple(int(v) for v in anchors[background_index]), 0.0, scale, pixels
+    bg_color = anchors[background_index] if background_index >= 0 else border_color
+    return rendered, masks, boundary, tuple(int(v) for v in bg_color), 0.0, scale, pixels
 
 
 def _bleed_flags(masks: list[np.ndarray], analysis_scale: int = 1) -> list[bool]:
