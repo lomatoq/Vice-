@@ -1039,6 +1039,7 @@ _EARC_ENABLED = True
 # collapse->removal.  Flag for A/B and fast revert.
 _JOINT_CORNER_DP = True
 _JOINT_SUPERSET_THRESHOLD = 0.15
+_JOINT_CAP_PRICE = 1.2      # geometric-testimony price (searchable knob)
 # Stage 2.6b: gated font substitution (OCR -> font_match -> double iron gate
 # -> true vector glyphs as the TOP layer).  Faithful fit always kept when any
 # gate fails; flag for A/B and fast revert.
@@ -1413,6 +1414,19 @@ def _halfspace_ok(tangent: np.ndarray, poly: np.ndarray) -> bool:
 # offset = aM + aP - 1 (in native px along the normal).  Where the measurement
 # is trustworthy the DP interval is re-centered on it and narrowed; everywhere
 # else the classic +-0.5px midpoint corridor stays.  No ML, no training.
+# Per-mask fitting context: ink of ALL OTHER masks at analysis resolution.
+# A fit whose drawn curve lands on foreign ink is stealing a neighbour's
+# territory (letters 1-2px apart bleed into one blob) — _finish_loop rejects
+# it and the ladder finds a closer chain.  Only set on the ISOLATED per-mask
+# path; the region graph shares boundaries legitimately.
+_FOREIGN_INK: list = [None]          # (dt_own, dt_others, analysis_scale) | None
+# 2026-07-13: Voronoi property-line ENFORCEMENT is experimental-OFF.  Two
+# rounds of gate breakage (contact boundaries, palette-noise slivers around
+# occlusion contacts) while the target case (114_bank component merges) never
+# moved — the mergers are curved-part bulges legally at the midline.  The
+# context DTs stay computed: the evenodd-hole own-bound gate for tiny
+# counters uses them and never broke anything.
+_VORONOI_LAWS = False
 _EVIDENCE_FIELD: list = [None]
 # 2026-07-12: EXPERIMENTAL, default OFF.  Night A/B: on the deblur path the 4x
 # loops are already subpixel (tug-of-war fragmented fits); scoped to the native
@@ -1532,6 +1546,25 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
             shift = np.clip(shift, -_EVIDENCE_MAX_OFF, _EVIDENCE_MAX_OFF)
             mid = mid + shift[:, None] * um
             half_arr = np.where(coherent, _EVIDENCE_HALF * px, half)
+    foreign_ctx = _FOREIGN_INK[0] if _VORONOI_LAWS else None
+    if foreign_ctx is not None and m and foreign_ctx[2] >= 2:
+        # native evidence is itself +-0.5px — the property line is only
+        # enforceable on the subpixel (4x deblur) path
+        # Voronoi property line inside the DP itself: at mids whose gap to a
+        # NEIGHBOUR's ink is under a pixel, the interval may not reach past
+        # half the gap — two exact letters 1px apart then stay 1px apart, and
+        # the AA render keeps the white column (114_bank 6->3 merge class).
+        dt_own_f, dt_others_f, fscale = foreign_ctx
+        gx = np.clip((mid[:, 0] * fscale).astype(int), 0, dt_others_f.shape[1] - 1)
+        gy = np.clip((mid[:, 1] * fscale).astype(int), 0, dt_others_f.shape[0] - 1)
+        gap_native = dt_others_f[gy, gx] / max(1.0, float(fscale))
+        # The property line exists only across a real BACKGROUND gap.  At
+        # CONTACT boundaries (ikea letters on the badge, occlusion bases)
+        # gap~0 and the cap crushed intervals to 0.12px — fits impossible,
+        # three gates went red.  gap in [0.75, 2)px: genuine thin white gap.
+        cap = np.where((gap_native >= 0.75) & (gap_native < 2.0),
+                       np.maximum(0.12, 0.5 * gap_native - 0.02), half)
+        half_arr = np.minimum(half_arr, cap)
     lo = mid - half_arr[:, None] * um   # interval end Im(0)
     hi = mid + half_arr[:, None] * um   # interval end Im(1)
 
@@ -2325,6 +2358,49 @@ def _regularize_axis_parallel(curves: list[Curve], axis_deg: float = 8.0, par_de
     return out
 
 
+def _grid_snap_axis_lines(regions: list) -> None:
+    """Idealize-to-evidence: axis-aligned line carriers within 0.18px of an
+    integer CRACK line snap onto it (small loops only, extent <= 40px).
+
+    Stems of small text legally land at e.g. x=88.03 after LSQ/welds; at 1px
+    inter-letter gaps that off-grid hair makes the AA render bridge letters
+    (114_bank).  The crack grid IS the evidence — snapping to it is the purest
+    idealization there is.  Neighbour curve endpoints ride along to keep C0."""
+    for region in regions:
+        for fl in region.loops:
+            curves = fl.curves
+            if not curves:
+                continue
+            pts = np.vstack([c.control for c in curves])
+            extent = float(max(np.ptp(pts[:, 0]), np.ptp(pts[:, 1])))
+            if extent > 40.0 or len(curves) < 3:
+                continue
+            for axis in (0, 1):
+                for i, c in enumerate(curves):
+                    if c.degree != 1:
+                        continue
+                    a, b = c.control[0], c.control[-1]
+                    if abs(a[axis] - b[axis]) > 1e-6:
+                        continue           # not axis-constant along this axis
+                    coord = a[axis]
+                    snapped = round(coord)
+                    if abs(coord - snapped) < 1e-9 or abs(coord - snapped) > 0.18:
+                        continue
+                    prev_c = curves[(i - 1) % len(curves)]
+                    next_c = curves[(i + 1) % len(curves)]
+
+                    def _rigid(cv: Curve) -> bool:
+                        meta = getattr(cv, "meta", None)
+                        return isinstance(meta, tuple) and len(meta) and \
+                            meta[0] in ("arc", "clothoid", "earc")
+                    if _rigid(prev_c) or _rigid(next_c):
+                        continue           # never bend an analytic run off its carrier
+                    c.control[0][axis] = snapped
+                    c.control[-1][axis] = snapped
+                    prev_c.control[-1][axis] = snapped
+                    next_c.control[0][axis] = snapped
+
+
 def _regularize_regions_global(regions: list) -> None:
     """Paper Sec-6 GLOBAL scope: regularities are located across the WHOLE vectorization,
     not per loop.  (1) image-wide PARALLEL clusters: line directions shared by >=2 loops
@@ -2334,7 +2410,12 @@ def _regularize_regions_global(regions: list) -> None:
     nearly coincide across loops are re-emitted from ONE shared circle (badge rings, split
     O letters).  Mutates the FittedLoop.curves lists in place."""
     line_info = []          # (loop_obj, curve_idx, angle, length, midpoint)
-    loops = [fl for region in regions for fl in region.loops]
+    # paper-tiny loops are EXACT evidence chains on the crack grid: any Sec-6
+    # nudge (axis snap, shared carrier) moves them off-grid by ~0.3px, and at
+    # 1px inter-letter gaps the AA render then bridges neighbours (114_bank
+    # 6 -> 3 components).  Idealization has nothing to add to an exact chain.
+    loops = [fl for region in regions for fl in region.loops
+             if not fl.template.startswith("paper-tiny")]
     for fl in loops:
         for idx, c in enumerate(fl.curves):
             if c.degree == 1:
@@ -2509,6 +2590,9 @@ def _regularize_regions_global(regions: list) -> None:
                     if float(dev.max()) <= 0.8:          # per-step interval guard
                         fl.curves[idx:idx + 1] = _tag_arcs(drawn, cc, rr)
                     break
+
+    # ---- (4.9) crack-grid snapping of axis lines (small text stems) ----
+    _grid_snap_axis_lines(regions)
 
     # ---- (5) MIRROR SYMMETRY (audit P2): exact reflective regularity ----
     _regularize_mirror(regions)
@@ -3279,6 +3363,33 @@ def _dense_fallback_curves(loop: np.ndarray) -> list[Curve]:
     return curves
 
 
+def _foreign_trespass(curves: list[Curve], own_bound: float | None = None) -> bool:
+    """Voronoi property-line test against the per-mask foreign-ink context.
+
+    The tiny paths return WITHOUT passing _finish_loop, so an inflated
+    fitEllipseDirect counter (2px hole -> ellipse overshooting 0.5px) walked
+    into a 1px inter-letter gap unchecked — and a HOLE past its own outer
+    contour turns to INK under evenodd (3 crossings), darkening the gap
+    (114_bank merge class).  own_bound therefore adds a second law for
+    evidence-exact tiny loops: every drawn point must stay within own_bound
+    native px of the loop's OWN ink, neighbours or not."""
+    ctx = _FOREIGN_INK[0]
+    if ctx is None or not curves or ctx[2] < 2:
+        return False
+    dt_own, dt_others, fscale = ctx
+    drawn = np.vstack([eval_curve(c, 12) for c in curves])
+    ix = np.clip((drawn[:, 0] * fscale).astype(int), 0, dt_own.shape[1] - 1)
+    iy = np.clip((drawn[:, 1] * fscale).astype(int), 0, dt_own.shape[0] - 1)
+    if _VORONOI_LAWS:
+        depth = dt_own[iy, ix] - dt_others[iy, ix]
+        in_gap = (dt_own[iy, ix] + dt_others[iy, ix]) >= 0.75 * fscale
+        if bool(in_gap.any()) and float(depth[in_gap].max()) > 0.35 * fscale:
+            return True
+    if own_bound is not None and float(dt_own[iy, ix].max()) > own_bound * fscale:
+        return True
+    return False
+
+
 def _tiny_template_curves(name: str, th: np.ndarray) -> list[Curve] | None:
     """Exact analytic curves for a fitted tiny template (world native px)."""
     if name == "circle":
@@ -3497,7 +3608,12 @@ def _finish_loop(
     if profile not in _PAPER_FIT_PROFILES:
         valid = ", ".join(_PAPER_FIT_PROFILES)
         raise ValueError(f"unknown paper fit profile {profile!r}; expected one of: {valid}")
-    tolerance = max(2.5, 2.0 * px + 1.0)
+    # Scale-aware: 2.5px of licence on an 8px letter is a whole stem width —
+    # neighbouring glyphs 2px apart BLEED into one blob (114_bank: components
+    # 1/6).  Small loops get a proportional budget; large shapes keep the
+    # classic native-staircase tolerance.
+    loop_extent = float(max(np.ptp(loop[:, 0]), np.ptp(loop[:, 1]))) if len(loop) else 0.0
+    tolerance = min(max(2.5, 2.0 * px + 1.0), max(0.8, 0.12 * loop_extent))
     area = abs(float(np.sum(loop[:, 0] * np.roll(loop[:, 1], -1) - np.roll(loop[:, 0], -1) * loop[:, 1]))) / 2.0
     perimeter_len = float(np.sum(np.linalg.norm(np.roll(loop, -1, axis=0) - loop, axis=1)))
     thickness = 2.0 * area / max(perimeter_len, 1e-9)
@@ -3509,6 +3625,20 @@ def _finish_loop(
         deviation = _loop_fit_deviation(loop, candidate)
         if deviation > tolerance:
             return False
+        foreign = _FOREIGN_INK[0] if _VORONOI_LAWS else None
+        if foreign is not None and foreign[2] >= 2:
+            # Voronoi rule: neighbours 1-2px apart both fatten into the gap and
+            # MEET (114_bank letters), though neither touches the other's ink.
+            # A drawn point may never be closer to a neighbour's ink than to
+            # its own — the gap midline is the property line.
+            dt_own, dt_others, fscale = foreign
+            drawn = np.vstack([eval_curve(c, 12) for c in candidate])
+            ix = np.clip((drawn[:, 0] * fscale).astype(int), 0, dt_own.shape[1] - 1)
+            iy = np.clip((drawn[:, 1] * fscale).astype(int), 0, dt_own.shape[0] - 1)
+            depth = dt_own[iy, ix] - dt_others[iy, ix]   # >0: closer to neighbour
+            in_gap = (dt_own[iy, ix] + dt_others[iy, ix]) >= 0.75 * fscale
+            if bool(in_gap.any()) and float(depth[in_gap].max()) > 0.35 * fscale:
+                return False                 # trespassing across a REAL gap only
         # IoU is only informative for THICK shapes: a 4px-wide letter stem at a
         # good 0.5px fit already reads ~0.75 IoU (the boundary band dominates its
         # area), so gating thin loops on IoU sent every small letter into the
@@ -3618,7 +3748,7 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
         if na > 1e-9 and nb > 1e-9:
             turn = math.degrees(math.acos(max(-1.0, min(1.0, float((va / na) @ (vb / nb))))))
             if turn >= 45.0:
-                price = min(price, 1.2)
+                price = min(price, _JOINT_CAP_PRICE)
         prices[u] = min(prices.get(u, float("inf")), price)
     chain = fit_segment_midpoints(ring, alpha, px, snap_ends=False,
                                   corner_prices=prices or None)
@@ -3695,7 +3825,7 @@ def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.n
         # under-sampled counters such as IKEA's A remain exact pixel chains.
         closed = np.vstack((loop, loop[:1]))
         ellipse = _ellipse_candidate(closed)
-        if ellipse is not None and ellipse[0] <= 0.22:
+        if ellipse is not None and ellipse[0] <= 0.22 and not _foreign_trespass(ellipse[2], own_bound=0.45):
             return FittedLoop(loop, ellipse[2], "paper-tiny-ellipse")
         return FittedLoop(loop, _tiny_pixel_curves(loop), "paper-tiny")
     if _JOINT_CORNER_DP:
@@ -4962,6 +5092,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
     analysis_scale = 1
     extractor_used = extractor
     _EVIDENCE_FIELD[0] = None      # never inherit a stale field from a prior call
+    _FOREIGN_INK[0] = None
     perceptual = smoothing in {"perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}
     if perceptual:
         # paper-native = the CANONICAL Hoshyari reproduction: hard nearest-anchor
@@ -5145,6 +5276,17 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             # loop itself (the classifier's training scale) but FIT the full-resolution
             # loop.  Subsampling the loop — never the mask — keeps every fine feature
             # (teeth, leg tips, the opening of a C) instead of filling it.
+            if len(masks) > 1:
+                foreign = np.zeros_like(mask, bool)
+                for other_index, other in enumerate(masks):
+                    if other_index != mask_index:
+                        foreign |= other.astype(bool)
+                if foreign.any():
+                    dt_own = cv2.distanceTransform((~mask.astype(bool)).astype(np.uint8), cv2.DIST_L2, 3)
+                    dt_others = cv2.distanceTransform((~foreign).astype(np.uint8), cv2.DIST_L2, 3)
+                    _FOREIGN_INK[0] = (dt_own, dt_others, analysis_scale)
+                else:
+                    _FOREIGN_INK[0] = None
             raw_loops = [raw for raw in mask_loops(mask) if perimeter(raw) >= 4 * analysis_scale]
             # Paper Sec 5.1: alpha = 32/rs where rs is the SHAPE's raster resolution
             # (in the paper the image IS the shape).  Per-loop extent — not the canvas
@@ -5176,6 +5318,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                     fit_input = taubin_smooth_ring(resample_ring(full, spacing), passes=2)[:-1]
                     px_in = 0.6
                 loops.append(fit_loop_paper(fit_input, fit_alpha, corner_positions=corners, px=px_in))
+            _FOREIGN_INK[0] = None
         else:
             raw_loops = [raw for raw in mask_loops(mask) if perimeter(raw) >= 4 * analysis_scale]
             prefer_ellipse = len(raw_loops) == 2
