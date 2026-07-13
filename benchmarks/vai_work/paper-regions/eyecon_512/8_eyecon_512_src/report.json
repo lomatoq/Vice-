@@ -1,0 +1,29 @@
+{
+  "input": "8_eyecon_512_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 6,
+  "closed_contours": 6,
+  "rendered_primitive_count": 80,
+  "actual": {
+    "L": 15,
+    "Q": 0,
+    "C": 65
+  },
+  "templates": {
+    "paper-joint": 6,
+    "stroke": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  }
+}

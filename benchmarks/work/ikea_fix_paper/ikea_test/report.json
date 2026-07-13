@@ -1,0 +1,31 @@
+{
+  "input": "ikea_test.jpg",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari",
+  "analysis_scale": 1,
+  "smoothing": "paper",
+  "regions": 7,
+  "closed_contours": 12,
+  "rendered_primitive_count": 387,
+  "actual": {
+    "L": 387,
+    "Q": 0,
+    "C": 0
+  },
+  "templates": {
+    "occlusion-rect": 1,
+    "paper-joint-fallback": 8,
+    "paper-tiny": 2,
+    "tiny-rect": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  }
+}

@@ -8,12 +8,21 @@
   "closed_contours": 0,
   "rendered_primitive_count": 8,
   "actual": {
-    "L": 4,
+    "L": 3,
     "Q": 0,
-    "C": 4
+    "C": 5
   },
   "templates": {
     "stroke": 1
   },
-  "threshold": 0.0
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  }
 }

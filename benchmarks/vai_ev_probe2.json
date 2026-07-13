@@ -1,0 +1,194 @@
+{
+ "mode": "paper-regions",
+ "rows": [
+  {
+   "stem": "betsoft_512",
+   "fallback_loops": 0,
+   "prims": 182,
+   "secs": 167.5,
+   "ours": {
+    "wobble": 0.8798,
+    "g2_steps": 0.253,
+    "kinks_per_100px": 0.846,
+    "staircase_runs": 0,
+    "micro_segs": 9,
+    "total_len": 4489.1,
+    "segments": 182,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.32,
+    "rmse": 4.6,
+    "ink_iou": 0.9867,
+    "ssim": 0.9936,
+    "seam_px": 0.0,
+    "mirror_iou": 0.8057
+   },
+   "vai": {
+    "wobble": 0.0002,
+    "g2_steps": 1.5407,
+    "kinks_per_100px": 0.147,
+    "staircase_runs": 0,
+    "micro_segs": 54,
+    "total_len": 4086.3,
+    "segments": 209,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.1,
+    "rmse": 2.02,
+    "ink_iou": 0.9966,
+    "ssim": 0.9988,
+    "seam_px": 0.0,
+    "mirror_iou": 0.8066
+   },
+   "src_mirror_iou": 0.8054
+  },
+  {
+   "stem": "icon_group_4_41",
+   "error": "ValueError: operands could not be broadcast together with shapes (12,) (13,) "
+  },
+  {
+   "stem": "icon_group_2_1",
+   "fallback_loops": 1,
+   "prims": 753,
+   "secs": 139.6,
+   "ours": {
+    "wobble": 0.0111,
+    "g2_steps": 0.098,
+    "kinks_per_100px": 1.16,
+    "staircase_runs": 0,
+    "micro_segs": 2,
+    "total_len": 17494.4,
+    "segments": 755,
+    "roundness": 0.00494,
+    "circles": 5,
+    "mae": 5.92,
+    "rmse": 18.83,
+    "ink_iou": 0.9545,
+    "ssim": 0.9296,
+    "seam_px": 0.0,
+    "mirror_iou": 0.8011
+   },
+   "vai": {
+    "wobble": 0.0401,
+    "g2_steps": 0.9485,
+    "kinks_per_100px": 0.355,
+    "staircase_runs": 0,
+    "micro_segs": 532,
+    "total_len": 33235.0,
+    "segments": 2026,
+    "roundness": 0.00505,
+    "circles": 9,
+    "mae": 4.28,
+    "rmse": 10.99,
+    "ink_iou": 0.9641,
+    "ssim": 0.9604,
+    "seam_px": 0.0,
+    "mirror_iou": 0.7992
+   },
+   "src_mirror_iou": 0.8075
+  },
+  {
+   "stem": "icon_group_4_78",
+   "error": "ValueError: operands could not be broadcast together with shapes (12,) (13,) "
+  }
+ ],
+ "aggregate": {
+  "n": 2,
+  "wins": {
+   "staircase_runs": "0+2t/2",
+   "seam_px": "0+2t/2",
+   "wobble": "1+0t/2",
+   "g2_steps": "2+0t/2",
+   "kinks_per_100px": "0+0t/2",
+   "micro_segs": "2+0t/2",
+   "roundness": "1+0t/1",
+   "ink_iou": "0+0t/2",
+   "ssim": "0+0t/2",
+   "mae": "0+0t/2"
+  },
+  "means": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.4455,
+    "vai": 0.0201
+   },
+   "g2_steps": {
+    "ours": 0.1755,
+    "vai": 1.2446
+   },
+   "kinks_per_100px": {
+    "ours": 1.003,
+    "vai": 0.251
+   },
+   "micro_segs": {
+    "ours": 5.5,
+    "vai": 293.0
+   },
+   "roundness": {
+    "ours": 0.0049,
+    "vai": 0.005
+   },
+   "ink_iou": {
+    "ours": 0.9706,
+    "vai": 0.9804
+   },
+   "ssim": {
+    "ours": 0.9616,
+    "vai": 0.9796
+   },
+   "mae": {
+    "ours": 3.12,
+    "vai": 2.19
+   }
+  },
+  "medians": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.4455,
+    "vai": 0.0201
+   },
+   "g2_steps": {
+    "ours": 0.1755,
+    "vai": 1.2446
+   },
+   "kinks_per_100px": {
+    "ours": 1.003,
+    "vai": 0.251
+   },
+   "micro_segs": {
+    "ours": 5.5,
+    "vai": 293.0
+   },
+   "roundness": {
+    "ours": 0.0049,
+    "vai": 0.005
+   },
+   "ink_iou": {
+    "ours": 0.9706,
+    "vai": 0.9804
+   },
+   "ssim": {
+    "ours": 0.9616,
+    "vai": 0.9796
+   },
+   "mae": {
+    "ours": 3.12,
+    "vai": 2.19
+   }
+  }
+ }
+}

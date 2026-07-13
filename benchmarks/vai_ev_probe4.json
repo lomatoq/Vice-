@@ -1,0 +1,227 @@
+{
+ "mode": "paper-regions",
+ "rows": [
+  {
+   "stem": "betsoft_512",
+   "fallback_loops": 0,
+   "prims": 162,
+   "secs": 174.2,
+   "ours": {
+    "wobble": 0.0126,
+    "g2_steps": 0.2315,
+    "kinks_per_100px": 0.668,
+    "staircase_runs": 0,
+    "micro_segs": 3,
+    "total_len": 4492.6,
+    "segments": 162,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.47,
+    "rmse": 5.53,
+    "ink_iou": 0.9872,
+    "ssim": 0.9904,
+    "seam_px": 0.0,
+    "mirror_iou": 0.8048
+   },
+   "vai": {
+    "wobble": 0.0002,
+    "g2_steps": 1.5407,
+    "kinks_per_100px": 0.147,
+    "staircase_runs": 0,
+    "micro_segs": 54,
+    "total_len": 4086.3,
+    "segments": 209,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.1,
+    "rmse": 2.02,
+    "ink_iou": 0.9966,
+    "ssim": 0.9988,
+    "seam_px": 0.0,
+    "mirror_iou": 0.8066
+   },
+   "src_mirror_iou": 0.8054
+  },
+  {
+   "stem": "icon_group_4_78",
+   "fallback_loops": 0,
+   "prims": 148,
+   "secs": 6.5,
+   "ours": {
+    "wobble": 0.2526,
+    "g2_steps": 0.5043,
+    "kinks_per_100px": 5.823,
+    "staircase_runs": 0,
+    "micro_segs": 49,
+    "total_len": 463.7,
+    "segments": 157,
+    "roundness": null,
+    "circles": 0,
+    "mae": 4.52,
+    "rmse": 14.58,
+    "ink_iou": 0.9378,
+    "ssim": 0.969,
+    "seam_px": 0.0,
+    "mirror_iou": 0.662
+   },
+   "vai": {
+    "wobble": 0.8637,
+    "g2_steps": 1.9254,
+    "kinks_per_100px": 1.865,
+    "staircase_runs": 0,
+    "micro_segs": 62,
+    "total_len": 482.7,
+    "segments": 163,
+    "roundness": null,
+    "circles": 0,
+    "mae": 3.78,
+    "rmse": 10.89,
+    "ink_iou": 0.9739,
+    "ssim": 0.988,
+    "seam_px": 0.0,
+    "mirror_iou": 0.6362
+   },
+   "src_mirror_iou": 0.638
+  },
+  {
+   "stem": "icon_group_2_1",
+   "fallback_loops": 1,
+   "prims": 753,
+   "secs": 145.0,
+   "ours": {
+    "wobble": 0.0111,
+    "g2_steps": 0.098,
+    "kinks_per_100px": 1.16,
+    "staircase_runs": 0,
+    "micro_segs": 2,
+    "total_len": 17494.4,
+    "segments": 755,
+    "roundness": 0.00494,
+    "circles": 5,
+    "mae": 5.92,
+    "rmse": 18.83,
+    "ink_iou": 0.9545,
+    "ssim": 0.9296,
+    "seam_px": 0.0,
+    "mirror_iou": 0.8011
+   },
+   "vai": {
+    "wobble": 0.0401,
+    "g2_steps": 0.9485,
+    "kinks_per_100px": 0.355,
+    "staircase_runs": 0,
+    "micro_segs": 532,
+    "total_len": 33235.0,
+    "segments": 2026,
+    "roundness": 0.00505,
+    "circles": 9,
+    "mae": 4.28,
+    "rmse": 10.99,
+    "ink_iou": 0.9641,
+    "ssim": 0.9604,
+    "seam_px": 0.0,
+    "mirror_iou": 0.7992
+   },
+   "src_mirror_iou": 0.8075
+  }
+ ],
+ "aggregate": {
+  "n": 3,
+  "wins": {
+   "staircase_runs": "0+3t/3",
+   "seam_px": "0+3t/3",
+   "wobble": "2+0t/3",
+   "g2_steps": "3+0t/3",
+   "kinks_per_100px": "0+0t/3",
+   "micro_segs": "3+0t/3",
+   "roundness": "1+0t/1",
+   "ink_iou": "0+0t/3",
+   "ssim": "0+0t/3",
+   "mae": "0+0t/3"
+  },
+  "means": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.0921,
+    "vai": 0.3013
+   },
+   "g2_steps": {
+    "ours": 0.2779,
+    "vai": 1.4715
+   },
+   "kinks_per_100px": {
+    "ours": 2.5503,
+    "vai": 0.789
+   },
+   "micro_segs": {
+    "ours": 18.0,
+    "vai": 216.0
+   },
+   "roundness": {
+    "ours": 0.0049,
+    "vai": 0.005
+   },
+   "ink_iou": {
+    "ours": 0.9598,
+    "vai": 0.9782
+   },
+   "ssim": {
+    "ours": 0.963,
+    "vai": 0.9824
+   },
+   "mae": {
+    "ours": 3.6367,
+    "vai": 2.72
+   }
+  },
+  "medians": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.0126,
+    "vai": 0.0401
+   },
+   "g2_steps": {
+    "ours": 0.2315,
+    "vai": 1.5407
+   },
+   "kinks_per_100px": {
+    "ours": 1.16,
+    "vai": 0.355
+   },
+   "micro_segs": {
+    "ours": 3.0,
+    "vai": 62.0
+   },
+   "roundness": {
+    "ours": 0.0049,
+    "vai": 0.005
+   },
+   "ink_iou": {
+    "ours": 0.9545,
+    "vai": 0.9739
+   },
+   "ssim": {
+    "ours": 0.969,
+    "vai": 0.988
+   },
+   "mae": {
+    "ours": 4.52,
+    "vai": 3.78
+   }
+  }
+ }
+}

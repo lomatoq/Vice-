@@ -1,0 +1,29 @@
+{
+  "input": "123_plankgaming_512_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 17,
+  "closed_contours": 18,
+  "rendered_primitive_count": 192,
+  "actual": {
+    "L": 116,
+    "Q": 0,
+    "C": 76
+  },
+  "templates": {
+    "paper": 17,
+    "paper-tiny": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  }
+}

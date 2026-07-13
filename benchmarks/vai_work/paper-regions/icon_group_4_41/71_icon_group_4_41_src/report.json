@@ -1,0 +1,33 @@
+{
+  "input": "71_icon_group_4_41_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 58,
+  "closed_contours": 81,
+  "rendered_primitive_count": 780,
+  "actual": {
+    "L": 670,
+    "Q": 36,
+    "C": 74
+  },
+  "templates": {
+    "occlusion-rect": 2,
+    "paper-joint": 8,
+    "paper-joint-g1-fallback": 1,
+    "paper-tiny": 60,
+    "paper-tiny-ellipse": 1,
+    "font-snap": 9
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  }
+}

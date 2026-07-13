@@ -6,17 +6,27 @@
   "smoothing": "paper",
   "regions": 7,
   "closed_contours": 12,
-  "rendered_primitive_count": 102,
+  "rendered_primitive_count": 95,
   "actual": {
-    "L": 64,
+    "L": 59,
     "Q": 0,
-    "C": 38
+    "C": 36
   },
   "templates": {
     "occlusion-rect": 1,
-    "paper-smooth": 1,
-    "paper": 8,
-    "paper-tiny": 2
+    "paper-joint": 7,
+    "paper-tiny": 2,
+    "paper-joint-g1-fallback": 1,
+    "tiny-rect": 1
   },
-  "threshold": 0.0
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  }
 }
