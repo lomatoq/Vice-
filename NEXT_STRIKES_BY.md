@@ -1,4 +1,48 @@
-# Наступныя ўдары (жывы план; стан 2026-07-13)
+# Наступныя ўдары (жывы план; стан 2026-07-13, пасля знешняга аўдыту)
+
+## ⚖️ Знешні аўдыт (EXTERNAL_AUDIT_20260713.md) — прынятыя высновы
+
+Аўдытар пацвердзіў архітэктуру (geometry-first + bounded perception loop =
+правільны цэнтр) і назваў 5 слабых зон. Наша рэакцыя па кожнай:
+
+1. **Доказнасць назірання (ГАЛОЎНЫ ROI)**: evidence field перабудаваць у
+   **probabilistic forward-model selector** (mixture: binary edge / soft alpha
+   / gradient edge / subpixel text edge, выбар праз model evidence) — гэта і
+   ёсць правільная рэанімацыя нашага _EVIDENCE_ENABLED=False. ПРЫНЯТА як
+   стратэгія рэанімацыі (замест «яшчэ адзін guard»).
+2. **Тапалогія — first-class**: Euler/holes/components/self-intersections як
+   ЖОРСТКІЯ члены MDL-суда, veto перад Stage 3. ПРЫНЯТА (наш evenodd-закон і
+   topo-гейты бенчмарка — зачаткі; трэба ў сам solver).
+3. **Primitive-critic для DP**: навучаны prior сямействаў супраць line-chain
+   паталогіі — ЗЛІВАЕЦЦА з нашым hunt #2 (кароткаспанавыя кінкі): аб'ектыў
+   ужо ёсць (eval_joint_corners), дадаць confusion-matrix прымітываў.
+4. **Тэкст**: наша двайная сцяна ўжо адпавядае «never-snap under uncertainty»;
+   дадаць яўны brand-modified detector (signed-residual coherence на гліфах).
+5. **Benchmark overfitting — САМАЕ НЕДААЦЭНЕНАЕ**: прызнаём (мы двойчы
+   рэкалібравалі гейты падчас працы). ЛЕК = «хваля валідацыі» НИЖЭЙ.
+
+**Пушбэк (сумленны)**: (а) IoU-адставанне — свядомы кошт ідэалізацыі, у нас
+MAE/IoU дэклараваны як дыягностыка, не acceptance (аўдытар гэта бачыў, але
+варта паўтараць); (б) video/temporal — па-за бягучым скоупам карыстальніка;
+(в) частка «Unspecified» (лоссы corner-CNN, датасэты, спліты) СПЕЦЫФІКАВАНА
+ў рэпа (corner_cnn.py, CORNER_DATASET_V2-4, build_*), аўдытар бачыў толькі
+2 MD-файлы; (г) kink-нататкі аўдыт чытаў ДА перамогі hunt #1 (59871c6).
+
+## 🌊 ХВАЛЯ ВАЛІДАЦЫІ (цяпер ПЕРШАЯ, перад новымі модулямі)
+
+1. **stress_bench.py**: рэндэрым уласныя/публічныя SVG-GT праз кантраляваную
+   сетку дэградацый (linear/sRGB гама, 4-8 kernel'аў, blur/sharpen, JPEG
+   Q30-90, chroma 4:2:0/4:4:4, alpha па выпадковых фонах) → вектарызуем →
+   мераем ІНВЕРСІЮ супраць аналітычнай GT: boundary F-score, 95% Hausdorff,
+   signed normal error, Euler delta, corner event-F1. Справаздача па
+   **p90/p95 хвастах**, не сярэдніх. (Інфраструктура ЁСЦЬ: svg_corner_gt
+   растэрызатар + resvg + генератары.)
+2. **Blind hold-out па дамену/рэндэрару**: замарозіць паролі/канстанты,
+   тэст на нябачаных пакетах (iconify-катэгорыі, якіх няма ў 50-frozen).
+3. **Публічныя бэйзлайны**: LIVE + StarVector/OmniSVG + LayerPeeler/VFIG
+   як baseline-пакет; SVG-Bench/VFIG-BENCH пратаколы.
+4. Толькі ПАСЛЯ гэтага — новыя модулі (probabilistic evidence, topology-MDL,
+   primitive-critic).
 
 ## Раўнд 3 (bank-паляванне, 6f3bf25) — вынікі
 - **Закрыта дзірка ў плоце**: tiny-галіна вярталася МІМА _finish_loop; цяпер
