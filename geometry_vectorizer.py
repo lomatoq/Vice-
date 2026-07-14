@@ -4998,7 +4998,8 @@ def _region_color(analysis_pixels: np.ndarray, quantized: np.ndarray,
     return tuple(int(v) for v in np.median(analysis_pixels[interior], axis=0))
 
 
-def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: bool = False, deblur: bool = True) -> tuple[np.ndarray, list[np.ndarray], np.ndarray, tuple[int, int, int], float, int, np.ndarray]:
+def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: bool = False, deblur: bool = True,
+                             palette_thick_veto: bool = True) -> tuple[np.ndarray, list[np.ndarray], np.ndarray, tuple[int, int, int], float, int, np.ndarray]:
     """Segment continuous MiniNet output directly in perceptual Lab space.
 
     The geometry is never generated from a palette-snapped RGB image.  Palette
@@ -5022,7 +5023,7 @@ def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: 
         analysis = flat
         scale = 1
     pixels = np.asarray(analysis.convert("RGB"), dtype=np.uint8)
-    anchors = compact_palette(flat).clip(0, 255).astype(np.uint8)
+    anchors = compact_palette(flat, thick_core_veto=palette_thick_veto).clip(0, 255).astype(np.uint8)
     if not len(anchors):
         anchors = np.array([[255, 255, 255], [0, 0, 0]], dtype=np.uint8)
 
@@ -5282,7 +5283,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         force_native = smoothing == "paper-native"
         rgb, masks, boundary, bg, threshold, analysis_scale, analysis_pixels = extract_perceptual_masks(
             image, use_icm=use_icm, merge=do_merge,
-            deblur=not (force_native or (native_raster and jpeg_input)))
+            deblur=not (force_native or (native_raster and jpeg_input)),
+            palette_thick_veto=measured_noise < 0.27)
         # Tube slack from measured q30-class ringing — DEBLUR PATH ONLY.  The
         # native path already absorbs ringing by design (fit_px stayed 1.0 for
         # JPEG precisely because LSQ + chunk-merge + the relative circle

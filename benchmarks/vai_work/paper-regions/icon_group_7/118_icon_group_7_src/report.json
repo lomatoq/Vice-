@@ -1,19 +1,20 @@
 {
   "input": "118_icon_group_7_src.png",
   "pipeline": "geometry-first",
-  "extractor_used": "paper-hoshyari-regions",
+  "extractor_used": "paper-hoshyari-regions-isolated",
   "analysis_scale": 4,
   "smoothing": "paper-regions",
-  "regions": 16,
-  "closed_contours": 22,
-  "rendered_primitive_count": 275,
+  "regions": 8,
+  "closed_contours": 11,
+  "rendered_primitive_count": 81,
   "actual": {
-    "L": 142,
+    "L": 32,
     "Q": 0,
-    "C": 133
+    "C": 49
   },
   "templates": {
-    "paper-regions": 22
+    "paper-joint": 11,
+    "stroke": 1
   },
   "threshold": 0.0,
   "corner_detector": {
@@ -26,11 +27,11 @@
     "small_density_min": 8.0
   },
   "route_arbiter": {
-    "mae_deblur": 7.98,
-    "mae_native": 8.47,
-    "kink_deblur": 5.39,
-    "kink_native": 4.63,
+    "mae_deblur": 7.9,
+    "mae_native": 8.36,
+    "kink_deblur": 3.72,
+    "kink_native": 5.25,
     "winner": "deblur"
   },
-  "kink_energy": 5.391
+  "kink_energy": 3.717
 }

@@ -249,7 +249,8 @@ def train(
 _MODEL_CACHE = {}
 
 
-def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
+def compact_palette(image: Image.Image, colors: int = 16,
+                    thick_core_veto: bool = True) -> np.ndarray:
     """Infer flat design colours without deleting small, real colour regions.
 
     Quantization alone confuses a narrow anti-aliasing band with a small logo
@@ -347,7 +348,13 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
             # distinguishable (dE >= the RAG's own 3.8) is not an AA cleanup,
             # it is deleting artwork.  Dark neutrals are exempt: JPEG chroma
             # noise in the dark range routinely exceeds dE 3.8 on one ink.
-            if (same_colour or same_neutral) and not same_dark_neutral:
+            # thick_core_veto=False on q30-class inputs (post-blind lesson,
+            # items 031/082: codec halos there are THICK — a 2-3px ring around
+            # every shape — so 'owns a thick core' stops meaning 'deliberate
+            # artwork' and the veto shipped split blades and dark rims,
+            # kinks 2.6->8.7 / 0.8->6.6.  Clean and mild inputs (nested
+            # pastels, q45) keep the veto and their zero-output cure.
+            if thick_core_veto and (same_colour or same_neutral) and not same_dark_neutral:
                 if (perceptual_distance(entry["color"], family["color"]) >= 3.8
                         and entry.setdefault("thickness", entry_thickness(entry)) >= 1.9
                         and family.setdefault("thickness", entry_thickness(family)) >= 1.9):
@@ -452,7 +459,7 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
                 # Concentric layouts (a disc inside its ring) are exempt:
                 # their contact is legitimately closed, not ragged.
                 tortuous_same_ink = False
-                if (touching >= 24 and delta_e < 14.0
+                if (touching >= 24 and delta_e < 24.0
                         and not globally_indistinguishable
                         and min(left_share, right_share) >= 0.005):
                     left_bool = left_mask.astype(bool)
@@ -460,7 +467,17 @@ def compact_palette(image: Image.Image, colors: int = 16) -> np.ndarray:
                     r_in_l = float(np.count_nonzero(right_bool & _hole_interior(left_mask))) / max(1.0, float(right_bool.sum()))
                     l_in_r = float(np.count_nonzero(left_bool & _hole_interior(right_mask))) / max(1.0, float(left_bool.sum()))
                     if max(r_in_l, l_in_r) < 0.85:
-                        tortuous_same_ink = contact_tortuosity(left_mask, right_mask) >= 2.0
+                        tort = contact_tortuosity(left_mask, right_mask)
+                        # Post-blind measurement lesson (q30 logos 031/082/041:
+                        # kinks 2.6->8.7, 0.8->6.6, 3.3->7.5): the thick-core
+                        # veto stopped same_neutral from swallowing dE 14-24
+                        # shade pairs, and their ragged codec boundary then ate
+                        # the fitter.  A REAL two-ink boundary never reaches
+                        # tortuosity 3.0 (measured: design contacts 0.9-1.6) —
+                        # only block ringing does — so extreme raggedness may
+                        # merge up to dE 24 while moderate stays at dE 14.
+                        tortuous_same_ink = (tort >= 2.0 if delta_e < 14.0
+                                             else tort >= 3.0)
                 if (globally_indistinguishable or edge_transition or weak_small_variant
                         or tortuous_same_ink) and delta_e < best_score:
                     best_pair = left, right

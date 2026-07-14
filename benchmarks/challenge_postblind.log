@@ -111,3 +111,19 @@ vai items split: 115
 [110] item109 diagrams     iou 0.9074|0.5485 kink 0.497|0.868
 [111] item110 diagrams     iou 0.7534|0.5218 kink 1.128|0.532
 [112] item111 diagrams     iou 0.7314|0.3851 kink 0.817|0.096
+[113] item112 diagrams     iou 0.9107|0.3756 kink 2.838|0.426
+[114] item113 diagrams     iou 0.8928|0.4258 kink 2.559|0.112
+[115] item114 diagrams     iou 0.9099|0.3456 kink 1.311|0.018
+
+=== OVERALL (wins; med ours|vai; p95 ours|vai) ===
+  staircase_runs     0+114t/115  med 0.0 | 0.0  p95 0.0 | 0.0
+  seam_px             3+91t/115  med 0.0 | 0.0  p95 8.632 | 0.0
+  wobble             51+11t/115  med 0.1001 | 0.0355  p95 18.0071 | 94.6684
+  g2_steps           104+1t/115  med 0.1478 | 1.1526  p95 0.5152 | 2.9459
+  kinks_per_100px     14+9t/115  med 2.728 | 0.829  p95 8.1708 | 3.8487
+  micro_segs         79+12t/115  med 5.0 | 33.0  p95 64.3 | 219.8
+  roundness            17+0t/58  med 0.0114 | 0.0017  p95 0.0258 | 0.0273
+  ink_iou             68+1t/115  med 0.9357 | 0.9143  p95 0.9936 | 0.9867
+  ssim                77+0t/115  med 0.9503 | 0.9101  p95 0.9965 | 0.9891
+  mae                101+0t/115  med 3.9 | 9.76  p95 12.544 | 41.17
+report -> C:\Users\nirrt\Toolset\v-ice pictures\challenge_pack\eval\report.json
