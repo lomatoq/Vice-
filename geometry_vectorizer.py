@@ -4256,6 +4256,14 @@ def _merge_gradient_stacks(masks: list[np.ndarray], reference_rgb: np.ndarray,
         _, _, vt = np.linalg.svd(cl - cl.mean(axis=0), full_matrices=False)
         order = np.argsort(cl @ vt[0])
         chain = [comp[o] for o in order]
+        # The all()-gate stays deliberately strict.  A subchain-split variant
+        # (maximal valid runs instead of whole-component pass/fail) was probed
+        # 2026-07-14 and REVERTED: it bought only -16% kinks on ONE real ramp
+        # (item068) while gluing three pastel diagram panels into a fake
+        # gradient (nested_containers iou 0.797 -> 0.761) — exactly the class
+        # this gate protects.  Real ramps drawn THROUGH logo shapes need a
+        # form-aware gradient detector (field fit over the union, not band
+        # chains) — queued in NEXT_STRIKES.
         if all(step_ok(chain[i], chain[i + 1]) for i in range(len(chain) - 1)) and \
            all(steps_aligned(chain[i], chain[i + 1], chain[i + 2]) for i in range(len(chain) - 2)):
             chains.append(chain)
@@ -5344,21 +5352,26 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         minimum_region = max(6 * analysis_scale * analysis_scale, int(image.width * image.height * analysis_scale**2 * 0.0005))
     masks = [mask for mask in masks if int(mask.sum()) >= minimum_region]
     masks = sorted(masks, key=lambda mask: int(mask.sum()), reverse=True)
+    gradient_fills: dict[int, tuple] = {}
+    if smoothing in {"paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"} and masks:
+        # audit P2: quantized-gradient stacks (banded shading) merge into ONE
+        # region with a linear/radial gradient fill BEFORE any boundary is fit —
+        # this collapses the mask explosion at its source.  The acceptance test
+        # needs the ORIGINAL pixels (the quantized render is flat by construction).
+        # Moved BEFORE the region-graph decision (isolated-map lesson, items
+        # 068/059: gradient renders arrive as 99-135 tightly-touching bands,
+        # _needs_shared_region_graph then fires and this merge never ran — the
+        # whole ramp was fitted band-by-band, kinks 8.8-8.9/100px).  After the
+        # merge the graph usually is not needed at all; if it still is, the
+        # graph branch now carries the fills too.
+        reference = np.asarray(image.convert("RGB").resize(
+            (masks[0].shape[1], masks[0].shape[0]), Image.Resampling.BILINEAR), np.uint8)
+        masks, gradient_fills = _merge_gradient_stacks(masks, reference, analysis_scale)
     region_graph_active = smoothing == "paper-regions" and _needs_shared_region_graph(masks, analysis_scale)
     paper_loop_mode = smoothing in {"paper", "paper-native", "paper-perc", "paper-perres"} or (
         smoothing == "paper-regions" and not region_graph_active)
     if smoothing == "paper-regions" and not region_graph_active:
         extractor_used = "paper-hoshyari-regions-isolated"
-    gradient_fills: dict[int, tuple] = {}
-    if paper_loop_mode:
-        # audit P2: quantized-gradient stacks (banded shading) merge into ONE
-        # region with a linear/radial gradient fill BEFORE any boundary is fit —
-        # this collapses the mask explosion at its source.  The acceptance test
-        # needs the ORIGINAL pixels (the quantized render is flat by construction).
-        if masks:
-            reference = np.asarray(image.convert("RGB").resize(
-                (masks[0].shape[1], masks[0].shape[0]), Image.Resampling.BILINEAR), np.uint8)
-            masks, gradient_fills = _merge_gradient_stacks(masks, reference, analysis_scale)
     # Perceptual masks already preserve shared boundaries and holes.  Replacing
     # them with a guessed hidden rectangle destroys white-on-colour artwork
     # (Peugeot/Pepsi/Colgate) and can merge separate letters (Mobil).
@@ -5395,7 +5408,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             if not loops:
                 continue
             color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
-            regions.append(Region(color, int(mask.sum()), loops, bleed=bleed[mask_index]))
+            regions.append(Region(color, int(mask.sum()), loops,
+                                  fill=gradient_fills.get(mask_index), bleed=bleed[mask_index]))
         masks = []                                   # handled; skip the per-mask loop below
 
     mask_bleed = dict(enumerate(_bleed_flags(masks, analysis_scale))) if masks else {}
