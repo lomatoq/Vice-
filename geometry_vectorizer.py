@@ -3070,40 +3070,62 @@ def _flattest_index(loop: np.ndarray) -> int:
 
 
 def _relative_circle_court(loop: np.ndarray, curves: list[Curve], px: float) -> list[Curve] | None:
-    """RELATIVE circle court (roundness strike, take two).  The reverted
-    absolute-budget rescue mis-snapped a genuine drop; this court instead makes
-    the ideal circle COMPETE with the chain just fitted, on the same evidence:
-    p90 of each candidate's distance to the loop mids.  The circle wins only
-    when it explains the boundary essentially as well (+0.1px) — pure-noise
-    eccentricity loses to it, a real oval keeps a decisive residual gap and is
-    never touched."""
+    """RELATIVE small-shape court (research: unified tournament).  Ideal
+    candidates COMPETE with the chain just fitted, on the same evidence: p90
+    of each candidate's distance to the loop mids, strict +0.1px margin (an
+    MDL head start was probed 2026-07-13 and REVERTED — it bought non-circles
+    on text dots; description cost returns only with topology terms).
+
+    Candidates: the ideal CIRCLE (any size, roundness strike) and, for small
+    loops (extent <= 24px — alarm-bell 'hammers', q40 UI paddles), the
+    min-area ROTATED RECT: a 15x8px rotated rectangle mangled by codec noise
+    is otherwise fitted as a ragged 6-piece chain (isolated map item057,
+    kinks 7.39 with VAI at 0.74)."""
     if not curves or len(curves) < 2:
         return None
-    shape = _whole_loop_circle(loop, px, slack=0.3, residual_gate=False)
-    if shape is None:
-        return None
-    center, radius = shape
     mid = 0.5 * (loop[:-1] + loop[1:])
-    p90_circle = float(np.percentile(
-        np.abs(np.linalg.norm(mid - center, axis=1) - radius), 90))
     drawn = np.vstack([eval_curve(c, 12) for c in curves])
     dmat = np.linalg.norm(mid[:, None, :] - drawn[None, :, :], axis=2)
     p90_chain = float(np.percentile(np.min(dmat, axis=1), 90))
-    # Margin stays STRICT (+0.1px).  An MDL head start (0.06px/primitive) was
-    # probed 2026-07-13 and REVERTED: it bought non-circles on text dots
-    # (item021 roundness 0.0155 -> 0.0196, iou -0.007) while still not
-    # reaching the q30-deformed discs it aimed for.  Description cost only
-    # returns inside the full small-shape tournament with topology terms
-    # (NEXT_STRIKES A.2), not as a bare residual discount.
-    if p90_circle > p90_chain + 0.1:
-        return None
-    n = len(loop)
-    cuts4 = [0, n // 4, n // 2, 3 * n // 4]
-    ideal: list[Curve] = []
-    for k in range(4):
-        seg = _arc_slice(loop, cuts4[k], cuts4[(k + 1) % 4])
-        ideal.extend(_tag_arcs(circular_beziers(seg[0], seg[-1], center, radius, seg), center, radius))
-    return _enforce_g1_chain(ideal, closed=True)
+
+    shape = _whole_loop_circle(loop, px, slack=0.3, residual_gate=False)
+    if shape is not None:
+        center, radius = shape
+        p90_circle = float(np.percentile(
+            np.abs(np.linalg.norm(mid - center, axis=1) - radius), 90))
+        if p90_circle <= p90_chain + 0.1:
+            n = len(loop)
+            cuts4 = [0, n // 4, n // 2, 3 * n // 4]
+            ideal: list[Curve] = []
+            for k in range(4):
+                seg = _arc_slice(loop, cuts4[k], cuts4[(k + 1) % 4])
+                ideal.extend(_tag_arcs(circular_beziers(seg[0], seg[-1], center, radius, seg), center, radius))
+            return _enforce_g1_chain(ideal, closed=True)
+
+    extent = float(max(np.ptp(loop[:, 0]), np.ptp(loop[:, 1])))
+    if extent <= 24.0 and len(loop) >= 10:
+        rect = cv2.minAreaRect(loop[:-1].astype(np.float32).reshape(-1, 1, 2))
+        (rcx, rcy), (rw, rh), _ang = rect
+        if min(rw, rh) >= 2.0:
+            box = cv2.boxPoints(rect).astype(float)
+            d_side = np.stack([
+                point_line_distance(mid, box[k], box[(k + 1) % 4]) for k in range(4)
+            ], axis=1)
+            p90_rect = float(np.percentile(np.min(d_side, axis=1), 90))
+            # Absurd-chain head start, rect branch only (measured on item057
+            # hammers: a 14px rotated rect fitted as a 15-piece chain at p90
+            # 0.39 while the ideal rect sits at 0.90 — the 0.5px gap IS the
+            # q40 jag amplitude).  Applies only against chains of >=10
+            # primitives on a <=24px shape (one curve per boundary pixel is
+            # description absurdity); stars/drops keep p90_rect 1.5-3px and
+            # still lose, clean rounded cards never produce such chains.
+            margin = 0.1
+            if len(curves) >= 10:
+                margin = min(0.6, 0.06 * (len(curves) - 4))
+            if p90_rect <= p90_chain + margin:
+                # emit the rect with true C0 corners (they ARE corners)
+                return [Curve(1, np.vstack((box[k], box[(k + 1) % 4]))) for k in range(4)]
+    return None
 
 
 def _fit_smooth_closed(loop: np.ndarray, alpha: float, px: float) -> list[Curve]:

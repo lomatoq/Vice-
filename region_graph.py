@@ -609,7 +609,23 @@ def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
                 else:
                     curves.extend(reversed_curve(c) for c in reversed(ecs))
             if curves:
-                loops.append(FittedLoop(poly, curves, "paper-regions"))
+                fl = FittedLoop(poly, curves, "paper-regions")
+                # Small-shape court for ISOLATED loops (single closed edge, no
+                # junctions — the interface belongs to this region and its one
+                # neighbour, so replacing our copy cannot tear a shared chain;
+                # the later-painted region covers the sub-pixel disagreement).
+                # This is where the loop-path's circle/rect tournament finally
+                # reaches graph-path content: alarm hammers (item057) and the
+                # graph-path roundness tail lived exactly here.
+                if len(cy.steps) == 1 and len(poly) >= 10 and len(curves) >= 2:
+                    extent = float(max(np.ptp(poly[:, 0]), np.ptp(poly[:, 1])))
+                    if extent <= 24.0:
+                        import geometry_vectorizer as _gv
+                        closed_lp = poly if bool(np.all(poly[0] == poly[-1])) else np.vstack((poly, poly[:1]))
+                        court = _gv._relative_circle_court(closed_lp, curves, px)
+                        if court is not None:
+                            fl = FittedLoop(poly, court, "paper-regions-court")
+                loops.append(fl)
         if loops:
             out[label] = loops
     return out, corner_dots
