@@ -4,18 +4,19 @@
   "extractor_used": "paper-hoshyari-regions-isolated",
   "analysis_scale": 4,
   "smoothing": "paper-regions",
-  "regions": 2,
-  "closed_contours": 7,
-  "rendered_primitive_count": 152,
+  "regions": 1,
+  "closed_contours": 15,
+  "rendered_primitive_count": 170,
   "actual": {
-    "L": 74,
+    "L": 100,
     "Q": 0,
-    "C": 78
+    "C": 70
   },
   "templates": {
-    "paper-joint": 5,
-    "paper-smooth-g1-fallback": 1,
-    "paper-tiny": 1
+    "paper-joint": 9,
+    "paper-circle-court": 2,
+    "paper-smooth": 1,
+    "paper-tiny": 3
   },
   "threshold": 0.0,
   "corner_detector": {
@@ -27,5 +28,5 @@
     "small_extent_max": 4.0,
     "small_density_min": 8.0
   },
-  "kink_energy": 12.35
+  "kink_energy": 12.309
 }
