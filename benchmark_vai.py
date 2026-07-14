@@ -43,6 +43,7 @@ warnings.filterwarnings("ignore")
 ROOT = Path(__file__).parent
 sys.path.insert(0, str(ROOT))
 
+import cv2
 import numpy as np
 from PIL import Image
 
@@ -296,11 +297,45 @@ def raster_meters(svg_path: Path, src: Path) -> dict:
     except Exception:
         ssim = None
 
-    return {"mae": round(mae, 2), "rmse": round(rmse, 2),
-            "ink_iou": round(iou, 4),
-            "ssim": round(ssim, 4) if ssim is not None else None,
-            "seam_px": seam_meter(svg_path, src_img, bg),
-            "mirror_iou": round(mirror_iou(ink_ren), 4)}
+    out = {"mae": round(mae, 2), "rmse": round(rmse, 2),
+           "ink_iou": round(iou, 4),
+           "ssim": round(ssim, 4) if ssim is not None else None,
+           "seam_px": seam_meter(svg_path, src_img, bg),
+           "mirror_iou": round(mirror_iou(ink_ren), 4)}
+    out.update(boundary_meters(ren, src_img))
+    return out
+
+
+def boundary_meters(ren: np.ndarray, src_img: np.ndarray,
+                    tolerance_px: float = 1.5) -> dict:
+    """BSDS-style boundary precision/recall/F + 95% Hausdorff (wave B: judge
+    GEOMETRY separately from palette choices — mae punishes a different shade
+    split even when every boundary sits in the right place, which is exactly
+    what froze the route arbiter's native wins on items 075/079).
+
+    Edges: Scharr gradient magnitude of the grayscale, thresholded at 12% of
+    each image's OWN max (a q30 source has soft edges; self-normalising keeps
+    the masks comparable).  Match: distance-transform tolerance 1.5px."""
+    def edge_mask(img: np.ndarray) -> np.ndarray:
+        gray = np.mean(img, axis=2).astype(np.float32)
+        gx = cv2.Scharr(gray, cv2.CV_32F, 1, 0)
+        gy = cv2.Scharr(gray, cv2.CV_32F, 0, 1)
+        mag = np.hypot(gx, gy)
+        peak = float(mag.max())
+        if peak < 1e-6:
+            return np.zeros(gray.shape, bool)
+        return mag >= 0.12 * peak
+    e_ren = edge_mask(ren)
+    e_src = edge_mask(src_img)
+    if not e_src.any() or not e_ren.any():
+        return {"boundary_f": None, "hausdorff95": None}
+    dt_src = cv2.distanceTransform((~e_src).astype(np.uint8), cv2.DIST_L2, 3)
+    dt_ren = cv2.distanceTransform((~e_ren).astype(np.uint8), cv2.DIST_L2, 3)
+    precision = float(np.mean(dt_src[e_ren] <= tolerance_px))
+    recall = float(np.mean(dt_ren[e_src] <= tolerance_px))
+    f = 2 * precision * recall / max(1e-9, precision + recall)
+    h95 = float(max(np.percentile(dt_src[e_ren], 95), np.percentile(dt_ren[e_src], 95)))
+    return {"boundary_f": round(f, 4), "hausdorff95": round(h95, 2)}
 
 
 def seam_meter(svg_path: Path, src_img: np.ndarray, src_bg: np.ndarray) -> float:
@@ -426,9 +461,10 @@ def measure_one(stem: str, mode: str, reuse: bool, run_tag: str | None = None) -
 
 KEY_METERS = ["staircase_runs", "seam_px", "wobble", "g2_steps",
               "kinks_per_100px", "micro_segs", "roundness", "ink_iou",
-              "ssim", "mae"]
+              "ssim", "mae", "boundary_f", "hausdorff95"]
 LOWER_BETTER = {"staircase_runs", "seam_px", "wobble", "g2_steps",
-                "kinks_per_100px", "micro_segs", "roundness", "mae"}
+                "kinks_per_100px", "micro_segs", "roundness", "mae",
+                "hausdorff95"}
 
 
 def aggregate(rows: list[dict]) -> dict:
