@@ -4196,6 +4196,64 @@ def _render_gradient_fill(fill: tuple, size: tuple[int, int], scale: int) -> Ima
     return Image.fromarray(out, "RGB")
 
 
+def _split_masks_by_width(masks: list[np.ndarray], analysis_scale: int) -> list[np.ndarray]:
+    """Line-width v3 groundwork (the two whole-region stroke attempts failed
+    because axes+polyline FUSE into one multi-width region): split a BIG
+    bimodal-width mask into its thin (<=4.5 native px) and thick parts as
+    SEPARATE same-colour regions BEFORE the graph is built — the polyline
+    between node markers becomes stroke-eligible pieces, the markers stay
+    fillable blobs.  Small regions (extent <= 40px) are exempt: glyph stems
+    must never be torn off their letters."""
+    out: list[np.ndarray] = []
+    thr = 2.25 * analysis_scale          # dt half-width for 4.5 native px
+    for m in masks:
+        mm = m.astype(np.uint8)
+        ys, xs = np.nonzero(mm)
+        if not len(ys):
+            continue
+        extent_native = max(float(xs.max() - xs.min()), float(ys.max() - ys.min())) / analysis_scale
+        if extent_native <= 40.0:
+            out.append(m)
+            continue
+        dt = cv2.distanceTransform(mm, cv2.DIST_L2, 3)
+        thin_zone = (dt > 0) & (dt <= thr)
+        thick_seed = dt > thr
+        if not thick_seed.any() or not thin_zone.any():
+            out.append(m)
+            continue
+        # thick part = pixels closer to a thick seed than the thin ridge:
+        # reconstruct by dilating seeds within the mask
+        thick = cv2.dilate(thick_seed.astype(np.uint8), np.ones((3, 3), np.uint8),
+                           iterations=int(np.ceil(thr))) .astype(bool) & mm.astype(bool)
+        thin = mm.astype(bool) & ~thick
+        n_thin = int(thin.sum())
+        n_thick = int(thick.sum())
+        if n_thin < 60 * analysis_scale or n_thick < 60 * analysis_scale:
+            out.append(m)
+            continue
+        # both parts must be substantial AND the thin part elongated
+        dt_thin = cv2.distanceTransform(thin.astype(np.uint8), cv2.DIST_L2, 3)
+        med_w = float(np.median(dt_thin[dt_thin > 0.6])) if (dt_thin > 0.6).any() else 0.0
+        if med_w <= 0.0 or n_thin / max(1.0, 2.0 * med_w) < 30 * analysis_scale:
+            out.append(m)
+            continue
+        # clean specks: components under 12px fall back to the thick side
+        cnt, lbl = cv2.connectedComponents(thin.astype(np.uint8), connectivity=8)
+        keep_thin = np.zeros_like(thin)
+        for c in range(1, cnt):
+            comp = lbl == c
+            if int(comp.sum()) >= 12 * analysis_scale:
+                keep_thin |= comp
+            else:
+                thick |= comp
+        if not keep_thin.any():
+            out.append(m)
+            continue
+        out.append(thick)
+        out.append(keep_thin)
+    return out
+
+
 def _merge_gradient_field(masks: list[np.ndarray], reference_rgb: np.ndarray,
                           analysis_scale: int) -> tuple[list[np.ndarray], dict[int, tuple]]:
     """Form-aware gradient (H95 lost-detail strike): a ramp THROUGH a logo
@@ -4698,6 +4756,19 @@ def _detect_stroke(mask, analysis_scale):
         if float(cv2.distanceTransform((~rendered).astype(np.uint8), cv2.DIST_L2, 5)[undershoot].max()) > tol:
             return None
     inv = 1.0 / float(analysis_scale)
+    # Sub-pixel de-bias (105 XOR-diff lesson: the skeleton lives on the
+    # integer 4x grid, so the stroked centerline sits ~half a grid-cell off
+    # the AA mass centre and the whole line pays iou in shifted slivers).
+    # One rigid shift of the chain onto the mask's dt-weighted centroid.
+    mys, mxs = np.nonzero(mask)
+    wts = dist[mys, mxs]
+    mask_c = np.array([float(np.average(mxs, weights=wts)),
+                       float(np.average(mys, weights=wts))])
+    drawn_pts = np.vstack([eval_curve(c, 12) for c in curves])
+    shift = mask_c - drawn_pts.mean(axis=0)
+    if float(np.hypot(*shift)) <= 1.5:
+        for c in curves:
+            c.control = c.control + shift
     for c in curves:
         c.control = c.control * inv
     return w * inv, curves, False
@@ -5503,6 +5574,12 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         masks, gradient_fills = _merge_gradient_stacks(masks, reference, analysis_scale)
         if not gradient_fills:
             masks, gradient_fills = _merge_gradient_field(masks, reference, analysis_scale)
+        # _split_masks_by_width stays OFF the global path: on the 512px logo
+        # corpus it splits everywhere (vai50 kinks 4.61 -> 5.80, wobble +0.46)
+        # while the diagram crops it was built for improved (105 polyline
+        # kink 0.84 -> 0.27 with node markers intact, 043 pad ring restored,
+        # 111 iou +0.021).  This is a textbook DOMAIN split — the mechanism
+        # is the diagram LANE of the future router, not a global default.
     region_graph_active = smoothing == "paper-regions" and _needs_shared_region_graph(masks, analysis_scale)
     paper_loop_mode = smoothing in {"paper", "paper-native", "paper-perc", "paper-perres"} or (
         smoothing == "paper-regions" and not region_graph_active)
@@ -5551,17 +5628,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             if not loops:
                 continue
             color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
-            # Line-width restore on the graph path was probed twice on
-            # 2026-07-14 and REVERTED: v1 (bare _detect_stroke) lifted nested
-            # frames +0.012 iou but broke the linechart (its red polyline
-            # carries node markers; the centerline stroke dropped them, iou
-            # 0.759 -> 0.684); v2's uniform-ribbon gate (p90/med <= 1.35)
-            # killed the frames win yet the linechart STILL broke — its axes
-            # and polyline fuse into ONE multi-width region, so admission
-            # must be PER SKELETON BRANCH, not per region.  Queued in
-            # NEXT_STRIKES: split multi-stroke regions at width steps, check
-            # the emitted stroke-width scaling, and START FROM EYES on the
-            # 105 stroke render.
+            # (Graph-path stroke emission ships only with the width-split lane
+            # above — without the split it re-creates the v1/v2 regressions.)
             regions.append(Region(color, int(mask.sum()), loops,
                                   fill=gradient_fills.get(mask_index), bleed=bleed[mask_index]))
         masks = []                                   # handled; skip the per-mask loop below
