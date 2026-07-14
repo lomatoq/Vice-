@@ -5468,6 +5468,34 @@ def _route_mae(output: Path, image: Image.Image) -> float:
     return float(np.mean(np.abs(a - b)))
 
 
+def _route_boundary_f(output: Path, image: Image.Image, tolerance_px: float = 1.5) -> float:
+    """Boundary-F between the run's render and the source (same construction
+    as benchmark_vai.boundary_meters, local copy — bv imports gv, not vice
+    versa).  The GEOMETRIC judge for the route arbiter: mae punishes a
+    different shade split even when every boundary is right (exactly what
+    froze the honest native wins on 075/079)."""
+    rendered = Image.open(output / "03_rebuilt_filled.png").convert("RGB")
+    rendered = rendered.resize(image.size, Image.Resampling.LANCZOS)
+    def edge_mask(img: np.ndarray) -> np.ndarray:
+        gray = np.mean(img, axis=2).astype(np.float32)
+        gx = cv2.Scharr(gray, cv2.CV_32F, 1, 0)
+        gy = cv2.Scharr(gray, cv2.CV_32F, 0, 1)
+        mag = np.hypot(gx, gy)
+        peak = float(mag.max())
+        if peak < 1e-6:
+            return np.zeros(gray.shape, bool)
+        return mag >= 0.12 * peak
+    e_ren = edge_mask(np.asarray(rendered, np.float32))
+    e_src = edge_mask(np.asarray(_flatten_white(image).convert("RGB"), np.float32))
+    if not e_src.any() or not e_ren.any():
+        return 0.0
+    dt_src = cv2.distanceTransform((~e_src).astype(np.uint8), cv2.DIST_L2, 3)
+    dt_ren = cv2.distanceTransform((~e_ren).astype(np.uint8), cv2.DIST_L2, 3)
+    precision = float(np.mean(dt_src[e_ren] <= tolerance_px))
+    recall = float(np.mean(dt_ren[e_src] <= tolerance_px))
+    return 2 * precision * recall / max(1e-9, precision + recall)
+
+
 def process(image_path: Path, output_root: Path, extractor: str = "mininet", smoothing: str = "cad",
             route: str = "auto") -> dict:
     image = Image.open(image_path)
@@ -5924,6 +5952,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             shadow_out = shadow_dir / image_path.stem
             mae_d = _route_mae(output, image)
             mae_n = _route_mae(shadow_out, image)
+            bf_d = _route_boundary_f(output, image)
+            bf_n = _route_boundary_f(shadow_out, image)
             kink_d = _kink_energy(regions)
             # shadow kinks: recomputed from its own report-independent render is
             # not possible here — reuse the same metric via its saved curves is
@@ -5932,9 +5962,16 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             kink_n = float(shadow_report.get("kink_energy", 1e9))
             report["route_arbiter"] = {
                 "mae_deblur": round(mae_d, 2), "mae_native": round(mae_n, 2),
+                "bf_deblur": round(bf_d, 4), "bf_native": round(bf_n, 4),
                 "kink_deblur": round(kink_d, 2), "kink_native": round(kink_n, 2),
             }
-            if mae_n <= mae_d + 1.0 and kink_n <= kink_d - 1.5:
+            # Judge switch (design D1, calibrated on the wave-B meter): the
+            # GEOMETRIC boundary-F replaces mae — a different shade split no
+            # longer vetoes an honest geometric win.  075-class calibration:
+            # deblur F 0.982 vs native 0.950 stays deblur (the veto was
+            # right); the mae guard is kept only as a coarse 3x-blowup fuse.
+            if (bf_n >= bf_d - 0.005 and kink_n <= kink_d - 1.5
+                    and mae_n <= mae_d * 3.0):
                 for name in ("02_primitive_map.png", "02_primitive_map.svg",
                              "03_rebuilt_filled.png", "03_rebuilt_filled.svg",
                              "01_contour.png", "04_corners.png"):
