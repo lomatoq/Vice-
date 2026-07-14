@@ -1,0 +1,53 @@
+res 32 fold ['axe', 'fighter']: P 0.271 R 0.950 F1 0.422
+res 32 fold ['mailbox', 'headphone2']: P 0.367 R 1.000 F1 0.537
+res 32 fold ['ringbell', 'lamp']: P 0.434 R 1.000 F1 0.605
+res 32 fold ['castle', 'bow']: P 0.405 R 0.944 F1 0.567
+res 32 fold ['plane', 'key']: P 0.341 R 1.000 F1 0.508
+res 32 fold ['pin', 'lamp']: P 0.607 R 0.902 F1 0.725
+res 32 fold ['dress2', 'lipstick']: P 0.280 R 1.000 F1 0.438
+res 32 fold ['dumbbell', 'enterprise']: P 0.467 R 0.933 F1 0.622
+res 32 fold ['fragile', 'whale']: P 0.392 R 1.000 F1 0.563
+res 32 fold ['guitar2', 'zeppelin']: P 0.667 R 1.000 F1 0.800
+res 64 fold ['axe', 'fighter']: P 0.277 R 0.900 F1 0.424
+res 64 fold ['mailbox', 'headphone2']: P 0.394 R 1.000 F1 0.565
+res 64 fold ['ringbell', 'lamp']: P 0.531 R 0.929 F1 0.675
+res 64 fold ['castle', 'bow']: P 0.491 R 0.933 F1 0.644
+res 64 fold ['plane', 'key']: P 0.583 R 0.955 F1 0.724
+res 64 fold ['pin', 'lamp']: P 0.754 R 1.000 F1 0.860
+res 64 fold ['dress2', 'lipstick']: P 0.522 R 1.000 F1 0.686
+res 64 fold ['dumbbell', 'enterprise']: P 0.735 R 0.893 F1 0.806
+res 64 fold ['fragile', 'whale']: P 0.300 R 1.000 F1 0.462
+res 64 fold ['guitar2', 'zeppelin']: P 0.600 R 1.000 F1 0.750
+res 128 fold ['axe', 'fighter']: P 0.278 R 1.000 F1 0.435
+res 128 fold ['mailbox', 'headphone2']: P 0.812 R 0.684 F1 0.743
+res 128 fold ['ringbell', 'lamp']: P 0.447 R 1.000 F1 0.618
+res 128 fold ['castle', 'bow']: P 0.632 R 0.923 F1 0.750
+res 128 fold ['plane', 'key']: P 0.905 R 0.864 F1 0.884
+res 128 fold ['pin', 'lamp']: P 0.726 R 1.000 F1 0.841
+res 128 fold ['dress2', 'lipstick']: P 0.737 R 0.933 F1 0.824
+res 128 fold ['dumbbell', 'enterprise']: P 0.528 R 1.000 F1 0.691
+res 128 fold ['fragile', 'whale']: P 0.464 R 0.929 F1 0.619
+res 128 fold ['guitar2', 'zeppelin']: P 0.640 R 1.000 F1 0.780
+[
+ {
+  "res": 32,
+  "pairs": 35,
+  "mean_F1": 0.5787,
+  "paper_F1": 0.871,
+  "secs": 340.4
+ },
+ {
+  "res": 64,
+  "pairs": 35,
+  "mean_F1": 0.6596,
+  "paper_F1": 0.877,
+  "secs": 447.7
+ },
+ {
+  "res": 128,
+  "pairs": 34,
+  "mean_F1": 0.7185,
+  "paper_F1": 0.901,
+  "secs": 1525.2
+ }
+]
