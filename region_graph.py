@@ -695,7 +695,12 @@ def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
                 # This is where the loop-path's circle/rect tournament finally
                 # reaches graph-path content: alarm hammers (item057) and the
                 # graph-path roundness tail lived exactly here.
-                if len(cy.steps) == 1 and len(poly) >= 10 and len(curves) >= 2:
+                # (A <=3-edge 'touching shapes' admission was probed
+                # 2026-07-14 and removed as DEAD code: item057's hammer
+                # cycles never entered even at 30% minor-contact — their
+                # step structure needs instrumenting before the next try.)
+                court_ok = len(cy.steps) == 1
+                if court_ok and len(poly) >= 10 and len(curves) >= 2:
                     extent = float(max(np.ptp(poly[:, 0]), np.ptp(poly[:, 1])))
                     if extent <= 24.0:
                         import geometry_vectorizer as _gv

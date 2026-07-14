@@ -5551,6 +5551,17 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             if not loops:
                 continue
             color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
+            # Line-width restore on the graph path was probed twice on
+            # 2026-07-14 and REVERTED: v1 (bare _detect_stroke) lifted nested
+            # frames +0.012 iou but broke the linechart (its red polyline
+            # carries node markers; the centerline stroke dropped them, iou
+            # 0.759 -> 0.684); v2's uniform-ribbon gate (p90/med <= 1.35)
+            # killed the frames win yet the linechart STILL broke — its axes
+            # and polyline fuse into ONE multi-width region, so admission
+            # must be PER SKELETON BRANCH, not per region.  Queued in
+            # NEXT_STRIKES: split multi-stroke regions at width steps, check
+            # the emitted stroke-width scaling, and START FROM EYES on the
+            # 105 stroke render.
             regions.append(Region(color, int(mask.sum()), loops,
                                   fill=gradient_fills.get(mask_index), bleed=bleed[mask_index]))
         masks = []                                   # handled; skip the per-mask loop below
