@@ -3876,6 +3876,13 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
         if na > 1e-9 and nb > 1e-9:
             turn = math.degrees(math.acos(max(-1.0, min(1.0, float((va / na) @ (vb / nb))))))
             if turn >= 45.0:
+                # (Two cap-veto variants were probed here 2026-07-14 and
+                # removed as DEAD AIM: the spotify-380 caps measure turn(w)
+                # of only 18-23 deg — they never even ENTER this branch; the
+                # pair is bought purely on CNN probs 0.40-0.42 against a
+                # G1 alternative the DP declines.  The real question is why
+                # an r=2 arc through the cap loses feasibility/economics —
+                # instrument the DP decision at loop-704 vertex 701 next.)
                 price = min(price, _JOINT_CAP_PRICE)
         prices[u] = min(prices.get(u, float("inf")), price)
     chain = fit_segment_midpoints(ring, alpha, px, snap_ends=False,
