@@ -423,10 +423,69 @@ def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
             else:
                 chain = fit_segment_midpoints(piece, _alpha_for(piece), px_e, snap_ends=False)
                 chains.append(chain if chain else [Curve(1, np.vstack((piece[0], piece[-1])))])
+        # GRAPH-CRITIC (kink-map lesson, items 068/075/082: the tail lives on
+        # consensus-cut joints — every cut ships a C0 even when the 'corner'
+        # was AA/codec noise, and no merge pass ever crosses a cut).  A weak
+        # joint (end-tangent break < 28 deg) triggers a surgical refit of the
+        # MERGED piece; accepted only if the refit needs no more primitives
+        # than the pair it replaces and carries no internal break > 20 deg —
+        # a real corner survives because its merged refit must zigzag.
+        piece_bounds = [(a2, b2) for a2, b2 in zip(cuts[:-1], cuts[1:]) if b2 - a2 >= 1]
+        if len(chains) >= 2:
+            k = 0
+            while k < len(chains) - 1 and len(chains) >= 2:
+                ca, cb = chains[k], chains[k + 1]
+                if not ca or not cb:
+                    k += 1
+                    continue
+                ta = _tangent_out(ca[-1])
+                tb = _tangent_in(cb[0])
+                ang = float(np.degrees(np.arccos(np.clip(float(ta @ tb), -1.0, 1.0))))
+                if ang >= 28.0:
+                    k += 1
+                    continue
+                a_lo, _ = piece_bounds[k]
+                _, b_hi = piece_bounds[k + 1]
+                merged = pts[a_lo:b_hi + 1]
+                refit = fit_segment_midpoints(merged, _alpha_for(merged), px_e, snap_ends=False)
+                ok = bool(refit) and len(refit) <= len(ca) + len(cb) - 1
+                if ok:
+                    for t2 in range(len(refit) - 1):
+                        t_a = _tangent_out(refit[t2])
+                        t_b = _tangent_in(refit[t2 + 1])
+                        a2d = float(np.degrees(np.arccos(np.clip(float(t_a @ t_b), -1.0, 1.0))))
+                        if a2d > 20.0:
+                            ok = False
+                            break
+                if ok:
+                    # Residual court on the SAME evidence (first-ship lesson:
+                    # a widened contrast-tube let a straight line through a
+                    # rounded panel corner pass feasibility — swimlanes iou
+                    # 0.739 -> 0.178).  The refit must explain the merged
+                    # points essentially as well as the pair it replaces.
+                    from geometry_vectorizer import eval_curve as _ec
+                    mid_m = 0.5 * (merged[:-1] + merged[1:])
+                    def _p90(cs):
+                        drawn = np.vstack([_ec(c, 10) for c in cs])
+                        dm = np.linalg.norm(mid_m[:, None, :] - drawn[None, :, :], axis=2)
+                        return float(np.percentile(np.min(dm, axis=1), 90))
+                    if _p90(refit) > _p90(ca + cb) + 0.05:
+                        ok = False
+                if ok:
+                    chains[k:k + 2] = [refit]
+                    piece_bounds[k:k + 2] = [(a_lo, b_hi)]
+                else:
+                    k += 1
+        # NB: after critic merges, `cuts` is stale — the live joint vertices
+        # are the piece_bounds seams (first-ship v2 lesson: sewing to stale
+        # cut indices tore swimlanes panels apart, iou 0.739 -> 0.56).
+        joint_verts = ([pts[b] for (_, b) in piece_bounds[:-1]]
+                       if len(piece_bounds) == len(chains)
+                       else [pts[cuts[k + 1]] for k in range(len(chains) - 1)])
         for k in range(len(chains) - 1):
             if not chains[k] or not chains[k + 1]:
                 continue
-            vertex = pts[cuts[k + 1]]
+            vertex = joint_verts[k]
             p = _corner_intersection(chains[k][-1], chains[k + 1][0], vertex)
             _shift_curve_end(chains[k][-1], p)
             _shift_curve_start(chains[k + 1][0], p)
