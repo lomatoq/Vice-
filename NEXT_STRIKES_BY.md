@@ -125,6 +125,15 @@ EXTERNAL_RESEARCH_ULTIMATE_20260713.md — ён пацвярджае менав�
     адзін арбітр J = data_fit + topology + simplicity + regularity +
     editability + text_consensus + uncertainty_penalty; на падазроных
     локусах трымаць 2–5 гіпотэз (multi-hypothesis, не greedy).
+    📌 ГАТОВЫ КЕЙС ДЛЯ РОУТЭРА (пробы 2026-07-14, шыты ў scratchpad
+    sheet_item079_native.png / sheet_item043_native.png): q30-кантэнт на
+    NATIVE-шляху дае кінкі 2.88/3.04/0.69/0.79 (два ЛЕПШ за VAI) і
+    вачыма чысцейшы тэкст/формы (KA Gaming, кубік) — але ГЛАБАЛЬНАЕ
+    пераключэнне адкачана: lacoste (p90 6.44!) губляе 1-2px лускавінкі
+    без deblur (iou 0.924→0.897), bars_jpeg (p90 3.89) губляе 23px
+    прыступку ад slack. Гэта РОЎНА выбар калеі per-locus: буйнаформавы
+    q30 → native+поўны slack; дробнадэталь → deblur+slack≤0.2. Крытэрый
+    маршруту — мінімальны памер паўтаральнай дэталі (лускавінкі-тэст).
 11. **Stage 3 / learned specialists** (diagram specialist, semantic
     layer peeling) — толькі калі А–Б не дадуць VAI-парытэту па кінках
     (парогавае правіла METHOD_ICE дзейнічае; рэсёрч згодны).

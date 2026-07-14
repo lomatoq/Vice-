@@ -1450,6 +1450,39 @@ _FOREIGN_INK: list = [None]          # (dt_own, dt_others, analysis_scale) | Non
 # counters uses them and never broke anything.
 _VORONOI_LAWS = False
 _EVIDENCE_FIELD: list = [None]
+_IMAGE_NOISE: list = [0.0]           # native-px tube slack from measured JPEG ringing
+
+
+def measure_image_noise(source: Image.Image) -> float:
+    """Tube slack (native px) from the raster's own noise level.
+
+    METHOD_ICE law 1: the interval is the observation's uncertainty — and a
+    q30 JPEG observation is measurably noisier than a clean render, so its
+    tube must be wider or the DP is FORBIDDEN the smooth truth and legally
+    ships jagged chains (the blind kink tail).  Signal: p90 of |gray - box3|
+    in the ringing zone 2-5px off Canny edges.  Measured 2026-07-14 on
+    challenge crops: q30 JPEG 4.4-8.0, clean PNG 0.0-0.33 — the classes do
+    not touch.  Mapping (signed by that measurement): slack = 0.08*(p90-1),
+    capped at 0.45px so a genuine 1px feature still breaks any primitive."""
+    gray = cv2.cvtColor(np.asarray(source.convert("RGB"), dtype=np.uint8),
+                        cv2.COLOR_RGB2GRAY).astype(np.float32)
+    if gray.size < 400:
+        return 0.0
+    resid = np.abs(gray - cv2.blur(gray, (3, 3)))
+    edges = cv2.Canny(gray.astype(np.uint8), 40, 120)
+    dt = cv2.distanceTransform((edges == 0).astype(np.uint8), cv2.DIST_L2, 3)
+    ring_zone = (dt >= 2.0) & (dt <= 5.0)
+    if int(ring_zone.sum()) < 50:
+        return 0.0
+    p90 = float(np.percentile(resid[ring_zone], 90))
+    # Heavy-JPEG class ONLY (p90 >= 4.2, the measured lower edge of the q30
+    # cluster).  bars_jpeg (p90 3.89, mild synthetic JPEG) lost a real 23px
+    # step to a 0.23px slack — moderate ringing must not widen the tube; the
+    # LSQ line / chunk-merge already absorb it (that is the signed reason
+    # fit_px stayed 1.0 for JPEG all along).
+    if p90 < 4.2:
+        return 0.0
+    return float(min(0.45, 0.08 * (p90 - 1.0)))
 # 2026-07-12: EXPERIMENTAL, default OFF.  Night A/B: on the deblur path the 4x
 # loops are already subpixel (tug-of-war fragmented fits); scoped to the native
 # path it then broke 7 of the calibrated 900px synthetic decompositions
@@ -1540,6 +1573,15 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
     half = 0.5 * px
     eps = _PAPER_FIT_EPS * px
     half_arr = np.full(m, half)
+    # Noise-calibrated tube: measure_image_noise() (once per image, from the
+    # raster's own JPEG ringing — clean images measure 0.0) widens every
+    # interval by the observation's excess uncertainty.  Geometry-side
+    # estimators failed twice here: a moving average carries curvature bias
+    # (clean small loops read 'noisy'), a second-difference median reads 0 on
+    # staircase mids.  The raster measurement separates the classes cleanly
+    # (q30: 4.4-8.0, clean: <=0.33 — see measure_image_noise).
+    if _IMAGE_NOISE[0] > 0.0:
+        half_arr = half_arr + _IMAGE_NOISE[0]
     field = _EVIDENCE_FIELD[0]
     if field is not None and px >= 0.99 and m >= 5:
         # Sub-pixel evidence: re-center each interval on the coverage-derived
@@ -5175,6 +5217,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
     extractor_used = extractor
     _EVIDENCE_FIELD[0] = None      # never inherit a stale field from a prior call
     _FOREIGN_INK[0] = None
+    _IMAGE_NOISE[0] = 0.0          # set only on the perceptual paper paths below
     perceptual = smoothing in {"perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}
     if perceptual:
         # paper-native = the CANONICAL Hoshyari reproduction: hard nearest-anchor
@@ -5195,11 +5238,30 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         #  - Lossless >512: native as always (deblur is gated to <=512 anyway).
         # paper-perc keeps the deblurred subpixel contour by design.
         native_raster = smoothing in {"paper", "paper-perres", "paper-regions"}
+        # The route stays FORMAT-decided.  A content-measured switch to native
+        # was probed 2026-07-14 and REVERTED: lacoste (re-encoded PNG, ringing
+        # p90 6.44 — deep in the q30 class) needs the 4x deblur to keep its
+        # 1-2px scales (native iou 0.9241 -> 0.8972, arcs collapsed to lines),
+        # i.e. heavy noise does NOT imply native is safe — fine repeated detail
+        # overrides.  What the measurement DOES drive is the tube slack below:
+        # q30-class ringing (p90 >= 4.2) widens intervals so the DP may prefer
+        # the smooth truth over chasing block ripple (blind kink tail).
+        measured_noise = measure_image_noise(image)
         jpeg_input = (getattr(image, "format", None) or "").upper() in {"JPEG", "MPO"}
         force_native = smoothing == "paper-native"
         rgb, masks, boundary, bg, threshold, analysis_scale, analysis_pixels = extract_perceptual_masks(
             image, use_icm=use_icm, merge=do_merge,
             deblur=not (force_native or (native_raster and jpeg_input)))
+        # Tube slack from measured q30-class ringing — DEBLUR PATH ONLY.  The
+        # native path already absorbs ringing by design (fit_px stayed 1.0 for
+        # JPEG precisely because LSQ + chunk-merge + the relative circle
+        # tolerance handle the ripple — vai50 probe: full slack there cost
+        # roundness 0.0156->0.0170 and wobble for zero kink gain).  The 4x
+        # deblur path is where MiniNet AMPLIFIES ringing into geometry the
+        # fitter chases (blind kink tail); 0.2px slack there fixed item043
+        # kink 8.71->1.76 WITH the best iou, lacoste 0.9241->0.9341.
+        if (native_raster or force_native) and analysis_scale == 4:
+            _IMAGE_NOISE[0] = min(0.2, measured_noise)
         # METHOD_ICE 3.2: sub-pixel evidence for the DP intervals is probed from
         # the NATIVE raster (loops live in native px).  Reset-then-set per call —
         # legacy modes and exceptions can never inherit a stale field.
