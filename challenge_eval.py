@@ -125,18 +125,22 @@ def main() -> int:
         crop.save(crop_p)
         row = {"item": k, "category": item["category"], "source": item["source"],
                "size": [bx1 - bx0, by1 - by0]}
-        # OURS on the crop (reuse an existing result: incremental plate adds)
-        ours_svg = EVAL / "ours" / f"item{k:03}" / crop_p.stem / "03_rebuilt_filled.svg"
-        if not ours_svg.exists():
-            try:
-                gv.process(crop_p, EVAL / "ours" / f"item{k:03}", smoothing=args.mode)
-            except Exception as exc:
-                row["ours"] = {"error": f"{type(exc).__name__}: {exc}"[:150]}
-                ours_svg = None
         W = bx1 - bx0
-        for tag, svg in (("ours", ours_svg), ("vai", vai_items[k])):
-            if svg is None or not svg.exists():
-                continue
+        # OURS: fit AND meters in a FRESH subprocess per item.  Long-lived
+        # processes that interleave many fits/meters drift (2026-07-14: solo
+        # and pair runs perfectly deterministic; an 8-item chain reproducibly
+        # bent item043 kinks 1.76 -> 8.07 — one chain bent the FIT, another
+        # bent the METER on a byte-identical SVG).  eval_one_item.py isolates.
+        import subprocess
+        r = subprocess.run([sys.executable, "-X", "utf8", str(ROOT / "eval_one_item.py"),
+                            str(crop_p), str(EVAL / "ours" / f"item{k:03}"), str(W), args.mode],
+                           capture_output=True, text=True, cwd=str(ROOT))
+        try:
+            row["ours"] = json.loads(r.stdout.strip().splitlines()[-1])
+        except Exception:
+            row["ours"] = {"error": ("subprocess: " + (r.stderr or r.stdout)).strip()[:150]}
+        svg = vai_items[k]
+        if svg is not None and svg.exists():
             meters = {}
             try:
                 meters.update(bv.geometry_meters(svg, W))
@@ -144,7 +148,7 @@ def main() -> int:
                 meters.update(bv.raster_meters(svg, crop_p))
             except Exception as exc:
                 meters["error"] = f"{type(exc).__name__}: {exc}"[:150]
-            row[tag] = meters
+            row["vai"] = meters
         rows.append(row)
         o, v = row.get("ours", {}), row.get("vai", {})
         print(f"[{done:3}] item{k:03} {item['category'][:12]:12} "

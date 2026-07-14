@@ -5660,6 +5660,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
     if (route == "auto" and smoothing in {"paper", "paper-perres", "paper-regions"}
             and analysis_scale == 4 and measured_noise >= 0.27):
         shadow_dir = output_root / f"_route_native_{image_path.stem}"
+        saved_noise = _IMAGE_NOISE[0]
         try:
             process(image_path, shadow_dir, extractor, smoothing, route="native")
             shadow_out = shadow_dir / image_path.stem
@@ -5692,6 +5693,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         except Exception as exc:
             report["route_arbiter"] = {"error": f"{type(exc).__name__}: {exc}"[:120]}
         finally:
+            _IMAGE_NOISE[0] = saved_noise   # the shadow run must not leak state
             shutil.rmtree(shadow_dir, ignore_errors=True)
     report["kink_energy"] = round(_kink_energy(regions), 3)
     (output / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
