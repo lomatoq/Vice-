@@ -4210,6 +4210,38 @@ def _render_gradient_fill(fill: tuple, size: tuple[int, int], scale: int) -> Ima
     return Image.fromarray(out, "RGB")
 
 
+def _detect_diagram_signature(masks: list[np.ndarray], analysis_scale: int) -> bool:
+    """Router lane 1 (design D1): the width-split lane is FOR DIAGRAMS —
+    globally it tore up the 512px logo corpus (vai50 kinks 4.61 -> 5.80).
+    A diagram announces itself: a large share of ink sits in RECTANGULAR
+    panels (minAreaRect coverage >= 0.85 on big masks) and several small
+    ELONGATED connectors/arrows exist alongside.  Logos/text almost never
+    combine both."""
+    if len(masks) < 4:
+        return False
+    total_ink = float(sum(int(m.sum()) for m in masks)) or 1.0
+    panel_ink = 0.0
+    connectors = 0
+    for m in masks:
+        area = int(m.sum())
+        if area < 40 * analysis_scale:
+            continue
+        ys, xs = np.nonzero(m)
+        w_b = float(xs.max() - xs.min() + 1)
+        h_b = float(ys.max() - ys.min() + 1)
+        if area >= 900 * analysis_scale * analysis_scale:
+            pts = np.column_stack((xs, ys)).astype(np.float32)
+            rect = cv2.minAreaRect(pts.reshape(-1, 1, 2))
+            rect_area = max(1.0, rect[1][0] * rect[1][1])
+            if area / rect_area >= 0.85:
+                panel_ink += area
+        else:
+            aspect = max(w_b, h_b) / max(1.0, min(w_b, h_b))
+            if aspect >= 3.0:
+                connectors += 1
+    return panel_ink / total_ink >= 0.40 and connectors >= 3
+
+
 def _split_masks_by_width(masks: list[np.ndarray], analysis_scale: int) -> list[np.ndarray]:
     """Line-width v3 groundwork (the two whole-region stroke attempts failed
     because axes+polyline FUSE into one multi-width region): split a BIG
@@ -5616,12 +5648,15 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         masks, gradient_fills = _merge_gradient_stacks(masks, reference, analysis_scale)
         if not gradient_fills:
             masks, gradient_fills = _merge_gradient_field(masks, reference, analysis_scale)
-        # _split_masks_by_width stays OFF the global path: on the 512px logo
-        # corpus it splits everywhere (vai50 kinks 4.61 -> 5.80, wobble +0.46)
-        # while the diagram crops it was built for improved (105 polyline
-        # kink 0.84 -> 0.27 with node markers intact, 043 pad ring restored,
-        # 111 iou +0.021).  This is a textbook DOMAIN split — the mechanism
-        # is the diagram LANE of the future router, not a global default.
+        # Router lane 1: the width-split mechanism fires ONLY on a diagram
+        # signature (globally it tore the logo corpus: vai50 kinks 4.61 ->
+        # 5.80, while the diagram crops it was built for improved — 105
+        # polyline 0.84 -> 0.27 with node markers intact, 043 pad ring
+        # restored, 111 +0.021 iou).
+        diagram_lane = (not gradient_fills and smoothing == "paper-regions"
+                        and _detect_diagram_signature(masks, analysis_scale))
+        if diagram_lane:
+            masks = _split_masks_by_width(masks, analysis_scale)
     region_graph_active = smoothing == "paper-regions" and _needs_shared_region_graph(masks, analysis_scale)
     paper_loop_mode = smoothing in {"paper", "paper-native", "paper-perc", "paper-perres"} or (
         smoothing == "paper-regions" and not region_graph_active)
@@ -5670,8 +5705,19 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             if not loops:
                 continue
             color = _region_color(analysis_pixels, rgb, mask, analysis_scale)
-            # (Graph-path stroke emission ships only with the width-split lane
-            # above — without the split it re-creates the v1/v2 regressions.)
+            # Graph-path stroke emission ships only inside the diagram lane
+            # (without the split it re-creates the v1/v2 regressions).
+            if diagram_lane:
+                interior = cv2.distanceTransform(mask.astype(np.uint8), cv2.DIST_L2, 3)
+                w_vals = interior[interior > 0.6]
+                if len(w_vals) > 30:
+                    med_w = float(np.median(w_vals))
+                    p90_w = float(np.percentile(w_vals, 90))
+                    if p90_w / max(med_w, 1e-6) <= 1.35 and (2.0 * med_w / analysis_scale) <= 4.5:
+                        stroke_spec = _detect_stroke(mask, analysis_scale)
+                        if stroke_spec is not None:
+                            regions.append(Region(color, int(mask.sum()), [], stroke=stroke_spec))
+                            continue
             regions.append(Region(color, int(mask.sum()), loops,
                                   fill=gradient_fills.get(mask_index), bleed=bleed[mask_index]))
         masks = []                                   # handled; skip the per-mask loop below
