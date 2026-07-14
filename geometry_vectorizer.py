@@ -5720,10 +5720,12 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         # font's TRUE vector outlines replace the fitted letter regions as the
         # TOP painter's-stack layer (VAI forensics: letters redrawn on top).
         # Any exception or failed gate leaves the faithful fit untouched.
+        subs_done: list[tuple] = []
         try:
             from text_substitution import try_substitute_lines
             for sub in try_substitute_lines(image, regions):
                 bx0, by0, bx1, by1 = sub["bbox"]
+                subs_done.append(sub["bbox"])
                 ink = np.array(sub["ink"], float)
                 kept: list[Region] = []
                 for region in regions:
@@ -5757,6 +5759,12 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                 regions = kept
         except Exception:
             pass
+        # Glyph consensus v1 was probed twice on 2026-07-14 and its CALL was
+        # reverted: post-fit vertical snapping moved iou (-0.009..-0.012 on
+        # 021/018) without touching kinks — they live in the letter CONTOURS,
+        # not in inter-glyph jitter.  v2 must constrain the grid DURING the
+        # fit (or add stem consensus); the function stays for that.  The
+        # probe's lasting win is the 3x OCR fallback now feeding font-snap.
     output = output_root / image_path.stem
     output.mkdir(parents=True, exist_ok=True)
     write_svgs(output, regions, image.size)

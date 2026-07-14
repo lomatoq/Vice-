@@ -187,6 +187,15 @@ def try_substitute_lines(image: Image.Image, regions: list) -> list[dict]:
     subs: list[dict] = []
     lines = ocr_lines(flat)
     if not lines:
+        # winocr is blind below ~30px line height — the consensus probe's
+        # lasting find.  Detect on a 3x upscale, map boxes back: this opens
+        # font substitution to the h24 challenge text that never even
+        # reached the retrieval gate before.
+        up = 3
+        big = flat.resize((flat.width * up, flat.height * up), Image.LANCZOS)
+        lines = [{"text": l["text"],
+                  "bbox": tuple(v / up for v in l["bbox"])} for l in ocr_lines(big)]
+    if not lines:
         return []
     records = _font_records()
     if not records:
@@ -268,3 +277,72 @@ def try_substitute_lines(image: Image.Image, regions: list) -> list[dict]:
         except Exception:
             continue
     return subs
+
+
+def consensus_align_lines(image, regions, exclude_bboxes=None) -> int:
+    """Glyph consensus v1 (NEXT_STRIKES p.7): lines the retrieval gate REFUSED
+    still get a shared LINE GRID — per-glyph fits jitter baseline/cap by a
+    sub-pixel each, and that jitter reads as wobble at small sizes (114_bank,
+    h24 challenge text).  Median baseline and cap-height over the line's glyph
+    loops; every loop whose bottom (or top) sits within +-0.6 native px of the
+    grid is shifted VERTICALLY as a whole (budgeted idealization; descenders
+    and dots miss the budget by construction and stay).  Stem-width consensus
+    is deliberately v2.  Returns the number of loops moved."""
+    import numpy as np
+    lines = ocr_lines(image)
+    if not lines:
+        # winocr is blind below ~30px line height (h24 challenge crops return
+        # NOTHING) — upscale for detection only, map boxes back down
+        up = 3
+        big = image.resize((image.width * up, image.height * up), Image.LANCZOS)
+        lines = [{"text": l["text"],
+                  "bbox": tuple(v / up for v in l["bbox"])} for l in ocr_lines(big)]
+    if not lines:
+        return 0
+    excl = [tuple(b) for b in (exclude_bboxes or [])]
+    moved_total = 0
+    for line in lines:
+        bx0, by0, bx1, by1 = line["bbox"]
+        if any(abs(bx0 - e[0]) < 4 and abs(by0 - e[1]) < 4 for e in excl):
+            continue
+        pad = 2.5
+        line_h = by1 - by0
+        glyph_loops = []
+        for region in regions:
+            if region.stroke is not None or not region.loops:
+                continue
+            for fl in region.loops:
+                if not len(fl.source):
+                    continue
+                xs = fl.source[:, 0]
+                ys = fl.source[:, 1]
+                if (xs.min() >= bx0 - pad and xs.max() <= bx1 + pad
+                        and ys.min() >= by0 - pad and ys.max() <= by1 + pad
+                        and (ys.max() - ys.min()) <= 1.4 * line_h):
+                    glyph_loops.append(fl)
+        if len(glyph_loops) < 4:
+            continue
+        bottoms = np.array([float(max(c.control[:, 1].max() for c in fl.curves))
+                            for fl in glyph_loops])
+        tops_all = np.array([float(min(c.control[:, 1].min() for c in fl.curves))
+                             for fl in glyph_loops])
+        heights = bottoms - tops_all
+        tall = heights >= 0.55 * float(np.median(heights))
+        baseline = float(np.median(bottoms))
+        cap = float(np.median(tops_all[tall])) if int(tall.sum()) >= 3 else None
+        for fl, bot, top in zip(glyph_loops, bottoms, tops_all):
+            shift = None
+            db = baseline - bot
+            if abs(db) <= 0.6 and abs(db) > 1e-4:
+                shift = db
+            elif cap is not None:
+                dt = cap - top
+                if abs(dt) <= 0.6 and abs(dt) > 1e-4:
+                    shift = dt
+            if shift is None:
+                continue
+            for c in fl.curves:
+                c.control = c.control + np.array([0.0, shift])
+            fl.source = fl.source + np.array([0.0, shift])
+            moved_total += 1
+    return moved_total
