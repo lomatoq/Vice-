@@ -558,13 +558,41 @@ def compact_palette(image: Image.Image, colors: int = 16,
     for start in range(0, 180, 8):
         hue_mask = salient & (hue >= start) & (hue < min(180, start + 8))
         count = int(hue_mask.sum())
-        if count < minimum_accent:
+        if count < 20:
             continue
-        components, _, stats, _ = cv2.connectedComponentsWithStats(hue_mask.astype(np.uint8), connectivity=8)
-        if components <= 1 or int(stats[1:, cv2.CC_STAT_AREA].max()) < max(6, int(count * 0.22)):
-            continue
-        if float(cv2.distanceTransform(hue_mask.astype(np.uint8), cv2.DIST_L2, 3).max()) < 1.1:
-            continue
+        components, _, stats, centroids = cv2.connectedComponentsWithStats(hue_mask.astype(np.uint8), connectivity=8)
+        # Dashed accent (swimlanes red feedback line, post-blind eye-proof):
+        # a dashed stroke is MANY small, similar components with regular
+        # gaps — it fails the population gate (each dash is tiny) and the
+        # dominant-component gate (no dash dominates) by construction.  The
+        # signature is population-free: >=4 dashes of 4..80px each, sizes
+        # within a 0.8 CV, nearest-neighbour gaps regular (p90 <= 2x median,
+        # median gap 3..25px).  Shape of the dashed PATH is irrelevant (an
+        # L-bend stays a dashed line).
+        dashed = False
+        areas = stats[1:, cv2.CC_STAT_AREA].astype(float)
+        # clean/mild inputs only: q30 codec sparkle is ALSO many small
+        # similar blobs with regular gaps (probe: item075 palette grew
+        # 8 -> 11 anchors before this gate)
+        if thick_core_veto and len(areas) >= 4:
+            dash_sel = (areas >= 4) & (areas <= 80)
+            if int(dash_sel.sum()) >= 4:
+                d_areas = areas[dash_sel]
+                cents = centroids[1:][dash_sel]
+                if float(np.std(d_areas)) <= 0.8 * float(np.mean(d_areas)):
+                    dd = np.linalg.norm(cents[:, None, :] - cents[None, :, :], axis=2)
+                    np.fill_diagonal(dd, np.inf)
+                    nn = np.min(dd, axis=1)
+                    med_gap = float(np.median(nn))
+                    if 3.0 <= med_gap <= 25.0 and float(np.percentile(nn, 90)) <= 2.0 * med_gap:
+                        dashed = float(np.sum(d_areas)) >= 20.0
+        if not dashed:
+            if count < minimum_accent:
+                continue
+            if components <= 1 or int(stats[1:, cv2.CC_STAT_AREA].max()) < max(6, int(count * 0.22)):
+                continue
+            if float(cv2.distanceTransform(hue_mask.astype(np.uint8), cv2.DIST_L2, 3).max()) < 1.1:
+                continue
         accent_pixels = source_rgb[hue_mask]
         accent_saturation = saturation_map[hue_mask]
         core = accent_pixels[accent_saturation >= np.percentile(accent_saturation, 50)]
