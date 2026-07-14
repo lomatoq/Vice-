@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import math
+import shutil
 from dataclasses import dataclass
 from pathlib import Path
 
@@ -5211,7 +5212,36 @@ def _needs_shared_region_graph(masks: list[np.ndarray], analysis_scale: int) -> 
     return native_shared >= 16.0 and ratio >= 0.08
 
 
-def process(image_path: Path, output_root: Path, extractor: str = "mininet", smoothing: str = "cad") -> dict:
+def _kink_energy(regions: list) -> float:
+    """Tangent-break count per 100px of contour, one formula for both routes."""
+    breaks, length = 0, 0.0
+    for region in regions:
+        for loop in region.loops:
+            curves = loop.curves
+            for c in curves:
+                pts = eval_curve(c, 8)
+                length += float(np.sum(np.linalg.norm(np.diff(pts, axis=0), axis=1)))
+            if len(curves) < 2:
+                continue
+            for i in range(len(curves)):
+                a, b = curves[i], curves[(i + 1) % len(curves)]
+                ta, tb = _tangent_out(a), _tangent_in(b)
+                ang = float(np.degrees(np.arccos(np.clip(float(ta @ tb), -1.0, 1.0))))
+                if 20.0 < ang < 150.0:
+                    breaks += 1
+    return 100.0 * breaks / max(1.0, length)
+
+
+def _route_mae(output: Path, image: Image.Image) -> float:
+    rendered = Image.open(output / "03_rebuilt_filled.png").convert("RGB")
+    rendered = rendered.resize(image.size, Image.Resampling.LANCZOS)
+    a = np.asarray(rendered, dtype=np.float32)
+    b = np.asarray(_flatten_white(image).convert("RGB"), dtype=np.float32)
+    return float(np.mean(np.abs(a - b)))
+
+
+def process(image_path: Path, output_root: Path, extractor: str = "mininet", smoothing: str = "cad",
+            route: str = "auto") -> dict:
     image = Image.open(image_path)
     analysis_scale = 1
     extractor_used = extractor
@@ -5247,7 +5277,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         # q30-class ringing (p90 >= 4.2) widens intervals so the DP may prefer
         # the smooth truth over chasing block ripple (blind kink tail).
         measured_noise = measure_image_noise(image)
-        jpeg_input = (getattr(image, "format", None) or "").upper() in {"JPEG", "MPO"}
+        jpeg_input = ((getattr(image, "format", None) or "").upper() in {"JPEG", "MPO"}
+                      or route == "native")
         force_native = smoothing == "paper-native"
         rgb, masks, boundary, bg, threshold, analysis_scale, analysis_pixels = extract_perceptual_masks(
             image, use_icm=use_icm, merge=do_merge,
@@ -5262,6 +5293,10 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         # kink 8.71->1.76 WITH the best iou, lacoste 0.9241->0.9341.
         if (native_raster or force_native) and analysis_scale == 4:
             _IMAGE_NOISE[0] = min(0.2, measured_noise)
+        elif route == "native" and analysis_scale == 1:
+            # explicit second-hypothesis run: the native route takes the full
+            # measured slack (the whole point is out-smoothing q30 ripple)
+            _IMAGE_NOISE[0] = measured_noise
         # METHOD_ICE 3.2: sub-pixel evidence for the DP intervals is probed from
         # the NATIVE raster (loops live in native px).  Reset-then-set per call —
         # legacy modes and exceptions can never inherit a stale field.
@@ -5612,5 +5647,50 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
             "small_extent_max": _CNN_HYBRID_CUTOFF,
             "small_density_min": _CNN_HYBRID_MAX_DENSITY,
         }
+    # Two-hypothesis route arbiter (research: multi-hypothesis + one judge,
+    # image-level).  A priori 'large-form' features failed three times
+    # (lacoste scales vs KA text are inseparable by thickness stats), so at
+    # q30-class noise BOTH routes run and the EVIDENCE picks: the native
+    # route must not pay accuracy (mae within +1.0 of the deblur run) and
+    # must clearly win smoothness (kink energy down by >=1.5/100px).
+    # Probes 2026-07-14: 075/079 flip native (kinks 6.7->2.9, 8.3->3.0),
+    # lacoste/043 stay deblur (native mae there loses on vanished detail).
+    if (route == "auto" and smoothing in {"paper", "paper-perres", "paper-regions"}
+            and analysis_scale == 4 and measured_noise >= 0.27):
+        shadow_dir = output_root / f"_route_native_{image_path.stem}"
+        try:
+            process(image_path, shadow_dir, extractor, smoothing, route="native")
+            shadow_out = shadow_dir / image_path.stem
+            mae_d = _route_mae(output, image)
+            mae_n = _route_mae(shadow_out, image)
+            kink_d = _kink_energy(regions)
+            # shadow kinks: recomputed from its own report-independent render is
+            # not possible here — reuse the same metric via its saved curves is
+            # unavailable, so the shadow run stores it in its report.
+            shadow_report = json.loads((shadow_out / "report.json").read_text(encoding="utf-8"))
+            kink_n = float(shadow_report.get("kink_energy", 1e9))
+            report["route_arbiter"] = {
+                "mae_deblur": round(mae_d, 2), "mae_native": round(mae_n, 2),
+                "kink_deblur": round(kink_d, 2), "kink_native": round(kink_n, 2),
+            }
+            if mae_n <= mae_d + 1.0 and kink_n <= kink_d - 1.5:
+                for name in ("02_primitive_map.png", "02_primitive_map.svg",
+                             "03_rebuilt_filled.png", "03_rebuilt_filled.svg",
+                             "01_contour.png", "04_corners.png"):
+                    src_f = shadow_out / name
+                    if src_f.exists():
+                        shutil.copy2(src_f, output / name)
+                report["route_arbiter"]["winner"] = "native"
+                report["extractor_used"] = shadow_report.get("extractor_used", report["extractor_used"])
+                report["analysis_scale"] = 1
+                report["rendered_primitive_count"] = shadow_report.get("rendered_primitive_count")
+                report["actual"] = shadow_report.get("actual")
+            else:
+                report["route_arbiter"]["winner"] = "deblur"
+        except Exception as exc:
+            report["route_arbiter"] = {"error": f"{type(exc).__name__}: {exc}"[:120]}
+        finally:
+            shutil.rmtree(shadow_dir, ignore_errors=True)
+    report["kink_energy"] = round(_kink_energy(regions), 3)
     (output / "report.json").write_text(json.dumps(report, indent=2, ensure_ascii=False), encoding="utf-8")
     return report
