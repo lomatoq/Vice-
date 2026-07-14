@@ -4196,6 +4196,118 @@ def _render_gradient_fill(fill: tuple, size: tuple[int, int], scale: int) -> Ima
     return Image.fromarray(out, "RGB")
 
 
+def _merge_gradient_field(masks: list[np.ndarray], reference_rgb: np.ndarray,
+                          analysis_scale: int) -> tuple[list[np.ndarray], dict[int, tuple]]:
+    """Form-aware gradient (H95 lost-detail strike): a ramp THROUGH a logo
+    shape never satisfies the band-chain topology of _merge_gradient_stacks
+    (isolated map: items 068/059 ride 99-135 bands into the graph path with
+    kinks 8.8-8.9).  Instead of chains, fit a LINEAR Lab FIELD over the union
+    of a connected same-hue family and accept by residual:
+
+      union     = connected (after 1-dilate) group of >=4 masks whose
+                  neighbouring Lab colours sit within dE 20 (one ink family);
+                  pastel diagram panels are separate islands and never form
+                  one connected union (nested-106 stays safe);
+      model     = L(x,y) = a + b*x + c*y per Lab channel (lstsq over union
+                  pixels of the ORIGINAL reference);
+      accept    = p90 |Lab - model| <= 7.0 AND at least 25% better than the
+                  flat per-band error (the stacks' acceptance philosophy).
+    Emits ONE mask with a linear gradient fill (stops at the projected
+    extremes)."""
+    n = len(masks)
+    if n < 4:
+        return masks, {}
+    lab_img = cv2.cvtColor(reference_rgb.astype(np.uint8), cv2.COLOR_RGB2LAB).astype(np.float32)
+    colors_lab = []
+    for m in masks:
+        ys, xs = np.nonzero(m)
+        colors_lab.append(np.median(lab_img[ys, xs], axis=0) if len(ys) else np.zeros(3, np.float32))
+    kernel = np.ones((3, 3), np.uint8)
+    # adjacency graph limited to close-colour pairs (one ink family)
+    dil = [cv2.dilate(m.astype(np.uint8), kernel) for m in masks]
+    parent = list(range(n))
+
+    def find(i):
+        while parent[i] != i:
+            parent[i] = parent[parent[i]]
+            i = parent[i]
+        return i
+
+    for i in range(n):
+        for j in range(i + 1, n):
+            if float(np.linalg.norm(colors_lab[i] - colors_lab[j])) > 20.0:
+                continue
+            if int(np.sum(dil[i] & masks[j].astype(np.uint8))) >= 8:
+                parent[find(j)] = find(i)
+    groups: dict[int, list[int]] = {}
+    for i in range(n):
+        groups.setdefault(find(i), []).append(i)
+
+    fills: dict[int, tuple] = {}
+    out_masks = list(masks)
+    consumed: set[int] = set()
+    for root, members in groups.items():
+        if len(members) < 4:
+            continue
+        union = np.zeros_like(masks[0], bool)
+        for k in members:
+            union |= masks[k].astype(bool)
+        ys, xs = np.nonzero(union)
+        if len(ys) < 200:
+            continue
+        pix = lab_img[ys, xs]
+        A = np.column_stack((np.ones_like(xs, np.float32), xs.astype(np.float32), ys.astype(np.float32)))
+        coef, *_ = np.linalg.lstsq(A, pix, rcond=None)
+        rec = A @ coef
+        resid = np.linalg.norm(pix - rec, axis=1)
+        p90 = float(np.percentile(resid, 90))
+        flat_err = 0.0
+        for k in members:
+            mys, mxs = np.nonzero(masks[k])
+            flat_err += float(np.sum(np.linalg.norm(lab_img[mys, mxs] - colors_lab[k], axis=1)))
+        flat_err /= max(1, len(ys))
+        mean_err = float(np.mean(resid))
+        if p90 > 7.0 or mean_err > 0.75 * flat_err:
+            continue
+        # gradient direction = colour-change gradient of the fitted field
+        g = coef[1:, :]                       # (2,3): d/dx, d/dy per channel
+        direction = np.array([float(np.linalg.norm(g[0])), float(np.linalg.norm(g[1]))])
+        u = np.array([coef[1] @ coef[1], 0.0])
+        # project pixels on the dominant direction in xy
+        dvec = np.array([np.linalg.norm(coef[1]), np.linalg.norm(coef[2])], np.float32)
+        if float(np.linalg.norm(dvec)) < 1e-6:
+            continue
+        dvec = dvec / float(np.linalg.norm(dvec))
+        t = xs * dvec[0] + ys * dvec[1]
+        lo, hi = float(t.min()), float(t.max())
+        if hi - lo < 4.0:
+            continue
+        # stops: sample the FIELD at the extremes (convert Lab->RGB via the
+        # original pixels nearest to each extreme)
+        i_lo, i_hi = int(np.argmin(t)), int(np.argmax(t))
+        rgb_lo = tuple(int(v) for v in reference_rgb[ys[i_lo], xs[i_lo]])
+        rgb_hi = tuple(int(v) for v in reference_rgb[ys[i_hi], xs[i_hi]])
+        inv = 1.0 / analysis_scale
+        p0 = (float(xs[i_lo]) * inv, float(ys[i_lo]) * inv)
+        p1 = (float(xs[i_hi]) * inv, float(ys[i_hi]) * inv)
+        rep = members[0]
+        out_masks[rep] = union
+        fills[rep] = ("linear", p0, p1, [(0.0, rgb_lo), (1.0, rgb_hi)])
+        consumed.update(members[1:])
+    if consumed:
+        out_masks = [m for i, m in enumerate(out_masks) if i not in consumed]
+        # reindex fills after removal
+        remap = {}
+        j = 0
+        for i in range(len(masks)):
+            if i in consumed:
+                continue
+            remap[i] = j
+            j += 1
+        fills = {remap[i]: f for i, f in fills.items() if i in remap}
+    return out_masks, fills
+
+
 def _merge_gradient_stacks(masks: list[np.ndarray], reference_rgb: np.ndarray,
                            analysis_scale: int) -> tuple[list[np.ndarray], dict[int, tuple]]:
     """Audit P2 'gradients замест сотняў flat fragments': detect QUANTIZED
@@ -5389,6 +5501,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         reference = np.asarray(image.convert("RGB").resize(
             (masks[0].shape[1], masks[0].shape[0]), Image.Resampling.BILINEAR), np.uint8)
         masks, gradient_fills = _merge_gradient_stacks(masks, reference, analysis_scale)
+        if not gradient_fills:
+            masks, gradient_fills = _merge_gradient_field(masks, reference, analysis_scale)
     region_graph_active = smoothing == "paper-regions" and _needs_shared_region_graph(masks, analysis_scale)
     paper_loop_mode = smoothing in {"paper", "paper-native", "paper-perc", "paper-perres"} or (
         smoothing == "paper-regions" and not region_graph_active)
@@ -5422,7 +5536,14 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         # resolution, not the canvas size).  px stays 1.0 for JPEG too: the LSQ
         # line, chunk-merge and relative circle tolerance absorb ringing ripple; a
         # wider interval lets independently-fit neighbouring regions drift apart.
-        loops_by_label, dots = vectorize_region_graph(label_map, analysis_scale, px=1.0)
+        lab_ref = cv2.cvtColor(np.asarray(analysis_pixels, np.uint8), cv2.COLOR_RGB2LAB).astype(np.float32)
+        label_lab = {}
+        for mask_index, mask in enumerate(masks):
+            mys, mxs = np.nonzero(mask)
+            if len(mys):
+                label_lab[mask_index] = np.median(lab_ref[mys, mxs], axis=0)
+        loops_by_label, dots = vectorize_region_graph(label_map, analysis_scale, px=1.0,
+                                                      label_lab=label_lab)
         corner_dots.extend(dots)
         bleed = _bleed_flags(masks, analysis_scale)
         for mask_index, mask in enumerate(masks):

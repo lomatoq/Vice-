@@ -642,6 +642,14 @@ def compact_palette(image: Image.Image, colors: int = 16,
         nearest = int(np.argmin(np.linalg.norm(anchors_array - neutral, axis=1)))
         if float(np.linalg.norm(anchors_array[nearest] - neutral)) < 90 and float(anchors_array[nearest].max()) < 110:
             anchors_array[nearest] = neutral
+
+    # A neutral-dashed rescue (grey chart gridlines) was probed 2026-07-14 and
+    # REVERTED: the component signature never caught the 105 grid (dashes fuse
+    # in pairs at chart scale) while the extra mid-grey anchor cost iou on 105
+    # (-0.019) and 023 (-0.02).  Two queued lessons: dashed grids need a
+    # LINE-LEVEL grouping (Hough along the row), and the probe's item106 side
+    # effect (+0.066 iou from a mid-grey anchor alone!) marks a separate
+    # 'mid-grey anchor rescue for diagrams' opportunity (NEXT_STRIKES).
     return anchors_array
 
 

@@ -285,7 +285,7 @@ def cycle_polyline(graph: RegionGraph, cycle: RegionCycle) -> np.ndarray:
 
 # ================================ Sec-7 vectorization =================================
 def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
-                           px: float = 1.0):
+                           px: float = 1.0, label_lab: dict | None = None):
     """Fit the region graph ONCE and share every interface between its two regions.
 
     alpha (Sec 5.1 accuracy weight) is computed PER POLYLINE from its own extent —
@@ -373,13 +373,32 @@ def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
         # paper Sec 5.1: alpha = 32 / rs, rs = the fitted polyline's own raster extent
         return 32.0 / max(16.0, float(np.ptp(pts[:, 0]) + np.ptp(pts[:, 1])) / 2)
 
+    def _edge_px(e) -> float:
+        # Contrast-calibrated tube (form-field diagnosis, items 068/059: the
+        # kink tail lives on RAGGED LOW-CONTRAST boundaries between bands of
+        # one ramp — a linear/radial fill cannot express the content, but the
+        # boundary POSITION between near-equal colours is genuinely less
+        # certain, so the interval may widen).  dE >= 25: crisp ink boundary,
+        # tube unchanged; below that the half-width grows up to 1.8x.
+        if label_lab is None:
+            return px
+        a, b = e.pair
+        ca, cb = label_lab.get(a), label_lab.get(b)
+        if ca is None or cb is None:
+            return px
+        de = float(np.linalg.norm(np.asarray(ca, float) - np.asarray(cb, float)))
+        if de >= 25.0:
+            return px
+        return px * min(1.8, 1.0 + (25.0 - de) / 20.0)
+
     edge_curves: list[list] = []
     for ei, e in enumerate(g.edges):
         pts = e.points * inv
         corners = edge_corners[ei]
+        px_e = _edge_px(e)
         if e.closed:
             loop_pts = pts[:-1] if np.allclose(pts[0], pts[-1]) else pts
-            fitted = fit_loop_paper(loop_pts, _alpha_for(loop_pts), corner_positions=corners, px=px)
+            fitted = fit_loop_paper(loop_pts, _alpha_for(loop_pts), corner_positions=corners, px=px_e)
             edge_curves.append(list(fitted.curves))
             continue
         if len(corners):
@@ -402,7 +421,7 @@ def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
             if len(piece) < 3:
                 chains.append([Curve(1, np.vstack((piece[0], piece[-1])))])
             else:
-                chain = fit_segment_midpoints(piece, _alpha_for(piece), px, snap_ends=False)
+                chain = fit_segment_midpoints(piece, _alpha_for(piece), px_e, snap_ends=False)
                 chains.append(chain if chain else [Curve(1, np.vstack((piece[0], piece[-1])))])
         for k in range(len(chains) - 1):
             if not chains[k] or not chains[k + 1]:
