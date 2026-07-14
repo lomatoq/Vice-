@@ -1752,7 +1752,14 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
                 # every other midpoint.
                 stray = ~ok
                 span_px = (b - a) * spacing          # PHYSICAL px, not mids —
-                if span_px >= 40.0 and int(stray.sum()) <= int(span_px // 40):  # 4x loops have 0.25px steps
+                # Short spans get a MINIMUM budget of one stray (spotify-380
+                # closure: a stroke cap is a 5-15px semicircle whose single
+                # staircase step blocked the arc under the old span>=40 gate,
+                # so the DP bought the corner at probs-price ~3.9 instead —
+                # machine-search-proof, both cap-veto attempts dead-aimed).
+                # The bounded-miss law (half + 0.35) and the strong-claim veto
+                # below still bind; a real 2-4 mid tooth is never one stray.
+                if int(stray.sum()) <= max(1, int(span_px // 40)):  # 4x loops have 0.25px steps
                     stray_mids = a + np.flatnonzero(stray)
                     # a stray near a STRONG corner claim (p>=0.6 <=> price<=3)
                     # is the apex, not noise — bridging it blunts the tip
