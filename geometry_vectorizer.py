@@ -1205,6 +1205,7 @@ def paper_corner_positions(
     loop: np.ndarray,
     detector: str = "cnn",
     postprocess_policy: str | None = None,
+    lattice_scale: int = 1,
 ) -> np.ndarray:
     """xy positions of the perceptual corners of a native-resolution boundary loop.
 
@@ -1221,6 +1222,50 @@ def paper_corner_positions(
     if policy not in _CORNER_POSTPROCESS_POLICIES:
         valid = ", ".join(_CORNER_POSTPROCESS_POLICIES)
         raise ValueError(f"unknown corner postprocess policy {policy!r}; expected one of: {valid}")
+    if lattice_scale >= 2:
+        # Design D3: detect at NATIVE density, report on the given lattice.
+        # A 4x-lattice loop feeds the CNN staircase micro-turns 4x magnified
+        # (shadow evidence: P collapses to ~0.13) and the previous per-scale
+        # DECIMATION (poly[::4]) is not the native staircase either — it
+        # keeps 4x-lattice vertices, so tips/corners carry different
+        # quantisation.  True requantisation instead: fill the loop, block-
+        # reduce by the scale, re-trace with mask_loops, run the FULL
+        # detector (classifier AND removal on their home lattice), then map
+        # positions back (x scale) and recentre on the given ring's local
+        # turning apex.  Any failure falls back to the old decimated path.
+        try:
+            shift = np.floor(loop.min(axis=0)) - 2.0 * lattice_scale
+            pts_i = np.round(loop - shift).astype(np.int32)
+            sc = int(lattice_scale)
+            h = int(pts_i[:, 1].max()) + 2 * sc + 1
+            w = int(pts_i[:, 0].max()) + 2 * sc + 1
+            hs, ws = ((h + sc - 1) // sc) * sc, ((w + sc - 1) // sc) * sc
+            fill = np.zeros((hs, ws), np.uint8)
+            cv2.fillPoly(fill, [pts_i], 1)
+            native = fill.reshape(hs // sc, sc, ws // sc, sc).mean(axis=(1, 3)) >= 0.5
+            from vectorize_papers import mask_loops as _ml, signed_area as _sa
+            cand = _ml(native) if native.any() else []
+            if cand:
+                nat = max(cand, key=lambda l: abs(_sa(l)))
+                if len(nat) > 1 and np.allclose(nat[0], nat[-1]):
+                    nat = nat[:-1]
+                if len(nat) >= 24:
+                    got = paper_corner_positions(np.asarray(nat, float), detector,
+                                                 postprocess_policy, lattice_scale=1)
+                    if not len(got):
+                        return np.empty((0, 2))
+                    back = np.asarray(got, float) * sc + shift[None, :]
+                    idxs = sorted({int(np.argmin(np.sum((loop - p) ** 2, axis=1)))
+                                   for p in back})
+                    snapped = _recenter_corners(loop, idxs, radius=sc + 2)
+                    return loop[sorted(set(snapped))]
+        except Exception:
+            pass
+        # decimated fallback == the legacy path: ~scale-unit steps brought
+        # back to ~1px so the CNN sees its native spacing, positions x scale
+        legacy = paper_corner_positions(loop[::lattice_scale] / float(lattice_scale),
+                                        detector, postprocess_policy, lattice_scale=1)
+        return np.asarray(legacy, float) * float(lattice_scale) if len(legacy) else legacy
     model, s = _corner_model()
     resolution = max(1.0, float(np.ptp(loop[:, 0]) + np.ptp(loop[:, 1])) / 2)
     use_cnn = False
@@ -3877,7 +3922,82 @@ def _finish_loop(
     return FittedLoop(loop, _pixel_faithful_curves(loop), template + "-fallback")
 
 
-def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | None:
+_D3_RF_CACHE: dict = {}
+
+
+def _native_density_probabilities(loop: np.ndarray, coarse: np.ndarray,
+                                  lattice_scale: int = 1) -> np.ndarray | None:
+    """Design D3: corner probabilities at NATIVE density, geometry at 4x.
+
+    Shadow evidence (benchmarks/shadow_rf_corners.json, 2026-07-15): on
+    4x-lattice loops the CNN collapses to P~0.13 (staircase micro-turns
+    read as corners at 4x magnification) and the joint machinery then keeps
+    thousands of C0s (P~0.11 end-to-end for ANY classifier).  Instead of
+    teaching everything to survive 4x density, don't feed it 4x loops: the
+    native staircase is recoverable from the 4x loop itself (fill -> 4x4
+    block reduce -> mask_loops), the classifier runs there (clean input ->
+    CNN on its home lattice; measured q30-class -> the promoted RF q30
+    bucket), and per-vertex probabilities transfer back to the 4x ring by
+    nearest native vertex.  Candidate recentering on the 4x apex and all
+    pricing stay unchanged downstream.  Any failure falls back to the
+    old direct path."""
+    if lattice_scale != 4:
+        return _corner_probabilities(coarse)
+    try:
+        shift = np.floor(loop.min(axis=0)) - 8.0
+        pts = np.round(loop - shift).astype(np.int32)
+        h = int(pts[:, 1].max()) + 9
+        w = int(pts[:, 0].max()) + 9
+        h4, w4 = ((h + 3) // 4) * 4, ((w + 3) // 4) * 4
+        mask4 = np.zeros((h4, w4), np.uint8)
+        cv2.fillPoly(mask4, [pts], 1)
+        native = mask4.reshape(h4 // 4, 4, w4 // 4, 4).mean(axis=(1, 3)) >= 0.5
+        if not native.any():
+            return _corner_probabilities(coarse)
+        from vectorize_papers import mask_loops as _ml, signed_area as _sa
+        cand_loops = _ml(native)
+        if not cand_loops:
+            return _corner_probabilities(coarse)
+        nat = max(cand_loops, key=lambda l: abs(_sa(l)))
+        if len(nat) > 1 and np.allclose(nat[0], nat[-1]):
+            nat = nat[:-1]
+        if len(nat) < 24:
+            return _corner_probabilities(coarse)
+        span = float(np.ptp(nat[:, 0]) + np.ptp(nat[:, 1])) / 2.0
+        probs_nat = None
+        if _IMAGE_NOISE[0] > 0.0 and span >= 48.0:
+            try:
+                import joblib
+                key = 64 if span < 96.0 else 128
+                if key not in _D3_RF_CACHE:
+                    path = Path(__file__).parent / "models" / "retrain" / f"corner_rf_q30_{key}.joblib"
+                    _D3_RF_CACHE[key] = joblib.load(path) if path.is_file() else None
+                bundle = _D3_RF_CACHE[key]
+                if bundle is not None:
+                    from retrain_corner_rf import stencil_features, d4_augment
+                    s = bundle["s"]
+                    if len(nat) >= 2 * s + 2:
+                        feats = stencil_features(np.asarray(nat, float), s)
+                        pos = list(bundle["model"].classes_).index(1)
+                        probs_nat = np.zeros(len(feats))
+                        for g in d4_augment(feats, s):
+                            probs_nat = np.maximum(probs_nat, bundle["model"].predict_proba(g)[:, pos])
+            except Exception:
+                probs_nat = None
+        if probs_nat is None:
+            probs_nat = _corner_probabilities(np.asarray(nat, float))
+        if probs_nat is None or len(probs_nat) != len(nat):
+            return _corner_probabilities(coarse)
+        from scipy.spatial import cKDTree
+        nat4 = (np.asarray(nat, float) * 4.0) + shift[None, :]
+        _, idx = cKDTree(nat4).query(coarse)
+        return np.asarray(probs_nat, float)[idx]
+    except Exception:
+        return _corner_probabilities(coarse)
+
+
+def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float,
+                    lattice_scale: int = 1) -> FittedLoop | None:
     """Stage 2.3: the WHOLE loop as one open DP chain with corners as PRICED
     latent decisions (METHOD_ICE 3.3).  Returns None whenever any prerequisite
     is missing — the caller then runs the classic threshold->removal path.
@@ -3899,7 +4019,7 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
     coarse = loop[::stride]
     if len(coarse) < 10:
         return None
-    probs = _corner_probabilities(coarse)
+    probs = _native_density_probabilities(loop, coarse, lattice_scale)
     if probs is None or len(probs) != len(coarse):
         return None
     above = probs >= _JOINT_SUPERSET_THRESHOLD
@@ -4045,7 +4165,7 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
     return _finish_loop(loop, curves, px, "paper-joint")
 
 
-def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.ndarray | None = None, px: float = 1.0) -> FittedLoop:
+def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.ndarray | None = None, px: float = 1.0, lattice_scale: int = 1) -> FittedLoop:
     """Full paper boundary fit for one loop: Sec4/Sec5 corners split the loop into
     segments, each fit to edge midpoints by Sec 5.1 with the directional interval
     accuracy constraint.  A corner-free loop is a smooth curve split into four arcs.
@@ -4071,7 +4191,7 @@ def fit_loop_paper(loop: np.ndarray, alpha: float = 0.13, corner_positions: np.n
             return FittedLoop(loop, ellipse[2], "paper-tiny-ellipse")
         return FittedLoop(loop, _tiny_pixel_curves(loop), "paper-tiny")
     if _JOINT_CORNER_DP:
-        joint = _fit_loop_joint(loop, alpha, px)
+        joint = _fit_loop_joint(loop, alpha, px, lattice_scale=lattice_scale)
         if joint is not None:
             # A q30 disc often reaches the joint path via pseudo-corner claims;
             # give the ideal circle the same relative day in court it gets on
@@ -6059,7 +6179,8 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                     spacing = max(0.42, min(0.62, 0.48 * feature_scale))
                     fit_input = taubin_smooth_ring(resample_ring(full, spacing), passes=2)[:-1]
                     px_in = 0.6
-                loops.append(fit_loop_paper(fit_input, fit_alpha, corner_positions=corners, px=px_in))
+                loops.append(fit_loop_paper(fit_input, fit_alpha, corner_positions=corners, px=px_in,
+                                            lattice_scale=int(analysis_scale)))
             _FOREIGN_INK[0] = None
         else:
             raw_loops = [raw for raw in mask_loops(mask) if perimeter(raw) >= 4 * analysis_scale]

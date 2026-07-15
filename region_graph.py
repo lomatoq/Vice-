@@ -319,13 +319,16 @@ def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
     for label, cys in g.cycles.items():
         pts_all = []
         for cy in cys:
-            poly = cycle_polyline(g, cy) * inv
-            if len(poly) < 24:
+            raw = cycle_polyline(g, cy)
+            if len(raw) < 24:
                 continue
-            coarse = poly[:: max(1, int(analysis_scale))]
-            got = paper_corner_positions(coarse)
+            # D3: the detector requantises a >=2x-lattice cycle to the true
+            # native staircase itself (classifier AND removal on their home
+            # lattice) instead of the old decimation poly[::scale].
+            got = paper_corner_positions(np.asarray(raw, float),
+                                         lattice_scale=max(1, int(analysis_scale)))
             if len(got):
-                pts_all.append(np.asarray(got, float))
+                pts_all.append(np.asarray(got, float) * inv)
         region_pts[label] = np.vstack(pts_all) if pts_all else np.zeros((0, 2))
 
     # ---- 2) consensus per edge --------------------------------------------------------
