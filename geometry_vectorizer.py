@@ -4310,6 +4310,132 @@ def _render_gradient_fill(fill: tuple, size: tuple[int, int], scale: int) -> Ima
     return Image.fromarray(out, "RGB")
 
 
+def _absorb_contact_confetti(masks: list[np.ndarray], analysis_scale: int,
+                             reference: np.ndarray | None = None) -> list[np.ndarray]:
+    """057-ears attempt 5 (instrumented 2026-07-15): q30 CONTACT SMEAR between
+    two inks survives every palette rule — at 4x it is THICK (not a ribbon),
+    mid-lightness (not extremum ink) and dE-far from both neighbours.  The
+    label map then shows a CONFETTI BRIDGE: the alarm bells never touch the
+    body; 9 fleck labels (24-59px @4x, L 59-96 between body L21 and bells
+    L26/27) shatter into 2-5 micro-islands each, 3-point edges, 46 junctions,
+    and the SVG kinks sit exactly on the fleck bboxes.  Four graph-level
+    attempts missed because the kissing junction they targeted does not exist.
+
+    The cure is topological, not chromatic.  Cycle dump truth: the flecks
+    touch ONE large ink mask + OUTSIDE (edge pairs (2,4)/(-1,4), (1,9)/
+    (-1,9)) — they are BARNACLES on the bell outline (the bells sit behind a
+    background strip from the body), so a two-ink-neighbour rule never fires.
+    A component is a smear barnacle iff it is TINY (<= 8 native px^2 —
+    measured flecks 1.5-3.7, margin 2x) and LARGE ink masks (>= 24 native
+    px^2 — the bells are 86) hold >= 45% of its contact ring with the single
+    best neighbour holding >= 30%.  It is absorbed into that neighbour
+    (locally fattens the silhouette by the smear width, ~0.5px native —
+    against a boundary shattered into 27 pieces).  A real tiny dot floats in
+    background (ink ring share ~0) and stays; sub-cap real accents touching
+    a shape are sub-perceptual at these sizes and the gates judge the trade.
+    Canary: the Lacoste mouth (970px @4x) is 7x above the cap.
+
+    Second law (same instrument, isolated path): specks that FAIL the
+    barnacle rule float in background dust — L 59-96 blobs on a white bg
+    beside L 21-27 ink, mid-tones that belong to neither the ink set nor
+    the background.  The palette already encodes 'transition vs extremum'
+    for THIN ribbons; dust is its thick-at-4x cousin, so the same law
+    applies at speck scale: a floating speck whose median L sits >= 8
+    INSIDE the (background, any-large-ink) interval is codec residue and
+    is DELETED.  An i-dot floats too but its L matches its ink (extremum)
+    and survives.
+
+    Proximity bound (vai50 lesson, icon_group_4_62 iou -0.071): the eaten
+    'dust' there was a CAPTION LINE - sub-8px^2 glyphs are mid-grey AA mush
+    even at 4x, indistinguishable from smear by any L statistic (measured
+    own-range/span 0.61-1.03 vs true dust 0.28-0.59 - the ramp test points
+    the WRONG way).  The physical difference is WHERE: codec smear is born
+    AT a strong edge and hugs its shape (057 dust sits <=1 native px from
+    the bells / z walls), while standalone glyphs float 10-30px out in open
+    background.  Dust deletion therefore also requires the speck to lie
+    within 1 native px of a large mask.  (A GLOBAL noise gate was probed
+    and rejected: 057-v1 measures ring-p90 0.0 - its disease is local
+    smear, not global ringing - so gating on measure_image_noise would
+    have killed the cure with the collateral.)"""
+    if analysis_scale < 2:
+        # Native-scale lane: an under-resolved REAL detail is itself mid-tone
+        # (its 1-2px pixels average with the background), so the transition
+        # law cannot tell it from dust — IKEA-jpeg's tiny_detail collapsed
+        # 0.7964 -> 0.0053 when this ran at scale 1.  At 4x real ink keeps a
+        # resolved dark core; both laws stay deblur-lane-only until a
+        # scale-1 confetti case brings its own evidence.
+        return masks
+    if len(masks) < 3:
+        return masks
+    scale_sq = float(analysis_scale) * float(analysis_scale)
+    small_cap = 8.0 * scale_sq
+    large_floor = 24.0 * scale_sq
+    areas = [int(m.sum()) for m in masks]
+    large_idx = [i for i, a in enumerate(areas) if a >= large_floor]
+    if len(large_idx) < 2:
+        return masks
+    ref_l = None
+    ink_l: dict[int, float] = {}
+    if reference is not None:
+        ref_l = cv2.cvtColor(np.ascontiguousarray(reference, np.uint8),
+                             cv2.COLOR_RGB2LAB)[..., 0].astype(np.float32)
+        for j in large_idx:
+            vals = ref_l[masks[j]]
+            if len(vals):
+                ink_l[j] = float(np.median(vals))
+    union_all = np.zeros_like(masks[0], dtype=bool)
+    for m in masks:
+        union_all |= m
+    kernel = np.ones((3, 3), np.uint8)
+    union_large = np.zeros_like(masks[0], dtype=bool)
+    for j in large_idx:
+        union_large |= masks[j]
+    near_large = cv2.dilate(union_large.astype(np.uint8), kernel,
+                            iterations=max(1, int(analysis_scale))).astype(bool)
+    out = [m.copy() for m in masks]
+    changed = False
+    for i, area in enumerate(areas):
+        if area > small_cap or area == 0:
+            continue
+        n_comp, comp_lab = cv2.connectedComponents(out[i].astype(np.uint8), connectivity=8)
+        for c in range(1, n_comp):
+            comp = comp_lab == c
+            ring = cv2.dilate(comp.astype(np.uint8), kernel, iterations=1).astype(bool) & ~comp
+            ring_size = int(ring.sum())
+            if ring_size == 0:
+                continue
+            contacts = [(int(np.count_nonzero(ring & out[j])), j)
+                        for j in large_idx if j != i]
+            contacts = [(t, j) for t, j in contacts if t > 0]
+            t_best, j_best = max(contacts) if contacts else (0, -1)
+            if (contacts and sum(t for t, _ in contacts) >= 0.45 * ring_size
+                    and t_best >= 0.30 * ring_size):
+                out[j_best] = out[j_best] | comp
+                out[i] = out[i] & ~comp
+                changed = True
+                continue
+            # dust law: floating mid-tone speck between bg and some ink,
+            # born at a strong edge (within 1 native px of large ink)
+            if ref_l is None or not ink_l:
+                continue
+            if not bool(near_large[comp].any()):
+                continue
+            bg_ring = ring & ~union_all
+            if int(bg_ring.sum()) < 0.4 * ring_size:
+                continue
+            l_speck = float(np.median(ref_l[comp]))
+            l_bg = float(np.median(ref_l[bg_ring]))
+            is_dust = any(
+                (li + 8.0 < l_speck < l_bg - 8.0) or (l_bg + 8.0 < l_speck < li - 8.0)
+                for li in ink_l.values())
+            if is_dust:
+                out[i] = out[i] & ~comp
+                changed = True
+    if not changed:
+        return masks
+    return [m for m in out if int(m.sum()) > 0]
+
+
 def _detect_diagram_signature(masks: list[np.ndarray], analysis_scale: int) -> bool:
     """Router lane 1 (design D1): the width-split lane is FOR DIAGRAMS —
     globally it tore up the 512px logo corpus (vai50 kinks 4.61 -> 5.80).
@@ -5757,6 +5883,17 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                         and _detect_diagram_signature(masks, analysis_scale))
         if diagram_lane:
             masks = _split_masks_by_width(masks, analysis_scale)
+        # 057-ears confetti court: PARKED OFF (2026-07-15).  The mechanism is
+        # proven on its target (item57-v1 kinks 15.19 -> 3.11, dust and
+        # barnacles gone, render cleaner than the source) but no runtime lane
+        # signature separates diseased icons from dense icon sheets yet:
+        # vai50 collages pay kinks med +0.32 / iou 20-worse-11-better, the
+        # fleck-to-large ratio straddles (0.86-9.0 vs the cured item's 3.0),
+        # the global noise meter is blind to local smear (57-v1 rings 0.0).
+        # Next lane candidate: COHORT COHERENCE (caption glyphs have 14+
+        # same-colour sub-cap siblings; q30 flecks are lone varied blends).
+        # Re-enable ONLY behind that lane: NEXT_STRIKES 057 entry.
+        # masks = _absorb_contact_confetti(masks, analysis_scale, reference)
     region_graph_active = smoothing == "paper-regions" and _needs_shared_region_graph(masks, analysis_scale)
     paper_loop_mode = smoothing in {"paper", "paper-native", "paper-perc", "paper-perres"} or (
         smoothing == "paper-regions" and not region_graph_active)
