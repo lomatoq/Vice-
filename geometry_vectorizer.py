@@ -1303,6 +1303,9 @@ _FIT_DEBUG = [False]       # print per-chunk Alg-1 violation devs (diagnostics o
 _PAPER_FIT_ALPHA_K = 32.0  # paper's alpha = 32 / resolution (Sec 5.1)
 _DP_SPAN_PX = 110.0        # physical arc length one primitive's look-back can span (native px)
 _DP_MAX_NODES = 220        # cap DP break points per segment for speed on huge loops
+_DP_DEBUG: dict | None = None   # {"target_mid": i[, "win", "ban_near"]}: print span
+                                # economics around mid i; ban_near drops priced corner
+                                # candidates within 5 mids (counterfactual run). Probe-only.
 _PAPER_FIT_EPS = 0.1       # paper's interval relaxation epsilon (Sec 5.1, Eq 5), in raster px
 _PAPER_G1_W = 6.0          # weight of the G1-continuity term in the fit energy (Sec 5.1): a
                            # corner-bounded segment is smooth INSIDE, so any tangent break
@@ -1878,6 +1881,10 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
     node_price: dict[int, float] = {}
     if corner_prices:
         node_set = set()
+        ban = _DP_DEBUG.get("ban_near") if _DP_DEBUG else None
+        if ban is not None:
+            corner_prices = {i: p for i, p in corner_prices.items()
+                             if abs(int(i) - int(ban)) > 5}
         for mid_index, price in corner_prices.items():
             # nearest DP node to the candidate's mid index
             node_val = nodes[min(range(len(nodes)), key=lambda q: abs(nodes[q] - mid_index))]
@@ -1947,6 +1954,70 @@ def fit_segment_midpoints(vertices: np.ndarray, alpha: float = 0.13, px: float =
             jj, bkey = ii, bin_in
         chunks.reverse()
         run_dp.last_corner_mids = corner_mids
+        if _DP_DEBUG:
+            t = int(_DP_DEBUG.get("target_mid", -1))
+            win = int(_DP_DEBUG.get("win", 25))
+            if 0 <= t < m:
+                total = dp[k - 1][end_bin][0]
+                near = [v for v in nodes if abs(v - t) <= win]
+                print(f"[DPDBG] m={m} k={k} stride={stride} node_px={node_px:.2f} "
+                      f"total={total:.3f} corner_mids={sorted(corner_mids)}")
+                print(f"[DPDBG] nodes near {t}: {near}")
+                print(f"[DPDBG] prices near: "
+                      f"{ {v: round(node_price[v], 3) for v in near if v in node_price} }")
+                for ci, (a, b, kind, parameter) in enumerate(chunks):
+                    if a - win <= t <= b + win:
+                        cands = sorted(fit_sub_all(a, b, force=False, banned=banned))[:4]
+                        print(f"[DPDBG] chunk {a}->{b} won={kind} cands="
+                              f"{[(kk, round(cc, 3)) for cc, kk, *_ in cands]}")
+                for ci in range(len(chunks) - 1):
+                    a0, b0 = chunks[ci][0], chunks[ci][1]
+                    a1, b1 = chunks[ci + 1][0], chunks[ci + 1][1]
+                    if b0 == a1 and abs(b0 - t) <= win:
+                        merged = sorted(fit_sub_all(a0, b1, force=False, banned=banned))[:5]
+                        print(f"[DPDBG] MERGED span {a0}->{b1} across join {b0}: "
+                              f"{[(kk, round(cc, 3)) for cc, kk, *_ in merged]}")
+                        cA = sorted(fit_sub_all(a0, b0, force=False, banned=banned))
+                        cB = sorted(fit_sub_all(a1, b1, force=False, banned=banned))
+                        if cA and cB and cA[0][4] is not None and cB[0][3] is not None:
+                            cosang = max(-1.0, min(1.0, float(cA[0][4] @ cB[0][3])))
+                            ang_d = math.degrees(math.acos(cosang))
+                            pen = _PAPER_G1_W * max(0.0, math.acos(cosang) - dead)
+                            print(f"[DPDBG] join {b0}: tangent gap {ang_d:.1f}deg pen={pen:.3f} "
+                                  f"pair total={cA[0][0] + cB[0][0] + pen:.3f}")
+                        # forced clothoid on each side + merged (arc early-return hides it)
+                        for (aa, bb) in ((a0, b0), (a1, b1), (a0, b1)):
+                            st, en = chunk_slice(aa, bb)
+                            subd = mid[st:en]
+                            cl = _clothoid_fit(subd)
+                            if cl is None:
+                                print(f"[DPDBG] clothoid {aa}->{bb}: degenerate")
+                                continue
+                            poly, cts, cte, _cp = cl
+                            devc = np.abs(np.sum((poly - subd) * um[st:en], axis=1))
+                            okc = bool((devc <= half_arr[st:en] + eps).all())
+                            costc = alpha * float(np.linalg.norm(poly - subd, axis=1).sum()) + 4.0
+                            print(f"[DPDBG] clothoid {aa}->{bb}: feasible={okc} cost={costc:.3f} "
+                                  f"dev_max={float(devc.max()):.2f} ts={np.round(cts, 3)} te={np.round(cte, 3)}")
+                        # best alternative two-piece splits of the SAME window
+                        rows = []
+                        for X in nodes:
+                            if not (a0 + 4 <= X <= b1 - 4) or X == b0:
+                                continue
+                            sA = sorted(fit_sub_all(a0, X, force=False, banned=banned))
+                            sB = sorted(fit_sub_all(X, b1, force=False, banned=banned))
+                            if not sA or not sB:
+                                continue
+                            pen2 = 0.0
+                            if sA[0][4] is not None and sB[0][3] is not None:
+                                c2 = max(-1.0, min(1.0, float(sA[0][4] @ sB[0][3])))
+                                pen2 = _PAPER_G1_W * max(0.0, math.acos(c2) - dead)
+                            rows.append((sA[0][0] + sB[0][0] + pen2, X, sA[0][1],
+                                         round(sA[0][0], 2), sB[0][1], round(sB[0][0], 2),
+                                         round(pen2, 2)))
+                        for r in sorted(rows)[:4]:
+                            print(f"[DPDBG] split@{r[1]}: {r[2]}({r[3]}) + {r[4]}({r[5]}) "
+                                  f"pen={r[6]} total={r[0]:.3f}")
         return chunks
 
     def build_curves(chunks):
@@ -3885,11 +3956,12 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
             if turn >= 45.0:
                 # (Two cap-veto variants were probed here 2026-07-14 and
                 # removed as DEAD AIM: the spotify-380 caps measure turn(w)
-                # of only 18-23 deg — they never even ENTER this branch; the
-                # pair is bought purely on CNN probs 0.40-0.42 against a
-                # G1 alternative the DP declines.  The real question is why
-                # an r=2 arc through the cap loses feasibility/economics —
-                # instrument the DP decision at loop-704 vertex 701 next.)
+                # of only 18-23 deg — they never even ENTER this branch.
+                # 2026-07-15 instrumentation closed the case: the residual
+                # cap corner was never PAID at all — it was the free C0 of
+                # the unroll SEAM (strongest candidate p=0.42).  The seam
+                # court below now judges that cut under the DP's own
+                # price-vs-penalty law.)
                 price = min(price, _JOINT_CAP_PRICE)
         prices[u] = min(prices.get(u, float("inf")), price)
     chain = fit_segment_midpoints(ring, alpha, px, snap_ends=False,
@@ -3928,6 +4000,34 @@ def _fit_loop_joint(loop: np.ndarray, alpha: float, px: float) -> FittedLoop | N
         if drop:
             chain = [c for i, c in enumerate(chain) if i not in drop]
             corner_joins = []          # indices are stale after absorption
+    # SEAM COURT.  The unroll cut received its C0 for FREE — an open chain never
+    # unifies its two ends, so the strongest candidate is the ONE corner the DP
+    # can never price against a smooth continuation.  Judge it under the DP's
+    # own law: corner price (same turn>=45 testimony cap) vs the G1 penalty the
+    # actual end-tangent gap would cost.  When the seam loses on a chain with
+    # no other PAID corner, the joint verdict is literally "zero corners" —
+    # fit the loop cyclically, where no seam exists at all.  Instrumented on
+    # the residual spotify-380 kink (2026-07-15): cap claim p=0.42 -> price
+    # 3.9, measured seam gap 15.6deg -> penalty 1.215; the corner survived
+    # ONLY because the cut made it free.  Chains that did pay corners keep
+    # the classic weld: their strongest claim is a corner among corners.
+    if not corner_joins:
+        ta_seam = _tangent_out(chain[-1])
+        tb_seam = _tangent_in(chain[0])
+        if ta_seam is not None and tb_seam is not None:
+            gap = math.acos(max(-1.0, min(1.0, float(ta_seam @ tb_seam))))
+            pen = _PAPER_G1_W * max(0.0, gap - math.radians(_PAPER_G1_DEAD))
+            seam_price = _corner_price(dict(cand_pairs).get(strongest, 1.0))
+            va = loop[strongest] - loop[(strongest - w_turn) % n]
+            vb = loop[(strongest + w_turn) % n] - loop[strongest]
+            na, nb = float(np.linalg.norm(va)), float(np.linalg.norm(vb))
+            if na > 1e-9 and nb > 1e-9:
+                turn = math.degrees(math.acos(max(-1.0, min(1.0, float((va / na) @ (vb / nb))))))
+                if turn >= 45.0:
+                    seam_price = min(seam_price, _JOINT_CAP_PRICE)
+            if pen <= seam_price:
+                return _finish_loop(loop, _fit_smooth_closed(loop, alpha, px),
+                                    px, "paper-smooth")
     # Weld the wrap seam C0 at the strongest candidate (classic 1-corner move).
     p_seam = _corner_intersection(chain[-1], chain[0], loop[strongest])
     _shift_curve_end(chain[-1], p_seam)
