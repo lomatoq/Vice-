@@ -43,6 +43,11 @@ from retrain_corner_rf_step1 import load_aug  # noqa: E402
 
 OUT_JSON = ROOT / "benchmarks" / "retrain_rf_step2.json"
 TREES = 160
+# Model roster is a module constant so the 320-tree confirmation run can
+# restrict itself to the promoted candidates without forking the protocol.
+MODEL_DEFS = {"A": ("orig",), "B2": ("orig", "q30", "db4"),
+              "C_q30": ("orig", "q30"), "C_db4": ("orig", "db4")}
+RES_LIST = (32, 64, 128)
 
 
 def prep(pairs):
@@ -130,11 +135,9 @@ def run_res(res: int) -> dict:
            for base, domain, pts, labels in load_aug(res)]
     orig_p, aug_p = prep(orig), prep(aug)
     domains = sorted({d for _, d, _, _, _ in orig_p + aug_p})
-    have_db4 = any(d == "db4" for _, d, _, _, _ in aug_p)
-    model_defs = {"A": ("orig",), "B2": ("orig", "q30", "db4"),
-                  "C_q30": ("orig", "q30")}
-    if have_db4:
-        model_defs["C_db4"] = ("orig", "db4")
+    avail = {"orig"} | {d for _, d, _, _, _ in aug_p}
+    model_defs = {m: doms for m, doms in MODEL_DEFS.items()
+                  if all(d in avail for d in doms)}
     buckets: dict[tuple[str, str], list] = {(m, d): [] for m in model_defs for d in domains}
     t0 = time.time()
     for fold in FOLDS:
@@ -189,7 +192,7 @@ def main() -> int:
             done = {r["res"] for r in results}
         except Exception:
             results, done = [], set()
-    for res in (32, 64, 128):
+    for res in RES_LIST:
         if res in done:
             print(f"res {res}: cached, skip", flush=True)
             continue
