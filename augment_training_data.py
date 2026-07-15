@@ -49,19 +49,23 @@ QC_PNG = ROOT / "benchmarks" / "retrain_step1_qc.png"
 
 
 def rasterize(pts: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
-    """Pixel-centre-in-polygon raster on a padded 1px grid: 8x supersampled
-    fillPoly + block mean >= 0.5.  Plain fillPoly also draws the outline,
-    dilating the mask ~0.5px per side (+17% area at res 32, measured); the
-    supersample keeps that bias under 1/16px, matching how the paper's own
-    rasters relate to their marching-squares polygons (area ratio ~1.0)."""
+    """Raster faithful to the corpus convention.  The released boundaries are
+    unit-step chains THROUGH PIXEL CENTRES of the boundary pixels, so the
+    original raster = interior pixels + the boundary pixels themselves.
+    Plain fillPoly reproduces exactly that (it fills the interior AND draws
+    the outline, i.e. centre-on-polygon is included).  Area evidence at res
+    32: polygon-area ratio of the true raster ~= 1 + perim/(2*area) ~= 1.13;
+    plain fillPoly measures 1.167, while an 8x-supersampled centre-in-polygon
+    raster (step-1 v1) measures 1.055 - HALF A PIXEL THINNER all around,
+    which shifted every staircase and poisoned v1 training (uniform F1 drop
+    at res 64 on every domain)."""
     shift = 4.0 - np.floor(pts.min(axis=0))
     p = pts + shift
     h = int(np.ceil(p[:, 1].max())) + 5
     w = int(np.ceil(p[:, 0].max())) + 5
-    mask8 = np.zeros((h * 8, w * 8), dtype=np.uint8)
-    cv2.fillPoly(mask8, [np.round(p * 8).astype(np.int32)], 1)
-    frac = mask8.reshape(h, 8, w, 8).mean(axis=(1, 3))
-    return frac >= 0.5, shift
+    mask = np.zeros((h, w), dtype=np.uint8)
+    cv2.fillPoly(mask, [np.round(p * 8).astype(np.int32)], 1, shift=3)
+    return mask.astype(bool), shift
 
 
 def biggest_loop(mask: np.ndarray) -> np.ndarray | None:
@@ -76,13 +80,52 @@ def biggest_loop(mask: np.ndarray) -> np.ndarray | None:
 
 def transfer_labels(new_pts: np.ndarray, gt_corners: np.ndarray,
                     tol: float) -> tuple[np.ndarray, int]:
-    """Nearest-vertex label transfer; returns (corner indices, dropped)."""
+    """Label transfer to the TURNING APEX among vertices within tol.
+
+    v1 used the euclidean-nearest vertex, which on a staircase is often the
+    step NEIGHBOUR of the true apex (a half-pixel diagonal decides); the
+    stencil then learns displaced targets - one of the two v1 poisons.
+    The apex choice mirrors production _recenter_corners: strongest local
+    turn wins, distance only breaks ties."""
     if len(gt_corners) == 0:
         return np.empty(0, dtype=int), 0
+    n = len(new_pts)
+    w = 3
+    va = new_pts - np.roll(new_pts, w, axis=0)
+    vb = np.roll(new_pts, -w, axis=0) - new_pts
+    na = np.linalg.norm(va, axis=1)
+    nb = np.linalg.norm(vb, axis=1)
+    cosang = np.clip(np.sum(va * vb, axis=1) / np.maximum(na * nb, 1e-9), -1.0, 1.0)
+    turn = np.degrees(np.arccos(cosang))
     tree = cKDTree(new_pts)
-    dist, idx = tree.query(gt_corners)
-    keep = dist <= tol
-    return np.unique(idx[keep]), int(np.sum(~keep))
+    # Injective assignment: two GT corners must not collapse onto one apex
+    # (a short serif has TWO corners 3px apart - unique() would merge them
+    # and silently delete ~20% of labels, measured).  Strongest-turn corner
+    # claims its apex first; a taken vertex yields the next-best candidate.
+    balls = []
+    for gi, g in enumerate(gt_corners):
+        cand = tree.query_ball_point(g, tol)
+        if not cand:
+            balls.append((gi, []))
+            continue
+        d = np.linalg.norm(new_pts[np.asarray(cand)] - g, axis=1)
+        ranked = sorted(range(len(cand)),
+                        key=lambda i: (-turn[cand[i]], float(d[i])))
+        balls.append((gi, [(int(cand[i]), float(turn[cand[i]])) for i in ranked]))
+    order = sorted(range(len(balls)),
+                   key=lambda j: -(balls[j][1][0][1] if balls[j][1] else -1.0))
+    used: set[int] = set()
+    chosen: list[int] = []
+    dropped = 0
+    for j in order:
+        _, ranked = balls[j]
+        pick = next((v for v, _ in ranked if v not in used), None)
+        if pick is None:
+            dropped += 1
+            continue
+        used.add(pick)
+        chosen.append(pick)
+    return (np.asarray(sorted(chosen), dtype=int) if chosen else np.empty(0, int)), dropped
 
 
 def save_pair(dirpath: Path, bucket: int, pts: np.ndarray, corner_idx: np.ndarray) -> None:
