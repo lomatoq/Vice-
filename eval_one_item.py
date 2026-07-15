@@ -8,6 +8,11 @@ agree).  Until the root cause is caught, every multi-item harness runs
 each item through this script; stdout is one JSON line.
 
 Usage: eval_one_item.py <crop.png> <out_dir> <W> [mode]
+
+W is the crop WIDTH (report row size[0]), NOT the h64-style height from
+the filename: kinks_per_100px normalises by total_len in W-space, so a
+415x64 crop probed at W=64 reads 6.5x worse (the 2026-07-15 '082 drift'
+false alarm — both suspect commits measured identical once W was right).
 """
 from __future__ import annotations
 
