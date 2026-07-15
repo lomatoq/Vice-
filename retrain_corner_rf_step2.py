@@ -179,8 +179,20 @@ def run_res(res: int) -> dict:
 
 
 def main() -> int:
+    # resume: a reboot killed the first run mid-res-64; completed resolutions
+    # are cached in the partial JSON and skipped on relaunch.
     results = []
+    done: set[int] = set()
+    if OUT_JSON.exists():
+        try:
+            results = json.loads(OUT_JSON.read_text(encoding="utf-8"))
+            done = {r["res"] for r in results}
+        except Exception:
+            results, done = [], set()
     for res in (32, 64, 128):
+        if res in done:
+            print(f"res {res}: cached, skip", flush=True)
+            continue
         r = run_res(res)
         results.append(r)
         OUT_JSON.write_text(json.dumps(results, indent=1), encoding="utf-8")
