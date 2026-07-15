@@ -7,6 +7,7 @@ still performed by the deterministic contour/primitive pipeline afterwards.
 from __future__ import annotations
 
 import argparse
+import os
 import colorsys
 import io
 import json
@@ -312,6 +313,57 @@ def compact_palette(image: Image.Image, colors: int = 16,
     def entry_thickness(entry: dict) -> float:
         mask = np.isin(labels, entry["labels"]).astype(np.uint8)
         return float(cv2.distanceTransform(mask, cv2.DIST_L2, 3).max())
+
+    def dash_pattern(entry: dict) -> bool:
+        """A DELIBERATE dash grid, not an AA ribbon: >=4 similar components
+        in a collinear row/column with a REGULAR step (item105 grid: 163
+        comps of ~10px, 3 rows of 54, step exactly 11.0; kerning/word gaps
+        of text FAIL the step law; fused dash pairs pass via the p90 bound).
+
+        DETECTOR ONLY — currently unhooked.  The palette-level rescue was
+        built and REVERTED with numbers (2026-07-15): guarding the
+        same_neutral fold + the RAG edge_transition did put the grey anchor
+        back (dE 8.91 vs white), but the dashes still died downstream of the
+        palette AND the extra anchor stole the axes/line AA pixels — item105
+        ink_iou 0.747 -> 0.613.  The correct plane is the DIAGRAM LANE:
+        detect dash groups with this function, emit them as stroke paths
+        with dasharray, and carve their pixels out BEFORE the palette runs
+        (NEXT_STRIKES: line-dashed design)."""
+        mask = np.isin(labels, entry["labels"]).astype(np.uint8)
+        count, _, stats, cents = cv2.connectedComponentsWithStats(mask, connectivity=8)
+        if count < 5:
+            return False
+        sizes = stats[1:, cv2.CC_STAT_AREA].astype(float)
+        keep = (sizes >= 3) & (sizes <= 400)
+        if int(keep.sum()) < 4:
+            return False
+        pts = cents[1:][keep]
+        sz = sizes[keep]
+        matched = 0.0
+        total_ink = float(sz.sum())
+        for axis in (1, 0):                      # rows (group by y), columns (by x)
+            order = np.argsort(pts[:, axis])
+            groups: list[list[int]] = []
+            for idx in order:
+                if groups and abs(pts[idx, axis] - pts[groups[-1][-1], axis]) <= 2.5:
+                    groups[-1].append(int(idx))
+                else:
+                    groups.append([int(idx)])
+            for g in groups:
+                if len(g) < 4:
+                    continue
+                s = sz[g]
+                if float(np.percentile(s, 90)) > 3.0 * float(np.median(s)):
+                    continue                     # fused pairs allowed, wild mixes not
+                pos = np.sort(pts[g, 1 - axis])
+                steps = np.diff(pos)
+                if len(steps) < 3:
+                    continue
+                med = float(np.median(steps))
+                if med <= 1.0 or float(np.percentile(steps, 90)) > 2.2 * med:
+                    continue                     # text kerning/word gaps fail here
+                matched += float(s.sum())
+        return matched >= 0.5 * total_ink
 
     # Merge anti-aliased shades that have the same hue.  Value is deliberately
     # ignored for saturated colours: an orange edge and orange interior belong
