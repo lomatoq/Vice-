@@ -4593,6 +4593,7 @@ def _detect_diagram_signature(masks: list[np.ndarray], analysis_scale: int) -> b
     total_ink = float(sum(int(m.sum()) for m in masks)) or 1.0
     panel_ink = 0.0
     connectors = 0
+    frame_networks = 0
     for m in masks:
         area = int(m.sum())
         if area < 40 * analysis_scale:
@@ -4606,11 +4607,23 @@ def _detect_diagram_signature(masks: list[np.ndarray], analysis_scale: int) -> b
             rect_area = max(1.0, rect[1][0] * rect[1][1])
             if area / rect_area >= 0.85:
                 panel_ink += area
+            elif area / rect_area <= 0.15:
+                # Frame-NETWORK class (design D1 v2, measured on nested_
+                # containers): outlined boxes fuse into one spidery mask —
+                # huge extent, coverage 0.07 vs its minAreaRect, yet built of
+                # near-constant THIN strokes (thickness p90 3.8 at 4x ~ 1px
+                # native).  A collage's big blob measures cov 0.46 / p90 31.5
+                # — nowhere near.  One such network marks a line diagram as
+                # surely as filled panels do.
+                dist = cv2.distanceTransform(m.astype(np.uint8), cv2.DIST_L2, 3)
+                dv = dist[dist > 0]
+                if len(dv) and float(np.percentile(dv, 90)) <= 1.2 * analysis_scale:
+                    frame_networks += 1
         else:
             aspect = max(w_b, h_b) / max(1.0, min(w_b, h_b))
             if aspect >= 3.0:
                 connectors += 1
-    return panel_ink / total_ink >= 0.40 and connectors >= 3
+    return (panel_ink / total_ink >= 0.40 or frame_networks >= 1) and connectors >= 3
 
 
 def _split_masks_by_width(masks: list[np.ndarray], analysis_scale: int) -> list[np.ndarray]:
