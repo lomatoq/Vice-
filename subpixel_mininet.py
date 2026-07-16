@@ -586,6 +586,25 @@ def compact_palette(image: Image.Image, colors: int = 16,
                     )[0]
                     anchors.append(canonical)
                     continue
+            # Row-coherence rescue: PARKED OFF (2026-07-16).  The golden
+            # letter-spaced 'STUDIOS' caption dies under ANY degradation
+            # (gamma+jpeg dilutes it to sat 0.40 — a hair under every gate:
+            # not dark ink, not extremum vs a white ring, 0.01 below the
+            # salient-accent line), and it dies TWICE: family drop here AND
+            # _merge_regions absorb (small letters as slivers <=30px, large
+            # ones as weak-edge dE 34 < 80).  Row-coherence immunity in the
+            # MERGE cured the stress case completely (h95 16.24 -> 0.95,
+            # caption visibly golden) but flooded the vai50 corpus: q30
+            # confetti and collage decor rows are ALSO regular rows — kinks
+            # med 4.56 -> 5.86, micro 43 -> 58, 31/50 stems.  This anchor
+            # half alone buys nothing (merge still eats the regions), so
+            # both halves are parked as ONE trail.  Attempt 2 design in
+            # NEXT_STRIKES: ISOLATED rows only (member rings mostly
+            # background — the inverse of the dust proximity law).
+            # if dash_pattern(family):
+            #     anchors.append(max(family["candidates"],
+            #         key=lambda item: item[1] * (0.35 + hsv(item[0])[1]))[0])
+            #     continue
             continue
         # Use a real quantizer core instead of an average contaminated by edge
         # blends.  Saturation is a useful tie-breaker for coloured artwork.
