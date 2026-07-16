@@ -576,6 +576,52 @@ def vectorize_region_graph(labels: np.ndarray, analysis_scale: float,
             if rebuilt:
                 edge_curves[ei] = rebuilt
 
+    # ---- 4.4) junction STUB absorption: PARKED OFF (2026-07-16) ------------------
+    # Probes loved it (068 kinks 8.85->7.45, 059 8.53->7.25, 057-v1 14.23->9.70,
+    # iou equal or better) but the vai50 corpus vetoed BOTH attempts - the
+    # unconditional drop AND the sagitta court (straight-only stubs): kinks med
+    # 4.558->5.211, wobble med 0.96->2.42 (14/8 worse) - dense icon sheets carry
+    # thousands of junctions and every dropped stub nudges a joint node the
+    # raster genuinely wobbles around. The win class (gradient logos, q30 icons)
+    # needs a LANE the confetti trail already showed we cannot yet detect
+    # honestly. Re-enable behind that lane; probes and numbers in NEXT_STRIKES.
+    # # ---- 4.4) junction STUB absorption (068-bastion, kinkmap 2026-07-16:
+    # # 65 of 137 kinks sit ON junctions riding 0.4-2.5px pieces).  A sub-2px
+    # # curve butting a junction is the graph twin of the joint path's raster
+    # # CAP: its tangent is quantisation noise, so the 4.6 continuity pairing
+    # # below either skips it or aligns to garbage.  Same cure as cap
+    # # absorption: drop the stub (the edge keeps >= 1 curve) and let the 4.5
+    # # pinning stretch the surviving neighbour to the shared junction point.
+    # # fit-once safe by construction - the mutation happens on the SHARED
+    # # edge chain itself, so both owning regions see the identical curves.
+    # from vectorize_papers import eval_curve as _ec
+    # for ends in jmap.values():
+    #     for ei, at_end in ends:
+    #         chain = edge_curves[ei]
+    #         if len(chain) < 2:
+    #             continue
+    #         stub = chain[-1] if at_end else chain[0]
+    #         p0 = np.asarray(stub.control[0], float)
+    #         p1 = np.asarray(stub.control[-1], float)
+    #         chord = float(np.linalg.norm(p1 - p0))
+    #         if chord > 2.0 or chord < 1e-9:
+    #             continue
+    #         # Sagitta court (attempt 2; the unconditional drop moved corpus
+    #         # wobble/seam - some stubs are real micro-notches): only a stub
+    #         # that is itself STRAIGHT loses nothing when its span is covered
+    #         # by the stretched neighbour; a curved cap of a genuine corner
+    #         # stays.
+    #         drawn = _ec(stub, 8)
+    #         u = (p1 - p0) / chord
+    #         n_vec = np.array([-u[1], u[0]])
+    #         sag = float(np.abs((drawn - p0[None, :]) @ n_vec).max())
+    #         if sag > 0.5:
+    #             continue
+    #         if at_end:
+    #             chain.pop()
+    #         else:
+    #             chain.pop(0)
+
     # ---- 4.5) pin every junction to ONE shared point (watertight) -----------------------
     # With unsnapped fits the incident drawn ends sit within ~1px of the crack
     # junction; the shared point is the SUPPORT INTERSECTION of the straightest
