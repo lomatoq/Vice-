@@ -365,6 +365,34 @@ def compact_palette(image: Image.Image, colors: int = 16,
                 matched += float(s.sum())
         return matched >= 0.5 * total_ink
 
+    fold_lab_l = cv2.cvtColor(np.asarray(rgb, dtype=np.uint8), cv2.COLOR_RGB2LAB)[..., 0].astype(np.float32)
+    fold_kernel = np.ones((3, 3), np.uint8)
+
+    def engraving_pair(entry: dict, family: dict) -> bool:
+        """ENGRAVING law (stress-truth #4, the medal's vanished '1'): a THIN
+        same-hue mark that is LOCALLY DARKEST (its median L under the 10th
+        percentile of its own ring by 8) and lives in the INTERIOR (>=70% of
+        its pixels farther than 2px from any label outside the entry+family
+        pair) is deliberate relief, not an AA shade - the fold is forbidden.
+        The interior test is what separates it from 082-class JPEG rims,
+        which hug the region's border with OTHER labels/background."""
+        if entry.setdefault("thickness", entry_thickness(entry)) >= 1.9:
+            return False
+        mask = np.isin(labels, entry["labels"])
+        if not mask.any():
+            return False
+        ring = cv2.dilate(mask.astype(np.uint8), fold_kernel, iterations=2).astype(bool) & ~mask
+        if not ring.any():
+            return False
+        l_e = float(np.median(fold_lab_l[mask]))
+        if l_e > float(np.percentile(fold_lab_l[ring], 10)) - 8.0:
+            return False
+        pair_labels = list(entry["labels"]) + list(family["labels"])
+        foreign = ~np.isin(labels, pair_labels)
+        near_foreign = cv2.dilate(foreign.astype(np.uint8), fold_kernel, iterations=2).astype(bool)
+        interior = 1.0 - float(np.count_nonzero(near_foreign & mask)) / float(mask.sum())
+        return interior >= 0.70
+
     # Merge anti-aliased shades that have the same hue.  Value is deliberately
     # ignored for saturated colours: an orange edge and orange interior belong
     # to one ink even when the edge was blended with white.
@@ -406,6 +434,10 @@ def compact_palette(image: Image.Image, colors: int = 16,
             # artwork' and the veto shipped split blades and dark rims,
             # kinks 2.6->8.7 / 0.8->6.6.  Clean and mild inputs (nested
             # pastels, q45) keep the veto and their zero-output cure.
+            if ((same_colour or same_neutral) and not same_dark_neutral
+                    and perceptual_distance(entry["color"], family["color"]) >= 3.8
+                    and engraving_pair(entry, family)):
+                continue
             if thick_core_veto and (same_colour or same_neutral) and not same_dark_neutral:
                 if (perceptual_distance(entry["color"], family["color"]) >= 3.8
                         and entry.setdefault("thickness", entry_thickness(entry)) >= 1.9
