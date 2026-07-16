@@ -1500,6 +1500,7 @@ _FOREIGN_INK: list = [None]          # (dt_own, dt_others, analysis_scale) | Non
 _VORONOI_LAWS = False
 _EVIDENCE_FIELD: list = [None]
 _IMAGE_NOISE: list = [0.0]           # native-px tube slack from measured JPEG ringing
+_REASSIGN_DEBUG: list = [False]      # probe-only logging of the reassignment loop
 
 
 def measure_image_noise(source: Image.Image) -> float:
@@ -5701,6 +5702,20 @@ def _merge_regions(
         # indistinguishable from a sliver by thickness alone.
         if len(contacts) == 1 and not touches_border[region] and delta >= weak_de and area[region] >= 2:
             continue
+        # ENGRAVING law (stress-truth #4, the medal's '1'; death chain measured
+        # to this line: digit-zone dark-gold 2726 -> 693 px right here).  A
+        # region that lies WHOLLY INSIDE its would-be absorber (>= 70% of its
+        # contact is with that one region), is MUCH darker than it (anchor
+        # dL >= 15; the digit measures 47, same-ink AA shades 5-12, jpeg rims
+        # ~0), and whose absorber is NOT background-like (does not touch the
+        # image border) is deliberate engraved relief.  Captions/decor rows
+        # sitting on the BACKGROUND stay absorbable - the row-coherence
+        # corpus veto stands.
+        if (contacts[best] >= 0.70 * sum(contacts.values())
+                and not touches_border[best]
+                and float(anchor_lab[region_anchor_arr[best]][0]
+                          - anchor_lab[region_anchor_arr[region]][0]) >= 15.0):
+            continue
         is_sliver = thin[region] <= sliver_thick and area[region] <= sliver_area
         # Absorb a 1px aliasing sliver (any contrast), a thin AA/edge ribbon, or a
         # weak-colour-edge fragment; a compact high-contrast mark (eye, dot, letter
@@ -5887,6 +5902,12 @@ def extract_perceptual_masks(source: Image.Image, use_icm: bool = False, merge: 
                     and thickness < 1.5
                     and nearest_delta < 24.0
                 )
+                if _REASSIGN_DEBUG[0] and (definitely_tiny or thin_similar_artifact):
+                    ys_d, xs_d = np.nonzero(component_mask)
+                    print(f"[REASSIGN] anchor {anchor_index} -> {nearest_label} area {area} "
+                          f"thick {thickness:.2f} dE {nearest_delta:.1f} tiny={definitely_tiny} "
+                          f"thin={thin_similar_artifact} c=({xs_d.mean():.0f},{ys_d.mean():.0f})",
+                          flush=True)
                 if definitely_tiny or thin_similar_artifact:
                     clean_labels[component_mask] = nearest_label
 
