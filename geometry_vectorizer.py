@@ -4332,10 +4332,19 @@ def write_svgs(output: Path, regions: list[Region], size: tuple[int, int]) -> No
             def_row, fill = _gradient_svg_def(region_id, region.fill)
             defs.append(def_row)
         if getattr(region, "stroke", None):
-            width, stroke_curves, closed_s = region.stroke
+            spec = region.stroke
+            width, stroke_curves, closed_s = spec[0], spec[1], spec[2]
+            dash = spec[3] if len(spec) > 3 else None
             sdata = chain_path(stroke_curves) + ("Z" if closed_s else "")
+            if dash is not None:
+                # dashed grid/separator (D-dash): butt caps keep each dash a
+                # crisp rectangle the way chart renderers draw them
+                dash_attr = (f' stroke-dasharray="{dash[0]:.2f} {dash[1]:.2f}"'
+                             f' stroke-linecap="butt"')
+            else:
+                dash_attr = ' stroke-linecap="round" stroke-linejoin="round"'
             fill_rows.append(f'<path data-region="{region_id}" d="{sdata}" fill="none" stroke="{fill}" '
-                             f'stroke-width="{width:.2f}" stroke-linecap="round" stroke-linejoin="round"/>')
+                             f'stroke-width="{width:.2f}"{dash_attr}/>')
             for curve in stroke_curves:
                 kind = "line" if curve.degree == 1 else "curve"
                 color = TYPE_COLORS[kind]
@@ -4373,17 +4382,33 @@ def render_regions(regions: list[Region], size: tuple[int, int], outline: bool =
             for loop in region.loops:
                 draw.line(_sample_loop(loop, scale), fill=(0, 0, 0), width=scale, joint="curve")
             if getattr(region, "stroke", None):
-                _, stroke_curves, closed_s = region.stroke
+                stroke_curves = region.stroke[1]
                 pts = [tuple(q * scale) for q in np.vstack([eval_curve(c, 24) for c in stroke_curves])]
-                if closed_s:
+                if region.stroke[2]:
                     pts.append(pts[0])
                 draw.line(pts, fill=(0, 0, 0), width=scale, joint="curve")
             continue
         if getattr(region, "stroke", None):
-            width, stroke_curves, closed_s = region.stroke
+            spec_s = region.stroke
+            width, stroke_curves, closed_s = spec_s[0], spec_s[1], spec_s[2]
+            dash_s = spec_s[3] if len(spec_s) > 3 else None
             draw = ImageDraw.Draw(canvas)
             pts = [tuple(q * scale) for q in np.vstack([eval_curve(c, 24) for c in stroke_curves])]
             w_px = max(1, int(round(width * scale)))
+            if dash_s is not None and len(pts) >= 2:
+                # honest dashed rendering: walk the polyline in dash/gap steps
+                dash_l, gap_l = dash_s[0] * scale, dash_s[1] * scale
+                seg = np.asarray(pts, float)
+                d = np.linalg.norm(seg[-1] - seg[0])
+                if d > 1e-6:
+                    u = (seg[-1] - seg[0]) / d
+                    t = 0.0
+                    while t < d:
+                        a = seg[0] + u * t
+                        b = seg[0] + u * min(d, t + dash_l)
+                        draw.line([tuple(a), tuple(b)], fill=region.color, width=w_px)
+                        t += dash_l + gap_l
+                continue
             if closed_s:
                 pts.append(pts[0])
                 draw.line(pts, fill=region.color, width=w_px, joint="curve")
@@ -4932,6 +4957,148 @@ def _merge_gradient_stacks(masks: list[np.ndarray], reference_rgb: np.ndarray,
             final_fills[len(final_masks)] = fills[i]
         final_masks.append(m)
     return final_masks, final_fills
+
+
+def _extract_dash_strokes(arr: np.ndarray) -> tuple[list[tuple], np.ndarray | None]:
+    """Dashed grid/separator rescue at the INPUT plane (item105 autopsy).
+
+    The palette's sanitation lawfully kills thin light dash grids (no thick
+    core to defend them) and a palette-level guard was built and REVERTED
+    with numbers: the resurrected grey anchor stole the axes' AA pixels
+    (item105 ink_iou 0.747 -> 0.613) and the dashes still died downstream.
+    The right plane is BEFORE the palette: detect regular dash GROUPS on
+    the raw raster, emit each as one stroked line with a dasharray, and
+    CARVE the pixels out (inpaint with the local ring colour) so the
+    downstream palette never sees the grey at all.
+
+    Detection mirrors the proven dash_pattern law (subpixel_mininet):
+    >= 6 similar-size thin components per row/column band with a REGULAR
+    step (p90 <= 2.2x median; text kerning/word gaps fail this).  The
+    whole mechanism arms only when >= 2 groups exist - a lone dashed
+    accent stays with the hue-dashed rescue; logos/collages never form
+    two regular bands (measured: caption glyphs fail the step law)."""
+    from PIL import Image as _Image
+    img = _Image.fromarray(arr)
+    q = img.quantize(colors=16, method=_Image.Quantize.MEDIANCUT, dither=_Image.Dither.NONE)
+    labels = np.asarray(q)
+    pal = np.asarray(q.getpalette(), dtype=np.uint8).reshape(-1, 3)
+    used, counts = np.unique(labels, return_counts=True)
+    h, w = labels.shape
+    specs: list[tuple] = []
+    carve = np.zeros((h, w), bool)
+    for slot, cnt in zip(used, counts):
+        if cnt < 24 or cnt > 0.10 * labels.size:
+            continue
+        mask = (labels == slot).astype(np.uint8)
+        if float(cv2.distanceTransform(mask, cv2.DIST_L2, 3).max()) > 2.6:
+            continue                                   # dashes are thin ribbons
+        n, lab, stats, cents = cv2.connectedComponentsWithStats(mask, connectivity=8)
+        if n < 7:
+            continue
+        sizes = stats[1:, cv2.CC_STAT_AREA].astype(float)
+        keep = (sizes >= 3) & (sizes <= 400)
+        if int(keep.sum()) < 6:
+            continue
+        idx_all = np.flatnonzero(keep) + 1
+        pts = cents[idx_all]
+        groups: list[tuple[int, list[int]]] = []       # (axis, comp labels)
+        for axis in (1, 0):                            # rows (y), then columns (x)
+            order = np.argsort(pts[:, axis])
+            band: list[int] = []
+            def flush(band_ids):
+                if len(band_ids) < 6:
+                    return
+                s = sizes[np.asarray(band_ids) - 1]
+                if float(np.percentile(s, 90)) > 3.0 * float(np.median(s)):
+                    return
+                pos = np.sort(cents[band_ids, 1 - axis])
+                steps = np.diff(pos)
+                med = float(np.median(steps))
+                if med <= 1.0 or float(np.percentile(steps, 90)) > 2.2 * med:
+                    return
+                groups.append((axis, list(band_ids)))
+            for k in order:
+                cid = int(idx_all[k])
+                if band and abs(pts[k, axis] - cents[band[-1], axis]) > 2.5:
+                    flush(band)
+                    band = []
+                band.append(cid)
+            flush(band)
+        if not groups:
+            continue
+        for axis, ids in groups:
+            member = np.isin(lab, ids)
+            ys, xs = np.nonzero(member)
+            color = tuple(int(v) for v in np.median(arr[ys, xs], axis=0))
+            if axis == 1:                              # a horizontal row of dashes
+                width_px = float(np.median(stats[ids, cv2.CC_STAT_HEIGHT]))
+                y_c = float(np.median(cents[ids, 1]))
+                x0 = float(stats[ids, cv2.CC_STAT_LEFT].min())
+                x1 = float((stats[ids, cv2.CC_STAT_LEFT] + stats[ids, cv2.CC_STAT_WIDTH]).max())
+                p0, p1 = (x0, y_c), (x1, y_c)
+                dash_len = float(np.median(stats[ids, cv2.CC_STAT_WIDTH]))
+                step = float(np.median(np.diff(np.sort(cents[ids, 0]))))
+            else:                                      # a vertical column
+                width_px = float(np.median(stats[ids, cv2.CC_STAT_WIDTH]))
+                x_c = float(np.median(cents[ids, 0]))
+                y0 = float(stats[ids, cv2.CC_STAT_TOP].min())
+                y1 = float((stats[ids, cv2.CC_STAT_TOP] + stats[ids, cv2.CC_STAT_HEIGHT]).max())
+                p0, p1 = (x_c, y0), (x_c, y1)
+                dash_len = float(np.median(stats[ids, cv2.CC_STAT_HEIGHT]))
+                step = float(np.median(np.diff(np.sort(cents[ids, 1]))))
+            gap = max(1.0, step - dash_len)
+            # Physical dash laws (item111 lesson: a row of 26px-tall lane
+            # labels grouped as 'dashes' of dash=1/gap=90 and carved real
+            # content, iou 0.740 -> 0.637):
+            #  - a dash is ELONGATED along its line and THIN across it;
+            #  - a dashed line has a sane duty cycle (dash/(dash+gap)).
+            if width_px > 6.0 or dash_len < 1.5 * width_px:
+                continue
+            duty = dash_len / max(1e-6, dash_len + gap)
+            if not (0.20 <= duty <= 0.85):
+                continue
+            # Scope law: NEUTRAL grid furniture only (the design target).
+            # item111's pink dashed annotation BOX passed the dash laws with
+            # 2 of its 4 sides (the others fell under the 6-dash floor) and
+            # half-carving a box costs iou -0.066; coloured dashed SHAPES
+            # need box assembly, a separate mechanism.  Grey grid: RGB
+            # spread 14; the pink box: 33.
+            if float(max(color) - min(color)) > 18.0:
+                continue
+            # Furniture laws (vai50 lesson: icon sheets carry REGULAR rows of
+            # real tiny elements that passed everything above — icon_group_
+            # 4_54 lost iou 0.885->0.794 to a carved decoration row): a GRID
+            # line spans most of its canvas and its dash centroids are dead
+            # straight; decoration rows are short and wobble.
+            span_len = abs((p1[0] - p0[0]) if axis == 1 else (p1[1] - p0[1]))
+            if span_len < 0.22 * max(h, w):
+                continue
+            line_pos = cents[ids, axis]
+            # 1.6px: q45 jpeg jitters grid-dash centroids ~1.5px (item104
+            # measured; 1.0 rejected its real grid), decoration rows in icon
+            # sheets wobble well beyond 2px.
+            if float(np.percentile(np.abs(line_pos - np.median(line_pos)), 90)) > 1.6:
+                continue
+            specs.append((color, max(1.0, width_px), p0, p1, dash_len, gap,
+                          int(member.sum())))
+            carve |= member
+    if len(specs) < 2:
+        return [], None                                # lone group: not our case
+    # Per-COMPONENT local inpaint: swimlane separators cross alternating
+    # pastel bands, so one global ring median paints wrong-coloured stripes
+    # (item111 ink_iou 0.740 -> 0.637 measured with a global fill).  Each
+    # dash takes the median of ITS OWN 2px ring instead.
+    ring_k = np.ones((3, 3), np.uint8)
+    carve8 = cv2.dilate(carve.astype(np.uint8), ring_k, iterations=1).astype(bool)
+    out = arr.copy()
+    n_c, lab_c = cv2.connectedComponents(carve8.astype(np.uint8), connectivity=8)
+    for c in range(1, n_c):
+        comp = lab_c == c
+        ring = cv2.dilate(comp.astype(np.uint8), ring_k, iterations=2).astype(bool) & ~carve8
+        color = (np.median(arr[ring], axis=0) if ring.any()
+                 else np.array([255.0, 255.0, 255.0]))
+        out[comp] = color.astype(np.uint8)
+    return specs, out
 
 
 def _detect_stroke(mask, analysis_scale):
@@ -5882,6 +6049,18 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
     _EVIDENCE_FIELD[0] = None      # never inherit a stale field from a prior call
     _FOREIGN_INK[0] = None
     _IMAGE_NOISE[0] = 0.0          # set only on the perceptual paper paths below
+    dash_stroke_specs: list[tuple] = []
+    if smoothing == "paper-regions":
+        # D-dash: regular dash grids are detected on the raw raster and carved
+        # out BEFORE any palette work (see _extract_dash_strokes); their
+        # stroked lines re-enter as dasharray paths at emission time.
+        try:
+            _arr_in = np.asarray(image.convert("RGB"))
+            dash_stroke_specs, _carved = _extract_dash_strokes(_arr_in)
+            if dash_stroke_specs and _carved is not None:
+                image = Image.fromarray(_carved)
+        except Exception:
+            dash_stroke_specs = []
     perceptual = smoothing in {"perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}
     if perceptual:
         # paper-native = the CANONICAL Hoshyari reproduction: hard nearest-anchor
@@ -6249,7 +6428,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
                     if region.stroke is not None:
                         # letter bars often ship as stroked centerlines — they
                         # must vanish under the glyphs too, or they double-draw
-                        _w, s_curves, _cl = region.stroke
+                        s_curves = region.stroke[1]
                         pts = np.vstack([eval_curve(c, 8) for c in s_curves]) if s_curves else None
                     elif region.loops:
                         pts = np.vstack([lp.source for lp in region.loops if len(lp.source)])
@@ -6279,6 +6458,15 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         # not in inter-glyph jitter.  v2 must constrain the grid DURING the
         # fit (or add stem consensus); the function stays for that.  The
         # probe's lasting win is the 3x OCR fallback now feeding font-snap.
+    if dash_stroke_specs:
+        # D-dash emission: one dasharray stroke per detected group, painted
+        # on top (grids/separators sit over the background by construction).
+        from vectorize_papers import Curve as _Curve
+        for color, width_px, p0, p1, dash_len, gap, area_px in dash_stroke_specs:
+            seg = _Curve(1, np.asarray([p0, p1], float))
+            regions.append(Region(tuple(int(c) for c in color), int(area_px), [],
+                                  stroke=(float(width_px), [seg], False,
+                                          (float(dash_len), float(gap)))))
     output = output_root / image_path.stem
     output.mkdir(parents=True, exist_ok=True)
     write_svgs(output, regions, image.size)
