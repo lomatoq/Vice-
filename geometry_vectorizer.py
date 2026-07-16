@@ -6191,8 +6191,15 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
         # 5.80, while the diagram crops it was built for improved — 105
         # polyline 0.84 -> 0.27 with node markers intact, 043 pad ring
         # restored, 111 +0.021 iou).
+        # route="diagram" forces the lane (design D1 CLI item): the operator
+        # may know the content class better than the signature — e.g. the
+        # q45 linechart (104) fails BOTH auto clauses honestly (jpeg fattens
+        # its 1px axes to thickness p90 1.9 vs the 1.2 bound and dissolves
+        # the small connectors to 1 of 3) and awaits noise-robust structure
+        # detection, not looser thresholds.
         diagram_lane = (not gradient_fills and smoothing == "paper-regions"
-                        and _detect_diagram_signature(masks, analysis_scale))
+                        and (route == "diagram"
+                             or _detect_diagram_signature(masks, analysis_scale)))
         if diagram_lane:
             masks = _split_masks_by_width(masks, analysis_scale)
         # 057-ears confetti court: PARKED OFF (2026-07-15).  The mechanism is
@@ -6548,7 +6555,7 @@ def process(image_path: Path, output_root: Path, extractor: str = "mininet", smo
     # must clearly win smoothness (kink energy down by >=1.5/100px).
     # Probes 2026-07-14: 075/079 flip native (kinks 6.7->2.9, 8.3->3.0),
     # lacoste/043 stay deblur (native mae there loses on vanished detail).
-    if (route == "auto" and smoothing in {"paper", "paper-perres", "paper-regions"}
+    if (route in ("auto", "diagram") and smoothing in {"paper", "paper-perres", "paper-regions"}
             and analysis_scale == 4 and measured_noise >= 0.27):
         shadow_dir = output_root / f"_route_native_{image_path.stem}"
         saved_noise = _IMAGE_NOISE[0]
