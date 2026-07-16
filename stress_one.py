@@ -21,6 +21,7 @@ def main() -> int:
     gt_png = Path(sys.argv[2])
     out_dir = Path(sys.argv[3])
     width = int(sys.argv[4])
+    engine = sys.argv[5] if len(sys.argv) > 5 else "ours"
 
     import numpy as np
     import cv2
@@ -28,13 +29,21 @@ def main() -> int:
     spec = importlib.util.spec_from_file_location("bv", ROOT / "benchmark_vai.py")
     bv = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(bv)
-    import geometry_vectorizer as gv
 
     meters: dict = {}
     try:
-        svg = out_dir / degraded.stem / "03_rebuilt_filled.svg"
-        if not svg.exists():
-            gv.process(degraded, out_dir, smoothing="paper-regions")
+        if engine == "vtracer":
+            out_dir.mkdir(parents=True, exist_ok=True)
+            svg = out_dir / f"{degraded.stem}__vtracer.svg"
+            if not svg.exists():
+                import vtracer
+                vtracer.convert_image_to_svg_py(str(degraded), str(svg),
+                                                colormode="color")
+        else:
+            import geometry_vectorizer as gv
+            svg = out_dir / degraded.stem / "03_rebuilt_filled.svg"
+            if not svg.exists():
+                gv.process(degraded, out_dir, smoothing="paper-regions")
         # raster meters vs the CLEAN GT render (not the degraded input)
         meters.update(bv.raster_meters(svg, gt_png))
         ren = np.asarray(bv.render_svg(svg, width), float)

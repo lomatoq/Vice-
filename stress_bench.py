@@ -81,6 +81,7 @@ def main() -> int:
     ap.add_argument("--items", type=int, default=2)
     ap.add_argument("--width", type=int, default=160)
     ap.add_argument("--conditions", default="clean,q60,q30,blur0.7,gamma1.3,upscale")
+    ap.add_argument("--engine", default="ours", choices=["ours", "vtracer"])
     args = ap.parse_args()
 
     import importlib.util
@@ -107,10 +108,10 @@ def main() -> int:
             tag = f"{stem}__{cond}"
             deg_path = WORK / f"{tag}.png"
             degrade(gt_img, cond).save(deg_path)
-            out_dir = WORK / "runs" / tag
+            out_dir = WORK / "runs" / (tag if args.engine == "ours" else f"{tag}__{args.engine}")
             r = subprocess.run(
                 [PY, str(ROOT / "stress_one.py"), str(deg_path), str(gt_path),
-                 str(out_dir), str(args.width)],
+                 str(out_dir), str(args.width), args.engine],
                 capture_output=True, text=True, timeout=900)
             line = (r.stdout.strip().splitlines() or ["{}"])[-1]
             try:
@@ -137,12 +138,14 @@ def main() -> int:
         entry["euler_breaks"] = int(sum(1 for r in sel
                                         if r.get("comp_delta") or r.get("hole_delta")))
         agg[cond] = entry
-    OUT_JSON.write_text(json.dumps({"width": args.width, "rows": rows,
+    out_json = (OUT_JSON if args.engine == "ours"
+                else OUT_JSON.with_name(f"stress_report_{args.engine}.json"))
+    out_json.write_text(json.dumps({"width": args.width, "engine": args.engine, "rows": rows,
                                     "aggregate": agg,
                                     "secs": round(time.time() - t0, 1)},
                                    indent=1), encoding="utf-8")
     print(json.dumps(agg, indent=1))
-    print("->", OUT_JSON)
+    print("->", out_json)
     return 0
 
 
