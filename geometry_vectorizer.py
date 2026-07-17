@@ -3839,6 +3839,126 @@ def _chain_self_intersects(curves: list[Curve]) -> bool:
     return False
 
 
+def _postfit_kink_critic(loop: np.ndarray, curves: list[Curve]) -> list[Curve]:
+    """A.1.2 post-fit critic (068 kinkmap: 72 'far' kinks ride 1.6-8px spans).
+
+    A LOCUS is an adjacent curve pair joining C0 at 4-25 deg with BOTH chords
+    under 12px - short-span brokenness that buys no fit.  One surgical
+    hypothesis per locus: replace the pair with a single primitive (line if
+    collinear, else an endpoint-anchored arc, else a G1-tangent cubic) fitted
+    to the pair's own samples.  The court is the RASTER: the replacement's
+    p90 distance to the loop polyline must not exceed the pair's own by more
+    than 0.05px, and the two outer joins must not worsen beyond 2 deg.
+    Corners over 25 deg are never touched; no global rerun ever happens."""
+    n = len(curves)
+    if n < 3 or len(loop) < 16:
+        return curves
+    from scipy.spatial import cKDTree
+    tree = cKDTree(loop)
+
+    def _tan(c: Curve, at_end: bool):
+        ctrl = np.asarray(c.control, float)
+        d = (ctrl[-1] - ctrl[-2]) if at_end else (ctrl[1] - ctrl[0])
+        nv = float(np.linalg.norm(d))
+        return d / nv if nv > 1e-9 else None
+
+    def _ang(u, v) -> float:
+        if u is None or v is None:
+            return 0.0
+        return math.degrees(math.acos(max(-1.0, min(1.0, float(u @ v)))))
+
+    def _p90_to_loop(pts: np.ndarray) -> float:
+        d, _ = tree.query(pts)
+        return float(np.percentile(d, 90))
+
+    out = list(curves)
+    i = 0
+    guard = 0
+    while i < len(out) and guard < 4 * n:
+        guard += 1
+        if len(out) < 3:
+            break
+        a = out[i % len(out)]
+        b = out[(i + 1) % len(out)]
+        ta, tb = _tan(a, True), _tan(b, False)
+        join = _ang(ta, tb)
+        ca = float(np.linalg.norm(np.asarray(a.control[-1], float) - np.asarray(a.control[0], float)))
+        cb = float(np.linalg.norm(np.asarray(b.control[-1], float) - np.asarray(b.control[0], float)))
+        if not (4.0 <= join < 25.0 and ca < 12.0 and cb < 12.0
+                and float(np.linalg.norm(np.asarray(a.control[-1], float)
+                                         - np.asarray(b.control[0], float))) <= 0.75):
+            i += 1
+            continue
+        samples = np.vstack([eval_curve(a, 14), eval_curve(b, 14)])
+        old_p90 = _p90_to_loop(samples)
+        p0 = np.asarray(a.control[0], float)
+        p1 = np.asarray(b.control[-1], float)
+        prev_c = out[(i - 1) % len(out)]
+        next_c = out[(i + 2) % len(out)]
+        t_in = _tan(prev_c, True)
+        t_out = _tan(next_c, False)
+        candidates: list[Curve] = []
+        chord = p1 - p0
+        cl = float(np.linalg.norm(chord))
+        if cl > 1e-6:
+            u = chord / cl
+            perp = np.abs((samples - p0[None, :]) @ np.array([-u[1], u[0]]))
+            if float(perp.max()) <= 0.6:
+                candidates.append(Curve(1, np.vstack([p0, p1])))
+            circle = fit_circle(samples)
+            if circle is not None and circle[1] >= 1.0:
+                centre, radius = np.asarray(circle[0], float), float(circle[1])
+                arc = _arc_through(p0, p1, centre, radius)
+                if arc is not None:
+                    candidates.append(arc)
+            tang0 = t_in if t_in is not None else (_tan(a, False))
+            tang1 = t_out if t_out is not None else (_tan(b, True))
+            if tang0 is not None and tang1 is not None:
+                k = cl / 3.0
+                ctrl = np.vstack([p0, p0 + tang0 * k, p1 - tang1 * k, p1])
+                candidates.append(Curve(3, ctrl))
+        best = None
+        for cand in candidates:
+            pts = eval_curve(cand, 28)
+            p90 = _p90_to_loop(pts)
+            if p90 > old_p90 + 0.05:
+                continue
+            g_in = _ang(t_in, _tan(cand, False))
+            g_out = _ang(_tan(cand, True), t_out)
+            old_in = _ang(t_in, _tan(a, False))
+            old_out = _ang(_tan(b, True), t_out)
+            if g_in > old_in + 2.0 or g_out > old_out + 2.0:
+                continue
+            if best is None or p90 < best[0]:
+                best = (p90, cand)
+        if best is not None and i + 1 < len(out):
+            out[i:i + 2] = [best[1]]
+            continue                       # re-examine the same slot (chains may collapse)
+        i += 1
+    return out
+
+
+def _arc_through(p0: np.ndarray, p1: np.ndarray, centre: np.ndarray, radius: float) -> Curve | None:
+    """Circular-arc Curve from p0 to p1 on the given circle (bezier segments)."""
+    v0 = p0 - centre
+    v1 = p1 - centre
+    a0 = math.atan2(v0[1], v0[0])
+    a1 = math.atan2(v1[1], v1[0])
+    sweep = a1 - a0
+    while sweep > math.pi:
+        sweep -= 2 * math.pi
+    while sweep < -math.pi:
+        sweep += 2 * math.pi
+    if abs(sweep) < 1e-3 or abs(sweep) > math.radians(178):
+        return None
+    # one cubic approximates arcs up to ~90 deg well; loci here are short
+    k = 4.0 / 3.0 * math.tan(sweep / 4.0) * radius
+    t0 = np.array([-math.sin(a0), math.cos(a0)])
+    t1 = np.array([-math.sin(a1), math.cos(a1)])
+    ctrl = np.vstack([p0, p0 + t0 * k, p1 - t1 * k, p1])
+    return Curve(3, ctrl)
+
+
 def _finish_loop(
     loop: np.ndarray,
     curves: list[Curve],
@@ -3860,6 +3980,7 @@ def _finish_loop(
     if profile not in _PAPER_FIT_PROFILES:
         valid = ", ".join(_PAPER_FIT_PROFILES)
         raise ValueError(f"unknown paper fit profile {profile!r}; expected one of: {valid}")
+    curves = _postfit_kink_critic(loop, curves)
     # Scale-aware: 2.5px of licence on an 8px letter is a whole stem width —
     # neighbouring glyphs 2px apart BLEED into one blob (114_bank: components
     # 1/6).  Small loops get a proportional budget; large shapes keep the
