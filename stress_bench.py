@@ -81,7 +81,7 @@ def main() -> int:
     ap.add_argument("--items", type=int, default=2)
     ap.add_argument("--width", type=int, default=160)
     ap.add_argument("--conditions", default="clean,q60,q30,blur0.7,gamma1.3,upscale")
-    ap.add_argument("--engine", default="ours", choices=["ours", "vtracer"])
+    ap.add_argument("--engine", default="ours", choices=["ours", "vtracer", "potrace"])
     args = ap.parse_args()
 
     import importlib.util

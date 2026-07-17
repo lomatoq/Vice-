@@ -39,6 +39,43 @@ def main() -> int:
                 import vtracer
                 vtracer.convert_image_to_svg_py(str(degraded), str(svg),
                                                 colormode="color")
+        elif engine == "potrace":
+            # classic BW baseline: otsu-binarise the luminance, trace, fill
+            # with the dominant ink colour on white
+            out_dir.mkdir(parents=True, exist_ok=True)
+            svg = out_dir / f"{degraded.stem}__potrace.svg"
+            if not svg.exists():
+                import potrace
+                from PIL import Image
+                img = Image.open(degraded).convert("L")
+                arr = np.asarray(img, np.uint8)
+                _, binv = cv2.threshold(arr, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)
+                bmp = potrace.Bitmap(binv > 0)
+                path = bmp.trace()
+                rgbsrc = np.asarray(Image.open(degraded).convert("RGB"), np.uint8)
+                ink_px = rgbsrc[binv > 0]
+                ink = tuple(int(v) for v in np.median(ink_px, axis=0)) if len(ink_px) else (0, 0, 0)
+                h, w = arr.shape
+                rows = [f'<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" '
+                        f'width="{w}" height="{h}">',
+                        '<rect width="100%" height="100%" fill="#ffffff"/>']
+                d = []
+                for curve in path:
+                    pt = curve.start_point
+                    d.append(f"M{pt.x:.2f},{pt.y:.2f}")
+                    for seg in curve:
+                        if seg.is_corner:
+                            d.append(f"L{seg.c.x:.2f},{seg.c.y:.2f}"
+                                     f"L{seg.end_point.x:.2f},{seg.end_point.y:.2f}")
+                        else:
+                            d.append(f"C{seg.c1.x:.2f},{seg.c1.y:.2f} "
+                                     f"{seg.c2.x:.2f},{seg.c2.y:.2f} "
+                                     f"{seg.end_point.x:.2f},{seg.end_point.y:.2f}")
+                    d.append("Z")
+                fill = "#%02x%02x%02x" % ink
+                rows.append(f'<path d="{"".join(d)}" fill="{fill}" fill-rule="evenodd"/>')
+                rows.append("</svg>")
+                svg.write_text("\n".join(rows), encoding="utf-8")
         else:
             import geometry_vectorizer as gv
             svg = out_dir / degraded.stem / "03_rebuilt_filled.svg"
