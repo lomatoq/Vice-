@@ -140,6 +140,12 @@ def main() -> None:
             if len(rows) % 1000 == 0:
                 print(f"prepared {len(rows)} loci...", flush=True)
 
+    # The user's own ground truth first, then collections alphabetically:
+    # review time goes to the most valuable records before anything else.
+    rows.sort(key=lambda row: (
+        0 if row["source"]["origin"] == "uber-local" else 1,
+        row["source"]["category"], row["id"],
+    ))
     manifest = {
         "schema": "pcdc-real-locus-corpus/v3-uber-verification",
         "created_at": datetime.now(timezone.utc).isoformat(),
