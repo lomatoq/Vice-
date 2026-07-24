@@ -13,13 +13,12 @@ core_verdict: "stop scaling v9; replace monolithic whole-line mask prediction wi
 
 # V-ICE PCDC: глыбокі аўдыт wordmark prior і план v10
 
-> **Паходжанне:** знешні рэцэнзент, 2026-07-24, у адказ на
-> `PROBLEMS_FOR_EXTERNAL_REVIEW.md`. Лексіка (PCDC, REIR, wordmark prior v4–v9,
-> ProposalNet, Phase 4/12) — рэцэнзентава; прамых адпаведнікаў у гэтым рэпазіторыі
-> няма. Мапінг тэрмінаў — у `CLAUDE.md`, Частка I. Апісаная гісторыя трэніровак
-> v4–v9 не з'яўляецца гісторыяй гэтага рэпазіторыя — каштоўнасць дакумента ў
-> дыягназе (representation ceiling, multiplicative topology) і ў планах
-> v9.5 Template-Warp / v10 TextProgramMacro.
+> **Паходжанне:** знешні рэцэнзент, 2026-07-24, на аснове нашых актуальных аўдытаў
+> (`WORDMARK_V1_LIVE_AUDIT_BY.md`, `V_ICE_CURRENT_AUDIT.md`,
+> `PRE_V14_READINESS_AUDIT.md` — гл. frontmatter вышэй). Апісаная гісторыя v4–v9 —
+> рэальная гісторыя PCDC-часткі праекта (снапшоты
+> `.training_snapshots/wordmark_full_*_20260723/`). Заўвага: PCDC-файлы жывуць
+> у галоўным каталогу праекта і зараз не пад git — пойнтэры ў `CLAUDE.md`, Частка I.
 
 ## 0. Кароткі вердыкт
 

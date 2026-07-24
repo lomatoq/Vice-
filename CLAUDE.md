@@ -7,9 +7,8 @@
   (2026-07-24, адказ на `PROBLEMS_FOR_EXTERNAL_REVIEW.md`), прыняты як аперацыйны
   кантракт праекта.
 
-Пры канфлікце **фактаў пра стан рэпазіторыя** перавагу маюць Частка I і свежыя
-дакументы праекта (`NIGHT_REPORT_BY.md`, `COUNCIL_SOLUTIONS_BY.md`, benchmarks/).
-**Прынцыпы** Часткі II дзейнічаюць заўсёды.
+Пры канфлікце **фактаў пра стан праекта** перавагу маюць свежыя дакументы ісціны
+(пералічаны ў Частцы I ніжэй). **Прынцыпы** Часткі II дзейнічаюць заўсёды.
 
 ---
 
@@ -45,29 +44,43 @@
 - Поўная карта праекта: `PROJECT_STRUCTURE_BY.md`.
 - Мова зносін з карыстальнікам — беларуская.
 
-## Тэрміналогія Часткі II ↔ наш рэпазіторый
+## Дзве падсістэмы аднаго праекта — дзе што ляжыць
 
-Кантракт напісаны ў лексіцы рэцэнзента; модуляў з такімі імёнамі ў кодзе НЯМА.
-Прымяняй правілы па духу праз гэты мапінг:
+Праект жыве ў `C:\Users\nirrt\Toolset\v-ice part` і складаецца з ДЗВЮХ частак:
 
-| Тэрмін кантракта | У нас |
-| --- | --- |
-| PCDC court / fixed-posterior render court | растравыя суды: kink critic, relative circle court, гейты корпуса (50-item bench, stage suite) |
-| REIR / CMIR / one evidence pass | прамога адпаведніка няма; бліжэйшае — канвеер palette → per-region masks → boundary loops |
-| TextLine lane | OCR + `font_match.py` + `text_substitution.py` (exact-font substitution) |
-| wordmark prior v4–v9 (whole-line mask мадэль) | у нас не існуе і не трэніравалася; дыягназ «representation ceiling» — перасцярога для будучых glyph-мадэляў |
-| v9.5 Template-Warp lane | найбліжэйшы дзейсны план: пашырыць exact-font lane да approximate-template + bounded warp (адказ на P0.1 з dossier) |
-| ProposalNet | няма; прынцып «candidate, not authority» ужо дзейнічае: corner CNN дае цэны ў DP, а не рашэнні |
-| Experiments 1/1B/2/3/4/5, BUILD_FREEZE, Phase 4/12 | артэфакты рэцэнзентавага пайплайна; нашы адпаведнікі — `benchmarks/`, `NIGHT_REPORT_BY.md`, `COUNCIL_SOLUTIONS_BY.md` |
+1. **Geometry-vectorizer lane** (пад git, галінка `main`): палітра → маскі → loops →
+   DP-фітынг (line/arc/clothoid/cubic) з corner CNN → fit-once region graph → SVG.
+   Файлы: `geometry_vectorizer.py`, `corner_*.py`, `benchmarks/`,
+   dossier `PROBLEMS_FOR_EXTERNAL_REVIEW.md`, `NIGHT_REPORT_BY.md`, `COUNCIL_SOLUTIONS_BY.md`.
 
-Раздзел 2 Часткі II («Current strategic truth») апісвае стан сістэмы вачыма рэцэнзента.
-Што з яго пацверджана НАШЫМІ артэфактамі:
+2. **PCDC — Proof-Carrying Design Compiler** (`vice_compiler/`, `vice_scene/`;
+   канонічны план `V-ICE_proof_carrying_design_compiler_plan_ru_v2.md`):
+   REIR, typed macros, certificates, fixed-posterior court, extractor, budgets,
+   fail-closed promotion. Уся лексіка Часткі II (PCDC, REIR, ProposalNet,
+   wordmark prior v4–v9, Experiments, BUILD_FREEZE) — **рэальныя артэфакты гэтай часткі**.
 
-- VAI-парытэт не даказаны: сляпы чалавечы суд, раунд 1 — мы 3 : VAI 11 (commit d608e18);
-- дарагія трэніроўкі толькі пасля readiness-доказаў — дзейнічае для ўсіх нашых мадэляў.
+**Пастка, правераная на сабе (2026-07-24):** PCDC-частка зараз НЕ пад git
+(~2.2k untracked-файлаў) — git worktree яе НЕ бачыць. Выснову «модуля X не існуе»
+рабі толькі пасля пошуку ў ГАЛОЎНЫМ каталогу, не ў worktree.
 
-Пункты пра v9/ProposalNet/NO-TRAIN не маюць адпаведных артэфактаў тут — не шукай іх.
-Поўны знешні аўдыт і план v10: `EXTERNAL_AUDIT_WORDMARK_V10_20260724.md`.
+## Дакументы ісціны PCDC (trust order — §3 Часткі II)
+
+- `WORDMARK_V1_LIVE_AUDIT_BY.md` — жывы wordmark-аўдыт; аўтарытэтны АПОШНІ нумараваны
+  запіс (на 2026-07-24: №74 — v9 гэта стабілізацыя v5-кода; representative pilot
+  і full run забаронены; поўны promotion gate пералічаны ў канцы файла).
+- `V_ICE_CURRENT_AUDIT.md` (2026-07-22) — вердыкт: не production-ready, VAI-парытэт
+  не даказаны; сапраўдны line-level GCR reduction 15.91% пры гейце ≥70%.
+- `PRE_V14_READINESS_AUDIT.md` (2026-07-22) — ProposalNet v14: **NO-TRAIN**.
+- `PCDC_IMPLEMENTATION_STATUS.md` — construction ledger, гістарычны/superseded.
+- Freezes: `PCDC_BUILD_FREEZE.json`, `BUILD_FREEZE.json`, `PCDC_BASELINE_FREEZE.json`.
+- Эксперыменты/traceability: `benchmarks/pcdc_experiment4/`, `benchmarks/pcdc_pre_v14/`.
+- Трэніровачныя снапшоты: `.training_snapshots/wordmark_full_*_20260723/`.
+- Знешні аўдыт і план v9.5/v10: `EXTERNAL_AUDIT_WORDMARK_V10_20260724.md` —
+  звераны з крыніцамі вышэй (2026-07-24), адпавядае.
+
+Раздзел 2 Часткі II («Current strategic truth») пацверджаны гэтымі артэфактамі
+на 2026-07-24. Надалей верыфікуй яго супраць апошніх запісаў жывых аўдытаў,
+а не супраць гэтага снапшота.
 
 ---
 
