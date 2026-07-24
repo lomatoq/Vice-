@@ -180,6 +180,50 @@ class _StageDBooster:
         except Exception:
             return None
 
+    def boost_letterboxed(self, gray_roi: np.ndarray) -> np.ndarray | None:
+        """gray ROI in [0,1] -> recovered support at ROI size, or None.
+
+        The real-domain fine-tune (ledger 94) trained exclusively on 96x96
+        aspect-preserving letterboxes over 0.5 gray.  Feeding raw ROI sizes
+        puts the model off its training distribution, so inference mirrors
+        the trainer's _letterbox_pair exactly and maps the prediction back.
+        """
+        try:
+            import torch
+
+            from .wordmark_prior_data import wordmark_observation_features
+
+            if self._model is None:
+                self._load()
+            size = 96
+            height, width = gray_roi.shape
+            factor = min(size / height, size / width)
+            new_w = max(1, int(round(width * factor)))
+            new_h = max(1, int(round(height * factor)))
+            resized = cv2.resize(
+                gray_roi.astype(np.float32), (new_w, new_h),
+                interpolation=cv2.INTER_AREA,
+            )
+            canvas = np.full((size, size), 0.5, np.float32)
+            y = (size - new_h) // 2
+            x = (size - new_w) // 2
+            canvas[y:y + new_h, x:x + new_w] = resized
+            features = wordmark_observation_features(canvas)
+            with torch.no_grad():
+                logits, _sdf = self._model(
+                    torch.from_numpy(features[None]).to(self._device),
+                )
+                support = (
+                    torch.sigmoid(logits)[0, 0].cpu().numpy() >= 0.5
+                )
+            window = support[y:y + new_h, x:x + new_w].astype(np.uint8)
+            restored = cv2.resize(
+                window, (width, height), interpolation=cv2.INTER_NEAREST,
+            )
+            return restored.astype(bool)
+        except Exception:
+            return None
+
 
 class ApproximateTemplateProvider:
     """ExactFontProvider-protocol lane: style retrieval + bounded fits."""

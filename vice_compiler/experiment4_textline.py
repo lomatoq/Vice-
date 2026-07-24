@@ -1142,7 +1142,13 @@ def main() -> int:
     parser.add_argument("--font-free-only", action="store_true")
     parser.add_argument("--approximate-template", action="store_true")
     parser.add_argument("--stage-d-booster", action="store_true")
+    parser.add_argument("--stage-d-upstream", action="store_true")
     args = parser.parse_args()
+    if args.stage_d_upstream:
+        # Upstream recovery lives at proposal birth (text_macros reads the
+        # env), so it needs no provider threading; default checkpoint is the
+        # real-domain fine-tune, overridable via VICE_STAGE_D_CHECKPOINT.
+        os.environ["VICE_STAGE_D_UPSTREAM"] = "1"
     report = bind_report(
         build_report(
             exact_font=not args.font_free_only,

@@ -134,6 +134,14 @@ def main() -> None:
         "inputs = wordmark-grade degradation of the clean render); real "
         "samples are replicated x10 to balance domains",
     )
+    parser.add_argument(
+        "--mix-polarity", choices=("ink", "luminance"), default="ink",
+        help="'ink' feeds degraded coverage directly (ink=1: the OPPOSITE "
+        "polarity of the real luminance rows - kept as the recorded default "
+        "of the first mix experiments); 'luminance' reconstructs a pseudo-"
+        "luminance observation ink_lum*obs + 0.5*(1-obs) from the icon's "
+        "actual ink luminance, matching the real-row convention",
+    )
     parser.add_argument("--epochs", type=int, default=120)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--lr", type=float, default=1e-4)
@@ -205,6 +213,19 @@ def main() -> None:
                 row["id"].encode(),
             ).hexdigest()[:8], 16)
             observed = degrade_wordmark(alpha, mask, seed=degrade_seed)
+            if args.mix_polarity == "luminance":
+                rgb = raw[..., :3].astype(np.float32) / 255.0  # BGR
+                lum = (
+                    0.0722 * rgb[..., 0] + 0.7152 * rgb[..., 1]
+                    + 0.2126 * rgb[..., 2]
+                )
+                ink_lum = float(np.median(lum[mask]))
+                # An icon whose ink sits at the 0.5 composite background is
+                # invisible to the real-domain convention; skip, do not teach
+                # the model to hallucinate ink out of flat gray.
+                if abs(ink_lum - 0.5) < 0.08:
+                    continue
+                observed = ink_lum * observed + 0.5 * (1.0 - observed)
             gray_96, mask_96 = _letterbox_pair(
                 np.clip(observed, 0.0, 1.0).astype(np.float32), mask,
             )

@@ -2051,6 +2051,87 @@ def _group_aligned_components(
     return groups
 
 
+def _stage_d_support_refinements(
+    reir: RasterEvidenceIR, proposals: Iterable[TextLineProposal],
+) -> tuple[TextLineProposal, ...]:
+    """Emit Stage-D recovered supports as separate competing proposals.
+
+    Boosting only the template-fit target cannot change delivered output:
+    the admission walls keep measuring candidates against the raw
+    line.support_mask, so a cleaner fit geometry is rejected by the very
+    noise it repaired.  The recovery therefore has to happen where the
+    support is born.  Each qualifying OCR line yields at most one extra
+    proposal whose support is the model's recovered mask; it re-enters
+    through _line_from_mask, so every physical line gate, the duplicate
+    suppressor, the admission walls and the render court judge it exactly
+    like any hand-crafted draft.  The model never bypasses a wall.
+    """
+    if os.environ.get("VICE_STAGE_D_UPSTREAM") != "1":
+        return ()
+    override = os.environ.get("VICE_STAGE_D_CHECKPOINT", "").strip()
+    checkpoint = Path(override) if override else (
+        Path(__file__).resolve().parents[1]
+        / "models" / "stage_d_realft_candidate_v1.pt"
+    )
+    if not checkpoint.is_file():
+        return ()
+    # Deferred: template_warp_provider imports from this module.
+    from .template_warp_provider import _StageDBooster
+
+    booster = _StageDBooster(checkpoint)
+    rgba = np.asarray(reir.raster.straight_rgba, np.float32)
+    if rgba.max() > 1.5:
+        rgba = rgba / 255.0
+    alpha = rgba[..., 3]
+    luminance = (
+        0.2126 * rgba[..., 0] + 0.7152 * rgba[..., 1] + 0.0722 * rgba[..., 2]
+    )
+    # The fine-tune saw real ROIs as luminance composited over 0.5 gray;
+    # the synthetic-only convention (ink-high coverage) is the OPPOSITE
+    # polarity and must not be fed to this checkpoint.
+    gray = (luminance * alpha + 0.5 * (1.0 - alpha)).astype(np.float32)
+    refined: list[TextLineProposal] = []
+    seen: set[str] = set()
+    for proposal in proposals:
+        if (
+            "OCR" not in proposal.sources
+            or "stage-d-support-recovery" in proposal.sources
+        ):
+            continue
+        x1, y1, x2, y2 = proposal.roi_xyxy
+        if (x2 - x1) < 8 or (y2 - y1) < 8:
+            continue
+        recovered = booster.boost_letterboxed(gray[y1:y2, x1:x2])
+        if recovered is None or not recovered.any():
+            continue
+        original = np.asarray(proposal.support_mask[y1:y2, x1:x2], bool)
+        intersection = int(np.sum(recovered & original))
+        union = int(np.sum(recovered | original))
+        area_ratio = float(recovered.sum()) / max(1.0, float(original.sum()))
+        # Accuracy budget: recovery may repair topology and AA damage, but
+        # a mask that barely overlaps the observed support (or invents /
+        # erases half the ink) is hallucination and fails closed here.
+        if (
+            intersection / max(1, union) < 0.30
+            or not 0.40 <= area_ratio <= 2.50
+            or np.array_equal(recovered, original)
+        ):
+            continue
+        full = np.zeros(proposal.support_mask.shape, bool)
+        full[y1:y2, x1:x2] = recovered
+        candidate = _line_from_mask(
+            reir, full, polarity=proposal.polarity,
+            sources=tuple(sorted(
+                set(proposal.sources) | {"stage-d-support-recovery"}
+            )),
+            raw_score=proposal.score,
+        )
+        if candidate is not None and candidate.id not in seen:
+            seen.add(candidate.id)
+            refined.append(candidate)
+    return tuple(refined)
+
+
 def _line_from_mask(
     reir: RasterEvidenceIR, mask: np.ndarray, *, polarity: str,
     sources: Iterable[str], raw_score: float,
@@ -3116,6 +3197,7 @@ def propose_text_lines(
     proposals.extend(_late_neural_glyph_refinements(
         reir, proposals, visible,
     ))
+    proposals.extend(_stage_d_support_refinements(reir, proposals))
 
     # Suppress near-identical lower scoring proposals after exact line scoring.
     result: list[TextLineProposal] = []
