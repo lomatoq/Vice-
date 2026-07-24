@@ -1,0 +1,26 @@
+{
+  "schema": "vice-v10-stage-d-pilot/v1",
+  "created_at": "2026-07-24T23:47:00.077945+00:00",
+  "mode": "representative-pilot",
+  "protocol": "pairs size==96 rotate==0; family-disjoint splits",
+  "input_mode": "observation",
+  "hard_subset": false,
+  "metrics": {
+    "model_support_iou": 0.9181619754052607,
+    "model_topology_edit": 1.3947545393409548,
+    "otsu_baseline_iou": 0.9060592989636256,
+    "otsu_baseline_edit": 4.5884330867518495
+  },
+  "gate": {
+    "topology_edit_3x_better": true,
+    "iou_not_worse": true
+  },
+  "gate_pass": true,
+  "train_samples": 15980,
+  "val_samples": 1487,
+  "seed": 20260729,
+  "device": "cuda",
+  "authorizes_full_training": false,
+  "elapsed_seconds": 1015.7379594000013,
+  "checkpoint": "models\\stage_d_line_v2p.pt"
+}

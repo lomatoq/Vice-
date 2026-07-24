@@ -170,6 +170,14 @@ def main() -> None:
         "actual ink luminance, matching the real-row convention",
     )
     parser.add_argument(
+        "--topology-weighted-loss", action="store_true",
+        help="weight the support BCE by topology_importance_target "
+        "(S11.4: counters, thin gaps and small components dominate the "
+        "edit metric but are invisible to plain BCE/Dice) - the last "
+        "loss-level mechanism for the line edit floor; stop condition: "
+        "edit <= honest AREA-Otsu or the line floor parks for good",
+    )
+    parser.add_argument(
         "--aspect-min", type=float, default=0.0,
         help="keep only real ROIs with native aspect (w/h) above this - "
         "the specialist gate for the line model (S16.2 class floor): it "
@@ -213,6 +221,52 @@ def main() -> None:
         wordmark_observation_features,
     )
 
+    def topology_importance_target(support: np.ndarray) -> np.ndarray:
+        # Mirror of the LIVE vice_compiler.wordmark_prior_data function
+        # (the pinned .training_snapshots copy that shadows the package
+        # here predates it; duplication recorded like the StageDNet
+        # mirror in template_warp_provider).
+        mask = np.ascontiguousarray(np.asarray(support, bool))
+        if mask.ndim != 2 or not np.any(mask):
+            raise ValueError(
+                "topology importance requires non-empty 2D support"
+            )
+        weight = np.ones(mask.shape, np.float32)
+        kernel = np.ones((3, 3), np.uint8)
+        boundary = cv2.morphologyEx(
+            mask.astype(np.uint8), cv2.MORPH_GRADIENT, kernel,
+        ).astype(bool)
+        weight[boundary] += 2.5
+        count, labels, stats, _centroids = (
+            cv2.connectedComponentsWithStats(mask.astype(np.uint8), 8)
+        )
+        for label in range(1, count):
+            area = max(1, int(stats[label, cv2.CC_STAT_AREA]))
+            boost = min(10.0, 18.0 / float(np.sqrt(area)))
+            weight[labels == label] += np.float32(boost)
+        inverse = (~mask).astype(np.uint8)
+        hole_count, hole_labels, _stats, _hole_centroids = (
+            cv2.connectedComponentsWithStats(inverse, 8)
+        )
+        border_labels = set(int(value) for value in np.concatenate((
+            hole_labels[0], hole_labels[-1],
+            hole_labels[:, 0], hole_labels[:, -1],
+        )))
+        for label in range(1, hole_count):
+            if label in border_labels:
+                continue
+            hole = hole_labels == label
+            weight[hole] += 8.0
+            ring = (
+                cv2.dilate(hole.astype(np.uint8), kernel).astype(bool)
+                & mask
+            )
+            weight[ring] += 4.0
+        weight /= max(1.0e-6, float(np.mean(weight)))
+        return np.ascontiguousarray(
+            np.clip(weight, 0.25, 12.0), np.float32,
+        )
+
     started = time.perf_counter()
     torch.manual_seed(args.seed)
     samples, skipped = load_real_samples()
@@ -236,7 +290,16 @@ def main() -> None:
         sdfs = np.stack([
             signed_distance_target(r["mask"]) for r in rows
         ])
-        return inputs.astype(np.float32), masks, sdfs.astype(np.float32)
+        if args.topology_weighted_loss:
+            weights = np.stack([
+                topology_importance_target(r["mask"]) for r in rows
+            ]).astype(np.float32)
+        else:
+            weights = np.ones_like(sdfs, dtype=np.float32)
+        return (
+            inputs.astype(np.float32), masks, sdfs.astype(np.float32),
+            weights,
+        )
 
     if args.mix_attested:
         import hashlib as _hashlib
@@ -299,8 +362,8 @@ def main() -> None:
         print(f"mixed bank: +{added} attested, real x10 -> "
               f"{len(train)} train rows", flush=True)
 
-    train_x, train_m, train_s = to_bank(train)
-    val_x, val_m, _val_s = to_bank(val)
+    train_x, train_m, train_s, train_w = to_bank(train)
+    val_x, val_m, _val_s, _val_w = to_bank(val)
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     payload = torch.load(
@@ -357,6 +420,7 @@ def main() -> None:
 
     optimizer = torch.optim.Adam(model.parameters(), lr=args.lr)
     bce = nn.BCEWithLogitsLoss()
+    bce_map = nn.BCEWithLogitsLoss(reduction="none")
     l1 = nn.L1Loss()
     count = len(train)
     order = np.arange(count)
@@ -378,7 +442,16 @@ def main() -> None:
             y_sdf = torch.from_numpy(train_s[rows])[:, None].to(device)
             optimizer.zero_grad()
             logits, sdf = model(x)
-            loss = bce(logits, y_mask) + 0.5 * l1(sdf, y_sdf)
+            if args.topology_weighted_loss:
+                weight = torch.from_numpy(
+                    train_w[rows],
+                )[:, None].to(device)
+                loss = (
+                    (bce_map(logits, y_mask) * weight).mean()
+                    + 0.5 * l1(sdf, y_sdf)
+                )
+            else:
+                loss = bce(logits, y_mask) + 0.5 * l1(sdf, y_sdf)
             loss.backward()
             optimizer.step()
             scheduler.step()
