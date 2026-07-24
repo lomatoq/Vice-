@@ -1,0 +1,105 @@
+{
+  "schema": "vice-vector-topology-recall/v1",
+  "created_at": "2026-07-24T11:47:01.272441+00:00",
+  "purpose": "S15.1 candidate topology Recall@K at the vector/construction level: does the style shortlist contain a face whose per-glyph topology composition equals the 4x-truth line topology",
+  "top_k": 8,
+  "composition": "composed",
+  "composition_trackings": [
+    -0.1,
+    0.0,
+    0.1
+  ],
+  "composition_strokes": [
+    0,
+    2,
+    4
+  ],
+  "exclude_gt_family": true,
+  "retrieval_bank": "font_style_descriptors_v2mid600.json",
+  "retrieval_bank_faces": 947,
+  "retrieval_bank_matches_attested": false,
+  "no_effect_samples_only": true,
+  "skipped_effect_samples": 128,
+  "unqueryable_samples": 0,
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "seed": 20260724,
+  "split_seed": 20260722,
+  "lengths": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    24,
+    32
+  ],
+  "samples_per_length": 48,
+  "overall": {
+    "samples": 336,
+    "recall_at_1": 0.6220238095238095,
+    "recall_at_8": 0.7946428571428571,
+    "gt_face_retrieved_rate": 0.0,
+    "gt_face_topology_equals_truth": 0.5089285714285714,
+    "truth_equals_glyph_sum_rate": 0.5089285714285714
+  },
+  "per_length": {
+    "1": {
+      "samples": 48,
+      "recall_at_1": 0.9583333333333334,
+      "recall_at_8": 0.9791666666666666,
+      "gt_face_retrieved_rate": 0.0,
+      "gt_face_topology_equals_truth": 0.9375,
+      "truth_equals_glyph_sum_rate": 0.9375
+    },
+    "2": {
+      "samples": 48,
+      "recall_at_1": 0.8541666666666666,
+      "recall_at_8": 0.9583333333333334,
+      "gt_face_retrieved_rate": 0.0,
+      "gt_face_topology_equals_truth": 0.6666666666666666,
+      "truth_equals_glyph_sum_rate": 0.6666666666666666
+    },
+    "4": {
+      "samples": 48,
+      "recall_at_1": 0.6458333333333334,
+      "recall_at_8": 0.8958333333333334,
+      "gt_face_retrieved_rate": 0.0,
+      "gt_face_topology_equals_truth": 0.4375,
+      "truth_equals_glyph_sum_rate": 0.4375
+    },
+    "8": {
+      "samples": 48,
+      "recall_at_1": 0.5416666666666666,
+      "recall_at_8": 0.8541666666666666,
+      "gt_face_retrieved_rate": 0.0,
+      "gt_face_topology_equals_truth": 0.4583333333333333,
+      "truth_equals_glyph_sum_rate": 0.4583333333333333
+    },
+    "16": {
+      "samples": 48,
+      "recall_at_1": 0.5208333333333334,
+      "recall_at_8": 0.6875,
+      "gt_face_retrieved_rate": 0.0,
+      "gt_face_topology_equals_truth": 0.375,
+      "truth_equals_glyph_sum_rate": 0.375
+    },
+    "24": {
+      "samples": 48,
+      "recall_at_1": 0.5,
+      "recall_at_8": 0.6458333333333334,
+      "gt_face_retrieved_rate": 0.0,
+      "gt_face_topology_equals_truth": 0.4375,
+      "truth_equals_glyph_sum_rate": 0.4375
+    },
+    "32": {
+      "samples": 48,
+      "recall_at_1": 0.3333333333333333,
+      "recall_at_8": 0.5416666666666666,
+      "gt_face_retrieved_rate": 0.0,
+      "gt_face_topology_equals_truth": 0.25,
+      "truth_equals_glyph_sum_rate": 0.25
+    }
+  },
+  "elapsed_seconds": 65.39174679999996
+}
