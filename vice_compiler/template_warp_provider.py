@@ -207,9 +207,20 @@ class _StageDBooster:
             factor = min(canvas_h / height, canvas_w / width)
             new_w = max(1, int(round(width * factor)))
             new_h = max(1, int(round(height * factor)))
+            # Each checkpoint gets the interpolation it trained under: the
+            # square models trained AREA-always (recorded protocol); the
+            # line model trains cubic-on-upscale (INTER_AREA degenerates
+            # to blocky nearest there and the synthetic bank never
+            # contains that artifact).
+            if canvas == (96, 96):
+                interpolation = cv2.INTER_AREA
+            else:
+                interpolation = (
+                    cv2.INTER_CUBIC if factor > 1.0 else cv2.INTER_AREA
+                )
             resized = cv2.resize(
                 gray_roi.astype(np.float32), (new_w, new_h),
-                interpolation=cv2.INTER_AREA,
+                interpolation=interpolation,
             )
             board = np.full((canvas_h, canvas_w), 0.5, np.float32)
             y = (canvas_h - new_h) // 2

@@ -50,7 +50,13 @@ def _letterbox_pair(
     factor = min(canvas_h / height, canvas_w / width)
     new_w = max(1, int(round(width * factor)))
     new_h = max(1, int(round(height * factor)))
-    gray_r = cv2.resize(gray, (new_w, new_h), interpolation=cv2.INTER_AREA)
+    # INTER_AREA degenerates to blocky nearest on UPSCALE - an artifact
+    # the synthetic bank (cubic upsample in degrade_wordmark) never
+    # contains; real line ROIs upscale ~2x into the 96x384 canvas.
+    interpolation = (
+        cv2.INTER_CUBIC if factor > 1.0 else cv2.INTER_AREA
+    )
+    gray_r = cv2.resize(gray, (new_w, new_h), interpolation=interpolation)
     mask_r = cv2.resize(
         mask.astype(np.uint8), (new_w, new_h),
         interpolation=cv2.INTER_NEAREST,
@@ -112,6 +118,7 @@ def load_real_samples():
         if x2 - x1 < 8 or y2 - y1 < 8 or not mask[y1:y2, x1:x2].any():
             skipped += 1
             continue
+        roi_aspect = (x2 - x1) / max(1, y2 - y1)
         gray_roi = gray[y1:y2, x1:x2].astype(np.float32) / 255.0
         gray_96, mask_96 = _letterbox_pair(
             gray_roi, mask[y1:y2, x1:x2], canvas=CANVAS,
@@ -123,6 +130,7 @@ def load_real_samples():
             "id": row["id"],
             "gray": gray_96,
             "mask": mask_96,
+            "roi_aspect": roi_aspect,
             "split": "val" if bucket < 20 else "train",
         })
     return samples, skipped
@@ -148,6 +156,13 @@ def main() -> None:
         "of the first mix experiments); 'luminance' reconstructs a pseudo-"
         "luminance observation ink_lum*obs + 0.5*(1-obs) from the icon's "
         "actual ink luminance, matching the real-row convention",
+    )
+    parser.add_argument(
+        "--aspect-min", type=float, default=0.0,
+        help="keep only real ROIs with native aspect (w/h) above this - "
+        "the specialist gate for the line model (S16.2 class floor): it "
+        "deploys only on aspect>2.5 ROIs, so training and gating on the "
+        "full mixed-real set mis-specifies both",
     )
     parser.add_argument(
         "--canvas", default="96x96",
@@ -189,6 +204,13 @@ def main() -> None:
     started = time.perf_counter()
     torch.manual_seed(args.seed)
     samples, skipped = load_real_samples()
+    if args.aspect_min > 0:
+        before = len(samples)
+        samples = [
+            s for s in samples if s["roi_aspect"] >= args.aspect_min
+        ]
+        print(f"aspect>={args.aspect_min} filter: {len(samples)}/{before}",
+              flush=True)
     train = [s for s in samples if s["split"] == "train"]
     val = [s for s in samples if s["split"] == "val"]
     print(f"real samples: train {len(train)}, val {len(val)}, "
