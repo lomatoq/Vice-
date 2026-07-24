@@ -664,6 +664,19 @@ IoU ужо вышэй мінімальнага `0.88`, але topology далё�
     варыянты, лепшы пошук, free-form fallback (§8.9). Артэфакт:
     `benchmarks/pcdc_pre_v14/vector_topology_recall_openbank_composed_k8.json`.
 
+79. Першая нейронная кампанента v10 прайшла абмежаваны пілот (2026-07-24,
+    §23-клас, адзін прагон, без цюнінгу, гейты запісаны да старту):
+    CNN «degraded raster → {stroke, tracking, effect}» з метка-рэплэем
+    з самога генератара. Пазітыў: аператары §8.11 чытаюцца — усе тры
+    галавы б'юць majority (tracking 0.70/0.45, effect 0.83/0.71,
+    stroke 0.51/0.39, held-out сем'і). Негатыў па загадзя запісаным
+    stop-condition: top-2 прадказаных варыянтаў губляе 9.2 пт Recall@8
+    супраць поўнага 9-варыянтнага перабору (0.696/0.789) — заяўка
+    «top-2 дастаткова» адхілена і паркуецца. Пілот нічога не аўтарызуе;
+    наступная законная пастаноўка — крывая Recall(top-M) і багацейшы
+    ўваход (REIR-каналы). Артэфакт:
+    `benchmarks/pcdc_pre_v14/v10_operator_pilot_report.json`.
+
 ## Дакладны promotion gate для full checkpoint
 
 Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не
