@@ -105,7 +105,9 @@ def load_split_ids() -> tuple[set[str], set[str]]:
     return train_ids, test_ids
 
 
-def collect_rows(limit_per_split: dict[str, int]) -> dict[str, list[dict]]:
+def collect_rows(
+    limit_per_split: dict[str, int], *, hard_subset: bool = False,
+) -> dict[str, list[dict]]:
     train_ids, test_ids = load_split_ids()
     out: dict[str, list[dict]] = {"train": [], "test": []}
     with open(PAIRS_DIR / "pairs.jsonl", encoding="utf-8") as handle:
@@ -115,6 +117,14 @@ def collect_rows(limit_per_split: dict[str, int]) -> dict[str, list[dict]]:
                 continue
             if float(row["augmentation"].get("rotate_degrees", 0.0)) != 0.0:
                 continue
+            if hard_subset:
+                augmentation = row["augmentation"]
+                if not (
+                    float(augmentation.get("blur_radius", 0)) > 0
+                    or float(augmentation.get("noise_sigma", 0)) > 0
+                    or augmentation.get("jpeg_quality") is not None
+                ):
+                    continue
             source_id = row["source_id"]
             split = (
                 "train" if source_id in train_ids
@@ -133,6 +143,16 @@ def collect_rows(limit_per_split: dict[str, int]) -> dict[str, list[dict]]:
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tiny-overfit", action="store_true")
+    parser.add_argument(
+        "--input-mode", choices=("gray", "observation"), default="gray",
+        help="observation = production 3-channel features "
+        "(values/threshold/edge) - the Stage-D v1 hypothesis",
+    )
+    parser.add_argument(
+        "--hard-subset", action="store_true",
+        help="only pairs with blur/noise/jpeg degradation: Otsu saturates "
+        "the easy pairs and drowns the model's value in the aggregate",
+    )
     parser.add_argument("--train-samples", type=int, default=16000)
     parser.add_argument("--val-samples", type=int, default=2000)
     parser.add_argument("--epochs", type=int, default=4)
@@ -164,12 +184,17 @@ def main() -> None:
     else:
         limits = {"train": args.train_samples, "test": args.val_samples}
     print("collecting pair rows...", flush=True)
-    rows = collect_rows(limits)
+    rows = collect_rows(limits, hard_subset=args.hard_subset)
     print({name: len(items) for name, items in rows.items()}, flush=True)
+
+    channels = 3 if args.input_mode == "observation" else 1
+    from vice_compiler.wordmark_prior_data import (
+        wordmark_observation_features,
+    )
 
     def build_bank(items: list[dict]):
         count = len(items)
-        inputs = np.zeros((count, SIZE, SIZE), np.float32)
+        inputs = np.zeros((count, channels, SIZE, SIZE), np.float32)
         supports = np.zeros((count, SIZE, SIZE), bool)
         sdfs = np.zeros((count, SIZE, SIZE), np.float32)
         kept = 0
@@ -203,7 +228,11 @@ def main() -> None:
             )
             if support is None or not support.any():
                 continue
-            inputs[kept] = raster.astype(np.float32) / 255.0
+            values = raster.astype(np.float32) / 255.0
+            if channels == 3:
+                inputs[kept] = wordmark_observation_features(values)
+            else:
+                inputs[kept] = values[None]
             supports[kept] = support
             sdfs[kept] = signed_distance_target(support)
             kept += 1
@@ -226,7 +255,7 @@ def main() -> None:
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     class StageDNet(nn.Module):
-        def __init__(self) -> None:
+        def __init__(self, in_channels: int = 1) -> None:
             super().__init__()
             def down(cin, cout):
                 return nn.Sequential(
@@ -240,7 +269,7 @@ def main() -> None:
                     nn.ConvTranspose2d(cin, cout, 2, stride=2),
                     nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
                 )
-            self.d1 = down(1, 32)     # 48
+            self.d1 = down(in_channels, 32)  # 48
             self.d2 = down(32, 64)    # 24
             self.d3 = down(64, 128)   # 12
             self.d4 = down(128, 256)  # 6
@@ -262,7 +291,7 @@ def main() -> None:
             y0 = self.u0(y1)
             return self.support_head(y0), torch.tanh(self.sdf_head(y0))
 
-    model = StageDNet().to(device)
+    model = StageDNet(channels).to(device)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=1e-3 if args.tiny_overfit else 3e-4,
     )
@@ -284,7 +313,7 @@ def main() -> None:
         total = 0.0
         for start in range(0, count, args.batch_size):
             batch = order[start:start + args.batch_size]
-            x = torch.from_numpy(train_inputs[batch][:, None]).to(device)
+            x = torch.from_numpy(train_inputs[batch]).to(device)
             y_support = torch.from_numpy(
                 train_supports[batch].astype(np.float32),
             )[:, None].to(device)
@@ -311,7 +340,7 @@ def main() -> None:
     with torch.no_grad():
         for start in range(0, len(val_inputs), args.batch_size):
             stop = min(start + args.batch_size, len(val_inputs))
-            x = torch.from_numpy(val_inputs[start:stop][:, None]).to(device)
+            x = torch.from_numpy(val_inputs[start:stop]).to(device)
             support_logits, _sdf = model(x)
             predicted = (
                 torch.sigmoid(support_logits)[:, 0].cpu().numpy() >= 0.5
@@ -328,7 +357,7 @@ def main() -> None:
                     + abs(topo[1] - truth_topology[1])
                 )
                 gray = np.rint(
-                    val_inputs[start + i] * 255.0,
+                    val_inputs[start + i][0] * 255.0,
                 ).astype(np.uint8)
                 _thr, otsu = cv2.threshold(
                     gray, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU,
@@ -371,6 +400,8 @@ def main() -> None:
         "mode": "tiny-overfit" if args.tiny_overfit else
                 "representative-pilot",
         "protocol": "pairs size==96 rotate==0; family-disjoint splits",
+        "input_mode": args.input_mode,
+        "hard_subset": bool(args.hard_subset),
         "metrics": metrics,
         "gate": gate,
         "gate_pass": bool(all(gate.values())),
