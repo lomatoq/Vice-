@@ -29,7 +29,11 @@ from .layer_solver import LayeredScene
 from .macro_ir import CandidateMacroIR, MacroCandidate, MacroKind
 from .phase5_macros import Phase5MacroBundle
 from .shape_macros import materialize_repeated_group_members
-from .text_macros import TextMacroSet, materialize_font_free_geometry
+from .text_macros import (
+    TextMacroSet,
+    _body_topology_signature,
+    materialize_font_free_geometry,
+)
 from .visible_scene import VisibleSceneIR
 
 
@@ -1233,6 +1237,71 @@ def _exact_font_element(
     return element
 
 
+def _approximate_outline_element(
+    reir: RasterEvidenceIR, candidate: MacroCandidate,
+    line: object, paint: str,
+) -> str | None:
+    """Outline delivery for approximate-template rows behind a per-row court.
+
+    Unconditional outline delivery regressed text-015 (GCR 13->21) even
+    though _exact_font_element's self-proof passed: that proof compares
+    the outline against the fit's OWN silhouette, which may legitimately
+    diverge from the admitted evidence (the approximate silhouette wall
+    is only >=0.5).  This court judges against the ADMITTED line support
+    instead: body-scale topology drift within the Stage-D guard budget,
+    and pixel IoU no worse than the raster delivery it would replace.
+    Any failure returns None and the row ships its raster geometry.
+    """
+    element = _exact_font_element(reir, candidate, line, paint)
+    if element is None:
+        return None
+    element = element.replace(
+        'data-pcdc-text-geometry="exact-font-outline"',
+        'data-pcdc-text-geometry="approximate-template-outline"',
+    )
+    proof_svg = (
+        f'<svg xmlns="http://www.w3.org/2000/svg" width="{reir.width}" '
+        f'height="{reir.height}" viewBox="0 0 {reir.width} {reir.height}">'
+        f'{element}</svg>'
+    )
+    try:
+        rendered = (
+            render_svg_roundtrip(proof_svg, width=reir.width)[..., 3] >= 128
+        )
+        default_support, _glyphs, _prototypes = (
+            materialize_font_free_geometry(reir, line)
+        )
+    except Exception:
+        return None
+    x1, y1, x2, y2 = (int(value) for value in getattr(line, "roi_xyxy"))
+    line_support = np.asarray(getattr(line, "support_mask"), bool)
+    local_support = line_support[y1:y2, x1:x2]
+    local_rendered = np.asarray(rendered, bool)[y1:y2, x1:x2]
+    local_default = np.asarray(default_support, bool)[y1:y2, x1:x2]
+    if not local_support.any():
+        return None
+    speck = max(4, int(0.0002 * local_rendered.size))
+    support_body = _body_topology_signature(local_support, speck)
+    outline_body = _body_topology_signature(local_rendered, speck)
+    if (
+        abs(outline_body[0] - support_body[0])
+        > max(1, round(0.10 * support_body[0]))
+        or abs(outline_body[1] - support_body[1]) > 1
+    ):
+        return None
+
+    def _iou(left: np.ndarray, right: np.ndarray) -> float:
+        union = int(np.sum(left | right))
+        return int(np.sum(left & right)) / max(1, union)
+
+    if (
+        _iou(local_rendered, local_support)
+        < _iou(local_default, local_support) - 0.01
+    ):
+        return None
+    return element
+
+
 def _text_elements(
     reir: RasterEvidenceIR, candidate: MacroCandidate,
     paint: str, generated: TextMacroSet | None,
@@ -1363,6 +1432,12 @@ def _text_elements(
             f'{translate_x:.12g} {translate_y:.12g})">'
             + "".join(tracked) + "</g>"
         ]
+    if record.path == "approximate-template":
+        # Outline returns only through the per-row court; any court
+        # failure falls open to the raster delivery below (H3 lesson).
+        element = _approximate_outline_element(reir, candidate, line, paint)
+        if element is not None:
+            return [element]
     if record.path in FONT_OUTLINE_ROUTES:
         element = _exact_font_element(reir, candidate, line, paint)
         return [element] if element is not None else []

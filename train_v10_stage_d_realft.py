@@ -43,6 +43,7 @@ from train_v10_stage_d import build_stage_d_net  # noqa: E402
 def _letterbox_pair(
     gray: np.ndarray, mask: np.ndarray,
     canvas: tuple[int, int] = (SIZE, SIZE),
+    *, baseline_area: bool = False,
 ):
     """Aspect-preserving letterbox of (gray, mask) into the canvas."""
     canvas_h, canvas_w = canvas
@@ -53,9 +54,15 @@ def _letterbox_pair(
     # INTER_AREA degenerates to blocky nearest on UPSCALE - an artifact
     # the synthetic bank (cubic upsample in degrade_wordmark) never
     # contains; real line ROIs upscale ~2x into the 96x384 canvas.
-    interpolation = (
-        cv2.INTER_CUBIC if factor > 1.0 else cv2.INTER_AREA
-    )
+    # baseline_area forces AREA regardless: the classical Otsu baseline
+    # must not be judged on the model's input transform (the cubic
+    # letterbox collapsed Otsu to edit 116 - a vacuous gate, ledger 102).
+    if baseline_area:
+        interpolation = cv2.INTER_AREA
+    else:
+        interpolation = (
+            cv2.INTER_CUBIC if factor > 1.0 else cv2.INTER_AREA
+        )
     gray_r = cv2.resize(gray, (new_w, new_h), interpolation=interpolation)
     mask_r = cv2.resize(
         mask.astype(np.uint8), (new_w, new_h),
@@ -123,6 +130,10 @@ def load_real_samples():
         gray_96, mask_96 = _letterbox_pair(
             gray_roi, mask[y1:y2, x1:x2], canvas=CANVAS,
         )
+        gray_area, _mask_area = _letterbox_pair(
+            gray_roi, mask[y1:y2, x1:x2], canvas=CANVAS,
+            baseline_area=True,
+        )
         bucket = int(hashlib.sha256(
             row["id"].encode("utf-8"),
         ).hexdigest()[:8], 16) % 100
@@ -130,6 +141,7 @@ def load_real_samples():
             "id": row["id"],
             "gray": gray_96,
             "mask": mask_96,
+            "gray_area": gray_area,
             "roi_aspect": roi_aspect,
             "split": "val" if bucket < 20 else "train",
         })
@@ -323,7 +335,7 @@ def main() -> None:
     # Otsu baseline on the same real crops.
     otsu_iou, otsu_edit = [], []
     for i in range(len(val)):
-        gray = np.rint(val_x[i][0] * 255.0).astype(np.uint8)
+        gray = np.rint(val[i]["gray_area"] * 255.0).astype(np.uint8)
         truth = val_m[i]
         truth_topo = _mask_topology(truth)
         _t, otsu = cv2.threshold(
