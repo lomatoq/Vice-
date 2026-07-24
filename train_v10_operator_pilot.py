@@ -73,10 +73,10 @@ def _stroke_class(value: int) -> int:
     return 2
 
 
-def _composed_topology_set(
+def _composed_topology_map(
     font_path: str, text: str, variants,
-) -> set[tuple[int, int]]:
-    out: set[tuple[int, int]] = set()
+) -> dict[tuple[float, int], tuple[int, int]]:
+    out: dict[tuple[float, int], tuple[int, int]] = {}
     rendered_cache: dict[float, np.ndarray | None] = {}
     for tracking, stroke in variants:
         if tracking not in rendered_cache:
@@ -93,8 +93,14 @@ def _composed_topology_set(
                 cv2.MORPH_ELLIPSE, (2 * stroke + 1, 2 * stroke + 1),
             )
             mask = cv2.dilate(joint.astype(np.uint8), kernel) > 0
-        out.add(_mask_topology(mask))
+        out[(tracking, stroke)] = _mask_topology(mask)
     return out
+
+
+def _composed_topology_set(
+    font_path: str, text: str, variants,
+) -> set[tuple[int, int]]:
+    return set(_composed_topology_map(font_path, text, variants).values())
 
 
 def main() -> None:
@@ -132,6 +138,11 @@ def main() -> None:
     parser.add_argument("--skip-downstream", action="store_true")
     parser.add_argument("--downstream-per-length", type=int, default=48)
     parser.add_argument("--top-variants", type=int, default=2)
+    parser.add_argument("--top-m-sweep", action="store_true")
+    parser.add_argument(
+        "--save-model", type=Path,
+        default=ROOT / "models" / "v10_operator_pilot.pt",
+    )
     parser.add_argument("--seed", type=int, default=20260725)
     parser.add_argument("--split-seed", type=int, default=20260722)
     parser.add_argument(
@@ -379,6 +390,7 @@ def main() -> None:
         recall_full = np.zeros(total, bool)
         recall_predicted = np.zeros(total, bool)
         recall_mode = np.zeros(total, bool)
+        recall_at_m = {m: np.zeros(total, bool) for m in range(1, 10)}
         effect_fraction = connected_fraction + outline_fraction
         scored = 0
         base_seed = args.seed + 55_555_555
@@ -448,33 +460,39 @@ def main() -> None:
                     )[0].cpu().numpy()
                 joint = np.outer(tracking_probability, stroke_probability)
                 flat = np.argsort(joint.ravel())[::-1]
-                predicted_variants = [
+                ranked_variants = [
                     (
                         TRACKING_BINS[int(position) // 3],
                         STROKE_CLASSES[int(position) % 3],
                     )
-                    for position in flat[:args.top_variants]
+                    for position in flat
                 ]
+                predicted_variants = ranked_variants[:args.top_variants]
                 mode_variant = [(0.0, 0)]
                 for key in retrieved:
                     face_path = str(ROOT / faces[key]["path"])
-                    full_set = _composed_topology_set(
+                    variant_topology = _composed_topology_map(
                         face_path, text, FULL_VARIANTS,
                     )
-                    if truth in full_set:
+                    if truth in set(variant_topology.values()):
                         recall_full[row] = True
-                    predicted_set = _composed_topology_set(
-                        face_path, text, predicted_variants,
-                    )
-                    if truth in predicted_set:
+                    if truth in {
+                        variant_topology.get(variant)
+                        for variant in predicted_variants
+                    }:
                         recall_predicted[row] = True
-                    if truth in _composed_topology_set(
-                        face_path, text, mode_variant,
-                    ):
+                    if variant_topology.get(mode_variant[0]) == truth:
                         recall_mode[row] = True
+                    if args.top_m_sweep:
+                        for m in range(1, 10):
+                            if truth in {
+                                variant_topology.get(variant)
+                                for variant in ranked_variants[:m]
+                            }:
+                                recall_at_m[m][row] = True
                     if (
                         recall_full[row] and recall_predicted[row]
-                        and recall_mode[row]
+                        and recall_mode[row] and not args.top_m_sweep
                     ):
                         break
                 scored += 1
@@ -483,6 +501,10 @@ def main() -> None:
 
         downstream = {
             "recall_at_8_full_9_variants": float(np.mean(recall_full)),
+            **({
+                f"recall_top_m_{m}": float(np.mean(recall_at_m[m]))
+                for m in range(1, 10)
+            } if args.top_m_sweep else {}),
             f"recall_at_8_top{args.top_variants}_predicted": float(
                 np.mean(recall_predicted)
             ),
@@ -498,8 +520,14 @@ def main() -> None:
             - downstream[f"recall_at_8_top{args.top_variants}_predicted"]
             <= 0.05
         )
+    args.save_model.parent.mkdir(parents=True, exist_ok=True)
+    torch.save({
+        "schema": "vice-operator-pilot-checkpoint/v1",
+        "state_dict": model.state_dict(),
+    }, args.save_model)
     report = {
         "schema": "vice-v10-operator-pilot/v1",
+        "saved_model": str(args.save_model),
         "created_at": datetime.now(timezone.utc).isoformat(),
         "purpose": (
             "bounded representative pilot: are S8.11 operators readable "

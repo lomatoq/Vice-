@@ -1,0 +1,47 @@
+{
+  "schema": "vice-stage-d-full-run-preflight/v1",
+  "created_at": "2026-07-24T16:13:59.375778+00:00",
+  "hypothesis": "neural degradation-inverse (observation channels, wordmark-grade degradation over uber pair geometry) holds a >=3x topology-edit advantage over the classical baseline at scale, with IoU not worse",
+  "why_now": {
+    "representative_pilot": "stage_d_v3_confirm_report.json gate_pass=true (6.35x)",
+    "independent_seed_confirmation": "seeds 20260729/20260730 agree (2.98/3.00)",
+    "learning_curve": {
+      "samples": [
+        4000,
+        8000,
+        16000
+      ],
+      "support_iou": [
+        0.7071,
+        0.7207,
+        0.7345
+      ],
+      "topology_edit": [
+        3.464,
+        3.24,
+        3.002
+      ],
+      "verdict": "monotonic, no saturation"
+    },
+    "tiny_overfit": "0.987-0.994 across recipes"
+  },
+  "budget": {
+    "train_samples": 24000,
+    "val_samples": 3000,
+    "epochs": 20,
+    "estimated_wall_hours": 1.5,
+    "hard_cap_hours": 4,
+    "device": "RTX 4070 12GB",
+    "memory_note": "in-RAM banks cap train at 24k for this run card"
+  },
+  "stop_conditions": [
+    "loss divergence (epoch loss rising 3 epochs in a row) -> abort",
+    "gate: topology edit <= baseline/3 AND IoU >= baseline-0.01 on unseen families",
+    "checkpoint is a CANDIDATE only; promotion needs delivered-output proof"
+  ],
+  "artifacts_to_produce": [
+    "models/stage_d_full_candidate_v1.pt",
+    "benchmarks/pcdc_pre_v14/stage_d_full_candidate_v1_report.json"
+  ],
+  "downstream_plan": "wire as support-quality booster for the approximate-template lane (line.support cleanup on real loci) and re-run Experiment H"
+}
