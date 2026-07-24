@@ -1,0 +1,179 @@
+{
+  "schema": "vice-wordmark-clean-identity-diagnostic/v1",
+  "created_at": "2026-07-24T09:11:16.768265+00:00",
+  "purpose": "Experiments B/E of the 2026-07-24 external audit: identity and conditioning diagnostics on held-out families, balanced lengths",
+  "ocr_mode": "corrupted",
+  "degraded_input": true,
+  "source_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\.training_snapshots\\wordmark_full_v4_20260723",
+  "model_data_contract_sha256": "61d786d233ae293424cf82b1f6f0bb23258db9df35ba0862bec7201284425d0c",
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\wordmark_prior_candidate_v1_epoch3.pt",
+  "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d",
+  "checkpoint_epoch": 3,
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "seed": 20260724,
+  "split_seed": 20260722,
+  "lengths": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    24,
+    32
+  ],
+  "samples_per_length": 512,
+  "device": "cuda",
+  "support_threshold": 0.85,
+  "support_threshold_policy": "calibrated-on-this-diagnostic-split",
+  "threshold_sweep": {
+    "0.500": {
+      "support_iou": 0.9204320322964898,
+      "raw_topology_accuracy": 0.6183035714285714
+    },
+    "0.600": {
+      "support_iou": 0.9240715243846893,
+      "raw_topology_accuracy": 0.625
+    },
+    "0.700": {
+      "support_iou": 0.9270596169997806,
+      "raw_topology_accuracy": 0.6294642857142857
+    },
+    "0.750": {
+      "support_iou": 0.9282630867143474,
+      "raw_topology_accuracy": 0.638671875
+    },
+    "0.800": {
+      "support_iou": 0.9289013802460764,
+      "raw_topology_accuracy": 0.64453125
+    },
+    "0.850": {
+      "support_iou": 0.9286212010590243,
+      "raw_topology_accuracy": 0.6450892857142857
+    },
+    "0.900": {
+      "support_iou": 0.9253342418854441,
+      "raw_topology_accuracy": 0.6375558035714286
+    }
+  },
+  "overall": {
+    "samples": 3584,
+    "pixels_per_glyph_mean": 25.427870977492564,
+    "pixels_per_glyph_p10": 7.625,
+    "raw_topology_accuracy": 0.6450892857142857,
+    "decoded_topology_accuracy": 0.6280691964285714,
+    "component_head_accuracy": 0.7748325892857143,
+    "hole_head_accuracy": 0.6646205357142857,
+    "joint_topology_head_accuracy": 0.5758928571428571,
+    "decoded_support_iou": 0.9282809725702439,
+    "repair_eligible_fraction": 0.5940290178571429,
+    "mean_topology_head_confidence": 0.5779555988192442
+  },
+  "complex": {
+    "samples": 2789,
+    "pixels_per_glyph_mean": 22.791696545954345,
+    "pixels_per_glyph_p10": 7.625,
+    "raw_topology_accuracy": 0.5604159196844747,
+    "decoded_topology_accuracy": 0.5396199354607386,
+    "component_head_accuracy": 0.7135173897454284,
+    "hole_head_accuracy": 0.5919684474722122,
+    "joint_topology_head_accuracy": 0.48010039440659735,
+    "decoded_support_iou": 0.9142128198930615,
+    "repair_eligible_fraction": 0.4940839010397992,
+    "mean_topology_head_confidence": 0.5040060662764317
+  },
+  "per_length": {
+    "1": {
+      "samples": 512,
+      "pixels_per_glyph_mean": 39.876953125,
+      "pixels_per_glyph_p10": 27.0,
+      "raw_topology_accuracy": 0.9609375,
+      "decoded_topology_accuracy": 0.96484375,
+      "component_head_accuracy": 0.974609375,
+      "hole_head_accuracy": 0.958984375,
+      "joint_topology_head_accuracy": 0.9375,
+      "decoded_support_iou": 0.9712654485160501,
+      "repair_eligible_fraction": 0.978515625,
+      "mean_topology_head_confidence": 0.874825524399057
+    },
+    "2": {
+      "samples": 512,
+      "pixels_per_glyph_mean": 39.482421875,
+      "pixels_per_glyph_p10": 26.5,
+      "raw_topology_accuracy": 0.916015625,
+      "decoded_topology_accuracy": 0.90234375,
+      "component_head_accuracy": 0.94921875,
+      "hole_head_accuracy": 0.916015625,
+      "joint_topology_head_accuracy": 0.873046875,
+      "decoded_support_iou": 0.9760998527892233,
+      "repair_eligible_fraction": 0.919921875,
+      "mean_topology_head_confidence": 0.7902730252608308
+    },
+    "4": {
+      "samples": 512,
+      "pixels_per_glyph_mean": 37.64306640625,
+      "pixels_per_glyph_p10": 23.525,
+      "raw_topology_accuracy": 0.830078125,
+      "decoded_topology_accuracy": 0.814453125,
+      "component_head_accuracy": 0.896484375,
+      "hole_head_accuracy": 0.822265625,
+      "joint_topology_head_accuracy": 0.7578125,
+      "decoded_support_iou": 0.9687647996641124,
+      "repair_eligible_fraction": 0.8515625,
+      "mean_topology_head_confidence": 0.7158314250409603
+    },
+    "8": {
+      "samples": 512,
+      "pixels_per_glyph_mean": 28.185302734375,
+      "pixels_per_glyph_p10": 22.375,
+      "raw_topology_accuracy": 0.763671875,
+      "decoded_topology_accuracy": 0.703125,
+      "component_head_accuracy": 0.841796875,
+      "hole_head_accuracy": 0.71484375,
+      "joint_topology_head_accuracy": 0.626953125,
+      "decoded_support_iou": 0.9625315392512483,
+      "repair_eligible_fraction": 0.716796875,
+      "mean_topology_head_confidence": 0.6210340890684165
+    },
+    "16": {
+      "samples": 512,
+      "pixels_per_glyph_mean": 15.123291015625,
+      "pixels_per_glyph_p10": 15.125,
+      "raw_topology_accuracy": 0.5,
+      "decoded_topology_accuracy": 0.474609375,
+      "component_head_accuracy": 0.650390625,
+      "hole_head_accuracy": 0.55078125,
+      "joint_topology_head_accuracy": 0.396484375,
+      "decoded_support_iou": 0.9154864070074699,
+      "repair_eligible_fraction": 0.376953125,
+      "mean_topology_head_confidence": 0.4440010140679078
+    },
+    "24": {
+      "samples": 512,
+      "pixels_per_glyph_mean": 10.110514322916666,
+      "pixels_per_glyph_p10": 10.083333333333334,
+      "raw_topology_accuracy": 0.314453125,
+      "decoded_topology_accuracy": 0.30078125,
+      "component_head_accuracy": 0.576171875,
+      "hole_head_accuracy": 0.3984375,
+      "joint_topology_head_accuracy": 0.240234375,
+      "decoded_support_iou": 0.860799147755851,
+      "repair_eligible_fraction": 0.1875,
+      "mean_topology_head_confidence": 0.32946681273460854
+    },
+    "32": {
+      "samples": 512,
+      "pixels_per_glyph_mean": 7.57354736328125,
+      "pixels_per_glyph_p10": 7.59375,
+      "raw_topology_accuracy": 0.23046875,
+      "decoded_topology_accuracy": 0.236328125,
+      "component_head_accuracy": 0.53515625,
+      "hole_head_accuracy": 0.291015625,
+      "joint_topology_head_accuracy": 0.19921875,
+      "decoded_support_iou": 0.8430196130077516,
+      "repair_eligible_fraction": 0.126953125,
+      "mean_topology_head_confidence": 0.27025730116292834
+    }
+  },
+  "elapsed_seconds": 55.85597289999987
+}

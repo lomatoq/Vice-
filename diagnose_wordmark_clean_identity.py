@@ -83,6 +83,17 @@ def main() -> None:
     )
     parser.add_argument("--lengths", type=str, default="1,2,4,8,16,24,32")
     parser.add_argument("--samples-per-length", type=int, default=512)
+    parser.add_argument(
+        "--ocr-mode", choices=("exact", "corrupted", "blank"), default="exact",
+        help="exact = oracle transcript; corrupted = guaranteed-wrong hint "
+        "via the snapshot's own corruption; blank = single-space hint "
+        "(uninformative conditioning)",
+    )
+    parser.add_argument(
+        "--degrade", action="store_true",
+        help="feed the degraded observation (training distribution) instead "
+        "of the clean identity input",
+    )
     parser.add_argument("--batch-size", type=int, default=48)
     parser.add_argument("--seed", type=int, default=20260724)
     parser.add_argument("--split-seed", type=int, default=20260722)
@@ -111,7 +122,9 @@ def main() -> None:
         wordmark_token_ids,
     )
     from vice_compiler.wordmark_prior_data import (
+        _corrupt_text_hint,
         _rng,
+        degrade_wordmark,
         render_clean_wordmark,
         wordmark_observation_features,
     )
@@ -220,8 +233,34 @@ def main() -> None:
                 text = _sample_fixed_length_text(
                     generator, length, WORDMARK_CHARACTERS,
                 )
+                if args.ocr_mode == "exact":
+                    hint = text
+                elif args.ocr_mode == "blank":
+                    # A single serving-vocabulary punctuation token: legal for
+                    # the tokenizer, carries no transcript information.
+                    hint = "."
+                else:
+                    hint = text
+                    for _attempt in range(16):
+                        candidate_hint = _corrupt_text_hint(
+                            text, generator, config.max_characters,
+                        )
+                        if candidate_hint != text:
+                            hint = candidate_hint
+                            break
+                    if hint == text:
+                        alphabet = WORDMARK_CHARACTERS.rstrip(" ")
+                        position = int(generator.integers(0, len(text)))
+                        replacement = text[position]
+                        while replacement == text[position]:
+                            replacement = alphabet[
+                                int(generator.integers(0, len(alphabet)))
+                            ]
+                        hint = (
+                            text[:position] + replacement + text[position + 1:]
+                        )
                 tokens = wordmark_token_ids(
-                    text, max_characters=config.max_characters,
+                    hint, max_characters=config.max_characters,
                 )
                 if tokens is None:
                     continue
@@ -235,21 +274,26 @@ def main() -> None:
                 components, holes = topology_signature(support)
                 if components > maximum_topology or holes > maximum_topology:
                     continue
-                sample = (coverage, support, token_ids, text_length,
+                observation = coverage
+                if args.degrade:
+                    observation = degrade_wordmark(
+                        coverage, support, seed=args.seed + 130363 * index,
+                    )
+                sample = (observation, support, token_ids, text_length,
                           components, holes)
                 break
             if sample is None:
                 raise RuntimeError(
                     f"length {length} slot {slot}: resampling exhausted"
                 )
-            coverage, support, token_ids, text_length, components, holes = sample
+            observation, support, token_ids, text_length, components, holes = sample
             columns = np.flatnonzero(support.any(axis=0))
             targets[row] = support
             true_components[row] = components
             true_holes[row] = holes
             sample_length[row] = length
             ink_width[row] = float(columns[-1] - columns[0] + 1)
-            batch_features.append(wordmark_observation_features(coverage))
+            batch_features.append(wordmark_observation_features(observation))
             batch_tokens.append(np.asarray(token_ids))
             batch_text_length.append(int(text_length))
             batch_rows.append(row)
@@ -347,9 +391,11 @@ def main() -> None:
         "schema": "vice-wordmark-clean-identity-diagnostic/v1",
         "created_at": datetime.now(timezone.utc).isoformat(),
         "purpose": (
-            "Experiment B of the 2026-07-24 external audit: clean input, "
-            "oracle OCR, held-out families, balanced lengths"
+            "Experiments B/E of the 2026-07-24 external audit: identity and "
+            "conditioning diagnostics on held-out families, balanced lengths"
         ),
+        "ocr_mode": args.ocr_mode,
+        "degraded_input": bool(args.degrade),
         "source_root": str(source_root),
         "model_data_contract_sha256": contract,
         "checkpoint": str(args.checkpoint.resolve()),
