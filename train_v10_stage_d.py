@@ -198,13 +198,34 @@ def main() -> None:
         "over the replayed clean target - the S11.4 data-side card",
     )
     parser.add_argument(
-        "--polarity", choices=("ink", "luminance"), default="ink",
+        "--polarity", choices=("ink", "luminance", "luminance-bg"),
+        default="ink",
         help="'ink' trains on raw degraded coverage (ink=1). 'luminance' "
         "reconstructs a pseudo-luminance observation ink_lum*obs + "
         "0.5*(1-obs) with ink_lum measured from the pair's actual raster "
         "at support pixels - the convention the real domain (and the "
         "real fine-tune) actually uses; icons invisible on the 0.5 "
-        "composite (|ink_lum-0.5|<0.08) are skipped",
+        "composite (|ink_lum-0.5|<0.08) are skipped. 'luminance-bg' "
+        "additionally takes the BACKGROUND from the pair's own raster "
+        "(border median) instead of assuming flat 0.5: the 2026-07-25 "
+        "dataset audit measured real-content backgrounds as near-white "
+        "(31.1%% of real pixels >0.98 vs 0.5%% synthetic) and real ink "
+        "median 0.462 - inside the old skip window - so the flat-0.5 "
+        "convention both starved ink-on-white and wrongly deleted 18%% "
+        "of rows; the skip becomes the true invisibility test "
+        "|ink_lum-bg_lum|<0.12, which also drops the audit's "
+        "invisible-ink defect class (~3%% of clean rows)",
+    )
+    parser.add_argument(
+        "--balance", choices=("none", "real-profile"), default="none",
+        help="'real-profile' rebalances the train bank toward the real "
+        "fine-tune domain measured by the 2026-07-25 audit (train vs "
+        "real: aspect>5 31.6%% vs 11.3%%, holes>=4 8.7%% vs 37.7%%): "
+        "ultra-wide rows (ink aspect>5) capped at 12%% of target, "
+        "plain single-blob no-hole rows capped at 15%%, hole-rich rows "
+        "always accepted; the source stream is overcollected x1.7 so "
+        "quotas can fill; validation bank stays natural for report "
+        "continuity",
     )
     parser.add_argument(
         "--hard-subset", action="store_true",
@@ -247,6 +268,12 @@ def main() -> None:
         limits = {"train": 96, "test": 96}
     else:
         limits = {"train": args.train_samples, "test": args.val_samples}
+    if args.balance == "real-profile" and not args.tiny_overfit:
+        # Overcollect so the stratified quotas can fill to the target.
+        limits = {
+            "train": int(args.train_samples * 1.7),
+            "test": args.val_samples,
+        }
     print("collecting pair rows...", flush=True)
     rows = collect_rows(limits, hard_subset=args.hard_subset)
     print({name: len(items) for name, items in rows.items()}, flush=True)
@@ -258,13 +285,35 @@ def main() -> None:
     )
     import hashlib as _hashlib
 
-    def build_bank(items: list[dict]):
+    def support_body_topology(mask: np.ndarray) -> tuple[int, int]:
+        source = mask.astype(np.uint8)
+        _n, _l, stats, _c = cv2.connectedComponentsWithStats(source, 8)
+        comps = int(np.sum(stats[1:, cv2.CC_STAT_AREA] >= 4))
+        inverted = np.pad(1 - source, 1, constant_values=1)
+        n_h, l_h, stats_h, _ = cv2.connectedComponentsWithStats(inverted, 4)
+        outside = l_h[0, 0]
+        holes = int(sum(
+            1 for i in range(1, n_h)
+            if i != outside and stats_h[i, cv2.CC_STAT_AREA] >= 4
+        ))
+        return comps, holes
+
+    def build_bank(
+        items: list[dict], *, target: int | None = None,
+        balance: bool = False,
+    ):
         count = len(items)
         inputs = np.zeros((count, channels, SIZE, SIZE), np.float32)
         supports = np.zeros((count, SIZE, SIZE), bool)
         sdfs = np.zeros((count, SIZE, SIZE), np.float32)
         kept = 0
+        wide_cap = int(0.12 * target) if (balance and target) else None
+        plain_cap = int(0.15 * target) if (balance and target) else None
+        wide_kept = 0
+        plain_kept = 0
         for row in items:
+            if target is not None and kept >= target:
+                break
             png_path = PAIRS_DIR / row["input_png"]
             svg_path = PAIRS_DIR / row["target_svg"]
             try:
@@ -297,6 +346,20 @@ def main() -> None:
             coverage, support = replayed
             if not support.any():
                 continue
+            is_wide = False
+            is_plain = False
+            if balance and target:
+                ys, xs = np.nonzero(support)
+                aspect = (int(xs.max()) - int(xs.min()) + 1) / max(
+                    1, int(ys.max()) - int(ys.min()) + 1,
+                )
+                comps, holes = support_body_topology(support)
+                is_wide = aspect > 5.0
+                is_plain = not is_wide and holes == 0 and comps <= 1
+                if is_wide and wide_kept >= wide_cap:
+                    continue
+                if is_plain and plain_kept >= plain_cap:
+                    continue
             if args.degradation == "wordmark":
                 degrade_seed = int(_hashlib.sha256(
                     row["id"].encode("utf-8")
@@ -304,14 +367,24 @@ def main() -> None:
                 observed = degrade_wordmark(
                     coverage, support, seed=degrade_seed,
                 )
-                if args.polarity == "luminance":
+                if args.polarity in ("luminance", "luminance-bg"):
                     # raster still holds the pair's true composited gray
                     # here; the reassignment below overwrites it.
                     ink_lum = float(np.median(raster[support])) / 255.0
-                    if abs(ink_lum - 0.5) < 0.08:
-                        continue
+                    if args.polarity == "luminance-bg":
+                        border = np.concatenate((
+                            raster[0, :], raster[-1, :],
+                            raster[:, 0], raster[:, -1],
+                        ))
+                        bg_lum = float(np.median(border)) / 255.0
+                        if abs(ink_lum - bg_lum) < 0.12:
+                            continue
+                    else:
+                        bg_lum = 0.5
+                        if abs(ink_lum - 0.5) < 0.08:
+                            continue
                     observed = (
-                        ink_lum * observed + 0.5 * (1.0 - observed)
+                        ink_lum * observed + bg_lum * (1.0 - observed)
                     )
                 raster = np.rint(
                     np.clip(observed, 0.0, 1.0) * 255.0
@@ -324,12 +397,23 @@ def main() -> None:
             supports[kept] = support
             sdfs[kept] = signed_distance_target(support)
             kept += 1
+            wide_kept += int(is_wide)
+            plain_kept += int(is_plain)
             if kept % 2000 == 0:
                 print(f"prepared {kept}", flush=True)
+        if balance and target:
+            print(
+                f"balanced bank: kept {kept} (wide {wide_kept}/{wide_cap}, "
+                f"plain {plain_kept}/{plain_cap})", flush=True,
+            )
         return inputs[:kept], supports[:kept], sdfs[:kept]
 
     print("preparing train bank...", flush=True)
-    train_inputs, train_supports, train_sdfs = build_bank(rows["train"])
+    train_inputs, train_supports, train_sdfs = build_bank(
+        rows["train"],
+        target=None if args.tiny_overfit else args.train_samples,
+        balance=args.balance == "real-profile" and not args.tiny_overfit,
+    )
     if args.tiny_overfit:
         val_inputs, val_supports = train_inputs, train_supports
     else:
