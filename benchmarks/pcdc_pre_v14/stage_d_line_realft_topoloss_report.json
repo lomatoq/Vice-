@@ -1,0 +1,26 @@
+{
+  "schema": "vice-stage-d-realft/v1",
+  "created_at": "2026-07-24T23:51:34.850482+00:00",
+  "data": "300 human-reviewed v1 loci masks, id-hash 80/20 split",
+  "base_checkpoint": "models\\stage_d_line_pretrain_v1.pt",
+  "metrics": {
+    "pre_finetune_iou": 0.5695143843961027,
+    "pre_finetune_edit": 21.153846153846153,
+    "post_finetune_iou": 0.8442292331471722,
+    "post_finetune_edit": 14.807692307692308,
+    "otsu_iou": 0.46992050832242693,
+    "otsu_edit": 9.384615384615385
+  },
+  "gate": {
+    "beats_otsu_iou": true,
+    "beats_pre_finetune_iou": true,
+    "not_worse_edit_than_otsu": false
+  },
+  "gate_pass": false,
+  "train_samples": 94,
+  "val_samples": 26,
+  "seed": 20260732,
+  "device": "cuda",
+  "elapsed_seconds": 37.68878360000235,
+  "checkpoint": "models\\stage_d_line_realft_topoloss.pt"
+}
