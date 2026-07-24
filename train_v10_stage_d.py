@@ -141,6 +141,48 @@ def collect_rows(
     return out
 
 
+def build_stage_d_net(nn, torch, in_channels: int = 3):
+    """Factory: the Stage-D UNet (importable for fine-tune/booster)."""
+    class StageDNet(nn.Module):
+        def __init__(self, in_channels: int = 1) -> None:
+            super().__init__()
+            def down(cin, cout):
+                return nn.Sequential(
+                    nn.Conv2d(cin, cout, 3, stride=2, padding=1),
+                    nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
+                    nn.Conv2d(cout, cout, 3, padding=1),
+                    nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
+                )
+            def up(cin, cout):
+                return nn.Sequential(
+                    nn.ConvTranspose2d(cin, cout, 2, stride=2),
+                    nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
+                )
+            self.d1 = down(in_channels, 32)  # 48
+            self.d2 = down(32, 64)    # 24
+            self.d3 = down(64, 128)   # 12
+            self.d4 = down(128, 256)  # 6
+            self.u3 = up(256, 128)    # 12
+            self.u2 = up(256, 64)     # 24
+            self.u1 = up(128, 32)     # 48
+            self.u0 = up(64, 32)      # 96
+            self.support_head = nn.Conv2d(32, 1, 3, padding=1)
+            self.sdf_head = nn.Conv2d(32, 1, 3, padding=1)
+
+        def forward(self, x):
+            e1 = self.d1(x)
+            e2 = self.d2(e1)
+            e3 = self.d3(e2)
+            e4 = self.d4(e3)
+            y3 = torch.cat([self.u3(e4), e3], dim=1)
+            y2 = torch.cat([self.u2(y3), e2], dim=1)
+            y1 = torch.cat([self.u1(y2), e1], dim=1)
+            y0 = self.u0(y1)
+            return self.support_head(y0), torch.tanh(self.sdf_head(y0))
+
+    return StageDNet(in_channels)
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--tiny-overfit", action="store_true")
@@ -282,44 +324,7 @@ def main() -> None:
 
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
-    class StageDNet(nn.Module):
-        def __init__(self, in_channels: int = 1) -> None:
-            super().__init__()
-            def down(cin, cout):
-                return nn.Sequential(
-                    nn.Conv2d(cin, cout, 3, stride=2, padding=1),
-                    nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
-                    nn.Conv2d(cout, cout, 3, padding=1),
-                    nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
-                )
-            def up(cin, cout):
-                return nn.Sequential(
-                    nn.ConvTranspose2d(cin, cout, 2, stride=2),
-                    nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
-                )
-            self.d1 = down(in_channels, 32)  # 48
-            self.d2 = down(32, 64)    # 24
-            self.d3 = down(64, 128)   # 12
-            self.d4 = down(128, 256)  # 6
-            self.u3 = up(256, 128)    # 12
-            self.u2 = up(256, 64)     # 24
-            self.u1 = up(128, 32)     # 48
-            self.u0 = up(64, 32)      # 96
-            self.support_head = nn.Conv2d(32, 1, 3, padding=1)
-            self.sdf_head = nn.Conv2d(32, 1, 3, padding=1)
-
-        def forward(self, x):
-            e1 = self.d1(x)
-            e2 = self.d2(e1)
-            e3 = self.d3(e2)
-            e4 = self.d4(e3)
-            y3 = torch.cat([self.u3(e4), e3], dim=1)
-            y2 = torch.cat([self.u2(y3), e2], dim=1)
-            y1 = torch.cat([self.u1(y2), e1], dim=1)
-            y0 = self.u0(y1)
-            return self.support_head(y0), torch.tanh(self.sdf_head(y0))
-
-    model = StageDNet(channels).to(device)
+    model = build_stage_d_net(nn, torch, channels).to(device)
     optimizer = torch.optim.Adam(
         model.parameters(), lr=1e-3 if args.tiny_overfit else 3e-4,
     )

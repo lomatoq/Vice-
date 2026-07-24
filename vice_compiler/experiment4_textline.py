@@ -17,6 +17,7 @@ import hashlib
 import io
 import json
 import math
+import os
 from pathlib import Path
 import statistics
 import time
@@ -656,7 +657,10 @@ def evaluate_locus(
             exact_provider = ApproximateTemplateProvider(
                 reir, inner=exact_provider,
                 stage_d_checkpoint=(
-                    PROJECT / "models" / "stage_d_full_candidate_v1.pt"
+                    Path(os.environ.get(
+                        "VICE_STAGE_D_CHECKPOINT",
+                        PROJECT / "models" / "stage_d_full_candidate_v1.pt",
+                    ))
                     if stage_d_booster else None
                 ),
             )
