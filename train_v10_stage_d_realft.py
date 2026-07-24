@@ -34,15 +34,20 @@ import numpy as np
 ROOT = Path(__file__).resolve().parent
 CORPUS = ROOT / "datasets" / "pcdc_real_loci_v1"
 SIZE = 96
+CANVAS = (SIZE, SIZE)  # set from --canvas in main()
 
 from diagnose_vector_topology_recall import _mask_topology  # noqa: E402
 from train_v10_stage_d import build_stage_d_net  # noqa: E402
 
 
-def _letterbox_pair(gray: np.ndarray, mask: np.ndarray):
-    """Aspect-preserving letterbox of (gray, mask) into SIZE x SIZE."""
+def _letterbox_pair(
+    gray: np.ndarray, mask: np.ndarray,
+    canvas: tuple[int, int] = (SIZE, SIZE),
+):
+    """Aspect-preserving letterbox of (gray, mask) into the canvas."""
+    canvas_h, canvas_w = canvas
     height, width = gray.shape
-    factor = min(SIZE / height, SIZE / width)
+    factor = min(canvas_h / height, canvas_w / width)
     new_w = max(1, int(round(width * factor)))
     new_h = max(1, int(round(height * factor)))
     gray_r = cv2.resize(gray, (new_w, new_h), interpolation=cv2.INTER_AREA)
@@ -50,10 +55,10 @@ def _letterbox_pair(gray: np.ndarray, mask: np.ndarray):
         mask.astype(np.uint8), (new_w, new_h),
         interpolation=cv2.INTER_NEAREST,
     ) > 0
-    gray_out = np.full((SIZE, SIZE), 0.5, np.float32)
-    mask_out = np.zeros((SIZE, SIZE), bool)
-    y = (SIZE - new_h) // 2
-    x = (SIZE - new_w) // 2
+    gray_out = np.full((canvas_h, canvas_w), 0.5, np.float32)
+    mask_out = np.zeros((canvas_h, canvas_w), bool)
+    y = (canvas_h - new_h) // 2
+    x = (canvas_w - new_w) // 2
     gray_out[y:y + new_h, x:x + new_w] = gray_r
     mask_out[y:y + new_h, x:x + new_w] = mask_r
     return gray_out, mask_out
@@ -108,7 +113,9 @@ def load_real_samples():
             skipped += 1
             continue
         gray_roi = gray[y1:y2, x1:x2].astype(np.float32) / 255.0
-        gray_96, mask_96 = _letterbox_pair(gray_roi, mask[y1:y2, x1:x2])
+        gray_96, mask_96 = _letterbox_pair(
+            gray_roi, mask[y1:y2, x1:x2], canvas=CANVAS,
+        )
         bucket = int(hashlib.sha256(
             row["id"].encode("utf-8"),
         ).hexdigest()[:8], 16) % 100
@@ -142,6 +149,12 @@ def main() -> None:
         "luminance observation ink_lum*obs + 0.5*(1-obs) from the icon's "
         "actual ink luminance, matching the real-row convention",
     )
+    parser.add_argument(
+        "--canvas", default="96x96",
+        help="HxW letterbox canvas; '96x384' is the line canvas matching "
+        "the line pretrain - long real ROIs keep glyph height instead of "
+        "shrinking 4x into the square (both dims must be /16)",
+    )
     parser.add_argument("--epochs", type=int, default=120)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--lr", type=float, default=1e-4)
@@ -156,6 +169,12 @@ def main() -> None:
         default=ROOT / "models" / "stage_d_realft_candidate_v1.pt",
     )
     args = parser.parse_args()
+
+    global CANVAS
+    canvas_h, canvas_w = (int(v) for v in args.canvas.lower().split("x"))
+    if canvas_h % 16 or canvas_w % 16:
+        raise SystemExit("--canvas dims must be divisible by 16")
+    CANVAS = (canvas_h, canvas_w)
 
     sys.path.insert(
         0, str(ROOT / ".training_snapshots" / "wordmark_full_v4_20260723"),
@@ -228,6 +247,7 @@ def main() -> None:
                 observed = ink_lum * observed + 0.5 * (1.0 - observed)
             gray_96, mask_96 = _letterbox_pair(
                 np.clip(observed, 0.0, 1.0).astype(np.float32), mask,
+                canvas=CANVAS,
             )
             train.append({
                 "id": row["id"], "gray": gray_96,

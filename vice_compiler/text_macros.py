@@ -2109,6 +2109,20 @@ def _stage_d_support_refinements(
     from .template_warp_provider import _StageDBooster
 
     booster = _StageDBooster(checkpoint)
+    # Long thin lines fuse under the square letterbox (H8/H9 lesson: a
+    # 4:1 word shrinks to ~20px glyphs).  When a line-canvas checkpoint
+    # exists, wide ROIs route to it at its native 96x384 letterbox.
+    line_override = os.environ.get(
+        "VICE_STAGE_D_LINE_CHECKPOINT", "",
+    ).strip()
+    line_checkpoint = Path(line_override) if line_override else (
+        Path(__file__).resolve().parents[1]
+        / "models" / "stage_d_line_realft_candidate.pt"
+    )
+    line_booster = (
+        _StageDBooster(line_checkpoint)
+        if line_checkpoint.is_file() else None
+    )
     rgba = np.asarray(reir.raster.straight_rgba, np.float32)
     if rgba.max() > 1.5:
         rgba = rgba / 255.0
@@ -2131,7 +2145,13 @@ def _stage_d_support_refinements(
         x1, y1, x2, y2 = proposal.roi_xyxy
         if (x2 - x1) < 8 or (y2 - y1) < 8:
             continue
-        recovered = booster.boost_letterboxed(gray[y1:y2, x1:x2])
+        roi_aspect = (x2 - x1) / max(1, y2 - y1)
+        if line_booster is not None and roi_aspect > 2.5:
+            recovered = line_booster.boost_letterboxed(
+                gray[y1:y2, x1:x2], canvas=(96, 384),
+            )
+        else:
+            recovered = booster.boost_letterboxed(gray[y1:y2, x1:x2])
         if recovered is None or not recovered.any():
             continue
         original = np.asarray(proposal.support_mask[y1:y2, x1:x2], bool)

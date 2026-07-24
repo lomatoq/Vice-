@@ -180,13 +180,20 @@ class _StageDBooster:
         except Exception:
             return None
 
-    def boost_letterboxed(self, gray_roi: np.ndarray) -> np.ndarray | None:
+    def boost_letterboxed(
+        self, gray_roi: np.ndarray,
+        canvas: tuple[int, int] = (96, 96),
+    ) -> np.ndarray | None:
         """gray ROI in [0,1] -> recovered support at ROI size, or None.
 
-        The real-domain fine-tune (ledger 94) trained exclusively on 96x96
-        aspect-preserving letterboxes over 0.5 gray.  Feeding raw ROI sizes
-        puts the model off its training distribution, so inference mirrors
-        the trainer's _letterbox_pair exactly and maps the prediction back.
+        The real-domain fine-tune (ledger 94) trained exclusively on
+        aspect-preserving letterboxes over 0.5 gray.  Feeding raw ROI
+        sizes puts the model off its training distribution, so inference
+        mirrors the trainer's _letterbox_pair exactly and maps the
+        prediction back.  canvas must match the checkpoint's training
+        canvas: (96, 96) for the square models, (96, 384) for the line
+        model (ledger 101: square letterboxing of long words is the
+        fusion cause).
         """
         try:
             import torch
@@ -195,20 +202,20 @@ class _StageDBooster:
 
             if self._model is None:
                 self._load()
-            size = 96
+            canvas_h, canvas_w = canvas
             height, width = gray_roi.shape
-            factor = min(size / height, size / width)
+            factor = min(canvas_h / height, canvas_w / width)
             new_w = max(1, int(round(width * factor)))
             new_h = max(1, int(round(height * factor)))
             resized = cv2.resize(
                 gray_roi.astype(np.float32), (new_w, new_h),
                 interpolation=cv2.INTER_AREA,
             )
-            canvas = np.full((size, size), 0.5, np.float32)
-            y = (size - new_h) // 2
-            x = (size - new_w) // 2
-            canvas[y:y + new_h, x:x + new_w] = resized
-            features = wordmark_observation_features(canvas)
+            board = np.full((canvas_h, canvas_w), 0.5, np.float32)
+            y = (canvas_h - new_h) // 2
+            x = (canvas_w - new_w) // 2
+            board[y:y + new_h, x:x + new_w] = resized
+            features = wordmark_observation_features(board)
             with torch.no_grad():
                 logits, _sdf = self._model(
                     torch.from_numpy(features[None]).to(self._device),

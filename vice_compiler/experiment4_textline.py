@@ -137,6 +137,38 @@ def _wordmark_prior_identity() -> dict[str, Any] | None:
     }
 
 
+def _stage_d_identity() -> dict[str, Any]:
+    """Bind the Stage-D upstream-lane model identity into the report.
+
+    The 2026-07-25 cache/provenance audit found reports carrying glyph and
+    wordmark prior identities but NO Stage-D checkpoint hash, so two runs
+    with different VICE_STAGE_D_CHECKPOINT values were indistinguishable
+    from the report alone.  Mirrors the resolution in
+    text_macros._stage_d_support_refinements exactly.
+    """
+    enabled = os.environ.get("VICE_STAGE_D_UPSTREAM") == "1"
+    identity: dict[str, Any] = {"upstream_enabled": enabled}
+    for label, env_name, default_name in (
+        ("checkpoint", "VICE_STAGE_D_CHECKPOINT",
+         "stage_d_realft_from_lumbg.pt"),
+        ("line_checkpoint", "VICE_STAGE_D_LINE_CHECKPOINT",
+         "stage_d_line_realft_candidate.pt"),
+    ):
+        override = os.environ.get(env_name, "").strip()
+        path = Path(override) if override else (
+            PROJECT / "models" / default_name
+        )
+        identity[label] = (
+            {
+                "path": str(path.resolve()),
+                "sha256": hashlib.sha256(path.read_bytes()).hexdigest(),
+                "bytes": path.stat().st_size,
+            }
+            if enabled and path.is_file() else None
+        )
+    return identity
+
+
 def _line_gcr_reduction(
     rows: Iterable[dict[str, Any]], baseline_key: str, candidate_key: str,
 ) -> tuple[int, int, float]:
@@ -1132,6 +1164,7 @@ def build_report(
         ),
         "glyph_prior_checkpoint": glyph_prior_checkpoint,
         "wordmark_prior_checkpoint": wordmark_prior_checkpoint,
+        "stage_d_identity": _stage_d_identity(),
         "machine": machine, "human": human, "gate_pass": gate, "rows": rows,
     }
 

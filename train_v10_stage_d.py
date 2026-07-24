@@ -51,14 +51,23 @@ from diagnose_vector_topology_recall import _mask_topology  # noqa: E402
 
 def replay_target_support(
     svg_text: str, augmentation: dict, resvg_module,
+    canvas: tuple[int, int] = (SIZE, SIZE),
 ) -> tuple[np.ndarray, np.ndarray] | None:
-    """Replicate the pair builder's geometry for the clean target mask."""
+    """Replicate the pair builder's geometry for the clean target mask.
+
+    canvas=(height, width) generalizes the square protocol: a wide line
+    canvas (e.g. 96x384) renders at the wider extent so long words keep
+    near-full glyph height instead of shrinking 4x under the square
+    fit-contain (the H8/H9 long-line fusion cause). The square default is
+    byte-identical to the recorded protocol.
+    """
     from PIL import Image
 
+    canvas_h, canvas_w = canvas
     scale = float(augmentation["scale"])
     shift_x = int(augmentation["shift_x"])
     shift_y = int(augmentation["shift_y"])
-    extent = max(int(SIZE * scale), 8)
+    extent = max(int(max(canvas_h, canvas_w) * scale), 8)
     # The builder computes renderW/renderH from the record aspect, then
     # fit-contains; rendering the SVG into the extent box with resvg and
     # measuring the result reproduces the same overlay dimensions for the
@@ -77,8 +86,8 @@ def replay_target_support(
         return None
     overlay = alpha[ys.min():ys.max() + 1, xs.min():xs.max() + 1]
     overlay_height, overlay_width = overlay.shape
-    if overlay_height > SIZE or overlay_width > SIZE:
-        factor = min(SIZE / overlay_height, SIZE / overlay_width)
+    if overlay_height > canvas_h or overlay_width > canvas_w:
+        factor = min(canvas_h / overlay_height, canvas_w / overlay_width)
         overlay = cv2.resize(
             overlay,
             (max(1, int(overlay_width * factor)),
@@ -86,13 +95,13 @@ def replay_target_support(
             interpolation=cv2.INTER_AREA,
         )
         overlay_height, overlay_width = overlay.shape
-    left = max(0, min(SIZE - overlay_width,
-                      (SIZE - overlay_width) // 2 + shift_x))
-    top = max(0, min(SIZE - overlay_height,
-                     (SIZE - overlay_height) // 2 + shift_y))
-    canvas = np.zeros((SIZE, SIZE), np.uint8)
-    canvas[top:top + overlay_height, left:left + overlay_width] = overlay
-    coverage = canvas.astype(np.float32) / 255.0
+    left = max(0, min(canvas_w - overlay_width,
+                      (canvas_w - overlay_width) // 2 + shift_x))
+    top = max(0, min(canvas_h - overlay_height,
+                     (canvas_h - overlay_height) // 2 + shift_y))
+    board = np.zeros((canvas_h, canvas_w), np.uint8)
+    board[top:top + overlay_height, left:left + overlay_width] = overlay
+    coverage = board.astype(np.float32) / 255.0
     return coverage, coverage >= 0.5
 
 
@@ -217,6 +226,14 @@ def main() -> None:
         "invisible-ink defect class (~3%% of clean rows)",
     )
     parser.add_argument(
+        "--canvas", default="96x96",
+        help="HxW training canvas. The square default is the recorded "
+        "protocol. '96x384' is the line canvas: long words render at the "
+        "wide extent and keep near-full glyph height, attacking the "
+        "H8/H9 long-line fusion (square fit-contain shrank a 4:1 word "
+        "to ~20px glyphs). Both dims must be /16 for the UNet",
+    )
+    parser.add_argument(
         "--mix-text-v2", type=int, default=0,
         help="append N text_shapes_v2 rows (1,957 font families vs the 21 "
         "v1 families that supply ALL current text pairs) to the TRAIN "
@@ -276,6 +293,9 @@ def main() -> None:
 
     started = time.perf_counter()
     torch.manual_seed(args.seed)
+    canvas_h, canvas_w = (int(v) for v in args.canvas.lower().split("x"))
+    if canvas_h % 16 or canvas_w % 16:
+        raise SystemExit("--canvas dims must be divisible by 16")
     if args.tiny_overfit:
         limits = {"train": 96, "test": 96}
     else:
@@ -315,9 +335,11 @@ def main() -> None:
         balance: bool = False,
     ):
         count = len(items)
-        inputs = np.zeros((count, channels, SIZE, SIZE), np.float32)
-        supports = np.zeros((count, SIZE, SIZE), bool)
-        sdfs = np.zeros((count, SIZE, SIZE), np.float32)
+        inputs = np.zeros(
+            (count, channels, canvas_h, canvas_w), np.float32,
+        )
+        supports = np.zeros((count, canvas_h, canvas_w), bool)
+        sdfs = np.zeros((count, canvas_h, canvas_w), np.float32)
         kept = 0
         wide_cap = int(0.12 * target) if (balance and target) else None
         plain_cap = int(0.15 * target) if (balance and target) else None
@@ -352,6 +374,7 @@ def main() -> None:
                 raster = raw
             replayed = replay_target_support(
                 svg_text, row["augmentation"], resvg_py,
+                canvas=(canvas_h, canvas_w),
             )
             if replayed is None:
                 continue
@@ -381,8 +404,26 @@ def main() -> None:
                 )
                 if args.polarity in ("luminance", "luminance-bg"):
                     # raster still holds the pair's true composited gray
-                    # here; the reassignment below overwrites it.
-                    ink_lum = float(np.median(raster[support])) / 255.0
+                    # here; the reassignment below overwrites it.  On the
+                    # square canvas the replayed support indexes the pair
+                    # raster directly (recorded lumbg protocol); on other
+                    # canvases the shapes differ, so ink is estimated as
+                    # the raster pixels contrasting with the border
+                    # background - same scalar, shape-independent.
+                    if raster.shape == support.shape:
+                        ink_lum = float(np.median(raster[support])) / 255.0
+                    else:
+                        border_raw = np.concatenate((
+                            raster[0, :], raster[-1, :],
+                            raster[:, 0], raster[:, -1],
+                        ))
+                        bg_raw = float(np.median(border_raw))
+                        contrasting = raster[
+                            np.abs(raster.astype(np.float32) - bg_raw) > 24
+                        ]
+                        if contrasting.size < 16:
+                            continue
+                        ink_lum = float(np.median(contrasting)) / 255.0
                     if args.polarity == "luminance-bg":
                         border = np.concatenate((
                             raster[0, :], raster[-1, :],
@@ -437,9 +478,11 @@ def main() -> None:
         records.sort(
             key=lambda row: _hashlib.sha256(row["id"].encode()).hexdigest(),
         )
-        inputs = np.zeros((count, channels, SIZE, SIZE), np.float32)
-        supports = np.zeros((count, SIZE, SIZE), bool)
-        sdfs = np.zeros((count, SIZE, SIZE), np.float32)
+        inputs = np.zeros(
+            (count, channels, canvas_h, canvas_w), np.float32,
+        )
+        supports = np.zeros((count, canvas_h, canvas_w), bool)
+        sdfs = np.zeros((count, canvas_h, canvas_w), np.float32)
         kept = 0
         for row in records:
             if kept >= count:
@@ -455,6 +498,7 @@ def main() -> None:
             }
             replayed = replay_target_support(
                 row["svg"], augmentation, resvg_py,
+                canvas=(canvas_h, canvas_w),
             )
             if replayed is None:
                 continue
