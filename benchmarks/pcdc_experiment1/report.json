@@ -29,7 +29,7 @@
     "source_content_sha256": "83ff3a60d60eda9bbead098936f754117e55e025605680d1908c9df836b9719e",
     "owned_reference_content_sha256": "e8afee1da6520f4fabbb3cec3755ad0cdb14ad31ea9015856a2ef69d5c4d7013"
   },
-  "created_at": "2026-07-23T20:49:06.075368+00:00",
+  "created_at": "2026-07-24T15:52:23.277192+00:00",
   "status": "passed",
   "gate_pass": true,
   "would_pass_evidence_gate": true,
@@ -39,13 +39,13 @@
   "metrics": {
     "overall_support_recall_at_32": 0.9973479674545723,
     "class_floor": 0.9951985081497786,
-    "runtime_p95_ms": 261.4966,
+    "runtime_p95_ms": 183.3923,
     "topology_recall": 0.8166666666666667,
     "boundary_band_feasibility": 0.9905394664299879,
     "macro_family_recall": 0.9966666666666667,
     "mean_hierarchy_nodes": 195.47333333333333,
-    "mean_proposal_tokens": 171.32,
-    "mean_unique_coverage_candidates": 361.5233333333333
+    "mean_proposal_tokens": 171.36666666666667,
+    "mean_unique_coverage_candidates": 361.57
   },
   "by_class": {
     "text": {
@@ -116,8 +116,8 @@
         "unique_candidates": 566,
         "eligible_candidates": 99
       },
-      "runtime_ms": 253.2508,
-      "runtime_budget_ok": true
+      "runtime_ms": 325.9076,
+      "runtime_budget_ok": false
     },
     {
       "id": "text-001-92b7c53b3d8b",
@@ -142,7 +142,7 @@
         "unique_candidates": 116,
         "eligible_candidates": 11
       },
-      "runtime_ms": 27.2688,
+      "runtime_ms": 23.2445,
       "runtime_budget_ok": true
     },
     {
@@ -166,9 +166,9 @@
         "hierarchy_candidates": 319,
         "typed_macro_candidates": 307,
         "unique_candidates": 609,
-        "eligible_candidates": 220
+        "eligible_candidates": 195
       },
-      "runtime_ms": 119.7959,
+      "runtime_ms": 83.4491,
       "runtime_budget_ok": true
     },
     {
@@ -194,7 +194,7 @@
         "unique_candidates": 345,
         "eligible_candidates": 84
       },
-      "runtime_ms": 61.0487,
+      "runtime_ms": 46.6049,
       "runtime_budget_ok": true
     },
     {
@@ -220,7 +220,7 @@
         "unique_candidates": 236,
         "eligible_candidates": 53
       },
-      "runtime_ms": 37.5919,
+      "runtime_ms": 35.7291,
       "runtime_budget_ok": true
     },
     {
@@ -246,7 +246,7 @@
         "unique_candidates": 389,
         "eligible_candidates": 124
       },
-      "runtime_ms": 249.1938,
+      "runtime_ms": 128.2475,
       "runtime_budget_ok": true
     },
     {
@@ -272,7 +272,7 @@
         "unique_candidates": 705,
         "eligible_candidates": 291
       },
-      "runtime_ms": 128.2152,
+      "runtime_ms": 81.5239,
       "runtime_budget_ok": true
     },
     {
@@ -298,7 +298,7 @@
         "unique_candidates": 195,
         "eligible_candidates": 93
       },
-      "runtime_ms": 52.028,
+      "runtime_ms": 28.7284,
       "runtime_budget_ok": true
     },
     {
@@ -324,7 +324,7 @@
         "unique_candidates": 325,
         "eligible_candidates": 127
       },
-      "runtime_ms": 71.9198,
+      "runtime_ms": 42.638,
       "runtime_budget_ok": true
     },
     {
@@ -350,7 +350,7 @@
         "unique_candidates": 394,
         "eligible_candidates": 73
       },
-      "runtime_ms": 151.7749,
+      "runtime_ms": 97.9404,
       "runtime_budget_ok": true
     },
     {
@@ -376,7 +376,7 @@
         "unique_candidates": 618,
         "eligible_candidates": 150
       },
-      "runtime_ms": 86.002,
+      "runtime_ms": 73.32,
       "runtime_budget_ok": true
     },
     {
@@ -402,7 +402,7 @@
         "unique_candidates": 315,
         "eligible_candidates": 72
       },
-      "runtime_ms": 81.1975,
+      "runtime_ms": 51.2387,
       "runtime_budget_ok": true
     },
     {
@@ -428,7 +428,7 @@
         "unique_candidates": 339,
         "eligible_candidates": 70
       },
-      "runtime_ms": 146.7494,
+      "runtime_ms": 106.1812,
       "runtime_budget_ok": true
     },
     {
@@ -454,7 +454,7 @@
         "unique_candidates": 359,
         "eligible_candidates": 80
       },
-      "runtime_ms": 64.428,
+      "runtime_ms": 42.621,
       "runtime_budget_ok": true
     },
     {
@@ -480,7 +480,7 @@
         "unique_candidates": 721,
         "eligible_candidates": 319
       },
-      "runtime_ms": 297.7475,
+      "runtime_ms": 125.4599,
       "runtime_budget_ok": true
     },
     {
@@ -506,7 +506,7 @@
         "unique_candidates": 361,
         "eligible_candidates": 110
       },
-      "runtime_ms": 58.4526,
+      "runtime_ms": 52.0013,
       "runtime_budget_ok": true
     },
     {
@@ -532,7 +532,7 @@
         "unique_candidates": 120,
         "eligible_candidates": 15
       },
-      "runtime_ms": 33.3484,
+      "runtime_ms": 20.9623,
       "runtime_budget_ok": true
     },
     {
@@ -558,7 +558,7 @@
         "unique_candidates": 860,
         "eligible_candidates": 450
       },
-      "runtime_ms": 184.3291,
+      "runtime_ms": 107.2409,
       "runtime_budget_ok": true
     },
     {
@@ -584,7 +584,7 @@
         "unique_candidates": 584,
         "eligible_candidates": 180
       },
-      "runtime_ms": 104.741,
+      "runtime_ms": 84.3071,
       "runtime_budget_ok": true
     },
     {
@@ -610,7 +610,7 @@
         "unique_candidates": 48,
         "eligible_candidates": 11
       },
-      "runtime_ms": 35.8118,
+      "runtime_ms": 13.4782,
       "runtime_budget_ok": true
     },
     {
@@ -636,7 +636,7 @@
         "unique_candidates": 496,
         "eligible_candidates": 221
       },
-      "runtime_ms": 166.1269,
+      "runtime_ms": 104.9064,
       "runtime_budget_ok": true
     },
     {
@@ -662,7 +662,7 @@
         "unique_candidates": 530,
         "eligible_candidates": 135
       },
-      "runtime_ms": 179.7329,
+      "runtime_ms": 105.6527,
       "runtime_budget_ok": true
     },
     {
@@ -688,7 +688,7 @@
         "unique_candidates": 542,
         "eligible_candidates": 302
       },
-      "runtime_ms": 95.6951,
+      "runtime_ms": 65.4756,
       "runtime_budget_ok": true
     },
     {
@@ -714,7 +714,7 @@
         "unique_candidates": 623,
         "eligible_candidates": 254
       },
-      "runtime_ms": 148.9084,
+      "runtime_ms": 95.6238,
       "runtime_budget_ok": true
     },
     {
@@ -740,7 +740,7 @@
         "unique_candidates": 680,
         "eligible_candidates": 232
       },
-      "runtime_ms": 193.6366,
+      "runtime_ms": 142.9245,
       "runtime_budget_ok": true
     },
     {
@@ -766,7 +766,7 @@
         "unique_candidates": 80,
         "eligible_candidates": 19
       },
-      "runtime_ms": 20.9378,
+      "runtime_ms": 14.7867,
       "runtime_budget_ok": true
     },
     {
@@ -792,7 +792,7 @@
         "unique_candidates": 552,
         "eligible_candidates": 186
       },
-      "runtime_ms": 87.9374,
+      "runtime_ms": 52.0128,
       "runtime_budget_ok": true
     },
     {
@@ -818,7 +818,7 @@
         "unique_candidates": 892,
         "eligible_candidates": 290
       },
-      "runtime_ms": 166.3893,
+      "runtime_ms": 106.7296,
       "runtime_budget_ok": true
     },
     {
@@ -844,7 +844,7 @@
         "unique_candidates": 554,
         "eligible_candidates": 265
       },
-      "runtime_ms": 221.8882,
+      "runtime_ms": 140.2139,
       "runtime_budget_ok": true
     },
     {
@@ -870,7 +870,7 @@
         "unique_candidates": 271,
         "eligible_candidates": 62
       },
-      "runtime_ms": 122.0253,
+      "runtime_ms": 85.0417,
       "runtime_budget_ok": true
     },
     {
@@ -896,7 +896,7 @@
         "unique_candidates": 732,
         "eligible_candidates": 207
       },
-      "runtime_ms": 153.4999,
+      "runtime_ms": 91.4698,
       "runtime_budget_ok": true
     },
     {
@@ -922,7 +922,7 @@
         "unique_candidates": 166,
         "eligible_candidates": 37
       },
-      "runtime_ms": 46.0306,
+      "runtime_ms": 21.936,
       "runtime_budget_ok": true
     },
     {
@@ -948,7 +948,7 @@
         "unique_candidates": 491,
         "eligible_candidates": 87
       },
-      "runtime_ms": 141.733,
+      "runtime_ms": 100.7079,
       "runtime_budget_ok": true
     },
     {
@@ -974,7 +974,7 @@
         "unique_candidates": 80,
         "eligible_candidates": 21
       },
-      "runtime_ms": 44.9373,
+      "runtime_ms": 14.9829,
       "runtime_budget_ok": true
     },
     {
@@ -1000,7 +1000,7 @@
         "unique_candidates": 306,
         "eligible_candidates": 130
       },
-      "runtime_ms": 117.0514,
+      "runtime_ms": 76.1612,
       "runtime_budget_ok": true
     },
     {
@@ -1026,7 +1026,7 @@
         "unique_candidates": 120,
         "eligible_candidates": 28
       },
-      "runtime_ms": 37.4934,
+      "runtime_ms": 17.8633,
       "runtime_budget_ok": true
     },
     {
@@ -1052,7 +1052,7 @@
         "unique_candidates": 352,
         "eligible_candidates": 92
       },
-      "runtime_ms": 81.4358,
+      "runtime_ms": 53.3603,
       "runtime_budget_ok": true
     },
     {
@@ -1078,7 +1078,7 @@
         "unique_candidates": 373,
         "eligible_candidates": 175
       },
-      "runtime_ms": 77.4266,
+      "runtime_ms": 46.5516,
       "runtime_budget_ok": true
     },
     {
@@ -1104,7 +1104,7 @@
         "unique_candidates": 645,
         "eligible_candidates": 176
       },
-      "runtime_ms": 112.8719,
+      "runtime_ms": 68.7577,
       "runtime_budget_ok": true
     },
     {
@@ -1130,7 +1130,7 @@
         "unique_candidates": 165,
         "eligible_candidates": 35
       },
-      "runtime_ms": 33.3988,
+      "runtime_ms": 22.0856,
       "runtime_budget_ok": true
     },
     {
@@ -1156,7 +1156,7 @@
         "unique_candidates": 807,
         "eligible_candidates": 300
       },
-      "runtime_ms": 172.9925,
+      "runtime_ms": 94.7576,
       "runtime_budget_ok": true
     },
     {
@@ -1182,7 +1182,7 @@
         "unique_candidates": 136,
         "eligible_candidates": 38
       },
-      "runtime_ms": 108.1796,
+      "runtime_ms": 20.4336,
       "runtime_budget_ok": true
     },
     {
@@ -1208,7 +1208,7 @@
         "unique_candidates": 358,
         "eligible_candidates": 156
       },
-      "runtime_ms": 59.3553,
+      "runtime_ms": 35.1664,
       "runtime_budget_ok": true
     },
     {
@@ -1234,7 +1234,7 @@
         "unique_candidates": 62,
         "eligible_candidates": 18
       },
-      "runtime_ms": 22.1741,
+      "runtime_ms": 15.3775,
       "runtime_budget_ok": true
     },
     {
@@ -1260,7 +1260,7 @@
         "unique_candidates": 532,
         "eligible_candidates": 238
       },
-      "runtime_ms": 187.8429,
+      "runtime_ms": 108.6705,
       "runtime_budget_ok": true
     },
     {
@@ -1286,7 +1286,7 @@
         "unique_candidates": 460,
         "eligible_candidates": 80
       },
-      "runtime_ms": 75.7525,
+      "runtime_ms": 41.8944,
       "runtime_budget_ok": true
     },
     {
@@ -1312,7 +1312,7 @@
         "unique_candidates": 574,
         "eligible_candidates": 219
       },
-      "runtime_ms": 124.0002,
+      "runtime_ms": 68.0386,
       "runtime_budget_ok": true
     },
     {
@@ -1338,7 +1338,7 @@
         "unique_candidates": 703,
         "eligible_candidates": 244
       },
-      "runtime_ms": 178.8022,
+      "runtime_ms": 106.9884,
       "runtime_budget_ok": true
     },
     {
@@ -1357,14 +1357,14 @@
       "boundary_band_feasibility": 1.0,
       "macro_family_recall": 1.0,
       "hierarchy_nodes": 39,
-      "proposal_tokens": 25,
+      "proposal_tokens": 30,
       "coverage_candidates": {
         "hierarchy_candidates": 39,
-        "typed_macro_candidates": 24,
-        "unique_candidates": 58,
+        "typed_macro_candidates": 29,
+        "unique_candidates": 63,
         "eligible_candidates": 9
       },
-      "runtime_ms": 32.1788,
+      "runtime_ms": 13.2606,
       "runtime_budget_ok": true
     },
     {
@@ -1390,7 +1390,7 @@
         "unique_candidates": 133,
         "eligible_candidates": 31
       },
-      "runtime_ms": 29.5049,
+      "runtime_ms": 18.0088,
       "runtime_budget_ok": true
     },
     {
@@ -1416,7 +1416,7 @@
         "unique_candidates": 495,
         "eligible_candidates": 124
       },
-      "runtime_ms": 187.0852,
+      "runtime_ms": 102.2879,
       "runtime_budget_ok": true
     },
     {
@@ -1442,7 +1442,7 @@
         "unique_candidates": 539,
         "eligible_candidates": 299
       },
-      "runtime_ms": 197.7671,
+      "runtime_ms": 116.111,
       "runtime_budget_ok": true
     },
     {
@@ -1468,7 +1468,7 @@
         "unique_candidates": 144,
         "eligible_candidates": 35
       },
-      "runtime_ms": 133.0929,
+      "runtime_ms": 23.348,
       "runtime_budget_ok": true
     },
     {
@@ -1494,7 +1494,7 @@
         "unique_candidates": 571,
         "eligible_candidates": 211
       },
-      "runtime_ms": 153.6966,
+      "runtime_ms": 76.6031,
       "runtime_budget_ok": true
     },
     {
@@ -1520,7 +1520,7 @@
         "unique_candidates": 620,
         "eligible_candidates": 200
       },
-      "runtime_ms": 113.8215,
+      "runtime_ms": 61.7337,
       "runtime_budget_ok": true
     },
     {
@@ -1546,7 +1546,7 @@
         "unique_candidates": 309,
         "eligible_candidates": 86
       },
-      "runtime_ms": 72.3841,
+      "runtime_ms": 31.8584,
       "runtime_budget_ok": true
     },
     {
@@ -1572,7 +1572,7 @@
         "unique_candidates": 515,
         "eligible_candidates": 200
       },
-      "runtime_ms": 93.2953,
+      "runtime_ms": 54.9843,
       "runtime_budget_ok": true
     },
     {
@@ -1598,7 +1598,7 @@
         "unique_candidates": 353,
         "eligible_candidates": 93
       },
-      "runtime_ms": 60.5668,
+      "runtime_ms": 47.0321,
       "runtime_budget_ok": true
     },
     {
@@ -1624,7 +1624,7 @@
         "unique_candidates": 267,
         "eligible_candidates": 130
       },
-      "runtime_ms": 43.5929,
+      "runtime_ms": 35.2969,
       "runtime_budget_ok": true
     },
     {
@@ -1650,7 +1650,7 @@
         "unique_candidates": 83,
         "eligible_candidates": 13
       },
-      "runtime_ms": 30.9015,
+      "runtime_ms": 15.8465,
       "runtime_budget_ok": true
     },
     {
@@ -1676,7 +1676,7 @@
         "unique_candidates": 539,
         "eligible_candidates": 126
       },
-      "runtime_ms": 139.9629,
+      "runtime_ms": 85.4199,
       "runtime_budget_ok": true
     },
     {
@@ -1702,7 +1702,7 @@
         "unique_candidates": 109,
         "eligible_candidates": 41
       },
-      "runtime_ms": 40.9076,
+      "runtime_ms": 19.4852,
       "runtime_budget_ok": true
     },
     {
@@ -1728,7 +1728,7 @@
         "unique_candidates": 511,
         "eligible_candidates": 105
       },
-      "runtime_ms": 102.7542,
+      "runtime_ms": 62.2084,
       "runtime_budget_ok": true
     },
     {
@@ -1754,7 +1754,7 @@
         "unique_candidates": 240,
         "eligible_candidates": 115
       },
-      "runtime_ms": 41.0605,
+      "runtime_ms": 28.5778,
       "runtime_budget_ok": true
     },
     {
@@ -1780,7 +1780,7 @@
         "unique_candidates": 674,
         "eligible_candidates": 185
       },
-      "runtime_ms": 139.7848,
+      "runtime_ms": 84.0754,
       "runtime_budget_ok": true
     },
     {
@@ -1806,7 +1806,7 @@
         "unique_candidates": 637,
         "eligible_candidates": 321
       },
-      "runtime_ms": 166.062,
+      "runtime_ms": 85.6463,
       "runtime_budget_ok": true
     },
     {
@@ -1832,7 +1832,7 @@
         "unique_candidates": 329,
         "eligible_candidates": 79
       },
-      "runtime_ms": 201.3862,
+      "runtime_ms": 87.1927,
       "runtime_budget_ok": true
     },
     {
@@ -1858,7 +1858,7 @@
         "unique_candidates": 358,
         "eligible_candidates": 72
       },
-      "runtime_ms": 155.0096,
+      "runtime_ms": 91.588,
       "runtime_budget_ok": true
     },
     {
@@ -1884,7 +1884,7 @@
         "unique_candidates": 445,
         "eligible_candidates": 140
       },
-      "runtime_ms": 106.3809,
+      "runtime_ms": 59.2402,
       "runtime_budget_ok": true
     },
     {
@@ -1910,7 +1910,7 @@
         "unique_candidates": 393,
         "eligible_candidates": 68
       },
-      "runtime_ms": 79.8045,
+      "runtime_ms": 45.7449,
       "runtime_budget_ok": true
     },
     {
@@ -1936,7 +1936,7 @@
         "unique_candidates": 524,
         "eligible_candidates": 123
       },
-      "runtime_ms": 123.9581,
+      "runtime_ms": 68.9321,
       "runtime_budget_ok": true
     },
     {
@@ -1962,7 +1962,7 @@
         "unique_candidates": 516,
         "eligible_candidates": 193
       },
-      "runtime_ms": 86.4998,
+      "runtime_ms": 50.1245,
       "runtime_budget_ok": true
     },
     {
@@ -1988,7 +1988,7 @@
         "unique_candidates": 112,
         "eligible_candidates": 38
       },
-      "runtime_ms": 28.8901,
+      "runtime_ms": 18.2393,
       "runtime_budget_ok": true
     },
     {
@@ -2014,7 +2014,7 @@
         "unique_candidates": 110,
         "eligible_candidates": 31
       },
-      "runtime_ms": 36.5835,
+      "runtime_ms": 19.5187,
       "runtime_budget_ok": true
     },
     {
@@ -2040,7 +2040,7 @@
         "unique_candidates": 146,
         "eligible_candidates": 52
       },
-      "runtime_ms": 40.5003,
+      "runtime_ms": 21.0348,
       "runtime_budget_ok": true
     },
     {
@@ -2066,7 +2066,7 @@
         "unique_candidates": 417,
         "eligible_candidates": 82
       },
-      "runtime_ms": 89.0643,
+      "runtime_ms": 50.7109,
       "runtime_budget_ok": true
     },
     {
@@ -2092,7 +2092,7 @@
         "unique_candidates": 269,
         "eligible_candidates": 113
       },
-      "runtime_ms": 42.5652,
+      "runtime_ms": 29.5273,
       "runtime_budget_ok": true
     },
     {
@@ -2111,14 +2111,14 @@
       "boundary_band_feasibility": 1.0,
       "macro_family_recall": 1.0,
       "hierarchy_nodes": 39,
-      "proposal_tokens": 35,
+      "proposal_tokens": 42,
       "coverage_candidates": {
         "hierarchy_candidates": 39,
-        "typed_macro_candidates": 34,
-        "unique_candidates": 68,
-        "eligible_candidates": 20
+        "typed_macro_candidates": 41,
+        "unique_candidates": 75,
+        "eligible_candidates": 21
       },
-      "runtime_ms": 29.3961,
+      "runtime_ms": 13.8616,
       "runtime_budget_ok": true
     },
     {
@@ -2144,7 +2144,7 @@
         "unique_candidates": 570,
         "eligible_candidates": 251
       },
-      "runtime_ms": 94.0144,
+      "runtime_ms": 58.6602,
       "runtime_budget_ok": true
     },
     {
@@ -2170,7 +2170,7 @@
         "unique_candidates": 809,
         "eligible_candidates": 262
       },
-      "runtime_ms": 168.5396,
+      "runtime_ms": 94.1802,
       "runtime_budget_ok": true
     },
     {
@@ -2196,7 +2196,7 @@
         "unique_candidates": 506,
         "eligible_candidates": 97
       },
-      "runtime_ms": 80.4742,
+      "runtime_ms": 51.6318,
       "runtime_budget_ok": true
     },
     {
@@ -2222,7 +2222,7 @@
         "unique_candidates": 773,
         "eligible_candidates": 321
       },
-      "runtime_ms": 205.0865,
+      "runtime_ms": 114.8288,
       "runtime_budget_ok": true
     },
     {
@@ -2248,7 +2248,7 @@
         "unique_candidates": 876,
         "eligible_candidates": 426
       },
-      "runtime_ms": 198.7517,
+      "runtime_ms": 119.2464,
       "runtime_budget_ok": true
     },
     {
@@ -2274,7 +2274,7 @@
         "unique_candidates": 321,
         "eligible_candidates": 143
       },
-      "runtime_ms": 64.6231,
+      "runtime_ms": 32.2755,
       "runtime_budget_ok": true
     },
     {
@@ -2300,7 +2300,7 @@
         "unique_candidates": 530,
         "eligible_candidates": 153
       },
-      "runtime_ms": 154.197,
+      "runtime_ms": 81.9437,
       "runtime_budget_ok": true
     },
     {
@@ -2326,7 +2326,7 @@
         "unique_candidates": 345,
         "eligible_candidates": 238
       },
-      "runtime_ms": 166.2836,
+      "runtime_ms": 104.3317,
       "runtime_budget_ok": true
     },
     {
@@ -2352,7 +2352,7 @@
         "unique_candidates": 421,
         "eligible_candidates": 212
       },
-      "runtime_ms": 82.9845,
+      "runtime_ms": 49.8198,
       "runtime_budget_ok": true
     },
     {
@@ -2378,7 +2378,7 @@
         "unique_candidates": 479,
         "eligible_candidates": 93
       },
-      "runtime_ms": 102.1564,
+      "runtime_ms": 50.6881,
       "runtime_budget_ok": true
     },
     {
@@ -2404,7 +2404,7 @@
         "unique_candidates": 446,
         "eligible_candidates": 274
       },
-      "runtime_ms": 74.0647,
+      "runtime_ms": 41.3244,
       "runtime_budget_ok": true
     },
     {
@@ -2430,7 +2430,7 @@
         "unique_candidates": 360,
         "eligible_candidates": 107
       },
-      "runtime_ms": 94.4555,
+      "runtime_ms": 47.5385,
       "runtime_budget_ok": true
     },
     {
@@ -2456,7 +2456,7 @@
         "unique_candidates": 205,
         "eligible_candidates": 82
       },
-      "runtime_ms": 51.8578,
+      "runtime_ms": 24.7891,
       "runtime_budget_ok": true
     },
     {
@@ -2482,7 +2482,7 @@
         "unique_candidates": 399,
         "eligible_candidates": 253
       },
-      "runtime_ms": 85.575,
+      "runtime_ms": 44.3771,
       "runtime_budget_ok": true
     },
     {
@@ -2508,7 +2508,7 @@
         "unique_candidates": 498,
         "eligible_candidates": 162
       },
-      "runtime_ms": 92.9086,
+      "runtime_ms": 50.4503,
       "runtime_budget_ok": true
     },
     {
@@ -2534,7 +2534,7 @@
         "unique_candidates": 238,
         "eligible_candidates": 104
       },
-      "runtime_ms": 50.72,
+      "runtime_ms": 30.2785,
       "runtime_budget_ok": true
     },
     {
@@ -2560,7 +2560,7 @@
         "unique_candidates": 297,
         "eligible_candidates": 118
       },
-      "runtime_ms": 54.0226,
+      "runtime_ms": 39.8133,
       "runtime_budget_ok": true
     },
     {
@@ -2586,7 +2586,7 @@
         "unique_candidates": 492,
         "eligible_candidates": 90
       },
-      "runtime_ms": 109.2153,
+      "runtime_ms": 70.4982,
       "runtime_budget_ok": true
     },
     {
@@ -2612,7 +2612,7 @@
         "unique_candidates": 398,
         "eligible_candidates": 183
       },
-      "runtime_ms": 80.2481,
+      "runtime_ms": 46.4158,
       "runtime_budget_ok": true
     },
     {
@@ -2638,7 +2638,7 @@
         "unique_candidates": 350,
         "eligible_candidates": 51
       },
-      "runtime_ms": 195.7798,
+      "runtime_ms": 111.9768,
       "runtime_budget_ok": true
     },
     {
@@ -2664,7 +2664,7 @@
         "unique_candidates": 218,
         "eligible_candidates": 35
       },
-      "runtime_ms": 51.4402,
+      "runtime_ms": 37.8684,
       "runtime_budget_ok": true
     },
     {
@@ -2690,13 +2690,13 @@
         "unique_candidates": 363,
         "eligible_candidates": 95
       },
-      "runtime_ms": 63.6247,
+      "runtime_ms": 39.7254,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-000-004ae4772f25",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -2716,13 +2716,13 @@
         "unique_candidates": 228,
         "eligible_candidates": 71
       },
-      "runtime_ms": 48.1823,
+      "runtime_ms": 52.5434,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-001-81e5b026d790",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9730517115804806,
         "4": 0.9803350327749454,
@@ -2742,13 +2742,13 @@
         "unique_candidates": 399,
         "eligible_candidates": 212
       },
-      "runtime_ms": 59.5287,
+      "runtime_ms": 52.0178,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-002-1a79193965a7",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9996467679265277,
         "4": 0.9997645119510185,
@@ -2768,13 +2768,13 @@
         "unique_candidates": 425,
         "eligible_candidates": 189
       },
-      "runtime_ms": 112.4206,
+      "runtime_ms": 89.9331,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-003-51db8135cbfb",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -2794,13 +2794,13 @@
         "unique_candidates": 163,
         "eligible_candidates": 23
       },
-      "runtime_ms": 43.6556,
+      "runtime_ms": 29.4763,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-004-49bee047039e",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -2820,13 +2820,13 @@
         "unique_candidates": 192,
         "eligible_candidates": 67
       },
-      "runtime_ms": 40.5068,
+      "runtime_ms": 26.1651,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-005-61b0fff71ad2",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9922005571030641,
         "4": 0.9933147632311977,
@@ -2846,13 +2846,13 @@
         "unique_candidates": 418,
         "eligible_candidates": 157
       },
-      "runtime_ms": 86.0998,
+      "runtime_ms": 53.0867,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-006-fc39be4f30b7",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -2872,13 +2872,13 @@
         "unique_candidates": 123,
         "eligible_candidates": 27
       },
-      "runtime_ms": 43.2228,
+      "runtime_ms": 23.1909,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-007-efd4f0b24708",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -2898,13 +2898,13 @@
         "unique_candidates": 276,
         "eligible_candidates": 42
       },
-      "runtime_ms": 86.3186,
+      "runtime_ms": 38.1827,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-008-0ef0da431cbe",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9795918367346939,
         "4": 0.9836734693877551,
@@ -2924,13 +2924,13 @@
         "unique_candidates": 426,
         "eligible_candidates": 163
       },
-      "runtime_ms": 69.6274,
+      "runtime_ms": 48.7117,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-009-3c0e22762233",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -2950,13 +2950,13 @@
         "unique_candidates": 231,
         "eligible_candidates": 231
       },
-      "runtime_ms": 114.3851,
+      "runtime_ms": 77.333,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-010-2b377dc5af01",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -2976,13 +2976,13 @@
         "unique_candidates": 164,
         "eligible_candidates": 37
       },
-      "runtime_ms": 41.3345,
+      "runtime_ms": 30.0393,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-011-f02636e0e635",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3002,13 +3002,13 @@
         "unique_candidates": 194,
         "eligible_candidates": 194
       },
-      "runtime_ms": 48.0663,
+      "runtime_ms": 33.4094,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-012-4914b87ee1c0",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3028,13 +3028,13 @@
         "unique_candidates": 193,
         "eligible_candidates": 55
       },
-      "runtime_ms": 60.5873,
+      "runtime_ms": 49.4851,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-013-6fd830c523cc",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9999276515699609,
         "4": 1.0,
@@ -3054,13 +3054,13 @@
         "unique_candidates": 353,
         "eligible_candidates": 175
       },
-      "runtime_ms": 109.0894,
+      "runtime_ms": 77.8855,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-014-ca52caa2bde7",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3080,13 +3080,13 @@
         "unique_candidates": 272,
         "eligible_candidates": 96
       },
-      "runtime_ms": 60.8141,
+      "runtime_ms": 47.846,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-015-1e2498d73cf2",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3106,13 +3106,13 @@
         "unique_candidates": 495,
         "eligible_candidates": 495
       },
-      "runtime_ms": 130.3617,
+      "runtime_ms": 58.8646,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-016-ce93bb6a9342",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9984601170311056,
         "4": 0.9986654347602916,
@@ -3132,13 +3132,13 @@
         "unique_candidates": 393,
         "eligible_candidates": 178
       },
-      "runtime_ms": 119.9647,
+      "runtime_ms": 86.6299,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-017-c0363841a0e2",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3158,13 +3158,13 @@
         "unique_candidates": 328,
         "eligible_candidates": 108
       },
-      "runtime_ms": 79.0596,
+      "runtime_ms": 52.3943,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-018-0d2a19efa931",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3184,13 +3184,13 @@
         "unique_candidates": 140,
         "eligible_candidates": 59
       },
-      "runtime_ms": 32.4783,
+      "runtime_ms": 27.25,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-019-b0e20e54cbd3",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3210,13 +3210,13 @@
         "unique_candidates": 384,
         "eligible_candidates": 108
       },
-      "runtime_ms": 107.9333,
+      "runtime_ms": 72.5142,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-020-7059d849d19b",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3236,13 +3236,13 @@
         "unique_candidates": 161,
         "eligible_candidates": 49
       },
-      "runtime_ms": 62.0188,
+      "runtime_ms": 37.2561,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-021-2993e25100b7",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3262,13 +3262,13 @@
         "unique_candidates": 150,
         "eligible_candidates": 35
       },
-      "runtime_ms": 64.0599,
+      "runtime_ms": 42.3296,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-022-25d84f3e7a08",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9849669272399278,
         "4": 0.9861695730607336,
@@ -3288,13 +3288,13 @@
         "unique_candidates": 407,
         "eligible_candidates": 201
       },
-      "runtime_ms": 68.7957,
+      "runtime_ms": 49.2167,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-023-7ebae1bfa0d3",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3314,13 +3314,13 @@
         "unique_candidates": 259,
         "eligible_candidates": 223
       },
-      "runtime_ms": 102.0581,
+      "runtime_ms": 79.5227,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-024-1a87d8ceb7ab",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3340,13 +3340,13 @@
         "unique_candidates": 214,
         "eligible_candidates": 83
       },
-      "runtime_ms": 56.3275,
+      "runtime_ms": 38.5787,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-025-231d3014a641",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3366,13 +3366,13 @@
         "unique_candidates": 213,
         "eligible_candidates": 213
       },
-      "runtime_ms": 44.6331,
+      "runtime_ms": 32.2006,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-026-77768668dfb6",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9978911851539435,
         "4": 0.9978911851539435,
@@ -3392,13 +3392,13 @@
         "unique_candidates": 551,
         "eligible_candidates": 165
       },
-      "runtime_ms": 108.8746,
+      "runtime_ms": 72.359,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-027-53e3672b41e0",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9982657417289221,
         "4": 0.9982657417289221,
@@ -3418,13 +3418,13 @@
         "unique_candidates": 377,
         "eligible_candidates": 164
       },
-      "runtime_ms": 120.2077,
+      "runtime_ms": 71.3043,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-028-ab74be43a0e8",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3444,13 +3444,13 @@
         "unique_candidates": 381,
         "eligible_candidates": 219
       },
-      "runtime_ms": 108.7974,
+      "runtime_ms": 82.483,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-029-c88fff742bcf",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3470,13 +3470,13 @@
         "unique_candidates": 214,
         "eligible_candidates": 70
       },
-      "runtime_ms": 55.5689,
+      "runtime_ms": 34.3934,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-030-5910699f5645",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3496,13 +3496,13 @@
         "unique_candidates": 494,
         "eligible_candidates": 360
       },
-      "runtime_ms": 163.7184,
+      "runtime_ms": 133.3615,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-031-0328847cb1e2",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3522,13 +3522,13 @@
         "unique_candidates": 372,
         "eligible_candidates": 372
       },
-      "runtime_ms": 142.4396,
+      "runtime_ms": 87.6752,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-032-ba8d8872416f",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3548,13 +3548,13 @@
         "unique_candidates": 305,
         "eligible_candidates": 55
       },
-      "runtime_ms": 90.486,
+      "runtime_ms": 48.172,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-033-cc750a3f03c3",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3574,13 +3574,13 @@
         "unique_candidates": 218,
         "eligible_candidates": 66
       },
-      "runtime_ms": 76.1562,
+      "runtime_ms": 37.6591,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-034-ae75c4412740",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3600,13 +3600,13 @@
         "unique_candidates": 585,
         "eligible_candidates": 462
       },
-      "runtime_ms": 102.7424,
+      "runtime_ms": 84.1797,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-035-86a826b8e33f",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3626,13 +3626,13 @@
         "unique_candidates": 213,
         "eligible_candidates": 86
       },
-      "runtime_ms": 54.7076,
+      "runtime_ms": 43.2037,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-036-500b2ab4ed7d",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3652,13 +3652,13 @@
         "unique_candidates": 418,
         "eligible_candidates": 418
       },
-      "runtime_ms": 72.1772,
+      "runtime_ms": 58.9151,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-037-aeb6abb4cf52",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3678,13 +3678,13 @@
         "unique_candidates": 137,
         "eligible_candidates": 61
       },
-      "runtime_ms": 49.8567,
+      "runtime_ms": 39.9166,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-038-5e89d5c27a10",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9995653433787308,
         "4": 0.9995653433787308,
@@ -3704,13 +3704,13 @@
         "unique_candidates": 381,
         "eligible_candidates": 101
       },
-      "runtime_ms": 97.1586,
+      "runtime_ms": 70.9856,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-039-9ca5d915096b",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9909203466776723,
         "4": 0.9942220387948824,
@@ -3730,13 +3730,13 @@
         "unique_candidates": 527,
         "eligible_candidates": 228
       },
-      "runtime_ms": 154.7375,
+      "runtime_ms": 71.6658,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-040-d81aee8ebc12",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9953429297205758,
         "4": 0.995766299745978,
@@ -3756,13 +3756,13 @@
         "unique_candidates": 384,
         "eligible_candidates": 201
       },
-      "runtime_ms": 69.8609,
+      "runtime_ms": 47.1391,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-041-e459cd4e65eb",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3782,13 +3782,13 @@
         "unique_candidates": 151,
         "eligible_candidates": 111
       },
-      "runtime_ms": 34.62,
+      "runtime_ms": 24.6493,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-042-0d484f855f3a",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3808,13 +3808,13 @@
         "unique_candidates": 151,
         "eligible_candidates": 48
       },
-      "runtime_ms": 75.6644,
+      "runtime_ms": 46.9707,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-043-39b56e6c6077",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9770723104056437,
         "4": 0.9770723104056437,
@@ -3834,13 +3834,13 @@
         "unique_candidates": 284,
         "eligible_candidates": 93
       },
-      "runtime_ms": 42.2174,
+      "runtime_ms": 37.4064,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-044-a5ec52589a3f",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9980106100795756,
         "4": 0.9986737400530504,
@@ -3860,13 +3860,13 @@
         "unique_candidates": 353,
         "eligible_candidates": 149
       },
-      "runtime_ms": 65.7138,
+      "runtime_ms": 50.1553,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-045-dc85254ebcf2",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9996969696969698,
         "4": 1.0,
@@ -3886,13 +3886,13 @@
         "unique_candidates": 367,
         "eligible_candidates": 235
       },
-      "runtime_ms": 54.7357,
+      "runtime_ms": 45.5675,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-046-726feeec2f7d",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3912,13 +3912,13 @@
         "unique_candidates": 241,
         "eligible_candidates": 63
       },
-      "runtime_ms": 60.0705,
+      "runtime_ms": 41.2143,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-047-c528ee7e427c",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3938,13 +3938,13 @@
         "unique_candidates": 157,
         "eligible_candidates": 33
       },
-      "runtime_ms": 34.0236,
+      "runtime_ms": 31.2037,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-048-09f46b1c0098",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3964,13 +3964,13 @@
         "unique_candidates": 225,
         "eligible_candidates": 76
       },
-      "runtime_ms": 90.9184,
+      "runtime_ms": 76.1284,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-049-7e076e82931d",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -3990,13 +3990,13 @@
         "unique_candidates": 192,
         "eligible_candidates": 50
       },
-      "runtime_ms": 67.2496,
+      "runtime_ms": 58.7504,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-050-67aee960712f",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4016,13 +4016,13 @@
         "unique_candidates": 201,
         "eligible_candidates": 201
       },
-      "runtime_ms": 57.2136,
+      "runtime_ms": 27.7829,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-051-aa2c59cbb948",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.996069439895185,
         "4": 0.9963969865705863,
@@ -4042,13 +4042,13 @@
         "unique_candidates": 540,
         "eligible_candidates": 241
       },
-      "runtime_ms": 102.6157,
+      "runtime_ms": 71.5129,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-052-a41bfac8d00f",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4068,13 +4068,13 @@
         "unique_candidates": 291,
         "eligible_candidates": 255
       },
-      "runtime_ms": 71.3752,
+      "runtime_ms": 46.7004,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-053-a4ef899eb659",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4094,13 +4094,13 @@
         "unique_candidates": 243,
         "eligible_candidates": 83
       },
-      "runtime_ms": 57.2788,
+      "runtime_ms": 37.1336,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-054-bd2d1597067c",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4113,20 +4113,20 @@
       "boundary_band_feasibility": 1.0,
       "macro_family_recall": 1.0,
       "hierarchy_nodes": 97,
-      "proposal_tokens": 86,
+      "proposal_tokens": 89,
       "coverage_candidates": {
         "hierarchy_candidates": 97,
-        "typed_macro_candidates": 85,
-        "unique_candidates": 178,
-        "eligible_candidates": 51
+        "typed_macro_candidates": 88,
+        "unique_candidates": 181,
+        "eligible_candidates": 49
       },
-      "runtime_ms": 65.4641,
+      "runtime_ms": 48.7839,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-055-d9730af6b733",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4146,13 +4146,13 @@
         "unique_candidates": 232,
         "eligible_candidates": 73
       },
-      "runtime_ms": 42.0505,
+      "runtime_ms": 34.9256,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-056-439876166ab2",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4172,13 +4172,13 @@
         "unique_candidates": 169,
         "eligible_candidates": 56
       },
-      "runtime_ms": 54.6035,
+      "runtime_ms": 49.1173,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-057-040c8cd1bac5",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4198,13 +4198,13 @@
         "unique_candidates": 145,
         "eligible_candidates": 36
       },
-      "runtime_ms": 38.4349,
+      "runtime_ms": 23.7253,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-058-a6c21954bcb1",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4224,13 +4224,13 @@
         "unique_candidates": 205,
         "eligible_candidates": 70
       },
-      "runtime_ms": 41.4071,
+      "runtime_ms": 34.5845,
       "runtime_budget_ok": true
     },
     {
       "id": "small_shape-059-30536a9fe0ab",
       "semantic_class": "small_shape",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4250,13 +4250,13 @@
         "unique_candidates": 175,
         "eligible_candidates": 77
       },
-      "runtime_ms": 47.4055,
+      "runtime_ms": 28.7531,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-000-46f6159da20c",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4276,13 +4276,13 @@
         "unique_candidates": 261,
         "eligible_candidates": 152
       },
-      "runtime_ms": 57.8394,
+      "runtime_ms": 40.5832,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-001-15fd223c4854",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4302,13 +4302,13 @@
         "unique_candidates": 211,
         "eligible_candidates": 112
       },
-      "runtime_ms": 69.3002,
+      "runtime_ms": 34.8728,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-002-53533395efa6",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4328,13 +4328,13 @@
         "unique_candidates": 306,
         "eligible_candidates": 79
       },
-      "runtime_ms": 91.5304,
+      "runtime_ms": 76.4965,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-003-797a86c60562",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4354,13 +4354,13 @@
         "unique_candidates": 146,
         "eligible_candidates": 49
       },
-      "runtime_ms": 65.0407,
+      "runtime_ms": 40.4352,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-004-4317f959c7dc",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4380,13 +4380,13 @@
         "unique_candidates": 151,
         "eligible_candidates": 45
       },
-      "runtime_ms": 59.8459,
+      "runtime_ms": 43.7702,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-005-ab259600eb92",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4406,13 +4406,13 @@
         "unique_candidates": 157,
         "eligible_candidates": 43
       },
-      "runtime_ms": 73.4852,
+      "runtime_ms": 42.77,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-006-cd27c2fe4808",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4432,13 +4432,13 @@
         "unique_candidates": 310,
         "eligible_candidates": 85
       },
-      "runtime_ms": 68.6004,
+      "runtime_ms": 83.3005,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-007-5ed3e17e2fb3",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4458,13 +4458,13 @@
         "unique_candidates": 177,
         "eligible_candidates": 66
       },
-      "runtime_ms": 46.2755,
+      "runtime_ms": 34.279,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-008-9999f567d3d3",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4484,13 +4484,13 @@
         "unique_candidates": 123,
         "eligible_candidates": 37
       },
-      "runtime_ms": 36.2491,
+      "runtime_ms": 26.0517,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-009-a78e2a504c6d",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4510,13 +4510,13 @@
         "unique_candidates": 396,
         "eligible_candidates": 59
       },
-      "runtime_ms": 204.7436,
+      "runtime_ms": 140.2814,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-010-eb94100da0cf",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4536,13 +4536,13 @@
         "unique_candidates": 467,
         "eligible_candidates": 209
       },
-      "runtime_ms": 118.8245,
+      "runtime_ms": 86.3786,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-011-4874da76b74b",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4562,13 +4562,13 @@
         "unique_candidates": 317,
         "eligible_candidates": 46
       },
-      "runtime_ms": 54.7744,
+      "runtime_ms": 44.037,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-012-2e4596e24946",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4588,13 +4588,13 @@
         "unique_candidates": 405,
         "eligible_candidates": 70
       },
-      "runtime_ms": 186.0126,
+      "runtime_ms": 146.4331,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-013-c00df23718da",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9611217039482863,
         "4": 0.9636329814444496,
@@ -4614,13 +4614,13 @@
         "unique_candidates": 920,
         "eligible_candidates": 104
       },
-      "runtime_ms": 486.0384,
+      "runtime_ms": 335.2639,
       "runtime_budget_ok": false
     },
     {
       "id": "layer_knockout-014-4f47ca0851d5",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9984513453095962,
         "4": 0.9986802768725255,
@@ -4640,13 +4640,13 @@
         "unique_candidates": 712,
         "eligible_candidates": 192
       },
-      "runtime_ms": 370.8774,
+      "runtime_ms": 314.3044,
       "runtime_budget_ok": false
     },
     {
       "id": "layer_knockout-015-5e36c985147b",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4666,13 +4666,13 @@
         "unique_candidates": 323,
         "eligible_candidates": 121
       },
-      "runtime_ms": 70.7103,
+      "runtime_ms": 52.5246,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-016-00dae2b7c973",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4692,13 +4692,13 @@
         "unique_candidates": 422,
         "eligible_candidates": 140
       },
-      "runtime_ms": 114.2444,
+      "runtime_ms": 86.825,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-017-1984eb7ebb3e",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4718,13 +4718,13 @@
         "unique_candidates": 297,
         "eligible_candidates": 85
       },
-      "runtime_ms": 79.6796,
+      "runtime_ms": 49.8936,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-018-37477d1648cd",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4744,13 +4744,13 @@
         "unique_candidates": 325,
         "eligible_candidates": 128
       },
-      "runtime_ms": 64.4569,
+      "runtime_ms": 48.209,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-019-b5920fb88ddc",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4770,13 +4770,13 @@
         "unique_candidates": 311,
         "eligible_candidates": 74
       },
-      "runtime_ms": 106.526,
+      "runtime_ms": 76.3255,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-020-99149308720e",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4796,13 +4796,13 @@
         "unique_candidates": 359,
         "eligible_candidates": 113
       },
-      "runtime_ms": 126.6935,
+      "runtime_ms": 59.966,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-021-5c57ee5fc008",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4822,13 +4822,13 @@
         "unique_candidates": 467,
         "eligible_candidates": 242
       },
-      "runtime_ms": 180.9506,
+      "runtime_ms": 154.7575,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-022-2e90c1e7626d",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4848,13 +4848,13 @@
         "unique_candidates": 289,
         "eligible_candidates": 88
       },
-      "runtime_ms": 60.0324,
+      "runtime_ms": 52.2995,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-023-687d4fa92e38",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4874,13 +4874,13 @@
         "unique_candidates": 381,
         "eligible_candidates": 69
       },
-      "runtime_ms": 75.5324,
+      "runtime_ms": 55.048,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-024-131a6d5d92d6",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4900,13 +4900,13 @@
         "unique_candidates": 701,
         "eligible_candidates": 186
       },
-      "runtime_ms": 389.2491,
-      "runtime_budget_ok": false
+      "runtime_ms": 279.9015,
+      "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-025-24cca38c5f7c",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4926,13 +4926,13 @@
         "unique_candidates": 338,
         "eligible_candidates": 188
       },
-      "runtime_ms": 63.4657,
+      "runtime_ms": 54.8512,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-026-ca7acf1bec86",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4952,13 +4952,13 @@
         "unique_candidates": 409,
         "eligible_candidates": 131
       },
-      "runtime_ms": 62.8337,
+      "runtime_ms": 62.2473,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-027-65da2be354c5",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -4978,13 +4978,13 @@
         "unique_candidates": 409,
         "eligible_candidates": 263
       },
-      "runtime_ms": 108.5294,
+      "runtime_ms": 90.899,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-028-23076d25e7e4",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5004,13 +5004,13 @@
         "unique_candidates": 333,
         "eligible_candidates": 98
       },
-      "runtime_ms": 67.2305,
+      "runtime_ms": 66.264,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-029-888d9423080d",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9901952005730659,
         "4": 0.9913816260744985,
@@ -5030,13 +5030,13 @@
         "unique_candidates": 659,
         "eligible_candidates": 241
       },
-      "runtime_ms": 396.633,
-      "runtime_budget_ok": false
+      "runtime_ms": 267.4255,
+      "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-030-ad5155eddd49",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9636498516320475,
         "4": 0.9740356083086054,
@@ -5056,13 +5056,13 @@
         "unique_candidates": 231,
         "eligible_candidates": 83
       },
-      "runtime_ms": 48.7898,
+      "runtime_ms": 44.6955,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-031-42c9aca88b66",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5082,13 +5082,13 @@
         "unique_candidates": 487,
         "eligible_candidates": 209
       },
-      "runtime_ms": 345.7298,
-      "runtime_budget_ok": false
+      "runtime_ms": 183.3923,
+      "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-032-dc644979d431",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9859349427168577,
         "4": 0.9869067103109657,
@@ -5108,13 +5108,13 @@
         "unique_candidates": 575,
         "eligible_candidates": 109
       },
-      "runtime_ms": 206.3105,
+      "runtime_ms": 183.5314,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-033-b9492ddcd40f",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5134,13 +5134,13 @@
         "unique_candidates": 238,
         "eligible_candidates": 74
       },
-      "runtime_ms": 53.7881,
+      "runtime_ms": 51.9563,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-034-5707fe41ff21",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5160,13 +5160,13 @@
         "unique_candidates": 374,
         "eligible_candidates": 134
       },
-      "runtime_ms": 92.9101,
+      "runtime_ms": 83.7659,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-035-e264643e4d0e",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9987610258143087,
         "4": 0.9994227506634847,
@@ -5186,13 +5186,13 @@
         "unique_candidates": 635,
         "eligible_candidates": 464
       },
-      "runtime_ms": 334.2384,
-      "runtime_budget_ok": false
+      "runtime_ms": 258.3231,
+      "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-036-a59da46c8ff1",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9908452664460459,
         "4": 0.992484458602666,
@@ -5212,13 +5212,13 @@
         "unique_candidates": 493,
         "eligible_candidates": 113
       },
-      "runtime_ms": 210.8948,
+      "runtime_ms": 172.1626,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-037-f67bcdabc42f",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.994982976721012,
         "4": 0.9964846236886539,
@@ -5238,13 +5238,13 @@
         "unique_candidates": 708,
         "eligible_candidates": 362
       },
-      "runtime_ms": 437.9738,
+      "runtime_ms": 317.6369,
       "runtime_budget_ok": false
     },
     {
       "id": "layer_knockout-038-a21bbc1ccae2",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9531290372590564,
         "4": 0.9877008940106454,
@@ -5264,13 +5264,13 @@
         "unique_candidates": 559,
         "eligible_candidates": 416
       },
-      "runtime_ms": 274.9165,
+      "runtime_ms": 218.3068,
       "runtime_budget_ok": true
     },
     {
       "id": "layer_knockout-039-fcf5a81780d6",
       "semantic_class": "layer_knockout",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5290,13 +5290,13 @@
         "unique_candidates": 321,
         "eligible_candidates": 159
       },
-      "runtime_ms": 58.2341,
+      "runtime_ms": 49.7901,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-000-832813e2d6bf",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5316,13 +5316,13 @@
         "unique_candidates": 126,
         "eligible_candidates": 34
       },
-      "runtime_ms": 41.8701,
+      "runtime_ms": 32.3276,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-001-2d92b976e590",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5342,13 +5342,13 @@
         "unique_candidates": 241,
         "eligible_candidates": 76
       },
-      "runtime_ms": 89.8426,
+      "runtime_ms": 68.5625,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-002-1407990ceea1",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5368,13 +5368,13 @@
         "unique_candidates": 126,
         "eligible_candidates": 33
       },
-      "runtime_ms": 40.2545,
+      "runtime_ms": 32.5404,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-003-b5e024b01330",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5394,13 +5394,13 @@
         "unique_candidates": 135,
         "eligible_candidates": 42
       },
-      "runtime_ms": 34.7303,
+      "runtime_ms": 29.6727,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-004-f4c85f1cfcb2",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5420,13 +5420,13 @@
         "unique_candidates": 396,
         "eligible_candidates": 189
       },
-      "runtime_ms": 97.3582,
+      "runtime_ms": 82.7185,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-005-5e8cb178ac42",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5446,13 +5446,13 @@
         "unique_candidates": 216,
         "eligible_candidates": 54
       },
-      "runtime_ms": 77.2333,
+      "runtime_ms": 68.1905,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-006-f5ba5bd7a8e0",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5472,13 +5472,13 @@
         "unique_candidates": 157,
         "eligible_candidates": 53
       },
-      "runtime_ms": 77.7591,
+      "runtime_ms": 54.3272,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-007-679ca3bc7268",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5498,13 +5498,13 @@
         "unique_candidates": 320,
         "eligible_candidates": 119
       },
-      "runtime_ms": 103.7459,
+      "runtime_ms": 77.2419,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-008-1a66625a41be",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5524,13 +5524,13 @@
         "unique_candidates": 163,
         "eligible_candidates": 47
       },
-      "runtime_ms": 107.954,
+      "runtime_ms": 57.1466,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-009-73185b93bd03",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5550,13 +5550,13 @@
         "unique_candidates": 231,
         "eligible_candidates": 73
       },
-      "runtime_ms": 109.6508,
+      "runtime_ms": 67.1368,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-010-7b093ab06d12",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5576,13 +5576,13 @@
         "unique_candidates": 186,
         "eligible_candidates": 55
       },
-      "runtime_ms": 45.4786,
+      "runtime_ms": 40.2052,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-011-1681fb534836",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5602,13 +5602,13 @@
         "unique_candidates": 283,
         "eligible_candidates": 100
       },
-      "runtime_ms": 88.7141,
+      "runtime_ms": 80.6624,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-012-163f52a6d28d",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5628,13 +5628,13 @@
         "unique_candidates": 160,
         "eligible_candidates": 33
       },
-      "runtime_ms": 73.08,
+      "runtime_ms": 57.3138,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-013-3c31c0fa08f9",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5654,13 +5654,13 @@
         "unique_candidates": 202,
         "eligible_candidates": 64
       },
-      "runtime_ms": 48.493,
+      "runtime_ms": 40.5598,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-014-6057f7b54a40",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5680,13 +5680,13 @@
         "unique_candidates": 139,
         "eligible_candidates": 45
       },
-      "runtime_ms": 38.9448,
+      "runtime_ms": 36.4309,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-015-0a3cea340ad5",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5706,13 +5706,13 @@
         "unique_candidates": 159,
         "eligible_candidates": 37
       },
-      "runtime_ms": 57.027,
+      "runtime_ms": 59.7676,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-016-ad4ad47de396",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5732,13 +5732,13 @@
         "unique_candidates": 258,
         "eligible_candidates": 90
       },
-      "runtime_ms": 106.1578,
+      "runtime_ms": 64.5879,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-017-db940a9e9c01",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9998231184222163,
         "4": 0.9998231184222163,
@@ -5758,13 +5758,13 @@
         "unique_candidates": 304,
         "eligible_candidates": 102
       },
-      "runtime_ms": 84.6271,
+      "runtime_ms": 70.8925,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-018-6a8fef259aea",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5784,13 +5784,13 @@
         "unique_candidates": 265,
         "eligible_candidates": 143
       },
-      "runtime_ms": 75.0375,
+      "runtime_ms": 51.8866,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-019-3550103f3ef0",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5810,13 +5810,13 @@
         "unique_candidates": 135,
         "eligible_candidates": 20
       },
-      "runtime_ms": 40.8464,
+      "runtime_ms": 36.8028,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-020-51f1fe5974b6",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9999284671950557,
         "4": 0.9999284671950557,
@@ -5836,13 +5836,13 @@
         "unique_candidates": 541,
         "eligible_candidates": 155
       },
-      "runtime_ms": 332.1317,
-      "runtime_budget_ok": false
+      "runtime_ms": 220.678,
+      "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-021-0a3b059a9bd8",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5862,13 +5862,13 @@
         "unique_candidates": 360,
         "eligible_candidates": 64
       },
-      "runtime_ms": 155.8868,
+      "runtime_ms": 123.3891,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-022-55f4915204a5",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5888,13 +5888,13 @@
         "unique_candidates": 385,
         "eligible_candidates": 182
       },
-      "runtime_ms": 93.9756,
+      "runtime_ms": 65.4389,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-023-8ba0d2651766",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5914,13 +5914,13 @@
         "unique_candidates": 866,
         "eligible_candidates": 269
       },
-      "runtime_ms": 437.215,
+      "runtime_ms": 363.3843,
       "runtime_budget_ok": false
     },
     {
       "id": "stroke_diagram-024-ae29708788e2",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5940,13 +5940,13 @@
         "unique_candidates": 303,
         "eligible_candidates": 117
       },
-      "runtime_ms": 75.4809,
+      "runtime_ms": 48.2377,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-025-d122fd638ad3",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5966,13 +5966,13 @@
         "unique_candidates": 291,
         "eligible_candidates": 135
       },
-      "runtime_ms": 51.2262,
+      "runtime_ms": 49.5446,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-026-3ba329756719",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -5992,13 +5992,13 @@
         "unique_candidates": 261,
         "eligible_candidates": 90
       },
-      "runtime_ms": 57.9074,
+      "runtime_ms": 45.525,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-027-0d5534dab8de",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6018,13 +6018,13 @@
         "unique_candidates": 302,
         "eligible_candidates": 153
       },
-      "runtime_ms": 63.5571,
+      "runtime_ms": 52.572,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-028-104453089542",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6044,13 +6044,13 @@
         "unique_candidates": 502,
         "eligible_candidates": 155
       },
-      "runtime_ms": 84.1093,
+      "runtime_ms": 75.1493,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-029-fc0c55f12bb3",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6070,13 +6070,13 @@
         "unique_candidates": 331,
         "eligible_candidates": 125
       },
-      "runtime_ms": 61.1008,
+      "runtime_ms": 58.4572,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-030-371147a57f9a",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6096,13 +6096,13 @@
         "unique_candidates": 328,
         "eligible_candidates": 121
       },
-      "runtime_ms": 72.0769,
+      "runtime_ms": 60.7981,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-031-3c8aa6c15f7b",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6122,13 +6122,13 @@
         "unique_candidates": 167,
         "eligible_candidates": 37
       },
-      "runtime_ms": 59.7483,
+      "runtime_ms": 40.5567,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-032-9dd37b4b33dc",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6148,13 +6148,13 @@
         "unique_candidates": 298,
         "eligible_candidates": 117
       },
-      "runtime_ms": 56.2386,
+      "runtime_ms": 54.6794,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-033-0f1cec6f48c8",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9341176470588235,
         "4": 0.9341176470588235,
@@ -6174,13 +6174,13 @@
         "unique_candidates": 380,
         "eligible_candidates": 67
       },
-      "runtime_ms": 89.5914,
+      "runtime_ms": 57.1956,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-034-31c7cefb3a0f",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6200,13 +6200,13 @@
         "unique_candidates": 523,
         "eligible_candidates": 183
       },
-      "runtime_ms": 102.955,
+      "runtime_ms": 83.6082,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-035-d301dd66bf40",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6226,13 +6226,13 @@
         "unique_candidates": 597,
         "eligible_candidates": 268
       },
-      "runtime_ms": 125.9011,
+      "runtime_ms": 101.0595,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-036-84608fdec9c2",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6252,13 +6252,13 @@
         "unique_candidates": 666,
         "eligible_candidates": 294
       },
-      "runtime_ms": 115.7532,
+      "runtime_ms": 137.2693,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-037-b3ca5648cd09",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9982376520457059,
         "4": 0.998468024327313,
@@ -6278,13 +6278,13 @@
         "unique_candidates": 752,
         "eligible_candidates": 238
       },
-      "runtime_ms": 612.9336,
+      "runtime_ms": 366.7307,
       "runtime_budget_ok": false
     },
     {
       "id": "stroke_diagram-038-4462510606eb",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6304,13 +6304,13 @@
         "unique_candidates": 404,
         "eligible_candidates": 66
       },
-      "runtime_ms": 203.6426,
+      "runtime_ms": 156.5278,
       "runtime_budget_ok": true
     },
     {
       "id": "stroke_diagram-039-dc79ba517040",
       "semantic_class": "stroke_diagram",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6330,13 +6330,13 @@
         "unique_candidates": 386,
         "eligible_candidates": 166
       },
-      "runtime_ms": 79.3982,
+      "runtime_ms": 51.3902,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-000-e35c67dd730b",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6356,13 +6356,13 @@
         "unique_candidates": 310,
         "eligible_candidates": 118
       },
-      "runtime_ms": 65.6837,
+      "runtime_ms": 46.6524,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-001-f9da644d9f12",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6382,13 +6382,13 @@
         "unique_candidates": 298,
         "eligible_candidates": 166
       },
-      "runtime_ms": 57.7427,
+      "runtime_ms": 40.0846,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-002-8b5aa26d1b6e",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9694677871148459,
         "4": 0.9974789915966387,
@@ -6408,13 +6408,13 @@
         "unique_candidates": 647,
         "eligible_candidates": 278
       },
-      "runtime_ms": 114.4944,
+      "runtime_ms": 90.1343,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-003-7da89e8733af",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9996713769306605,
         "4": 0.9996713769306605,
@@ -6434,13 +6434,13 @@
         "unique_candidates": 375,
         "eligible_candidates": 219
       },
-      "runtime_ms": 67.325,
+      "runtime_ms": 51.8749,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-004-44e50830aaf7",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9963636363636363,
         "4": 1.0,
@@ -6460,13 +6460,13 @@
         "unique_candidates": 391,
         "eligible_candidates": 293
       },
-      "runtime_ms": 70.4848,
+      "runtime_ms": 53.4759,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-005-5766aae74366",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9915573726968618,
         "4": 1.0,
@@ -6486,13 +6486,13 @@
         "unique_candidates": 268,
         "eligible_candidates": 139
       },
-      "runtime_ms": 77.4948,
+      "runtime_ms": 68.5982,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-006-574949a12155",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6512,13 +6512,13 @@
         "unique_candidates": 426,
         "eligible_candidates": 83
       },
-      "runtime_ms": 97.1666,
+      "runtime_ms": 70.0876,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-007-196026ac8bcd",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9646464646464646,
         "4": 1.0,
@@ -6538,13 +6538,13 @@
         "unique_candidates": 356,
         "eligible_candidates": 132
       },
-      "runtime_ms": 51.4426,
+      "runtime_ms": 44.3241,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-008-06e3f5f1fb7d",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6564,13 +6564,13 @@
         "unique_candidates": 329,
         "eligible_candidates": 120
       },
-      "runtime_ms": 59.4102,
+      "runtime_ms": 49.5704,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-009-eda9ea2f6018",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9938429964084146,
         "4": 0.9964084145715751,
@@ -6590,13 +6590,13 @@
         "unique_candidates": 254,
         "eligible_candidates": 146
       },
-      "runtime_ms": 42.1399,
+      "runtime_ms": 34.6417,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-010-8e29cd3e733f",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9305322128851541,
         "4": 1.0,
@@ -6616,13 +6616,13 @@
         "unique_candidates": 450,
         "eligible_candidates": 164
       },
-      "runtime_ms": 101.9304,
+      "runtime_ms": 65.5102,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-011-e55270719dfb",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6642,13 +6642,13 @@
         "unique_candidates": 245,
         "eligible_candidates": 124
       },
-      "runtime_ms": 42.3402,
+      "runtime_ms": 31.6656,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-012-8f18c826863d",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6668,13 +6668,13 @@
         "unique_candidates": 328,
         "eligible_candidates": 123
       },
-      "runtime_ms": 99.1417,
+      "runtime_ms": 73.0518,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-013-9a8aa45dcebb",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9964084145715751,
         "4": 1.0,
@@ -6694,13 +6694,13 @@
         "unique_candidates": 333,
         "eligible_candidates": 181
       },
-      "runtime_ms": 52.8461,
+      "runtime_ms": 49.4142,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-014-e69c986b2c14",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9976105771783571,
         "4": 1.0,
@@ -6720,13 +6720,13 @@
         "unique_candidates": 342,
         "eligible_candidates": 203
       },
-      "runtime_ms": 81.0471,
+      "runtime_ms": 72.5638,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-015-377f514b4c70",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6746,13 +6746,13 @@
         "unique_candidates": 426,
         "eligible_candidates": 157
       },
-      "runtime_ms": 129.7043,
+      "runtime_ms": 93.8102,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-016-b071b9f45aee",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6765,20 +6765,20 @@
       "boundary_band_feasibility": 1.0,
       "macro_family_recall": 1.0,
       "hierarchy_nodes": 93,
-      "proposal_tokens": 159,
+      "proposal_tokens": 158,
       "coverage_candidates": {
         "hierarchy_candidates": 93,
-        "typed_macro_candidates": 158,
-        "unique_candidates": 247,
+        "typed_macro_candidates": 157,
+        "unique_candidates": 246,
         "eligible_candidates": 82
       },
-      "runtime_ms": 47.8041,
+      "runtime_ms": 34.0756,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-017-001a9d0000f5",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9998389521150955,
         "4": 1.0,
@@ -6798,13 +6798,13 @@
         "unique_candidates": 286,
         "eligible_candidates": 109
       },
-      "runtime_ms": 148.8063,
+      "runtime_ms": 75.3382,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-018-f211df9412f9",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9821052631578947,
         "4": 0.9996650717703349,
@@ -6824,13 +6824,13 @@
         "unique_candidates": 543,
         "eligible_candidates": 166
       },
-      "runtime_ms": 183.5544,
+      "runtime_ms": 146.1172,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-019-0c31a669946c",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6850,13 +6850,13 @@
         "unique_candidates": 348,
         "eligible_candidates": 224
       },
-      "runtime_ms": 78.0923,
+      "runtime_ms": 47.0372,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-020-beb3b551a0ad",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9998779520351498,
         "4": 0.9999389760175749,
@@ -6876,13 +6876,13 @@
         "unique_candidates": 527,
         "eligible_candidates": 210
       },
-      "runtime_ms": 261.4966,
+      "runtime_ms": 132.3141,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-021-54fa133e4dbe",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -6902,13 +6902,13 @@
         "unique_candidates": 421,
         "eligible_candidates": 260
       },
-      "runtime_ms": 66.6757,
+      "runtime_ms": 62.8018,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-022-7e04e8097662",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.990304246071548,
         "4": 0.9923102641257104,
@@ -6928,13 +6928,13 @@
         "unique_candidates": 580,
         "eligible_candidates": 207
       },
-      "runtime_ms": 131.5217,
+      "runtime_ms": 80.7983,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-023-d0842744d9a9",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9951060358890701,
         "4": 1.0,
@@ -6954,13 +6954,13 @@
         "unique_candidates": 271,
         "eligible_candidates": 133
       },
-      "runtime_ms": 46.448,
+      "runtime_ms": 39.7571,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-024-1ae312e554be",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.996969696969697,
         "4": 1.0,
@@ -6980,13 +6980,13 @@
         "unique_candidates": 156,
         "eligible_candidates": 123
       },
-      "runtime_ms": 42.3915,
+      "runtime_ms": 29.7616,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-025-9cbdaf4b7834",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9121052631578948,
         "4": 1.0,
@@ -7006,13 +7006,13 @@
         "unique_candidates": 400,
         "eligible_candidates": 122
       },
-      "runtime_ms": 137.5304,
+      "runtime_ms": 114.6089,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-026-4dbb58e0612d",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7032,13 +7032,13 @@
         "unique_candidates": 370,
         "eligible_candidates": 57
       },
-      "runtime_ms": 238.7244,
+      "runtime_ms": 113.8431,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-027-62880c67d9e9",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9941060903732809,
         "4": 0.9941060903732809,
@@ -7058,13 +7058,13 @@
         "unique_candidates": 203,
         "eligible_candidates": 111
       },
-      "runtime_ms": 31.9943,
+      "runtime_ms": 27.1026,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-028-60ea0d39a1ef",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7084,13 +7084,13 @@
         "unique_candidates": 222,
         "eligible_candidates": 100
       },
-      "runtime_ms": 42.4539,
+      "runtime_ms": 35.3417,
       "runtime_budget_ok": true
     },
     {
       "id": "gradient-029-8e7db5e47942",
       "semantic_class": "gradient",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7110,13 +7110,13 @@
         "unique_candidates": 250,
         "eligible_candidates": 105
       },
-      "runtime_ms": 38.6169,
+      "runtime_ms": 37.3249,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-000-2fc8fc413f1e",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9946773120425815,
         "4": 0.9953426480372588,
@@ -7136,13 +7136,13 @@
         "unique_candidates": 396,
         "eligible_candidates": 172
       },
-      "runtime_ms": 75.1457,
+      "runtime_ms": 57.375,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-001-f7eeb5040fe6",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7162,13 +7162,13 @@
         "unique_candidates": 397,
         "eligible_candidates": 397
       },
-      "runtime_ms": 114.0788,
+      "runtime_ms": 87.5478,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-002-f161013c4885",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9855884707766213,
         "4": 0.9943955164131305,
@@ -7188,13 +7188,13 @@
         "unique_candidates": 393,
         "eligible_candidates": 179
       },
-      "runtime_ms": 69.311,
+      "runtime_ms": 48.2037,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-003-da81b879966c",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9798206278026906,
         "4": 0.9798206278026906,
@@ -7214,13 +7214,13 @@
         "unique_candidates": 262,
         "eligible_candidates": 94
       },
-      "runtime_ms": 48.1083,
+      "runtime_ms": 35.352,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-004-2c0749d5c20b",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7240,13 +7240,13 @@
         "unique_candidates": 404,
         "eligible_candidates": 235
       },
-      "runtime_ms": 65.8129,
+      "runtime_ms": 52.6078,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-005-597cddaa49ac",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9989023051591658,
         "4": 0.9989023051591658,
@@ -7266,13 +7266,13 @@
         "unique_candidates": 344,
         "eligible_candidates": 138
       },
-      "runtime_ms": 60.3776,
+      "runtime_ms": 42.07,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-006-a25cdcac1126",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9999463173716985,
         "4": 0.9999463173716985,
@@ -7292,13 +7292,13 @@
         "unique_candidates": 420,
         "eligible_candidates": 199
       },
-      "runtime_ms": 168.5903,
+      "runtime_ms": 89.9395,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-007-6a13cc15dc95",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9987076174547667,
         "4": 0.9987076174547667,
@@ -7318,13 +7318,13 @@
         "unique_candidates": 444,
         "eligible_candidates": 157
       },
-      "runtime_ms": 131.1282,
+      "runtime_ms": 104.6942,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-008-c1f721dd84a4",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9987849331713244,
         "4": 0.9988427934964994,
@@ -7344,13 +7344,13 @@
         "unique_candidates": 370,
         "eligible_candidates": 184
       },
-      "runtime_ms": 120.555,
+      "runtime_ms": 103.2551,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-009-98108b2bd514",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7370,13 +7370,13 @@
         "unique_candidates": 268,
         "eligible_candidates": 53
       },
-      "runtime_ms": 67.3037,
+      "runtime_ms": 48.4369,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-010-8b7a4b7bb282",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7396,13 +7396,13 @@
         "unique_candidates": 231,
         "eligible_candidates": 56
       },
-      "runtime_ms": 63.2782,
+      "runtime_ms": 47.8836,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-011-8fbd5bdf9ebc",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7422,13 +7422,13 @@
         "unique_candidates": 407,
         "eligible_candidates": 142
       },
-      "runtime_ms": 151.351,
+      "runtime_ms": 102.6581,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-012-4786cdf8d2cc",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7448,13 +7448,13 @@
         "unique_candidates": 227,
         "eligible_candidates": 79
       },
-      "runtime_ms": 49.7056,
+      "runtime_ms": 45.8147,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-013-c3df2561dc43",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9951720159110922,
         "4": 0.9955060273889412,
@@ -7474,13 +7474,13 @@
         "unique_candidates": 568,
         "eligible_candidates": 123
       },
-      "runtime_ms": 268.0749,
+      "runtime_ms": 184.5529,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-014-ad890d77c612",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7500,13 +7500,13 @@
         "unique_candidates": 315,
         "eligible_candidates": 98
       },
-      "runtime_ms": 114.0117,
+      "runtime_ms": 48.0046,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-015-f85f7a4539d1",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7526,13 +7526,13 @@
         "unique_candidates": 324,
         "eligible_candidates": 141
       },
-      "runtime_ms": 75.3729,
+      "runtime_ms": 46.9789,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-016-857feb34b4d6",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7552,13 +7552,13 @@
         "unique_candidates": 255,
         "eligible_candidates": 109
       },
-      "runtime_ms": 138.8317,
+      "runtime_ms": 46.865,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-017-2db1eec6b237",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7578,13 +7578,13 @@
         "unique_candidates": 615,
         "eligible_candidates": 132
       },
-      "runtime_ms": 123.0301,
+      "runtime_ms": 94.7818,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-018-3a07b1daa6ad",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9986391471989113,
         "4": 0.9986391471989113,
@@ -7604,13 +7604,13 @@
         "unique_candidates": 372,
         "eligible_candidates": 73
       },
-      "runtime_ms": 184.074,
+      "runtime_ms": 139.04,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-019-34ef065a19f0",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7630,13 +7630,13 @@
         "unique_candidates": 287,
         "eligible_candidates": 128
       },
-      "runtime_ms": 56.844,
+      "runtime_ms": 52.4498,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-020-e0c492058541",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7656,13 +7656,13 @@
         "unique_candidates": 312,
         "eligible_candidates": 128
       },
-      "runtime_ms": 71.2458,
+      "runtime_ms": 52.9157,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-021-d705491bd20c",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7682,13 +7682,13 @@
         "unique_candidates": 315,
         "eligible_candidates": 147
       },
-      "runtime_ms": 72.0676,
+      "runtime_ms": 59.0345,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-022-e075ffabade0",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7708,13 +7708,13 @@
         "unique_candidates": 402,
         "eligible_candidates": 155
       },
-      "runtime_ms": 120.5185,
+      "runtime_ms": 70.7419,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-023-7a1f99e6fe0a",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7734,13 +7734,13 @@
         "unique_candidates": 145,
         "eligible_candidates": 56
       },
-      "runtime_ms": 37.6611,
+      "runtime_ms": 32.3071,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-024-9042e39f17e9",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9995523724261415,
         "4": 0.9995523724261415,
@@ -7760,13 +7760,13 @@
         "unique_candidates": 853,
         "eligible_candidates": 495
       },
-      "runtime_ms": 490.5047,
+      "runtime_ms": 348.6545,
       "runtime_budget_ok": false
     },
     {
       "id": "codec_detail-025-17b594ebdf24",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9992429977289932,
         "4": 0.9992429977289932,
@@ -7786,13 +7786,13 @@
         "unique_candidates": 315,
         "eligible_candidates": 125
       },
-      "runtime_ms": 52.6484,
+      "runtime_ms": 48.7351,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-026-603eab3a5a66",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7812,13 +7812,13 @@
         "unique_candidates": 388,
         "eligible_candidates": 215
       },
-      "runtime_ms": 67.177,
+      "runtime_ms": 57.6474,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-027-a385ca4968eb",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7838,13 +7838,13 @@
         "unique_candidates": 249,
         "eligible_candidates": 62
       },
-      "runtime_ms": 58.6419,
+      "runtime_ms": 51.2258,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-028-f0978e79305c",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 1.0,
         "4": 1.0,
@@ -7864,13 +7864,13 @@
         "unique_candidates": 376,
         "eligible_candidates": 156
       },
-      "runtime_ms": 71.5871,
+      "runtime_ms": 57.3705,
       "runtime_budget_ok": true
     },
     {
       "id": "codec_detail-029-6343f7644fa1",
       "semantic_class": "codec_detail",
-      "cache_hit": true,
+      "cache_hit": false,
       "support_recall_at_k": {
         "1": 0.9923684503281789,
         "4": 0.9964845922794526,
@@ -7890,11 +7890,11 @@
         "unique_candidates": 530,
         "eligible_candidates": 190
       },
-      "runtime_ms": 211.6638,
+      "runtime_ms": 167.7615,
       "runtime_budget_ok": true
     }
   ],
-  "compiler_source_sha256": "4d33b4cbed681a3230184457f6af89d6996cb67795973c22b8be952df5460c1a",
+  "compiler_source_sha256": "a27cebb93eae8fe0f8f6c3932d5308c8593a0a972f2d310ba8b10ede490997c2",
   "native_runtime_identity": {
     "schema": "pcdc-native-runtime-identity/v1",
     "sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c",
@@ -7920,5 +7920,5 @@
       }
     }
   },
-  "evaluation_source_sha256": "78f808cf02f1112ed30b198f9a59b9892834d68a2ace646c03635918fe014f60"
+  "evaluation_source_sha256": "47777775e2e7f0da7f2e1ace8883b702ff897abd19cd68efd592ad584e7f4bfe"
 }

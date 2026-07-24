@@ -1,13 +1,13 @@
 {
   "schema": "pcdc-build-freeze/v1",
-  "created_at": "2026-07-24T15:48:08.641500+00:00",
+  "created_at": "2026-07-24T15:58:12.839076+00:00",
   "policy": "record-only after BUILD_FREEZE; any source/model/config/annotation/renderer/threshold change requires a new freeze and full campaign",
   "canonical_plan_sha256": "5fb2f288b44ad6764a1f99c5d915647aabf63220b1fe2395b50fc5433b714cbb",
   "compiler_source_sha256": "a27cebb93eae8fe0f8f6c3932d5308c8593a0a972f2d310ba8b10ede490997c2",
   "git": {
-    "head": "62bdbd4115888cc2e238899030edbea9a1220546",
+    "head": "7fafab8ea284b74b745db78dbbf0b9588d548737",
     "dirty": true,
-    "status_sha256": "79b460b5da551f56b69383bf3ff69c749f238800744b900c5cb25d5a3cc9e036"
+    "status_sha256": "b5b6b5542d1e4c22d5f4be86e6d1f18256e82566c4501a5c1d29c75f9352516f"
   },
   "runtime": {
     "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
@@ -4899,26 +4899,26 @@
       {
         "path": "benchmarks\\pcdc_experiment1\\report.json",
         "exists": true,
-        "bytes": 224224,
-        "sha256": "59b7314df33d87d0869ad3d2bab1dd1e46ff69092597d149d6de8b0b9564c222"
+        "bytes": 224354,
+        "sha256": "81cee900d89c6c8db610ab54aeddff71642eb2b908b89447e99f8fc1329a3a49"
       },
       {
         "path": "benchmarks\\pcdc_experiment1b\\report.json",
         "exists": true,
-        "bytes": 417727,
-        "sha256": "d8ce390cbdf2008c6a8d9e0eabba5e562637f35363588861c086e8a420fb8cc3"
+        "bytes": 417805,
+        "sha256": "79ce4fab5040d1fa33facab5130af1987e4ffd8548350aaa143ac5327230cac3"
       },
       {
         "path": "benchmarks\\pcdc_experiment2\\report.json",
         "exists": true,
-        "bytes": 138564,
-        "sha256": "9029cee88cfd06f42c4bba08c18617eacb9200d178fa88086a69e6a87673de7a"
+        "bytes": 138570,
+        "sha256": "4dacab3fb47494c8b19ad4919f20ae93fd320b40e1df4d3cd1cb46d1b53dc66e"
       },
       {
         "path": "benchmarks\\pcdc_experiment3\\report.json",
         "exists": true,
-        "bytes": 183423,
-        "sha256": "36ad21af18b7a316dd84e99137780544195271bd990c32c015347709947326c2"
+        "bytes": 183416,
+        "sha256": "b8d31aa627093b16eb5ddb4310296e567633a8ae432829b6d015f15cab52dcff"
       },
       {
         "path": "benchmarks\\pcdc_experiment4\\report.json",
@@ -4929,8 +4929,8 @@
       {
         "path": "benchmarks\\pcdc_experiment5\\report.json",
         "exists": true,
-        "bytes": 11217,
-        "sha256": "a56f1972abefedbe68d281d0fbe32b723d3ee9ab193eae72f943cb10b55b3385"
+        "bytes": 11223,
+        "sha256": "d336b991f75fe88f70f500c7028c41169057369323a69e0c30403f91e91755be"
       },
       {
         "path": "benchmarks\\pcdc_experiment9\\report.json",
@@ -5171,12 +5171,7 @@
     "datasets\\pcdc_textline_pairs_v2\\review.json"
   ],
   "stale_experiment_reports": [
-    "benchmarks\\pcdc_experiment1\\report.json",
-    "benchmarks\\pcdc_experiment1b\\report.json",
-    "benchmarks\\pcdc_experiment2\\report.json",
-    "benchmarks\\pcdc_experiment3\\report.json",
     "benchmarks\\pcdc_experiment4\\report.json",
-    "benchmarks\\pcdc_experiment5\\report.json",
     "benchmarks\\pcdc_experiment9\\report.json",
     "benchmarks\\pcdc_experiment10\\report.json"
   ],
@@ -5195,5 +5190,5 @@
     "runtime wordmark prior lacks a valid hash-bound promotion manifest",
     "exact/OCR/neural-text TextLine blind court is incomplete"
   ],
-  "freeze_hash": "40b813500f83857c61083f464035ed7bbdc67eb2ce792605ee0ec34618e1eb2e"
+  "freeze_hash": "4f87908a061032c4ac61da220cac09b1dd2f657b364d4dcbbecd00a588b5580f"
 }
