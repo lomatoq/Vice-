@@ -31,6 +31,8 @@ Usage:
 from __future__ import annotations
 
 import json
+
+import numpy as np
 from datetime import datetime, timezone
 from pathlib import Path
 
@@ -105,15 +107,34 @@ def main() -> None:
         "detail": f"{families} families",
     }
 
-    curve = _exists_json(BENCH / "experiment_g_family_curve.json")
-    rising = False
-    if curve and "points" in curve and len(curve["points"]) >= 3:
-        values = [point["unseen_metric"] for point in curve["points"]]
-        rising = values[-1] > values[0] + 0.02
+    # Training-side Experiment G is authoritative (the audit's actual form:
+    # train on N families, measure unseen-family metric). The retrieval-side
+    # curve was measured FLAT on 2026-07-24 (D5 falsified at that level) and
+    # cannot close this gate.
+    train_points = []
+    for name in ("g_train_fam81.json", "g_train_fam600.json",
+                 "g_train_famfull.json"):
+        report = _exists_json(BENCH / name)
+        if report and "val_accuracy" in report:
+            train_points.append({
+                "families": report.get("train_families"),
+                "unseen_metric": float(np.mean([
+                    report["val_accuracy"][head]
+                    for head in ("stroke", "tracking", "effect")
+                ])),
+            })
+    rising = (
+        len(train_points) >= 3
+        and train_points[-1]["unseen_metric"]
+        > train_points[0]["unseen_metric"] + 0.02
+    )
     gates["family_learning_curve"] = {
-        "ok": rising,
-        "evidence": "experiment_g_family_curve.json",
-        "detail": "rising" if rising else "missing or flat",
+        "ok": bool(rising),
+        "evidence": "g_train_fam{81,600,full}.json (training-side G)",
+        "detail": (
+            f"points {[(p['families'], round(p['unseen_metric'], 4)) for p in train_points]}"
+            if train_points else "missing"
+        ),
     }
 
     curriculum = _exists_json(BENCH / "v10_curriculum_manifest.json")

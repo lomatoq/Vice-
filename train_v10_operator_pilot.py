@@ -119,6 +119,17 @@ def main() -> None:
     parser.add_argument("--val-samples", type=int, default=2000)
     parser.add_argument("--epochs", type=int, default=4)
     parser.add_argument("--batch-size", type=int, default=64)
+    parser.add_argument(
+        "--train-bank-v2", type=Path, default=None,
+        help="draw TRAINING fonts from the v2-full bank (val stays on the "
+        "attested held-out families, which are excluded from training)",
+    )
+    parser.add_argument(
+        "--train-family-limit", type=int, default=0,
+        help="with --train-bank-v2: cap training families (Experiment G "
+        "training-side curve); 0 = no cap",
+    )
+    parser.add_argument("--skip-downstream", action="store_true")
     parser.add_argument("--downstream-per-length", type=int, default=48)
     parser.add_argument("--top-variants", type=int, default=2)
     parser.add_argument("--seed", type=int, default=20260725)
@@ -159,6 +170,34 @@ def main() -> None:
         args.font_manifest, font_root=args.font_root,
     )
     split = split_font_families(fonts, seed=args.split_seed)
+    if args.train_bank_v2 is not None:
+        from collections import namedtuple
+
+        FontFace = namedtuple("FontFace", ("family", "path"))
+        held_out_families = {
+            record.family for record in split.test
+        } | {record.family for record in split.calibration}
+        v2 = json.loads(args.train_bank_v2.read_text(encoding="utf-8"))
+        by_family: dict[str, list] = {}
+        for face in v2["faces"]:
+            if face["family"] in held_out_families:
+                continue
+            by_family.setdefault(face["family"], []).append(
+                FontFace(face["family"], str(ROOT / face["path"])),
+            )
+        family_names = sorted(by_family)
+        if args.train_family_limit:
+            family_names = family_names[:args.train_family_limit]
+        train_bank = tuple(
+            face for name in family_names for face in by_family[name][:4]
+        )
+        print(
+            f"training bank: {len(family_names)} families, "
+            f"{len(train_bank)} faces (val = attested held-out)",
+            flush=True,
+        )
+    else:
+        train_bank = split.train
     config = WordmarkPriorConfig(image_height=64, image_width=384)
     config.validate()
     connected_fraction = CONNECTED_WORDMARK_FRACTION
@@ -222,7 +261,7 @@ def main() -> None:
 
     print("generating train/val banks...", flush=True)
     train_rasters, train_labels = generate_bank(
-        split.train, args.train_samples, args.seed,
+        train_bank, args.train_samples, args.seed,
     )
     val_rasters, val_labels = generate_bank(
         split.test, args.val_samples, args.seed + 7_777_777,
@@ -311,145 +350,149 @@ def main() -> None:
           np.round(val_accuracy, 4), "| majority baseline:",
           np.round(baseline, 4), flush=True)
 
-    # --- Downstream: candidate compression without coverage loss ---
-    bank = json.loads(args.descriptors.read_text(encoding="utf-8"))
-    normalization = bank["normalization"]
-    faces = bank["faces"]
-    face_keys = list(faces)
-    matrix = np.array([
-        [
-            (faces[key]["features"][name] - normalization[name]["mean"])
-            / normalization[name]["std"]
-            for name in QUERY_FEATURES
-        ]
-        for key in face_keys
-    ])
-    truth_config = WordmarkPriorConfig(image_height=256, image_width=16384)
-    truth_config.validate()
-    lengths = (1, 2, 4, 8, 16, 24, 32)
-    per_length = args.downstream_per_length
-    total = len(lengths) * per_length
-    recall_full = np.zeros(total, bool)
-    recall_predicted = np.zeros(total, bool)
-    recall_mode = np.zeros(total, bool)
-    effect_fraction = connected_fraction + outline_fraction
-    scored = 0
-    base_seed = args.seed + 55_555_555
-    for length_index, length in enumerate(lengths):
-        for slot in range(per_length):
-            row = length_index * per_length + slot
-            sample = None
-            for retry in range(256):
-                index = row + retry * total
-                generator = _rng(base_seed, index)
-                font = split.test[
-                    int(generator.integers(0, len(split.test)))
-                ]
-                text = _sample_fixed_length_text(
-                    generator, length, WORDMARK_CHARACTERS,
-                )
-                render_seed = base_seed + 104729 * index
-                replay = _rng(render_seed, 0)
-                replay.uniform(-0.15, 0.22)
-                replay.integers(0, 8)
-                if float(replay.random()) < effect_fraction:
-                    continue
-                coverage, support = render_clean_wordmark(
-                    font.path, text, config, seed=render_seed,
-                )
-                if not np.any(support):
-                    continue
-                observed = degrade_wordmark(
-                    coverage, support, seed=base_seed + 130363 * index,
-                )
-                sample = (font, text, observed, render_seed)
-                break
-            if sample is None:
-                raise RuntimeError("downstream resampling exhausted")
-            font, text, observed, render_seed = sample
-            _cov, truth_support = render_clean_wordmark(
-                font.path, text, truth_config, seed=render_seed,
-            )
-            truth = topology_signature(truth_support)
-            query = query_features(
-                np.clip(observed, 0.0, 1.0).astype(np.float32)
-            )
-            if query is None:
-                scored += 1
-                continue
-            vector = np.array([
-                (query[name] - normalization[name]["mean"])
+    if args.skip_downstream:
+        downstream = {"skipped": True}
+    else:
+        # --- Downstream: candidate compression without coverage loss ---
+        bank = json.loads(args.descriptors.read_text(encoding="utf-8"))
+        normalization = bank["normalization"]
+        faces = bank["faces"]
+        face_keys = list(faces)
+        matrix = np.array([
+            [
+                (faces[key]["features"][name] - normalization[name]["mean"])
                 / normalization[name]["std"]
                 for name in QUERY_FEATURES
-            ])
-            retrieved = [
-                face_keys[int(position)]
-                for position in np.argsort(
-                    np.linalg.norm(matrix - vector, axis=1)
-                )[:8]
             ]
-            with torch.no_grad():
-                raster = np.rint(
-                    np.clip(observed, 0.0, 1.0) * 255.0
-                ).astype(np.uint8)
-                outputs = model(to_features(raster[None]).to(device))
-                stroke_probability = torch.softmax(
-                    outputs[0], dim=1,
-                )[0].cpu().numpy()
-                tracking_probability = torch.softmax(
-                    outputs[1], dim=1,
-                )[0].cpu().numpy()
-            joint = np.outer(tracking_probability, stroke_probability)
-            flat = np.argsort(joint.ravel())[::-1]
-            predicted_variants = [
-                (
-                    TRACKING_BINS[int(position) // 3],
-                    STROKE_CLASSES[int(position) % 3],
-                )
-                for position in flat[:args.top_variants]
-            ]
-            mode_variant = [(0.0, 0)]
-            for key in retrieved:
-                face_path = str(ROOT / faces[key]["path"])
-                full_set = _composed_topology_set(
-                    face_path, text, FULL_VARIANTS,
-                )
-                if truth in full_set:
-                    recall_full[row] = True
-                predicted_set = _composed_topology_set(
-                    face_path, text, predicted_variants,
-                )
-                if truth in predicted_set:
-                    recall_predicted[row] = True
-                if truth in _composed_topology_set(
-                    face_path, text, mode_variant,
-                ):
-                    recall_mode[row] = True
-                if (
-                    recall_full[row] and recall_predicted[row]
-                    and recall_mode[row]
-                ):
+            for key in face_keys
+        ])
+        truth_config = WordmarkPriorConfig(image_height=256, image_width=16384)
+        truth_config.validate()
+        lengths = (1, 2, 4, 8, 16, 24, 32)
+        per_length = args.downstream_per_length
+        total = len(lengths) * per_length
+        recall_full = np.zeros(total, bool)
+        recall_predicted = np.zeros(total, bool)
+        recall_mode = np.zeros(total, bool)
+        effect_fraction = connected_fraction + outline_fraction
+        scored = 0
+        base_seed = args.seed + 55_555_555
+        for length_index, length in enumerate(lengths):
+            for slot in range(per_length):
+                row = length_index * per_length + slot
+                sample = None
+                for retry in range(256):
+                    index = row + retry * total
+                    generator = _rng(base_seed, index)
+                    font = split.test[
+                        int(generator.integers(0, len(split.test)))
+                    ]
+                    text = _sample_fixed_length_text(
+                        generator, length, WORDMARK_CHARACTERS,
+                    )
+                    render_seed = base_seed + 104729 * index
+                    replay = _rng(render_seed, 0)
+                    replay.uniform(-0.15, 0.22)
+                    replay.integers(0, 8)
+                    if float(replay.random()) < effect_fraction:
+                        continue
+                    coverage, support = render_clean_wordmark(
+                        font.path, text, config, seed=render_seed,
+                    )
+                    if not np.any(support):
+                        continue
+                    observed = degrade_wordmark(
+                        coverage, support, seed=base_seed + 130363 * index,
+                    )
+                    sample = (font, text, observed, render_seed)
                     break
-            scored += 1
-            if scored % 64 == 0:
-                print(f"downstream {scored}/{total}", flush=True)
+                if sample is None:
+                    raise RuntimeError("downstream resampling exhausted")
+                font, text, observed, render_seed = sample
+                _cov, truth_support = render_clean_wordmark(
+                    font.path, text, truth_config, seed=render_seed,
+                )
+                truth = topology_signature(truth_support)
+                query = query_features(
+                    np.clip(observed, 0.0, 1.0).astype(np.float32)
+                )
+                if query is None:
+                    scored += 1
+                    continue
+                vector = np.array([
+                    (query[name] - normalization[name]["mean"])
+                    / normalization[name]["std"]
+                    for name in QUERY_FEATURES
+                ])
+                retrieved = [
+                    face_keys[int(position)]
+                    for position in np.argsort(
+                        np.linalg.norm(matrix - vector, axis=1)
+                    )[:8]
+                ]
+                with torch.no_grad():
+                    raster = np.rint(
+                        np.clip(observed, 0.0, 1.0) * 255.0
+                    ).astype(np.uint8)
+                    outputs = model(to_features(raster[None]).to(device))
+                    stroke_probability = torch.softmax(
+                        outputs[0], dim=1,
+                    )[0].cpu().numpy()
+                    tracking_probability = torch.softmax(
+                        outputs[1], dim=1,
+                    )[0].cpu().numpy()
+                joint = np.outer(tracking_probability, stroke_probability)
+                flat = np.argsort(joint.ravel())[::-1]
+                predicted_variants = [
+                    (
+                        TRACKING_BINS[int(position) // 3],
+                        STROKE_CLASSES[int(position) % 3],
+                    )
+                    for position in flat[:args.top_variants]
+                ]
+                mode_variant = [(0.0, 0)]
+                for key in retrieved:
+                    face_path = str(ROOT / faces[key]["path"])
+                    full_set = _composed_topology_set(
+                        face_path, text, FULL_VARIANTS,
+                    )
+                    if truth in full_set:
+                        recall_full[row] = True
+                    predicted_set = _composed_topology_set(
+                        face_path, text, predicted_variants,
+                    )
+                    if truth in predicted_set:
+                        recall_predicted[row] = True
+                    if truth in _composed_topology_set(
+                        face_path, text, mode_variant,
+                    ):
+                        recall_mode[row] = True
+                    if (
+                        recall_full[row] and recall_predicted[row]
+                        and recall_mode[row]
+                    ):
+                        break
+                scored += 1
+                if scored % 64 == 0:
+                    print(f"downstream {scored}/{total}", flush=True)
 
-    downstream = {
-        "recall_at_8_full_9_variants": float(np.mean(recall_full)),
-        f"recall_at_8_top{args.top_variants}_predicted": float(
-            np.mean(recall_predicted)
-        ),
-        "recall_at_8_mode_variant": float(np.mean(recall_mode)),
-        "samples": int(total),
-    }
+        downstream = {
+            "recall_at_8_full_9_variants": float(np.mean(recall_full)),
+            f"recall_at_8_top{args.top_variants}_predicted": float(
+                np.mean(recall_predicted)
+            ),
+            "recall_at_8_mode_variant": float(np.mean(recall_mode)),
+            "samples": int(total),
+        }
     gate = {
         "val_beats_majority": bool(np.all(val_accuracy > baseline + 0.03)),
-        "compression_within_5pt": bool(
+    }
+    if not args.skip_downstream:
+        gate["compression_within_5pt"] = bool(
             downstream["recall_at_8_full_9_variants"]
             - downstream[f"recall_at_8_top{args.top_variants}_predicted"]
             <= 0.05
-        ),
-    }
+        )
     report = {
         "schema": "vice-v10-operator-pilot/v1",
         "created_at": datetime.now(timezone.utc).isoformat(),
@@ -459,6 +502,7 @@ def main() -> None:
             "the candidate set without losing Recall@8"
         ),
         "train_samples": int(args.train_samples),
+        "train_families": (len(family_names) if args.train_bank_v2 is not None else len({r.family for r in split.train})),
         "val_samples": int(args.val_samples),
         "epochs": int(args.epochs),
         "seed": int(args.seed),
