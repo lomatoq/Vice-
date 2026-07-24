@@ -217,6 +217,18 @@ def main() -> None:
         "invisible-ink defect class (~3%% of clean rows)",
     )
     parser.add_argument(
+        "--mix-text-v2", type=int, default=0,
+        help="append N text_shapes_v2 rows (1,957 font families vs the 21 "
+        "v1 families that supply ALL current text pairs) to the TRAIN "
+        "bank only. Records are replayed from their inline SVG through "
+        "the same replay_target_support geometry; since v2 has no "
+        "raster, ink/background luminance is sampled deterministically "
+        "per id from the distribution the 2026-07-25 audit measured on "
+        "the real domain (bg near-white dominant, ink U(0.05,0.80), "
+        "contrast floor 0.12). Requires observation+wordmark mode; "
+        "family-disjoint via the v2 train_ids split",
+    )
+    parser.add_argument(
         "--balance", choices=("none", "real-profile"), default="none",
         help="'real-profile' rebalances the train bank toward the real "
         "fine-tune domain measured by the 2026-07-25 audit (train vs "
@@ -408,12 +420,102 @@ def main() -> None:
             )
         return inputs[:kept], supports[:kept], sdfs[:kept]
 
+    def build_text_v2_bank(count: int):
+        directory = UBER / "text_shapes_v2"
+        train_ids = set(
+            (directory / "train_ids.txt")
+            .read_text(encoding="utf-8").split()
+        )
+        records = []
+        with open(
+            directory / "text_shapes_v2.jsonl", encoding="utf-8",
+        ) as handle:
+            for line in handle:
+                row = json.loads(line)
+                if row["id"] in train_ids:
+                    records.append(row)
+        records.sort(
+            key=lambda row: _hashlib.sha256(row["id"].encode()).hexdigest(),
+        )
+        inputs = np.zeros((count, channels, SIZE, SIZE), np.float32)
+        supports = np.zeros((count, SIZE, SIZE), bool)
+        sdfs = np.zeros((count, SIZE, SIZE), np.float32)
+        kept = 0
+        for row in records:
+            if kept >= count:
+                break
+            digest = int(_hashlib.sha256(
+                row["id"].encode()
+            ).hexdigest()[:12], 16)
+            generator = np.random.default_rng(digest)
+            augmentation = {
+                "scale": 0.7 + 0.9 * float(generator.random()),
+                "shift_x": int(generator.integers(-4, 5)),
+                "shift_y": int(generator.integers(-4, 5)),
+            }
+            replayed = replay_target_support(
+                row["svg"], augmentation, resvg_py,
+            )
+            if replayed is None:
+                continue
+            coverage, support = replayed
+            if not support.any():
+                continue
+            observed = degrade_wordmark(
+                coverage, support, seed=digest & 0x7FFFFFFF,
+            )
+            # v2 has no raster: sample ink/background from the real-domain
+            # distribution measured by the 2026-07-25 audit (bg near-white
+            # dominant, dark and mid tails; ink U(0.05,0.80); contrast
+            # floor 0.12 mirrors the luminance-bg invisibility test).
+            branch = float(generator.random())
+            if branch < 0.60:
+                bg_lum = float(generator.uniform(0.92, 1.0))
+            elif branch < 0.75:
+                bg_lum = float(generator.uniform(0.40, 0.65))
+            elif branch < 0.90:
+                bg_lum = float(generator.uniform(0.0, 0.15))
+            else:
+                bg_lum = 0.5
+            ink_lum = float(generator.uniform(0.05, 0.80))
+            if abs(ink_lum - bg_lum) < 0.12:
+                ink_lum = float(np.clip(
+                    bg_lum - 0.35 if bg_lum >= 0.5 else bg_lum + 0.35,
+                    0.0, 1.0,
+                ))
+            observed = np.clip(
+                ink_lum * observed + bg_lum * (1.0 - observed), 0.0, 1.0,
+            )
+            inputs[kept] = wordmark_observation_features(
+                observed.astype(np.float32),
+            )
+            supports[kept] = support
+            sdfs[kept] = signed_distance_target(support)
+            kept += 1
+            if kept % 2000 == 0:
+                print(f"v2 prepared {kept}", flush=True)
+        print(f"text-v2 bank: {kept}/{count}", flush=True)
+        return inputs[:kept], supports[:kept], sdfs[:kept]
+
     print("preparing train bank...", flush=True)
     train_inputs, train_supports, train_sdfs = build_bank(
         rows["train"],
         target=None if args.tiny_overfit else args.train_samples,
         balance=args.balance == "real-profile" and not args.tiny_overfit,
     )
+    if args.mix_text_v2 and not args.tiny_overfit:
+        if args.input_mode != "observation" or args.degradation != "wordmark":
+            raise SystemExit(
+                "--mix-text-v2 requires --input-mode observation "
+                "--degradation wordmark"
+            )
+        v2_inputs, v2_supports, v2_sdfs = build_text_v2_bank(
+            args.mix_text_v2,
+        )
+        train_inputs = np.concatenate([train_inputs, v2_inputs])
+        train_supports = np.concatenate([train_supports, v2_supports])
+        train_sdfs = np.concatenate([train_sdfs, v2_sdfs])
+        print(f"train bank with v2 mix: {len(train_inputs)}", flush=True)
     if args.tiny_overfit:
         val_inputs, val_supports = train_inputs, train_supports
     else:
