@@ -127,6 +127,13 @@ def main() -> None:
         "--base-checkpoint", type=Path,
         default=ROOT / "models" / "stage_d_full_candidate_v1.pt",
     )
+    parser.add_argument(
+        "--mix-attested", type=int, default=0,
+        help="add N of the user's 8849 attested uber-verify records to the "
+        "training mix (masks = render alpha, perfect by construction; "
+        "inputs = wordmark-grade degradation of the clean render); real "
+        "samples are replicated x10 to balance domains",
+    )
     parser.add_argument("--epochs", type=int, default=120)
     parser.add_argument("--batch-size", type=int, default=16)
     parser.add_argument("--lr", type=float, default=1e-4)
@@ -169,6 +176,53 @@ def main() -> None:
             signed_distance_target(r["mask"]) for r in rows
         ])
         return inputs.astype(np.float32), masks, sdfs.astype(np.float32)
+
+    if args.mix_attested:
+        import hashlib as _hashlib
+
+        from vice_compiler.wordmark_prior_data import degrade_wordmark
+
+        v3 = json.loads(
+            (ROOT / "datasets" / "pcdc_uber_verify_v3" / "manifest.json")
+            .read_text(encoding="utf-8"),
+        )
+        rows = sorted(
+            v3["loci"],
+            key=lambda row: _hashlib.sha256(
+                row["id"].encode()
+            ).hexdigest(),
+        )[:args.mix_attested]
+        added = 0
+        for row in rows:
+            raw = cv2.imread(str(row["source"]["path"]), cv2.IMREAD_UNCHANGED)
+            if raw is None or raw.ndim != 3 or raw.shape[2] != 4:
+                continue
+            alpha = raw[..., 3].astype(np.float32) / 255.0
+            mask = alpha >= 0.5
+            if not mask.any():
+                continue
+            degrade_seed = int(_hashlib.sha256(
+                row["id"].encode(),
+            ).hexdigest()[:8], 16)
+            observed = degrade_wordmark(alpha, mask, seed=degrade_seed)
+            gray_96, mask_96 = _letterbox_pair(
+                np.clip(observed, 0.0, 1.0).astype(np.float32), mask,
+            )
+            train.append({
+                "id": row["id"], "gray": gray_96,
+                "mask": mask_96, "split": "train",
+            })
+            added += 1
+        # Replicate the real rows to keep the real domain from drowning.
+        real_rows = [s for s in train if not s["id"].startswith(
+            ("small_shape-", "text-")
+        ) or "-" not in s["id"][:5]]
+        real_rows = [s for s in train if s["id"] in {
+            r["id"] for r in samples if r["split"] == "train"
+        }]
+        train.extend(real_rows * 9)
+        print(f"mixed bank: +{added} attested, real x10 -> "
+              f"{len(train)} train rows", flush=True)
 
     train_x, train_m, train_s = to_bank(train)
     val_x, val_m, _val_s = to_bank(val)
