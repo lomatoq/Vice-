@@ -2146,56 +2146,69 @@ def _stage_d_support_refinements(
         if (x2 - x1) < 8 or (y2 - y1) < 8:
             continue
         roi_aspect = (x2 - x1) / max(1, y2 - y1)
+        # Second-chance policy, not a routing ladder (H10 lesson: exclusive
+        # routing of wide ROIs to the line model DELETED the H9 text-006
+        # win when its recovery failed the guard).  A wide ROI offers BOTH
+        # recoveries; the guard filters each and the court decides.
+        recoveries = []
         if line_booster is not None and roi_aspect > 2.5:
-            recovered = line_booster.boost_letterboxed(
+            recoveries.append(line_booster.boost_letterboxed(
                 gray[y1:y2, x1:x2], canvas=(96, 384),
-            )
-        else:
-            recovered = booster.boost_letterboxed(gray[y1:y2, x1:x2])
-        if recovered is None or not recovered.any():
-            continue
-        original = np.asarray(proposal.support_mask[y1:y2, x1:x2], bool)
-        intersection = int(np.sum(recovered & original))
-        union = int(np.sum(recovered | original))
-        area_ratio = float(recovered.sum()) / max(1.0, float(original.sum()))
-        # Accuracy budget: recovery may repair topology and AA damage, but
-        # a mask that barely overlaps the observed support (or invents /
-        # erases half the ink) is hallucination and fails closed here.
-        if (
-            intersection / max(1, union) < 0.30
-            or not 0.40 <= area_ratio <= 2.50
-            or np.array_equal(recovered, original)
-        ):
-            continue
-        # Topology guard (H8 lesson): the first live firing of this lane won
-        # the pixel court on text-015 (+0.05 IoU) while fusing 9 body
-        # components and closing 2 counters (reference [38,6], recovered
-        # [25,3], GCR 13->20).  The court cannot see reviewed-reference GCR
-        # at compile time, so the guarantee must be structural: a default
-        # recovery may clean specks, but body-scale component and hole
-        # counts must stay within a small drift of the observed support.
-        speck = max(4, int(0.0002 * recovered.size))
-        original_body = _body_topology_signature(original, speck)
-        recovered_body = _body_topology_signature(recovered, speck)
-        component_drift = abs(recovered_body[0] - original_body[0])
-        hole_drift = abs(recovered_body[1] - original_body[1])
-        if (
-            component_drift > max(1, round(0.10 * original_body[0]))
-            or hole_drift > 1
-        ):
-            continue
-        full = np.zeros(proposal.support_mask.shape, bool)
-        full[y1:y2, x1:x2] = recovered
-        candidate = _line_from_mask(
-            reir, full, polarity=proposal.polarity,
-            sources=tuple(sorted(
-                set(proposal.sources) | {"stage-d-support-recovery"}
-            )),
-            raw_score=proposal.score,
+            ))
+        recoveries.append(
+            booster.boost_letterboxed(gray[y1:y2, x1:x2])
         )
-        if candidate is not None and candidate.id not in seen:
-            seen.add(candidate.id)
-            refined.append(candidate)
+        for recovered in recoveries:
+            if recovered is None or not recovered.any():
+                continue
+            original = np.asarray(
+                proposal.support_mask[y1:y2, x1:x2], bool,
+            )
+            intersection = int(np.sum(recovered & original))
+            union = int(np.sum(recovered | original))
+            area_ratio = (
+                float(recovered.sum()) / max(1.0, float(original.sum()))
+            )
+            # Accuracy budget: recovery may repair topology and AA damage,
+            # but a mask that barely overlaps the observed support (or
+            # invents / erases half the ink) is hallucination and fails
+            # closed here.
+            if (
+                intersection / max(1, union) < 0.30
+                or not 0.40 <= area_ratio <= 2.50
+                or np.array_equal(recovered, original)
+            ):
+                continue
+            # Topology guard (H8 lesson): the first live firing of this
+            # lane won the pixel court on text-015 (+0.05 IoU) while
+            # fusing 9 body components and closing 2 counters (reference
+            # [38,6], recovered [25,3], GCR 13->20).  The court cannot see
+            # reviewed-reference GCR at compile time, so the guarantee
+            # must be structural: a default recovery may clean specks, but
+            # body-scale component and hole counts must stay within a
+            # small drift of the observed support.
+            speck = max(4, int(0.0002 * recovered.size))
+            original_body = _body_topology_signature(original, speck)
+            recovered_body = _body_topology_signature(recovered, speck)
+            component_drift = abs(recovered_body[0] - original_body[0])
+            hole_drift = abs(recovered_body[1] - original_body[1])
+            if (
+                component_drift > max(1, round(0.10 * original_body[0]))
+                or hole_drift > 1
+            ):
+                continue
+            full = np.zeros(proposal.support_mask.shape, bool)
+            full[y1:y2, x1:x2] = recovered
+            candidate = _line_from_mask(
+                reir, full, polarity=proposal.polarity,
+                sources=tuple(sorted(
+                    set(proposal.sources) | {"stage-d-support-recovery"}
+                )),
+                raw_score=proposal.score,
+            )
+            if candidate is not None and candidate.id not in seen:
+                seen.add(candidate.id)
+                refined.append(candidate)
     return tuple(refined)
 
 
