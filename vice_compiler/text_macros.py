@@ -3699,7 +3699,29 @@ def generate_text_macros(
                 and exact.max_boundary_deviation_px
                     <= max(4.0, 0.24 * (line.roi_xyxy[3] - line.roi_xyxy[1]))
             )
-            if not strict_exact and not semantic_idealization:
+            # Approximate-template lane (v9.5 bridge): rows stamped by the
+            # retrieval provider may enter through their own wall. The
+            # borrowed semantic wall's line.score >= 0.94 gate admitted
+            # 0/18 probe lines on real loci (scores live in 0.80-0.93,
+            # 2026-07-24 attribution probe) while fit quality passed 13/18;
+            # this route keeps the fit-quality walls STRICTER (0.50 vs
+            # 0.42) and drops only the unreachable proposal-score gate to
+            # a 0.80 floor. No font identity is claimed; the court still
+            # judges the rendered result against the incumbent.
+            approximate_template = bool(
+                not strict_exact and not semantic_idealization
+                and "approximate-template-retrieval" in exact.provenance
+                and "OCR" in line.sources
+                and recognized_glyphs >= 4 and line.score >= 0.80
+                and exact.retrieval_score >= 0.58
+                and exact.silhouette_iou >= 0.50 and iou >= 0.50
+                and exact.max_boundary_deviation_px
+                    <= max(4.0, 0.24 * (line.roi_xyxy[3] - line.roi_xyxy[1]))
+            )
+            if (
+                not strict_exact and not semantic_idealization
+                and not approximate_template
+            ):
                 continue
             if exact_prototypes is None:
                 exact_prototypes = repeated_glyph_em(line.glyphs)
@@ -3707,7 +3729,7 @@ def generate_text_macros(
                 line, mask, exact_prototypes,
                 readability=exact.retrieval_score, render_evidence=iou,
             )
-            if semantic_idealization:
+            if semantic_idealization or approximate_template:
                 components, holes = _topology(mask)
                 claims = replace(
                     claims, required_components=components,
@@ -3717,12 +3739,16 @@ def generate_text_macros(
                     no_glyph_outside_line_support=True,
                 )
             record_path = (
-                "exact-font" if strict_exact else "semantic-font-idealization"
+                "exact-font" if strict_exact
+                else "semantic-font-idealization" if semantic_idealization
+                else "approximate-template"
             )
             record = _macro_record(
                 reir, line, mask, path=record_path,
-                score=(1.7 if strict_exact else 1.35)
-                    + line.score + exact.retrieval_score,
+                score=(
+                    1.7 if strict_exact
+                    else 1.35 if semantic_idealization else 1.15
+                ) + line.score + exact.retrieval_score,
                 claims=claims, dual=(), prototypes=exact_prototypes,
                 parameters=(("text", exact.recognized_text),
                             ("font_file", exact.font_file),
@@ -3733,9 +3759,13 @@ def generate_text_macros(
                             ("offset_y", exact.offset_xy[1])),
                 provenance=(
                     "phase4-exact-font" if strict_exact
-                    else "phase4-semantic-font-idealization",
+                    else "phase4-semantic-font-idealization"
+                    if semantic_idealization
+                    else "phase4-approximate-template",
                     "strict-silhouette-wall" if strict_exact
-                    else "OCR-semantic-plus-bounded-silhouette-wall",
+                    else "OCR-semantic-plus-bounded-silhouette-wall"
+                    if semantic_idealization
+                    else "style-retrieval-plus-strict-fit-wall",
                     "component-topology-gate" if strict_exact
                     else "font-outline-self-topology-certificate",
                     *exact.provenance,
