@@ -51,7 +51,7 @@ from diagnose_vector_topology_recall import _mask_topology  # noqa: E402
 
 def replay_target_support(
     svg_text: str, augmentation: dict, resvg_module,
-) -> np.ndarray | None:
+) -> tuple[np.ndarray, np.ndarray] | None:
     """Replicate the pair builder's geometry for the clean target mask."""
     from PIL import Image
 
@@ -92,7 +92,8 @@ def replay_target_support(
                      (SIZE - overlay_height) // 2 + shift_y))
     canvas = np.zeros((SIZE, SIZE), np.uint8)
     canvas[top:top + overlay_height, left:left + overlay_width] = overlay
-    return canvas >= 128
+    coverage = canvas.astype(np.float32) / 255.0
+    return coverage, coverage >= 0.5
 
 
 def load_split_ids() -> tuple[set[str], set[str]]:
@@ -149,6 +150,12 @@ def main() -> None:
         "(values/threshold/edge) - the Stage-D v1 hypothesis",
     )
     parser.add_argument(
+        "--degradation", choices=("pairs", "wordmark"), default="pairs",
+        help="wordmark = synthesize the input by the production-calibrated "
+        "brutal chain (native down/up, gamma, holes/islands, jpeg 25-90) "
+        "over the replayed clean target - the S11.4 data-side card",
+    )
+    parser.add_argument(
         "--hard-subset", action="store_true",
         help="only pairs with blur/noise/jpeg degradation: Otsu saturates "
         "the easy pairs and drowns the model's value in the aggregate",
@@ -158,6 +165,12 @@ def main() -> None:
     parser.add_argument("--epochs", type=int, default=4)
     parser.add_argument("--batch-size", type=int, default=64)
     parser.add_argument("--seed", type=int, default=20260729)
+    parser.add_argument(
+        "--gate", choices=("iou", "topology"), default="iou",
+        help="topology = the S16.1-aligned gate (metric hierarchy puts "
+        "topology edit first, pixel IoU last): model edit <= baseline/3 "
+        "AND IoU not worse than baseline - 0.01",
+    )
     parser.add_argument(
         "--out", type=Path,
         default=ROOT / "benchmarks" / "pcdc_pre_v14"
@@ -189,8 +202,10 @@ def main() -> None:
 
     channels = 3 if args.input_mode == "observation" else 1
     from vice_compiler.wordmark_prior_data import (
+        degrade_wordmark,
         wordmark_observation_features,
     )
+    import hashlib as _hashlib
 
     def build_bank(items: list[dict]):
         count = len(items)
@@ -223,11 +238,24 @@ def main() -> None:
                 raster = cv2.cvtColor(raw, cv2.COLOR_BGR2GRAY)
             else:
                 raster = raw
-            support = replay_target_support(
+            replayed = replay_target_support(
                 svg_text, row["augmentation"], resvg_py,
             )
-            if support is None or not support.any():
+            if replayed is None:
                 continue
+            coverage, support = replayed
+            if not support.any():
+                continue
+            if args.degradation == "wordmark":
+                degrade_seed = int(_hashlib.sha256(
+                    row["id"].encode("utf-8")
+                ).hexdigest()[:8], 16)
+                observed = degrade_wordmark(
+                    coverage, support, seed=degrade_seed,
+                )
+                raster = np.rint(
+                    np.clip(observed, 0.0, 1.0) * 255.0
+                ).astype(np.uint8)
             values = raster.astype(np.float32) / 255.0
             if channels == 3:
                 inputs[kept] = wordmark_observation_features(values)
@@ -383,6 +411,17 @@ def main() -> None:
     }
     if args.tiny_overfit:
         gate = {"memorizes": metrics["model_support_iou"] >= 0.97}
+    elif args.gate == "topology":
+        gate = {
+            "topology_edit_3x_better": (
+                metrics["model_topology_edit"]
+                <= metrics["otsu_baseline_edit"] / 3.0
+            ),
+            "iou_not_worse": (
+                metrics["model_support_iou"]
+                >= metrics["otsu_baseline_iou"] - 0.01
+            ),
+        }
     else:
         gate = {
             "beats_otsu_iou_by_5pt": (
