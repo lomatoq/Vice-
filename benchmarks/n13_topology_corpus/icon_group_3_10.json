@@ -1,0 +1,133 @@
+{
+  "baseline": {
+    "wobble": 0.9489,
+    "g2_steps": 0.0994,
+    "kinks_per_100px": 2.705,
+    "staircase_runs": 0,
+    "micro_segs": 42,
+    "total_len": 1182.9,
+    "segments": 188,
+    "roundness": 0.01556,
+    "circles": 2,
+    "mae": 5.12,
+    "rmse": 14.08,
+    "ink_iou": 0.9003,
+    "ssim": 0.9513,
+    "seam_px": 0.0,
+    "mirror_iou": 0.2925,
+    "region_de2000_p95": 20.0688,
+    "de_region_max": 30.5386,
+    "color_regions": 50,
+    "source_rot90_iou": 0.0786,
+    "rot90_iou": 0.081,
+    "rot90_sym_break": 0.0,
+    "boundary_f": 0.9861,
+    "hausdorff95": 0.95,
+    "report": {
+      "input": "24_icon_group_3_10_src.png",
+      "pipeline": "geometry-first",
+      "extractor_used": "paper-hoshyari-regions-isolated",
+      "analysis_scale": 4,
+      "smoothing": "paper-regions",
+      "regions": 13,
+      "closed_contours": 15,
+      "rendered_primitive_count": 184,
+      "actual": {
+        "L": 92,
+        "Q": 0,
+        "C": 92
+      },
+      "templates": {
+        "paper-joint": 9,
+        "paper-tiny": 6
+      },
+      "threshold": 0.0,
+      "corner_detector": {
+        "type": "resolution-density-hybrid-cnn",
+        "small_model": "corner_cnn.pt",
+        "small_threshold": 0.28,
+        "large_model": "corner_cnn_hybrid_large_v1.pt",
+        "large_threshold": 0.36,
+        "small_extent_max": 4.0,
+        "small_density_min": 8.0
+      },
+      "kink_energy": 8.899
+    }
+  },
+  "candidate": {
+    "wobble": 0.9489,
+    "g2_steps": 0.0994,
+    "kinks_per_100px": 2.705,
+    "staircase_runs": 0,
+    "micro_segs": 42,
+    "total_len": 1182.9,
+    "segments": 188,
+    "roundness": 0.01556,
+    "circles": 2,
+    "mae": 5.12,
+    "rmse": 14.08,
+    "ink_iou": 0.9003,
+    "ssim": 0.9513,
+    "seam_px": 0.0,
+    "mirror_iou": 0.2925,
+    "region_de2000_p95": 20.0688,
+    "de_region_max": 30.5386,
+    "color_regions": 50,
+    "source_rot90_iou": 0.0786,
+    "rot90_iou": 0.081,
+    "rot90_sym_break": 0.0,
+    "boundary_f": 0.9861,
+    "hausdorff95": 0.95,
+    "report": {
+      "input": "24_icon_group_3_10_src.png",
+      "pipeline": "geometry-first",
+      "extractor_used": "paper-hoshyari-regions-isolated",
+      "analysis_scale": 4,
+      "smoothing": "paper-regions",
+      "regions": 13,
+      "closed_contours": 15,
+      "rendered_primitive_count": 184,
+      "actual": {
+        "L": 92,
+        "Q": 0,
+        "C": 92
+      },
+      "templates": {
+        "paper-joint": 9,
+        "paper-tiny": 6
+      },
+      "threshold": 0.0,
+      "topology_repair": [
+        {
+          "accepted": false,
+          "source_topology": [
+            6,
+            2
+          ],
+          "incumbent_topology": [
+            3,
+            2
+          ],
+          "candidate_topology": [
+            4,
+            2
+          ],
+          "incumbent_iou": 0.9156,
+          "candidate_iou": 0.9164,
+          "primitives": 140,
+          "radius": 5
+        }
+      ],
+      "corner_detector": {
+        "type": "resolution-density-hybrid-cnn",
+        "small_model": "corner_cnn.pt",
+        "small_threshold": 0.28,
+        "large_model": "corner_cnn_hybrid_large_v1.pt",
+        "large_threshold": 0.36,
+        "small_extent_max": 4.0,
+        "small_density_min": 8.0
+      },
+      "kink_energy": 8.899
+    }
+  }
+}

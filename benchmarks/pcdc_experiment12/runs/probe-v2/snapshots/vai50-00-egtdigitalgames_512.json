@@ -1,0 +1,429 @@
+{
+  "id": "vai50-00-egtdigitalgames_512",
+  "suite": "vai50",
+  "position": 0,
+  "stem": "egtdigitalgames_512",
+  "category": null,
+  "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\7_egtdigitalgames_512_src.png",
+  "reference": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\egtdigitalgames_512_vai.svg",
+  "reference_metrics": {
+    "wobble": 0.0017,
+    "g2_steps": 1.6248,
+    "kinks_per_100px": 0.115,
+    "staircase_runs": 0,
+    "micro_segs": 17,
+    "total_len": 5209.9,
+    "segments": 94,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.16,
+    "rmse": 2.13,
+    "ink_iou": 0.9982,
+    "ssim": 0.9987,
+    "seam_px": 0.0,
+    "mirror_iou": 0.7005,
+    "region_de2000_p95": 0.0,
+    "de_region_max": 0.0,
+    "color_regions": 4,
+    "source_rot90_iou": 0.5503,
+    "rot90_iou": 0.55,
+    "rot90_sym_break": 0.0003,
+    "boundary_f": 0.9998,
+    "hausdorff95": 0.0
+  },
+  "schema": "pcdc-phase12-item/v1",
+  "status": "ok",
+  "source_sha256": "f67bcdabc42f39abf5cb6db30c4fded93d64d87c18ac19891c04b1b97b50536a",
+  "reference_sha256": "e60a0d0360437503870fbabdcccaeaf93a7c94007876e4f347b93118abd455f2",
+  "size": [
+    512,
+    512
+  ],
+  "mode": "balanced",
+  "wall_ms": 14714.706200000364,
+  "runtime": {
+    "schema": "pcdc-runtime-result/v1",
+    "mode": "balanced",
+    "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\7_egtdigitalgames_512_src.png",
+    "elapsed_ms": 4328.009800010477,
+    "deadline_ms": null,
+    "deadline_exceeded": false,
+    "best_stage": "T0",
+    "visible_render_audit": {
+      "passed": false,
+      "ink_iou": 0.9614256498573812,
+      "boundary_f": 0.9556741442268603,
+      "normalized_mae": 0.01138429343700409,
+      "source_topology": [
+        4,
+        1
+      ],
+      "rendered_topology": [
+        4,
+        1
+      ],
+      "topology_error": 0,
+      "baseline_available": true,
+      "baseline_ink_iou": 0.994851960344007,
+      "baseline_boundary_f": 0.9979352082591669,
+      "baseline_normalized_mae": 0.0016155068296939135,
+      "baseline_topology_error": 0,
+      "regressed_vs_baseline": true,
+      "reason": "failed:baseline-regression"
+    },
+    "selected_macros": 1,
+    "proposal_queries": 48,
+    "checkpoints": [
+      {
+        "stage": "T0",
+        "elapsed_ms": 362.02050000429153,
+        "selected_ids": [
+          "legacy-scene-676fd389e9aad87e"
+        ],
+        "utility": 0.001,
+        "exact_cover": true,
+        "proof_valid": true,
+        "note": "real V-ICE Best fallback available"
+      }
+    ],
+    "contract": {
+      "hierarchy_nodes": 647,
+      "hierarchy_limit": 648,
+      "typed_rois": 52,
+      "typed_roi_limit": 64,
+      "generated_typed_columns": 74,
+      "generated_column_limit": 220,
+      "exact_finalists_per_roi": 4,
+      "exact_roi_renders": 0,
+      "exact_roi_render_limit": 192,
+      "image_formation_models": 4,
+      "visible_extractions": 1,
+      "hidden_extractions": 0,
+      "final_full_renders": 1,
+      "one_reir_pass": true,
+      "native_backend": {
+        "available": true,
+        "version": 1,
+        "language": "rust",
+        "kernels": [
+          "conflict-bitsets",
+          "circle-sdf",
+          "atlas-pack"
+        ]
+      }
+    },
+    "profile": {
+      "schema": "pcdc-stage-profile/v1",
+      "complete": true,
+      "record_count": 8,
+      "by_stage": {
+        "evidence": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 164.8153,
+          "wall_ms_max": 164.8153,
+          "cpu_ms_total": 171.875,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 164.8153,
+          "cpu_ms_mean": 171.875
+        },
+        "legacy_resolve": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 1.7518,
+          "wall_ms_max": 1.7518,
+          "cpu_ms_total": 0.0,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 1.7518,
+          "cpu_ms_mean": 0.0
+        },
+        "base_registry": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 194.9548,
+          "wall_ms_max": 194.9548,
+          "cpu_ms_total": 203.125,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 194.9548,
+          "cpu_ms_mean": 203.125
+        },
+        "hierarchy_solution": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 2.7557,
+          "wall_ms_max": 2.7557,
+          "cpu_ms_total": 0.0,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 2.7557,
+          "cpu_ms_mean": 0.0
+        },
+        "typed_macro_generation": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 3250.194,
+          "wall_ms_max": 3250.194,
+          "cpu_ms_total": 5296.875,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 3250.194,
+          "cpu_ms_mean": 5296.875
+        },
+        "typed_registry": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 48.8979,
+          "wall_ms_max": 48.8979,
+          "cpu_ms_total": 46.875,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 48.8979,
+          "cpu_ms_mean": 46.875
+        },
+        "visible_extract": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 28.1537,
+          "wall_ms_max": 28.1537,
+          "cpu_ms_total": 31.25,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 28.1537,
+          "cpu_ms_mean": 31.25
+        },
+        "visible_full_render_court": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 475.4938,
+          "wall_ms_max": 475.4938,
+          "cpu_ms_total": 453.125,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 475.4938,
+          "cpu_ms_mean": 453.125
+        }
+      },
+      "records": [
+        {
+          "name": "evidence",
+          "wall_ms": 164.8153,
+          "cpu_ms": 171.875,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": {
+            "mode": "balanced"
+          }
+        },
+        {
+          "name": "legacy_resolve",
+          "wall_ms": 1.7518,
+          "cpu_ms": 0.0,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "base_registry",
+          "wall_ms": 194.9548,
+          "cpu_ms": 203.125,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "hierarchy_solution",
+          "wall_ms": 2.7557,
+          "cpu_ms": 0.0,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "typed_macro_generation",
+          "wall_ms": 3250.194,
+          "cpu_ms": 5296.875,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "typed_registry",
+          "wall_ms": 48.8979,
+          "cpu_ms": 46.875,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "visible_extract",
+          "wall_ms": 28.1537,
+          "cpu_ms": 31.25,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "visible_full_render_court",
+          "wall_ms": 475.4938,
+          "cpu_ms": 453.125,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        }
+      ]
+    },
+    "warnings": [
+      "REIR cache hit=True",
+      "V-ICE Best fallback=C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_work\\paper-regions\\egtdigitalgames_512\\7_egtdigitalgames_512_src\\03_rebuilt_filled.svg",
+      "font/glyph cache hit=False",
+      "T2 full-render court rejected typed scene: failed:baseline-regression"
+    ]
+  },
+  "best_stage": "T0",
+  "selected_macros": 1,
+  "deterministic_export": true,
+  "exports": {
+    "svg": {
+      "target": "svg",
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_experiment12\\runs\\probe-v2\\items\\vai50-00-egtdigitalgames_512\\result.svg",
+      "sha256": "08d5594372c1d978ed46035004f7c1fbe5dc5ef036a63272065f284a215e5bbf",
+      "bytes": 2286,
+      "native_primitives": 0,
+      "fallback_paths": 5,
+      "raster_images_embedded": 0,
+      "editable_score": 0.55,
+      "provenance": [
+        "selected-proof-carrying-scene",
+        "deterministic-export",
+        "no-preview-only-geometry-in-production"
+      ]
+    }
+  },
+  "ours": {
+    "wobble": 0.0,
+    "g2_steps": 0.0263,
+    "kinks_per_100px": 0.036,
+    "kink_cvar10_deg": 3.9054,
+    "detail_cvar10": 0.29154,
+    "staircase_runs": 0,
+    "micro_segs": 2,
+    "total_len": 5617.3,
+    "segments": 63,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.41,
+    "rmse": 5.4,
+    "ink_iou": 0.9949,
+    "ssim": 0.9938,
+    "seam_px": 0.0,
+    "mirror_iou": 0.6981,
+    "region_de2000_p95": 0.0,
+    "de_region_max": 0.0,
+    "color_regions": 4,
+    "source_rot90_iou": 0.5503,
+    "rot90_iou": 0.5506,
+    "rot90_sym_break": 0.0,
+    "boundary_f": 0.9979,
+    "hausdorff95": 0.95,
+    "local_de_max": 1.5574,
+    "local_de_x": 344,
+    "local_de_y": 488,
+    "local_de_window": [
+      32,
+      32
+    ],
+    "census_errors": 0,
+    "components_source": 4,
+    "components_render": 4,
+    "components_vanished": 0,
+    "components_fused": 0,
+    "components_added": 0,
+    "holes_lost": 0,
+    "holes_gained": 0,
+    "topology_levels_de": [
+      2.3,
+      4.6,
+      9.2,
+      18.4
+    ],
+    "source_betti_curve": [
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        1
+      ]
+    ],
+    "render_betti_curve": [
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        1
+      ],
+      [
+        4,
+        1
+      ]
+    ],
+    "persistent_beta0_error": 0.0,
+    "persistent_beta1_error": 0.0,
+    "persistent_components_lost": 0.0,
+    "persistent_holes_lost": 0.0,
+    "persistent_holes_gained": 0.0,
+    "any_counter_failure": false,
+    "catastrophic_locus_count": 4,
+    "catastrophic_locus_rate": 0.00293,
+    "worst_locus_severity": 8.0,
+    "boundary_cvar10": 1.0604,
+    "boundary_p99": 1.0,
+    "detail_de_cvar10": 2.5173,
+    "repeated_component_pairs": 1,
+    "equal_width_violation": 0.00235,
+    "equal_height_violation": 0.00446,
+    "repeated_radius_violation": 0.0,
+    "equal_gap_violation": 0.0,
+    "group_regularity_violation": 0.00446
+  },
+  "working_set_mib": 1255.7265625,
+  "compiler_fingerprint": "84acd0945fadd4fdbcee687146f44045c549feb3644a8e8cd8cc4018b96e74d9",
+  "worker_wall_ms": 15868.63440000161,
+  "peak_working_set_mib": 1497.0390625,
+  "worker_returncode": 0,
+  "worker_stderr_tail": ""
+}

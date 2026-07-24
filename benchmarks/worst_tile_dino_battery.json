@@ -1,0 +1,425 @@
+{
+  "backend": {
+    "backend": "dinov2-l14-reg-local",
+    "model": "dinov2_vitl14_reg",
+    "repo_present": true,
+    "checkpoint_present": true,
+    "checkpoint_bytes": 1217607321,
+    "device": "cuda",
+    "ready": true
+  },
+  "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\preference_round1.json",
+  "n": 15,
+  "losses_above_all_wins": 5,
+  "losses_total": 11,
+  "win_ceiling": 0.065151,
+  "direction_correct_non_ties": 7,
+  "gate_9_of_11": "FAIL",
+  "rows": [
+    {
+      "item": 2,
+      "winner": "ours",
+      "delta": 0.065151,
+      "ours": {
+        "dino_tile_max": 0.244451,
+        "dino_tile_p95": 0.242901,
+        "dino_tile_x": 32,
+        "dino_tile_y": 32,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 15
+      },
+      "vai": {
+        "dino_tile_max": 0.1793,
+        "dino_tile_p95": 0.163729,
+        "dino_tile_x": 16,
+        "dino_tile_y": 24,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 15
+      }
+    },
+    {
+      "item": 27,
+      "winner": "vai",
+      "delta": 0.069849,
+      "ours": {
+        "dino_tile_max": 0.364043,
+        "dino_tile_p95": 0.309927,
+        "dino_tile_x": 40,
+        "dino_tile_y": 48,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 65
+      },
+      "vai": {
+        "dino_tile_max": 0.294194,
+        "dino_tile_p95": 0.282905,
+        "dino_tile_x": 96,
+        "dino_tile_y": 48,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 65
+      }
+    },
+    {
+      "item": 43,
+      "winner": "vai",
+      "delta": -0.001291,
+      "ours": {
+        "dino_tile_max": 0.420733,
+        "dino_tile_p95": 0.418412,
+        "dino_tile_x": 12,
+        "dino_tile_y": 24,
+        "dino_tile_window": [
+          24,
+          32
+        ],
+        "dino_tiles": 5
+      },
+      "vai": {
+        "dino_tile_max": 0.422024,
+        "dino_tile_p95": 0.419985,
+        "dino_tile_x": 12,
+        "dino_tile_y": 40,
+        "dino_tile_window": [
+          24,
+          32
+        ],
+        "dino_tiles": 5
+      }
+    },
+    {
+      "item": 51,
+      "winner": "vai",
+      "delta": 0.084684,
+      "ours": {
+        "dino_tile_max": 0.632412,
+        "dino_tile_p95": 0.607465,
+        "dino_tile_x": 48,
+        "dino_tile_y": 24,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      },
+      "vai": {
+        "dino_tile_max": 0.547728,
+        "dino_tile_p95": 0.463356,
+        "dino_tile_x": 48,
+        "dino_tile_y": 24,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      }
+    },
+    {
+      "item": 53,
+      "winner": "vai",
+      "delta": -0.030379,
+      "ours": {
+        "dino_tile_max": 0.421709,
+        "dino_tile_p95": 0.409494,
+        "dino_tile_x": 40,
+        "dino_tile_y": 48,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      },
+      "vai": {
+        "dino_tile_max": 0.452088,
+        "dino_tile_p95": 0.405836,
+        "dino_tile_x": 16,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      }
+    },
+    {
+      "item": 54,
+      "winner": "vai",
+      "delta": -0.037577,
+      "ours": {
+        "dino_tile_max": 0.208969,
+        "dino_tile_p95": 0.133379,
+        "dino_tile_x": 16,
+        "dino_tile_y": 48,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      },
+      "vai": {
+        "dino_tile_max": 0.246546,
+        "dino_tile_p95": 0.236554,
+        "dino_tile_x": 32,
+        "dino_tile_y": 48,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      }
+    },
+    {
+      "item": 55,
+      "winner": "vai",
+      "delta": -0.06311,
+      "ours": {
+        "dino_tile_max": 0.305771,
+        "dino_tile_p95": 0.290898,
+        "dino_tile_x": 32,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      },
+      "vai": {
+        "dino_tile_max": 0.368881,
+        "dino_tile_p95": 0.296172,
+        "dino_tile_x": 32,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 25
+      }
+    },
+    {
+      "item": 59,
+      "winner": "vai",
+      "delta": 0.168182,
+      "ours": {
+        "dino_tile_max": 0.362854,
+        "dino_tile_p95": 0.274686,
+        "dino_tile_x": 16,
+        "dino_tile_y": 48,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 55
+      },
+      "vai": {
+        "dino_tile_max": 0.194672,
+        "dino_tile_p95": 0.16044,
+        "dino_tile_x": 88,
+        "dino_tile_y": 40,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 55
+      }
+    },
+    {
+      "item": 60,
+      "winner": "ours",
+      "delta": 0.017687,
+      "ours": {
+        "dino_tile_max": 0.625487,
+        "dino_tile_p95": 0.364751,
+        "dino_tile_x": 176,
+        "dino_tile_y": 88,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 918
+      },
+      "vai": {
+        "dino_tile_max": 0.6078,
+        "dino_tile_p95": 0.412599,
+        "dino_tile_x": 416,
+        "dino_tile_y": 72,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 918
+      }
+    },
+    {
+      "item": 68,
+      "winner": "vai",
+      "delta": 0.240745,
+      "ours": {
+        "dino_tile_max": 0.638656,
+        "dino_tile_p95": 0.47627,
+        "dino_tile_x": 16,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 105
+      },
+      "vai": {
+        "dino_tile_max": 0.397911,
+        "dino_tile_p95": 0.26821,
+        "dino_tile_x": 64,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 105
+      }
+    },
+    {
+      "item": 71,
+      "winner": "ours",
+      "delta": -0.185599,
+      "ours": {
+        "dino_tile_max": 0.461826,
+        "dino_tile_p95": 0.378009,
+        "dino_tile_x": 48,
+        "dino_tile_y": 80,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 221
+      },
+      "vai": {
+        "dino_tile_max": 0.647425,
+        "dino_tile_p95": 0.441248,
+        "dino_tile_x": 16,
+        "dino_tile_y": 88,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 221
+      }
+    },
+    {
+      "item": 75,
+      "winner": "vai",
+      "delta": 0.226403,
+      "ours": {
+        "dino_tile_max": 0.616278,
+        "dino_tile_p95": 0.540221,
+        "dino_tile_x": 88,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 55
+      },
+      "vai": {
+        "dino_tile_max": 0.389875,
+        "dino_tile_p95": 0.378118,
+        "dino_tile_x": 24,
+        "dino_tile_y": 48,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 55
+      }
+    },
+    {
+      "item": 79,
+      "winner": "vai",
+      "delta": 0.041258,
+      "ours": {
+        "dino_tile_max": 0.807126,
+        "dino_tile_p95": 0.611928,
+        "dino_tile_x": 24,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 105
+      },
+      "vai": {
+        "dino_tile_max": 0.765868,
+        "dino_tile_p95": 0.515491,
+        "dino_tile_x": 24,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 105
+      }
+    },
+    {
+      "item": 81,
+      "winner": "vai",
+      "delta": -0.01508,
+      "ours": {
+        "dino_tile_max": 0.648795,
+        "dino_tile_p95": 0.504582,
+        "dino_tile_x": 88,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 185
+      },
+      "vai": {
+        "dino_tile_max": 0.663875,
+        "dino_tile_p95": 0.535195,
+        "dino_tile_x": 88,
+        "dino_tile_y": 16,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 185
+      }
+    },
+    {
+      "item": 95,
+      "winner": "tie",
+      "delta": -0.165045,
+      "ours": {
+        "dino_tile_max": 0.036283,
+        "dino_tile_p95": 0.001792,
+        "dino_tile_x": 24,
+        "dino_tile_y": 112,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 441
+      },
+      "vai": {
+        "dino_tile_max": 0.201328,
+        "dino_tile_p95": 0.091239,
+        "dino_tile_x": 144,
+        "dino_tile_y": 96,
+        "dino_tile_window": [
+          32,
+          32
+        ],
+        "dino_tiles": 441
+      }
+    }
+  ]
+}

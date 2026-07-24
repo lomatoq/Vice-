@@ -1,0 +1,773 @@
+{
+  "config_hash": "d13a6de7dd556ca46ca31b750bc41b119731a90b52feffdc973df2926ebfe066",
+  "elapsed_seconds": 29.336784300001455,
+  "records": [
+    {
+      "accepted": true,
+      "action": "canonical-decode",
+      "details": {
+        "format": "PNG",
+        "native_size": [
+          91,
+          48
+        ],
+        "route": "auto"
+      },
+      "inputs": [],
+      "outputs": [
+        "rgba_srgb_straight",
+        "rgba_linear_premul",
+        "oklab",
+        "alpha_native"
+      ],
+      "reason": "one decode/crop/resize transform",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 0,
+      "stage": "ingest"
+    },
+    {
+      "accepted": true,
+      "action": "diagnose",
+      "details": {
+        "artwork_prob": 0.8372341990470886,
+        "diagram_prob": 1.0,
+        "gradient_prob": 0.36167582417582417,
+        "text_prob": 1.0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "spatial profile, never a global route switch",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 1,
+      "stage": "raster-profile"
+    },
+    {
+      "accepted": true,
+      "action": "multi-head-inference",
+      "details": {
+        "cache_hit": true,
+        "heads": [
+          "boundary_normal",
+          "boundary_prob",
+          "color_logits",
+          "corner_prob",
+          "corner_type",
+          "coverage_alpha",
+          "glyph_occupancy",
+          "junction_prob",
+          "region_embedding",
+          "shape_class_logits",
+          "stroke_centerline_prob",
+          "stroke_half_width",
+          "subpixel_offset",
+          "symmetry_evidence",
+          "text_line_prob",
+          "uncertainty"
+        ],
+        "levels": 3,
+        "model_version": "deterministic-evidence/2"
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "frozen evidence API",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 2,
+      "stage": "evidence"
+    },
+    {
+      "accepted": true,
+      "action": "soft-mixture",
+      "details": {
+        "background_index": 0,
+        "cluster_count": 10
+      },
+      "inputs": [],
+      "outputs": [
+        "appearance-0",
+        "appearance-1",
+        "appearance-2",
+        "appearance-3",
+        "appearance-4",
+        "appearance-5",
+        "appearance-6",
+        "appearance-7",
+        "appearance-8",
+        "appearance-9"
+      ],
+      "reason": "late palette projection",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 3,
+      "stage": "appearance"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "soft-spatial-proposal-sigma-1.15"
+        ],
+        "region_count": 15
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-e983ae099dee"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 0.45272013083919066,
+      "score_before": null,
+      "sequence": 4,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "soft-spatial-proposal-sigma-0.65"
+        ],
+        "region_count": 58
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-18bfc1e7ef1f"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 0.5182732443923042,
+      "score_before": null,
+      "sequence": 5,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 6,
+        "legacy_path_a_available": true,
+        "text_lines": 2
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 6,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 4,
+        "corners": 34,
+        "interfaces": 30,
+        "shapes": 15
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-e983ae099dee"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 7,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 37,
+        "legacy_path_a_available": true,
+        "text_lines": 4
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 8,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 15,
+        "corners": 111,
+        "interfaces": 145,
+        "shapes": 58
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-18bfc1e7ef1f"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 9,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-0:generic:layer-stay",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6410691355252361,
+      "score_before": 0.6417844680361583,
+      "sequence": 10,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-1:ribbon:layer-1-to-0",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6410863769045464,
+      "score_before": 0.641069135525236,
+      "sequence": 11,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-10:quadrilateral:layer-10-to-9",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6411266879043886,
+      "score_before": 0.641069135525236,
+      "sequence": 12,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-11:ribbon:layer-11-to-10",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6410863769045464,
+      "score_before": 0.641069135525236,
+      "sequence": 13,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-12:ribbon:layer-12-to-11",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6410863769045464,
+      "score_before": 0.641069135525236,
+      "sequence": 14,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-13:generic:layer-13-to-12",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6412105148355809,
+      "score_before": 0.641069135525236,
+      "sequence": 15,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-14:quadrilateral:layer-14-to-13",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6410822578576457,
+      "score_before": 0.641069135525236,
+      "sequence": 16,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-15:ribbon:layer-15-to-14",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.641017411387305,
+      "score_before": 0.641069135525236,
+      "sequence": 17,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-16:ribbon:layer-16-to-15",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6410346527666153,
+      "score_before": 0.641017411387305,
+      "sequence": 18,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-17:quadrilateral:layer-17-to-16",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6409171765202826,
+      "score_before": 0.641017411387305,
+      "sequence": 19,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-18:quadrilateral:layer-18-to-17",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.640852112095921,
+      "score_before": 0.6409171765202826,
+      "sequence": 20,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-19:D-shape:layer-19-to-18",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6410634109577917,
+      "score_before": 0.6408521120959211,
+      "sequence": 21,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-2:ribbon:layer-2-to-1",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.64080038795799,
+      "score_before": 0.6408521120959211,
+      "sequence": 22,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-20:quadrilateral:layer-20-to-19",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6407827078374323,
+      "score_before": 0.6408003879579901,
+      "sequence": 23,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-21:quadrilateral:layer-21-to-20",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6406700951924098,
+      "score_before": 0.6407827078374323,
+      "sequence": 24,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-22:quadrilateral:layer-22-to-21",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6405435844311552,
+      "score_before": 0.6406700951924098,
+      "sequence": 25,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-23:isosceles-triangle:layer-23-to-22",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.640656892858999,
+      "score_before": 0.6405435844311552,
+      "sequence": 26,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-24:circle:layer-24-to-23",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.7595940116421097,
+      "score_before": 0.6405435844311552,
+      "sequence": 27,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-25:isosceles-triangle:layer-25-to-24",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6406258888960877,
+      "score_before": 0.6405435844311552,
+      "sequence": 28,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-26:circle:layer-26-to-25",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.7682517915321925,
+      "score_before": 0.6405435844311552,
+      "sequence": 29,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-27:circle:layer-27-to-26",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8202348493836003,
+      "score_before": 0.6405435844311552,
+      "sequence": 30,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-28:triangle:layer-28-to-27",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.640980654572446,
+      "score_before": 0.6405435844311552,
+      "sequence": 31,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-29:triangle:layer-29-to-28",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6409288408650801,
+      "score_before": 0.6405435844311552,
+      "sequence": 32,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-3:generic:layer-3-to-2",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.6403895316671095,
+      "score_before": 0.6405435844311552,
+      "sequence": 33,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "abstain",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "shape-explosion; retain alternatives in trace",
+      "score_after": 0.6403895316671097,
+      "score_before": 0.6403895316671097,
+      "sequence": 34,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "select-scene",
+      "details": {
+        "abstain_reasons": [
+          "shape-explosion"
+        ],
+        "abstained": true,
+        "render_model": "hard",
+        "runner_up": 0.6514526799925779
+      },
+      "inputs": [],
+      "outputs": [
+        "scene-hypothesis-1"
+      ],
+      "reason": "global posterior/MDL court",
+      "score_after": 0.6403895316671097,
+      "score_before": null,
+      "sequence": 35,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "no-change",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "no supported idealization move",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 36,
+      "stage": "idealization"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 78
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.1685638836622238,
+      "score_before": 0.13826583325862885,
+      "sequence": 37,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 54
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.1593683430314064,
+      "score_before": 0.13826583325862885,
+      "sequence": 38,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 46
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.16140709512829782,
+      "score_before": 0.13826583325862885,
+      "sequence": 39,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 22
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.14818517291545868,
+      "score_before": 0.13826583325862885,
+      "sequence": 40,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 11
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.1455863481462002,
+      "score_before": 0.13826583325862885,
+      "sequence": 41,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 11
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.14731475347280504,
+      "score_before": 0.13826583325862885,
+      "sequence": 42,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 10
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.1449360118508339,
+      "score_before": 0.13826583325862885,
+      "sequence": 43,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 10
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.14516337838768958,
+      "score_before": 0.13826583325862885,
+      "sequence": 44,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-36",
+      "score_after": 0.1386554028093815,
+      "score_before": 0.13826583325862885,
+      "sequence": 45,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-38",
+      "score_after": 0.13859833881258965,
+      "score_before": 0.13826583325862885,
+      "sequence": 46,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-39",
+      "score_after": 0.13841644033789635,
+      "score_before": 0.13826583325862885,
+      "sequence": 47,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-40",
+      "score_after": 0.13845967799425124,
+      "score_before": 0.13826583325862885,
+      "sequence": 48,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "select-render-model",
+      "details": {
+        "candidates": {
+          "blur-0.6": 0.18549938112497333,
+          "clean-aa": 0.18837507724761962,
+          "gamma-1.8": 0.183598612844944,
+          "hard": 0.13826583325862885,
+          "jpeg-70": 0.1612250617146492
+        },
+        "render_model": "hard"
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "renderer-model marginalization",
+      "score_after": 0.13826583325862885,
+      "score_before": null,
+      "sequence": 49,
+      "stage": "final-court"
+    },
+    {
+      "accepted": true,
+      "action": "publish-artifacts",
+      "details": {
+        "wall_seconds": 29.4165292000107
+      },
+      "inputs": [],
+      "outputs": [
+        "scene.json",
+        "decision_trace.json",
+        "config.json",
+        "profile.json"
+      ],
+      "reason": "legacy-compatible names + canonical scene",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 50,
+      "stage": "export"
+    }
+  ],
+  "schema": "vice-decision-trace/1",
+  "source_hash": "5cde7b5cccac540fb7d92d3e203c633844e8188aa6f1a64b2105e38c0e489913",
+  "stage_seconds": {
+    "appearance": 0.04645899999013636,
+    "evidence": 0.06309109998983331,
+    "exact-font-path-A": 7.234844500009785,
+    "export": 0.5891421999986051,
+    "final-court": 0.20530760000110604,
+    "idealization": 0.07648380000318866,
+    "optimizer": 7.489145400002599,
+    "raster-profile": 0.06493740000587422,
+    "residual": 2.2959866000019247,
+    "scene-build": 9.399167099996703,
+    "topology": 1.7985552999889478
+  }
+}

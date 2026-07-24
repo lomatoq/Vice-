@@ -1,0 +1,66 @@
+{
+  "engine": "vice-scene",
+  "engine_version": "0.1.0",
+  "config_hash": "fe78d9b2babdc3bcca4ce6a8d71c8164714e3d3b307d0d19103ee765fcb64fd9",
+  "source_hash": "29d242455aaaba8c13355285fb0b965f000ec1ea26c4c2d15a038645df527756",
+  "extractor_used": "scene:deterministic-evidence/1",
+  "analysis_scale": 1,
+  "regions": 242,
+  "closed_contours": 514,
+  "rendered_primitive_count": 514,
+  "actual": {
+    "D-shape": 1,
+    "circle": 27,
+    "ellipse": 114,
+    "polyline": 318,
+    "quadrilateral": 8,
+    "rect": 8,
+    "rounded-rect": 3,
+    "star": 3,
+    "triangle": 32
+  },
+  "templates": {
+    "D-shape": 1,
+    "circle": 8,
+    "ellipse": 1,
+    "generic": 171,
+    "isosceles-triangle": 4,
+    "quadrilateral": 8,
+    "rectangle": 8,
+    "ribbon": 7,
+    "rounded-rectangle": 3,
+    "star-3": 2,
+    "star-5": 1,
+    "triangle": 28
+  },
+  "topology_hypotheses": 4,
+  "interfaces": 675,
+  "corners": 424,
+  "constraints": 19,
+  "render_model": "blur-0.6",
+  "render_nll": 0.15343338203269474,
+  "render_map_nll": 0.14464257299900055,
+  "abstained": false,
+  "cache_hit": false,
+  "resource": {
+    "wall_seconds": 1608.8813463999977,
+    "cpu_seconds": 1566.34375,
+    "tracemalloc_current_bytes": 67356809,
+    "tracemalloc_peak_bytes": 484648412,
+    "pid": 34620
+  },
+  "profile": {
+    "artwork_prob": 0.9800000190734863,
+    "photo_prob": 0.019999980926513672,
+    "text_probability": 0.0,
+    "diagram_probability": 1.0,
+    "gradient_probability": 0.2499954999549996,
+    "transparency_probability": 0.0
+  },
+  "artifacts": {
+    "scene": "scene.json",
+    "trace": "decision_trace.json",
+    "config": "config.json",
+    "profile": "profile.json"
+  }
+}

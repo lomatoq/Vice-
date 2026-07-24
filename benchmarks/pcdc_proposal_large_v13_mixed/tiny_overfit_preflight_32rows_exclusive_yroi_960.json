@@ -1,0 +1,128 @@
+{
+  "after": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.895801528366932,
+      "mean_best_soft_iou_at_k": 0.895801528366932,
+      "neural_only_recall_at_5_iou50": 1.0,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.8657855707070342,
+      "mean_best_soft_iou_at_k": 0.8657855707070342,
+      "neural_only_recall_at_5_iou50": 0.9910714285714286,
+      "neural_only_recall_at_k_iou50": 0.9910714285714286,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.853779187643075,
+      "mean_best_soft_iou_at_k": 0.853779187643075,
+      "neural_only_recall_at_5_iou50": 0.9875,
+      "neural_only_recall_at_k_iou50": 0.9875
+    }
+  },
+  "batch_size": 8,
+  "before": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8405139819082987,
+      "mean_best_soft_iou_at_k": 0.8405139819082987,
+      "neural_only_recall_at_5_iou50": 0.96875,
+      "neural_only_recall_at_k_iou50": 0.96875
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.6748790371279506,
+      "mean_best_soft_iou_at_k": 0.6820930878983429,
+      "neural_only_recall_at_5_iou50": 0.8035714285714286,
+      "neural_only_recall_at_k_iou50": 0.8392857142857143,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.6086250592158116,
+      "mean_best_soft_iou_at_k": 0.6187247302943605,
+      "neural_only_recall_at_5_iou50": 0.7375,
+      "neural_only_recall_at_k_iou50": 0.7875
+    }
+  },
+  "best_text_line_recall_at_5": 0.9875,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed.pt",
+  "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+  "checkpoint_written": false,
+  "created_at": "2026-07-22T12:34:59.563031+00:00",
+  "device": "cuda",
+  "evaluation_history": [
+    {
+      "step": 0,
+      "text_line_mean_iou_at_5": 0.6086250592158116,
+      "text_line_recall_at_5": 0.7375
+    },
+    {
+      "step": 120,
+      "text_line_mean_iou_at_5": 0.7372248844987085,
+      "text_line_recall_at_5": 0.8875
+    },
+    {
+      "step": 240,
+      "text_line_mean_iou_at_5": 0.7757111244471184,
+      "text_line_recall_at_5": 0.9125
+    },
+    {
+      "step": 360,
+      "text_line_mean_iou_at_5": 0.791880980814402,
+      "text_line_recall_at_5": 0.9375
+    },
+    {
+      "step": 480,
+      "text_line_mean_iou_at_5": 0.8135573525156575,
+      "text_line_recall_at_5": 0.975
+    },
+    {
+      "step": 600,
+      "text_line_mean_iou_at_5": 0.8287988692928426,
+      "text_line_recall_at_5": 0.975
+    },
+    {
+      "step": 720,
+      "text_line_mean_iou_at_5": 0.8347497634525778,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 840,
+      "text_line_mean_iou_at_5": 0.8438209545857764,
+      "text_line_recall_at_5": 0.9875
+    },
+    {
+      "step": 960,
+      "text_line_mean_iou_at_5": 0.853779187643075,
+      "text_line_recall_at_5": 0.9875
+    }
+  ],
+  "filter_cache_sha256": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+  "final_loss": 0.8108141422271729,
+  "initial_loss": 3.1914567947387695,
+  "interpretation": "If train-only text-line Recall@5 cannot approach 1.0, do not start a large run; repair the instance mask objective or architecture.",
+  "learning_rate": 0.0001,
+  "owner_count_rows": {
+    "2": 16,
+    "3": 16
+  },
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "row_count": 32,
+  "schema": "pcdc-proposal-tiny-overfit-preflight/v1",
+  "split": "train-only",
+  "steps": 960,
+  "text_bbox_gate_padding": 0.04,
+  "text_bbox_gate_vertical_only": true
+}

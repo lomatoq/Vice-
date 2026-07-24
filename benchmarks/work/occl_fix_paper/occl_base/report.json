@@ -1,0 +1,48 @@
+{
+  "input": "occl_base.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari",
+  "analysis_scale": 4,
+  "smoothing": "paper",
+  "regions": 3,
+  "closed_contours": 2,
+  "rendered_primitive_count": 387,
+  "actual": {
+    "L": 372,
+    "Q": 0,
+    "C": 15
+  },
+  "templates": {
+    "stroke": 1,
+    "occlusion-rect": 1,
+    "paper-smooth": 1
+  },
+  "threshold": 0.0,
+  "underpaint_renderer_calibration": [
+    {
+      "renderer": "cairosvg",
+      "available": false,
+      "error": "OSError"
+    },
+    {
+      "renderer": "resvg",
+      "available": true,
+      "scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "one_sided_support": 0.75
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 1.239
+}

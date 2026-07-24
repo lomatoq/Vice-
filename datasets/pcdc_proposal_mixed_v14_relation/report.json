@@ -1,0 +1,95 @@
+{
+  "builder_source_sha256": "5e34e18a6c747b04093ef6aad6c70eac6ef3431faa71e443b3b43cf30b674fd6",
+  "created_at": "2026-07-23T17:02:35.375212+00:00",
+  "data_contract_source_sha256": "d51a93ebe0f1d881aeb4145bae25b4c8b5f1953de8f7b266199fea167e893531",
+  "inputs": [
+    {
+      "attestation": "raster_vector_pairs_v2.json",
+      "attestation_path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_pre_v14\\source_attestations\\raster_vector_pairs_v2.json",
+      "attestation_sha256": "046e2ee0d4535b0ac561677294f16f11345726e2f24ee68b8450518eb7f205bd",
+      "attested_pair_count": 60190,
+      "attested_payload_content_sha256": "9dec1da872fc86d7966c7b5ec9a26c769746007cdcf1b662a44e98c133e06c83",
+      "attested_payload_file_count": 90285,
+      "pairs": 60190,
+      "pairs_jsonl_sha256": "c9a13effdb0e63619d94c0076d82d17d4fe4cf18d70f345cd0063f966d3c70b0",
+      "payload_content_sha256": "9dec1da872fc86d7966c7b5ec9a26c769746007cdcf1b662a44e98c133e06c83",
+      "payload_file_count": 90285,
+      "renderer_prefix": "cairosvg-pillow",
+      "root": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\raster_vector_pairs",
+      "schema": "pcdc-external-raster-vector-corpus-attestation/v2"
+    },
+    {
+      "attestation": "report.json",
+      "attestation_sha256": "2147e889d12d4960dce087fc2a345d4d984ea45f670cf0634d8848a7b42a0ac6",
+      "pairs": 7200,
+      "pairs_jsonl_sha256": "d0b5cb6f99776f38d1ea24f18b0b72030e503e01d72dd19111eeedf76510c98d",
+      "payload_content_sha256": "01692ec2a2164e4e6b946b382b9dad0d9dccecc6daa5ac13c1f278dee759fa65",
+      "payload_file_count": 9000,
+      "root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_text_factory_v2_curve_v14",
+      "schema": "pcdc-proposal-text-data-factory/v2"
+    },
+    {
+      "attestation": "report.json",
+      "attestation_sha256": "0243ad8b672769883e9450f1a01905da13baf83f843da33d101b8e41afad8462",
+      "pairs": 8000,
+      "pairs_jsonl_sha256": "00055b0fb081cad0aabd325640fbc89267d86f16ea5ec803096480b009d52fe5",
+      "payload_content_sha256": "6606a3f7f801ea63e5c046058c04ed07165241d646d588e36ee7c5a557d24bc2",
+      "payload_file_count": 12000,
+      "root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_structure_factory_v2_relation_8k",
+      "schema": "pcdc-proposal-structure-data-factory/v2"
+    }
+  ],
+  "pair_count": 75390,
+  "pairs_jsonl_sha256": "4ca2df91b8c6ea37d0db2acf28e128b64b36c8ff32a076717642d6b0ada9997d",
+  "payload_policy": "absolute-read-only-references/no-copy",
+  "schema": "pcdc-proposal-mixed-corpus/v1",
+  "split_audit": {
+    "declared_supplement_target_counts": {
+      "appearance_model|calibration": 200,
+      "appearance_model|test": 188,
+      "appearance_model|train": 1612,
+      "glyph_group|calibration": 1012,
+      "glyph_group|test": 920,
+      "glyph_group|train": 5268,
+      "layer_relation|calibration": 218,
+      "layer_relation|test": 206,
+      "layer_relation|train": 1576,
+      "stroke_network|calibration": 160,
+      "stroke_network|test": 176,
+      "stroke_network|train": 1664,
+      "symmetry_repeat_group|calibration": 198,
+      "symmetry_repeat_group|test": 224,
+      "symmetry_repeat_group|train": 1578,
+      "text_line|calibration": 1012,
+      "text_line|test": 920,
+      "text_line|train": 5268
+    },
+    "group_counts": {
+      "calibration": 1245,
+      "test": 1267,
+      "train": 10017
+    },
+    "group_overlap": false,
+    "policy": "sha256-group-80/10/10",
+    "source_pair_counts": {
+      "iconify|calibration": 2872,
+      "iconify|test": 4494,
+      "iconify|train": 18634,
+      "local|calibration": 186,
+      "local|test": 210,
+      "local|train": 1794,
+      "synthetic-geometry|calibration": 1608,
+      "synthetic-geometry|test": 1616,
+      "synthetic-geometry|train": 12776,
+      "synthetic-open-text|calibration": 1012,
+      "synthetic-open-text|test": 920,
+      "synthetic-open-text|train": 5268,
+      "synthetic-structure-v2|calibration": 776,
+      "synthetic-structure-v2|test": 794,
+      "synthetic-structure-v2|train": 6430,
+      "synthetic-text|calibration": 2190,
+      "synthetic-text|test": 3150,
+      "synthetic-text|train": 10660
+    }
+  }
+}

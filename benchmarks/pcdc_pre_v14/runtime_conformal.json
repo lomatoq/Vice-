@@ -1,0 +1,107 @@
+{
+  "all_quality_modes_exercised": true,
+  "calibration_fixture": {
+    "global_threshold": 0.25,
+    "provenance": [
+      "finite-sample-higher-quantile",
+      "exact-runtime-prefix-rank-with-support-IoU-floor"
+    ],
+    "split_policy": "source-family+semantic-class-disjoint",
+    "target_coverage": 0.99,
+    "thresholds": [
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "text_line",
+        "threshold": 0.25
+      },
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "glyph_group",
+        "threshold": 0.25
+      },
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "whole_shape",
+        "threshold": 0.25
+      },
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "stroke_network",
+        "threshold": 0.25
+      },
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "layer_relation",
+        "threshold": 0.25
+      },
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "symmetry_repeat_group",
+        "threshold": 0.25
+      },
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "appearance_model",
+        "threshold": 0.25
+      },
+      {
+        "alpha": 0.01,
+        "calibration_count": 100,
+        "empirical_coverage": 0.99,
+        "family": "risk_hard_negative",
+        "threshold": 0.25
+      }
+    ]
+  },
+  "candidate_coverage_deferred_to": "hash-bound Experiment-9 exact Fast/Balanced/Max held-out replay",
+  "compiler_source_sha256": "4d33b4cbed681a3230184457f6af89d6996cb67795973c22b8be952df5460c1a",
+  "created_at": "2026-07-23T20:54:23.068381+00:00",
+  "exact_runtime_rule": true,
+  "global_budget_cap_verified": true,
+  "passed": true,
+  "quality_modes": {
+    "balanced": {
+      "admitted_queries": 48,
+      "deterministic": true,
+      "family_prefix_valid": true,
+      "globally_bounded": true,
+      "globally_sorted": true,
+      "maximum_queries": 48,
+      "passed": true
+    },
+    "fast": {
+      "admitted_queries": 24,
+      "deterministic": true,
+      "family_prefix_valid": true,
+      "globally_bounded": true,
+      "globally_sorted": true,
+      "maximum_queries": 24,
+      "passed": true
+    },
+    "max": {
+      "admitted_queries": 64,
+      "deterministic": true,
+      "family_prefix_valid": true,
+      "globally_bounded": true,
+      "globally_sorted": true,
+      "maximum_queries": 64,
+      "passed": true
+    }
+  },
+  "schema": "pcdc-runtime-conformal-harness/v1",
+  "shared_runtime_function": true
+}

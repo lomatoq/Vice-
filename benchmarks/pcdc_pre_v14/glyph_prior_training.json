@@ -1,0 +1,1440 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\glyph_prior_candidate_v1.pt",
+  "checkpoint_sha256": "304867ba6ffd6fcf76879472f3f30392e88de664e6013cf3fd7c63233f1044bf",
+  "compiler_source_sha256": "96a4e83667675cb8c5df49f1cdd867c3c95fd258a31e806161c44c724238edf8",
+  "contract": {
+    "compiler_source_sha256": "96a4e83667675cb8c5df49f1cdd867c3c95fd258a31e806161c44c724238edf8",
+    "config": {
+      "base_channels": 24,
+      "character_embedding_dim": 16,
+      "component_classes": 6,
+      "hole_classes": 5,
+      "image_size": 64,
+      "input_channels": 3,
+      "topology_embedding_dim": 8
+    },
+    "family_assignment": [
+      [
+        "akshar",
+        "train"
+      ],
+      [
+        "alegreya",
+        "train"
+      ],
+      [
+        "alexbrush",
+        "train"
+      ],
+      [
+        "allura",
+        "train"
+      ],
+      [
+        "anton",
+        "train"
+      ],
+      [
+        "archivo",
+        "test"
+      ],
+      [
+        "archivonarrow",
+        "train"
+      ],
+      [
+        "arvo",
+        "train"
+      ],
+      [
+        "audiowide",
+        "calibration"
+      ],
+      [
+        "bangers",
+        "train"
+      ],
+      [
+        "barlowcondensed",
+        "train"
+      ],
+      [
+        "bebasneue",
+        "train"
+      ],
+      [
+        "bigshouldersdisplay",
+        "train"
+      ],
+      [
+        "bitter",
+        "train"
+      ],
+      [
+        "blackopsone",
+        "train"
+      ],
+      [
+        "bodonimoda",
+        "train"
+      ],
+      [
+        "caveat",
+        "train"
+      ],
+      [
+        "changa",
+        "train"
+      ],
+      [
+        "cinzel",
+        "calibration"
+      ],
+      [
+        "comfortaa",
+        "train"
+      ],
+      [
+        "cookie",
+        "train"
+      ],
+      [
+        "cormorantgaramond",
+        "train"
+      ],
+      [
+        "courgette",
+        "train"
+      ],
+      [
+        "crimsonpro",
+        "train"
+      ],
+      [
+        "dancingscript",
+        "train"
+      ],
+      [
+        "dmserifdisplay",
+        "train"
+      ],
+      [
+        "ebgaramond",
+        "train"
+      ],
+      [
+        "electrolize",
+        "train"
+      ],
+      [
+        "exo2",
+        "calibration"
+      ],
+      [
+        "firacode",
+        "test"
+      ],
+      [
+        "firasans",
+        "train"
+      ],
+      [
+        "fraunces",
+        "train"
+      ],
+      [
+        "grandhotel",
+        "train"
+      ],
+      [
+        "greatvibes",
+        "train"
+      ],
+      [
+        "inter",
+        "train"
+      ],
+      [
+        "kaushanscript",
+        "train"
+      ],
+      [
+        "lato",
+        "test"
+      ],
+      [
+        "librebaskerville",
+        "train"
+      ],
+      [
+        "lobster",
+        "test"
+      ],
+      [
+        "lora",
+        "train"
+      ],
+      [
+        "manrope",
+        "train"
+      ],
+      [
+        "marckscript",
+        "train"
+      ],
+      [
+        "merriweather",
+        "calibration"
+      ],
+      [
+        "michroma",
+        "test"
+      ],
+      [
+        "montserrat",
+        "train"
+      ],
+      [
+        "nothingyoucoulddo",
+        "train"
+      ],
+      [
+        "notosans",
+        "train"
+      ],
+      [
+        "notoserif",
+        "train"
+      ],
+      [
+        "notoserifdisplay",
+        "train"
+      ],
+      [
+        "nunito",
+        "train"
+      ],
+      [
+        "opensans",
+        "train"
+      ],
+      [
+        "orbitron",
+        "calibration"
+      ],
+      [
+        "oswald",
+        "train"
+      ],
+      [
+        "oxanium",
+        "calibration"
+      ],
+      [
+        "pacifico",
+        "train"
+      ],
+      [
+        "parisienne",
+        "train"
+      ],
+      [
+        "playfairdisplay",
+        "train"
+      ],
+      [
+        "poppins",
+        "train"
+      ],
+      [
+        "ptsans",
+        "train"
+      ],
+      [
+        "ptserif",
+        "train"
+      ],
+      [
+        "quantico",
+        "train"
+      ],
+      [
+        "rajdhani",
+        "train"
+      ],
+      [
+        "raleway",
+        "test"
+      ],
+      [
+        "righteous",
+        "calibration"
+      ],
+      [
+        "roboto",
+        "train"
+      ],
+      [
+        "rubik",
+        "train"
+      ],
+      [
+        "russoone",
+        "train"
+      ],
+      [
+        "sacramento",
+        "train"
+      ],
+      [
+        "sairacondensed",
+        "test"
+      ],
+      [
+        "shadowsintolight",
+        "train"
+      ],
+      [
+        "sourcesans3",
+        "train"
+      ],
+      [
+        "sourceserif4",
+        "train"
+      ],
+      [
+        "spectral",
+        "train"
+      ],
+      [
+        "staatliches",
+        "train"
+      ],
+      [
+        "stardosstencil",
+        "train"
+      ],
+      [
+        "teko",
+        "train"
+      ],
+      [
+        "titilliumweb",
+        "calibration"
+      ],
+      [
+        "ubuntu",
+        "train"
+      ],
+      [
+        "unbounded",
+        "test"
+      ],
+      [
+        "worksans",
+        "train"
+      ],
+      [
+        "zillaslab",
+        "train"
+      ]
+    ],
+    "family_count": 81,
+    "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+    "font_count": 241,
+    "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+    "glyph_prior_source_sha256": "f1d5230d4dbfba71ae8a746b02d6c4eb0047c449b93784618dea58ccbfa6c462",
+    "topology_corruption_gate": {
+      "minimum_fraction": 0.65,
+      "minimum_hard_support_iou": 0.88,
+      "minimum_hard_topology_accuracy": 0.95,
+      "minimum_prior_hard_support_iou": 0.78,
+      "minimum_prior_hard_topology_accuracy": 0.88,
+      "minimum_prior_severe_support_iou": 0.7,
+      "minimum_prior_severe_topology_accuracy": 0.8,
+      "minimum_prior_support_iou": 0.82,
+      "minimum_prior_topology_accuracy": 0.9,
+      "minimum_severe_fraction": 0.18,
+      "minimum_severe_support_iou": 0.8,
+      "minimum_severe_topology_accuracy": 0.88
+    },
+    "training_topology_enrichment": {
+      "calibration_and_test_probability": 0.0,
+      "characters": "B8ij&@",
+      "probability": 0.25
+    }
+  },
+  "created_at": "2026-07-23T05:00:00.877849+00:00",
+  "epochs": [
+    {
+      "calibration": {
+        "evaluated_thresholds": [
+          0.5,
+          0.75,
+          0.775,
+          0.8
+        ],
+        "hard_support_iou": 0.8815059950901851,
+        "hard_topology_accuracy": 0.9783199398739666,
+        "loss": 0.46508754177093503,
+        "mask_topology_accuracy": 0.9809,
+        "mean_decoded_threshold": 0.7729950000000003,
+        "per_corruption_profile": {
+          "compound:counter-fill+counter-fill": {
+            "samples": 14,
+            "support_iou": 0.8994532718264138,
+            "topology_accuracy": 1.0
+          },
+          "compound:counter-fill+spurious-island": {
+            "samples": 92,
+            "support_iou": 0.9190669164959984,
+            "topology_accuracy": 0.9782608695652174
+          },
+          "compound:counter-fill+stroke-break": {
+            "samples": 179,
+            "support_iou": 0.9102027233145678,
+            "topology_accuracy": 0.9608938547486033
+          },
+          "compound:counter-punch+counter-punch": {
+            "samples": 221,
+            "support_iou": 0.9190968355193622,
+            "topology_accuracy": 0.9864253393665159
+          },
+          "compound:counter-punch+spurious-island": {
+            "samples": 308,
+            "support_iou": 0.9365848639193292,
+            "topology_accuracy": 0.9902597402597403
+          },
+          "compound:counter-punch+stroke-break": {
+            "samples": 390,
+            "support_iou": 0.9251376925293797,
+            "topology_accuracy": 0.9974358974358974
+          },
+          "compound:spurious-island+counter-fill": {
+            "samples": 91,
+            "support_iou": 0.9358157188665663,
+            "topology_accuracy": 0.978021978021978
+          },
+          "compound:spurious-island+counter-punch": {
+            "samples": 329,
+            "support_iou": 0.9349468034122496,
+            "topology_accuracy": 0.9848024316109423
+          },
+          "compound:spurious-island+spurious-island": {
+            "samples": 516,
+            "support_iou": 0.9268283203839789,
+            "topology_accuracy": 0.9844961240310077
+          },
+          "compound:spurious-island+stroke-break": {
+            "samples": 916,
+            "support_iou": 0.924093977911,
+            "topology_accuracy": 0.9847161572052402
+          },
+          "compound:stroke-break+counter-fill": {
+            "samples": 56,
+            "support_iou": 0.9142445460071594,
+            "topology_accuracy": 0.9821428571428571
+          },
+          "compound:stroke-break+counter-punch": {
+            "samples": 484,
+            "support_iou": 0.9189487484782405,
+            "topology_accuracy": 0.9917355371900827
+          },
+          "compound:stroke-break+spurious-island": {
+            "samples": 933,
+            "support_iou": 0.9230868095425727,
+            "topology_accuracy": 0.9839228295819936
+          },
+          "compound:stroke-break+stroke-break": {
+            "samples": 1668,
+            "support_iou": 0.9188257047115105,
+            "topology_accuracy": 0.9958033573141487
+          },
+          "counter-fill": {
+            "samples": 259,
+            "support_iou": 0.9320369519726432,
+            "topology_accuracy": 0.9922779922779923
+          },
+          "counter-punch": {
+            "samples": 975,
+            "support_iou": 0.9239542996127629,
+            "topology_accuracy": 0.9958974358974358
+          },
+          "photometric-only": {
+            "samples": 2703,
+            "support_iou": 0.9282735849223596,
+            "topology_accuracy": 0.9974102848686645
+          },
+          "sampling-topology": {
+            "samples": 6346,
+            "support_iou": 0.7848448722934499,
+            "topology_accuracy": 0.9566656161361488
+          },
+          "spurious-island": {
+            "samples": 1270,
+            "support_iou": 0.9340184340263956,
+            "topology_accuracy": 0.9881889763779528
+          },
+          "stroke-break": {
+            "samples": 2250,
+            "support_iou": 0.9276091895705887,
+            "topology_accuracy": 0.9968888888888889
+          }
+        },
+        "per_topology": {
+          "1:0": {
+            "mask_topology_accuracy": 0.9936573437261195,
+            "samples": 13086,
+            "topology_accuracy": 0.9936573437261195,
+            "topology_head_accuracy": 1.0
+          },
+          "1:1": {
+            "mask_topology_accuracy": 0.984,
+            "samples": 5000,
+            "topology_accuracy": 0.984,
+            "topology_head_accuracy": 1.0
+          },
+          "1:2": {
+            "mask_topology_accuracy": 0.926487747957993,
+            "samples": 857,
+            "topology_accuracy": 0.926487747957993,
+            "topology_head_accuracy": 1.0
+          },
+          "1:3": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 2,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "2:0": {
+            "mask_topology_accuracy": 0.888663967611336,
+            "samples": 988,
+            "topology_accuracy": 0.888663967611336,
+            "topology_head_accuracy": 1.0
+          },
+          "2:1": {
+            "mask_topology_accuracy": 0.35384615384615387,
+            "samples": 65,
+            "topology_accuracy": 0.35384615384615387,
+            "topology_head_accuracy": 1.0
+          },
+          "3:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "4:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          }
+        },
+        "prior_hard_support_iou": 0.8576915575016145,
+        "prior_hard_topology_accuracy": 0.969763542810892,
+        "prior_severe_support_iou": 0.8657001366142011,
+        "prior_severe_topology_accuracy": 0.9745504569126462,
+        "prior_support_iou": 0.8643848228218132,
+        "prior_topology_accuracy": 0.97275,
+        "samples": 20000,
+        "severe_support_iou": 0.8905896538254228,
+        "severe_topology_accuracy": 0.9807408863122727,
+        "severe_topology_fraction": 0.50885,
+        "severe_topology_samples": 10177,
+        "support_iou": 0.8881156984310934,
+        "support_threshold": 0.775,
+        "threshold_iou_sweep": {
+          "0.350": 0.8653591336201282,
+          "0.375": 0.8676722572452208,
+          "0.400": 0.8698700881335432,
+          "0.425": 0.8718822352541163,
+          "0.450": 0.8737984871462898,
+          "0.475": 0.8756104713301288,
+          "0.500": 0.8773004795931575,
+          "0.525": 0.8789126914395845,
+          "0.550": 0.8804017921956901,
+          "0.575": 0.8817962748197942,
+          "0.600": 0.8831065812481601,
+          "0.625": 0.8843277987263066,
+          "0.650": 0.8853790849528664,
+          "0.675": 0.8863596573495767,
+          "0.700": 0.8871988605920517,
+          "0.725": 0.8878994053907736,
+          "0.750": 0.8883417901538686,
+          "0.775": 0.8885044034721695,
+          "0.800": 0.8882858658359983
+        },
+        "topology_accuracy": 0.9809,
+        "topology_corrupted_samples": 17297,
+        "topology_corruption_fraction": 0.86485,
+        "topology_decode_failures": 382,
+        "topology_head_accuracy": 1.0,
+        "topology_threshold_adjustment_fraction": 0.0264
+      },
+      "epoch": 1,
+      "learning_rate": 0.0008,
+      "training_loss": 0.6636727055931091
+    },
+    {
+      "calibration": {
+        "evaluated_thresholds": [
+          0.5,
+          0.75,
+          0.775,
+          0.8
+        ],
+        "hard_support_iou": 0.8971862701410632,
+        "hard_topology_accuracy": 0.9837544082788923,
+        "loss": 0.41215079979896546,
+        "mask_topology_accuracy": 0.9857,
+        "mean_decoded_threshold": 0.7733312500000011,
+        "per_corruption_profile": {
+          "compound:counter-fill+counter-fill": {
+            "samples": 14,
+            "support_iou": 0.8966199505358615,
+            "topology_accuracy": 0.9285714285714286
+          },
+          "compound:counter-fill+spurious-island": {
+            "samples": 92,
+            "support_iou": 0.9255068634771122,
+            "topology_accuracy": 0.9782608695652174
+          },
+          "compound:counter-fill+stroke-break": {
+            "samples": 179,
+            "support_iou": 0.9214362850971922,
+            "topology_accuracy": 0.9608938547486033
+          },
+          "compound:counter-punch+counter-punch": {
+            "samples": 221,
+            "support_iou": 0.936011777758812,
+            "topology_accuracy": 0.9909502262443439
+          },
+          "compound:counter-punch+spurious-island": {
+            "samples": 308,
+            "support_iou": 0.9553556184454919,
+            "topology_accuracy": 0.9967532467532467
+          },
+          "compound:counter-punch+stroke-break": {
+            "samples": 390,
+            "support_iou": 0.9381442883996892,
+            "topology_accuracy": 1.0
+          },
+          "compound:spurious-island+counter-fill": {
+            "samples": 91,
+            "support_iou": 0.9516703408512803,
+            "topology_accuracy": 0.967032967032967
+          },
+          "compound:spurious-island+counter-punch": {
+            "samples": 329,
+            "support_iou": 0.9515597836584895,
+            "topology_accuracy": 0.993920972644377
+          },
+          "compound:spurious-island+spurious-island": {
+            "samples": 516,
+            "support_iou": 0.9431355876774151,
+            "topology_accuracy": 0.9941860465116279
+          },
+          "compound:spurious-island+stroke-break": {
+            "samples": 916,
+            "support_iou": 0.9389403740707681,
+            "topology_accuracy": 0.9890829694323144
+          },
+          "compound:stroke-break+counter-fill": {
+            "samples": 56,
+            "support_iou": 0.9303250892978252,
+            "topology_accuracy": 0.9821428571428571
+          },
+          "compound:stroke-break+counter-punch": {
+            "samples": 484,
+            "support_iou": 0.9390935464632408,
+            "topology_accuracy": 0.9917355371900827
+          },
+          "compound:stroke-break+spurious-island": {
+            "samples": 933,
+            "support_iou": 0.9390275192949805,
+            "topology_accuracy": 0.9892818863879957
+          },
+          "compound:stroke-break+stroke-break": {
+            "samples": 1668,
+            "support_iou": 0.9322669384558036,
+            "topology_accuracy": 0.9940047961630696
+          },
+          "counter-fill": {
+            "samples": 259,
+            "support_iou": 0.9355976102671503,
+            "topology_accuracy": 0.9961389961389961
+          },
+          "counter-punch": {
+            "samples": 975,
+            "support_iou": 0.9434337632583385,
+            "topology_accuracy": 0.9969230769230769
+          },
+          "photometric-only": {
+            "samples": 2703,
+            "support_iou": 0.9430331042120453,
+            "topology_accuracy": 0.9981502034776175
+          },
+          "sampling-topology": {
+            "samples": 6346,
+            "support_iou": 0.8018652253800835,
+            "topology_accuracy": 0.9664355499527262
+          },
+          "spurious-island": {
+            "samples": 1270,
+            "support_iou": 0.9481051839388673,
+            "topology_accuracy": 0.9960629921259843
+          },
+          "stroke-break": {
+            "samples": 2250,
+            "support_iou": 0.9407148311073015,
+            "topology_accuracy": 0.9986666666666667
+          }
+        },
+        "per_topology": {
+          "1:0": {
+            "mask_topology_accuracy": 0.9954913648173621,
+            "samples": 13086,
+            "topology_accuracy": 0.9954913648173621,
+            "topology_head_accuracy": 1.0
+          },
+          "1:1": {
+            "mask_topology_accuracy": 0.9848,
+            "samples": 5000,
+            "topology_accuracy": 0.9848,
+            "topology_head_accuracy": 1.0
+          },
+          "1:2": {
+            "mask_topology_accuracy": 0.9323220536756126,
+            "samples": 857,
+            "topology_accuracy": 0.9323220536756126,
+            "topology_head_accuracy": 1.0
+          },
+          "1:3": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 2,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "2:0": {
+            "mask_topology_accuracy": 0.9392712550607287,
+            "samples": 988,
+            "topology_accuracy": 0.9392712550607287,
+            "topology_head_accuracy": 1.0
+          },
+          "2:1": {
+            "mask_topology_accuracy": 0.5538461538461539,
+            "samples": 65,
+            "topology_accuracy": 0.5538461538461539,
+            "topology_head_accuracy": 1.0
+          },
+          "3:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "4:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          }
+        },
+        "prior_hard_support_iou": 0.8776991224234338,
+        "prior_hard_topology_accuracy": 0.9757183326588426,
+        "prior_severe_support_iou": 0.885552891879369,
+        "prior_severe_topology_accuracy": 0.9792669745504569,
+        "prior_support_iou": 0.8842804665722651,
+        "prior_topology_accuracy": 0.97845,
+        "samples": 20000,
+        "severe_support_iou": 0.9053350603068612,
+        "severe_topology_accuracy": 0.9841800137565098,
+        "severe_topology_fraction": 0.50885,
+        "severe_topology_samples": 10177,
+        "support_iou": 0.9036959399191951,
+        "support_threshold": 0.775,
+        "threshold_iou_sweep": {
+          "0.350": 0.8835814285173893,
+          "0.375": 0.8856045595835964,
+          "0.400": 0.8874795469717122,
+          "0.425": 0.8892498280088758,
+          "0.450": 0.8909290549214441,
+          "0.475": 0.8925209201834349,
+          "0.500": 0.8940398716144412,
+          "0.525": 0.8954283625245976,
+          "0.550": 0.8967712856755354,
+          "0.575": 0.8980263303884664,
+          "0.600": 0.8992037230204042,
+          "0.625": 0.9002859765984277,
+          "0.650": 0.9012550588255193,
+          "0.675": 0.9021128109809359,
+          "0.700": 0.902848755563904,
+          "0.725": 0.9034552168643688,
+          "0.750": 0.9038969656277299,
+          "0.775": 0.9041363780258245,
+          "0.800": 0.90406996602035
+        },
+        "topology_accuracy": 0.9857,
+        "topology_corrupted_samples": 17297,
+        "topology_corruption_fraction": 0.86485,
+        "topology_decode_failures": 286,
+        "topology_head_accuracy": 1.0,
+        "topology_threshold_adjustment_fraction": 0.02145
+      },
+      "epoch": 2,
+      "learning_rate": 0.0004,
+      "training_loss": 0.4769489284286499
+    },
+    {
+      "calibration": {
+        "evaluated_thresholds": [
+          0.5,
+          0.75,
+          0.775,
+          0.8
+        ],
+        "hard_support_iou": 0.9019987218787968,
+        "hard_topology_accuracy": 0.9820200034688096,
+        "loss": 0.38665991382598874,
+        "mask_topology_accuracy": 0.9842,
+        "mean_decoded_threshold": 0.7980950000000012,
+        "per_corruption_profile": {
+          "compound:counter-fill+counter-fill": {
+            "samples": 14,
+            "support_iou": 0.9205394725539043,
+            "topology_accuracy": 1.0
+          },
+          "compound:counter-fill+spurious-island": {
+            "samples": 92,
+            "support_iou": 0.9364173719180393,
+            "topology_accuracy": 0.9891304347826086
+          },
+          "compound:counter-fill+stroke-break": {
+            "samples": 179,
+            "support_iou": 0.932408668028137,
+            "topology_accuracy": 1.0
+          },
+          "compound:counter-punch+counter-punch": {
+            "samples": 221,
+            "support_iou": 0.9408394375385576,
+            "topology_accuracy": 0.9909502262443439
+          },
+          "compound:counter-punch+spurious-island": {
+            "samples": 308,
+            "support_iou": 0.9550502161691427,
+            "topology_accuracy": 0.9967532467532467
+          },
+          "compound:counter-punch+stroke-break": {
+            "samples": 390,
+            "support_iou": 0.9417465568729726,
+            "topology_accuracy": 1.0
+          },
+          "compound:spurious-island+counter-fill": {
+            "samples": 91,
+            "support_iou": 0.9542708663079034,
+            "topology_accuracy": 0.967032967032967
+          },
+          "compound:spurious-island+counter-punch": {
+            "samples": 329,
+            "support_iou": 0.9521169767520264,
+            "topology_accuracy": 0.993920972644377
+          },
+          "compound:spurious-island+spurious-island": {
+            "samples": 516,
+            "support_iou": 0.9442375414033148,
+            "topology_accuracy": 0.9903100775193798
+          },
+          "compound:spurious-island+stroke-break": {
+            "samples": 916,
+            "support_iou": 0.9415463871281629,
+            "topology_accuracy": 0.9879912663755459
+          },
+          "compound:stroke-break+counter-fill": {
+            "samples": 56,
+            "support_iou": 0.932622894465452,
+            "topology_accuracy": 0.9821428571428571
+          },
+          "compound:stroke-break+counter-punch": {
+            "samples": 484,
+            "support_iou": 0.9400479132178571,
+            "topology_accuracy": 0.9958677685950413
+          },
+          "compound:stroke-break+spurious-island": {
+            "samples": 933,
+            "support_iou": 0.9403325691997126,
+            "topology_accuracy": 0.9817792068595927
+          },
+          "compound:stroke-break+stroke-break": {
+            "samples": 1668,
+            "support_iou": 0.9344787868422768,
+            "topology_accuracy": 0.9922062350119905
+          },
+          "counter-fill": {
+            "samples": 259,
+            "support_iou": 0.9440675263485466,
+            "topology_accuracy": 0.9961389961389961
+          },
+          "counter-punch": {
+            "samples": 975,
+            "support_iou": 0.9459992173336634,
+            "topology_accuracy": 0.9989743589743589
+          },
+          "photometric-only": {
+            "samples": 2703,
+            "support_iou": 0.9459558864768396,
+            "topology_accuracy": 0.9981502034776175
+          },
+          "sampling-topology": {
+            "samples": 6346,
+            "support_iou": 0.8101133960512756,
+            "topology_accuracy": 0.9624960605105578
+          },
+          "spurious-island": {
+            "samples": 1270,
+            "support_iou": 0.9514060983480561,
+            "topology_accuracy": 0.9952755905511811
+          },
+          "stroke-break": {
+            "samples": 2250,
+            "support_iou": 0.9435126894768099,
+            "topology_accuracy": 0.9968888888888889
+          }
+        },
+        "per_topology": {
+          "1:0": {
+            "mask_topology_accuracy": 0.9941922665443986,
+            "samples": 13086,
+            "topology_accuracy": 0.9941922665443986,
+            "topology_head_accuracy": 1.0
+          },
+          "1:1": {
+            "mask_topology_accuracy": 0.9866,
+            "samples": 5000,
+            "topology_accuracy": 0.9866,
+            "topology_head_accuracy": 1.0
+          },
+          "1:2": {
+            "mask_topology_accuracy": 0.9358226371061844,
+            "samples": 857,
+            "topology_accuracy": 0.9358226371061844,
+            "topology_head_accuracy": 1.0
+          },
+          "1:3": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 2,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "2:0": {
+            "mask_topology_accuracy": 0.9190283400809717,
+            "samples": 988,
+            "topology_accuracy": 0.9190283400809717,
+            "topology_head_accuracy": 1.0
+          },
+          "2:1": {
+            "mask_topology_accuracy": 0.47692307692307695,
+            "samples": 65,
+            "topology_accuracy": 0.47692307692307695,
+            "topology_head_accuracy": 1.0
+          },
+          "3:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "4:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          }
+        },
+        "prior_hard_support_iou": 0.8863492882351989,
+        "prior_hard_topology_accuracy": 0.9753136382031566,
+        "prior_severe_support_iou": 0.8940917755571884,
+        "prior_severe_topology_accuracy": 0.9792669745504569,
+        "prior_support_iou": 0.8924385456380416,
+        "prior_topology_accuracy": 0.9781,
+        "samples": 20000,
+        "severe_support_iou": 0.9096874129825816,
+        "severe_topology_accuracy": 0.9834921882676624,
+        "severe_topology_fraction": 0.50885,
+        "severe_topology_samples": 10177,
+        "support_iou": 0.9082848404526112,
+        "support_threshold": 0.8,
+        "threshold_iou_sweep": {
+          "0.350": 0.8894775148597267,
+          "0.375": 0.8913201981102764,
+          "0.400": 0.8930201468918106,
+          "0.425": 0.8946130142290771,
+          "0.450": 0.896132653590883,
+          "0.475": 0.8975410123579131,
+          "0.500": 0.8989061690677447,
+          "0.525": 0.9001787975831782,
+          "0.550": 0.9013792365839641,
+          "0.575": 0.9024873513472171,
+          "0.600": 0.9035567791191698,
+          "0.625": 0.9045493722084392,
+          "0.650": 0.9054672959023956,
+          "0.675": 0.9062922872967452,
+          "0.700": 0.9070038201228094,
+          "0.725": 0.9076158403611421,
+          "0.750": 0.9081198639342785,
+          "0.775": 0.9084700007033241,
+          "0.800": 0.9086439364286154
+        },
+        "topology_accuracy": 0.9842,
+        "topology_corrupted_samples": 17297,
+        "topology_corruption_fraction": 0.86485,
+        "topology_decode_failures": 316,
+        "topology_head_accuracy": 1.0,
+        "topology_threshold_adjustment_fraction": 0.0197
+      },
+      "epoch": 3,
+      "learning_rate": 0.0002,
+      "training_loss": 0.436848179643631
+    },
+    {
+      "calibration": {
+        "evaluated_thresholds": [
+          0.5,
+          0.75,
+          0.775,
+          0.8
+        ],
+        "hard_support_iou": 0.9050542802084256,
+        "hard_topology_accuracy": 0.983176273342198,
+        "loss": 0.3763268565654755,
+        "mask_topology_accuracy": 0.98525,
+        "mean_decoded_threshold": 0.7983812500000005,
+        "per_corruption_profile": {
+          "compound:counter-fill+counter-fill": {
+            "samples": 14,
+            "support_iou": 0.9231359181934384,
+            "topology_accuracy": 0.9285714285714286
+          },
+          "compound:counter-fill+spurious-island": {
+            "samples": 92,
+            "support_iou": 0.9399094287041337,
+            "topology_accuracy": 0.9782608695652174
+          },
+          "compound:counter-fill+stroke-break": {
+            "samples": 179,
+            "support_iou": 0.9381851207783888,
+            "topology_accuracy": 0.9888268156424581
+          },
+          "compound:counter-punch+counter-punch": {
+            "samples": 221,
+            "support_iou": 0.9434406413029648,
+            "topology_accuracy": 0.9909502262443439
+          },
+          "compound:counter-punch+spurious-island": {
+            "samples": 308,
+            "support_iou": 0.9565710881366553,
+            "topology_accuracy": 1.0
+          },
+          "compound:counter-punch+stroke-break": {
+            "samples": 390,
+            "support_iou": 0.9441304478629736,
+            "topology_accuracy": 0.9974358974358974
+          },
+          "compound:spurious-island+counter-fill": {
+            "samples": 91,
+            "support_iou": 0.9580235257091152,
+            "topology_accuracy": 0.978021978021978
+          },
+          "compound:spurious-island+counter-punch": {
+            "samples": 329,
+            "support_iou": 0.9550931892058241,
+            "topology_accuracy": 0.993920972644377
+          },
+          "compound:spurious-island+spurious-island": {
+            "samples": 516,
+            "support_iou": 0.9451556547454445,
+            "topology_accuracy": 0.9903100775193798
+          },
+          "compound:spurious-island+stroke-break": {
+            "samples": 916,
+            "support_iou": 0.9437079205963694,
+            "topology_accuracy": 0.990174672489083
+          },
+          "compound:stroke-break+counter-fill": {
+            "samples": 56,
+            "support_iou": 0.9349475310044065,
+            "topology_accuracy": 1.0
+          },
+          "compound:stroke-break+counter-punch": {
+            "samples": 484,
+            "support_iou": 0.9433709494918293,
+            "topology_accuracy": 0.993801652892562
+          },
+          "compound:stroke-break+spurious-island": {
+            "samples": 933,
+            "support_iou": 0.9426040028823206,
+            "topology_accuracy": 0.9892818863879957
+          },
+          "compound:stroke-break+stroke-break": {
+            "samples": 1668,
+            "support_iou": 0.9385870359630137,
+            "topology_accuracy": 0.9934052757793765
+          },
+          "counter-fill": {
+            "samples": 259,
+            "support_iou": 0.9473697638936374,
+            "topology_accuracy": 0.9961389961389961
+          },
+          "counter-punch": {
+            "samples": 975,
+            "support_iou": 0.9498573526761722,
+            "topology_accuracy": 0.9989743589743589
+          },
+          "photometric-only": {
+            "samples": 2703,
+            "support_iou": 0.947785549160219,
+            "topology_accuracy": 0.998520162782094
+          },
+          "sampling-topology": {
+            "samples": 6346,
+            "support_iou": 0.8138626819673135,
+            "topology_accuracy": 0.9640718562874252
+          },
+          "spurious-island": {
+            "samples": 1270,
+            "support_iou": 0.9526635720601238,
+            "topology_accuracy": 0.9960629921259843
+          },
+          "stroke-break": {
+            "samples": 2250,
+            "support_iou": 0.9459089548394283,
+            "topology_accuracy": 0.9973333333333333
+          }
+        },
+        "per_topology": {
+          "1:0": {
+            "mask_topology_accuracy": 0.9953385297264252,
+            "samples": 13086,
+            "topology_accuracy": 0.9953385297264252,
+            "topology_head_accuracy": 1.0
+          },
+          "1:1": {
+            "mask_topology_accuracy": 0.984,
+            "samples": 5000,
+            "topology_accuracy": 0.984,
+            "topology_head_accuracy": 1.0
+          },
+          "1:2": {
+            "mask_topology_accuracy": 0.9369894982497082,
+            "samples": 857,
+            "topology_accuracy": 0.9369894982497082,
+            "topology_head_accuracy": 1.0
+          },
+          "1:3": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 2,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "2:0": {
+            "mask_topology_accuracy": 0.937246963562753,
+            "samples": 988,
+            "topology_accuracy": 0.937246963562753,
+            "topology_head_accuracy": 1.0
+          },
+          "2:1": {
+            "mask_topology_accuracy": 0.47692307692307695,
+            "samples": 65,
+            "topology_accuracy": 0.47692307692307695,
+            "topology_head_accuracy": 1.0
+          },
+          "3:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          },
+          "4:0": {
+            "mask_topology_accuracy": 0.0,
+            "samples": 1,
+            "topology_accuracy": 0.0,
+            "topology_head_accuracy": 1.0
+          }
+        },
+        "prior_hard_support_iou": 0.8905231216992248,
+        "prior_hard_topology_accuracy": 0.9773949239752558,
+        "prior_severe_support_iou": 0.8979715887345505,
+        "prior_severe_topology_accuracy": 0.9801513216075465,
+        "prior_support_iou": 0.8965789491303009,
+        "prior_topology_accuracy": 0.98005,
+        "samples": 20000,
+        "severe_support_iou": 0.9124120812068758,
+        "severe_topology_accuracy": 0.9841800137565098,
+        "severe_topology_fraction": 0.50885,
+        "severe_topology_samples": 10177,
+        "support_iou": 0.9111555387073865,
+        "support_threshold": 0.8,
+        "threshold_iou_sweep": {
+          "0.350": 0.8874772321934883,
+          "0.375": 0.8894788652950063,
+          "0.400": 0.8913801910306359,
+          "0.425": 0.8931948671922534,
+          "0.450": 0.8948981111285739,
+          "0.475": 0.8965291495527742,
+          "0.500": 0.8980988601204326,
+          "0.525": 0.8995917477070706,
+          "0.550": 0.9010388718771066,
+          "0.575": 0.9024106132702973,
+          "0.600": 0.9037317140023433,
+          "0.625": 0.9049799224886279,
+          "0.650": 0.9061527107982689,
+          "0.675": 0.9072780952766544,
+          "0.700": 0.9082894257783718,
+          "0.725": 0.9092320377265882,
+          "0.750": 0.9100976132128961,
+          "0.775": 0.9108655322815747,
+          "0.800": 0.9114081919537762
+        },
+        "topology_accuracy": 0.98525,
+        "topology_corrupted_samples": 17297,
+        "topology_corruption_fraction": 0.86485,
+        "topology_decode_failures": 295,
+        "topology_head_accuracy": 1.0,
+        "topology_threshold_adjustment_fraction": 0.01915
+      },
+      "epoch": 4,
+      "learning_rate": 0.0001,
+      "training_loss": 0.41710050429153445
+    }
+  ],
+  "gate_pass": true,
+  "held_out_samples_per_split": 20000,
+  "held_out_test": {
+    "hard_support_iou": 0.9000684229488934,
+    "hard_topology_accuracy": 0.974901915531964,
+    "loss": 0.4131698225975037,
+    "mask_topology_accuracy": 0.97745,
+    "mean_decoded_threshold": 0.7963537500000006,
+    "per_corruption_profile": {
+      "compound:counter-fill+counter-fill": {
+        "samples": 6,
+        "support_iou": 0.931883537023724,
+        "topology_accuracy": 1.0
+      },
+      "compound:counter-fill+spurious-island": {
+        "samples": 104,
+        "support_iou": 0.9525448516711423,
+        "topology_accuracy": 1.0
+      },
+      "compound:counter-fill+stroke-break": {
+        "samples": 198,
+        "support_iou": 0.9397248554767851,
+        "topology_accuracy": 0.98989898989899
+      },
+      "compound:counter-punch+counter-punch": {
+        "samples": 199,
+        "support_iou": 0.9527716394752926,
+        "topology_accuracy": 0.9949748743718593
+      },
+      "compound:counter-punch+spurious-island": {
+        "samples": 296,
+        "support_iou": 0.9536798574276694,
+        "topology_accuracy": 0.9831081081081081
+      },
+      "compound:counter-punch+stroke-break": {
+        "samples": 384,
+        "support_iou": 0.9494026732818697,
+        "topology_accuracy": 0.9973958333333334
+      },
+      "compound:spurious-island+counter-fill": {
+        "samples": 96,
+        "support_iou": 0.9551252561582535,
+        "topology_accuracy": 1.0
+      },
+      "compound:spurious-island+counter-punch": {
+        "samples": 318,
+        "support_iou": 0.9564260968578143,
+        "topology_accuracy": 0.9905660377358491
+      },
+      "compound:spurious-island+spurious-island": {
+        "samples": 513,
+        "support_iou": 0.9520525033053507,
+        "topology_accuracy": 0.9922027290448343
+      },
+      "compound:spurious-island+stroke-break": {
+        "samples": 951,
+        "support_iou": 0.9422399432866768,
+        "topology_accuracy": 0.9894847528916929
+      },
+      "compound:stroke-break+counter-fill": {
+        "samples": 48,
+        "support_iou": 0.9518107632407061,
+        "topology_accuracy": 0.9791666666666666
+      },
+      "compound:stroke-break+counter-punch": {
+        "samples": 466,
+        "support_iou": 0.9453013072298654,
+        "topology_accuracy": 0.9957081545064378
+      },
+      "compound:stroke-break+spurious-island": {
+        "samples": 936,
+        "support_iou": 0.9433437452776767,
+        "topology_accuracy": 0.9893162393162394
+      },
+      "compound:stroke-break+stroke-break": {
+        "samples": 1586,
+        "support_iou": 0.9403340375139905,
+        "topology_accuracy": 0.9924337957124842
+      },
+      "counter-fill": {
+        "samples": 288,
+        "support_iou": 0.9519364476202277,
+        "topology_accuracy": 0.9930555555555556
+      },
+      "counter-punch": {
+        "samples": 958,
+        "support_iou": 0.9519524661880545,
+        "topology_accuracy": 0.9958246346555324
+      },
+      "photometric-only": {
+        "samples": 2668,
+        "support_iou": 0.9503218883487213,
+        "topology_accuracy": 0.9940029985007496
+      },
+      "sampling-topology": {
+        "samples": 6551,
+        "support_iou": 0.7801248291484664,
+        "topology_accuracy": 0.9450465577774385
+      },
+      "spurious-island": {
+        "samples": 1253,
+        "support_iou": 0.9503204098626024,
+        "topology_accuracy": 0.9904229848363927
+      },
+      "stroke-break": {
+        "samples": 2181,
+        "support_iou": 0.9470521008889629,
+        "topology_accuracy": 0.9972489683631361
+      }
+    },
+    "per_topology": {
+      "1:0": {
+        "mask_topology_accuracy": 0.990305919745729,
+        "samples": 12585,
+        "topology_accuracy": 0.990305919745729,
+        "topology_head_accuracy": 1.0
+      },
+      "1:1": {
+        "mask_topology_accuracy": 0.9791268046616803,
+        "samples": 5749,
+        "topology_accuracy": 0.9791268046616803,
+        "topology_head_accuracy": 1.0
+      },
+      "1:2": {
+        "mask_topology_accuracy": 0.8870779976717112,
+        "samples": 859,
+        "topology_accuracy": 0.8870779976717112,
+        "topology_head_accuracy": 1.0
+      },
+      "1:3": {
+        "mask_topology_accuracy": 0.0,
+        "samples": 8,
+        "topology_accuracy": 0.0,
+        "topology_head_accuracy": 1.0
+      },
+      "2:0": {
+        "mask_topology_accuracy": 0.9243085880640466,
+        "samples": 687,
+        "topology_accuracy": 0.9243085880640466,
+        "topology_head_accuracy": 1.0
+      },
+      "2:1": {
+        "mask_topology_accuracy": 0.9230769230769231,
+        "samples": 52,
+        "topology_accuracy": 0.9230769230769231,
+        "topology_head_accuracy": 1.0
+      },
+      "3:0": {
+        "mask_topology_accuracy": 0.36,
+        "samples": 25,
+        "topology_accuracy": 0.36,
+        "topology_head_accuracy": 1.0
+      },
+      "4:0": {
+        "mask_topology_accuracy": 0.2,
+        "samples": 15,
+        "topology_accuracy": 0.2,
+        "topology_head_accuracy": 1.0
+      },
+      "5:0": {
+        "mask_topology_accuracy": 0.0,
+        "samples": 20,
+        "topology_accuracy": 0.0,
+        "topology_head_accuracy": 1.0
+      }
+    },
+    "prior_hard_support_iou": 0.882138398872219,
+    "prior_hard_topology_accuracy": 0.9652665589660743,
+    "prior_severe_support_iou": 0.8920315424138283,
+    "prior_severe_topology_accuracy": 0.9675440332475757,
+    "prior_support_iou": 0.8900125949840428,
+    "prior_topology_accuracy": 0.9678,
+    "samples": 20000,
+    "severe_support_iou": 0.909802575219336,
+    "severe_topology_accuracy": 0.97615278052642,
+    "severe_topology_fraction": 0.5053,
+    "severe_topology_samples": 10106,
+    "support_iou": 0.9075730733213112,
+    "support_threshold": 0.8,
+    "topology_accuracy": 0.97745,
+    "topology_corrupted_samples": 17332,
+    "topology_corruption_fraction": 0.8666,
+    "topology_decode_failures": 451,
+    "topology_head_accuracy": 1.0,
+    "topology_threshold_adjustment_fraction": 0.03525
+  },
+  "minimum_prior_hard_support_iou": 0.78,
+  "minimum_prior_hard_topology_accuracy": 0.88,
+  "minimum_prior_severe_support_iou": 0.7,
+  "minimum_prior_severe_topology_accuracy": 0.8,
+  "minimum_prior_support_iou": 0.82,
+  "minimum_prior_topology_accuracy": 0.9,
+  "minimum_severe_support_iou": 0.8,
+  "minimum_severe_topology_accuracy": 0.88,
+  "minimum_support_iou": 0.9,
+  "minimum_topology_accuracy": 0.97,
+  "native_runtime_identity": {
+    "artifacts": {
+      "native/pcdc_native_core/Cargo.toml": {
+        "bytes": 179,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\Cargo.toml",
+        "sha256": "402328feedee55c35179e36149b59c67d974311d1310acebddc5e8ed9e47fee9"
+      },
+      "native/pcdc_native_core/src/lib.rs": {
+        "bytes": 3571,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\src\\lib.rs",
+        "sha256": "0161904eeeaa179fa7d974dd4da289d5d39f0fd3e0643cc35cc296552af35151"
+      },
+      "native/pcdc_native_core/target/release/pcdc_native_core.dll": {
+        "bytes": 94720,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\target\\release\\pcdc_native_core.dll",
+        "sha256": "3ec90775463ed6a18523f153494255f901f6f590f5d67d79ca9ab055f515a996"
+      }
+    },
+    "complete": true,
+    "schema": "pcdc-native-runtime-identity/v1",
+    "sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c"
+  },
+  "promotion_policy": "candidate only; promotion additionally requires Experiment 4 line-level GCR, zero reviewed-line topology regression and warm p95",
+  "requested_minimum_support_iou": 0.9,
+  "requested_minimum_topology_accuracy": 0.97,
+  "schema": "pcdc-glyph-prior-training/v1",
+  "selected_epoch": 4,
+  "status": "candidate-passed",
+  "total_training_variants": 2000000,
+  "training_contract_sha256": "440e3e771f06afec0c7a1254d153be42adbed3726b57132d72020438534bd77a",
+  "training_variants": 2000000
+}

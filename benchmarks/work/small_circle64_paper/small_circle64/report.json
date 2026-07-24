@@ -6,16 +6,34 @@
   "smoothing": "paper",
   "regions": 1,
   "closed_contours": 1,
-  "rendered_primitive_count": 8,
+  "rendered_primitive_count": 4,
   "actual": {
     "L": 0,
     "Q": 0,
-    "C": 8
+    "C": 4
   },
   "templates": {
     "paper-smooth": 1
   },
   "threshold": 0.0,
+  "diagram_signature": {},
+  "underpaint_renderer_calibration": [
+    {
+      "renderer": "cairosvg",
+      "available": false,
+      "error": "OSError"
+    },
+    {
+      "renderer": "resvg",
+      "available": true,
+      "scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "one_sided_support": 0.75
+    }
+  ],
   "corner_detector": {
     "type": "resolution-density-hybrid-cnn",
     "small_model": "corner_cnn.pt",
@@ -25,5 +43,51 @@
     "small_extent_max": 4.0,
     "small_density_min": 8.0
   },
+  "per_fill_coverage_calibration": [
+    {
+      "router": "source-measured-per-fill-subpixel-coverage",
+      "paths": 1,
+      "fills": 1,
+      "searched_fills": 1,
+      "changed_fills": 0,
+      "blur": 0.0,
+      "incumbent": {
+        "mae": 1.514,
+        "rmse": 9.567,
+        "ink_iou": 0.9853,
+        "ssim": 0.97031,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "mae": 1.514,
+        "rmse": 9.567,
+        "ink_iou": 0.9853,
+        "ssim": 0.97031,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "compact_color_detail": {
+        "incumbent": null,
+        "candidate": null
+      },
+      "trail": [],
+      "accepted": false,
+      "gains": {
+        "ssim": 0.0,
+        "ink_iou": 0.0,
+        "mae_reduction": 0.0
+      },
+      "reason": "court-rejected"
+    }
+  ],
   "kink_energy": 0.0
 }

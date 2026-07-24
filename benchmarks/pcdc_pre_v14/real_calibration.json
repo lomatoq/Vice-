@@ -1,0 +1,178 @@
+{
+  "capacity": {
+    "calibration_gates": {
+      "appearance_model": {
+        "instances": 4,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "glyph_group": {
+        "instances": 10,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "layer_relation": {
+        "instances": 5,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "risk_hard_negative": {
+        "instances": 0,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "stroke_network": {
+        "instances": 0,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "symmetry_repeat_group": {
+        "instances": 0,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "text_line": {
+        "instances": 10,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "whole_shape": {
+        "instances": 12,
+        "minimum_instances": 100,
+        "passed": false
+      }
+    },
+    "passed": false,
+    "split_family_counts": {
+      "calibration": {
+        "appearance_model": 4,
+        "glyph_group": 10,
+        "layer_relation": 5,
+        "text_line": 10,
+        "whole_shape": 12
+      },
+      "test": {
+        "appearance_model": 4,
+        "glyph_group": 14,
+        "layer_relation": 2,
+        "text_line": 14,
+        "whole_shape": 9
+      },
+      "train": {
+        "appearance_model": 22,
+        "glyph_group": 59,
+        "layer_relation": 7,
+        "text_line": 59,
+        "whole_shape": 48
+      }
+    },
+    "test_gates": {
+      "appearance_model": {
+        "instances": 4,
+        "minimum_instances": 20,
+        "passed": false
+      },
+      "glyph_group": {
+        "instances": 14,
+        "minimum_instances": 20,
+        "passed": false
+      },
+      "layer_relation": {
+        "instances": 2,
+        "minimum_instances": 20,
+        "passed": false
+      },
+      "overall": {
+        "instances": 29,
+        "minimum_instances": 100,
+        "passed": false
+      },
+      "risk_hard_negative": {
+        "instances": 0,
+        "minimum_instances": 20,
+        "passed": false
+      },
+      "stroke_network": {
+        "instances": 0,
+        "minimum_instances": 20,
+        "passed": false
+      },
+      "symmetry_repeat_group": {
+        "instances": 0,
+        "minimum_instances": 20,
+        "passed": false
+      },
+      "text_line": {
+        "instances": 14,
+        "minimum_instances": 20,
+        "passed": false
+      },
+      "whole_shape": {
+        "instances": 9,
+        "minimum_instances": 20,
+        "passed": false
+      }
+    }
+  },
+  "compiler_source_sha256": "4d33b4cbed681a3230184457f6af89d6996cb67795973c22b8be952df5460c1a",
+  "corpus": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_real_loci_v1",
+  "evaluation_source_sha256": "f134fba1bb8c6753bfdd46ff42735c78d38af1b22eadaaf80b10ff24c0f8c501",
+  "excluded_reasons": {
+    "missing-explicit-proposal-family": 104
+  },
+  "excluded_rows": 104,
+  "minimum_additional_instances": {
+    "calibration": {
+      "appearance_model": 96,
+      "glyph_group": 90,
+      "layer_relation": 95,
+      "risk_hard_negative": 100,
+      "stroke_network": 100,
+      "symmetry_repeat_group": 100,
+      "text_line": 90,
+      "whole_shape": 88
+    },
+    "test": {
+      "appearance_model": 16,
+      "glyph_group": 6,
+      "layer_relation": 18,
+      "overall": 71,
+      "risk_hard_negative": 20,
+      "stroke_network": 20,
+      "symmetry_repeat_group": 20,
+      "text_line": 6,
+      "whole_shape": 11
+    }
+  },
+  "native_runtime_identity": {
+    "artifacts": {
+      "native/pcdc_native_core/Cargo.toml": {
+        "bytes": 179,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\Cargo.toml",
+        "sha256": "402328feedee55c35179e36149b59c67d974311d1310acebddc5e8ed9e47fee9"
+      },
+      "native/pcdc_native_core/src/lib.rs": {
+        "bytes": 3571,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\src\\lib.rs",
+        "sha256": "0161904eeeaa179fa7d974dd4da289d5d39f0fd3e0643cc35cc296552af35151"
+      },
+      "native/pcdc_native_core/target/release/pcdc_native_core.dll": {
+        "bytes": 94720,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\target\\release\\pcdc_native_core.dll",
+        "sha256": "3ec90775463ed6a18523f153494255f901f6f590f5d67d79ca9ab055f515a996"
+      }
+    },
+    "complete": true,
+    "schema": "pcdc-native-runtime-identity/v1",
+    "sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c"
+  },
+  "passed": false,
+  "real_locus_input_identity_sha256": "2ae2cbc0bf2e65259a29c38332d4e7f71020520df184d4cbdc2842b4a60c2599",
+  "reviewed_rows": 300,
+  "schema": "pcdc-real-calibration-readiness/v1",
+  "split_source_groups_are_disjoint": true,
+  "typed_rows": 196
+}

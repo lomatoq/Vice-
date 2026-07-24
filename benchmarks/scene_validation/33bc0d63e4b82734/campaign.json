@@ -1,0 +1,246 @@
+{
+  "artifacts": {
+    "synthetic_validation": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\scene_validation\\33bc0d63e4b82734\\synthetic\\synthetic_validation.json",
+    "vai50": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\scene_vai50_freeze.json"
+  },
+  "freeze_hash": "33bc0d63e4b82734bcb5349f5d19385ac16b0fbdc6e31074814728c90238758f",
+  "policy": "record-only after freeze; no parameter tuning",
+  "runs": [
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_scene_engine.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\01_scene_synthetic_build_oracle_suite.log",
+      "name": "scene synthetic/build oracle suite",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 11.564
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "validate_scene_synthetic.py",
+        "--out",
+        "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\scene_validation\\33bc0d63e4b82734\\synthetic"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\02_synthetic_renderer_holdout_and_selector_calibration.log",
+      "name": "synthetic renderer holdout and selector calibration",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 13.72
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_dp_physical_fidelity.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\03_regression_test_dp_physical_fidelity.log",
+      "name": "regression:test_dp_physical_fidelity",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 0.448
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_native_density_contract.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\04_regression_test_native_density_contract.log",
+      "name": "regression:test_native_density_contract",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 5.477
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_dp4x_contract.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\05_regression_test_dp4x_contract.log",
+      "name": "regression:test_dp4x_contract",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 52.258
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_digital_circle_court.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\06_regression_test_digital_circle_court.log",
+      "name": "regression:test_digital_circle_court",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 0.784
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_glyph_repair.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\07_regression_test_glyph_repair.log",
+      "name": "regression:test_glyph_repair",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 1.157
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_text_evidence_shield.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\08_regression_test_text_evidence_shield.log",
+      "name": "regression:test_text_evidence_shield",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 1.074
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_stroke_seams.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\09_regression_test_stroke_seams.log",
+      "name": "regression:test_stroke_seams",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 1.918
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_structural_diagram_lane.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\10_regression_test_structural_diagram_lane.log",
+      "name": "regression:test_structural_diagram_lane",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 1.872
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_jpeg_grid.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\11_regression_test_jpeg_grid.log",
+      "name": "regression:test_jpeg_grid",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 0.494
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_codec_legitimacy.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\12_regression_test_codec_legitimacy.log",
+      "name": "regression:test_codec_legitimacy",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 1.049
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_eye_metrics.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\13_regression_test_eye_metrics.log",
+      "name": "regression:test_eye_metrics",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 3.886
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "test_strike0_metrics.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\14_regression_test_strike0_metrics.log",
+      "name": "regression:test_strike0_metrics",
+      "passed": true,
+      "return_code": 0,
+      "seconds": 1.201
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "benchmark_stages.py"
+      ],
+      "error": null,
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\15_current_stage_regression_suite.log",
+      "name": "current stage regression suite",
+      "passed": false,
+      "return_code": 1,
+      "seconds": 2082.393
+    },
+    {
+      "command": [
+        "C:\\Python312\\python.exe",
+        "-X",
+        "utf8",
+        "benchmark_vai.py",
+        "--mode",
+        "scene",
+        "--n",
+        "50",
+        "--snapshot",
+        "scene_vai50_freeze.json",
+        "--vai-cache",
+        "vai_snapshot_production_fresh50_final.json"
+      ],
+      "error": "OSError: [Errno 22] Invalid argument",
+      "log": "benchmarks\\scene_validation\\33bc0d63e4b82734\\logs\\16_VAI50_equal-input_external_comparison.log",
+      "name": "VAI50 equal-input external comparison",
+      "passed": false,
+      "return_code": -999,
+      "seconds": 2761.114
+    }
+  ],
+  "schema": "vice-scene-validation-campaign/1",
+  "started_at": "2026-07-19T14:02:54.179878+00:00"
+}

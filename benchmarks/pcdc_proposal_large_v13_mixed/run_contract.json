@@ -1,0 +1,64 @@
+{
+  "schema": "pcdc-proposal-training-run-contract/v1",
+  "started_at": "2026-07-22T12:32:48+02:00",
+  "status_at_write": "complete-failed-promotion-gate",
+  "python": "C:\\Users\\nirrt\\Toolset\\Backgrounder\\.venv-sam3\\Scripts\\python.exe",
+  "module": "vice_compiler.train_proposal_net_large",
+  "arguments": {
+    "pair_root": "datasets\\pcdc_proposal_mixed_v13_curve",
+    "filter_cache": "datasets\\pcdc_proposal_mixed_v13_curve\\filter_cache.json",
+    "initialize": "models\\proposal_net_large_candidate_v12_spatial.pt",
+    "checkpoint": "models\\proposal_net_large_candidate_v13_mixed.pt",
+    "latest_checkpoint": "models\\proposal_net_large_candidate_v13_mixed_latest.pt",
+    "report": "benchmarks\\pcdc_proposal_large_v13_mixed\\report.json",
+    "progress": "benchmarks\\pcdc_proposal_large_v13_mixed\\progress.json",
+    "epochs": 4,
+    "batch_size": 16,
+    "workers": 4,
+    "learning_rate": 0.00008,
+    "mask_upsample": 2,
+    "spatial_positioning": true,
+    "open_text_replay_share": 0.30,
+    "structure_replay_share": 0.30,
+    "seed": 20260721
+  },
+  "input_sha256": {
+    "pairs_jsonl": "172fbc3b56705e38fb6ee6eeb3b2ab4d8dac1f23c3b711cd859560f09d9b805e",
+    "mixed_report": "7b792d8b93aea3938201d90fc4b00d8edc13a607ed37bf72a724b403e21d4075",
+    "filter_cache": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+    "initialization_checkpoint": "f4588b86c5e1593efbebea797bc4763b7fd99541225139fb9801cd28d18ed4e6",
+    "preflight_archive_manifest": "70ed876d5ebde0e564fe5c15566814ce52d040bd47cca382aa53ac7d11609c09"
+  },
+  "preflight": {
+    "accepted_pairs": 74703,
+    "train": 55459,
+    "calibration": 8132,
+    "test": 11112,
+    "tests_passed": 231,
+    "tests_failed": 0,
+    "label_contract_version": "pcdc-explicit-owner-typed-mixed-replay-labels/v2",
+    "label_contract_sha256": "6f1672dc700d51ec82820e3f6ddcf41c5710ec8f1d3144e10b921dfec1026033"
+  },
+  "result": {
+    "elapsed_seconds": 3766.000759799994,
+    "promotion_gate_passed": false,
+    "selected_epoch_by_synthetic_calibration": 4,
+    "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+    "latest_epoch_checkpoint_sha256": "474015bc0f8075a3e23f481c2281a3d02e8558df7935511819f2489d09d13908",
+    "report_sha256": "6c24326960ec58bc08dd3e5daf7cfd7109a80e1c353eda30339fe4e39d06aa8a",
+    "synthetic_test_recall_at_5": {
+      "overall": 0.9057726566349543,
+      "text_line": 0.7120477433793361,
+      "glyph_group": 0.9042181309718015,
+      "whole_shape": 0.9713035019455253,
+      "small_shape": 0.9919093851132686,
+      "layer_relation": 0.9361702127659575,
+      "stroke_network": 0.9361702127659575,
+      "appearance_model": 1.0,
+      "symmetry_repeat_group": 0.9150943396226415,
+      "risk_hard_negative": 0.9701492537313433
+    },
+    "conformal_nonvacuous": false,
+    "conformal_coverage_gate_passed": false
+  }
+}

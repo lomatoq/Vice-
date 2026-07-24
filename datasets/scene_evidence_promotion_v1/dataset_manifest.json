@@ -1,0 +1,7697 @@
+{
+  "count": 256,
+  "policy": "owned-source-scenes-only; no Vectorizer.AI output",
+  "renderers": [
+    "vice-analytic",
+    "pillow-polygon",
+    "opencv-polygon"
+  ],
+  "samples": [
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.432202169751148
+          ]
+        }
+      ],
+      "index": 0,
+      "input_sha256": "34fed6f6e37f4c9771318e14aafa688d8902d3791a6613ab3f58025c4768bada",
+      "path": "train/sample-000000.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 362508580,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 1,
+      "input_sha256": "22decc4deea204bc2283b2cbce394ab16275811d3a2cfb629314506c8048ce3a",
+      "path": "validation/sample-000001.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1972356906,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.3753224207502349,
+            0.2191217140527963
+          ]
+        }
+      ],
+      "index": 2,
+      "input_sha256": "ff1c2324109d501a289c4b103fa5b88eb2aaf57323c41e9b88bd4a92aece843c",
+      "path": "test/sample-000002.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1435370695,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            1.1893521393583557
+          ]
+        }
+      ],
+      "index": 3,
+      "input_sha256": "fed9fa9b697b0c0c591b739138559426aba1b9b25b8e3733add41461f10764f0",
+      "path": "train/sample-000003.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 899477302,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            55.0
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.6686063241853999
+          ]
+        }
+      ],
+      "index": 4,
+      "input_sha256": "59bada235af8e3f58bd3bb71480dd14ff860aabeb21a05c6c571cda65b8a2ef6",
+      "path": "train/sample-000004.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 519258667,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            60.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 5,
+      "input_sha256": "ddfd1f94d39ec841db8d506125ff7492f190939f31d8e59d9451511f42d23c61",
+      "path": "train/sample-000005.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 486976610,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            29.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 6,
+      "input_sha256": "91d7524ef636da11b4a055e2e578452f0e95e9e7bb6ebeb5198864f4dbaca5a3",
+      "path": "train/sample-000006.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1662544794,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.4673613967487396,
+            0.7
+          ]
+        }
+      ],
+      "index": 7,
+      "input_sha256": "2d7c87aa412bed69f340108022947cff6faedbf19bb65e02f4b9de786a04ccb2",
+      "path": "train/sample-000007.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 528691816,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            23.0
+          ]
+        }
+      ],
+      "index": 8,
+      "input_sha256": "504627421f7b7fcafce02850f5012ec2265b310a661141bfb028a0036bc7a821",
+      "path": "train/sample-000008.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 98285926,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.4440523237335006,
+            0.1886757009990641
+          ]
+        }
+      ],
+      "index": 9,
+      "input_sha256": "a2c623632ab71a4f7c1b131b6b60822530865f120278bfb7471824918e573135",
+      "path": "train/sample-000009.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 626717325,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            1.0305635945793703
+          ]
+        }
+      ],
+      "index": 10,
+      "input_sha256": "5c8d9f71e718ccf1ea3f20cb9767d59a8b87f0b2f287628719dd08a7f2ca8c33",
+      "path": "validation/sample-000010.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 487555812,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.6762468635782451
+          ]
+        },
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.1875362132011114,
+            1650639641.0
+          ]
+        }
+      ],
+      "index": 11,
+      "input_sha256": "db2f911bb17761dc647bebdc41825c1a2a9e8be43544fb169023df9c2debd9c6",
+      "path": "train/sample-000011.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1650639641,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.6659242918266339,
+            0.7
+          ]
+        }
+      ],
+      "index": 12,
+      "input_sha256": "e5b0e9501e5ca6ad5252de72afb6aa8f0bcde2f16c8afdfe691956187dc5f05f",
+      "path": "validation/sample-000012.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 446437643,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.73010784228336,
+            1510187430.0
+          ]
+        }
+      ],
+      "index": 13,
+      "input_sha256": "1aeb8824aa40d1e90ecf9f970c9823279a207740e38f80478ae07d1186e66a73",
+      "path": "train/sample-000013.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1510187430,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.10589317670164194,
+            0.35515031958346693
+          ]
+        }
+      ],
+      "index": 14,
+      "input_sha256": "73bad9f6e2cd2eeb9b657bfeeb4c3e4502bfb1c183b00b91f29386905224ef0c",
+      "path": "train/sample-000014.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 979379926,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            0.991111253572847,
+            1172901296.0
+          ]
+        }
+      ],
+      "index": 15,
+      "input_sha256": "95a9258722655b35c12a47b579d8c109dec17e1eef75cc1f7a1de0ebab8ce391",
+      "path": "validation/sample-000015.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1172901296,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.44275245039558,
+            0.7
+          ]
+        }
+      ],
+      "index": 16,
+      "input_sha256": "910a6a65da0e4d6395bf03518ca61be8fb585236fcee7f1250f677232296b470",
+      "path": "test/sample-000016.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 770926977,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.23339544700388498
+          ]
+        }
+      ],
+      "index": 17,
+      "input_sha256": "b2d28a1a8d89fe5bb606e2b107fa1f53b5065cb40cc2ac8ddc5d4970b17cc47f",
+      "path": "train/sample-000017.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1864800399,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 18,
+      "input_sha256": "e523cc05817521218888440beca79fb2aa51e41e95ff4822d5dc500304cf6cb4",
+      "path": "train/sample-000018.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1660456106,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.8544149443553772,
+            0.7
+          ]
+        }
+      ],
+      "index": 19,
+      "input_sha256": "27cd8ad2b7a27784af2daf448ccdc5dd4b9267819e9cda77bcf040ac19c2bbb0",
+      "path": "test/sample-000019.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1427019033,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.887296753630159,
+            0.7
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.5790106773730463
+          ]
+        }
+      ],
+      "index": 20,
+      "input_sha256": "d8cc2eb77544b34c154136b1ff2aefc4f4eb539a056c82d968c7c19c47ed1b5b",
+      "path": "train/sample-000020.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 996964223,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 21,
+      "input_sha256": "5e98dd65d4124123634aed2ff4af69dfd6ed82a3721e8e0911cf790174dee964",
+      "path": "train/sample-000021.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1629699015,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -1.0623120605118939
+          ]
+        }
+      ],
+      "index": 22,
+      "input_sha256": "ba9abf73954b7ef16a6f4b02690c80bd6f011f924a9f08060992760888890a5b",
+      "path": "train/sample-000022.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1180645354,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            22.0
+          ]
+        }
+      ],
+      "index": 23,
+      "input_sha256": "9a1cbc02d5fe94e6cd3708c34fb6b8ebd15ae67f2b4990b2fd6cf03e63867e1a",
+      "path": "validation/sample-000023.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1295816441,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            42.0
+          ]
+        },
+        {
+          "kind": "recompress",
+          "parameters": [
+            37.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 24,
+      "input_sha256": "14cf88bd5017b63e04d0df4277839b9112f6cde0d142a4fecfae6d53b64ed5f6",
+      "path": "train/sample-000024.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 468102856,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.5943549046040647
+          ]
+        }
+      ],
+      "index": 25,
+      "input_sha256": "454f01c45d0ddd67292bbb3eab8544be70c67a941a5dc6a045cafa2967abb36b",
+      "path": "train/sample-000025.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1266559743,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.5934439899556665
+          ]
+        },
+        {
+          "kind": "palette",
+          "parameters": [
+            21.0
+          ]
+        }
+      ],
+      "index": 26,
+      "input_sha256": "28be4eb68a1983befdc3128a70aebb46ecaf4917c7fed982b6fe69bd42995265",
+      "path": "train/sample-000026.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 557736361,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.789735193786405,
+            0.7
+          ]
+        }
+      ],
+      "index": 27,
+      "input_sha256": "e16cfbcee22416ea104eaf75ec3e948637f6b0968980ea8b38b001464f80b84b",
+      "path": "train/sample-000027.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 2020980412,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.9216297098474833
+          ]
+        }
+      ],
+      "index": 28,
+      "input_sha256": "67f33f90f76859b619d5e288dc8f15939e1addf65212694dae8e5db86d6311c3",
+      "path": "train/sample-000028.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1065385259,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            95.0
+          ]
+        },
+        {
+          "kind": "palette",
+          "parameters": [
+            5.0
+          ]
+        }
+      ],
+      "index": 29,
+      "input_sha256": "edcd43c251dbd8f41e331998cbea9f4359211c3ce2eae289ebfe3ec599d09d44",
+      "path": "train/sample-000029.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 760892784,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            36.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 30,
+      "input_sha256": "84ef627bfd422b411c4ecb929485321f3f02c8b72aed7d1cc16f758310e23dac",
+      "path": "train/sample-000030.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 2129232231,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.1507189585424495
+          ]
+        }
+      ],
+      "index": 31,
+      "input_sha256": "8f00eeeca96e3a8b4fe7e8d51f910d12b7ad530e12774ac6739028c945880c96",
+      "path": "train/sample-000031.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 651075747,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            20.0
+          ]
+        }
+      ],
+      "index": 32,
+      "input_sha256": "d731a71f7835eb58dac010f6d88dd813e6e067a11978ac19479764417087669a",
+      "path": "train/sample-000032.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1306327489,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.6353000795373278,
+            0.7
+          ]
+        }
+      ],
+      "index": 33,
+      "input_sha256": "fc657726ddd2c7ff0027a8389ac5b90a2000f9d358d9f9c634c523920773e3da",
+      "path": "train/sample-000033.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 982588976,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.07499720411643507
+          ]
+        }
+      ],
+      "index": 34,
+      "input_sha256": "239fde84ce6afd163c44f6055bae0cdecaa2ec0d469d610bca368df5adc17b0d",
+      "path": "train/sample-000034.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1474004583,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            83.0
+          ]
+        }
+      ],
+      "index": 35,
+      "input_sha256": "c39c470e47fe55cddf8c58f772f549e7ffb0f57604d68f8a55e932f81c3425ff",
+      "path": "train/sample-000035.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 299054460,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.5037955121626594
+          ]
+        },
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.1443256854021868
+          ]
+        }
+      ],
+      "index": 36,
+      "input_sha256": "4314cde434f162e556a71ac67d3acfc02a0338d25d2cc56b56c219ebe4b19a3f",
+      "path": "train/sample-000036.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 354143751,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            3.616008638034358,
+            678396226.0
+          ]
+        },
+        {
+          "kind": "resize",
+          "parameters": [
+            0.6367976928124304
+          ]
+        }
+      ],
+      "index": 37,
+      "input_sha256": "fda4425d6b8372319af54caaba2cae3bcaf91f355a2d0563b9055533f05b5b84",
+      "path": "train/sample-000037.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 678396226,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            3.505608625308869,
+            1999875256.0
+          ]
+        }
+      ],
+      "index": 38,
+      "input_sha256": "3a2582b2744dad1a9a9970b7a2ed5b53e64ecd92e0ebfcae1f85675acc098dc7",
+      "path": "train/sample-000038.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1999875256,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.1921926621344703,
+            232227894.0
+          ]
+        }
+      ],
+      "index": 39,
+      "input_sha256": "763c9ef7db94cd79ddd2e1cb540142a1ed2340e8f1f90c4e3cebb9c44ecf1bc2",
+      "path": "train/sample-000039.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 232227894,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.2406777639833464
+          ]
+        }
+      ],
+      "index": 40,
+      "input_sha256": "1c00cbd6d3e59bd14070d97552e06aa2fae17a58c58ab83442517c56334d375f",
+      "path": "train/sample-000040.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 512407270,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.8155490554402975
+          ]
+        }
+      ],
+      "index": 41,
+      "input_sha256": "ceb5d02f329f1e148a45cb2eb228335d277540353f39b3cd7bc2079a999c3bb5",
+      "path": "validation/sample-000041.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 746416168,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            85.0
+          ]
+        }
+      ],
+      "index": 42,
+      "input_sha256": "851be5f221a3741164ebb51532e763534d7fc31cbd29d5c0d6d776e2c88c159a",
+      "path": "train/sample-000042.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 23348461,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            15.0
+          ]
+        }
+      ],
+      "index": 43,
+      "input_sha256": "1d429da462b07554bfede3f25c15ba44a82b102b3170060ab35dbfd2af745e14",
+      "path": "train/sample-000043.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1331261030,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            53.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 44,
+      "input_sha256": "53f9fe9a330b9def0e635edfc742a1333552e82ea620388185a7c4e09f5058df",
+      "path": "train/sample-000044.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1453810059,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.6618536958833994
+          ]
+        }
+      ],
+      "index": 45,
+      "input_sha256": "5258fc40e23c5c1dbb8db5b77ef1938196a73bf906d251a97753a6b5d561edf0",
+      "path": "train/sample-000045.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1798298806,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.7193607591524396
+          ]
+        }
+      ],
+      "index": 46,
+      "input_sha256": "ef396118f84fded4a72c84b67bc71b210ef386953a9a4547dd92dcfb284af95c",
+      "path": "train/sample-000046.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 513893240,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.2306321669567253
+          ]
+        }
+      ],
+      "index": 47,
+      "input_sha256": "ac9cfc154be11f82ada9ffae0f363238235b04c73b7e6c286d65ffd48da1cb4d",
+      "path": "train/sample-000047.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1486685274,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.7940109021846562
+          ]
+        }
+      ],
+      "index": 48,
+      "input_sha256": "22486c0afe5c2716ec97ac46f3f8be2ca6a8f8f1656f27840732d8b696de4e1a",
+      "path": "test/sample-000048.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 747155630,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            20.0
+          ]
+        }
+      ],
+      "index": 49,
+      "input_sha256": "f1ff53a105dc3c68e417a2d1c4979fc7bfc139c3177f891e45e4697523224ff2",
+      "path": "train/sample-000049.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1528819434,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.6991621869360808
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.668982089639785
+          ]
+        }
+      ],
+      "index": 50,
+      "input_sha256": "cbb8c60810d46b60c0d6f72c3a055544053a03a42d6a42ad4615f4f259f6b730",
+      "path": "train/sample-000050.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 160859843,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.22012086967723185,
+            -0.04370125744597808
+          ]
+        }
+      ],
+      "index": 51,
+      "input_sha256": "d6ae58fb8bf28da1bbf4ccd98c3d15027f5db73dae2e7a233c23a5a2e5d064f0",
+      "path": "test/sample-000051.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1916407267,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            7.0
+          ]
+        }
+      ],
+      "index": 52,
+      "input_sha256": "6db5f92c45062472df057a97b39e118055ae48aa1bde5b53c4577b17e16bae61",
+      "path": "train/sample-000052.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1773993210,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.28078503015890754,
+            0.7
+          ]
+        }
+      ],
+      "index": 53,
+      "input_sha256": "0ac2b7fac7e2578cf0fd22068a009a2b1a3ed89b014872d415b362e63f74ffb7",
+      "path": "train/sample-000053.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 776152841,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.2364936840080598
+          ]
+        },
+        {
+          "kind": "rotate",
+          "parameters": [
+            -1.1327496638708934
+          ]
+        }
+      ],
+      "index": 54,
+      "input_sha256": "5d79d30f2f6c5dd065a9720b287c12d6afcafbcecbc2815f89cc2fb15729aa38",
+      "path": "train/sample-000054.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 790313946,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.6538282318236456
+          ]
+        }
+      ],
+      "index": 55,
+      "input_sha256": "3d30ffea76df6301836c4fd09162d136a50dc90be329b74051f749d60deaa877",
+      "path": "test/sample-000055.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 31384274,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.2670820770138742
+          ]
+        }
+      ],
+      "index": 56,
+      "input_sha256": "d63f4d6b1d009fea89322a37a8e91ef57ec7c4960c5f74a4efb61a2643e78a4f",
+      "path": "train/sample-000056.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 908782645,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.35755163840456106
+          ]
+        }
+      ],
+      "index": 57,
+      "input_sha256": "e3784dadd6b9a00d2da5f3a7b02b9d0f2ed805d4ec59a30b5cef91852115d9be",
+      "path": "validation/sample-000057.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 382228984,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.7845937988268136
+          ]
+        }
+      ],
+      "index": 58,
+      "input_sha256": "fd3cb9764939b0cab521574568f9bfbf57664f207baeae36f73c6e60e73a5f1b",
+      "path": "train/sample-000058.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 110797300,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.7645726024962285
+          ]
+        },
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.2046561571845311
+          ]
+        }
+      ],
+      "index": 59,
+      "input_sha256": "a0a749decb65a3b4e72255bc00cc0a2ab2a6f0458d3e5d18b61b650995b32155",
+      "path": "train/sample-000059.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 879075041,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 60,
+      "input_sha256": "b7ba2e5d74c7372cc73a92d4b6d76a0b9ee47127b709c731cf5a8e4fadfdc48e",
+      "path": "train/sample-000060.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 884739863,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            8.0
+          ]
+        },
+        {
+          "kind": "palette",
+          "parameters": [
+            8.0
+          ]
+        }
+      ],
+      "index": 61,
+      "input_sha256": "497fe8907cde02b06754da5643cf22b0bd69e61efafee50b8db50c01bca17ff0",
+      "path": "train/sample-000061.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 98730341,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            19.0
+          ]
+        }
+      ],
+      "index": 62,
+      "input_sha256": "e28998222b99d3367c5a482532c0dd117cc7c301b9ef763f2aae1b82cb1b97d3",
+      "path": "train/sample-000062.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1762532658,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            62.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 63,
+      "input_sha256": "08c99eb65611566c0150950b6de0d1c5222de74fd905734d61b4db7d4838336d",
+      "path": "train/sample-000063.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1921803462,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.6211102589917017
+          ]
+        }
+      ],
+      "index": 64,
+      "input_sha256": "e103786d77318df87a7b7ab5d3977e10237193f8186143573dcab756d33c768e",
+      "path": "validation/sample-000064.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 2082526043,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            2.568101500748491,
+            1149592172.0
+          ]
+        },
+        {
+          "kind": "palette",
+          "parameters": [
+            24.0
+          ]
+        }
+      ],
+      "index": 65,
+      "input_sha256": "1acd136cf1874124c75655cc9b0c202c8795ffac8ea7468c17c365c24b7eace7",
+      "path": "train/sample-000065.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1149592172,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.0062844388473347
+          ]
+        }
+      ],
+      "index": 66,
+      "input_sha256": "d30615b898a5101b311a3b1842acd499383f8b0959e9547e9801c783ffa37575",
+      "path": "train/sample-000066.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 809731580,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.4302759605166837
+          ]
+        }
+      ],
+      "index": 67,
+      "input_sha256": "992d68e0b0c7bcc6e7352981e16ddbca04ed197317b3babee2b5203a0e82408f",
+      "path": "train/sample-000067.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1223784603,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            22.0
+          ]
+        }
+      ],
+      "index": 68,
+      "input_sha256": "75a70f04578f913302e715f226366764a987e94d5c0da2d7ab83ecce069c05ee",
+      "path": "train/sample-000068.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 922624220,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            70.0
+          ]
+        }
+      ],
+      "index": 69,
+      "input_sha256": "dfbd5690dfc3a5c5811ea289440d9773bd8a235a550142019d4daf58c1962500",
+      "path": "train/sample-000069.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 725456253,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            73.0
+          ]
+        }
+      ],
+      "index": 70,
+      "input_sha256": "66b3ba728a6fec93aa8f2023141c66e8ab3968b1132434ea9a0153e7bcb5cafc",
+      "path": "train/sample-000070.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 573567353,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            71.0
+          ]
+        }
+      ],
+      "index": 71,
+      "input_sha256": "0fe20890dbd545b254c95be537400775f94d84e30ee71b23ba95c7c6668ab783",
+      "path": "train/sample-000071.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 512143945,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.4634193008348962
+          ]
+        }
+      ],
+      "index": 72,
+      "input_sha256": "8c70d84e9c52cbdc1c93b04d5e9deb56fe144c244629d1a7a013f2cedc7178b7",
+      "path": "train/sample-000072.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1486602868,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.7621961845959047
+          ]
+        }
+      ],
+      "index": 73,
+      "input_sha256": "cb5b66be9bd5e26b6290a5f5142b5db243e4b2179145aac3b33b3e04975e7dea",
+      "path": "train/sample-000073.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 927446364,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            41.0,
+            3.0
+          ]
+        },
+        {
+          "kind": "palette",
+          "parameters": [
+            7.0
+          ]
+        }
+      ],
+      "index": 74,
+      "input_sha256": "c11613d83578192cc7359f2156c947b57e34e8b44b36bf702d139e1f766a61a6",
+      "path": "train/sample-000074.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 586161971,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            35.0
+          ]
+        }
+      ],
+      "index": 75,
+      "input_sha256": "f350d7877058ce7fa7a8f3455ce01f200872f6d327d3d8508a6712efe03d3fbd",
+      "path": "train/sample-000075.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1096554845,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.44908768589289055,
+            0.09980179045685317
+          ]
+        }
+      ],
+      "index": 76,
+      "input_sha256": "993ba97d09ca08d83af2ea594408417f8a9be8d0a0ba0c603c80a9bceb4383b3",
+      "path": "train/sample-000076.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 307260967,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.2717645661462173
+          ]
+        }
+      ],
+      "index": 77,
+      "input_sha256": "d35a6ce7bf0a1e921d057bb64a21b829f97de36eb35ae606af2cc6874d6867e5",
+      "path": "train/sample-000077.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1316180661,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            75.0
+          ]
+        }
+      ],
+      "index": 78,
+      "input_sha256": "ed6852111a78bc7886d6d1625b61459df793b8cf3c42f2d37728d2394a03b201",
+      "path": "train/sample-000078.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 670745688,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            57.0
+          ]
+        },
+        {
+          "kind": "recompress",
+          "parameters": [
+            55.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 79,
+      "input_sha256": "7110aa24ac99072c76f24f1c3bd93ff12b298451863271d1b8a4fa2800447882",
+      "path": "train/sample-000079.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 284472130,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.1804629747754705,
+            1150540092.0
+          ]
+        },
+        {
+          "kind": "jpeg",
+          "parameters": [
+            67.0
+          ]
+        }
+      ],
+      "index": 80,
+      "input_sha256": "9513ac2cd7a85700d8be3c7ecdd7bf8b3a86070ebd7c8f6df817970f152ef799",
+      "path": "train/sample-000080.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1150540092,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.7882945999911206,
+            0.7
+          ]
+        },
+        {
+          "kind": "jpeg",
+          "parameters": [
+            73.0
+          ]
+        }
+      ],
+      "index": 81,
+      "input_sha256": "71f1614d1046ec323f147133196324aad11d274d23fb6b434f5421f16c5d7664",
+      "path": "train/sample-000081.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 827198845,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.2886894600471237
+          ]
+        }
+      ],
+      "index": 82,
+      "input_sha256": "c04cdcf5023c69c9cd752f28f400c92c9d7edb5dfb2243c9e965bee05d06a386",
+      "path": "train/sample-000082.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 760947934,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.3156863293716461,
+            0.7
+          ]
+        }
+      ],
+      "index": 83,
+      "input_sha256": "4fba7ebaa6511c5eacc93924fce700c457ab5b7f9c072983e3017c51eb662c1f",
+      "path": "train/sample-000083.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 644890631,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 84,
+      "input_sha256": "525839dd28da99878f219d995291a2c5bf9e31a8d617bbbe5e0123143bf73e43",
+      "path": "test/sample-000084.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 2117244497,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.22486307096459263,
+            -0.09473042621963496
+          ]
+        },
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            3.5016967117359186,
+            1466334847.0
+          ]
+        }
+      ],
+      "index": 85,
+      "input_sha256": "6c25d91b03a96cf15f2f96066b0b0b021659f185288f9047c3527652d0eecc7b",
+      "path": "validation/sample-000085.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1466334847,
+      "split": "validation"
+    },
+    {
+      "degradations": [],
+      "index": 86,
+      "input_sha256": "906cbf79d5db911108848bafbd1e83148fa04a5ce7e11dce8bbbe815f5cc6091",
+      "path": "validation/sample-000086.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1419228756,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.33713393448418094
+          ]
+        }
+      ],
+      "index": 87,
+      "input_sha256": "be4d8c2fbbae41671f180939997299ea0ab6f3cb39cc20df3a4d5511a29fe9c8",
+      "path": "train/sample-000087.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 996957696,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.635571228565041
+          ]
+        }
+      ],
+      "index": 88,
+      "input_sha256": "71e08d9e57a5023e0edd0ad4847951ab6bd0b415e9dd3cf63d9ffbfab8cadcb0",
+      "path": "validation/sample-000088.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1147527773,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.376082641012931
+          ]
+        }
+      ],
+      "index": 89,
+      "input_sha256": "f6266263bcdcd1bfc6b38cf0464bc70cbdf74ccbd0a2a40ade01ef063bdf57f9",
+      "path": "train/sample-000089.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 642955575,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.20455922134029988
+          ]
+        }
+      ],
+      "index": 90,
+      "input_sha256": "80d13d7261fc38d1821e771209190e93f64e325edc49fa6684296a590156bb4f",
+      "path": "train/sample-000090.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 127977795,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.5305615930113174
+          ]
+        }
+      ],
+      "index": 91,
+      "input_sha256": "3c4b498f6472ba29d1a641f97fea4a32aa3cb45b733c4be24a5f39a29c1b7b02",
+      "path": "train/sample-000091.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 512711054,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.9087285701741952
+          ]
+        }
+      ],
+      "index": 92,
+      "input_sha256": "1c8e8578ae7c774ebb2cd7d422cf224d7ff2c674f9010441d0620b7a7556be63",
+      "path": "train/sample-000092.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1854029373,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            63.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 93,
+      "input_sha256": "77b5ee459b72e17416224872685ff414ab9037041e0059fd4cb56962ab06bc11",
+      "path": "train/sample-000093.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1637579726,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            42.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 94,
+      "input_sha256": "14159ebaa5ce732f07e607b5df9df143b50e078492596953f1d87d239a718e96",
+      "path": "train/sample-000094.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1470950255,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.3245473604861696
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.3245473604861696
+          ]
+        }
+      ],
+      "index": 95,
+      "input_sha256": "b1ba4dfad93f346d3dcb6ffcd9ddd2a0e5ccce529f511d1e1d550ecf2c56c43e",
+      "path": "train/sample-000095.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1719519207,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            0.766790620261694,
+            55654684.0
+          ]
+        },
+        {
+          "kind": "jpeg",
+          "parameters": [
+            81.0
+          ]
+        }
+      ],
+      "index": 96,
+      "input_sha256": "cc045a4b83217d2a8e40032f092146ff5726e36e7957c624ef824b44696bba8b",
+      "path": "train/sample-000096.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 55654684,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 97,
+      "input_sha256": "3c750c55eb5f2b4c1b3b9a74ba9fc3bee1d97ee6429ebb2a2d4bc9d599a76096",
+      "path": "train/sample-000097.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 2021875262,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.6161584368346064
+          ]
+        },
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.6161584368346064
+          ]
+        }
+      ],
+      "index": 98,
+      "input_sha256": "1891050698514517e606b49138a09515701e7abde5bd8fcad71b778549f3bdf0",
+      "path": "train/sample-000098.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1624273755,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 99,
+      "input_sha256": "5dba7712acbca367451bad08f137253018bb100afc8b9106e4e5c07b0abdfbe2",
+      "path": "train/sample-000099.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1632607950,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.232028539049633
+          ]
+        }
+      ],
+      "index": 100,
+      "input_sha256": "667b788c6f359b679e8cf9ccdddbc7cae35c31fb8aea9a5fae8523cc8865cdbe",
+      "path": "train/sample-000100.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1590738950,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.7128064042304944
+          ]
+        }
+      ],
+      "index": 101,
+      "input_sha256": "c6f946d54b6f3db955aca9c9bf8b070e6bd6d9fcab1de77b1b86857ad4b829dd",
+      "path": "train/sample-000101.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 688151790,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.4476275526602265,
+            -0.2569757665463147
+          ]
+        }
+      ],
+      "index": 102,
+      "input_sha256": "b9a737dee8d3ac37c5a6260fd4ba77ee108fc813a3e390492c3dbec3d29f41a8",
+      "path": "train/sample-000102.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 603837935,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            23.0
+          ]
+        }
+      ],
+      "index": 103,
+      "input_sha256": "3ee69063129e6e5f4ab8e909476c6a191fe310145940f32e6233ea2539b7b39f",
+      "path": "validation/sample-000103.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 2071267288,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.9603778328094666
+          ]
+        },
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.24738600018035192,
+            -0.24936462877792487
+          ]
+        }
+      ],
+      "index": 104,
+      "input_sha256": "f75d96963ca45ff682ca86246d305ab1645bacbaa7596bdd2607a9e97dece42c",
+      "path": "train/sample-000104.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 427454840,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            30.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 105,
+      "input_sha256": "aca94d618cfab92ae24deed76bc2bf67ab8bbf587605b2c14fbcc7d8b5956f29",
+      "path": "validation/sample-000105.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 743365990,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            67.0,
+            2.0
+          ]
+        },
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.3344983859377631
+          ]
+        }
+      ],
+      "index": 106,
+      "input_sha256": "f42fea30f9d0a924f4bb9eb7f305e94601acca98f7e5ec8d106bb1ce7f34f689",
+      "path": "train/sample-000106.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 570279615,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            7.0
+          ]
+        }
+      ],
+      "index": 107,
+      "input_sha256": "c11f680bb09d9742fa67547590eeef9fb6dda35d41bacdeacd9f31efed14cbf1",
+      "path": "train/sample-000107.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1828466253,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.0611374703271137,
+            896771695.0
+          ]
+        }
+      ],
+      "index": 108,
+      "input_sha256": "0d38f9700bd992a2293821b331ab3640f100e6b0f0031ebce5328470796269a9",
+      "path": "train/sample-000108.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 896771695,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            22.0
+          ]
+        }
+      ],
+      "index": 109,
+      "input_sha256": "b0fbc001d99de0dae4b01b84d5cbe83de5bc203307722a420ed3073ab5171b6f",
+      "path": "train/sample-000109.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1908730472,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.6276098723852719
+          ]
+        }
+      ],
+      "index": 110,
+      "input_sha256": "879306b252b21695993dafc7024ebfa43c2de99877ac3582517cc72baea45a4b",
+      "path": "train/sample-000110.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1437613502,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            67.0,
+            2.0
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.6035379463396886
+          ]
+        }
+      ],
+      "index": 111,
+      "input_sha256": "2e160fbfb64a47b60b7a100a2a9d0450a9a7c2cee19ffcd796e081a7c65df815",
+      "path": "train/sample-000111.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1771113269,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            14.0
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.3547039197579589
+          ]
+        }
+      ],
+      "index": 112,
+      "input_sha256": "3cee82f0f89ed2c7157a9000c54623092a10ae331ab300581fbb3d9d6e163848",
+      "path": "train/sample-000112.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 342310757,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.9072140509558679
+          ]
+        }
+      ],
+      "index": 113,
+      "input_sha256": "15942678f52e9f5f073c2468ebd2aeb8dc4d7c3340ff3de6ceef48c9250d2b0d",
+      "path": "train/sample-000113.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 2107188831,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            85.0
+          ]
+        }
+      ],
+      "index": 114,
+      "input_sha256": "285b99a588b1abdfbdd59525a4be21d7ff54a82353ea58454fa4687be39cd709",
+      "path": "train/sample-000114.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1883140144,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.0215538263405448
+          ]
+        },
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.15512800454814163,
+            -0.3052666428357388
+          ]
+        }
+      ],
+      "index": 115,
+      "input_sha256": "15bf602fee3275c0672ece018cae074915f2d631c722cf5f6868e9ebd0f1a4b0",
+      "path": "train/sample-000115.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 987723911,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            1.0062760935913797
+          ]
+        },
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.44650593298762137,
+            -0.3181712044923638
+          ]
+        }
+      ],
+      "index": 116,
+      "input_sha256": "f11bc2b8e8d848ea98e58c8fd059265439c21c4fb9551cabbba9104acd6e2e00",
+      "path": "train/sample-000116.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 829801492,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 117,
+      "input_sha256": "8c1aceb69131d434c08a95baf557b3e7f59f8d627f4040ce074b55415d3edc09",
+      "path": "train/sample-000117.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 761948047,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.35689568080826395,
+            0.7
+          ]
+        }
+      ],
+      "index": 118,
+      "input_sha256": "c6157aef339e8e8f718bcb3adfc0a66c22acdd55e77f36d9add24344afc56fb1",
+      "path": "train/sample-000118.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 546928592,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.41992280677359595,
+            0.7
+          ]
+        }
+      ],
+      "index": 119,
+      "input_sha256": "241f54c8b47efcdee18e55d178377fb316981b0a28ac44e7e3a0c7a159276b14",
+      "path": "train/sample-000119.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1752635680,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.13601060297441753,
+            -0.16886107133860756
+          ]
+        }
+      ],
+      "index": 120,
+      "input_sha256": "268692f36f8d46fd0bd5332218749dff9a26ee027fdc27bb5424589bf211f7aa",
+      "path": "train/sample-000120.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1869215738,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.1163704018379175
+          ]
+        }
+      ],
+      "index": 121,
+      "input_sha256": "05ed7c0533dd99d98a91e8d8ff3e8a2923827f8326bf829093b2c92de26273e0",
+      "path": "train/sample-000121.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 254822224,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.6311037118075506
+          ]
+        }
+      ],
+      "index": 122,
+      "input_sha256": "5ad3da84bb201f891198eb87702b16cacb5408f18991ebb4cba7ee02570b13ae",
+      "path": "validation/sample-000122.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 372542249,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            4.0
+          ]
+        }
+      ],
+      "index": 123,
+      "input_sha256": "29ebb3c39d8de8e9377290ca24d3484cf73c8a2366bdc859ba453800f5cf4a36",
+      "path": "train/sample-000123.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1477127505,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            20.0
+          ]
+        }
+      ],
+      "index": 124,
+      "input_sha256": "0bed50cbcf131890f9a59ca2e6aef3cbf944c45e07aed568ffe0c3307410e105",
+      "path": "train/sample-000124.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1539964920,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.06955767403353635,
+            -0.253349352984123
+          ]
+        }
+      ],
+      "index": 125,
+      "input_sha256": "c320779294ea2dae624e1fd0a5ff17477dec6a254c85511293507ec03a37ad17",
+      "path": "train/sample-000125.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 725737214,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.675254805904005,
+            0.7
+          ]
+        }
+      ],
+      "index": 126,
+      "input_sha256": "e6f747eeac5dde08d40196ecad5454e935308aa440425bf8fd50958429d6e100",
+      "path": "train/sample-000126.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1582333244,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.9218778312916505
+          ]
+        }
+      ],
+      "index": 127,
+      "input_sha256": "cc0fe9c191b6aecc35ea258a7e9f8518a69b0157beee396a956988466e97bd7d",
+      "path": "train/sample-000127.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1102994970,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.9923833563713389
+          ]
+        }
+      ],
+      "index": 128,
+      "input_sha256": "6b0633b7112e0c795b3d5a9091aaf0dd18b532b3a8e36e0012650b6c278923d4",
+      "path": "test/sample-000128.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1317048578,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.31462720341683786,
+            0.35218907904739954
+          ]
+        }
+      ],
+      "index": 129,
+      "input_sha256": "6e2b2d1c44c48a7d04733a0ed4514c5ea0cc0d80eccdcef2933dcd15540c605a",
+      "path": "train/sample-000129.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1519739324,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 130,
+      "input_sha256": "a41d7059e20e1d532b2890f673651c87a75cb8bee99c127ad18b2efe0d605119",
+      "path": "train/sample-000130.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 320745703,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.66555012052977
+          ]
+        },
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.06345862487898024,
+            -0.012585897413384728
+          ]
+        }
+      ],
+      "index": 131,
+      "input_sha256": "f3bcc80ccbb26a11b184c7c3eaf5bbefeeb102dfc57999c450b260b5cd8eb033",
+      "path": "test/sample-000131.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 181845118,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.9067080476554801
+          ]
+        },
+        {
+          "kind": "recompress",
+          "parameters": [
+            71.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 132,
+      "input_sha256": "5aeff6008cb6707c1acd3335ff90f4a25b46a80ad7e5c7c5509c050aa0b21754",
+      "path": "train/sample-000132.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1867017337,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.47138847650437676
+          ]
+        },
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.0071981344706809
+          ]
+        }
+      ],
+      "index": 133,
+      "input_sha256": "ca06d761e4b7eef3d02d8e86eadfd9761bd6f35657275f159849778ed834986b",
+      "path": "validation/sample-000133.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 734480311,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.6587832954423336
+          ]
+        }
+      ],
+      "index": 134,
+      "input_sha256": "8cdbe7c04efa7aaa43e4ea001e7211d1c49a95fee7e38999ed21bda7d0c8b881",
+      "path": "train/sample-000134.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1820857769,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.05875078301152187,
+            -0.3494933528199717
+          ]
+        }
+      ],
+      "index": 135,
+      "input_sha256": "611f2a6e5cffc98c20450ae1dfaf9561dd1222313805f02ab3db23c33dd6cf23",
+      "path": "train/sample-000135.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1145264870,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.5644009514582662
+          ]
+        }
+      ],
+      "index": 136,
+      "input_sha256": "5ec60988d9405b9b910dda5329fd5c7ea25e8a82afa1644b0c36030a0cc93ae5",
+      "path": "train/sample-000136.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1233615282,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.8699840609952381
+          ]
+        }
+      ],
+      "index": 137,
+      "input_sha256": "35a0b29b488b9167dabc497913a6f72a4b154b6a3a436e9029e5415cb772d7ed",
+      "path": "train/sample-000137.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 640325179,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            90.0
+          ]
+        }
+      ],
+      "index": 138,
+      "input_sha256": "2d919e880a6493a196904ad660e67bfc6111814353899538e10fbff7d635dad8",
+      "path": "train/sample-000138.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1536712975,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.22123717578836127,
+            0.7
+          ]
+        }
+      ],
+      "index": 139,
+      "input_sha256": "776f999d604df2276c94a7dbcee215e93ea4560667182a3ace8db4b64c77a7f3",
+      "path": "train/sample-000139.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1248014658,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.08341200254207187,
+            0.3181887828979533
+          ]
+        }
+      ],
+      "index": 140,
+      "input_sha256": "2b27a6212c46fa3068d3c26f1b043ddc524b5004ad7485a7cb8c6685398c1225",
+      "path": "train/sample-000140.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1741731145,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.35268452716013055,
+            0.7
+          ]
+        }
+      ],
+      "index": 141,
+      "input_sha256": "931ab521119eecbc7c6a1018260922186d6d4708c8de7ac6c5f34c17daf980ce",
+      "path": "test/sample-000141.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 962837647,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            59.0
+          ]
+        }
+      ],
+      "index": 142,
+      "input_sha256": "be25f9f5d38fa2d475c9f8c57da74417207081fee820c8a57813890920ceeda9",
+      "path": "train/sample-000142.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 860073625,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.9936221356589379
+          ]
+        }
+      ],
+      "index": 143,
+      "input_sha256": "290e2932e0dc8835daefff36ace5e83f2632258b4adb8db96234c1c7941c9caa",
+      "path": "train/sample-000143.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 941308548,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.0911139763996234
+          ]
+        }
+      ],
+      "index": 144,
+      "input_sha256": "900bcec6ff01e7f7b0c2ef8ee79eb5f99ef6fd2d68c4acba1ddd051bea74fd51",
+      "path": "train/sample-000144.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 340564017,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.5343875388867068
+          ]
+        }
+      ],
+      "index": 145,
+      "input_sha256": "332b0528e0995e37b3558700517d46cd6c6a005ae32540a90c759c095db97f8c",
+      "path": "validation/sample-000145.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 406112878,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            9.0
+          ]
+        }
+      ],
+      "index": 146,
+      "input_sha256": "f2c71ed4ab3b3ac2ac7baca52fc9bb04b556fafdfe84a4396dfb0a55057a7d2d",
+      "path": "validation/sample-000146.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 823447711,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            31.0
+          ]
+        }
+      ],
+      "index": 147,
+      "input_sha256": "dd00c08c231e07cb4b62654119017d1ea9bb3de74b13f9ffc4f9ee93c2ee4361",
+      "path": "train/sample-000147.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 597464356,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.11686848982199205
+          ]
+        },
+        {
+          "kind": "recompress",
+          "parameters": [
+            79.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 148,
+      "input_sha256": "5555fb39eeb2f4a27aa40f8f6562f476e5a7a51f531cd6477dc3bc4ad0931211",
+      "path": "train/sample-000148.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1238848177,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            59.0
+          ]
+        }
+      ],
+      "index": 149,
+      "input_sha256": "9a8473ebfd0ad9774df1ab9e36780f07b7e7f65513be3aa43566605cc64bbfff",
+      "path": "train/sample-000149.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1208547488,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 150,
+      "input_sha256": "11f666d57ec67eca4e68877ee29d346c7e6d86506bfc081955561e0504a7917a",
+      "path": "train/sample-000150.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1047154825,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.4692760836514661,
+            0.7
+          ]
+        }
+      ],
+      "index": 151,
+      "input_sha256": "0e1bfd37aa4665fdfa9778958d667d3f14d49d9e05ca52c880523e40e82624ed",
+      "path": "train/sample-000151.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1071192142,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            0.5603749128451467,
+            1346131003.0
+          ]
+        }
+      ],
+      "index": 152,
+      "input_sha256": "aef493917cad4a83c1722844ccfe85f501e948c1fbfe6e245d2d55411cb8fbba",
+      "path": "train/sample-000152.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1346131003,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.6605995760746335
+          ]
+        }
+      ],
+      "index": 153,
+      "input_sha256": "1a2a36fdab07cd90dded85fa316b339866ee68f48b87d4cbcaab5b7d3dbc1f6a",
+      "path": "train/sample-000153.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1910708408,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            30.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 154,
+      "input_sha256": "d25aa8afcf9f7b6f4576e8defe98f0830d8da03a6f07726036766687f129002c",
+      "path": "train/sample-000154.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1819470639,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            21.0
+          ]
+        }
+      ],
+      "index": 155,
+      "input_sha256": "d08bbb1e0d406fa6a210c777cf62044f33178eea7601e65ee3cffe04663ef5d3",
+      "path": "train/sample-000155.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1179336610,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            52.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 156,
+      "input_sha256": "759607c150a663b7cc37014a52e62b347be5118c846da539890a76273b81e462",
+      "path": "validation/sample-000156.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 224587346,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.6786411896334592,
+            0.7
+          ]
+        }
+      ],
+      "index": 157,
+      "input_sha256": "8652af182a8db7fc5e1e0aece0dec8e248a9d1ca852085fb699b11f414ddd689",
+      "path": "train/sample-000157.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 434336409,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            39.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 158,
+      "input_sha256": "d9c6f74d75a046f2af205a40921da000549991c78ef73548f473d74bf92bd1d0",
+      "path": "train/sample-000158.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1749496420,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            57.0
+          ]
+        }
+      ],
+      "index": 159,
+      "input_sha256": "289d751a487f3c402ea6fd82e2c36083158f23207229bd71a2a7d7d6a1686c22",
+      "path": "train/sample-000159.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1252153012,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.8117590416436067
+          ]
+        }
+      ],
+      "index": 160,
+      "input_sha256": "d66c782e64a7db6892553b4a6c4626fd83b515f17ca2925cdd03edd076a273b6",
+      "path": "train/sample-000160.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1322703695,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            85.0
+          ]
+        }
+      ],
+      "index": 161,
+      "input_sha256": "87b658cb298b52162cdfcc33c74d6b40010ae5ab3b0a8333c52cd66974beb15b",
+      "path": "train/sample-000161.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1151063253,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.8316483772092276,
+            0.7
+          ]
+        }
+      ],
+      "index": 162,
+      "input_sha256": "25575f458f074ef107cbfb8f3d9a6019867bb874617d0b38b9cfe19c8d3f00ae",
+      "path": "validation/sample-000162.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 887769678,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.7293713011741618,
+            0.7
+          ]
+        }
+      ],
+      "index": 163,
+      "input_sha256": "bf2301ec5d8ef2fe69f25bdce441da65bf54cd719bcf0358fb436593464a9f7e",
+      "path": "train/sample-000163.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1797373981,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.006059864642273427,
+            0.3563523607869515
+          ]
+        },
+        {
+          "kind": "resize",
+          "parameters": [
+            0.6120269885241065
+          ]
+        }
+      ],
+      "index": 164,
+      "input_sha256": "74988eb979870091c423b5cbd5435172feb254fb6151d67ce9f3bdde2514865a",
+      "path": "test/sample-000164.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 228179186,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.42673131886137206,
+            -0.22899346787360034
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.25759632557865764
+          ]
+        }
+      ],
+      "index": 165,
+      "input_sha256": "3274169c214debdb2b3db6673dfb29dd44040de568d51181c2f08c125051b7c4",
+      "path": "train/sample-000165.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 2130214764,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 166,
+      "input_sha256": "3dbaf03e7988877f61205e11415bd9ee406ae49a780a203961fd178ceec0d1b3",
+      "path": "train/sample-000166.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1437529209,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            83.0
+          ]
+        }
+      ],
+      "index": 167,
+      "input_sha256": "b1dbb2a9519c5a4a48e7bd01c9b5081f1afa2b23fa6613a1d124ae3165605c4e",
+      "path": "train/sample-000167.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1514436332,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            31.0
+          ]
+        }
+      ],
+      "index": 168,
+      "input_sha256": "3ceff600aa948371ab486f349ed1b004210aa3db39c8268d1c8df75500e719c1",
+      "path": "test/sample-000168.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 374533500,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.43695119781221975,
+            -0.41126807460449744
+          ]
+        }
+      ],
+      "index": 169,
+      "input_sha256": "2c6095d61498c01e11a246ece9ba5c7e8db0eacd2f9f85e40703edb5f93002f2",
+      "path": "train/sample-000169.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1102816798,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            73.0
+          ]
+        }
+      ],
+      "index": 170,
+      "input_sha256": "f46bafe84b0428bf5af65e1d74e4df6ba186a28a0314bfc8eda42df29087c484",
+      "path": "train/sample-000170.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 674357654,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            13.0
+          ]
+        }
+      ],
+      "index": 171,
+      "input_sha256": "078f3221e6512bce821fb194803448f3396eedfade4e8ad34b57092a1840048e",
+      "path": "test/sample-000171.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1788676324,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.1206613340870946
+          ]
+        }
+      ],
+      "index": 172,
+      "input_sha256": "e10bc965acf095b8d8dc6c7953bd8246c8211e337a429c7e5818c36d38c22add",
+      "path": "train/sample-000172.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 600809808,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.6651593267146464
+          ]
+        },
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.5685687143354583,
+            0.7
+          ]
+        }
+      ],
+      "index": 173,
+      "input_sha256": "50a070739993535193f047433747f603f3b60079fcbcb9f3e2c58488c914ce16",
+      "path": "train/sample-000173.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1585021410,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.05457864739502494
+          ]
+        }
+      ],
+      "index": 174,
+      "input_sha256": "1efcfb8c44ba768fed8ea60359ac49c266bd7c12a3e0bd5034a3d99bc8e65eb4",
+      "path": "train/sample-000174.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1353030268,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            13.0
+          ]
+        }
+      ],
+      "index": 175,
+      "input_sha256": "0af368b939a0391f294ea62a1689aa86018db4a461b82fb326703ab5b0465fc4",
+      "path": "train/sample-000175.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1788786919,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.890483306258939,
+            0.7
+          ]
+        }
+      ],
+      "index": 176,
+      "input_sha256": "7b289281d69778cf70350623bb233c41471104fda52dfcd0ce4a4dfe207a0006",
+      "path": "test/sample-000176.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 197416837,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            50.0
+          ]
+        }
+      ],
+      "index": 177,
+      "input_sha256": "c038ff53bbfdfa583ea9129c0381a7b567b16659cf05b25b1fe0898498fcc7cf",
+      "path": "train/sample-000177.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 56212792,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.5555999206754394
+          ]
+        }
+      ],
+      "index": 178,
+      "input_sha256": "128a10e9799a1c374f3c53a81d5873f9016f2cfa322286039c79f5ce93e2384b",
+      "path": "train/sample-000178.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1500508022,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.16454979165061356
+          ]
+        }
+      ],
+      "index": 179,
+      "input_sha256": "7b021f97fc41ec9b61fcda555e26a0956246a9ea6df71d23891a901621e8d3e5",
+      "path": "train/sample-000179.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1262227604,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.9630789776827964
+          ]
+        }
+      ],
+      "index": 180,
+      "input_sha256": "5b4e04f31e1bc5e3da44c8a8c47c8d3a54bee1bde30e1937cc7263f7450b6933",
+      "path": "train/sample-000180.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 799266672,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 181,
+      "input_sha256": "54e407beebac2b96ccc968b7d086568a75e6c08d906b0e4a1669f243f6f0d7e0",
+      "path": "train/sample-000181.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1795891113,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.8846299390650645
+          ]
+        }
+      ],
+      "index": 182,
+      "input_sha256": "04462f44f2f550640ff39c7179c5c16dbbf5c4b40683e4fb8c5d1ee474c216cc",
+      "path": "train/sample-000182.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 616653226,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            39.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 183,
+      "input_sha256": "da329cf3e210b3c2a87ff59840c396f14456df259d30b2123cb096c786fff239",
+      "path": "train/sample-000183.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 806580984,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            33.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 184,
+      "input_sha256": "3b8062e71da2c0343ba96435bf2ff5f8da36d721ed707e58d2641ec3dba14611",
+      "path": "train/sample-000184.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 163822676,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 185,
+      "input_sha256": "125a65c5e80f9e88a4a9f50b828e0a2f49f34a435fd9cfe5cbfdfe80ec8ec8fc",
+      "path": "train/sample-000185.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 825355644,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            69.0
+          ]
+        }
+      ],
+      "index": 186,
+      "input_sha256": "48a87d1c133ef723f05ed956dab2affc2a5e9ae54bcc72f0a0cb394b13ef48a9",
+      "path": "train/sample-000186.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 998893968,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.5254788045142473,
+            0.7
+          ]
+        }
+      ],
+      "index": 187,
+      "input_sha256": "a5e110552743042a7fb615a3b3dab20ef060c28bd9d2eb87c0a02b770e919e9c",
+      "path": "train/sample-000187.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 651038875,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 188,
+      "input_sha256": "808030d4f2949c8c009218ba2ea6d9b3ceaaf11c3edb61cdeeaa34a37c83c074",
+      "path": "train/sample-000188.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1352546979,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.5625420024331427
+          ]
+        }
+      ],
+      "index": 189,
+      "input_sha256": "1580fc14eb843b5920034eff34f2bf1b7fb86d9e4a3b6159ccdcf0085204f4b2",
+      "path": "train/sample-000189.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 538574565,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.8752211851870526
+          ]
+        },
+        {
+          "kind": "recompress",
+          "parameters": [
+            79.0,
+            3.0
+          ]
+        }
+      ],
+      "index": 190,
+      "input_sha256": "d23bed0018ecbbbe86fe2bc8de917829765286c958b63f2d837bb0bff20e5448",
+      "path": "train/sample-000190.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 282818124,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.8256779973180612
+          ]
+        }
+      ],
+      "index": 191,
+      "input_sha256": "b8f6bfbf0202846a99b94c3ef32471daa28ad43bdc6f09aa3d3fd1ffc1f2bbc4",
+      "path": "train/sample-000191.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1689510386,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.4827474200554605
+          ]
+        }
+      ],
+      "index": 192,
+      "input_sha256": "2b6eb647f5ef4aaa4aa882b2a5b0ef9dd1ccdfec913d2ff010089b8eefedfbf0",
+      "path": "train/sample-000192.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1886371814,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.165481946995736
+          ]
+        }
+      ],
+      "index": 193,
+      "input_sha256": "ac09762ffa157405a309858a468dddeb77c4743cfe0a07200d0d3bb8f479a28a",
+      "path": "train/sample-000193.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1743291819,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 194,
+      "input_sha256": "9ead0ecf8f83e026f1dbf679caca85b784278f1ac08f873a537d8ccbce7f1436",
+      "path": "train/sample-000194.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 2048106905,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.5683380817521436
+          ]
+        }
+      ],
+      "index": 195,
+      "input_sha256": "4326a22aac8b60cb198d132159dcbe34c4867af6f4ebd734b62cc4e3cba0710d",
+      "path": "train/sample-000195.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1277642641,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.24439694821114855,
+            0.7
+          ]
+        },
+        {
+          "kind": "jpeg",
+          "parameters": [
+            64.0
+          ]
+        }
+      ],
+      "index": 196,
+      "input_sha256": "ef72cf90a5c4a8a7bc9849290fb1bc206bf466771d637198eea2d9d7280f7df0",
+      "path": "train/sample-000196.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1770114991,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.5424185305887632,
+            0.7
+          ]
+        }
+      ],
+      "index": 197,
+      "input_sha256": "865d13958a23fb2b89caab102ef97f7d49057b2318b776de347bf230782b9b44",
+      "path": "train/sample-000197.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 150554783,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.5097276821139621
+          ]
+        },
+        {
+          "kind": "resize",
+          "parameters": [
+            0.5097276821139621
+          ]
+        }
+      ],
+      "index": 198,
+      "input_sha256": "1814d3fed0531f575c373076f5d30f82f422144a0f69f8e71de79a629f2b703d",
+      "path": "train/sample-000198.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1028383781,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.1665991082455534
+          ]
+        }
+      ],
+      "index": 199,
+      "input_sha256": "567bd59b1c40faa1bae5ede3c9a69ee3724f9a29cfd1a1bed443b32c714694ed",
+      "path": "test/sample-000199.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 352415805,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.8579105744065778
+          ]
+        }
+      ],
+      "index": 200,
+      "input_sha256": "008a6432b81fa4665b266573e6989ffe80ae571038568c7246729195e47c27c7",
+      "path": "train/sample-000200.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 935617663,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.7627288996643726
+          ]
+        },
+        {
+          "kind": "translate",
+          "parameters": [
+            0.1915315292634046,
+            0.3099553789532142
+          ]
+        }
+      ],
+      "index": 201,
+      "input_sha256": "06dca0e9b91c5c5edf22b3cb901010620ef3b359567aeabf665f4f54980d6d9c",
+      "path": "train/sample-000201.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 863216344,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.7944198756931242
+          ]
+        },
+        {
+          "kind": "rotate",
+          "parameters": [
+            -1.009772770198846
+          ]
+        }
+      ],
+      "index": 202,
+      "input_sha256": "581596b29890c759ab5888d0e633c1b22f52dd2717f4230acd7f0109dfb2bdfb",
+      "path": "train/sample-000202.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 796140376,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.32601913331101395
+          ]
+        }
+      ],
+      "index": 203,
+      "input_sha256": "ebe74a251da8001b95d3f0672c19ff17086f616a024c7b846cdd4ef6f4d816f1",
+      "path": "train/sample-000203.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 670052015,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.1300571834009117,
+            1326492372.0
+          ]
+        }
+      ],
+      "index": 204,
+      "input_sha256": "8a091cb9cecae2dff482e4ed7c1c1fbe04dc143f0b97ce3f94ffdcd75896a111",
+      "path": "train/sample-000204.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1326492372,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            29.0
+          ]
+        }
+      ],
+      "index": 205,
+      "input_sha256": "7040ee29aff9f14ad79c4c9439e02c3758c4f22133ce2e462ced2006f546878e",
+      "path": "validation/sample-000205.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1574449776,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.6522908277412381
+          ]
+        }
+      ],
+      "index": 206,
+      "input_sha256": "f6a7359f97bf0c16bedeebbe8905b5009b0f6eb4628c1a43f272d24ac5770968",
+      "path": "validation/sample-000206.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 231303383,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.22070125189405562
+          ]
+        }
+      ],
+      "index": 207,
+      "input_sha256": "009553a636e557c90dc1f255672f815ea3fb15c2759e37ede4b517c9c014352d",
+      "path": "validation/sample-000207.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 906590191,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.8124062345188623,
+            0.7
+          ]
+        },
+        {
+          "kind": "resize",
+          "parameters": [
+            0.6725777398561802
+          ]
+        }
+      ],
+      "index": 208,
+      "input_sha256": "ad1874a35b263dbff5982b0c94e370c2e833880007fe88ec8cf4b9d6ed59485f",
+      "path": "train/sample-000208.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1950021590,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            70.0,
+            2.0
+          ]
+        },
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.8460667600161456,
+            0.7
+          ]
+        }
+      ],
+      "index": 209,
+      "input_sha256": "fa2a3122a4a1314f7fc0e617736f57f77a994f326f622638c040853aab620929",
+      "path": "train/sample-000209.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1707422581,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 210,
+      "input_sha256": "2d24e14acab293d6753997cd6a88541cb57eab0e0c4b50a8f26582a080449510",
+      "path": "train/sample-000210.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 183179154,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            2.6672551571326664,
+            729445922.0
+          ]
+        }
+      ],
+      "index": 211,
+      "input_sha256": "58f5a33502f1bb74e4d86d953dfcf606cfe03f7d515fb92d32754fecde32e00a",
+      "path": "train/sample-000211.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 729445922,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            50.0
+          ]
+        }
+      ],
+      "index": 212,
+      "input_sha256": "9682b9d0aefd2356cddaf10215d36a2f247a3d73764dacfd7a04113c7c6f4302",
+      "path": "train/sample-000212.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 256887717,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 213,
+      "input_sha256": "5952ff2546981e4f22b38c14cd02c8a0f8ce2acb30f0826575deefbcec51d240",
+      "path": "train/sample-000213.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 85247808,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 214,
+      "input_sha256": "c15ef49a3c3b61c4fdeec3c4bfb3003fb404a4cb7704e92ef4b027579b92200a",
+      "path": "train/sample-000214.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 2103040190,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.668007992673763
+          ]
+        }
+      ],
+      "index": 215,
+      "input_sha256": "d636343e14ae8b2b2bfe573efb41af8a0d757353141a7fd49e04e9c487a4844a",
+      "path": "train/sample-000215.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1643236702,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.12705364935298985,
+            0.0024284217826173737
+          ]
+        }
+      ],
+      "index": 216,
+      "input_sha256": "ec3936767666514bade4d02acb97c509977a550c85dae8964b9bbc070c30e40c",
+      "path": "train/sample-000216.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 2040633906,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            58.0
+          ]
+        }
+      ],
+      "index": 217,
+      "input_sha256": "e90535cc1aece1c8ab160c5679b440d71ecce460f588904da481f1be44f2e822",
+      "path": "train/sample-000217.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1090476892,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            52.0,
+            2.0
+          ]
+        }
+      ],
+      "index": 218,
+      "input_sha256": "464407fc124371c17dd73d6475d034948694a4319fc0a69d5dbf92dd8c61e0bf",
+      "path": "test/sample-000218.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1990874579,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            47.0
+          ]
+        }
+      ],
+      "index": 219,
+      "input_sha256": "fa9166daa414ca96360fc149428682a54bc6577eab6888b91dc607304a629950",
+      "path": "train/sample-000219.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1524954012,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            15.0
+          ]
+        }
+      ],
+      "index": 220,
+      "input_sha256": "89a81edc4fe3272c1cbaf0b65c286ccb9966dcdcfedacebe7f16f9c1af983204",
+      "path": "train/sample-000220.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 210297398,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.1389407711665634,
+            -0.08694523602577586
+          ]
+        }
+      ],
+      "index": 221,
+      "input_sha256": "4425971e40aa714717794419a503bd0651626c0ecd22628e25377efaec22ea46",
+      "path": "validation/sample-000221.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1805405211,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.9537170221154101
+          ]
+        },
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.5166497997829727
+          ]
+        }
+      ],
+      "index": 222,
+      "input_sha256": "4ceaa08629e95e24eb83845a52dbf30e294d7535a6638af571652560807d214e",
+      "path": "train/sample-000222.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1159681952,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.419469862296149,
+            0.24430957374165901
+          ]
+        }
+      ],
+      "index": 223,
+      "input_sha256": "b93207d109f34606a33505e82a11acdb3174c6201c74465a41de7ac4025ba685",
+      "path": "train/sample-000223.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 621653229,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            3.0991297449155644,
+            280238845.0
+          ]
+        }
+      ],
+      "index": 224,
+      "input_sha256": "5dbc669af8d476c92fd23bb3d3b7741e2c392e0ec60f86e8cdf2683123b84288",
+      "path": "train/sample-000224.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 280238845,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 225,
+      "input_sha256": "0f48b82fe8e9464bd72c901af9d3cbccea97e7b23df22ae8a4256b65df7b903d",
+      "path": "test/sample-000225.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 827352569,
+      "split": "test"
+    },
+    {
+      "degradations": [],
+      "index": 226,
+      "input_sha256": "04b95f890c7884db62332be6c4dbf6e752dcd40d68ed589475dfd3c25c3cb01b",
+      "path": "validation/sample-000226.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 2081014996,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            3.7263659355028675,
+            43528034.0
+          ]
+        }
+      ],
+      "index": 227,
+      "input_sha256": "09025672b5ae38db2cb58c5852ae44f1f03734141c3c9c6b4e25a0d25de1ea0f",
+      "path": "train/sample-000227.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 43528034,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.6213267403746984
+          ]
+        },
+        {
+          "kind": "palette",
+          "parameters": [
+            8.0
+          ]
+        }
+      ],
+      "index": 228,
+      "input_sha256": "bf7eb674b2156a77d82bb403c396f591af6e504140aa2375851db69b55857fcc",
+      "path": "train/sample-000228.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1947989101,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "jpeg",
+          "parameters": [
+            29.0
+          ]
+        }
+      ],
+      "index": 229,
+      "input_sha256": "eca9a6fbbfe6672600147ebdd1a2265d43923f05f55ff0850942e234c69c862a",
+      "path": "train/sample-000229.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1356580170,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.4156356122943291
+          ]
+        },
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.34102471543977,
+            0.7
+          ]
+        }
+      ],
+      "index": 230,
+      "input_sha256": "a4b4c4e3099e298b87f3ffe003413b5a7efcbb26225b0a7eb574fb0eb683d5d6",
+      "path": "validation/sample-000230.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 354665384,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            0.6886895700102005,
+            654679067.0
+          ]
+        }
+      ],
+      "index": 231,
+      "input_sha256": "e3acc9f4607cb0a503cbcfa7798533d94d9524038ac6156e43d132c3746ec238",
+      "path": "train/sample-000231.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 654679067,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            5.0
+          ]
+        },
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            0.9549794703276628
+          ]
+        }
+      ],
+      "index": 232,
+      "input_sha256": "c7905e212e4102b5a61ed279ebb5d5203723586bb64aa5ec26c2aa056dd23133",
+      "path": "test/sample-000232.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1323571986,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.8230657721856183
+          ]
+        },
+        {
+          "kind": "jpeg",
+          "parameters": [
+            70.0
+          ]
+        }
+      ],
+      "index": 233,
+      "input_sha256": "b4162162c742dcf87b44238e280e648f7bc0796c4da48ac34095bc6691df9805",
+      "path": "train/sample-000233.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1947162388,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.7818043571930732
+          ]
+        }
+      ],
+      "index": 234,
+      "input_sha256": "270699fb40442c1bdb63370db9fb71d04f418cf16ac1d23d39bc8a813f0fcb25",
+      "path": "train/sample-000234.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 1899759832,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.8902162025706544,
+            0.7
+          ]
+        },
+        {
+          "kind": "translate",
+          "parameters": [
+            -0.4043646762707264,
+            -0.3412849607691214
+          ]
+        }
+      ],
+      "index": 235,
+      "input_sha256": "64b4c47cf428ab1821edd78a76f03650d7716478c03fe87a9ffa11cc279ce98e",
+      "path": "train/sample-000235.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 245692850,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.3562033044126481,
+            -0.2833065024679763
+          ]
+        }
+      ],
+      "index": 236,
+      "input_sha256": "52ec3cd5f29d2e3d1ada460ca0ce340c05df66ee06119e188220fd7593a1c112",
+      "path": "train/sample-000236.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1875472215,
+      "split": "train"
+    },
+    {
+      "degradations": [],
+      "index": 237,
+      "input_sha256": "25dedb0cefeaf1b71f1d02e90679f2e5e5f3b98e342c6dec88155c07e2f36043",
+      "path": "train/sample-000237.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1953651026,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "translate",
+          "parameters": [
+            0.4406494564098981,
+            -0.31988343667157393
+          ]
+        }
+      ],
+      "index": 238,
+      "input_sha256": "73ca0f05ffdb892643d6ebfd4b732af5cfbe1755ac9e52f929dc95701d455663",
+      "path": "train/sample-000238.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 248492778,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            17.0
+          ]
+        }
+      ],
+      "index": 239,
+      "input_sha256": "f28b737058cb5f8b43108916132e3a69380742b0e2176056f9a045c7fb954620",
+      "path": "train/sample-000239.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 371761333,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.24150270865425116
+          ]
+        },
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.24150270865425116
+          ]
+        }
+      ],
+      "index": 240,
+      "input_sha256": "54f607a3744c5bd32dd44d349a74667edb2094c4992d7330287112618824bdd8",
+      "path": "train/sample-000240.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1739023730,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            0.7642602778170667
+          ]
+        }
+      ],
+      "index": 241,
+      "input_sha256": "94bec7f7e37d1502d2c4eeb8a8931241800f6edd97f75bcc81d16747b2f8460c",
+      "path": "validation/sample-000241.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 404639706,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.42338229690736107,
+            0.7
+          ]
+        }
+      ],
+      "index": 242,
+      "input_sha256": "2b67c89bba84783f05c129359d5260225ac12ef05c0162ba7166423241cad04b",
+      "path": "train/sample-000242.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1715971326,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.8049750078976126,
+            2039331294.0
+          ]
+        }
+      ],
+      "index": 243,
+      "input_sha256": "cb60bbb9431138783f74a3f88699e19abf9beac12c8bfd534057ad7d127eabdd",
+      "path": "train/sample-000243.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 2039331294,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "recompress",
+          "parameters": [
+            78.0,
+            3.0
+          ]
+        },
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.38651820125362324
+          ]
+        }
+      ],
+      "index": 244,
+      "input_sha256": "1a2e5ede5aca7d3fe5848e9d6280f39f07d709e5750fec5db46113f5543408a3",
+      "path": "train/sample-000244.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1776423921,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.675135812959117
+          ]
+        }
+      ],
+      "index": 245,
+      "input_sha256": "51ef3531540bfd5b9e62eaf9c5a79d060d8a87d4fccf394e8f6d0250160eae4e",
+      "path": "train/sample-000245.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 121741781,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.36983409175047777,
+            0.7
+          ]
+        },
+        {
+          "kind": "palette",
+          "parameters": [
+            7.0
+          ]
+        }
+      ],
+      "index": 246,
+      "input_sha256": "1f98df3ce00955a1db04e80363611f359f5184a55464b11d31564705c65011bf",
+      "path": "train/sample-000246.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 1209791755,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.4895314231109071
+          ]
+        }
+      ],
+      "index": 247,
+      "input_sha256": "d9d8594ed976419fbbf92eb31e77f2fd7c25896bb36dbd923f31b02bc6a00a8c",
+      "path": "train/sample-000247.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1154901434,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gaussian-blur",
+          "parameters": [
+            1.055537719939297
+          ]
+        }
+      ],
+      "index": 248,
+      "input_sha256": "4a089a10c27691702fb18fb7798d8d11f1ed1380e3e2efe2607350e184666bed",
+      "path": "test/sample-000248.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1281560125,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            3.107658662600594,
+            135241775.0
+          ]
+        }
+      ],
+      "index": 249,
+      "input_sha256": "b6aeb27ca777712277ce2b5dd67d6e97482bb87962ec40a15acd43726c39d70c",
+      "path": "train/sample-000249.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 135241775,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.0238249396776218
+          ]
+        }
+      ],
+      "index": 250,
+      "input_sha256": "d0a9231830ea1a43110639aff0b61b87e905d6291b6225d542332fc410a90caa",
+      "path": "train/sample-000250.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 8
+      },
+      "renderer": "pillow-polygon",
+      "seed": 1439420616,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            -0.6637255218141435
+          ]
+        }
+      ],
+      "index": 251,
+      "input_sha256": "f3c9f0afb235df24ac906e31367939d53291170af08ba8a1383db0aafa572390",
+      "path": "test/sample-000251.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 4
+      },
+      "renderer": "opencv-polygon",
+      "seed": 848521646,
+      "split": "test"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.3162515925810172,
+            0.7
+          ]
+        }
+      ],
+      "index": 252,
+      "input_sha256": "aec5f1d59f19accf0318de519b189c89d66034c62fbb6fc555258f4c67dd446d",
+      "path": "train/sample-000252.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.0,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 8
+      },
+      "renderer": "vice-analytic",
+      "seed": 843932072,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.3472299355064665
+          ]
+        },
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            3.4479405440779507,
+            695144388.0
+          ]
+        }
+      ],
+      "index": 253,
+      "input_sha256": "200959b3e857efeaeebc10ac308d5a229b9881c6f83b4ce108056683157d351a",
+      "path": "validation/sample-000253.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.25,
+        "gamma": 2.4,
+        "jpeg_quality": null,
+        "name": "synthetic-pillow-polygon",
+        "supersample": 4
+      },
+      "renderer": "pillow-polygon",
+      "seed": 695144388,
+      "split": "validation"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "gamma",
+          "parameters": [
+            1.172954913801224
+          ]
+        },
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.5655553639085278,
+            0.7
+          ]
+        }
+      ],
+      "index": 254,
+      "input_sha256": "5bc6369a96632cba892c1d45b35fbe86eb281e0f4d6f78ff4357f37e5ed057e6",
+      "path": "train/sample-000254.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 1.8,
+        "jpeg_quality": null,
+        "name": "synthetic-opencv-polygon",
+        "supersample": 8
+      },
+      "renderer": "opencv-polygon",
+      "seed": 1742877777,
+      "split": "train"
+    },
+    {
+      "degradations": [
+        {
+          "kind": "palette",
+          "parameters": [
+            11.0
+          ]
+        }
+      ],
+      "index": 255,
+      "input_sha256": "c9056337eae1aecee2c828ca47dec453db600331b12f72e6007083a5ad0727ca",
+      "path": "train/sample-000255.npz",
+      "render_model": {
+        "background_linear": [
+          1.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "blur_sigma": 0.0,
+        "gamma": 2.2,
+        "jpeg_quality": null,
+        "name": "synthetic-vice-analytic",
+        "supersample": 4
+      },
+      "renderer": "vice-analytic",
+      "seed": 736304396,
+      "split": "train"
+    }
+  ],
+  "schema": "vice-synthetic-dataset/1",
+  "seed": 20260721
+}

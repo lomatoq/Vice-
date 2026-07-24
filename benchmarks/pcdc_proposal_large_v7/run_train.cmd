@@ -1,0 +1,3 @@
+@echo off
+cd /d "C:\Users\nirrt\Toolset\v-ice part"
+"C:\Users\nirrt\Toolset\Backgrounder\.venv-sam3\Scripts\python.exe" -m vice_compiler.train_proposal_net_large --resume models\proposal_net_large_candidate_v6.pt --checkpoint models\proposal_net_large_candidate_v7.pt --report benchmarks\pcdc_proposal_large_v7\report.json --progress benchmarks\pcdc_proposal_large_v7\progress.json --epochs 4 --batch-size 16 --workers 2 --image-size 128 --hidden-dim 128 --query-count 32 --decoder-layers 3 --parameter-dim 16 --lr 1e-4 --minimum-recall 0.97 --quiet 1>benchmarks\pcdc_proposal_large_v7\stdout.log 2>benchmarks\pcdc_proposal_large_v7\stderr.log

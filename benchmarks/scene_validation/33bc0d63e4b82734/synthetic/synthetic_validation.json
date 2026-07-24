@@ -1,0 +1,405 @@
+{
+  "failures": [],
+  "passed_invariants": true,
+  "policy": "post-freeze metrics only; no tuning",
+  "proposal_selector_separation": {
+    "policy": "owned-source-scenes-only; exact scene never used for training",
+    "proposal_family_recall_mean": 1.0,
+    "rows": [
+      {
+        "oracle_proposals_real_selector": {
+          "exact_selected": true,
+          "proposal_names": [
+            "exact",
+            "wrong-colour",
+            "wrong-geometry",
+            "wrong-order"
+          ],
+          "render_model": "jpeg-70",
+          "runner_up": 0.07271293090858562,
+          "score": 0.07188482485328314,
+          "selected": "exact"
+        },
+        "proposal_oracle": {
+          "candidate_graphs": 98,
+          "exact_scene_nll": 0.003162277163937688,
+          "family_recall": 1.0,
+          "oracle_selected": "topology-1:shape-1:1:rounded-rectangle",
+          "oracle_selected_nll": 0.015130344992503523,
+          "proposal_gap_to_exact": 0.011968067828565835,
+          "proposed_families": [
+            "D-shape",
+            "circle",
+            "ellipse",
+            "generic",
+            "rectangle",
+            "ring",
+            "rounded-rectangle"
+          ],
+          "truth_families": [
+            "circle",
+            "rounded-rectangle"
+          ]
+        },
+        "scene": 0,
+        "size": [
+          32,
+          32
+        ]
+      },
+      {
+        "oracle_proposals_real_selector": {
+          "exact_selected": true,
+          "proposal_names": [
+            "exact",
+            "wrong-colour",
+            "wrong-geometry",
+            "wrong-order"
+          ],
+          "render_model": "jpeg-70",
+          "runner_up": 0.02907385971953378,
+          "score": 0.02907385971953378,
+          "selected": "exact"
+        },
+        "proposal_oracle": {
+          "candidate_graphs": 253,
+          "exact_scene_nll": 0.003162277629598975,
+          "family_recall": 1.0,
+          "oracle_selected": "topology-1:shape-1:9:rounded-rectangle",
+          "oracle_selected_nll": 0.02768216848373413,
+          "proposal_gap_to_exact": 0.024519890854135154,
+          "proposed_families": [
+            "D-shape",
+            "circle",
+            "ellipse",
+            "generic",
+            "isosceles-triangle",
+            "quadrilateral",
+            "rectangle",
+            "rounded-rectangle",
+            "star",
+            "triangle"
+          ],
+          "truth_families": [
+            "circle",
+            "ellipse",
+            "rectangle",
+            "rounded-rectangle",
+            "star"
+          ]
+        },
+        "scene": 1,
+        "size": [
+          64,
+          48
+        ]
+      },
+      {
+        "oracle_proposals_real_selector": {
+          "exact_selected": true,
+          "proposal_names": [
+            "exact",
+            "wrong-colour",
+            "wrong-geometry",
+            "wrong-order"
+          ],
+          "render_model": "jpeg-70",
+          "runner_up": 0.029961766199281432,
+          "score": 0.028933222774286615,
+          "selected": "exact"
+        },
+        "proposal_oracle": {
+          "candidate_graphs": 392,
+          "exact_scene_nll": 0.003162277629598975,
+          "family_recall": 1.0,
+          "oracle_selected": "topology-2:shape-2:16:rounded-rectangle",
+          "oracle_selected_nll": 0.026094458531588316,
+          "proposal_gap_to_exact": 0.02293218090198934,
+          "proposed_families": [
+            "D-shape",
+            "circle",
+            "ellipse",
+            "generic",
+            "isosceles-triangle",
+            "quadrilateral",
+            "rectangle",
+            "rounded-rectangle",
+            "star",
+            "triangle"
+          ],
+          "truth_families": [
+            "circle",
+            "ellipse",
+            "rectangle",
+            "rounded-rectangle",
+            "star"
+          ]
+        },
+        "scene": 2,
+        "size": [
+          64,
+          48
+        ]
+      },
+      {
+        "oracle_proposals_real_selector": {
+          "exact_selected": true,
+          "proposal_names": [
+            "exact",
+            "wrong-colour",
+            "wrong-geometry",
+            "wrong-order"
+          ],
+          "render_model": "jpeg-70",
+          "runner_up": 0.03225525067654999,
+          "score": 0.032226663959289414,
+          "selected": "exact"
+        },
+        "proposal_oracle": {
+          "candidate_graphs": 323,
+          "exact_scene_nll": 0.003162277629598975,
+          "family_recall": 1.0,
+          "oracle_selected": "topology-0:shape-0:8:rounded-rectangle",
+          "oracle_selected_nll": 0.03203775998204947,
+          "proposal_gap_to_exact": 0.028875482352450493,
+          "proposed_families": [
+            "D-shape",
+            "circle",
+            "ellipse",
+            "generic",
+            "isosceles-triangle",
+            "quadrilateral",
+            "rectangle",
+            "rounded-rectangle",
+            "star",
+            "triangle"
+          ],
+          "truth_families": [
+            "circle",
+            "ellipse",
+            "rectangle",
+            "rounded-rectangle",
+            "star"
+          ]
+        },
+        "scene": 3,
+        "size": [
+          64,
+          48
+        ]
+      }
+    ],
+    "schema": "vice-scene-oracle-ablation/1",
+    "selector_exact_rate": 1.0
+  },
+  "renderer_holdout": [
+    {
+      "deterministic": true,
+      "renderer": "vice-analytic",
+      "rgba_mae_vs_analytic": 0.0,
+      "scene": 0,
+      "sha256": "c625b54fae7c78fd2ae02f7298da7d12087dd2add4aa9531ac3a3a69f6695d92"
+    },
+    {
+      "deterministic": true,
+      "renderer": "vice-analytic",
+      "rgba_mae_vs_analytic": 0.0,
+      "scene": 1,
+      "sha256": "2a45b4edd15bb4e7fb17be5ea9457ac93a169d45014854594f60a37d76df2e8d"
+    },
+    {
+      "deterministic": true,
+      "renderer": "pillow-polygon",
+      "rgba_mae_vs_analytic": 13.675537109375,
+      "scene": 0,
+      "sha256": "6022bf00361fbfefb71d2dd10b49b779e2956fd88cdcb096233e713036e0c840"
+    },
+    {
+      "deterministic": true,
+      "renderer": "pillow-polygon",
+      "rgba_mae_vs_analytic": 5.212131023406982,
+      "scene": 1,
+      "sha256": "beb8653be5c6ea46efc6177bab7d592e28a172f5cbb03a1d563cf02e0c5f8fdd"
+    },
+    {
+      "deterministic": true,
+      "renderer": "opencv-polygon",
+      "rgba_mae_vs_analytic": 3.138671875,
+      "scene": 0,
+      "sha256": "31c3d0da40d316243823b773dd4f65929c4e9239cc6e5622d2d37bbe9c857eee"
+    },
+    {
+      "deterministic": true,
+      "renderer": "opencv-polygon",
+      "rgba_mae_vs_analytic": 1.8770616054534912,
+      "scene": 1,
+      "sha256": "8d85d45478260cb967cae84a8b5278c039dda4e9dd18728b0c607db134920a67"
+    },
+    {
+      "deterministic": true,
+      "renderer": "chromium-svg",
+      "rgba_mae_vs_analytic": 185.3017578125,
+      "scene": 0,
+      "sha256": "690ea9d5f589bd7117758a3c6e717fd8b451bf16cfe903963e741a5ac63a9ed4"
+    },
+    {
+      "deterministic": true,
+      "renderer": "chromium-svg",
+      "rgba_mae_vs_analytic": 241.06149291992188,
+      "scene": 1,
+      "sha256": "15460d2ab1bca9c288743b71b31e72c01e8ef38d423aa14a869d2e42b0215dc1"
+    }
+  ],
+  "schema": "vice-scene-synthetic-validation/1",
+  "selector": {
+    "accuracy": 1.0,
+    "brier": 0.1528068757266265,
+    "calibration_temperature": 0.015,
+    "mean_source_probability": 0.6501150064529053,
+    "rows": [
+      {
+        "correct": true,
+        "scores": {
+          "blur-0.6": 0.05654094584286212,
+          "clean-aa": 0.003162277163937688,
+          "gamma-1.8": 0.010925671309232712,
+          "hard": 0.020718340398743748,
+          "jpeg-70": 1.0083973959088326
+        },
+        "selected_model": "clean-aa",
+        "source_model": "clean-aa",
+        "source_model_probability": 0.516877607256475
+      },
+      {
+        "correct": true,
+        "scores": {
+          "blur-0.6": 0.06587093323469162,
+          "clean-aa": 0.020718340398743748,
+          "gamma-1.8": 0.027282980242744087,
+          "hard": 0.003162277163937688,
+          "jpeg-70": 1.0093365931510925
+        },
+        "selected_model": "hard",
+        "source_model": "hard",
+        "source_model_probability": 0.6553897703435898
+      },
+      {
+        "correct": true,
+        "scores": {
+          "blur-0.6": 0.03681025397963822,
+          "clean-aa": 0.053157674446702,
+          "gamma-1.8": 0.053868482299149034,
+          "hard": 0.06248765915632248,
+          "jpeg-70": 0.9998462203145028
+        },
+        "selected_model": "blur-0.6",
+        "source_model": "blur-0.6",
+        "source_model_probability": 0.5442115101413081
+      },
+      {
+        "correct": true,
+        "scores": {
+          "blur-0.6": 0.05725175369530916,
+          "clean-aa": 0.010925671309232712,
+          "gamma-1.8": 0.003162277163937688,
+          "hard": 0.027282980242744087,
+          "jpeg-70": 1.007716953754425
+        },
+        "selected_model": "gamma-1.8",
+        "source_model": "gamma-1.8",
+        "source_model_probability": 0.5484221667548209
+      },
+      {
+        "correct": true,
+        "scores": {
+          "blur-0.6": 0.09345477178692818,
+          "clean-aa": 0.08483388274908066,
+          "gamma-1.8": 0.0832656554877758,
+          "hard": 0.09035077705979347,
+          "jpeg-70": 0.003162277163937688
+        },
+        "selected_model": "jpeg-70",
+        "source_model": "jpeg-70",
+        "source_model_probability": 0.985673977768333
+      }
+    ]
+  },
+  "unseen_degradations": [
+    {
+      "deterministic": true,
+      "recipe": [
+        {
+          "kind": "rotate",
+          "parameters": [
+            0.37
+          ]
+        },
+        {
+          "kind": "scan-noise",
+          "parameters": [
+            1.35,
+            9101
+          ]
+        }
+      ],
+      "sha256": "fb46f8be2586ab070248adbdbf151db0f8926c451f202a6a1c5f2e4837d4b669"
+    },
+    {
+      "deterministic": true,
+      "recipe": [
+        {
+          "kind": "resize",
+          "parameters": [
+            0.63
+          ]
+        },
+        {
+          "kind": "recompress",
+          "parameters": [
+            47,
+            2
+          ]
+        }
+      ],
+      "sha256": "56e5b574d29fa7e00f3cebaef558b5e7f905994117d0c863feb81376fd5fcb11"
+    },
+    {
+      "deterministic": true,
+      "recipe": [
+        {
+          "kind": "sharpen",
+          "parameters": [
+            0.55,
+            0.8
+          ]
+        },
+        {
+          "kind": "alpha-roundtrip-error",
+          "parameters": [
+            0.42
+          ]
+        }
+      ],
+      "sha256": "ce7300696723601e8b0348094c7eef6a7a1d156b67ccdcf6a390db4f4260a096"
+    },
+    {
+      "deterministic": true,
+      "recipe": [
+        {
+          "kind": "palette",
+          "parameters": [
+            9
+          ]
+        },
+        {
+          "kind": "translate",
+          "parameters": [
+            0.31,
+            -0.27
+          ]
+        }
+      ],
+      "sha256": "f749daf299b0355884e85f9c5f4beaad60f6e0e1ef3a6a05134410ffc907c1c0"
+    }
+  ]
+}

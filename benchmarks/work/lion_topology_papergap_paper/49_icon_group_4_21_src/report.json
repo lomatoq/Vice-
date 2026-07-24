@@ -1,0 +1,54 @@
+{
+  "input": "49_icon_group_4_21_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari",
+  "analysis_scale": 4,
+  "smoothing": "paper",
+  "regions": 8,
+  "closed_contours": 21,
+  "rendered_primitive_count": 416,
+  "actual": {
+    "L": 189,
+    "Q": 0,
+    "C": 227
+  },
+  "templates": {
+    "paper-joint": 4,
+    "paper-smooth": 2,
+    "paper-joint-g1-fallback": 1,
+    "paper-tiny": 1,
+    "topology-gap-paper": 13
+  },
+  "threshold": 0.0,
+  "topology_repair": [
+    {
+      "accepted": true,
+      "source_topology": [
+        7,
+        1
+      ],
+      "incumbent_topology": [
+        5,
+        3
+      ],
+      "candidate_topology": [
+        7,
+        1
+      ],
+      "incumbent_iou": 0.8515,
+      "candidate_iou": 0.8974,
+      "primitives": 282,
+      "radius": 5
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 10.797
+}

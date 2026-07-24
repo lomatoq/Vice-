@@ -1,0 +1,278 @@
+{
+  "input": "89_icon_group_4_58_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 8,
+  "closed_contours": 13,
+  "rendered_primitive_count": 173,
+  "actual": {
+    "L": 109,
+    "Q": 0,
+    "C": 64
+  },
+  "templates": {
+    "paper-regions": 11,
+    "paper-regions-court": 2
+  },
+  "threshold": 0.0,
+  "perceptual_trace_repair": [
+    {
+      "router": "source-loop-rdp-perceptual-rescue",
+      "source_topology": [
+        1,
+        0
+      ],
+      "incumbent": {
+        "mae": 5.705,
+        "rmse": 17.568,
+        "ink_iou": 0.99581,
+        "ssim": 0.9401,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ],
+        "actual": {
+          "L": 109,
+          "Q": 0,
+          "C": 64
+        },
+        "primitives": 173,
+        "regions": 8,
+        "closed_contours": 13,
+        "micro_segments": 14,
+        "templates": {
+          "paper-regions": 11,
+          "paper-regions-court": 2
+        },
+        "kink_energy": 8.1664,
+        "staircase_runs": 0
+      },
+      "trials": [
+        {
+          "epsilon": "g1-rdp-1.0",
+          "actual": {
+            "L": 0,
+            "Q": 0,
+            "C": 117
+          },
+          "primitives": 117,
+          "regions": 8,
+          "closed_contours": 13,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-g1-rdp": 13
+          },
+          "kink_energy": 7.5395,
+          "staircase_runs": 0,
+          "mae": 7.702,
+          "rmse": 24.897,
+          "ink_iou": 0.9871,
+          "ssim": 0.89701,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.955,
+          "topology": [
+            1,
+            0
+          ],
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": "g1-rdp-0.8",
+          "actual": {
+            "L": 0,
+            "Q": 0,
+            "C": 174
+          },
+          "primitives": 174,
+          "regions": 8,
+          "closed_contours": 13,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-g1-rdp": 13
+          },
+          "kink_energy": 12.2682,
+          "staircase_runs": 0,
+          "mae": 6.456,
+          "rmse": 21.273,
+          "ink_iou": 0.98742,
+          "ssim": 0.91642,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.955,
+          "topology": [
+            1,
+            0
+          ],
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": 1.0,
+          "actual": {
+            "L": 117,
+            "Q": 0,
+            "C": 0
+          },
+          "primitives": 117,
+          "regions": 8,
+          "closed_contours": 13,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-rdp": 13
+          },
+          "kink_energy": 8.5896,
+          "staircase_runs": 0,
+          "mae": 6.209,
+          "rmse": 19.857,
+          "ink_iou": 0.9871,
+          "ssim": 0.92222,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.955,
+          "topology": [
+            1,
+            0
+          ],
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": 0.8,
+          "actual": {
+            "L": 174,
+            "Q": 0,
+            "C": 0
+          },
+          "primitives": 174,
+          "regions": 8,
+          "closed_contours": 13,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-rdp": 13
+          },
+          "kink_energy": 13.8916,
+          "staircase_runs": 0,
+          "mae": 5.704,
+          "rmse": 18.204,
+          "ink_iou": 0.98742,
+          "ssim": 0.9312,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.955,
+          "topology": [
+            1,
+            0
+          ],
+          "reason": "perceptual-or-topology-court"
+        }
+      ],
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "per_fill_coverage_calibration": [
+    {
+      "router": "source-measured-per-fill-subpixel-coverage",
+      "paths": 8,
+      "fills": 3,
+      "changed_fills": 2,
+      "blur": 0.0,
+      "incumbent": {
+        "mae": 5.705,
+        "rmse": 17.568,
+        "ink_iou": 0.99581,
+        "ssim": 0.9401,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "mae": 4.997,
+        "rmse": 15.284,
+        "ink_iou": 0.99484,
+        "ssim": 0.95715,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "trail": [
+        {
+          "fill": "#005194",
+          "stroke_width": 0.1,
+          "translate": [
+            0.0,
+            -0.15
+          ],
+          "ssim": 0.94545,
+          "ink_iou": 0.99419,
+          "mae": 5.18
+        },
+        {
+          "fill": "#f7cf00",
+          "stroke_width": 0.3,
+          "translate": [
+            0.0,
+            -0.15
+          ],
+          "ssim": 0.95715,
+          "ink_iou": 0.99484,
+          "mae": 4.997
+        }
+      ],
+      "accepted": true,
+      "gains": {
+        "ssim": 0.01705,
+        "ink_iou": -0.00097,
+        "mae_reduction": 0.708
+      },
+      "reason": "perceptual+topology+unchanged-path-court"
+    }
+  ],
+  "kink_energy": 8.166,
+  "perceptual_aa_calibration": [
+    {
+      "router": "direct-svg-subpixel-aa",
+      "deviation": 0.1,
+      "incumbent": {
+        "mae": 4.997,
+        "rmse": 15.284,
+        "ink_iou": 0.99484,
+        "ssim": 0.95715,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "mae": 5.222,
+        "rmse": 15.304,
+        "ink_iou": 0.99484,
+        "ssim": 0.95683,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ]
+}

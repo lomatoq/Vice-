@@ -1,0 +1,184 @@
+{
+  "input": "116_icon_group_5_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-perc",
+  "analysis_scale": 4,
+  "smoothing": "paper-perc",
+  "regions": 9,
+  "closed_contours": 15,
+  "rendered_primitive_count": 127,
+  "actual": {
+    "L": 67,
+    "Q": 0,
+    "C": 60
+  },
+  "templates": {
+    "paper-joint": 8,
+    "paper-smooth": 2,
+    "stroke": 1,
+    "tiny-circle": 1,
+    "paper-tiny": 4
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "per_fill_coverage_calibration": [
+    {
+      "router": "source-measured-per-fill-subpixel-coverage",
+      "paths": 9,
+      "fills": 7,
+      "changed_fills": 7,
+      "blur": 0.2,
+      "incumbent": {
+        "mae": 6.814,
+        "rmse": 14.299,
+        "ink_iou": 0.9569,
+        "ssim": 0.949,
+        "boundary_f": 0.99656,
+        "hausdorff95": 0.955,
+        "topology": [
+          9,
+          3
+        ]
+      },
+      "candidate": {
+        "mae": 6.657,
+        "rmse": 13.48,
+        "ink_iou": 0.96249,
+        "ssim": 0.95174,
+        "boundary_f": 0.99621,
+        "hausdorff95": 0.955,
+        "topology": [
+          9,
+          3
+        ]
+      },
+      "trail": [
+        {
+          "fill": "#035893",
+          "stroke_width": 0.1,
+          "translate": [
+            0.0,
+            0.0
+          ],
+          "ssim": 0.94927,
+          "ink_iou": 0.95776,
+          "mae": 6.796
+        },
+        {
+          "fill": "#ff1337",
+          "stroke_width": 0.3,
+          "translate": [
+            0.0,
+            -0.15
+          ],
+          "ssim": 0.95133,
+          "ink_iou": 0.9598,
+          "mae": 6.703
+        },
+        {
+          "fill": "#015995",
+          "stroke_width": 0.0,
+          "translate": [
+            -0.15,
+            0.0
+          ],
+          "ssim": 0.95121,
+          "ink_iou": 0.9601,
+          "mae": 6.708
+        },
+        {
+          "fill": "#035894",
+          "stroke_width": 0.2,
+          "translate": [
+            0.0,
+            0.0
+          ],
+          "ssim": 0.95194,
+          "ink_iou": 0.96164,
+          "mae": 6.67
+        },
+        {
+          "fill": "#015997",
+          "stroke_width": 0.1,
+          "translate": [
+            0.0,
+            0.0
+          ],
+          "ssim": 0.95198,
+          "ink_iou": 0.96164,
+          "mae": 6.658
+        },
+        {
+          "fill": "#045891",
+          "stroke_width": 0.2,
+          "translate": [
+            0.0,
+            0.0
+          ],
+          "ssim": 0.95202,
+          "ink_iou": 0.96164,
+          "mae": 6.654
+        },
+        {
+          "fill": "#045893",
+          "stroke_width": 0.1,
+          "translate": [
+            0.0,
+            0.0
+          ],
+          "ssim": 0.95213,
+          "ink_iou": 0.96205,
+          "mae": 6.651
+        }
+      ],
+      "accepted": true,
+      "gains": {
+        "ssim": 0.00274,
+        "ink_iou": 0.00559,
+        "mae_reduction": 0.157
+      },
+      "reason": "perceptual+topology+unchanged-path-court"
+    }
+  ],
+  "kink_energy": 4.155,
+  "perceptual_aa_calibration": [
+    {
+      "router": "direct-svg-subpixel-aa",
+      "deviation": 0.26,
+      "incumbent": {
+        "mae": 6.657,
+        "rmse": 13.48,
+        "ink_iou": 0.96249,
+        "ssim": 0.95174,
+        "boundary_f": 0.99621,
+        "hausdorff95": 0.955,
+        "topology": [
+          9,
+          3
+        ]
+      },
+      "candidate": {
+        "mae": 6.857,
+        "rmse": 13.864,
+        "ink_iou": 0.96126,
+        "ssim": 0.94962,
+        "boundary_f": 0.99405,
+        "hausdorff95": 0.955,
+        "topology": [
+          9,
+          3
+        ]
+      },
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ]
+}

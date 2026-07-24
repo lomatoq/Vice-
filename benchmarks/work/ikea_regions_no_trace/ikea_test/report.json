@@ -1,0 +1,185 @@
+{
+  "input": "ikea_test.jpg",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 1,
+  "smoothing": "paper-regions",
+  "regions": 9,
+  "closed_contours": 14,
+  "rendered_primitive_count": 117,
+  "actual": {
+    "L": 69,
+    "Q": 0,
+    "C": 48
+  },
+  "templates": {
+    "paper-regions": 12,
+    "paper-regions-court": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "per_fill_coverage_calibration": [
+    {
+      "router": "source-measured-per-fill-subpixel-coverage",
+      "paths": 9,
+      "fills": 7,
+      "changed_fills": 7,
+      "blur": 0.0,
+      "incumbent": {
+        "mae": 10.109,
+        "rmse": 23.256,
+        "ink_iou": 0.94968,
+        "ssim": 0.87716,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "mae": 10.016,
+        "rmse": 21.573,
+        "ink_iou": 0.96194,
+        "ssim": 0.91381,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "compact_color_detail": {
+        "incumbent": 1.0,
+        "candidate": 0.31038
+      },
+      "trail": [
+        {
+          "fill": "#005094",
+          "stroke_width": 0.3,
+          "translate": [
+            -0.15,
+            0.0
+          ],
+          "ssim": 0.88932,
+          "ink_iou": 0.95548,
+          "mae": 9.742
+        },
+        {
+          "fill": "#f7ce00",
+          "stroke_width": 0.3,
+          "translate": [
+            0.0,
+            0.15
+          ],
+          "ssim": 0.89941,
+          "ink_iou": 0.95742,
+          "mae": 9.621
+        },
+        {
+          "fill": "#005196",
+          "stroke_width": 0.3,
+          "translate": [
+            -0.15,
+            0.0
+          ],
+          "ssim": 0.90578,
+          "ink_iou": 0.96194,
+          "mae": 9.895
+        },
+        {
+          "fill": "#004f94",
+          "stroke_width": 0.2,
+          "translate": [
+            0.0,
+            0.15
+          ],
+          "ssim": 0.90766,
+          "ink_iou": 0.96194,
+          "mae": 9.964
+        },
+        {
+          "fill": "#004f93",
+          "stroke_width": 0.3,
+          "translate": [
+            0.0,
+            0.15
+          ],
+          "ssim": 0.91291,
+          "ink_iou": 0.96194,
+          "mae": 9.945
+        },
+        {
+          "fill": "#005092",
+          "stroke_width": 0.2,
+          "translate": [
+            0.0,
+            0.0
+          ],
+          "ssim": 0.91351,
+          "ink_iou": 0.96194,
+          "mae": 10.019
+        },
+        {
+          "fill": "#f7cf00",
+          "stroke_width": 0.0,
+          "translate": [
+            -0.15,
+            -0.15
+          ],
+          "ssim": 0.91381,
+          "ink_iou": 0.96194,
+          "mae": 10.016
+        }
+      ],
+      "accepted": false,
+      "gains": {
+        "ssim": 0.03665,
+        "ink_iou": 0.01226,
+        "mae_reduction": 0.093
+      },
+      "reason": "court-rejected"
+    }
+  ],
+  "kink_energy": 6.389,
+  "perceptual_aa_calibration": [
+    {
+      "router": "direct-svg-subpixel-aa",
+      "deviation": 0.34,
+      "incumbent": {
+        "mae": 10.109,
+        "rmse": 23.256,
+        "ink_iou": 0.94968,
+        "ssim": 0.87716,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "candidate": {
+        "mae": 10.255,
+        "rmse": 22.571,
+        "ink_iou": 0.94968,
+        "ssim": 0.88616,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          0
+        ]
+      },
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ]
+}

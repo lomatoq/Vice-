@@ -1,0 +1,2263 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\wordmark_prior_smoke.pt",
+  "checkpoint_sha256": "64bfa7ed68945e9f853ff6ff51fcc95838507eceb65a317057b131670d276569",
+  "compiler_source_sha256": "9ad9500c7146b82633e9e12fb8f03352c3054123095f3f4c6defaedeae33441d",
+  "config": {
+    "base_channels": 24,
+    "image_height": 64,
+    "image_width": 256,
+    "max_characters": 32,
+    "text_embedding_dim": 64,
+    "topology_classes": 65
+  },
+  "created_at": "2026-07-23T07:55:47.222956+00:00",
+  "data_recipe": {
+    "connected_wordmark_fraction": 0.18,
+    "jpeg_corruption_fraction": 0.35,
+    "jpeg_quality": [
+      25,
+      90
+    ],
+    "observation_corruptions": [
+      "native-resolution",
+      "blur",
+      "gamma",
+      "noise",
+      "topology-hole-or-island",
+      "codec"
+    ],
+    "ocr_hint_corruptions": [
+      "substitute",
+      "delete",
+      "insert",
+      "transpose"
+    ],
+    "ocr_hint_exact_fraction": 0.75,
+    "outline_wordmark_fraction": 0.12,
+    "sample_rng": "sha256(seed:index)",
+    "schema": "pcdc-wordmark-procedural-data/v1",
+    "source": "family-disjoint locally owned open-font manifest",
+    "text_length": [
+      3,
+      18
+    ],
+    "text_modes": [
+      "uppercase",
+      "lowercase",
+      "uppercase-digits",
+      "lowercase-digits",
+      "mixed-latin-digits"
+    ],
+    "tracking_em": [
+      -0.15,
+      0.22
+    ]
+  },
+  "device": "cuda",
+  "elapsed_seconds": 158.5240356999857,
+  "epochs": [
+    {
+      "calibration": {
+        "complex_topology_accuracy": 0.3841626538255752,
+        "component_head_accuracy": 0.5265,
+        "decoded_complex_topology_accuracy": 0.3841626538255752,
+        "decoded_failures": [
+          {
+            "decoded_iou": 0.8213441404930767,
+            "decoded_topology": [
+              13,
+              5
+            ],
+            "decoder_matched_head": true,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              13,
+              5
+            ],
+            "true_topology": [
+              13,
+              3
+            ]
+          },
+          {
+            "decoded_iou": 0.7924335378323109,
+            "decoded_topology": [
+              17,
+              7
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              15,
+              5
+            ],
+            "raw_topology": [
+              17,
+              7
+            ],
+            "true_topology": [
+              15,
+              7
+            ]
+          },
+          {
+            "decoded_iou": 0.9596100278551533,
+            "decoded_topology": [
+              2,
+              0
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              1,
+              2
+            ],
+            "raw_topology": [
+              2,
+              0
+            ],
+            "true_topology": [
+              1,
+              0
+            ]
+          },
+          {
+            "decoded_iou": 0.7114520958083832,
+            "decoded_topology": [
+              2,
+              4
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              5,
+              2
+            ],
+            "raw_topology": [
+              2,
+              4
+            ],
+            "true_topology": [
+              2,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.5476387738193869,
+            "decoded_topology": [
+              20,
+              2
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              20,
+              2
+            ],
+            "true_topology": [
+              13,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.5901716435457324,
+            "decoded_topology": [
+              5,
+              11
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              7,
+              4
+            ],
+            "raw_topology": [
+              5,
+              11
+            ],
+            "true_topology": [
+              5,
+              7
+            ]
+          },
+          {
+            "decoded_iou": 0.8274658132091941,
+            "decoded_topology": [
+              6,
+              11
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              14,
+              8
+            ],
+            "raw_topology": [
+              6,
+              11
+            ],
+            "true_topology": [
+              11,
+              48
+            ]
+          },
+          {
+            "decoded_iou": 0.927536231884058,
+            "decoded_topology": [
+              13,
+              11
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              1,
+              13
+            ],
+            "raw_topology": [
+              13,
+              11
+            ],
+            "true_topology": [
+              14,
+              14
+            ]
+          },
+          {
+            "decoded_iou": 0.9369167599850691,
+            "decoded_topology": [
+              11,
+              13
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              11,
+              4
+            ],
+            "raw_topology": [
+              11,
+              13
+            ],
+            "true_topology": [
+              11,
+              50
+            ]
+          },
+          {
+            "decoded_iou": 0.9774624373956594,
+            "decoded_topology": [
+              1,
+              5
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              1,
+              4
+            ],
+            "raw_topology": [
+              1,
+              5
+            ],
+            "true_topology": [
+              1,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.6834600760456274,
+            "decoded_topology": [
+              13,
+              11
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              16,
+              6
+            ],
+            "raw_topology": [
+              13,
+              11
+            ],
+            "true_topology": [
+              15,
+              9
+            ]
+          },
+          {
+            "decoded_iou": 0.9674612183125236,
+            "decoded_topology": [
+              11,
+              3
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              4
+            ],
+            "raw_topology": [
+              11,
+              3
+            ],
+            "true_topology": [
+              10,
+              3
+            ]
+          },
+          {
+            "decoded_iou": 0.9708113077453459,
+            "decoded_topology": [
+              3,
+              2
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              4
+            ],
+            "raw_topology": [
+              3,
+              2
+            ],
+            "true_topology": [
+              6,
+              1
+            ]
+          },
+          {
+            "decoded_iou": 0.8681948424068768,
+            "decoded_topology": [
+              14,
+              14
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              8,
+              4
+            ],
+            "raw_topology": [
+              14,
+              14
+            ],
+            "true_topology": [
+              13,
+              17
+            ]
+          },
+          {
+            "decoded_iou": 0.7496729175752289,
+            "decoded_topology": [
+              5,
+              2
+            ],
+            "decoder_matched_head": true,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              5,
+              2
+            ],
+            "raw_topology": [
+              5,
+              2
+            ],
+            "true_topology": [
+              5,
+              0
+            ]
+          },
+          {
+            "decoded_iou": 0.683508591946653,
+            "decoded_topology": [
+              10,
+              10
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              9,
+              4
+            ],
+            "raw_topology": [
+              10,
+              10
+            ],
+            "true_topology": [
+              9,
+              8
+            ]
+          },
+          {
+            "decoded_iou": 0.873342175066313,
+            "decoded_topology": [
+              19,
+              8
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              18,
+              6
+            ],
+            "raw_topology": [
+              19,
+              8
+            ],
+            "true_topology": [
+              18,
+              8
+            ]
+          },
+          {
+            "decoded_iou": 0.9827534039334342,
+            "decoded_topology": [
+              4,
+              1
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              3,
+              0
+            ],
+            "raw_topology": [
+              4,
+              1
+            ],
+            "true_topology": [
+              3,
+              1
+            ]
+          },
+          {
+            "decoded_iou": 0.933257055682685,
+            "decoded_topology": [
+              10,
+              4
+            ],
+            "decoder_matched_head": true,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              4
+            ],
+            "raw_topology": [
+              10,
+              4
+            ],
+            "true_topology": [
+              10,
+              5
+            ]
+          },
+          {
+            "decoded_iou": 0.8466608084358523,
+            "decoded_topology": [
+              10,
+              2
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              9,
+              4
+            ],
+            "raw_topology": [
+              10,
+              2
+            ],
+            "true_topology": [
+              10,
+              12
+            ]
+          },
+          {
+            "decoded_iou": 0.9882269837532376,
+            "decoded_topology": [
+              3,
+              3
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              4,
+              2
+            ],
+            "raw_topology": [
+              3,
+              3
+            ],
+            "true_topology": [
+              3,
+              2
+            ]
+          },
+          {
+            "decoded_iou": 0.9814277423099246,
+            "decoded_topology": [
+              16,
+              6
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": true,
+            "predicted_topology": [
+              16,
+              5
+            ],
+            "raw_topology": [
+              16,
+              6
+            ],
+            "true_topology": [
+              16,
+              5
+            ]
+          },
+          {
+            "decoded_iou": 0.9020817270624518,
+            "decoded_topology": [
+              4,
+              11
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              15,
+              8
+            ],
+            "raw_topology": [
+              4,
+              11
+            ],
+            "true_topology": [
+              4,
+              39
+            ]
+          },
+          {
+            "decoded_iou": 0.964301651048639,
+            "decoded_topology": [
+              10,
+              6
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              10,
+              6
+            ],
+            "true_topology": [
+              12,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.5857574612769173,
+            "decoded_topology": [
+              7,
+              25
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              9,
+              4
+            ],
+            "raw_topology": [
+              7,
+              25
+            ],
+            "true_topology": [
+              7,
+              9
+            ]
+          },
+          {
+            "decoded_iou": 0.36309709647205746,
+            "decoded_topology": [
+              35,
+              18
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              5,
+              4
+            ],
+            "raw_topology": [
+              35,
+              18
+            ],
+            "true_topology": [
+              8,
+              8
+            ]
+          },
+          {
+            "decoded_iou": 0.5380411937788987,
+            "decoded_topology": [
+              11,
+              5
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              14,
+              5
+            ],
+            "raw_topology": [
+              11,
+              5
+            ],
+            "true_topology": [
+              9,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.8820195775373518,
+            "decoded_topology": [
+              5,
+              0
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": true,
+            "predicted_topology": [
+              4,
+              0
+            ],
+            "raw_topology": [
+              5,
+              0
+            ],
+            "true_topology": [
+              4,
+              0
+            ]
+          },
+          {
+            "decoded_iou": 0.962926347009392,
+            "decoded_topology": [
+              2,
+              4
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              1,
+              4
+            ],
+            "raw_topology": [
+              2,
+              4
+            ],
+            "true_topology": [
+              2,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.9444444444444444,
+            "decoded_topology": [
+              12,
+              7
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              12,
+              7
+            ],
+            "true_topology": [
+              12,
+              4
+            ]
+          },
+          {
+            "decoded_iou": 0.9040711277491811,
+            "decoded_topology": [
+              18,
+              2
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              18,
+              5
+            ],
+            "raw_topology": [
+              18,
+              2
+            ],
+            "true_topology": [
+              18,
+              3
+            ]
+          },
+          {
+            "decoded_iou": 0.9890151515151515,
+            "decoded_topology": [
+              9,
+              5
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              4
+            ],
+            "raw_topology": [
+              9,
+              5
+            ],
+            "true_topology": [
+              8,
+              5
+            ]
+          }
+        ],
+        "decoded_support_iou": 0.8966881758008594,
+        "decoded_topology_accuracy": 0.396,
+        "hole_head_accuracy": 0.1555,
+        "mean_topology_head_confidence": 0.17503505946323275,
+        "samples": 2000,
+        "support_iou": 0.8966881758008592,
+        "support_threshold": 0.8,
+        "support_threshold_policy": "calibrated-on-this-split",
+        "threshold_sweep": {
+          "0.400": {
+            "complex_topology_accuracy": 0.35741037988229,
+            "support_iou": 0.8867251191629445,
+            "topology_accuracy": 0.3655
+          },
+          "0.500": {
+            "complex_topology_accuracy": 0.3595505617977528,
+            "support_iou": 0.891721830150698,
+            "topology_accuracy": 0.369
+          },
+          "0.600": {
+            "complex_topology_accuracy": 0.3723916532905297,
+            "support_iou": 0.8953878280505607,
+            "topology_accuracy": 0.3845
+          },
+          "0.700": {
+            "complex_topology_accuracy": 0.37988228999464957,
+            "support_iou": 0.8977125844684023,
+            "topology_accuracy": 0.392
+          },
+          "0.800": {
+            "complex_topology_accuracy": 0.3841626538255752,
+            "support_iou": 0.8966881758008592,
+            "topology_accuracy": 0.396
+          }
+        },
+        "topology_accuracy": 0.396,
+        "topology_decode_match_fraction": 0.08,
+        "topology_repair_eligible_fraction": 0.0,
+        "topology_repair_minimum_confidence": 0.5
+      },
+      "epoch": 1,
+      "training_loss": 0.8201894652929237
+    },
+    {
+      "calibration": {
+        "complex_topology_accuracy": 0.4028892455858748,
+        "component_head_accuracy": 0.5615,
+        "decoded_complex_topology_accuracy": 0.4018191546281434,
+        "decoded_failures": [
+          {
+            "decoded_iou": 0.8635547576301615,
+            "decoded_topology": [
+              14,
+              4
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              14,
+              4
+            ],
+            "true_topology": [
+              13,
+              3
+            ]
+          },
+          {
+            "decoded_iou": 0.7820646506777894,
+            "decoded_topology": [
+              16,
+              7
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              15,
+              5
+            ],
+            "raw_topology": [
+              16,
+              7
+            ],
+            "true_topology": [
+              15,
+              7
+            ]
+          },
+          {
+            "decoded_iou": 0.9523145566090352,
+            "decoded_topology": [
+              2,
+              0
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": true,
+            "predicted_topology": [
+              1,
+              0
+            ],
+            "raw_topology": [
+              2,
+              0
+            ],
+            "true_topology": [
+              1,
+              0
+            ]
+          },
+          {
+            "decoded_iou": 0.7014866979655712,
+            "decoded_topology": [
+              2,
+              2
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              5,
+              4
+            ],
+            "raw_topology": [
+              2,
+              2
+            ],
+            "true_topology": [
+              2,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.5653973509933775,
+            "decoded_topology": [
+              16,
+              2
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              16,
+              2
+            ],
+            "true_topology": [
+              13,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.6158421194917545,
+            "decoded_topology": [
+              9,
+              6
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              7,
+              8
+            ],
+            "raw_topology": [
+              9,
+              6
+            ],
+            "true_topology": [
+              5,
+              7
+            ]
+          },
+          {
+            "decoded_iou": 0.7797007920211205,
+            "decoded_topology": [
+              6,
+              18
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              15,
+              8
+            ],
+            "raw_topology": [
+              6,
+              18
+            ],
+            "true_topology": [
+              11,
+              48
+            ]
+          },
+          {
+            "decoded_iou": 0.9566218809980807,
+            "decoded_topology": [
+              13,
+              11
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              1,
+              13
+            ],
+            "raw_topology": [
+              13,
+              11
+            ],
+            "true_topology": [
+              14,
+              14
+            ]
+          },
+          {
+            "decoded_iou": 0.9409538228614686,
+            "decoded_topology": [
+              11,
+              18
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              11,
+              4
+            ],
+            "raw_topology": [
+              11,
+              18
+            ],
+            "true_topology": [
+              11,
+              50
+            ]
+          },
+          {
+            "decoded_iou": 0.8547675103001766,
+            "decoded_topology": [
+              4,
+              1
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": true,
+            "predicted_topology": [
+              4,
+              0
+            ],
+            "raw_topology": [
+              4,
+              1
+            ],
+            "true_topology": [
+              4,
+              0
+            ]
+          },
+          {
+            "decoded_iou": 0.7002982107355865,
+            "decoded_topology": [
+              14,
+              13
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              15,
+              5
+            ],
+            "raw_topology": [
+              14,
+              13
+            ],
+            "true_topology": [
+              15,
+              9
+            ]
+          },
+          {
+            "decoded_iou": 0.9617569102612646,
+            "decoded_topology": [
+              11,
+              3
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              4
+            ],
+            "raw_topology": [
+              11,
+              3
+            ],
+            "true_topology": [
+              10,
+              3
+            ]
+          },
+          {
+            "decoded_iou": 0.9899013621418506,
+            "decoded_topology": [
+              5,
+              1
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              2
+            ],
+            "raw_topology": [
+              5,
+              1
+            ],
+            "true_topology": [
+              6,
+              1
+            ]
+          },
+          {
+            "decoded_iou": 0.8552442528735632,
+            "decoded_topology": [
+              14,
+              14
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              8,
+              12
+            ],
+            "raw_topology": [
+              14,
+              14
+            ],
+            "true_topology": [
+              13,
+              17
+            ]
+          },
+          {
+            "decoded_iou": 0.7664429530201342,
+            "decoded_topology": [
+              5,
+              1
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              5,
+              2
+            ],
+            "raw_topology": [
+              5,
+              1
+            ],
+            "true_topology": [
+              5,
+              0
+            ]
+          },
+          {
+            "decoded_iou": 0.7095262883914628,
+            "decoded_topology": [
+              10,
+              7
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              9,
+              5
+            ],
+            "raw_topology": [
+              10,
+              7
+            ],
+            "true_topology": [
+              9,
+              8
+            ]
+          },
+          {
+            "decoded_iou": 0.8381079280479681,
+            "decoded_topology": [
+              19,
+              8
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": true,
+            "predicted_topology": [
+              18,
+              8
+            ],
+            "raw_topology": [
+              19,
+              8
+            ],
+            "true_topology": [
+              18,
+              8
+            ]
+          },
+          {
+            "decoded_iou": 0.9878308487982963,
+            "decoded_topology": [
+              4,
+              1
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              3,
+              0
+            ],
+            "raw_topology": [
+              4,
+              1
+            ],
+            "true_topology": [
+              3,
+              1
+            ]
+          },
+          {
+            "decoded_iou": 0.8952198852772466,
+            "decoded_topology": [
+              10,
+              4
+            ],
+            "decoder_matched_head": true,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              4
+            ],
+            "raw_topology": [
+              10,
+              4
+            ],
+            "true_topology": [
+              10,
+              5
+            ]
+          },
+          {
+            "decoded_iou": 0.8287098194627918,
+            "decoded_topology": [
+              10,
+              3
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              9,
+              2
+            ],
+            "raw_topology": [
+              10,
+              3
+            ],
+            "true_topology": [
+              10,
+              12
+            ]
+          },
+          {
+            "decoded_iou": 0.9863142991977348,
+            "decoded_topology": [
+              3,
+              3
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              4,
+              0
+            ],
+            "raw_topology": [
+              3,
+              3
+            ],
+            "true_topology": [
+              3,
+              2
+            ]
+          },
+          {
+            "decoded_iou": 0.9894736842105263,
+            "decoded_topology": [
+              16,
+              6
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": true,
+            "predicted_topology": [
+              16,
+              5
+            ],
+            "raw_topology": [
+              16,
+              6
+            ],
+            "true_topology": [
+              16,
+              5
+            ]
+          },
+          {
+            "decoded_iou": 0.8566986265871988,
+            "decoded_topology": [
+              4,
+              13
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              8,
+              8
+            ],
+            "raw_topology": [
+              4,
+              13
+            ],
+            "true_topology": [
+              4,
+              39
+            ]
+          },
+          {
+            "decoded_iou": 0.9747178329571106,
+            "decoded_topology": [
+              11,
+              6
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              11,
+              6
+            ],
+            "true_topology": [
+              12,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.6243557930902844,
+            "decoded_topology": [
+              2,
+              14
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              9,
+              5
+            ],
+            "raw_topology": [
+              2,
+              14
+            ],
+            "true_topology": [
+              7,
+              9
+            ]
+          },
+          {
+            "decoded_iou": 0.27390659747961454,
+            "decoded_topology": [
+              64,
+              5
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              5,
+              4
+            ],
+            "raw_topology": [
+              64,
+              5
+            ],
+            "true_topology": [
+              8,
+              8
+            ]
+          },
+          {
+            "decoded_iou": 0.5508112724167379,
+            "decoded_topology": [
+              11,
+              5
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              14,
+              4
+            ],
+            "raw_topology": [
+              11,
+              5
+            ],
+            "true_topology": [
+              9,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.9072602013778485,
+            "decoded_topology": [
+              5,
+              0
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": true,
+            "predicted_topology": [
+              4,
+              0
+            ],
+            "raw_topology": [
+              5,
+              0
+            ],
+            "true_topology": [
+              4,
+              0
+            ]
+          },
+          {
+            "decoded_iou": 0.9727925221165081,
+            "decoded_topology": [
+              2,
+              4
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              1,
+              4
+            ],
+            "raw_topology": [
+              2,
+              4
+            ],
+            "true_topology": [
+              2,
+              6
+            ]
+          },
+          {
+            "decoded_iou": 0.9600997506234414,
+            "decoded_topology": [
+              12,
+              6
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              13,
+              5
+            ],
+            "raw_topology": [
+              12,
+              6
+            ],
+            "true_topology": [
+              12,
+              4
+            ]
+          },
+          {
+            "decoded_iou": 0.9067998097955302,
+            "decoded_topology": [
+              18,
+              2
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              18,
+              4
+            ],
+            "raw_topology": [
+              18,
+              2
+            ],
+            "true_topology": [
+              18,
+              3
+            ]
+          },
+          {
+            "decoded_iou": 0.9818181818181818,
+            "decoded_topology": [
+              9,
+              5
+            ],
+            "decoder_matched_head": false,
+            "head_matches_truth": false,
+            "predicted_topology": [
+              10,
+              4
+            ],
+            "raw_topology": [
+              9,
+              5
+            ],
+            "true_topology": [
+              8,
+              5
+            ]
+          }
+        ],
+        "decoded_support_iou": 0.8979253569425444,
+        "decoded_topology_accuracy": 0.414,
+        "hole_head_accuracy": 0.219,
+        "mean_topology_head_confidence": 0.20365062762051822,
+        "samples": 2000,
+        "support_iou": 0.8979129970564411,
+        "support_threshold": 0.8,
+        "support_threshold_policy": "calibrated-on-this-split",
+        "threshold_sweep": {
+          "0.400": {
+            "complex_topology_accuracy": 0.3782771535580524,
+            "support_iou": 0.8983613638442366,
+            "topology_accuracy": 0.3915
+          },
+          "0.500": {
+            "complex_topology_accuracy": 0.3852327447833066,
+            "support_iou": 0.9018992166043482,
+            "topology_accuracy": 0.399
+          },
+          "0.600": {
+            "complex_topology_accuracy": 0.38630283574103796,
+            "support_iou": 0.9039633794639057,
+            "topology_accuracy": 0.401
+          },
+          "0.700": {
+            "complex_topology_accuracy": 0.39486356340288925,
+            "support_iou": 0.9036154448445197,
+            "topology_accuracy": 0.407
+          },
+          "0.800": {
+            "complex_topology_accuracy": 0.4028892455858748,
+            "support_iou": 0.8979129970564411,
+            "topology_accuracy": 0.4145
+          }
+        },
+        "topology_accuracy": 0.4145,
+        "topology_decode_match_fraction": 0.102,
+        "topology_repair_eligible_fraction": 0.0115,
+        "topology_repair_minimum_confidence": 0.5
+      },
+      "epoch": 2,
+      "training_loss": 0.6523661027423484
+    }
+  ],
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "font_faces": {
+    "calibration": 20,
+    "test": 35,
+    "train": 186
+  },
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "gate": {
+    "complex_topology_accuracy": false,
+    "component_head_accuracy": false,
+    "hole_head_accuracy": false,
+    "support_iou": true,
+    "topology_accuracy": false
+  },
+  "gate_pass": false,
+  "held_out_samples_per_split": 2000,
+  "held_out_test": {
+    "complex_topology_accuracy": 0.3903856312731115,
+    "component_head_accuracy": 0.5295,
+    "decoded_complex_topology_accuracy": 0.39566825145272055,
+    "decoded_failures": [
+      {
+        "decoded_iou": 0.9052690582959642,
+        "decoded_topology": [
+          18,
+          8
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          18,
+          6
+        ],
+        "raw_topology": [
+          18,
+          8
+        ],
+        "true_topology": [
+          18,
+          7
+        ]
+      },
+      {
+        "decoded_iou": 0.81945788964182,
+        "decoded_topology": [
+          6,
+          4
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          4,
+          2
+        ],
+        "raw_topology": [
+          6,
+          4
+        ],
+        "true_topology": [
+          6,
+          8
+        ]
+      },
+      {
+        "decoded_iou": 0.9701120797011208,
+        "decoded_topology": [
+          13,
+          3
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          12,
+          4
+        ],
+        "raw_topology": [
+          13,
+          3
+        ],
+        "true_topology": [
+          11,
+          3
+        ]
+      },
+      {
+        "decoded_iou": 0.7213148223764801,
+        "decoded_topology": [
+          1,
+          16
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          10,
+          6
+        ],
+        "raw_topology": [
+          1,
+          16
+        ],
+        "true_topology": [
+          3,
+          5
+        ]
+      },
+      {
+        "decoded_iou": 0.9002557544757033,
+        "decoded_topology": [
+          9,
+          1
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          7,
+          2
+        ],
+        "raw_topology": [
+          9,
+          1
+        ],
+        "true_topology": [
+          8,
+          1
+        ]
+      },
+      {
+        "decoded_iou": 0.895083932853717,
+        "decoded_topology": [
+          5,
+          5
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          4,
+          4
+        ],
+        "raw_topology": [
+          5,
+          5
+        ],
+        "true_topology": [
+          6,
+          5
+        ]
+      },
+      {
+        "decoded_iou": 0.9502715546503734,
+        "decoded_topology": [
+          1,
+          3
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          1,
+          2
+        ],
+        "raw_topology": [
+          1,
+          3
+        ],
+        "true_topology": [
+          1,
+          4
+        ]
+      },
+      {
+        "decoded_iou": 0.9329104190695886,
+        "decoded_topology": [
+          4,
+          2
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          2,
+          4
+        ],
+        "raw_topology": [
+          4,
+          2
+        ],
+        "true_topology": [
+          5,
+          5
+        ]
+      },
+      {
+        "decoded_iou": 0.9749342410645211,
+        "decoded_topology": [
+          1,
+          11
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          1,
+          7
+        ],
+        "raw_topology": [
+          1,
+          11
+        ],
+        "true_topology": [
+          1,
+          12
+        ]
+      },
+      {
+        "decoded_iou": 0.9261137269105396,
+        "decoded_topology": [
+          9,
+          3
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          9,
+          8
+        ],
+        "raw_topology": [
+          9,
+          3
+        ],
+        "true_topology": [
+          10,
+          2
+        ]
+      },
+      {
+        "decoded_iou": 0.8422459893048129,
+        "decoded_topology": [
+          3,
+          2
+        ],
+        "decoder_matched_head": true,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          3,
+          2
+        ],
+        "raw_topology": [
+          3,
+          2
+        ],
+        "true_topology": [
+          2,
+          2
+        ]
+      },
+      {
+        "decoded_iou": 0.92524682651622,
+        "decoded_topology": [
+          16,
+          15
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          9,
+          12
+        ],
+        "raw_topology": [
+          16,
+          15
+        ],
+        "true_topology": [
+          15,
+          15
+        ]
+      },
+      {
+        "decoded_iou": 0.9873025704552493,
+        "decoded_topology": [
+          5,
+          2
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          6,
+          0
+        ],
+        "raw_topology": [
+          5,
+          2
+        ],
+        "true_topology": [
+          5,
+          1
+        ]
+      },
+      {
+        "decoded_iou": 0.5848665457372376,
+        "decoded_topology": [
+          3,
+          21
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          13,
+          6
+        ],
+        "raw_topology": [
+          3,
+          21
+        ],
+        "true_topology": [
+          5,
+          10
+        ]
+      },
+      {
+        "decoded_iou": 0.936542669584245,
+        "decoded_topology": [
+          12,
+          0
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          12,
+          3
+        ],
+        "raw_topology": [
+          12,
+          0
+        ],
+        "true_topology": [
+          12,
+          2
+        ]
+      },
+      {
+        "decoded_iou": 0.9712926005526559,
+        "decoded_topology": [
+          8,
+          1
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          8,
+          0
+        ],
+        "raw_topology": [
+          8,
+          1
+        ],
+        "true_topology": [
+          9,
+          1
+        ]
+      },
+      {
+        "decoded_iou": 0.914292497625831,
+        "decoded_topology": [
+          6,
+          2
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          6,
+          0
+        ],
+        "raw_topology": [
+          6,
+          2
+        ],
+        "true_topology": [
+          6,
+          1
+        ]
+      },
+      {
+        "decoded_iou": 0.9168207024029574,
+        "decoded_topology": [
+          7,
+          17
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          6,
+          2
+        ],
+        "raw_topology": [
+          7,
+          17
+        ],
+        "true_topology": [
+          6,
+          21
+        ]
+      },
+      {
+        "decoded_iou": 0.9139397905759162,
+        "decoded_topology": [
+          10,
+          10
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          10,
+          6
+        ],
+        "raw_topology": [
+          10,
+          10
+        ],
+        "true_topology": [
+          11,
+          11
+        ]
+      },
+      {
+        "decoded_iou": 0.9909387459224357,
+        "decoded_topology": [
+          11,
+          8
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          13,
+          12
+        ],
+        "raw_topology": [
+          11,
+          8
+        ],
+        "true_topology": [
+          11,
+          12
+        ]
+      },
+      {
+        "decoded_iou": 0.8523076923076923,
+        "decoded_topology": [
+          6,
+          9
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          5,
+          5
+        ],
+        "raw_topology": [
+          6,
+          9
+        ],
+        "true_topology": [
+          8,
+          8
+        ]
+      },
+      {
+        "decoded_iou": 0.9814345991561182,
+        "decoded_topology": [
+          5,
+          0
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          4,
+          0
+        ],
+        "raw_topology": [
+          5,
+          0
+        ],
+        "true_topology": [
+          4,
+          1
+        ]
+      },
+      {
+        "decoded_iou": 0.9978296256104178,
+        "decoded_topology": [
+          1,
+          3
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          1,
+          2
+        ],
+        "raw_topology": [
+          1,
+          3
+        ],
+        "true_topology": [
+          1,
+          4
+        ]
+      },
+      {
+        "decoded_iou": 0.9623221216041398,
+        "decoded_topology": [
+          2,
+          14
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          1,
+          12
+        ],
+        "raw_topology": [
+          2,
+          14
+        ],
+        "true_topology": [
+          1,
+          16
+        ]
+      },
+      {
+        "decoded_iou": 0.9177852348993288,
+        "decoded_topology": [
+          2,
+          16
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          1,
+          13
+        ],
+        "raw_topology": [
+          2,
+          16
+        ],
+        "true_topology": [
+          3,
+          17
+        ]
+      },
+      {
+        "decoded_iou": 0.6502620850320326,
+        "decoded_topology": [
+          3,
+          14
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          17,
+          8
+        ],
+        "raw_topology": [
+          3,
+          14
+        ],
+        "true_topology": [
+          8,
+          8
+        ]
+      },
+      {
+        "decoded_iou": 0.7891566265060241,
+        "decoded_topology": [
+          41,
+          0
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          15,
+          5
+        ],
+        "raw_topology": [
+          41,
+          0
+        ],
+        "true_topology": [
+          16,
+          3
+        ]
+      },
+      {
+        "decoded_iou": 0.930379746835443,
+        "decoded_topology": [
+          12,
+          16
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          1,
+          13
+        ],
+        "raw_topology": [
+          12,
+          16
+        ],
+        "true_topology": [
+          12,
+          19
+        ]
+      },
+      {
+        "decoded_iou": 0.9609154929577465,
+        "decoded_topology": [
+          12,
+          2
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          13,
+          4
+        ],
+        "raw_topology": [
+          12,
+          2
+        ],
+        "true_topology": [
+          13,
+          2
+        ]
+      },
+      {
+        "decoded_iou": 0.9842255411981876,
+        "decoded_topology": [
+          8,
+          3
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          7,
+          2
+        ],
+        "raw_topology": [
+          8,
+          3
+        ],
+        "true_topology": [
+          7,
+          3
+        ]
+      },
+      {
+        "decoded_iou": 0.7505694760820045,
+        "decoded_topology": [
+          11,
+          3
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": false,
+        "predicted_topology": [
+          17,
+          6
+        ],
+        "raw_topology": [
+          11,
+          3
+        ],
+        "true_topology": [
+          2,
+          6
+        ]
+      },
+      {
+        "decoded_iou": 0.9766022380467956,
+        "decoded_topology": [
+          10,
+          2
+        ],
+        "decoder_matched_head": false,
+        "head_matches_truth": true,
+        "predicted_topology": [
+          9,
+          2
+        ],
+        "raw_topology": [
+          10,
+          2
+        ],
+        "true_topology": [
+          9,
+          2
+        ]
+      }
+    ],
+    "decoded_support_iou": 0.8978972680634191,
+    "decoded_topology_accuracy": 0.408,
+    "hole_head_accuracy": 0.2105,
+    "mean_topology_head_confidence": 0.20426681361719967,
+    "samples": 2000,
+    "support_iou": 0.8979568131124537,
+    "support_threshold": 0.8,
+    "support_threshold_policy": "fixed-from-calibration-split",
+    "threshold_sweep": {
+      "0.400": {
+        "complex_topology_accuracy": 0.36714210248283147,
+        "support_iou": 0.8935289784564008,
+        "topology_accuracy": 0.381
+      },
+      "0.500": {
+        "complex_topology_accuracy": 0.3824617010036978,
+        "support_iou": 0.8979718763851385,
+        "topology_accuracy": 0.396
+      },
+      "0.600": {
+        "complex_topology_accuracy": 0.38404648705758054,
+        "support_iou": 0.901045818478017,
+        "topology_accuracy": 0.396
+      },
+      "0.700": {
+        "complex_topology_accuracy": 0.38827258320126784,
+        "support_iou": 0.9018714380120623,
+        "topology_accuracy": 0.4005
+      },
+      "0.800": {
+        "complex_topology_accuracy": 0.3903856312731115,
+        "support_iou": 0.8979568131124537,
+        "topology_accuracy": 0.403
+      }
+    },
+    "topology_accuracy": 0.403,
+    "topology_decode_match_fraction": 0.092,
+    "topology_repair_eligible_fraction": 0.0115,
+    "topology_repair_minimum_confidence": 0.5
+  },
+  "model_data_contract_sha256": "ab738685fc4160a53907f8a663e928b5b3daf65ab664797bd02c6c9cf57d71c5",
+  "promotion_policy": "requires fresh model-OFF/ON Experiment-4 output delta",
+  "schema": "pcdc-wordmark-prior-training/v1",
+  "selected_epoch": 2,
+  "status": "candidate-failed",
+  "training_contract": {
+    "automatic_mixed_precision": true,
+    "batch_size": 48,
+    "epochs": 2,
+    "evaluation_batch_size": 64,
+    "evaluation_loader_workers": 4,
+    "family_split_seed": 20260722,
+    "held_out_samples_per_split": 2000,
+    "learning_rate": 0.0002,
+    "loader_workers": 8,
+    "optimizer": "AdamW",
+    "resolved_device": "cuda",
+    "schema": "pcdc-wordmark-prior-training-contract/v1",
+    "seed": 20260723,
+    "training_sample_presentations": 40000,
+    "unique_training_variants": 20000,
+    "weight_decay": 0.0001
+  },
+  "training_sample_presentations": 40000,
+  "training_variants": 20000
+}

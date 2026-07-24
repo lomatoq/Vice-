@@ -1,0 +1,429 @@
+{
+  "id": "vai50-01-icon_group_4_62",
+  "suite": "vai50",
+  "position": 1,
+  "stem": "icon_group_4_62",
+  "category": null,
+  "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\94_icon_group_4_62_src.png",
+  "reference": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_62_vai.svg",
+  "reference_metrics": {
+    "wobble": 67.8036,
+    "g2_steps": 1.3339,
+    "kinks_per_100px": 7.286,
+    "staircase_runs": 0,
+    "micro_segs": 285,
+    "total_len": 1262.6,
+    "segments": 722,
+    "roundness": 0.00096,
+    "circles": 3,
+    "mae": 6.45,
+    "rmse": 15.81,
+    "ink_iou": 0.9408,
+    "ssim": 0.96,
+    "seam_px": 5.88,
+    "mirror_iou": 0.5426,
+    "region_de2000_p95": 21.9358,
+    "de_region_max": 37.9498,
+    "color_regions": 33,
+    "source_rot90_iou": 0.1819,
+    "rot90_iou": 0.1867,
+    "rot90_sym_break": 0.0,
+    "boundary_f": 1.0,
+    "hausdorff95": 0.0
+  },
+  "schema": "pcdc-phase12-item/v1",
+  "status": "ok",
+  "source_sha256": "5cde7b5cccac540fb7d92d3e203c633844e8188aa6f1a64b2105e38c0e489913",
+  "reference_sha256": "0c1e68c80611b6fe71e5b1d5dc943d7697819e88faa5721734904730563e098e",
+  "size": [
+    91,
+    48
+  ],
+  "mode": "balanced",
+  "wall_ms": 6012.693299999228,
+  "runtime": {
+    "schema": "pcdc-runtime-result/v1",
+    "mode": "balanced",
+    "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\94_icon_group_4_62_src.png",
+    "elapsed_ms": 929.0182999975514,
+    "deadline_ms": null,
+    "deadline_exceeded": false,
+    "best_stage": "T0",
+    "visible_render_audit": {
+      "passed": false,
+      "ink_iou": 0.5767272727272728,
+      "boundary_f": 0.9864125487717933,
+      "normalized_mae": 0.07069986313581467,
+      "source_topology": [
+        27,
+        35
+      ],
+      "rendered_topology": [
+        35,
+        3
+      ],
+      "topology_error": 40,
+      "baseline_available": true,
+      "baseline_ink_iou": 0.9632623071271125,
+      "baseline_boundary_f": 0.9992132179386309,
+      "baseline_normalized_mae": 0.019577616825699806,
+      "baseline_topology_error": 13,
+      "regressed_vs_baseline": true,
+      "reason": "failed:topology,ink-iou,mae-fuse,baseline-regression"
+    },
+    "selected_macros": 1,
+    "proposal_queries": 48,
+    "checkpoints": [
+      {
+        "stage": "T0",
+        "elapsed_ms": 61.138400007621385,
+        "selected_ids": [
+          "legacy-scene-167ec1b787d0c863"
+        ],
+        "utility": 0.001,
+        "exact_cover": true,
+        "proof_valid": true,
+        "note": "real V-ICE Best fallback available"
+      }
+    ],
+    "contract": {
+      "hierarchy_nodes": 185,
+      "hierarchy_limit": 186,
+      "typed_rois": 54,
+      "typed_roi_limit": 64,
+      "generated_typed_columns": 91,
+      "generated_column_limit": 220,
+      "exact_finalists_per_roi": 4,
+      "exact_roi_renders": 0,
+      "exact_roi_render_limit": 192,
+      "image_formation_models": 4,
+      "visible_extractions": 1,
+      "hidden_extractions": 0,
+      "final_full_renders": 1,
+      "one_reir_pass": true,
+      "native_backend": {
+        "available": true,
+        "version": 1,
+        "language": "rust",
+        "kernels": [
+          "conflict-bitsets",
+          "circle-sdf",
+          "atlas-pack"
+        ]
+      }
+    },
+    "profile": {
+      "schema": "pcdc-stage-profile/v1",
+      "complete": false,
+      "record_count": 8,
+      "by_stage": {
+        "evidence": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 27.5616,
+          "wall_ms_max": 27.5616,
+          "cpu_ms_total": 15.625,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 27.5616,
+          "cpu_ms_mean": 15.625
+        },
+        "legacy_resolve": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 1.9875,
+          "wall_ms_max": 1.9875,
+          "cpu_ms_total": 0.0,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 1.9875,
+          "cpu_ms_mean": 0.0
+        },
+        "base_registry": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 31.1631,
+          "wall_ms_max": 31.1631,
+          "cpu_ms_total": 31.25,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 31.1631,
+          "cpu_ms_mean": 31.25
+        },
+        "hierarchy_solution": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 0.6622,
+          "wall_ms_max": 0.6622,
+          "cpu_ms_total": 0.0,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 0.6622,
+          "cpu_ms_mean": 0.0
+        },
+        "typed_macro_generation": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 621.1445,
+          "wall_ms_max": 621.1445,
+          "cpu_ms_total": 2234.375,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 621.1445,
+          "cpu_ms_mean": 2234.375
+        },
+        "typed_registry": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 23.9575,
+          "wall_ms_max": 23.9575,
+          "cpu_ms_total": 0.0,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 23.9575,
+          "cpu_ms_mean": 0.0
+        },
+        "visible_extract": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 1,
+          "wall_ms_total": 148.099,
+          "wall_ms_max": 148.099,
+          "cpu_ms_total": 125.0,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 148.099,
+          "cpu_ms_mean": 125.0
+        },
+        "visible_full_render_court": {
+          "count": 1,
+          "failures": 0,
+          "budget_failures": 0,
+          "wall_ms_total": 54.9698,
+          "wall_ms_max": 54.9698,
+          "cpu_ms_total": 62.5,
+          "peak_python_bytes_max": 0,
+          "wall_ms_mean": 54.9698,
+          "cpu_ms_mean": 62.5
+        }
+      },
+      "records": [
+        {
+          "name": "evidence",
+          "wall_ms": 27.5616,
+          "cpu_ms": 15.625,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": {
+            "mode": "balanced"
+          }
+        },
+        {
+          "name": "legacy_resolve",
+          "wall_ms": 1.9875,
+          "cpu_ms": 0.0,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "base_registry",
+          "wall_ms": 31.1631,
+          "cpu_ms": 31.25,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "hierarchy_solution",
+          "wall_ms": 0.6622,
+          "cpu_ms": 0.0,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "typed_macro_generation",
+          "wall_ms": 621.1445,
+          "cpu_ms": 2234.375,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "typed_registry",
+          "wall_ms": 23.9575,
+          "cpu_ms": 0.0,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "visible_extract",
+          "wall_ms": 148.099,
+          "cpu_ms": 125.0,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": false,
+          "error": null,
+          "metadata": null
+        },
+        {
+          "name": "visible_full_render_court",
+          "wall_ms": 54.9698,
+          "cpu_ms": 62.5,
+          "peak_python_bytes": 0,
+          "ok": true,
+          "budget_ok": true,
+          "error": null,
+          "metadata": null
+        }
+      ]
+    },
+    "warnings": [
+      "REIR cache hit=True",
+      "V-ICE Best fallback=C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_work\\paper-regions\\icon_group_4_62\\94_icon_group_4_62_src\\03_rebuilt_filled.svg",
+      "font/glyph cache hit=False",
+      "T2 full-render court rejected typed scene: failed:topology,ink-iou,mae-fuse,baseline-regression"
+    ]
+  },
+  "best_stage": "T0",
+  "selected_macros": 1,
+  "deterministic_export": true,
+  "exports": {
+    "svg": {
+      "target": "svg",
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_experiment12\\runs\\probe-v2\\items\\vai50-01-icon_group_4_62\\result.svg",
+      "sha256": "c5be47c398b9be3002b9bac7aa1fc6ea8e50db6181e8b152823486e96fd9179f",
+      "bytes": 15668,
+      "native_primitives": 0,
+      "fallback_paths": 43,
+      "raster_images_embedded": 0,
+      "editable_score": 0.55,
+      "provenance": [
+        "selected-proof-carrying-scene",
+        "deterministic-export",
+        "no-preview-only-geometry-in-production"
+      ]
+    }
+  },
+  "ours": {
+    "wobble": 1.158,
+    "g2_steps": 0.089,
+    "kinks_per_100px": 0.19,
+    "kink_cvar10_deg": 3.8782,
+    "detail_cvar10": 0.64161,
+    "staircase_runs": 0,
+    "micro_segs": 19,
+    "total_len": 1578.1,
+    "segments": 647,
+    "roundness": null,
+    "circles": 0,
+    "mae": 4.99,
+    "rmse": 16.09,
+    "ink_iou": 0.9633,
+    "ssim": 0.9551,
+    "seam_px": 1.81,
+    "mirror_iou": 0.5662,
+    "region_de2000_p95": 10.1947,
+    "de_region_max": 9.2492,
+    "color_regions": 33,
+    "source_rot90_iou": 0.1819,
+    "rot90_iou": 0.1862,
+    "rot90_sym_break": 0.0,
+    "boundary_f": 0.9992,
+    "hausdorff95": 0.95,
+    "local_de_max": 3.636,
+    "local_de_x": 24,
+    "local_de_y": 24,
+    "local_de_window": [
+      32,
+      32
+    ],
+    "census_errors": 12,
+    "components_source": 33,
+    "components_render": 29,
+    "components_vanished": 0,
+    "components_fused": 1,
+    "components_added": 0,
+    "holes_lost": 0,
+    "holes_gained": 11,
+    "topology_levels_de": [
+      2.3,
+      4.6,
+      9.2,
+      18.4
+    ],
+    "source_betti_curve": [
+      [
+        11,
+        19
+      ],
+      [
+        19,
+        14
+      ],
+      [
+        23,
+        27
+      ],
+      [
+        29,
+        36
+      ]
+    ],
+    "render_betti_curve": [
+      [
+        24,
+        19
+      ],
+      [
+        25,
+        19
+      ],
+      [
+        25,
+        20
+      ],
+      [
+        26,
+        27
+      ]
+    ],
+    "persistent_beta0_error": 6.0,
+    "persistent_beta1_error": 5.25,
+    "persistent_components_lost": 0.75,
+    "persistent_holes_lost": 4.0,
+    "persistent_holes_gained": 1.25,
+    "any_counter_failure": true,
+    "catastrophic_locus_count": 6,
+    "catastrophic_locus_rate": 0.02361,
+    "worst_locus_severity": 2.0,
+    "boundary_cvar10": 1.1122,
+    "boundary_p99": 1.4,
+    "detail_de_cvar10": 20.2488,
+    "repeated_component_pairs": 24,
+    "equal_width_violation": 0.11353,
+    "equal_height_violation": 0.0,
+    "repeated_radius_violation": 0.0193,
+    "equal_gap_violation": 0.22648,
+    "group_regularity_violation": 0.22648
+  },
+  "working_set_mib": 1001.0078125,
+  "compiler_fingerprint": "84acd0945fadd4fdbcee687146f44045c549feb3644a8e8cd8cc4018b96e74d9",
+  "worker_wall_ms": 7145.880899988697,
+  "peak_working_set_mib": 1008.8828125,
+  "worker_returncode": 0,
+  "worker_stderr_tail": ""
+}

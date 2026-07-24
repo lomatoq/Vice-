@@ -1,0 +1,61 @@
+{
+  "schema": "vice-legacy-focused-ablation/1",
+  "settings": {
+    "_DP_PHYSICAL_FIDELITY": false,
+    "_DP_UNCERTAINTY_NORMALIZATION": false,
+    "_DP_CORRELATION_WEIGHTING": false,
+    "_DP_MDL_CODING": false,
+    "_JOINT_IDEAL_APEX_CAPS": false
+  },
+  "rows": [
+    {
+      "name": "shield_symmetry",
+      "baseline": {
+        "extractor": "paper-hoshyari",
+        "regions": 1,
+        "prims": 150,
+        "L": 0,
+        "C": 150,
+        "fallback_loops": 1,
+        "strokes": 0,
+        "occl": 0,
+        "scale": 4,
+        "secs": 52.3,
+        "raster_iou": 0.9952,
+        "components": "1/1",
+        "holes": "0/0",
+        "topo_ok": true,
+        "micro_prims": 0,
+        "short_prims": 23,
+        "upper_micro_prims": 0,
+        "lower_micro_prims": 0,
+        "min_prim_chord": 1.33,
+        "tiny_detail": 1.0,
+        "mirror_iou": 0.9965,
+        "pass": false
+      },
+      "legacy_dp": {
+        "extractor": "paper-hoshyari",
+        "regions": 1,
+        "prims": 150,
+        "L": 0,
+        "C": 150,
+        "fallback_loops": 1,
+        "strokes": 0,
+        "occl": 0,
+        "scale": 4,
+        "secs": 71.8,
+        "raster_iou": 0.9952,
+        "components": "1/1",
+        "holes": "0/0",
+        "topo_ok": true,
+        "micro_prims": 0,
+        "short_prims": 23,
+        "upper_micro_prims": 0,
+        "lower_micro_prims": 0,
+        "min_prim_chord": 1.33,
+        "tiny_detail": 1.0
+      }
+    }
+  ]
+}

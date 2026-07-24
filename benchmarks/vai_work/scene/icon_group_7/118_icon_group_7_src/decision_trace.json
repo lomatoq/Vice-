@@ -1,0 +1,1583 @@
+{
+  "config_hash": "fe78d9b2babdc3bcca4ce6a8d71c8164714e3d3b307d0d19103ee765fcb64fd9",
+  "elapsed_seconds": 1608.8738071999978,
+  "records": [
+    {
+      "accepted": true,
+      "action": "canonical-decode",
+      "details": {
+        "format": "PNG",
+        "native_size": [
+          271,
+          82
+        ],
+        "route": "auto"
+      },
+      "inputs": [],
+      "outputs": [
+        "rgba_srgb_straight",
+        "rgba_linear_premul",
+        "oklab",
+        "alpha_native"
+      ],
+      "reason": "one decode/crop/resize transform",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 0,
+      "stage": "ingest"
+    },
+    {
+      "accepted": true,
+      "action": "diagnose",
+      "details": {
+        "artwork_prob": 0.9800000190734863,
+        "diagram_prob": 1.0,
+        "gradient_prob": 0.2499954999549996,
+        "text_prob": 0.0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "spatial profile, never a global route switch",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 1,
+      "stage": "raster-profile"
+    },
+    {
+      "accepted": true,
+      "action": "multi-head-inference",
+      "details": {
+        "cache_hit": false,
+        "heads": [
+          "boundary_normal",
+          "boundary_prob",
+          "color_logits",
+          "corner_prob",
+          "corner_type",
+          "coverage_alpha",
+          "glyph_occupancy",
+          "junction_prob",
+          "region_embedding",
+          "shape_class_logits",
+          "stroke_centerline_prob",
+          "stroke_half_width",
+          "subpixel_offset",
+          "symmetry_evidence",
+          "text_line_prob",
+          "uncertainty"
+        ],
+        "levels": 3,
+        "model_version": "deterministic-evidence/1"
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "frozen evidence API",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 2,
+      "stage": "evidence"
+    },
+    {
+      "accepted": true,
+      "action": "soft-mixture",
+      "details": {
+        "background_index": 0,
+        "cluster_count": 5
+      },
+      "inputs": [],
+      "outputs": [
+        "appearance-0",
+        "appearance-1",
+        "appearance-2",
+        "appearance-3",
+        "appearance-4"
+      ],
+      "reason": "late palette projection",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 3,
+      "stage": "appearance"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "soft-spatial-proposal-sigma-1.15"
+        ],
+        "region_count": 291
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-c18e88b930b5"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 0.8909880986213684,
+      "score_before": null,
+      "sequence": 4,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "soft-spatial-proposal-sigma-0.65"
+        ],
+        "region_count": 504
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-ccd192e9d626"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 1.2104880986213684,
+      "score_before": null,
+      "sequence": 5,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "uncertainty-band-close-proposal"
+        ],
+        "region_count": 547
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-25a3782e3470"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 1.2749880986213684,
+      "score_before": null,
+      "sequence": 6,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "soft-argmax-proposal"
+        ],
+        "region_count": 561
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-052b575c7f2a"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 1.2959880986213683,
+      "score_before": null,
+      "sequence": 7,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 0,
+        "legacy_path_a_available": true,
+        "text_lines": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 8,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 4,
+        "corners": 474,
+        "interfaces": 798,
+        "shapes": 291
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-c18e88b930b5"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 9,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 0,
+        "legacy_path_a_available": true,
+        "text_lines": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 10,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 12,
+        "corners": 775,
+        "interfaces": 1328,
+        "shapes": 504
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-ccd192e9d626"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 11,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 0,
+        "legacy_path_a_available": true,
+        "text_lines": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 12,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 16,
+        "corners": 860,
+        "interfaces": 1451,
+        "shapes": 547
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-25a3782e3470"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 13,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 0,
+        "legacy_path_a_available": true,
+        "text_lines": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 14,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 18,
+        "corners": 874,
+        "interfaces": 1478,
+        "shapes": 561
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-052b575c7f2a"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 15,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-0:triangle:layer-stay",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.344047064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 16,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-1:triangle:layer-1-to-0",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.344047064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 17,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-10:quadrilateral:layer-10-to-9",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.344047064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 18,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-100:generic:layer-100-to-99",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 19,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-101:generic:layer-101-to-100",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 20,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-102:generic:layer-102-to-101",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 21,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-103:triangle:layer-103-to-102",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.344047064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 22,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-104:triangle:layer-104-to-103",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.344047064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 23,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-105:triangle:layer-105-to-104",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.344047064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 24,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-106:generic:layer-106-to-105",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 25,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-107:generic:layer-107-to-106",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 26,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-108:generic:layer-108-to-107",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 27,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-109:generic:layer-109-to-108",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 28,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-11:circle:layer-11-to-10",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.344047064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 29,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-110:generic:layer-110-to-109",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 30,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-111:generic:layer-111-to-110",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 31,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-112:generic:layer-112-to-111",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 32,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-113:generic:layer-113-to-112",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 33,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-114:generic:layer-114-to-113",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 34,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-115:generic:layer-115-to-114",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 35,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-116:generic:layer-116-to-115",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 36,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-117:generic:layer-117-to-116",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 37,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-118:generic:layer-118-to-117",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 38,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-119:generic:layer-119-to-118",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 4.345447064332667,
+      "score_before": 4.344047064332668,
+      "sequence": 39,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "select-scene",
+      "details": {
+        "abstained": false,
+        "render_model": "blur-0.6",
+        "runner_up": 6.835504739025007
+      },
+      "inputs": [],
+      "outputs": [
+        "scene-hypothesis-0"
+      ],
+      "reason": "global posterior/MDL court",
+      "score_after": 4.344047064332668,
+      "score_before": null,
+      "sequence": 40,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "equal-radius",
+      "details": {},
+      "inputs": [
+        "shape-44",
+        "shape-52"
+      ],
+      "outputs": [],
+      "reason": "accuracy-budgeted snapshot/rollback",
+      "score_after": 0.48861306980252267,
+      "score_before": 0.48861306980252267,
+      "sequence": 41,
+      "stage": "idealization"
+    },
+    {
+      "accepted": true,
+      "action": "equal-radius",
+      "details": {},
+      "inputs": [
+        "shape-50",
+        "shape-72"
+      ],
+      "outputs": [],
+      "reason": "accuracy-budgeted snapshot/rollback",
+      "score_after": 0.48861306980252267,
+      "score_before": 0.48861306980252267,
+      "sequence": 42,
+      "stage": "idealization"
+    },
+    {
+      "accepted": true,
+      "action": "equal-radius",
+      "details": {},
+      "inputs": [
+        "shape-51",
+        "shape-52",
+        "shape-79"
+      ],
+      "outputs": [],
+      "reason": "accuracy-budgeted snapshot/rollback",
+      "score_after": 0.48861306980252267,
+      "score_before": 0.48861306980252267,
+      "sequence": 43,
+      "stage": "idealization"
+    },
+    {
+      "accepted": false,
+      "action": "equal-radius",
+      "details": {},
+      "inputs": [
+        "shape-53",
+        "shape-78"
+      ],
+      "outputs": [],
+      "reason": "accuracy-budgeted snapshot/rollback",
+      "score_after": 0.49119115233421323,
+      "score_before": 0.48861306980252267,
+      "sequence": 44,
+      "stage": "idealization"
+    },
+    {
+      "accepted": true,
+      "action": "add",
+      "details": {
+        "area_px": 19937
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "forward loss + topology/MDL court",
+      "score_after": 0.16203489801883697,
+      "score_before": 0.48861306980252267,
+      "sequence": 45,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-30",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 46,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-39",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 47,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-46",
+      "score_after": 0.1451508165895939,
+      "score_before": 0.14493489801883697,
+      "sequence": 48,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-49",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 49,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-50",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 50,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-51",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 51,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-53",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 52,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-54",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 53,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-59",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 54,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-60",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 55,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-63",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 56,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-75",
+      "score_after": 0.14493489801883697,
+      "score_before": 0.14493489801883697,
+      "sequence": 57,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-78",
+      "score_after": 0.14479420334100723,
+      "score_before": 0.14493489801883697,
+      "sequence": 58,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-80",
+      "score_after": 0.14479420334100723,
+      "score_before": 0.14479420334100723,
+      "sequence": 59,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-81",
+      "score_after": 0.14479420334100723,
+      "score_before": 0.14479420334100723,
+      "sequence": 60,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-83",
+      "score_after": 0.14479420334100723,
+      "score_before": 0.14479420334100723,
+      "sequence": 61,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-86",
+      "score_after": 0.14479420334100723,
+      "score_before": 0.14479420334100723,
+      "sequence": 62,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-87",
+      "score_after": 0.14480404645204545,
+      "score_before": 0.14479420334100723,
+      "sequence": 63,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-88",
+      "score_after": 0.14479420334100723,
+      "score_before": 0.14479420334100723,
+      "sequence": 64,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-90",
+      "score_after": 0.14479461252689363,
+      "score_before": 0.14479420334100723,
+      "sequence": 65,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-91",
+      "score_after": 0.14480003982782363,
+      "score_before": 0.14479461252689363,
+      "sequence": 66,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-92",
+      "score_after": 0.1447963872551918,
+      "score_before": 0.14479461252689363,
+      "sequence": 67,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-93",
+      "score_after": 0.14479598969221116,
+      "score_before": 0.14479461252689363,
+      "sequence": 68,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-95",
+      "score_after": 0.14479461252689363,
+      "score_before": 0.14479461252689363,
+      "sequence": 69,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-96",
+      "score_after": 0.1447952599823475,
+      "score_before": 0.14479461252689363,
+      "sequence": 70,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-97",
+      "score_after": 0.1447952599823475,
+      "score_before": 0.1447952599823475,
+      "sequence": 71,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-98",
+      "score_after": 0.1447952599823475,
+      "score_before": 0.1447952599823475,
+      "sequence": 72,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-99",
+      "score_after": 0.1447924268245697,
+      "score_before": 0.1447952599823475,
+      "sequence": 73,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-100",
+      "score_after": 0.14479418367147445,
+      "score_before": 0.1447924268245697,
+      "sequence": 74,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-101",
+      "score_after": 0.1447924268245697,
+      "score_before": 0.1447924268245697,
+      "sequence": 75,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-102",
+      "score_after": 0.14479409754276276,
+      "score_before": 0.1447924268245697,
+      "sequence": 76,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-106",
+      "score_after": 0.1447924268245697,
+      "score_before": 0.1447924268245697,
+      "sequence": 77,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-107",
+      "score_after": 0.14479184225201608,
+      "score_before": 0.1447924268245697,
+      "sequence": 78,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-108",
+      "score_after": 0.14479184225201608,
+      "score_before": 0.14479184225201608,
+      "sequence": 79,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-153",
+      "score_after": 0.1447938108444214,
+      "score_before": 0.14479184225201608,
+      "sequence": 80,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-159",
+      "score_after": 0.14479141369462012,
+      "score_before": 0.14479184225201608,
+      "sequence": 81,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-160",
+      "score_after": 0.14478566020727157,
+      "score_before": 0.14479141369462012,
+      "sequence": 82,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-161",
+      "score_after": 0.14477457344532013,
+      "score_before": 0.14478566020727157,
+      "sequence": 83,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-162",
+      "score_after": 0.144762973934412,
+      "score_before": 0.14477457344532013,
+      "sequence": 84,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-164",
+      "score_after": 0.14475961953401564,
+      "score_before": 0.144762973934412,
+      "sequence": 85,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-170",
+      "score_after": 0.14475961953401564,
+      "score_before": 0.14475961953401564,
+      "sequence": 86,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-185",
+      "score_after": 0.14474211737513543,
+      "score_before": 0.14475961953401564,
+      "sequence": 87,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-189",
+      "score_after": 0.144730224609375,
+      "score_before": 0.14474211737513543,
+      "sequence": 88,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-193",
+      "score_after": 0.144730224609375,
+      "score_before": 0.144730224609375,
+      "sequence": 89,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-212",
+      "score_after": 0.1447141446173191,
+      "score_before": 0.144730224609375,
+      "sequence": 90,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-223",
+      "score_after": 0.1447141446173191,
+      "score_before": 0.1447141446173191,
+      "sequence": 91,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-225",
+      "score_after": 0.144707141071558,
+      "score_before": 0.1447141446173191,
+      "sequence": 92,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-226",
+      "score_after": 0.144707141071558,
+      "score_before": 0.144707141071558,
+      "sequence": 93,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-239",
+      "score_after": 0.14469768717885018,
+      "score_before": 0.144707141071558,
+      "sequence": 94,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-240",
+      "score_after": 0.1446972021460533,
+      "score_before": 0.14469768717885018,
+      "sequence": 95,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-241",
+      "score_after": 0.14468236550688743,
+      "score_before": 0.1446972021460533,
+      "sequence": 96,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-242",
+      "score_after": 0.14466801568865775,
+      "score_before": 0.14468236550688743,
+      "sequence": 97,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-258",
+      "score_after": 0.14466680720448494,
+      "score_before": 0.14466801568865775,
+      "sequence": 98,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-263",
+      "score_after": 0.14466398268938063,
+      "score_before": 0.14466680720448494,
+      "sequence": 99,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-272",
+      "score_after": 0.1446615721285343,
+      "score_before": 0.14466398268938063,
+      "sequence": 100,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-274",
+      "score_after": 0.14464663118124008,
+      "score_before": 0.1446615721285343,
+      "sequence": 101,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-275",
+      "score_after": 0.14464385598897933,
+      "score_before": 0.14464663118124008,
+      "sequence": 102,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-277",
+      "score_after": 0.14464257299900055,
+      "score_before": 0.14464385598897933,
+      "sequence": 103,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-residual-291",
+      "score_after": 0.48832784295082093,
+      "score_before": 0.14464257299900055,
+      "sequence": 104,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "select-render-model",
+      "details": {
+        "candidates": {
+          "blur-0.6": 0.14464257299900055,
+          "clean-aa": 0.15329018905758857,
+          "gamma-1.8": 0.15733287781476973,
+          "hard": 0.1549411043524742,
+          "jpeg-70": 0.16329790830612181
+        },
+        "render_model": "blur-0.6"
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "renderer-model marginalization",
+      "score_after": 0.14464257299900055,
+      "score_before": null,
+      "sequence": 105,
+      "stage": "final-court"
+    },
+    {
+      "accepted": true,
+      "action": "publish-artifacts",
+      "details": {
+        "wall_seconds": 1608.8813463999977
+      },
+      "inputs": [],
+      "outputs": [
+        "scene.json",
+        "decision_trace.json",
+        "config.json",
+        "profile.json"
+      ],
+      "reason": "legacy-compatible names + canonical scene",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 106,
+      "stage": "export"
+    }
+  ],
+  "schema": "vice-decision-trace/1",
+  "source_hash": "29d242455aaaba8c13355285fb0b965f000ec1ea26c4c2d15a038645df527756",
+  "stage_seconds": {
+    "appearance": 0.12463449999631848,
+    "evidence": 0.1530230999997002,
+    "export": 60.77129889999924,
+    "final-court": 15.655510399999912,
+    "idealization": 2.346326400001999,
+    "optimizer": 77.34073190000345,
+    "raster-profile": 0.011563599997316487,
+    "residual": 906.7221940999952,
+    "scene-build": 508.0157904000007,
+    "topology": 37.62901509999938
+  }
+}

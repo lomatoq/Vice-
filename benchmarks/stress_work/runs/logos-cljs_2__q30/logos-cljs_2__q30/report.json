@@ -1,0 +1,39 @@
+{
+  "input": "logos-cljs_2__q30.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 12,
+  "closed_contours": 17,
+  "rendered_primitive_count": 190,
+  "actual": {
+    "L": 51,
+    "Q": 0,
+    "C": 139
+  },
+  "templates": {
+    "paper-regions": 15,
+    "paper-regions-court": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 5.22,
+    "mae_native": 6.31,
+    "bf_deblur": 0.9728,
+    "bf_native": 0.9569,
+    "kink_deblur": 1.94,
+    "kink_native": 1.54,
+    "winner": "deblur"
+  },
+  "kink_energy": 1.938
+}

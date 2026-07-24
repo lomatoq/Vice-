@@ -1,0 +1,38 @@
+{
+  "input": "500px__blur1.2.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 20,
+  "closed_contours": 39,
+  "rendered_primitive_count": 275,
+  "actual": {
+    "L": 109,
+    "Q": 0,
+    "C": 166
+  },
+  "templates": {
+    "paper-regions": 39
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 4.86,
+    "mae_native": 5.13,
+    "bf_deblur": 0.9848,
+    "bf_native": 0.977,
+    "kink_deblur": 3.38,
+    "kink_native": 3.2,
+    "winner": "deblur"
+  },
+  "kink_energy": 3.385
+}

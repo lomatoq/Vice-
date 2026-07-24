@@ -1,0 +1,35 @@
+{
+  "input": "logos-digital-ocean_2__blur1.2.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 15,
+  "closed_contours": 20,
+  "rendered_primitive_count": 187,
+  "actual": {
+    "L": 55,
+    "Q": 0,
+    "C": 132
+  },
+  "templates": {
+    "paper-joint": 9,
+    "stroke": 2,
+    "paper-smooth": 1,
+    "paper-tiny": 3,
+    "paper-tiny-ellipse": 4,
+    "paper-circle-court": 2,
+    "tiny-rrect": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 5.736
+}

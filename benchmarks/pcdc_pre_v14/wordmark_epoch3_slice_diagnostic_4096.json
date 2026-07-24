@@ -1,0 +1,302 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\wordmark_prior_candidate_v1_epoch3.pt",
+  "checkpoint_epoch": 3,
+  "overall": {
+    "component_head_accuracy": 0.7373046875,
+    "hole_head_accuracy": 0.587646484375,
+    "joint_head_accuracy": 0.495849609375,
+    "mean_observed_iou": 0.8119720650799612,
+    "mean_raw_iou": 0.917658064044679,
+    "n": 4096,
+    "raw_topology_accuracy": 0.526123046875
+  },
+  "samples": 4096,
+  "schema": "pcdc-wordmark-epoch3-slice-diagnostic/v1",
+  "slices": {
+    "component_count": {
+      "0-1": {
+        "component_head_accuracy": 0.9882978723404255,
+        "hole_head_accuracy": 0.648936170212766,
+        "joint_head_accuracy": 0.6436170212765957,
+        "mean_observed_iou": 0.9152038019320251,
+        "mean_raw_iou": 0.966281238555545,
+        "n": 940,
+        "raw_topology_accuracy": 0.6638297872340425
+      },
+      "17-32": {
+        "component_head_accuracy": 0.6028921023359288,
+        "hole_head_accuracy": 0.46051167964404893,
+        "joint_head_accuracy": 0.3081201334816463,
+        "mean_observed_iou": 0.6719975765755127,
+        "mean_raw_iou": 0.8474517686108284,
+        "n": 899,
+        "raw_topology_accuracy": 0.3025583982202447
+      },
+      "2-4": {
+        "component_head_accuracy": 0.7481927710843373,
+        "hole_head_accuracy": 0.591566265060241,
+        "joint_head_accuracy": 0.5228915662650603,
+        "mean_observed_iou": 0.8778465586894402,
+        "mean_raw_iou": 0.9481381684971976,
+        "n": 830,
+        "raw_topology_accuracy": 0.5795180722891566
+      },
+      "33-64": {
+        "component_head_accuracy": 0.11392405063291139,
+        "hole_head_accuracy": 0.35443037974683544,
+        "joint_head_accuracy": 0.0379746835443038,
+        "mean_observed_iou": 0.35558487570102065,
+        "mean_raw_iou": 0.6222101036365282,
+        "n": 79,
+        "raw_topology_accuracy": 0.02531645569620253
+      },
+      "5-8": {
+        "component_head_accuracy": 0.6881188118811881,
+        "hole_head_accuracy": 0.6435643564356436,
+        "joint_head_accuracy": 0.5495049504950495,
+        "mean_observed_iou": 0.8503861743275684,
+        "mean_raw_iou": 0.9434735479416887,
+        "n": 606,
+        "raw_topology_accuracy": 0.6270627062706271
+      },
+      "9-16": {
+        "component_head_accuracy": 0.6765498652291105,
+        "hole_head_accuracy": 0.6388140161725068,
+        "joint_head_accuracy": 0.5107816711590296,
+        "mean_observed_iou": 0.7943157855456996,
+        "mean_raw_iou": 0.9173984878854918,
+        "n": 742,
+        "raw_topology_accuracy": 0.5336927223719676
+      }
+    },
+    "hint_exact": {
+      "false": {
+        "component_head_accuracy": 0.70199370409234,
+        "hole_head_accuracy": 0.5571878279118573,
+        "joint_head_accuracy": 0.45750262329485836,
+        "mean_observed_iou": 0.8106048693129793,
+        "mean_raw_iou": 0.9166869914436359,
+        "n": 953,
+        "raw_topology_accuracy": 0.5173137460650578
+      },
+      "true": {
+        "component_head_accuracy": 0.7480114540248171,
+        "hole_head_accuracy": 0.5968819599109132,
+        "joint_head_accuracy": 0.5074769328666878,
+        "mean_observed_iou": 0.8123866172803855,
+        "mean_raw_iou": 0.9179525063573719,
+        "n": 3143,
+        "raw_topology_accuracy": 0.5287941457206491
+      }
+    },
+    "hint_x_observed_topology": {
+      "hint=false;observed=false": {
+        "component_head_accuracy": 0.6568501920614597,
+        "hole_head_accuracy": 0.48655569782330343,
+        "joint_head_accuracy": 0.3764404609475032,
+        "mean_observed_iou": 0.780836987391201,
+        "mean_raw_iou": 0.9015700178088315,
+        "n": 781,
+        "raw_topology_accuracy": 0.42765685019206146
+      },
+      "hint=false;observed=true": {
+        "component_head_accuracy": 0.9069767441860465,
+        "hole_head_accuracy": 0.877906976744186,
+        "joint_head_accuracy": 0.8255813953488372,
+        "mean_observed_iou": 0.9457718215275654,
+        "mean_raw_iou": 0.9853285984714396,
+        "n": 172,
+        "raw_topology_accuracy": 0.9244186046511628
+      },
+      "hint=true;observed=false": {
+        "component_head_accuracy": 0.6933601609657948,
+        "hole_head_accuracy": 0.5134808853118712,
+        "joint_head_accuracy": 0.4084507042253521,
+        "mean_observed_iou": 0.7780067862786182,
+        "mean_raw_iou": 0.9000983719265295,
+        "n": 2485,
+        "raw_topology_accuracy": 0.42414486921529176
+      },
+      "hint=true;observed=true": {
+        "component_head_accuracy": 0.9544072948328267,
+        "hole_head_accuracy": 0.9118541033434651,
+        "joint_head_accuracy": 0.8814589665653495,
+        "mean_observed_iou": 0.9422253407445068,
+        "mean_raw_iou": 0.985380354473851,
+        "n": 658,
+        "raw_topology_accuracy": 0.9240121580547113
+      }
+    },
+    "hole_count": {
+      "0-1": {
+        "component_head_accuracy": 0.8265582655826558,
+        "hole_head_accuracy": 0.9105691056910569,
+        "joint_head_accuracy": 0.7804878048780488,
+        "mean_observed_iou": 0.8420943070140688,
+        "mean_raw_iou": 0.9204451474414796,
+        "n": 738,
+        "raw_topology_accuracy": 0.7967479674796748
+      },
+      "17-32": {
+        "component_head_accuracy": 0.6311881188118812,
+        "hole_head_accuracy": 0.12623762376237624,
+        "joint_head_accuracy": 0.09653465346534654,
+        "mean_observed_iou": 0.8105955538724133,
+        "mean_raw_iou": 0.9086082879172795,
+        "n": 404,
+        "raw_topology_accuracy": 0.15841584158415842
+      },
+      "2-4": {
+        "component_head_accuracy": 0.8354700854700855,
+        "hole_head_accuracy": 0.7905982905982906,
+        "joint_head_accuracy": 0.7126068376068376,
+        "mean_observed_iou": 0.8610379831181484,
+        "mean_raw_iou": 0.9504504324037498,
+        "n": 936,
+        "raw_topology_accuracy": 0.7264957264957265
+      },
+      "33-64": {
+        "component_head_accuracy": 0.5056179775280899,
+        "hole_head_accuracy": 0.0449438202247191,
+        "joint_head_accuracy": 0.02247191011235955,
+        "mean_observed_iou": 0.8138269238512291,
+        "mean_raw_iou": 0.9008320390669119,
+        "n": 89,
+        "raw_topology_accuracy": 0.0449438202247191
+      },
+      "5-8": {
+        "component_head_accuracy": 0.7445887445887446,
+        "hole_head_accuracy": 0.5974025974025974,
+        "joint_head_accuracy": 0.5021645021645021,
+        "mean_observed_iou": 0.788410191382734,
+        "mean_raw_iou": 0.9135418881102227,
+        "n": 924,
+        "raw_topology_accuracy": 0.5378787878787878
+      },
+      "9-16": {
+        "component_head_accuracy": 0.6368159203980099,
+        "hole_head_accuracy": 0.38606965174129354,
+        "joint_head_accuracy": 0.281592039800995,
+        "mean_observed_iou": 0.7662071750922295,
+        "mean_raw_iou": 0.8939828879362203,
+        "n": 1005,
+        "raw_topology_accuracy": 0.32039800995024875
+      }
+    },
+    "observed_iou": {
+      "0.70-0.85": {
+        "component_head_accuracy": 0.6237482117310443,
+        "hole_head_accuracy": 0.4363376251788269,
+        "joint_head_accuracy": 0.32045779685264664,
+        "mean_observed_iou": 0.7879378607462317,
+        "mean_raw_iou": 0.9279858831269914,
+        "n": 699,
+        "raw_topology_accuracy": 0.3218884120171674
+      },
+      "0.85-0.95": {
+        "component_head_accuracy": 0.7973704563031709,
+        "hole_head_accuracy": 0.5955143078112916,
+        "joint_head_accuracy": 0.5158546017014695,
+        "mean_observed_iou": 0.9072887859701034,
+        "mean_raw_iou": 0.9777886825179972,
+        "n": 1293,
+        "raw_topology_accuracy": 0.5877803557617943
+      },
+      "<0.70": {
+        "component_head_accuracy": 0.4564676616915423,
+        "hole_head_accuracy": 0.39552238805970147,
+        "joint_head_accuracy": 0.22761194029850745,
+        "mean_observed_iou": 0.41107970132264565,
+        "mean_raw_iou": 0.6866900067402402,
+        "n": 804,
+        "raw_topology_accuracy": 0.12437810945273632
+      },
+      ">=0.95": {
+        "component_head_accuracy": 0.9123076923076923,
+        "hole_head_accuracy": 0.78,
+        "joint_head_accuracy": 0.7361538461538462,
+        "mean_observed_iou": 0.9780281029101188,
+        "mean_raw_iou": 0.9951428970048574,
+        "n": 1300,
+        "raw_topology_accuracy": 0.823076923076923
+      }
+    },
+    "observed_topology_intact": {
+      "false": {
+        "component_head_accuracy": 0.6846295162278015,
+        "hole_head_accuracy": 0.5070422535211268,
+        "joint_head_accuracy": 0.40079608083282303,
+        "mean_observed_iou": 0.7786835735011923,
+        "mean_raw_iou": 0.9004502872462105,
+        "n": 3266,
+        "raw_topology_accuracy": 0.42498469075321493
+      },
+      "true": {
+        "component_head_accuracy": 0.944578313253012,
+        "hole_head_accuracy": 0.9048192771084337,
+        "joint_head_accuracy": 0.8698795180722891,
+        "mean_observed_iou": 0.9429602741115986,
+        "mean_raw_iou": 0.9853696291335923,
+        "n": 830,
+        "raw_topology_accuracy": 0.9240963855421687
+      }
+    },
+    "text_length": {
+      "1": {
+        "component_head_accuracy": 0.967948717948718,
+        "hole_head_accuracy": 0.967948717948718,
+        "joint_head_accuracy": 0.9423076923076923,
+        "mean_observed_iou": 0.9069738784281268,
+        "mean_raw_iou": 0.963938403321321,
+        "n": 156,
+        "raw_topology_accuracy": 0.9423076923076923
+      },
+      "17-32": {
+        "component_head_accuracy": 0.603643525356967,
+        "hole_head_accuracy": 0.41654357459379615,
+        "joint_head_accuracy": 0.2964057114721812,
+        "mean_observed_iou": 0.7441846315543199,
+        "mean_raw_iou": 0.8751010878065251,
+        "n": 2031,
+        "raw_topology_accuracy": 0.3225012309207287
+      },
+      "2": {
+        "component_head_accuracy": 0.9622641509433962,
+        "hole_head_accuracy": 0.9339622641509434,
+        "joint_head_accuracy": 0.9056603773584906,
+        "mean_observed_iou": 0.9004842742301984,
+        "mean_raw_iou": 0.9712597516313605,
+        "n": 106,
+        "raw_topology_accuracy": 0.9245283018867925
+      },
+      "3-4": {
+        "component_head_accuracy": 0.9375,
+        "hole_head_accuracy": 0.8676470588235294,
+        "joint_head_accuracy": 0.8308823529411765,
+        "mean_observed_iou": 0.9051077088648465,
+        "mean_raw_iou": 0.9719750814058876,
+        "n": 272,
+        "raw_topology_accuracy": 0.8492647058823529
+      },
+      "5-8": {
+        "component_head_accuracy": 0.9047619047619048,
+        "hole_head_accuracy": 0.8040293040293041,
+        "joint_head_accuracy": 0.7454212454212454,
+        "mean_observed_iou": 0.9000403961125476,
+        "mean_raw_iou": 0.9724783615050129,
+        "n": 546,
+        "raw_topology_accuracy": 0.7802197802197802
+      },
+      "9-16": {
+        "component_head_accuracy": 0.8040609137055837,
+        "hole_head_accuracy": 0.6456852791878173,
+        "joint_head_accuracy": 0.5614213197969543,
+        "mean_observed_iou": 0.852637543846517,
+        "mean_raw_iou": 0.9469226283012832,
+        "n": 985,
+        "raw_topology_accuracy": 0.6071065989847716
+      }
+    }
+  },
+  "support_threshold": 0.8
+}

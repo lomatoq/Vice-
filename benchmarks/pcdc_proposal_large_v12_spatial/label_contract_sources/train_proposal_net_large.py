@@ -1,0 +1,1341 @@
+"""Large, source-disjoint ProposalNet training on the existing SVG/raster corpus.
+
+This is the production-scale replacement for the 300-locus Phase-9 pilot.  It
+uses the already generated V-ize raster/vector pairs, keeps every augmentation
+of one source SVG in exactly one split, and reports *neural-only* instance
+Recall@K.  Classical REIR proposals are intentionally absent from the metric.
+
+The network remains a proposal source.  A checkpoint passing this script's
+gate still has no right to commit geometry without the normal local court.
+"""
+
+from __future__ import annotations
+
+import argparse
+from collections import Counter, defaultdict
+from concurrent.futures import ThreadPoolExecutor
+from dataclasses import asdict
+from datetime import datetime, timezone
+from functools import lru_cache
+import hashlib
+import json
+import math
+from pathlib import Path
+import random
+import re
+import time
+from typing import Iterable
+import xml.etree.ElementTree as ET
+
+import cv2
+import numpy as np
+from PIL import Image
+from scipy.optimize import linear_sum_assignment
+import torch
+from torch.utils.data import DataLoader, Dataset, WeightedRandomSampler
+
+from .certificates import topology_signature
+from .conformal import (
+    CalibrationExample, audit_conformal_coverage, calibrate_conformal_sets,
+)
+from .proposal_net import (
+    HARD_NEGATIVE_TYPES, QUERY_FAMILIES, ProposalNet, ProposalNetConfig,
+    proposal_net_loss,
+)
+from .proposal_instance_labels import (
+    augmented_svg_full_support, augmented_svg_owner_targets,
+    svg_full_template, svg_owner_templates,
+)
+
+
+PROJECT = Path(__file__).resolve().parents[1]
+DEFAULT_PAIR_ROOT = Path(
+    r"C:\Users\nirrt\Toolset\v-ize train\dataset\raster_vector_pairs"
+)
+DEFAULT_CHECKPOINT = PROJECT / "models" / "proposal_net_large_candidate.pt"
+DEFAULT_REPORT = PROJECT / "benchmarks" / "pcdc_proposal_large" / "report.json"
+LABEL_CONTRACT_VERSION = "pcdc-source-disjoint-svg-owner-labels/v1"
+_SHAPE_TAG = re.compile(r"<(path|rect|circle|ellipse|polygon|polyline|line)\b", re.I)
+_GRADIENT = re.compile(r"<(linearGradient|radialGradient)\b|url\(#", re.I)
+_STROKE = re.compile(r"\bstroke\s*=\s*['\"](?!none)[^'\"]+", re.I)
+_PAINT_TAGS = frozenset({
+    "path", "rect", "circle", "ellipse", "polygon", "polyline", "line",
+})
+
+
+def _label_contract_sha256() -> str:
+    digest = hashlib.sha256(LABEL_CONTRACT_VERSION.encode("utf-8"))
+    for path in (
+        Path(__file__).resolve(),
+        PROJECT / "vice_compiler" / "proposal_net.py",
+        PROJECT / "vice_compiler" / "proposal_instance_labels.py",
+    ):
+        digest.update(path.name.encode("utf-8"))
+        digest.update(path.read_bytes())
+    return digest.hexdigest()
+
+
+def _stable_bucket(source_id: str) -> str:
+    value = int(hashlib.sha256(source_id.encode("utf-8")).hexdigest()[:8], 16) % 100
+    return "train" if value < 80 else "calibration" if value < 90 else "test"
+
+
+def _split_group(row: dict) -> str:
+    """Return the leakage boundary required by the canonical data contract."""
+    source = str(row.get("source", ""))
+    source_id = str(row.get("source_id", ""))
+    parts = source_id.split(":")
+    if source == "synthetic-text" and len(parts) >= 2:
+        return f"font-family:{parts[1]}"
+    if source == "iconify":
+        return f"icon-library:{row.get('collection', 'unknown')}"
+    if source == "local" and parts:
+        # light/dark/default exports of one design must never cross splits.
+        return f"local-asset-family:{parts[-1]}"
+    return f"source-asset:{source_id}"
+
+
+def _read_pairs(root: Path, limit: int | None) -> list[dict]:
+    rows = []
+    with (root / "pairs.jsonl").open("r", encoding="utf-8") as handle:
+        for line in handle:
+            if line.strip():
+                rows.append(json.loads(line))
+                if limit is not None and len(rows) >= limit:
+                    break
+    return rows
+
+
+@lru_cache(maxsize=4096)
+def _read_svg_text(path: str) -> str:
+    return Path(path).read_text("utf-8", errors="replace")
+
+
+def _uses_svg_owner_labels(row: dict) -> bool:
+    return (
+        str(row.get("source", "")) == "local"
+        or str(row.get("collection", "")) == "logos"
+    )
+
+
+def _svg_families(row: dict, root: Path) -> tuple[str, ...]:
+    """Return only macro families with defensible scene-level support labels.
+
+    Generic third-party vectors remain conservative because a path count is
+    not a semantic owner label.  Curated local/logo assets additionally use
+    the clean-SVG owner factory, which supplies separate text/glyph/mark masks
+    later in ``PairDataset``.
+    """
+    source = str(row.get("source", ""))
+    if source == "synthetic-text":
+        return ("text_line", "glyph_group")
+    svg = _read_svg_text(str((root / row["target_svg"]).resolve()))
+    families = ["whole_shape"]
+    if _uses_svg_owner_labels(row):
+        try:
+            owner_templates = svg_owner_templates(svg)
+        except (RuntimeError, ValueError, ET.ParseError):
+            owner_templates = None
+        if owner_templates is not None and owner_templates.text_masks:
+            families.extend(("text_line", "glyph_group"))
+            # A pure wordmark is not a generic whole-shape instance.  Mixed
+            # mark+word assets retain one whole-shape target for the mark.
+            if not owner_templates.mark_masks:
+                families.remove("whole_shape")
+    source_id = str(row.get("source_id", ""))
+    xml_root: ET.Element | None = None
+    try:
+        xml_root = ET.fromstring(svg)
+        painted = [
+            element for element in xml_root.iter()
+            if element.tag.rsplit("}", 1)[-1].lower() in _PAINT_TAGS
+        ]
+    except ET.ParseError:
+        painted = []
+    shape_count = len(painted) or len(_SHAPE_TAG.findall(svg))
+    gradient_paints = [
+        element for element in painted
+        if "url(#" in (
+            str(element.attrib.get("fill", ""))
+            + str(element.attrib.get("stroke", ""))
+            + str(element.attrib.get("style", ""))
+        ).lower()
+    ]
+    stroke_only = [
+        element for element in painted
+        if str(element.attrib.get("stroke", "none")).lower() != "none"
+        and str(element.attrib.get("fill", "black")).lower() == "none"
+    ]
+    opacity_layer = any(
+        float(element.attrib.get("opacity", "1") or 1) < 0.999
+        for element in painted
+        if str(element.attrib.get("opacity", "1") or 1).replace(".", "", 1).isdigit()
+    )
+    explicit_layer = bool(re.search(
+        r"<(?:mask|clipPath)\b|\b(?:mask|clip-path)\s*=", svg, re.I,
+    ))
+    if gradient_paints and len(gradient_paints) == shape_count:
+        families.append("appearance_model")
+    if stroke_only and len(stroke_only) == shape_count:
+        families.append("stroke_network")
+    # The procedural overlap family has known front/back instances.  For
+    # third-party assets require an explicit composition cue, not merely two
+    # path tags (letters and compound logos are not layer supervision).
+    if (
+        ":overlap:" in source_id
+        or (shape_count >= 2 and (opacity_layer or explicit_layer))
+    ):
+        families.append("layer_relation")
+    # Repeated <use> references are the only scene-level repeat labels whose
+    # support can be trusted without an element-instance renderer.
+    href_counts = Counter(
+        str(element.attrib.get("href") or element.attrib.get(
+            "{http://www.w3.org/1999/xlink}href", ""
+        ))
+        for element in (() if xml_root is None else xml_root.iter())
+        if element.tag.rsplit("}", 1)[-1].lower() == "use"
+    )
+    if any(href and count >= 2 for href, count in href_counts.items()):
+        families.append("symmetry_repeat_group")
+    return tuple(dict.fromkeys(families))
+
+
+def _foreground_support(rgba: np.ndarray) -> tuple[np.ndarray, np.ndarray]:
+    """Return a conservative midline support and background residual field."""
+    rgba = np.asarray(rgba, np.float32) / 255.0
+    alpha = rgba[..., 3]
+    if float(np.quantile(alpha, 0.10)) < 0.10:
+        support = alpha >= 0.30
+        residual = alpha
+    else:
+        rgb = rgba[..., :3]
+        border = np.concatenate((rgb[0], rgb[-1], rgb[:, 0], rgb[:, -1]), axis=0)
+        background = np.median(border, axis=0)
+        distance = np.max(np.abs(rgb - background), axis=2)
+        border_distance = np.max(np.abs(border - background), axis=1)
+        median = float(np.median(border_distance))
+        mad = 1.4826 * float(np.median(np.abs(border_distance - median)))
+        threshold = max(0.035, median + 4.0 * mad)
+        support = distance >= threshold
+        residual = distance
+    # Only remove isolated physical impossibilities.  Closing/filling here
+    # would teach the query model to destroy counters.
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(
+        support.astype(np.uint8), 8,
+    )
+    cleaned = np.zeros(support.shape, bool)
+    minimum = 1 if max(support.shape) <= 64 else 2
+    for label in range(1, count):
+        if int(stats[label, cv2.CC_STAT_AREA]) >= minimum:
+            cleaned |= labels == label
+    return cleaned, residual
+
+
+def _filter_supervisable_pairs(
+    rows: Iterable[dict], root: Path,
+) -> tuple[list[dict], tuple[dict, ...]]:
+    """Remove pairs without measurable input or trustworthy owner labels.
+
+    A real corpus-builder edge case composited light artwork over a transparent
+    background and then JPEG-flattened it onto white.  The result is a blank
+    input paired with non-empty SVG geometry.  Training on that row asks the
+    network to hallucinate an unrecoverable target, so it is excluded before
+    source-disjoint splitting and reported explicitly.
+    """
+    rows = tuple(rows)
+    target_paths = sorted({
+        str((root / row["target_svg"]).resolve()) for row in rows
+    })
+
+    def validate_clean_target(path: str) -> tuple[str, str | None]:
+        try:
+            svg = _read_svg_text(path)
+            ET.fromstring(svg)
+            svg_full_template(svg)
+        except (OSError, RuntimeError, ValueError, ET.ParseError) as error:
+            return path, type(error).__name__
+        return path, None
+
+    # Rendering once per clean SVG is both stricter and much cheaper than
+    # discovering an empty target inside a shuffled calibration/test batch.
+    # resvg_py is re-entrant, so independent target renders can be audited in
+    # parallel before any split or optimizer state is created.
+    maximum_workers = min(8, max(1, len(target_paths)))
+    with ThreadPoolExecutor(max_workers=maximum_workers) as executor:
+        target_errors = dict(executor.map(validate_clean_target, target_paths))
+
+    accepted: list[dict] = []
+    rejected: list[dict] = []
+    for row in rows:
+        row_id = str(row.get("id", row.get("input_png", "unknown")))
+        try:
+            rgba = np.asarray(
+                Image.open(root / row["input_png"]).convert("RGBA"),
+            )
+            support, _residual = _foreground_support(rgba)
+        except (OSError, ValueError):
+            support = np.zeros((1, 1), bool)
+        if int(np.sum(support)) < 2:
+            rejected.append({"id": row_id, "reason": "unobservable-raster"})
+            continue
+        target_path = str((root / row["target_svg"]).resolve())
+        target_error = target_errors[target_path]
+        if target_error is not None:
+            rejected.append({
+                "id": row_id, "reason": "invalid-clean-render-target",
+                "error": target_error,
+            })
+            continue
+        svg = _read_svg_text(target_path)
+        if _uses_svg_owner_labels(row):
+            try:
+                templates = svg_owner_templates(svg)
+                owner_targets, alignment_iou = augmented_svg_owner_targets(
+                    templates, row, support,
+                )
+            except (OSError, RuntimeError, ValueError, ET.ParseError) as error:
+                rejected.append({
+                    "id": row_id, "reason": "invalid-owner-template",
+                    "error": type(error).__name__,
+                })
+                continue
+            if not owner_targets:
+                rejected.append({
+                    "id": row_id, "reason": "owner-alignment-below-proof-floor",
+                    "alignment_iou": float(alignment_iou),
+                })
+                continue
+        accepted.append(row)
+    return accepted, tuple(rejected)
+
+
+def _bbox(mask: np.ndarray) -> tuple[float, float, float, float]:
+    ys, xs = np.nonzero(mask)
+    height, width = mask.shape
+    return (
+        float(xs.min()) / width, float(ys.min()) / height,
+        float(xs.max() + 1) / width, float(ys.max() + 1) / height,
+    )
+
+
+def _components(mask: np.ndarray, *, maximum: int = 8) -> list[np.ndarray]:
+    count, labels, stats, _ = cv2.connectedComponentsWithStats(mask.astype(np.uint8), 8)
+    rows = []
+    for label in range(1, count):
+        area = int(stats[label, cv2.CC_STAT_AREA])
+        if area >= 2:
+            rows.append((area, labels == label))
+    rows.sort(key=lambda item: -item[0])
+    return [mask for _area, mask in rows[:maximum]]
+
+
+def _small_shape_augment(
+    image: np.ndarray, support: np.ndarray, source_id: str,
+) -> tuple[np.ndarray, np.ndarray, bool]:
+    """Create deterministic physically aligned small-shape supervision.
+
+    The original raster-pair builder renders objects at 66--92% of the
+    canvas, so it cannot measure the canonical small-shape Recall@5 gate.  A
+    source-disjoint subset of procedural geometry is recomposited at 18--34%
+    of the canvas.  Image and support undergo the exact same transform.
+    """
+    digest = hashlib.sha256(source_id.encode("utf-8")).digest()
+    if digest[0] >= 96 or not np.any(support):  # 37.5% deterministic subset
+        return image, support, False
+    ys, xs = np.nonzero(support)
+    x1, x2 = int(xs.min()), int(xs.max()) + 1
+    y1, y2 = int(ys.min()), int(ys.max()) + 1
+    crop = np.asarray(image[y1:y2, x1:x2], np.uint8)
+    crop_mask = np.asarray(support[y1:y2, x1:x2], np.uint8) * 255
+    height, width = support.shape
+    target_fraction = 0.18 + (digest[1] / 255.0) * 0.16
+    scale = target_fraction * max(height, width) / max(crop.shape[:2])
+    new_width = max(3, int(round(crop.shape[1] * scale)))
+    new_height = max(3, int(round(crop.shape[0] * scale)))
+    resized = cv2.resize(crop, (new_width, new_height), interpolation=cv2.INTER_AREA)
+    soft_mask = cv2.resize(
+        crop_mask, (new_width, new_height), interpolation=cv2.INTER_AREA,
+    ).astype(np.float32) / 255.0
+    border = np.concatenate(
+        (image[0], image[-1], image[:, 0], image[:, -1]), axis=0,
+    )
+    background = np.median(border, axis=0).astype(np.float32)
+    canvas = np.broadcast_to(background, image.shape).copy()
+    max_jitter_x = max(0, (width - new_width) // 5)
+    max_jitter_y = max(0, (height - new_height) // 5)
+    jitter_x = int(round((digest[2] / 255.0 * 2.0 - 1.0) * max_jitter_x))
+    jitter_y = int(round((digest[3] / 255.0 * 2.0 - 1.0) * max_jitter_y))
+    px = int(np.clip((width - new_width) // 2 + jitter_x, 0, width - new_width))
+    py = int(np.clip((height - new_height) // 2 + jitter_y, 0, height - new_height))
+    alpha = soft_mask[..., None]
+    canvas[py:py + new_height, px:px + new_width] = (
+        resized.astype(np.float32) * alpha
+        + background[None, None, :] * (1.0 - alpha)
+    )
+    transformed_support = np.zeros((height, width), bool)
+    transformed_support[py:py + new_height, px:px + new_width] = soft_mask >= 0.35
+    # Very thin anti-aliased objects can disappear completely when reduced.
+    # Such an example carries no valid box/topology supervision, so keep the
+    # original aligned pair instead of manufacturing an empty target.
+    if not np.any(transformed_support):
+        return image, support, False
+    return np.clip(np.rint(canvas), 0, 255).astype(np.uint8), transformed_support, True
+
+
+def _gate_balanced_sample_weight(
+    row: dict, row_families: tuple[str, ...],
+) -> float:
+    """Oversample fixed-gate slices without inspecting held-out outcomes."""
+    weight = 1.0
+    source = str(row.get("source", ""))
+    if source == "synthetic-text":
+        weight *= 1.65
+    if source == "synthetic-geometry":
+        digest = hashlib.sha256(str(row["id"]).encode("utf-8")).digest()
+        if digest[0] < 96:
+            weight *= 3.0
+    if "layer_relation" in row_families:
+        weight *= 1.50
+    # The harvested corpus is extremely long-tailed (the original v8 run had
+    # only 50 stroke scenes and 194 repeat scenes in ~60k pairs).  A cap of
+    # six left those heads effectively unsupervised.  These source-only
+    # weights give each rare, explicitly labelled family a material share of
+    # an epoch without consulting calibration/test outcomes.
+    if "stroke_network" in row_families:
+        weight *= 48.0
+    if "symmetry_repeat_group" in row_families:
+        weight *= 12.0
+    if "appearance_model" in row_families:
+        weight *= 4.0
+    augmentation = row.get("augmentation", {})
+    if (
+        float(augmentation.get("blur_radius") or 0) > 0
+        or float(augmentation.get("noise_sigma") or 0) > 0
+        or augmentation.get("jpeg_quality") is not None
+    ):
+        weight *= 1.20
+    return float(min(64.0, weight))
+
+
+def _support_parameters(mask: np.ndarray, parameter_dim: int) -> tuple[np.ndarray, np.ndarray]:
+    """Measured generic geometry descriptors for the query parameter head."""
+    ys, xs = np.nonzero(mask)
+    height, width = mask.shape
+    if not len(xs):
+        return np.zeros(parameter_dim, np.float32), np.zeros(parameter_dim, np.float32)
+    x1, x2 = int(xs.min()), int(xs.max()) + 1
+    y1, y2 = int(ys.min()), int(ys.max()) + 1
+    normalized_x = (xs.astype(np.float64) + 0.5) / width
+    normalized_y = (ys.astype(np.float64) + 0.5) / height
+    centered = np.stack(
+        (normalized_x - normalized_x.mean(), normalized_y - normalized_y.mean()),
+        axis=1,
+    )
+    covariance = centered.T @ centered / max(1, len(centered))
+    eigenvalues, eigenvectors = np.linalg.eigh(covariance)
+    major = eigenvectors[:, int(np.argmax(eigenvalues))]
+    perimeter = float(cv2.arcLength(
+        max(
+            cv2.findContours(mask.astype(np.uint8), cv2.RETR_EXTERNAL,
+                             cv2.CHAIN_APPROX_NONE)[0],
+            key=cv2.contourArea,
+        ), True,
+    ))
+    components, holes = topology_signature(mask)
+    area = float(len(xs)); bbox_area = float((x2 - x1) * (y2 - y1))
+    values = np.asarray((
+        (x1 + x2) / (2.0 * width), (y1 + y2) / (2.0 * height),
+        (x2 - x1) / width, (y2 - y1) / height,
+        area / (width * height), area / max(1.0, bbox_area),
+        float(normalized_x.mean()), float(normalized_y.mean()),
+        float(eigenvalues[1]), float(eigenvalues[0]),
+        float(major[0]), float(major[1]),
+        perimeter / max(1.0, math.sqrt(area)),
+        float(4.0 * math.pi * area / max(1.0, perimeter * perimeter)),
+        min(8.0, float(components)) / 8.0,
+        min(5.0, float(holes)) / 5.0,
+    ), np.float32)
+    result = np.zeros(parameter_dim, np.float32)
+    valid = np.zeros(parameter_dim, np.float32)
+    count = min(parameter_dim, len(values))
+    result[:count] = values[:count]; valid[:count] = 1.0
+    return result, valid
+
+
+def _support_preimage_lattice(mask: np.ndarray, size: int) -> np.ndarray:
+    """Project support conservatively onto the neural mask lattice.
+
+    Nearest-neighbour downsampling can erase a real one-pixel stroke solely
+    because it falls between selected sample centres.  A lattice cell belongs
+    to the digital preimage whenever any source support contributes to it.
+    """
+    support = np.asarray(mask, bool)
+    if support.ndim != 2 or int(size) <= 0:
+        raise ValueError("support preimage requires a 2D mask and positive size")
+    coverage = cv2.resize(
+        support.astype(np.float32), (int(size), int(size)),
+        interpolation=cv2.INTER_AREA,
+    )
+    result = np.ascontiguousarray(coverage > 0.0, dtype=np.float32)
+    if np.any(support) and not np.any(result):
+        raise RuntimeError("non-empty support vanished on the neural lattice")
+    return result
+
+
+class PairDataset(Dataset):
+    def __init__(
+        self, rows: Iterable[dict], root: Path, families: dict[str, tuple[str, ...]],
+        *, image_size: int = 128, parameter_dim: int = 16,
+        support_size: int | None = None,
+    ) -> None:
+        self.rows = tuple(rows); self.root = root; self.families = families
+        self.image_size = int(image_size); self.parameter_dim = int(parameter_dim)
+        self.support_size = int(
+            support_size if support_size is not None else self.image_size // 4
+        )
+
+    def __len__(self) -> int:
+        return len(self.rows)
+
+    def __getitem__(self, index: int) -> dict:
+        row = self.rows[index]
+        image = np.asarray(Image.open(self.root / row["input_png"]).convert("RGBA"))
+        observed_support, residual = _foreground_support(image)
+        if not np.any(observed_support):
+            raise RuntimeError(f"unobservable row reached dataset: {row['id']}")
+        svg = _read_svg_text(str((self.root / row["target_svg"]).resolve()))
+        support, _clean_alignment_iou = augmented_svg_full_support(
+            svg, row, observed_support,
+        )
+        small_shape_augmented = False
+        if str(row.get("source", "")) == "synthetic-geometry":
+            image, support, small_shape_augmented = _small_shape_augment(
+                image, support, str(row["id"]),
+            )
+            if small_shape_augmented:
+                observed_support, residual = _foreground_support(image)
+        resized = np.asarray(Image.fromarray(image).resize(
+            (self.image_size, self.image_size), Image.Resampling.BILINEAR,
+        ), np.float32) / 255.0
+        targets: list[tuple[str, np.ndarray]] = []
+        owner_targets: tuple[tuple[str, np.ndarray], ...] = ()
+        owner_families = frozenset(("whole_shape", "text_line", "glyph_group"))
+        if _uses_svg_owner_labels(row):
+            try:
+                templates = svg_owner_templates(svg)
+                owner_targets, _alignment_iou = augmented_svg_owner_targets(
+                    templates, row, observed_support,
+                )
+            except (OSError, RuntimeError, ValueError, ET.ParseError) as error:
+                raise RuntimeError(
+                    f"invalid SVG owner supervision for {row['id']}"
+                ) from error
+            if not owner_targets:
+                raise RuntimeError(
+                    f"unproved SVG owner alignment reached dataset: {row['id']}"
+                )
+        if owner_targets:
+            targets.extend(owner_targets)
+        for family in self.families[row["id"]]:
+            # A glyph-group query denotes the group/line, not every connected
+            # letter.  Treating letters as separate group instances allowed a
+            # single broad query to be counted repeatedly and made Recall@K
+            # both inflated and, under one-to-one matching, impossible at K=5.
+            if owner_targets and family in owner_families:
+                continue
+            targets.append((family, support))
+        augmentation = row.get("augmentation", {})
+        degraded = bool(
+            float(augmentation.get("blur_radius") or 0) > 0
+            or float(augmentation.get("noise_sigma") or 0) > 0
+            or augmentation.get("jpeg_quality") is not None
+        )
+        if degraded:
+            boundary = cv2.morphologyEx(
+                observed_support.astype(np.uint8), cv2.MORPH_GRADIENT,
+                np.ones((3, 3), np.uint8),
+            ) > 0
+            high = residual >= max(0.04, float(np.quantile(residual, 0.92)))
+            risk = cv2.dilate(boundary.astype(np.uint8), np.ones((3, 3), np.uint8)) > 0
+            risk |= high & cv2.dilate(
+                observed_support.astype(np.uint8), np.ones((5, 5), np.uint8),
+            ).astype(bool)
+            if int(risk.sum()) >= 2:
+                targets.append(("risk_hard_negative", risk))
+        targets = targets[:24]
+        family_ids = []
+        masks = []; boxes = []; topology = []; relations = []
+        parameters = []; parameter_masks = []; hard_negatives = []
+        small_shapes = []
+        for family, mask in targets:
+            # Fail closed on malformed/vanished supervision.  The normal
+            # support target is guaranteed non-empty above, while optional
+            # risk targets may legitimately disappear after transforms.
+            if not np.any(mask):
+                continue
+            scaled = _support_preimage_lattice(mask, self.support_size)
+            family_ids.append(QUERY_FAMILIES.index(family)); masks.append(scaled)
+            components, holes = topology_signature(mask)
+            boxes.append(_bbox(mask)); topology.append((min(8, components), min(5, holes)))
+            relation = np.zeros(8, np.float32)
+            if family == "glyph_group": relation[6] = 1.0
+            if family == "layer_relation": relation[3] = 1.0
+            if family == "stroke_network": relation[7] = 1.0
+            if family == "symmetry_repeat_group": relation[1] = 1.0
+            if family == "appearance_model": relation[5] = 1.0
+            relations.append(relation)
+            values, value_mask = _support_parameters(mask, self.parameter_dim)
+            parameters.append(values); parameter_masks.append(value_mask)
+            hard_negative = len(HARD_NEGATIVE_TYPES)
+            if family == "risk_hard_negative":
+                if augmentation.get("jpeg_quality") is not None:
+                    hard_negative = HARD_NEGATIVE_TYPES.index("preserve_jpeg_halo")
+                elif float(augmentation.get("noise_sigma") or 0) > 0:
+                    hard_negative = HARD_NEGATIVE_TYPES.index("jagged_overfit")
+                else:
+                    hard_negative = HARD_NEGATIVE_TYPES.index("remove_real_accent")
+            hard_negatives.append(hard_negative)
+            small_shapes.append(bool(
+                family == "whole_shape" and small_shape_augmented
+            ))
+        return {
+            "id": row["id"], "source_id": _split_group(row),
+            "rgba": np.transpose(resized, (2, 0, 1)).astype(np.float32),
+            "family": np.asarray(family_ids, np.int64),
+            "support": np.stack(masks).astype(np.float32),
+            "bbox": np.asarray(boxes, np.float32),
+            "topology": np.asarray(topology, np.int64),
+            "relations": np.stack(relations).astype(np.float32),
+            "parameters": np.stack(parameters).astype(np.float32),
+            "parameter_mask": np.stack(parameter_masks).astype(np.float32),
+            "hard_negative": np.asarray(hard_negatives, np.int64),
+            "small_shape": np.asarray(small_shapes, bool),
+        }
+
+
+def _collate(rows: list[dict]) -> list[dict] | torch.Tensor:
+    return rows
+
+
+def _targets(rows: list[dict], config: ProposalNetConfig, device: torch.device) -> list[dict]:
+    result = []
+    for row in rows:
+        count = len(row["family"])
+        result.append({
+            "family": torch.as_tensor(row["family"], device=device),
+            "bbox": torch.as_tensor(row["bbox"], device=device),
+            "support": torch.as_tensor(row["support"], device=device),
+            "parameters": torch.as_tensor(row["parameters"], device=device),
+            "parameter_mask": torch.as_tensor(row["parameter_mask"], device=device),
+            "topology": torch.as_tensor(row["topology"], device=device),
+            "relations": torch.as_tensor(row["relations"], device=device),
+            "hard_negative": torch.as_tensor(row["hard_negative"], device=device),
+            "small_shape": torch.as_tensor(row["small_shape"], device=device),
+        })
+    return result
+
+
+def _soft_iou(prediction: np.ndarray, target: np.ndarray) -> float:
+    intersection = float(np.sum(prediction * target))
+    union = float(np.sum(prediction + target - prediction * target))
+    return intersection / max(1e-7, union)
+
+
+@torch.no_grad()
+def _evaluate(
+    model: ProposalNet, loader: DataLoader, device: torch.device, *, k: int = 32,
+) -> tuple[dict, list[CalibrationExample]]:
+    """Evaluate neural queries only, with global top-K and one-to-one matches.
+
+    The previous metric selected K queries independently for every family and
+    allowed one query to satisfy several target instances.  That was not
+    Recall@K and could substantially inflate glyph/instance recall.
+    """
+    model.eval(); totals = Counter()
+    hits5 = Counter(); hitsk = Counter(); iou5_sums = Counter(); iouk_sums = Counter()
+    oracle_capacity5 = Counter()
+    row_count = 0
+    rows_over_global_top5_capacity = 0
+    examples: list[CalibrationExample] = []
+
+    def matched_targets(
+        probability: np.ndarray, confidence: np.ndarray,
+        supports: np.ndarray, row: dict, cutoff: int,
+    ) -> dict[int, tuple[float, float]]:
+        predicted_family = np.argmax(probability[:, :-1], axis=-1)
+        combined = np.max(probability[:, :-1], axis=-1) * confidence
+        order = np.argsort(-combined)[:min(int(cutoff), len(combined))]
+        result: dict[int, tuple[float, float]] = {}
+        for family_index in sorted(set(row["family"].tolist())):
+            target_ids = np.flatnonzero(row["family"] == family_index)
+            query_ids = np.asarray([
+                query_id for query_id in order
+                if int(predicted_family[query_id]) == int(family_index)
+            ], np.int64)
+            if not len(target_ids) or not len(query_ids):
+                continue
+            ious = np.asarray([
+                [
+                    _soft_iou(supports[query_id], row["support"][target_id])
+                    for target_id in target_ids
+                ]
+                for query_id in query_ids
+            ], np.float64)
+            query_match, target_match = linear_sum_assignment(-ious)
+            for query_local, target_local in zip(query_match, target_match):
+                query_id = int(query_ids[query_local])
+                target_id = int(target_ids[target_local])
+                result[target_id] = (
+                    float(probability[query_id, family_index] * confidence[query_id]),
+                    float(ious[query_local, target_local]),
+                )
+        return result
+
+    for rows in loader:
+        images = torch.as_tensor(np.stack([row["rgba"] for row in rows]), device=device)
+        output = model(images)
+        probability = output["family_logits"].softmax(-1).cpu().numpy()
+        confidence = torch.sigmoid(output["confidence_logits"]).cpu().numpy()
+        supports = torch.sigmoid(output["support_logits"]).cpu().numpy()
+        for batch_index, row in enumerate(rows):
+            row_count += 1
+            row_target_count = int(len(row["family"]))
+            rows_over_global_top5_capacity += int(row_target_count > 5)
+            oracle_capacity5["overall"] += min(5, row_target_count)
+            local_family_counts = Counter(
+                QUERY_FAMILIES[int(family_index)]
+                for family_index in row["family"].tolist()
+            )
+            for family, count in local_family_counts.items():
+                oracle_capacity5[family] += min(5, int(count))
+            small_count = int(np.sum(row["small_shape"]))
+            oracle_capacity5["small_shape"] += min(5, small_count)
+            matches5 = matched_targets(
+                probability[batch_index], confidence[batch_index],
+                supports[batch_index], row, min(5, k),
+            )
+            matchesk = matched_targets(
+                probability[batch_index], confidence[batch_index],
+                supports[batch_index], row, k,
+            )
+            for target_index, family_index in enumerate(row["family"].tolist()):
+                family = QUERY_FAMILIES[family_index]
+                _confidence5, iou5 = matches5.get(target_index, (0.0, 0.0))
+                best_confidence, iouk = matchesk.get(target_index, (0.0, 0.0))
+                totals[family] += 1
+                hits5[family] += int(iou5 >= 0.50)
+                hitsk[family] += int(iouk >= 0.50)
+                iou5_sums[family] += iou5; iouk_sums[family] += iouk
+                if bool(row["small_shape"][target_index]):
+                    totals["small_shape"] += 1
+                    hits5["small_shape"] += int(iou5 >= 0.50)
+                    hitsk["small_shape"] += int(iouk >= 0.50)
+                    iou5_sums["small_shape"] += iou5
+                    iouk_sums["small_shape"] += iouk
+                examples.append(CalibrationExample(
+                    family=family, type_confidence=best_confidence,
+                    support_iou=iouk, source_group=str(row["source_id"]),
+                ))
+    measured_families = sorted(totals)
+    metrics = {
+        family: {
+            "instances": totals[family],
+            "neural_only_recall_at_5_iou50": hits5[family] / max(1, totals[family]),
+            "neural_only_recall_at_k_iou50": hitsk[family] / max(1, totals[family]),
+            "mean_best_soft_iou_at_5": iou5_sums[family] / max(1, totals[family]),
+            "mean_best_soft_iou_at_k": iouk_sums[family] / max(1, totals[family]),
+            "individual_family_oracle_recall_at_5_capacity": (
+                oracle_capacity5[family] / max(1, totals[family])
+            ),
+        }
+        for family in measured_families
+    }
+    family_rows = [family for family in measured_families if family != "small_shape"]
+    overall_count = sum(totals[family] for family in family_rows)
+    metrics["overall"] = {
+        "instances": overall_count,
+        "neural_only_recall_at_5_iou50": (
+            sum(hits5[family] for family in family_rows) / max(1, overall_count)
+        ),
+        "neural_only_recall_at_k_iou50": (
+            sum(hitsk[family] for family in family_rows) / max(1, overall_count)
+        ),
+        "mean_best_soft_iou_at_5": (
+            sum(iou5_sums[family] for family in family_rows) / max(1, overall_count)
+        ),
+        "mean_best_soft_iou_at_k": (
+            sum(iouk_sums[family] for family in family_rows) / max(1, overall_count)
+        ),
+        "global_oracle_recall_at_5_capacity": (
+            oracle_capacity5["overall"] / max(1, overall_count)
+        ),
+        "rows": row_count,
+        "rows_over_global_top5_capacity": rows_over_global_top5_capacity,
+    }
+    return metrics, examples
+
+
+_SELECTION_RECALL_GATES = {
+    "overall": 0.97,
+    "text_line": 0.99,
+    "glyph_group": 0.99,
+    "small_shape": 0.98,
+    "layer_relation": 0.95,
+}
+
+
+def _calibration_selection_key(metrics: dict) -> tuple[float, float, float]:
+    """Rank checkpoints on held-out Recall@5, never training NLL.
+
+    The minimum normalized gate margin is primary, so a large easy-family gain
+    cannot hide a weaker required slice.  Overall recall and mean required-slice
+    IoU are deterministic tie breakers.  The test split is not inspected here.
+    """
+    recalls = {
+        family: float(metrics.get(family, {}).get(
+            "neural_only_recall_at_5_iou50", 0.0,
+        ))
+        for family in _SELECTION_RECALL_GATES
+    }
+    margins = [
+        recalls[family] / threshold
+        for family, threshold in _SELECTION_RECALL_GATES.items()
+    ]
+    mean_iou = float(np.mean([
+        float(metrics.get(family, {}).get("mean_best_soft_iou_at_5", 0.0))
+        for family in _SELECTION_RECALL_GATES
+    ]))
+    return (
+        min(margins), recalls["overall"], mean_iou,
+    )
+
+
+def _save_checkpoint(
+    path: Path, model: ProposalNet, config: ProposalNetConfig, *, epoch: int,
+    family_counts: dict, split_counts: dict, training_sources_sha256: str,
+    training_rows_sha256: str, label_contract_sha256: str,
+    selection_key: tuple[float, float, float], training_loss: float,
+    optimizer: torch.optim.Optimizer | None = None,
+    scaler: torch.amp.GradScaler | None = None,
+) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "schema": "pcdc-proposal-net-checkpoint/v2-large",
+        "config": asdict(config), "model": model.state_dict(),
+        "families": QUERY_FAMILIES, "epoch": int(epoch),
+        "family_counts": family_counts, "split_counts": split_counts,
+        "training_sources_sha256": training_sources_sha256,
+        "training_rows_sha256": training_rows_sha256,
+        "label_contract_version": LABEL_CONTRACT_VERSION,
+        "label_contract_sha256": label_contract_sha256,
+        "selection_contract": "calibration-min-normalized-required-Recall@5/v1",
+        "calibration_selection_key": tuple(float(value) for value in selection_key),
+        "training_loss_diagnostic": float(training_loss),
+    }
+    if optimizer is not None:
+        payload["optimizer"] = optimizer.state_dict()
+    if scaler is not None:
+        payload["scaler"] = scaler.state_dict()
+    torch.save(payload, path)
+
+
+def train(args: argparse.Namespace) -> dict:
+    torch.manual_seed(args.seed); np.random.seed(args.seed); random.seed(args.seed)
+    raw_rows = _read_pairs(args.pair_root, args.limit)
+    rows, rejected_pairs = _filter_supervisable_pairs(
+        raw_rows, args.pair_root,
+    )
+    if not rows:
+        raise RuntimeError("no observable raster/vector training pairs")
+    label_contract_sha256 = _label_contract_sha256()
+    family_cache: dict[tuple[str, str, str], tuple[str, ...]] = {}
+    families = {}
+    for row in rows:
+        key = (
+            str(row.get("source", "")), str(row.get("source_id", "")),
+            str(row.get("target_svg", "")),
+        )
+        if key not in family_cache:
+            family_cache[key] = _svg_families(row, args.pair_root)
+        families[row["id"]] = family_cache[key]
+    split_rows = {name: [] for name in ("train", "calibration", "test")}
+    for row in rows:
+        split_rows[_stable_bucket(_split_group(row))].append(row)
+    split_group_sets = {
+        name: {_split_group(row) for row in part}
+        for name, part in split_rows.items()
+    }
+    split_source_sets = {
+        name: {str(row["source_id"]) for row in part}
+        for name, part in split_rows.items()
+    }
+    if any(split_group_sets[a] & split_group_sets[b]
+           for a, b in (("train", "calibration"), ("train", "test"), ("calibration", "test"))):
+        raise RuntimeError("family-disjoint split contract failed")
+    datasets = {
+        name: PairDataset(
+            part, args.pair_root, families, image_size=args.image_size,
+            parameter_dim=args.parameter_dim,
+            support_size=(args.image_size // 4) * args.mask_upsample,
+        )
+        for name, part in split_rows.items()
+    }
+    training_weights = np.asarray([
+        _gate_balanced_sample_weight(row, families[row["id"]])
+        for row in split_rows["train"]
+    ], np.float64)
+    sampling_generator = torch.Generator().manual_seed(args.seed)
+    training_sampler = WeightedRandomSampler(
+        torch.as_tensor(training_weights, dtype=torch.double),
+        num_samples=len(datasets["train"]), replacement=True,
+        generator=sampling_generator,
+    )
+    loaders = {}
+    for name, dataset in datasets.items():
+        loaders[name] = DataLoader(
+            dataset, batch_size=args.batch_size, shuffle=False,
+            sampler=training_sampler if name == "train" else None,
+            num_workers=args.workers, persistent_workers=args.workers > 0,
+            prefetch_factor=4 if args.workers > 0 else None,
+            collate_fn=_collate, pin_memory=torch.cuda.is_available(),
+        )
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    config = ProposalNetConfig(
+        hidden_dim=args.hidden_dim, query_count=args.query_count,
+        decoder_layers=args.decoder_layers, attention_heads=8,
+        parameter_dim=args.parameter_dim, mask_upsample=args.mask_upsample,
+        spatial_positioning=args.spatial_positioning,
+    )
+    model = ProposalNet(config).to(device)
+    resume_epoch = 0
+    resumed_from = None
+    initialized_from = None
+    if args.resume is not None:
+        resume_payload = torch.load(
+            args.resume, map_location=device, weights_only=False,
+        )
+        if resume_payload.get("schema") != "pcdc-proposal-net-checkpoint/v2-large":
+            raise RuntimeError("resume checkpoint has an unsupported schema")
+        if resume_payload.get("config") != asdict(config):
+            raise RuntimeError("resume checkpoint/model configuration mismatch")
+        model.load_state_dict(resume_payload["model"])
+        resume_epoch = int(resume_payload.get("epoch", 0))
+        resumed_from = str(args.resume.resolve())
+    elif args.initialize is not None:
+        initialization_payload = torch.load(
+            args.initialize, map_location=device, weights_only=False,
+        )
+        if initialization_payload.get("schema") != "pcdc-proposal-net-checkpoint/v2-large":
+            raise RuntimeError("initialization checkpoint has an unsupported schema")
+        initialization_config = dict(initialization_payload.get("config", {}))
+        current_config = asdict(config)
+        comparable_keys = set(current_config) - {
+            "mask_upsample", "spatial_positioning",
+        }
+        if any(
+            initialization_config.get(key, current_config[key])
+            != current_config[key]
+            for key in comparable_keys
+        ):
+            raise RuntimeError("initialization checkpoint/model configuration mismatch")
+        incompatible = model.load_state_dict(
+            initialization_payload["model"], strict=False,
+        )
+        allowed_missing = set()
+        if (
+            config.mask_upsample == 2
+            and initialization_config.get("mask_upsample", 1) != 2
+        ):
+            allowed_missing.update({
+                "mask_lateral.weight", "mask_lateral.bias",
+            })
+        if (
+            config.spatial_positioning
+            and not initialization_config.get("spatial_positioning", False)
+        ):
+            allowed_missing.update({
+                "position_projection.weight", "position_projection.bias",
+            })
+        if (
+            set(incompatible.missing_keys) != allowed_missing
+            or incompatible.unexpected_keys
+        ):
+            raise RuntimeError(
+                "initialization checkpoint has incompatible model weights: "
+                f"missing={incompatible.missing_keys}, "
+                f"unexpected={incompatible.unexpected_keys}"
+            )
+        initialized_from = str(args.initialize.resolve())
+    optimizer = torch.optim.AdamW(model.parameters(), lr=args.lr, weight_decay=1e-4)
+    scaler = torch.amp.GradScaler("cuda", enabled=device.type == "cuda")
+    if args.resume is not None:
+        if resume_payload.get("optimizer") is not None:
+            optimizer.load_state_dict(resume_payload["optimizer"])
+        if resume_payload.get("scaler") is not None:
+            scaler.load_state_dict(resume_payload["scaler"])
+    history = []; selection_history = []; best_loss = math.inf
+    best_selection_key = (-math.inf, -math.inf, -math.inf)
+    started = time.perf_counter()
+    family_counts = Counter(
+        family for row in rows for family in families[row["id"]]
+    )
+    split_counts = {name: len(part) for name, part in split_rows.items()}
+    source_digest = hashlib.sha256("\n".join(sorted(split_group_sets["train"])).encode()).hexdigest()
+    row_digest = hashlib.sha256("\n".join(sorted(
+        str(row["id"]) for row in split_rows["train"]
+    )).encode()).hexdigest()
+    if args.resume is not None and (
+        resume_payload.get("training_sources_sha256") != source_digest
+    ):
+        raise RuntimeError("resume checkpoint belongs to another training split")
+    if args.resume is not None and (
+        resume_payload.get("training_rows_sha256") != row_digest
+    ):
+        raise RuntimeError("resume checkpoint belongs to another accepted-row set")
+    if args.resume is not None and (
+        resume_payload.get("label_contract_version") != LABEL_CONTRACT_VERSION
+        or resume_payload.get("label_contract_sha256") != label_contract_sha256
+    ):
+        raise RuntimeError(
+            "resume checkpoint has another label contract; use --initialize "
+            "for a new proof-bound training run"
+        )
+    total_epochs = resume_epoch + args.epochs
+    latest_checkpoint = (
+        args.latest_checkpoint
+        if args.latest_checkpoint is not None else
+        args.checkpoint.with_name(
+            args.checkpoint.stem + "_latest" + args.checkpoint.suffix
+        )
+    )
+    def progress(payload: dict) -> None:
+        if args.progress is None:
+            return
+        args.progress.parent.mkdir(parents=True, exist_ok=True)
+        args.progress.write_text(json.dumps({
+            **payload, "updated_at": datetime.now(timezone.utc).isoformat(),
+        }, indent=2, sort_keys=True), "utf-8")
+
+    progress({
+        "status": "running", "epoch": resume_epoch, "epochs": total_epochs,
+        "pairs": len(rows), "split_counts": split_counts,
+        "device": str(device),
+    })
+    if args.resume is not None:
+        baseline_metrics, _baseline_examples = _evaluate(
+            model, loaders["calibration"], device, k=args.query_count,
+        )
+        best_selection_key = _calibration_selection_key(baseline_metrics)
+        best_loss = float(resume_payload.get("training_loss_diagnostic", math.inf))
+        _save_checkpoint(
+            args.checkpoint, model, config, epoch=resume_epoch,
+            family_counts=dict(family_counts), split_counts=split_counts,
+            training_sources_sha256=source_digest,
+            training_rows_sha256=row_digest,
+            label_contract_sha256=label_contract_sha256,
+            selection_key=best_selection_key, training_loss=best_loss,
+            optimizer=optimizer, scaler=scaler,
+        )
+    for continuation_epoch in range(1, args.epochs + 1):
+        epoch = resume_epoch + continuation_epoch
+        model.train(); losses = []
+        for step, batch in enumerate(loaders["train"], 1):
+            images = torch.as_tensor(np.stack([row["rgba"] for row in batch]), device=device)
+            target = _targets(batch, config, device)
+            optimizer.zero_grad(set_to_none=True)
+            with torch.amp.autocast("cuda", enabled=device.type == "cuda"):
+                loss = proposal_net_loss(model(images), target)["total"]
+            scaler.scale(loss).backward()
+            scaler.unscale_(optimizer)
+            torch.nn.utils.clip_grad_norm_(model.parameters(), 2.0)
+            scaler.step(optimizer); scaler.update(); losses.append(float(loss.detach().cpu()))
+            if step % 100 == 0:
+                row = {
+                    "epoch": epoch, "step": step, "steps": len(loaders["train"]),
+                    "mean_loss": float(np.mean(losses[-100:])),
+                    "status": "running", "epochs": total_epochs,
+                }
+                if not args.quiet:
+                    print(json.dumps(row), flush=True)
+                progress(row)
+        epoch_loss = float(np.mean(losses)); history.append(epoch_loss)
+        calibration_epoch_metrics, _selection_examples = _evaluate(
+            model, loaders["calibration"], device, k=args.query_count,
+        )
+        selection_key = _calibration_selection_key(calibration_epoch_metrics)
+        selection_history.append({
+            "epoch": epoch, "training_loss": epoch_loss,
+            "minimum_normalized_gate_margin": selection_key[0],
+            "overall_recall_at_5": selection_key[1],
+            "mean_required_iou_at_5": selection_key[2],
+        })
+        if (
+            selection_key > best_selection_key
+            or (selection_key == best_selection_key and epoch_loss < best_loss)
+        ):
+            best_selection_key = selection_key
+            best_loss = epoch_loss
+            _save_checkpoint(
+                args.checkpoint, model, config, epoch=epoch,
+                family_counts=dict(family_counts), split_counts=split_counts,
+                training_sources_sha256=source_digest,
+                training_rows_sha256=row_digest,
+                label_contract_sha256=label_contract_sha256,
+                selection_key=selection_key, training_loss=epoch_loss,
+                optimizer=optimizer, scaler=scaler,
+            )
+        _save_checkpoint(
+            latest_checkpoint, model, config, epoch=epoch,
+            family_counts=dict(family_counts), split_counts=split_counts,
+            training_sources_sha256=source_digest,
+            training_rows_sha256=row_digest,
+            label_contract_sha256=label_contract_sha256,
+            selection_key=selection_key, training_loss=epoch_loss,
+            optimizer=optimizer, scaler=scaler,
+        )
+        if not args.quiet:
+            print(json.dumps({
+                "epoch": epoch, "loss": epoch_loss,
+                "calibration_selection_key": selection_key,
+                "best_calibration_selection_key": best_selection_key,
+            }), flush=True)
+        progress({
+            "status": "running", "epoch": epoch, "epochs": total_epochs,
+            "loss": epoch_loss,
+            "calibration_selection_key": selection_key,
+            "best_calibration_selection_key": best_selection_key,
+        })
+
+    payload = torch.load(args.checkpoint, map_location=device, weights_only=False)
+    model.load_state_dict(payload["model"])
+    calibration_metrics, calibration_examples = _evaluate(
+        model, loaders["calibration"], device, k=args.query_count,
+    )
+    test_metrics, test_examples = _evaluate(
+        model, loaders["test"], device, k=args.query_count,
+    )
+    calibration = calibrate_conformal_sets(
+        calibration_examples, target_coverage=0.99, minimum_class_examples=100,
+    )
+    # Canonical plan section 22 specifies global top-5 gates.  Missing slices
+    # fail closed; they are never silently removed from the required set.
+    recall_gates = {
+        "overall": max(0.97, float(args.minimum_recall)),
+        "text_line": 0.99,
+        "glyph_group": 0.99,
+        "small_shape": 0.98,
+        "layer_relation": 0.95,
+    }
+    recall_gate_results = {
+        family: {
+            "instances": int(test_metrics.get(family, {}).get("instances", 0)),
+            "threshold": threshold,
+            "recall": float(test_metrics.get(family, {}).get(
+                "neural_only_recall_at_5_iou50", 0.0,
+            )),
+            "oracle_capacity": float(test_metrics.get(family, {}).get(
+                "global_oracle_recall_at_5_capacity" if family == "overall"
+                else "individual_family_oracle_recall_at_5_capacity",
+                0.0,
+            )),
+            "mathematically_feasible": bool(
+                test_metrics.get(family, {}).get(
+                    "global_oracle_recall_at_5_capacity" if family == "overall"
+                    else "individual_family_oracle_recall_at_5_capacity",
+                    0.0,
+                ) >= threshold
+            ),
+            "passed": bool(
+                test_metrics.get(family, {}).get("instances", 0) >= 100
+                and test_metrics.get(family, {}).get(
+                    "neural_only_recall_at_5_iou50", 0.0,
+                ) >= threshold
+            ),
+        }
+        for family, threshold in recall_gates.items()
+    }
+    required = tuple(recall_gates)
+    oracle_capacity_gate_feasible = all(
+        row["mathematically_feasible"]
+        for row in recall_gate_results.values()
+    )
+    minimum_recall = min(
+        (row["recall"] for row in recall_gate_results.values()), default=0.0,
+    )
+    thresholds = [asdict(row) for row in calibration.thresholds]
+    threshold_by_family = {row["family"]: row for row in thresholds}
+    conformal_required = (
+        "text_line", "glyph_group", "whole_shape", "layer_relation",
+    )
+    nonvacuous = all(
+        family in threshold_by_family
+        and threshold_by_family[family]["calibration_count"] >= 100
+        and threshold_by_family[family]["threshold"] < 1.0
+        for family in conformal_required
+    )
+    test_conformal_coverage = audit_conformal_coverage(
+        test_examples, calibration,
+    )
+    conformal_coverage_passed = all(
+        test_metrics.get(family, {}).get("instances", 0) >= 100
+        and test_conformal_coverage.get(family, 0.0) >= 0.99
+        for family in conformal_required
+    )
+    gate = bool(
+        all(row["passed"] for row in recall_gate_results.values())
+        and oracle_capacity_gate_feasible
+        and nonvacuous and conformal_coverage_passed
+    )
+    report = {
+        "schema": "pcdc-proposal-large-training/v2-honest-top5",
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "status": "passed" if gate else "failed", "gate_pass": gate,
+        "device": str(device), "epochs": total_epochs,
+        "continuation_epochs": args.epochs,
+        "resumed_from": resumed_from,
+        "initialized_from": initialized_from,
+        "elapsed_seconds": time.perf_counter() - started,
+        "pair_root": str(args.pair_root.resolve()), "pair_count": len(rows),
+        "raw_pair_count": len(raw_rows),
+        "rejected_pair_count": len(rejected_pairs),
+        "rejected_pairs": list(rejected_pairs),
+        "source_disjoint": True, "split_counts": split_counts,
+        "training_sources_sha256": source_digest,
+        "training_rows_sha256": row_digest,
+        "split_source_counts": {name: len(value) for name, value in split_source_sets.items()},
+        "split_group_counts": {name: len(value) for name, value in split_group_sets.items()},
+        "family_counts": dict(family_counts), "loss_history": history,
+        "selection_history": selection_history,
+        "checkpoint_selection_contract": (
+            "calibration-min-normalized-required-Recall@5/v1"
+        ),
+        "checkpoint_selection_key": payload.get("calibration_selection_key"),
+        "calibration_neural_only": calibration_metrics,
+        "test_neural_only": test_metrics,
+        "required_recall_slices": required,
+        "recall_gate_results": recall_gate_results,
+        "minimum_required_recall": minimum_recall,
+        "minimum_recall_gate": args.minimum_recall,
+        "oracle_capacity_gate_feasible": oracle_capacity_gate_feasible,
+        "conformal_thresholds": thresholds, "conformal_nonvacuous": nonvacuous,
+        "conformal_required_families": conformal_required,
+        "test_conformal_coverage_by_family": test_conformal_coverage,
+        "conformal_coverage_gate_passed": conformal_coverage_passed,
+        "evaluation_contract": {
+            "neural_only": True,
+            "query_ranking": "global-top-k-across-families",
+            "instance_matching": "one-to-one-Hungarian-within-family",
+            "promotion_metric": "Recall@5 IoU>=0.50",
+            "oracle_capacity_audit": (
+                "global min(5,target-count) and individual-family top5 ceiling"
+            ),
+            "glyph_group_target": "whole-group-not-per-component",
+        },
+        "label_contract": {
+            "version": LABEL_CONTRACT_VERSION,
+            "source_sha256": label_contract_sha256,
+            "split_grouping": (
+                "font-family/icon-library/local-asset-family/otherwise-source-asset"
+            ),
+            "semantic_scene_labels": "conservative-explicit-cues-only",
+            "compound_svg_owner_factory": (
+                "clean-target-SVG text-row/glyph-group/mark masks projected "
+                "by recorded augmentation and registered to observed support"
+            ),
+            "unobservable_pair_policy": (
+                "exclude-unobservable/invalid/unaligned-before-source-disjoint-"
+                "split-and-report-reason"
+            ),
+            "small_shape_factory": "deterministic-source-disjoint-procedural-recomposition",
+            "support_lattice": (
+                f"{(args.image_size // 4) * args.mask_upsample}x"
+                f"{(args.image_size // 4) * args.mask_upsample} "
+                "conservative-digital-preimage"
+            ),
+            "generic_parameters_supervised": args.parameter_dim,
+            "hard_negative_head_supervised": True,
+            "ranking_objective": (
+                "target-weighted-positive-slot-adjusted-global-Recall@5-margin"
+            ),
+            "positive_weighting": (
+                "risk=1.85,small-shape=x3,text/glyph=1.50; "
+                "class-balanced mask+bbox+global-top5-rank"
+            ),
+            "loss_version": "recall-k-balanced-support/v2",
+            "training_sampler": (
+                "deterministic-gate-balanced-replacement/v1; "
+                "small-shape=3.0,text/glyph=1.65,layer=1.50,degraded=1.20,"
+                "stroke=48,symmetry=12,appearance=4,cap=64"
+            ),
+        },
+        "checkpoint": str(args.checkpoint.resolve()),
+        "latest_checkpoint": str(latest_checkpoint.resolve()),
+        "checkpoint_sha256": hashlib.sha256(args.checkpoint.read_bytes()).hexdigest(),
+        "promotion_policy": (
+            "candidate only; runtime promotion requires neural-only held-out gate, "
+            "non-vacuous calibration and downstream full PCDC ablation"
+        ),
+    }
+    args.report.parent.mkdir(parents=True, exist_ok=True)
+    args.report.write_text(json.dumps(report, indent=2, sort_keys=True), "utf-8")
+    progress({
+        "status": "complete", "epoch": total_epochs, "epochs": total_epochs,
+        "gate_pass": gate, "report": str(args.report.resolve()),
+    })
+    return report
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--pair-root", type=Path, default=DEFAULT_PAIR_ROOT)
+    parser.add_argument("--checkpoint", type=Path, default=DEFAULT_CHECKPOINT)
+    parser.add_argument("--latest-checkpoint", type=Path)
+    checkpoint_mode = parser.add_mutually_exclusive_group()
+    checkpoint_mode.add_argument(
+        "--resume", type=Path,
+        help="continue from a v2-large checkpoint with the same config/split",
+    )
+    checkpoint_mode.add_argument(
+        "--initialize", type=Path,
+        help=(
+            "load v2-large model weights but reset epoch/optimizer and bind "
+            "the new checkpoint to the current label contract"
+        ),
+    )
+    parser.add_argument("--report", type=Path, default=DEFAULT_REPORT)
+    parser.add_argument(
+        "--progress", type=Path,
+        default=PROJECT / "benchmarks" / "pcdc_proposal_large" / "progress.json",
+    )
+    parser.add_argument("--epochs", type=int, default=12)
+    parser.add_argument("--batch-size", type=int, default=16)
+    parser.add_argument("--workers", type=int, default=2)
+    parser.add_argument("--image-size", type=int, default=128)
+    parser.add_argument("--hidden-dim", type=int, default=128)
+    parser.add_argument("--query-count", type=int, default=32)
+    parser.add_argument("--decoder-layers", type=int, default=3)
+    parser.add_argument("--parameter-dim", type=int, default=16)
+    parser.add_argument("--mask-upsample", type=int, choices=(1, 2), default=1)
+    parser.add_argument(
+        "--spatial-positioning", action="store_true",
+        help=(
+            "add explicit 2-D coordinates to decoder memory and query masks "
+            "so repeated instances can be separated by location"
+        ),
+    )
+    parser.add_argument("--lr", type=float, default=8e-4)
+    parser.add_argument("--minimum-recall", type=float, default=0.97)
+    parser.add_argument("--limit", type=int)
+    parser.add_argument("--seed", type=int, default=20260721)
+    parser.add_argument("--quiet", action="store_true")
+    args = parser.parse_args()
+    report = train(args)
+    if not args.quiet:
+        print(json.dumps({
+            "status": report["status"], "checkpoint": report["checkpoint"],
+            "report": str(args.report.resolve()),
+        }, indent=2), flush=True)
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,74 @@
+{
+  "input": "120_penspiral_in_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 1,
+  "smoothing": "paper-regions",
+  "regions": 9,
+  "closed_contours": 6,
+  "rendered_primitive_count": 169,
+  "actual": {
+    "L": 144,
+    "Q": 0,
+    "C": 25
+  },
+  "templates": {
+    "comb-coverage-rdp": 1,
+    "paper-joint": 4,
+    "paper-smooth-g1-fallback": 1,
+    "stroke": 4
+  },
+  "threshold": 0.0,
+  "comb_coverage_repair": [
+    {
+      "router": "large-saturated-high-comb",
+      "bbox": [
+        211,
+        118,
+        353,
+        278
+      ],
+      "area_ratio": 0.05159,
+      "fill_ratio": 0.50968,
+      "rdp_vertices": 124,
+      "accepted": true,
+      "incumbent": {
+        "mae": 1.549,
+        "rmse": 9.917,
+        "ink_iou": 0.91051,
+        "ssim": 0.96468,
+        "boundary_f": 0.8608,
+        "hausdorff95": 15.378,
+        "topology": [
+          9,
+          1
+        ],
+        "primitives": 235
+      },
+      "candidate": {
+        "mae": 1.339,
+        "rmse": 8.081,
+        "ink_iou": 0.94929,
+        "ssim": 0.97334,
+        "boundary_f": 0.95898,
+        "hausdorff95": 2.865,
+        "topology": [
+          9,
+          1
+        ],
+        "primitives": 169
+      },
+      "reason": "perceptual+topology+complexity-court"
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 5.657
+}

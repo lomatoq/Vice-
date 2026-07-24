@@ -1,0 +1,190 @@
+{
+  "policy": "owned-source-scenes-only; exact scene never used for training",
+  "proposal_family_recall_mean": 1.0,
+  "rows": [
+    {
+      "oracle_proposals_real_selector": {
+        "exact_selected": true,
+        "proposal_names": [
+          "exact",
+          "wrong-colour",
+          "wrong-geometry",
+          "wrong-order"
+        ],
+        "render_model": "jpeg-70",
+        "runner_up": 0.07271293090858562,
+        "score": 0.07188482485328314,
+        "selected": "exact"
+      },
+      "proposal_oracle": {
+        "candidate_graphs": 98,
+        "exact_scene_nll": 0.003162277163937688,
+        "family_recall": 1.0,
+        "oracle_selected": "topology-1:shape-1:1:rounded-rectangle",
+        "oracle_selected_nll": 0.015130344992503523,
+        "proposal_gap_to_exact": 0.011968067828565835,
+        "proposed_families": [
+          "D-shape",
+          "circle",
+          "ellipse",
+          "generic",
+          "rectangle",
+          "ring",
+          "rounded-rectangle"
+        ],
+        "truth_families": [
+          "circle",
+          "rounded-rectangle"
+        ]
+      },
+      "scene": 0,
+      "size": [
+        32,
+        32
+      ]
+    },
+    {
+      "oracle_proposals_real_selector": {
+        "exact_selected": true,
+        "proposal_names": [
+          "exact",
+          "wrong-colour",
+          "wrong-geometry",
+          "wrong-order"
+        ],
+        "render_model": "jpeg-70",
+        "runner_up": 0.02907385971953378,
+        "score": 0.02907385971953378,
+        "selected": "exact"
+      },
+      "proposal_oracle": {
+        "candidate_graphs": 253,
+        "exact_scene_nll": 0.003162277629598975,
+        "family_recall": 1.0,
+        "oracle_selected": "topology-1:shape-1:9:rounded-rectangle",
+        "oracle_selected_nll": 0.02768216848373413,
+        "proposal_gap_to_exact": 0.024519890854135154,
+        "proposed_families": [
+          "D-shape",
+          "circle",
+          "ellipse",
+          "generic",
+          "isosceles-triangle",
+          "quadrilateral",
+          "rectangle",
+          "rounded-rectangle",
+          "star",
+          "triangle"
+        ],
+        "truth_families": [
+          "circle",
+          "ellipse",
+          "rectangle",
+          "rounded-rectangle",
+          "star"
+        ]
+      },
+      "scene": 1,
+      "size": [
+        64,
+        48
+      ]
+    },
+    {
+      "oracle_proposals_real_selector": {
+        "exact_selected": true,
+        "proposal_names": [
+          "exact",
+          "wrong-colour",
+          "wrong-geometry",
+          "wrong-order"
+        ],
+        "render_model": "jpeg-70",
+        "runner_up": 0.029961766199281432,
+        "score": 0.028933222774286615,
+        "selected": "exact"
+      },
+      "proposal_oracle": {
+        "candidate_graphs": 392,
+        "exact_scene_nll": 0.003162277629598975,
+        "family_recall": 1.0,
+        "oracle_selected": "topology-2:shape-2:16:rounded-rectangle",
+        "oracle_selected_nll": 0.026094458531588316,
+        "proposal_gap_to_exact": 0.02293218090198934,
+        "proposed_families": [
+          "D-shape",
+          "circle",
+          "ellipse",
+          "generic",
+          "isosceles-triangle",
+          "quadrilateral",
+          "rectangle",
+          "rounded-rectangle",
+          "star",
+          "triangle"
+        ],
+        "truth_families": [
+          "circle",
+          "ellipse",
+          "rectangle",
+          "rounded-rectangle",
+          "star"
+        ]
+      },
+      "scene": 2,
+      "size": [
+        64,
+        48
+      ]
+    },
+    {
+      "oracle_proposals_real_selector": {
+        "exact_selected": true,
+        "proposal_names": [
+          "exact",
+          "wrong-colour",
+          "wrong-geometry",
+          "wrong-order"
+        ],
+        "render_model": "jpeg-70",
+        "runner_up": 0.03225525067654999,
+        "score": 0.032226663959289414,
+        "selected": "exact"
+      },
+      "proposal_oracle": {
+        "candidate_graphs": 323,
+        "exact_scene_nll": 0.003162277629598975,
+        "family_recall": 1.0,
+        "oracle_selected": "topology-0:shape-0:8:rounded-rectangle",
+        "oracle_selected_nll": 0.03203775998204947,
+        "proposal_gap_to_exact": 0.028875482352450493,
+        "proposed_families": [
+          "D-shape",
+          "circle",
+          "ellipse",
+          "generic",
+          "isosceles-triangle",
+          "quadrilateral",
+          "rectangle",
+          "rounded-rectangle",
+          "star",
+          "triangle"
+        ],
+        "truth_families": [
+          "circle",
+          "ellipse",
+          "rectangle",
+          "rounded-rectangle",
+          "star"
+        ]
+      },
+      "scene": 3,
+      "size": [
+        64,
+        48
+      ]
+    }
+  ],
+  "schema": "vice-scene-oracle-ablation/1",
+  "selector_exact_rate": 1.0
+}

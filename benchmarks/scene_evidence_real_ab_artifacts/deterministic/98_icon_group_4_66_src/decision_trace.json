@@ -1,0 +1,935 @@
+{
+  "config_hash": "bd1dce21c42f46f8358238a5290377910a8bdd64102ebacde81c2300466eeb5b",
+  "elapsed_seconds": 23.83712559999549,
+  "records": [
+    {
+      "accepted": true,
+      "action": "canonical-decode",
+      "details": {
+        "format": "PNG",
+        "native_size": [
+          90,
+          44
+        ],
+        "route": "auto"
+      },
+      "inputs": [],
+      "outputs": [
+        "rgba_srgb_straight",
+        "rgba_linear_premul",
+        "oklab",
+        "alpha_native"
+      ],
+      "reason": "one decode/crop/resize transform",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 0,
+      "stage": "ingest"
+    },
+    {
+      "accepted": true,
+      "action": "diagnose",
+      "details": {
+        "artwork_prob": 0.8828103542327881,
+        "diagram_prob": 1.0,
+        "gradient_prob": 0.33530303030303027,
+        "text_prob": 1.0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "spatial profile, never a global route switch",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 1,
+      "stage": "raster-profile"
+    },
+    {
+      "accepted": true,
+      "action": "multi-head-inference",
+      "details": {
+        "cache_hit": true,
+        "checkpoint": null,
+        "checkpoint_loaded": false,
+        "fallback_reason": "no promoted evidence checkpoint configured",
+        "heads": [
+          "boundary_normal",
+          "boundary_prob",
+          "color_logits",
+          "corner_prob",
+          "corner_type",
+          "coverage_alpha",
+          "glyph_occupancy",
+          "junction_prob",
+          "region_embedding",
+          "shape_class_logits",
+          "stroke_centerline_prob",
+          "stroke_half_width",
+          "subpixel_offset",
+          "symmetry_evidence",
+          "text_line_prob",
+          "uncertainty"
+        ],
+        "levels": 3,
+        "model_version": "deterministic-evidence/3"
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "frozen evidence API",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 2,
+      "stage": "evidence"
+    },
+    {
+      "accepted": true,
+      "action": "soft-mixture",
+      "details": {
+        "background_index": 0,
+        "cluster_count": 13
+      },
+      "inputs": [],
+      "outputs": [
+        "appearance-0",
+        "appearance-1",
+        "appearance-2",
+        "appearance-3",
+        "appearance-4",
+        "appearance-5",
+        "appearance-6",
+        "appearance-7",
+        "appearance-8",
+        "appearance-9",
+        "appearance-10",
+        "appearance-11",
+        "appearance-12"
+      ],
+      "reason": "late palette projection",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 3,
+      "stage": "appearance"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "soft-spatial-proposal-sigma-1.15"
+        ],
+        "region_count": 51
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-62413435c44e"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 0.478716911315918,
+      "score_before": null,
+      "sequence": 4,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "hypothesis",
+      "details": {
+        "operations": [
+          "soft-spatial-proposal-sigma-0.65"
+        ],
+        "region_count": 128
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-e4c8ea2410f1"
+      ],
+      "reason": "top-K split/merge proposal",
+      "score_after": 0.6835603456593523,
+      "score_before": null,
+      "sequence": 5,
+      "stage": "topology"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 15,
+        "legacy_path_a_available": true,
+        "text_lines": 4
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 6,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 11,
+        "corners": 84,
+        "interfaces": 122,
+        "shapes": 51
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-62413435c44e"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 7,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": true,
+      "action": "font-free-path-B",
+      "details": {
+        "exact_font_proposals": 0,
+        "glyphs": 50,
+        "legacy_path_a_available": true,
+        "text_lines": 7
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "line-level glyph scene with persistent counters",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 8,
+      "stage": "text-scene"
+    },
+    {
+      "accepted": true,
+      "action": "assemble-vector-graph",
+      "details": {
+        "constraints": 22,
+        "corners": 186,
+        "interfaces": 313,
+        "shapes": 128
+      },
+      "inputs": [],
+      "outputs": [
+        "topology-e4c8ea2410f1"
+      ],
+      "reason": "",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 9,
+      "stage": "scene-build"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-0:generic:layer-stay",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8333672488268689,
+      "score_before": 0.8333329351013787,
+      "sequence": 10,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-1:ribbon:layer-stay",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8332741115719668,
+      "score_before": 0.8333329351013787,
+      "sequence": 11,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-10:ribbon:layer-10-to-9",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8332152880425552,
+      "score_before": 0.833274111571967,
+      "sequence": 12,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-11:generic:layer-11-to-10",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8333045037288298,
+      "score_before": 0.8332152880425553,
+      "sequence": 13,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-12:ribbon:layer-12-to-11",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8331564645131435,
+      "score_before": 0.8332152880425553,
+      "sequence": 14,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-13:ribbon:layer-13-to-12",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8330976409837316,
+      "score_before": 0.8331564645131434,
+      "sequence": 15,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-14:ribbon:layer-14-to-13",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.83303881745432,
+      "score_before": 0.8330976409837317,
+      "sequence": 16,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-15:ribbon:layer-15-to-14",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8330584252974573,
+      "score_before": 0.83303881745432,
+      "sequence": 17,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-16:ribbon:layer-16-to-15",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8330584252974573,
+      "score_before": 0.83303881745432,
+      "sequence": 18,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-17:quadrilateral:layer-17-to-16",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8330388174543201,
+      "score_before": 0.83303881745432,
+      "sequence": 19,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-18:D-shape:layer-18-to-17",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318745812964631,
+      "score_before": 0.83303881745432,
+      "sequence": 20,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-19:ribbon:layer-19-to-18",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318157577670512,
+      "score_before": 0.8318745812964631,
+      "sequence": 21,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "reclassify:shape-2:ribbon:layer-2-to-1",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8317569342376393,
+      "score_before": 0.8318157577670512,
+      "sequence": 22,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-20:generic:layer-20-to-19",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8319177185513649,
+      "score_before": 0.8317569342376395,
+      "sequence": 23,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-21:generic:layer-21-to-20",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318255616886198,
+      "score_before": 0.8317569342376395,
+      "sequence": 24,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-22:generic:layer-22-to-21",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318902675709727,
+      "score_before": 0.8317569342376395,
+      "sequence": 25,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-23:generic:layer-23-to-22",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8317981107082276,
+      "score_before": 0.8317569342376395,
+      "sequence": 26,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-24:generic:layer-24-to-23",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318765420807767,
+      "score_before": 0.8317569342376395,
+      "sequence": 27,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-25:generic:layer-25-to-24",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318765420807767,
+      "score_before": 0.8317569342376395,
+      "sequence": 28,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-26:quadrilateral:layer-26-to-25",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8317569342376394,
+      "score_before": 0.8317569342376395,
+      "sequence": 29,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-27:generic:layer-27-to-26",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8317981107082276,
+      "score_before": 0.8317569342376395,
+      "sequence": 30,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-28:generic:layer-28-to-27",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318628165905806,
+      "score_before": 0.8317569342376395,
+      "sequence": 31,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-29:generic:layer-29-to-28",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8318628165905806,
+      "score_before": 0.8317569342376395,
+      "sequence": 32,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "reclassify:shape-3:generic:layer-3-to-2",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "localized shape + draw-order move with rollback",
+      "score_after": 0.8319834048258747,
+      "score_before": 0.8317569342376395,
+      "sequence": 33,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "abstain",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "absolute-forward-nll,local-worst-window,unsupported-shapes,shape-explosion; retain alternatives in trace",
+      "score_after": 0.8317569342376395,
+      "score_before": 0.8317569342376395,
+      "sequence": 34,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": true,
+      "action": "select-scene",
+      "details": {
+        "abstain_reasons": [
+          "absolute-forward-nll",
+          "local-worst-window",
+          "unsupported-shapes",
+          "shape-explosion"
+        ],
+        "abstained": true,
+        "render_model": "hard",
+        "runner_up": 1.1110294297627061
+      },
+      "inputs": [],
+      "outputs": [
+        "scene-hypothesis-0"
+      ],
+      "reason": "global posterior/MDL court",
+      "score_after": 0.8317569342376395,
+      "score_before": null,
+      "sequence": 35,
+      "stage": "optimizer"
+    },
+    {
+      "accepted": false,
+      "action": "skip",
+      "details": {},
+      "inputs": [],
+      "outputs": [],
+      "reason": "no line with >=3 glyphs at >=14px native ink height",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 36,
+      "stage": "exact-font-path-A"
+    },
+    {
+      "accepted": true,
+      "action": "fair-polyline",
+      "details": {},
+      "inputs": [
+        "shape-21"
+      ],
+      "outputs": [],
+      "reason": "accuracy-budgeted snapshot/rollback",
+      "score_after": 0.3103894364833832,
+      "score_before": 0.3103894364833832,
+      "sequence": 37,
+      "stage": "idealization"
+    },
+    {
+      "accepted": true,
+      "action": "fair-polyline",
+      "details": {},
+      "inputs": [
+        "shape-23"
+      ],
+      "outputs": [],
+      "reason": "accuracy-budgeted snapshot/rollback",
+      "score_after": 0.3103894364833832,
+      "score_before": 0.3103894364833832,
+      "sequence": 38,
+      "stage": "idealization"
+    },
+    {
+      "accepted": true,
+      "action": "fair-polyline",
+      "details": {},
+      "inputs": [
+        "shape-27"
+      ],
+      "outputs": [],
+      "reason": "accuracy-budgeted snapshot/rollback",
+      "score_after": 0.3103894364833832,
+      "score_before": 0.3103894364833832,
+      "sequence": 39,
+      "stage": "idealization"
+    },
+    {
+      "accepted": false,
+      "action": "add",
+      "details": {
+        "area_px": 2242
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "broad residual belongs to topology/background, not local repair",
+      "score_after": 0.3103894364833832,
+      "score_before": 0.3103894364833832,
+      "sequence": 40,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-13",
+      "score_after": 0.31887198865413663,
+      "score_before": 0.3103894364833832,
+      "sequence": 41,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-14",
+      "score_after": 0.31311739683151246,
+      "score_before": 0.3103894364833832,
+      "sequence": 42,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-15",
+      "score_after": 0.31455212891101836,
+      "score_before": 0.3103894364833832,
+      "sequence": 43,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-19",
+      "score_after": 0.31256670475006104,
+      "score_before": 0.3103894364833832,
+      "sequence": 44,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-20",
+      "score_after": 0.31175756216049194,
+      "score_before": 0.3103894364833832,
+      "sequence": 45,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-21",
+      "score_after": 0.31168746411800385,
+      "score_before": 0.3103894364833832,
+      "sequence": 46,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-22",
+      "score_after": 0.3111331295967102,
+      "score_before": 0.3103894364833832,
+      "sequence": 47,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-23",
+      "score_after": 0.31136907398700714,
+      "score_before": 0.3103894364833832,
+      "sequence": 48,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-24",
+      "score_after": 0.3113201081752777,
+      "score_before": 0.3103894364833832,
+      "sequence": 49,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-25",
+      "score_after": 0.31130508303642274,
+      "score_before": 0.3103894364833832,
+      "sequence": 50,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-27",
+      "score_after": 0.3115164089202881,
+      "score_before": 0.3103894364833832,
+      "sequence": 51,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-28",
+      "score_after": 0.3109989809989929,
+      "score_before": 0.3103894364833832,
+      "sequence": 52,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-29",
+      "score_after": 0.31098543882369994,
+      "score_before": 0.3103894364833832,
+      "sequence": 53,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-30",
+      "score_after": 0.31108215510845183,
+      "score_before": 0.3103894364833832,
+      "sequence": 54,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-31",
+      "score_after": 0.31101191103458403,
+      "score_before": 0.3103894364833832,
+      "sequence": 55,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-32",
+      "score_after": 0.310932891368866,
+      "score_before": 0.3103894364833832,
+      "sequence": 56,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-33",
+      "score_after": 0.3111276650428772,
+      "score_before": 0.3103894364833832,
+      "sequence": 57,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-39",
+      "score_after": 0.3106574112176895,
+      "score_before": 0.3103894364833832,
+      "sequence": 58,
+      "stage": "residual"
+    },
+    {
+      "accepted": false,
+      "action": "prune",
+      "details": {
+        "area_px": 0
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "unsupported shape shape-46",
+      "score_after": 0.3106793886423111,
+      "score_before": 0.3103894364833832,
+      "sequence": 59,
+      "stage": "residual"
+    },
+    {
+      "accepted": true,
+      "action": "select-render-model",
+      "details": {
+        "candidates": {
+          "blur-0.6": 0.3301318162679672,
+          "clean-aa": 0.32065824329853054,
+          "gamma-1.8": 0.3162917220592498,
+          "hard": 0.3103894364833832,
+          "jpeg-70": 0.34270624935626987
+        },
+        "render_model": "hard"
+      },
+      "inputs": [],
+      "outputs": [],
+      "reason": "renderer-model marginalization",
+      "score_after": 0.3103894364833832,
+      "score_before": null,
+      "sequence": 60,
+      "stage": "final-court"
+    },
+    {
+      "accepted": true,
+      "action": "publish-artifacts",
+      "details": {
+        "wall_seconds": 23.8809462999925
+      },
+      "inputs": [],
+      "outputs": [
+        "scene.json",
+        "decision_trace.json",
+        "config.json",
+        "profile.json"
+      ],
+      "reason": "legacy-compatible names + canonical scene",
+      "score_after": null,
+      "score_before": null,
+      "sequence": 61,
+      "stage": "export"
+    }
+  ],
+  "schema": "vice-decision-trace/1",
+  "source_hash": "2132010c89d8cc0d2c14a6e684c88457d8b52daaad0827fa5fd3479a7f5fce27",
+  "stage_seconds": {
+    "appearance": 0.02276690000144299,
+    "evidence": 0.03277720000187401,
+    "export": 0.5371622999955434,
+    "final-court": 0.15684650000184774,
+    "idealization": 0.175963599991519,
+    "optimizer": 7.864595299994107,
+    "raster-profile": 0.04828659999475349,
+    "residual": 0.8000725999881979,
+    "scene-build": 12.237740099997609,
+    "topology": 1.9389215000119293
+  }
+}

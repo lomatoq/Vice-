@@ -1,0 +1,713 @@
+{
+  "appearances": [
+    {
+      "confidence": 0.9775682687759399,
+      "covariance": [
+        0.0005346178659237921,
+        3.6258754911838235e-18,
+        1.8091184459086013e-18
+      ],
+      "id": "appearance-shape-0",
+      "kind": "solid",
+      "parameters": [],
+      "provenance": [
+        "soft-oklab-mixture"
+      ],
+      "rgba_linear": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "stops": []
+    }
+  ],
+  "constraints": [],
+  "coordinate_space": "native-pixel",
+  "corners": [
+    {
+      "confidence": 0.8607706541364843,
+      "continuity": "G1-unknown",
+      "covariance": [
+        0.04,
+        0.0,
+        0.04
+      ],
+      "id": "corner-0",
+      "incident_interfaces": [
+        "interface-0"
+      ],
+      "position": [
+        13.0,
+        9.0
+      ],
+      "role": "endpoint"
+    },
+    {
+      "confidence": 0.8607706541364843,
+      "continuity": "G1-unknown",
+      "covariance": [
+        0.04,
+        0.0,
+        0.04
+      ],
+      "id": "corner-1",
+      "incident_interfaces": [
+        "interface-0"
+      ],
+      "position": [
+        14.0,
+        9.0
+      ],
+      "role": "endpoint"
+    }
+  ],
+  "height": 24,
+  "interfaces": [
+    {
+      "confidence_profile": [
+        0.9602349996566772,
+        0.9204699397087097,
+        0.9482073783874512,
+        0.9375448226928711,
+        0.9375448226928711,
+        0.9547750949859619,
+        0.9140751361846924,
+        0.7693370580673218,
+        1.0,
+        0.8546661138534546,
+        0.988681435585022,
+        0.40842577815055847,
+        1.0,
+        0.6507449150085449,
+        0.9705284833908081,
+        0.9905010461807251,
+        0.9399227499961853,
+        0.8722148537635803,
+        0.9399227499961853,
+        0.9905010461807251,
+        0.9905010461807251,
+        0.6348099112510681,
+        1.0,
+        1.0,
+        0.9273636937141418,
+        0.9273636937141418,
+        0.40842577815055847,
+        0.6892072558403015,
+        0.6892072558403015,
+        0.4518512487411499,
+        0.31680986285209656,
+        0.3184918761253357,
+        0.4524485468864441,
+        0.6655250191688538,
+        0.9914991855621338,
+        0.9799153804779053,
+        0.8663200736045837,
+        1.0,
+        0.9186883568763733,
+        0.8781754374504089,
+        1.0,
+        0.892623782157898,
+        0.8897866606712341,
+        0.9390414357185364,
+        0.9281027913093567,
+        0.9436665177345276,
+        0.8812377452850342,
+        1.0,
+        1.0,
+        0.8549478054046631,
+        0.9999816417694092,
+        0.9999816417694092,
+        0.9581139087677002,
+        1.0,
+        1.0
+      ],
+      "corner_nodes": [
+        "corner-0",
+        "corner-1"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              13.0,
+              9.0
+            ],
+            [
+              13.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              13.0,
+              15.0
+            ],
+            [
+              14.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              14.0,
+              15.0
+            ],
+            [
+              14.0,
+              17.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              14.0,
+              17.0
+            ],
+            [
+              16.0,
+              17.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              16.0,
+              17.0
+            ],
+            [
+              16.0,
+              18.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              16.0,
+              18.0
+            ],
+            [
+              17.0,
+              18.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              17.0,
+              18.0
+            ],
+            [
+              17.0,
+              19.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              17.0,
+              19.0
+            ],
+            [
+              22.0,
+              19.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              22.0,
+              19.0
+            ],
+            [
+              22.0,
+              18.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              22.0,
+              18.0
+            ],
+            [
+              24.0,
+              18.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              24.0,
+              18.0
+            ],
+            [
+              24.0,
+              17.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              24.0,
+              17.0
+            ],
+            [
+              25.0,
+              17.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              25.0,
+              17.0
+            ],
+            [
+              25.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              25.0,
+              15.0
+            ],
+            [
+              26.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              26.0,
+              15.0
+            ],
+            [
+              26.0,
+              8.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              26.0,
+              8.0
+            ],
+            [
+              25.0,
+              8.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              25.0,
+              8.0
+            ],
+            [
+              25.0,
+              7.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              25.0,
+              7.0
+            ],
+            [
+              24.0,
+              7.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              24.0,
+              7.0
+            ],
+            [
+              24.0,
+              6.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              24.0,
+              6.0
+            ],
+            [
+              22.0,
+              6.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              22.0,
+              6.0
+            ],
+            [
+              22.0,
+              5.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              22.0,
+              5.0
+            ],
+            [
+              17.0,
+              5.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              17.0,
+              5.0
+            ],
+            [
+              17.0,
+              6.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              17.0,
+              6.0
+            ],
+            [
+              15.0,
+              6.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              6.0
+            ],
+            [
+              15.0,
+              7.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              7.0
+            ],
+            [
+              14.0,
+              7.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              14.0,
+              7.0
+            ],
+            [
+              14.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        }
+      ],
+      "id": "interface-0",
+      "left_shape": null,
+      "right_shape": "shape-0"
+    }
+  ],
+  "layer_edges": [],
+  "loops": [
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-0-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 0.8,
+          "evidence_rms_px": 0.0,
+          "kind": "circle",
+          "parameters": [
+            19.5,
+            12.0,
+            7.35
+          ],
+          "points": [],
+          "provenance": [
+            "rounded-rectangle-grid",
+            "digital-edge-expansion",
+            "rounded-square-circle-intent"
+          ]
+        }
+      ],
+      "signed_area": 158.65900169423185
+    }
+  ],
+  "pixel_size_native": 1.0,
+  "schema_version": "vice-scene/1",
+  "shapes": [
+    {
+      "appearance_id": "appearance-shape-0",
+      "confidence": 0.6029717214572837,
+      "id": "shape-0",
+      "layer": 0,
+      "model_family": "circle",
+      "model_params": [
+        19.5,
+        12.0,
+        7.35
+      ],
+      "negative_loops": [],
+      "parent": null,
+      "positive_loop": "loop-0-positive",
+      "provenance": [
+        "topology-6b1227fdca45",
+        "soft-spatial-proposal-sigma-1.15",
+        "whole-shape-tournament",
+        "candidate-replacement",
+        "candidate-replacement",
+        "candidate-replacement",
+        "circle-intent-court"
+      ],
+      "semantic_group": null,
+      "topology_id": "topology-region-0"
+    }
+  ],
+  "width": 31
+}

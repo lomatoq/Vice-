@@ -1,0 +1,7970 @@
+{
+  "n": 360,
+  "existing_detector": {
+    "tp": 72,
+    "fn": 0,
+    "fp": 43,
+    "tn": 209,
+    "recall": 1.0,
+    "precision": 0.6261
+  },
+  "single_feature_probes": {
+    "mad": {
+      "best_accuracy": 0.8981,
+      "threshold": 0.36306,
+      "positive_if": "<="
+    },
+    "harmonic_2_4": {
+      "best_accuracy": 0.8488,
+      "threshold": 0.013327,
+      "positive_if": "<="
+    },
+    "harmonic_5_12_max": {
+      "best_accuracy": 0.8333,
+      "threshold": 0.00594,
+      "positive_if": "<="
+    },
+    "longest_sign_run": {
+      "best_accuracy": 0.7438,
+      "threshold": 3.0,
+      "positive_if": "<="
+    },
+    "sector_coverage": {
+      "best_accuracy": 0.3704,
+      "threshold": 24.0,
+      "positive_if": ">="
+    },
+    "isoperimetric_q": {
+      "best_accuracy": 0.7716,
+      "threshold": 0.7854,
+      "positive_if": ">="
+    },
+    "rot90_iou": {
+      "best_accuracy": 0.716,
+      "threshold": 1.0,
+      "positive_if": ">="
+    }
+  },
+  "rows": [
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.1507,
+        "rms": 0.33715,
+        "mad": 0.25046,
+        "harmonic_2_4": 0.013298,
+        "harmonic_5_12_max": 0.018367,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64359,
+        "rot90_iou": 0.96667,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.1507,
+        "rms": 0.33715,
+        "mad": 0.25046,
+        "harmonic_2_4": 0.013298,
+        "harmonic_5_12_max": 0.018367,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64359,
+        "rot90_iou": 0.96667,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.1275,
+        "rms": 0.34846,
+        "mad": 0.27836,
+        "harmonic_2_4": 0.005818,
+        "harmonic_5_12_max": 0.011747,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63814,
+        "rot90_iou": 0.95,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.1237,
+        "rms": 0.3385,
+        "mad": 0.26535,
+        "harmonic_2_4": 0.01132,
+        "harmonic_5_12_max": 0.013742,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63814,
+        "rot90_iou": 0.96639,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.204,
+        "rms": 0.37224,
+        "mad": 0.33295,
+        "harmonic_2_4": 0.01723,
+        "harmonic_5_12_max": 0.01499,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60319,
+        "rot90_iou": 0.92,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.2106,
+        "rms": 0.37073,
+        "mad": 0.30938,
+        "harmonic_2_4": 0.014941,
+        "harmonic_5_12_max": 0.012528,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60319,
+        "rot90_iou": 0.93548,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.2313,
+        "rms": 0.37363,
+        "mad": 0.30736,
+        "harmonic_2_4": 0.017219,
+        "harmonic_5_12_max": 0.014548,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60821,
+        "rot90_iou": 0.90551,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.1243,
+        "rms": 0.39709,
+        "mad": 0.31468,
+        "harmonic_2_4": 0.028284,
+        "harmonic_5_12_max": 0.010136,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58811,
+        "rot90_iou": 0.90244,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.1301,
+        "rms": 0.38979,
+        "mad": 0.38826,
+        "harmonic_2_4": 0.013327,
+        "harmonic_5_12_max": 0.014766,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.54374,
+        "rot90_iou": 0.96639,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.2237,
+        "rms": 0.40051,
+        "mad": 0.28135,
+        "harmonic_2_4": 0.01911,
+        "harmonic_5_12_max": 0.014663,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.56233,
+        "rot90_iou": 0.936,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.1735,
+        "rms": 0.39148,
+        "mad": 0.37965,
+        "harmonic_2_4": 0.011448,
+        "harmonic_5_12_max": 0.02019,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.55303,
+        "rot90_iou": 0.96694,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.1312,
+        "rms": 0.3857,
+        "mad": 0.36194,
+        "harmonic_2_4": 0.018653,
+        "harmonic_5_12_max": 0.018965,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58811,
+        "rot90_iou": 0.95,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 10.1737,
+        "rms": 0.35389,
+        "mad": 0.24515,
+        "harmonic_2_4": 0.006676,
+        "harmonic_5_12_max": 0.007632,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63617,
+        "rot90_iou": 0.97561,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 10.1391,
+        "rms": 0.35947,
+        "mad": 0.23732,
+        "harmonic_2_4": 0.007476,
+        "harmonic_5_12_max": 0.004454,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63225,
+        "rot90_iou": 0.97546,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 10.1427,
+        "rms": 0.36736,
+        "mad": 0.23241,
+        "harmonic_2_4": 0.011585,
+        "harmonic_5_12_max": 0.005648,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63225,
+        "rot90_iou": 0.98154,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 10.0921,
+        "rms": 0.3682,
+        "mad": 0.23196,
+        "harmonic_2_4": 0.007889,
+        "harmonic_5_12_max": 0.005748,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62636,
+        "rot90_iou": 0.98754,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 10.1209,
+        "rms": 0.37372,
+        "mad": 0.31321,
+        "harmonic_2_4": 0.00885,
+        "harmonic_5_12_max": 0.00594,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59991,
+        "rot90_iou": 0.93373,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 10.1433,
+        "rms": 0.38015,
+        "mad": 0.32307,
+        "harmonic_2_4": 0.008059,
+        "harmonic_5_12_max": 0.009308,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60178,
+        "rot90_iou": 0.93976,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 10.1732,
+        "rms": 0.38422,
+        "mad": 0.31429,
+        "harmonic_2_4": 0.010165,
+        "harmonic_5_12_max": 0.007148,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60552,
+        "rot90_iou": 0.92857,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 10.0795,
+        "rms": 0.37511,
+        "mad": 0.32022,
+        "harmonic_2_4": 0.012936,
+        "harmonic_5_12_max": 0.007608,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62439,
+        "rot90_iou": 0.94495,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 10.2411,
+        "rms": 0.38786,
+        "mad": 0.36069,
+        "harmonic_2_4": 0.011321,
+        "harmonic_5_12_max": 0.005815,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58593,
+        "rot90_iou": 0.96418,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 10.2011,
+        "rms": 0.3911,
+        "mad": 0.35589,
+        "harmonic_2_4": 0.002898,
+        "harmonic_5_12_max": 0.010675,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58059,
+        "rot90_iou": 0.9521,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 10.2026,
+        "rms": 0.3859,
+        "mad": 0.35473,
+        "harmonic_2_4": 0.004909,
+        "harmonic_5_12_max": 0.011262,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58059,
+        "rot90_iou": 0.9521,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 10.0947,
+        "rms": 0.3831,
+        "mad": 0.30995,
+        "harmonic_2_4": 0.009723,
+        "harmonic_5_12_max": 0.01199,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62636,
+        "rot90_iou": 0.93921,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 14.0991,
+        "rms": 0.36284,
+        "mad": 0.26692,
+        "harmonic_2_4": 0.004799,
+        "harmonic_5_12_max": 0.004862,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62511,
+        "rot90_iou": 0.98095,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 14.054,
+        "rms": 0.36211,
+        "mad": 0.3001,
+        "harmonic_2_4": 0.00632,
+        "harmonic_5_12_max": 0.004443,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62111,
+        "rot90_iou": 0.97767,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 14.0655,
+        "rms": 0.36546,
+        "mad": 0.28236,
+        "harmonic_2_4": 0.003923,
+        "harmonic_5_12_max": 0.00479,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62211,
+        "rot90_iou": 0.97456,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.9949,
+        "rms": 0.36119,
+        "mad": 0.28533,
+        "harmonic_2_4": 0.005323,
+        "harmonic_5_12_max": 0.00469,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6161,
+        "rot90_iou": 0.98387,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 14.1383,
+        "rms": 0.36963,
+        "mad": 0.34532,
+        "harmonic_2_4": 0.007312,
+        "harmonic_5_12_max": 0.002259,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60627,
+        "rot90_iou": 0.95632,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 14.1638,
+        "rms": 0.36804,
+        "mad": 0.3216,
+        "harmonic_2_4": 0.009229,
+        "harmonic_5_12_max": 0.004634,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60821,
+        "rot90_iou": 0.96256,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 14.1521,
+        "rms": 0.37956,
+        "mad": 0.33983,
+        "harmonic_2_4": 0.007515,
+        "harmonic_5_12_max": 0.00366,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60724,
+        "rot90_iou": 0.95334,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 14.0713,
+        "rms": 0.37733,
+        "mad": 0.3026,
+        "harmonic_2_4": 0.007955,
+        "harmonic_5_12_max": 0.005304,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62211,
+        "rot90_iou": 0.96209,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 14.1341,
+        "rms": 0.39696,
+        "mad": 0.36119,
+        "harmonic_2_4": 0.00726,
+        "harmonic_5_12_max": 0.00398,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.56587,
+        "rot90_iou": 0.98104,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 14.1208,
+        "rms": 0.39776,
+        "mad": 0.33507,
+        "harmonic_2_4": 0.005297,
+        "harmonic_5_12_max": 0.003041,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58461,
+        "rot90_iou": 0.97788,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 14.1092,
+        "rms": 0.40027,
+        "mad": 0.35145,
+        "harmonic_2_4": 0.009545,
+        "harmonic_5_12_max": 0.003533,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58368,
+        "rot90_iou": 0.97472,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "disc",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 14.0145,
+        "rms": 0.38563,
+        "mad": 0.32869,
+        "harmonic_2_4": 0.007743,
+        "harmonic_5_12_max": 0.003523,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59564,
+        "rot90_iou": 0.96805,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.1507,
+        "rms": 0.33715,
+        "mad": 0.25046,
+        "harmonic_2_4": 0.013298,
+        "harmonic_5_12_max": 0.018367,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64359,
+        "rot90_iou": 0.94118,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.124,
+        "rms": 0.34507,
+        "mad": 0.26127,
+        "harmonic_2_4": 0.019881,
+        "harmonic_5_12_max": 0.013686,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63814,
+        "rot90_iou": 0.88732,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.235,
+        "rms": 0.33578,
+        "mad": 0.23045,
+        "harmonic_2_4": 0.007105,
+        "harmonic_5_12_max": 0.024756,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65995,
+        "rot90_iou": 0.94444,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.235,
+        "rms": 0.33578,
+        "mad": 0.23045,
+        "harmonic_2_4": 0.007105,
+        "harmonic_5_12_max": 0.024756,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65995,
+        "rot90_iou": 0.97143,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.204,
+        "rms": 0.37224,
+        "mad": 0.33295,
+        "harmonic_2_4": 0.01723,
+        "harmonic_5_12_max": 0.01499,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60319,
+        "rot90_iou": 0.79487,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.3129,
+        "rms": 0.36939,
+        "mad": 0.31466,
+        "harmonic_2_4": 0.020907,
+        "harmonic_5_12_max": 0.011097,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62329,
+        "rot90_iou": 0.76744,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.2859,
+        "rms": 0.3713,
+        "mad": 0.34019,
+        "harmonic_2_4": 0.014309,
+        "harmonic_5_12_max": 0.016294,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61827,
+        "rot90_iou": 0.78313,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.2656,
+        "rms": 0.37591,
+        "mad": 0.32227,
+        "harmonic_2_4": 0.022947,
+        "harmonic_5_12_max": 0.01374,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61324,
+        "rot90_iou": 0.75309,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.2227,
+        "rms": 0.39692,
+        "mad": 0.29472,
+        "harmonic_2_4": 0.01539,
+        "harmonic_5_12_max": 0.015121,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.56233,
+        "rot90_iou": 0.82278,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.2043,
+        "rms": 0.38896,
+        "mad": 0.34253,
+        "harmonic_2_4": 0.017981,
+        "harmonic_5_12_max": 0.017482,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60319,
+        "rot90_iou": 0.79747,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.3216,
+        "rms": 0.40356,
+        "mad": 0.2969,
+        "harmonic_2_4": 0.027458,
+        "harmonic_5_12_max": 0.012147,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58092,
+        "rot90_iou": 0.85542,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.2975,
+        "rms": 0.39957,
+        "mad": 0.31876,
+        "harmonic_2_4": 0.021355,
+        "harmonic_5_12_max": 0.010983,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.57627,
+        "rot90_iou": 0.85185,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 10.1737,
+        "rms": 0.35389,
+        "mad": 0.24515,
+        "harmonic_2_4": 0.006676,
+        "harmonic_5_12_max": 0.007632,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63617,
+        "rot90_iou": 0.95122,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 10.2079,
+        "rms": 0.35149,
+        "mad": 0.24937,
+        "harmonic_2_4": 0.013183,
+        "harmonic_5_12_max": 0.005759,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6401,
+        "rot90_iou": 0.93103,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 10.2079,
+        "rms": 0.35149,
+        "mad": 0.24937,
+        "harmonic_2_4": 0.013183,
+        "harmonic_5_12_max": 0.005759,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6401,
+        "rot90_iou": 0.95402,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 10.1747,
+        "rms": 0.36122,
+        "mad": 0.25203,
+        "harmonic_2_4": 0.014682,
+        "harmonic_5_12_max": 0.005182,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63617,
+        "rot90_iou": 0.92814,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 10.1522,
+        "rms": 0.37435,
+        "mad": 0.32481,
+        "harmonic_2_4": 0.008903,
+        "harmonic_5_12_max": 0.006449,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60365,
+        "rot90_iou": 0.82955,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 10.1534,
+        "rms": 0.37379,
+        "mad": 0.32776,
+        "harmonic_2_4": 0.008368,
+        "harmonic_5_12_max": 0.005867,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60365,
+        "rot90_iou": 0.83051,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 10.218,
+        "rms": 0.39051,
+        "mad": 0.31559,
+        "harmonic_2_4": 0.008678,
+        "harmonic_5_12_max": 0.00766,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61112,
+        "rot90_iou": 0.79787,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 10.1107,
+        "rms": 0.36567,
+        "mad": 0.30776,
+        "harmonic_2_4": 0.011331,
+        "harmonic_5_12_max": 0.007276,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62832,
+        "rot90_iou": 0.83908,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 10.2411,
+        "rms": 0.38786,
+        "mad": 0.36069,
+        "harmonic_2_4": 0.011321,
+        "harmonic_5_12_max": 0.005815,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58593,
+        "rot90_iou": 0.93103,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 10.2445,
+        "rms": 0.38667,
+        "mad": 0.35032,
+        "harmonic_2_4": 0.011884,
+        "harmonic_5_12_max": 0.007684,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58593,
+        "rot90_iou": 0.91061,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 10.2643,
+        "rms": 0.3915,
+        "mad": 0.34521,
+        "harmonic_2_4": 0.007737,
+        "harmonic_5_12_max": 0.008577,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58771,
+        "rot90_iou": 0.9,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 10.1611,
+        "rms": 0.37179,
+        "mad": 0.29983,
+        "harmonic_2_4": 0.011625,
+        "harmonic_5_12_max": 0.008129,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63421,
+        "rot90_iou": 0.84,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 14.1231,
+        "rms": 0.36471,
+        "mad": 0.26139,
+        "harmonic_2_4": 0.005032,
+        "harmonic_5_12_max": 0.004356,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62712,
+        "rot90_iou": 0.96,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 14.0776,
+        "rms": 0.36333,
+        "mad": 0.28412,
+        "harmonic_2_4": 0.004222,
+        "harmonic_5_12_max": 0.004899,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62311,
+        "rot90_iou": 0.94631,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 14.113,
+        "rms": 0.36479,
+        "mad": 0.27136,
+        "harmonic_2_4": 0.005191,
+        "harmonic_5_12_max": 0.004672,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62611,
+        "rot90_iou": 0.92834,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 14.0534,
+        "rms": 0.36107,
+        "mad": 0.26925,
+        "harmonic_2_4": 0.005653,
+        "harmonic_5_12_max": 0.003494,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62111,
+        "rot90_iou": 0.96587,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 14.1702,
+        "rms": 0.36749,
+        "mad": 0.31921,
+        "harmonic_2_4": 0.006265,
+        "harmonic_5_12_max": 0.002723,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60917,
+        "rot90_iou": 0.89474,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 14.1828,
+        "rms": 0.36862,
+        "mad": 0.32123,
+        "harmonic_2_4": 0.004063,
+        "harmonic_5_12_max": 0.003541,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61014,
+        "rot90_iou": 0.87234,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 14.2033,
+        "rms": 0.37034,
+        "mad": 0.32778,
+        "harmonic_2_4": 0.009507,
+        "harmonic_5_12_max": 0.003565,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61207,
+        "rot90_iou": 0.86145,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 14.1397,
+        "rms": 0.38109,
+        "mad": 0.34061,
+        "harmonic_2_4": 0.004966,
+        "harmonic_5_12_max": 0.004085,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58555,
+        "rot90_iou": 0.86335,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 14.1428,
+        "rms": 0.3944,
+        "mad": 0.36306,
+        "harmonic_2_4": 0.006843,
+        "harmonic_5_12_max": 0.003847,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58648,
+        "rot90_iou": 0.96753,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 14.136,
+        "rms": 0.3986,
+        "mad": 0.34623,
+        "harmonic_2_4": 0.007955,
+        "harmonic_5_12_max": 0.003404,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58555,
+        "rot90_iou": 0.92949,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 14.1416,
+        "rms": 0.39943,
+        "mad": 0.35821,
+        "harmonic_2_4": 0.010117,
+        "harmonic_5_12_max": 0.003352,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58648,
+        "rot90_iou": 0.96117,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "ring",
+      "class": "positive",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 14.0695,
+        "rms": 0.39436,
+        "mad": 0.33986,
+        "harmonic_2_4": 0.005406,
+        "harmonic_5_12_max": 0.003662,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.57994,
+        "rot90_iou": 0.92079,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.7012,
+        "rms": 0.4886,
+        "mad": 0.43888,
+        "harmonic_2_4": 0.048413,
+        "harmonic_5_12_max": 0.016207,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64909,
+        "rot90_iou": 0.78571,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.7012,
+        "rms": 0.4886,
+        "mad": 0.43888,
+        "harmonic_2_4": 0.048413,
+        "harmonic_5_12_max": 0.016207,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64909,
+        "rot90_iou": 0.78571,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.6729,
+        "rms": 0.51244,
+        "mad": 0.44938,
+        "harmonic_2_4": 0.063181,
+        "harmonic_5_12_max": 0.014337,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6426,
+        "rot90_iou": 0.76786,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.7073,
+        "rms": 0.5201,
+        "mad": 0.4267,
+        "harmonic_2_4": 0.07366,
+        "harmonic_5_12_max": 0.008183,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64909,
+        "rot90_iou": 0.78571,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.6367,
+        "rms": 0.45527,
+        "mad": 0.35766,
+        "harmonic_2_4": 0.05415,
+        "harmonic_5_12_max": 0.007866,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63611,
+        "rot90_iou": 0.81481,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.7009,
+        "rms": 0.51033,
+        "mad": 0.36557,
+        "harmonic_2_4": 0.048318,
+        "harmonic_5_12_max": 0.015263,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64909,
+        "rot90_iou": 0.78571,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.7645,
+        "rms": 0.50337,
+        "mad": 0.42326,
+        "harmonic_2_4": 0.058075,
+        "harmonic_5_12_max": 0.007615,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.66207,
+        "rot90_iou": 0.75862,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.5718,
+        "rms": 0.44431,
+        "mad": 0.42199,
+        "harmonic_2_4": 0.043074,
+        "harmonic_5_12_max": 0.010959,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62313,
+        "rot90_iou": 0.84615,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.6707,
+        "rms": 0.45709,
+        "mad": 0.32453,
+        "harmonic_2_4": 0.036475,
+        "harmonic_5_12_max": 0.01897,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59387,
+        "rot90_iou": 0.81818,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.6707,
+        "rms": 0.45709,
+        "mad": 0.32453,
+        "harmonic_2_4": 0.036475,
+        "harmonic_5_12_max": 0.01897,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59387,
+        "rot90_iou": 0.81818,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.6707,
+        "rms": 0.45709,
+        "mad": 0.32453,
+        "harmonic_2_4": 0.036475,
+        "harmonic_5_12_max": 0.01897,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59387,
+        "rot90_iou": 0.81818,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.6707,
+        "rms": 0.45709,
+        "mad": 0.32453,
+        "harmonic_2_4": 0.036475,
+        "harmonic_5_12_max": 0.01897,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59387,
+        "rot90_iou": 0.81818,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.4186,
+        "rms": 0.68506,
+        "mad": 0.52786,
+        "harmonic_2_4": 0.050807,
+        "harmonic_5_12_max": 0.005979,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60047,
+        "rot90_iou": 0.79221,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.4018,
+        "rms": 0.67415,
+        "mad": 0.50532,
+        "harmonic_2_4": 0.052391,
+        "harmonic_5_12_max": 0.006282,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59829,
+        "rot90_iou": 0.79739,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.4186,
+        "rms": 0.68506,
+        "mad": 0.52786,
+        "harmonic_2_4": 0.050807,
+        "harmonic_5_12_max": 0.005979,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60047,
+        "rot90_iou": 0.79221,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.3362,
+        "rms": 0.74003,
+        "mad": 0.68351,
+        "harmonic_2_4": 0.057242,
+        "harmonic_5_12_max": 0.009607,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64965,
+        "rot90_iou": 0.76898,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.3668,
+        "rms": 0.66473,
+        "mad": 0.56086,
+        "harmonic_2_4": 0.050546,
+        "harmonic_5_12_max": 0.005769,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59394,
+        "rot90_iou": 0.79605,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.4018,
+        "rms": 0.67415,
+        "mad": 0.50532,
+        "harmonic_2_4": 0.052391,
+        "harmonic_5_12_max": 0.006282,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59829,
+        "rot90_iou": 0.79739,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.3596,
+        "rms": 0.6957,
+        "mad": 0.55301,
+        "harmonic_2_4": 0.058163,
+        "harmonic_5_12_max": 0.004717,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59177,
+        "rot90_iou": 0.78947,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.3779,
+        "rms": 0.71082,
+        "mad": 0.53567,
+        "harmonic_2_4": 0.061021,
+        "harmonic_5_12_max": 0.005863,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6545,
+        "rot90_iou": 0.77632,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.5018,
+        "rms": 0.64985,
+        "mad": 0.55822,
+        "harmonic_2_4": 0.047574,
+        "harmonic_5_12_max": 0.009976,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.607,
+        "rot90_iou": 0.80583,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.4715,
+        "rms": 0.67747,
+        "mad": 0.56574,
+        "harmonic_2_4": 0.048228,
+        "harmonic_5_12_max": 0.00683,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60265,
+        "rot90_iou": 0.79288,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.5544,
+        "rms": 0.71516,
+        "mad": 0.62844,
+        "harmonic_2_4": 0.054536,
+        "harmonic_5_12_max": 0.00736,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61352,
+        "rot90_iou": 0.77918,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.3228,
+        "rms": 0.64953,
+        "mad": 0.54158,
+        "harmonic_2_4": 0.056863,
+        "harmonic_5_12_max": 0.008259,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6173,
+        "rot90_iou": 0.81145,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.1237,
+        "rms": 0.77274,
+        "mad": 0.64948,
+        "harmonic_2_4": 0.039879,
+        "harmonic_5_12_max": 0.003421,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62274,
+        "rot90_iou": 0.82313,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.1237,
+        "rms": 0.77274,
+        "mad": 0.64948,
+        "harmonic_2_4": 0.039879,
+        "harmonic_5_12_max": 0.003421,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62274,
+        "rot90_iou": 0.82313,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.0709,
+        "rms": 0.79536,
+        "mad": 0.71552,
+        "harmonic_2_4": 0.042625,
+        "harmonic_5_12_max": 0.002863,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61809,
+        "rot90_iou": 0.80952,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.0222,
+        "rms": 0.74649,
+        "mad": 0.66482,
+        "harmonic_2_4": 0.038845,
+        "harmonic_5_12_max": 0.003247,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61345,
+        "rot90_iou": 0.82069,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.1445,
+        "rms": 0.88441,
+        "mad": 0.7337,
+        "harmonic_2_4": 0.054291,
+        "harmonic_5_12_max": 0.003176,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59946,
+        "rot90_iou": 0.79866,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.1207,
+        "rms": 0.83482,
+        "mad": 0.73365,
+        "harmonic_2_4": 0.046182,
+        "harmonic_5_12_max": 0.004096,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.59723,
+        "rot90_iou": 0.80405,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.0503,
+        "rms": 0.81095,
+        "mad": 0.76701,
+        "harmonic_2_4": 0.045509,
+        "harmonic_5_12_max": 0.004712,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61577,
+        "rot90_iou": 0.80272,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.0238,
+        "rms": 0.79807,
+        "mad": 0.72592,
+        "harmonic_2_4": 0.044262,
+        "harmonic_5_12_max": 0.005289,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61345,
+        "rot90_iou": 0.80822,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.1157,
+        "rms": 0.85616,
+        "mad": 0.6718,
+        "harmonic_2_4": 0.049905,
+        "harmonic_5_12_max": 0.004162,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.57639,
+        "rot90_iou": 0.80438,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.0871,
+        "rms": 0.90286,
+        "mad": 0.74242,
+        "harmonic_2_4": 0.055102,
+        "harmonic_5_12_max": 0.004868,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61345,
+        "rot90_iou": 0.7868,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.0848,
+        "rms": 0.88332,
+        "mad": 0.72708,
+        "harmonic_2_4": 0.052199,
+        "harmonic_5_12_max": 0.004232,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.57316,
+        "rot90_iou": 0.79427,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "drop",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.0008,
+        "rms": 0.85257,
+        "mad": 0.72543,
+        "harmonic_2_4": 0.051848,
+        "harmonic_5_12_max": 0.005483,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6317,
+        "rot90_iou": 0.79417,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.9073,
+        "rms": 0.74238,
+        "mad": 0.55648,
+        "harmonic_2_4": 0.072359,
+        "harmonic_5_12_max": 0.014745,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77994,
+        "rot90_iou": 0.98611,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.9402,
+        "rms": 0.77825,
+        "mad": 0.56417,
+        "harmonic_2_4": 0.06661,
+        "harmonic_5_12_max": 0.017413,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.7854,
+        "rot90_iou": 1.0,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.9402,
+        "rms": 0.77825,
+        "mad": 0.56417,
+        "harmonic_2_4": 0.06661,
+        "harmonic_5_12_max": 0.017413,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.7854,
+        "rot90_iou": 1.0,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.9073,
+        "rms": 0.74238,
+        "mad": 0.55648,
+        "harmonic_2_4": 0.072359,
+        "harmonic_5_12_max": 0.014745,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77994,
+        "rot90_iou": 0.98611,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 7.1,
+        "rms": 0.67995,
+        "mad": 0.48681,
+        "harmonic_2_4": 0.069332,
+        "harmonic_5_12_max": 0.00978,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.76404,
+        "rot90_iou": 0.86503,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.996,
+        "rms": 0.72444,
+        "mad": 0.58765,
+        "harmonic_2_4": 0.076919,
+        "harmonic_5_12_max": 0.011875,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6378,
+        "rot90_iou": 0.92208,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 7.1325,
+        "rms": 0.72188,
+        "mad": 0.52427,
+        "harmonic_2_4": 0.078274,
+        "harmonic_5_12_max": 0.011875,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.76906,
+        "rot90_iou": 0.86585,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 6.9159,
+        "rms": 0.72947,
+        "mad": 0.53114,
+        "harmonic_2_4": 0.071487,
+        "harmonic_5_12_max": 0.013971,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.72382,
+        "rot90_iou": 0.9726,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 7.2778,
+        "rms": 0.59609,
+        "mad": 0.55225,
+        "harmonic_2_4": 0.058057,
+        "harmonic_5_12_max": 0.007354,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.74822,
+        "rot90_iou": 0.97546,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 7.3068,
+        "rms": 0.6197,
+        "mad": 0.54501,
+        "harmonic_2_4": 0.059677,
+        "harmonic_5_12_max": 0.006614,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.75287,
+        "rot90_iou": 0.97561,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 7.2778,
+        "rms": 0.59609,
+        "mad": 0.55225,
+        "harmonic_2_4": 0.058057,
+        "harmonic_5_12_max": 0.007354,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.74822,
+        "rot90_iou": 0.97546,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 7.0209,
+        "rms": 0.73119,
+        "mad": 0.61773,
+        "harmonic_2_4": 0.069282,
+        "harmonic_5_12_max": 0.015343,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.5566,
+        "rot90_iou": 0.91026,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 11.4717,
+        "rms": 1.15938,
+        "mad": 1.00426,
+        "harmonic_2_4": 0.063708,
+        "harmonic_5_12_max": 0.017004,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77754,
+        "rot90_iou": 1.0,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 11.4521,
+        "rms": 1.13841,
+        "mad": 1.00937,
+        "harmonic_2_4": 0.066629,
+        "harmonic_5_12_max": 0.016028,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77558,
+        "rot90_iou": 0.99495,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 11.4717,
+        "rms": 1.15938,
+        "mad": 1.00426,
+        "harmonic_2_4": 0.063708,
+        "harmonic_5_12_max": 0.017004,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77754,
+        "rot90_iou": 1.0,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.4325,
+        "rms": 1.11629,
+        "mad": 0.98406,
+        "harmonic_2_4": 0.068043,
+        "harmonic_5_12_max": 0.015266,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77362,
+        "rot90_iou": 0.9899,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 11.6466,
+        "rms": 1.07517,
+        "mad": 0.93486,
+        "harmonic_2_4": 0.074248,
+        "harmonic_5_12_max": 0.009983,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.76624,
+        "rot90_iou": 0.91589,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 11.4129,
+        "rms": 1.09388,
+        "mad": 0.96235,
+        "harmonic_2_4": 0.06479,
+        "harmonic_5_12_max": 0.014379,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77165,
+        "rot90_iou": 0.98987,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 11.6271,
+        "rms": 1.05094,
+        "mad": 0.92837,
+        "harmonic_2_4": 0.072137,
+        "harmonic_5_12_max": 0.009261,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.76437,
+        "rot90_iou": 0.91569,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.4129,
+        "rms": 1.09388,
+        "mad": 0.96235,
+        "harmonic_2_4": 0.06479,
+        "harmonic_5_12_max": 0.014379,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77165,
+        "rot90_iou": 0.98987,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 11.8292,
+        "rms": 0.9772,
+        "mad": 0.94999,
+        "harmonic_2_4": 0.054425,
+        "harmonic_5_12_max": 0.007508,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.7569,
+        "rot90_iou": 0.99063,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 11.6283,
+        "rms": 1.07316,
+        "mad": 0.89319,
+        "harmonic_2_4": 0.080485,
+        "harmonic_5_12_max": 0.011053,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.73197,
+        "rot90_iou": 0.92506,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 11.5413,
+        "rms": 1.1087,
+        "mad": 0.95183,
+        "harmonic_2_4": 0.072703,
+        "harmonic_5_12_max": 0.013024,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.75316,
+        "rot90_iou": 0.94686,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.4325,
+        "rms": 1.11629,
+        "mad": 0.98406,
+        "harmonic_2_4": 0.068043,
+        "harmonic_5_12_max": 0.015266,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77362,
+        "rot90_iou": 0.9899,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 16.0246,
+        "rms": 1.57496,
+        "mad": 1.42408,
+        "harmonic_2_4": 0.070679,
+        "harmonic_5_12_max": 0.015205,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77538,
+        "rot90_iou": 0.99485,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 16.0246,
+        "rms": 1.57496,
+        "mad": 1.42408,
+        "harmonic_2_4": 0.070679,
+        "harmonic_5_12_max": 0.015205,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77538,
+        "rot90_iou": 0.99485,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 16.0246,
+        "rms": 1.57496,
+        "mad": 1.42408,
+        "harmonic_2_4": 0.070679,
+        "harmonic_5_12_max": 0.015205,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77538,
+        "rot90_iou": 0.99485,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 16.0101,
+        "rms": 1.5553,
+        "mad": 1.42324,
+        "harmonic_2_4": 0.066064,
+        "harmonic_5_12_max": 0.014435,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.77438,
+        "rot90_iou": 0.99742,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 16.232,
+        "rms": 1.5197,
+        "mad": 1.34413,
+        "harmonic_2_4": 0.070784,
+        "harmonic_5_12_max": 0.01288,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.76969,
+        "rot90_iou": 0.9391,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 16.1025,
+        "rms": 1.60093,
+        "mad": 1.47054,
+        "harmonic_2_4": 0.069422,
+        "harmonic_5_12_max": 0.015263,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.7275,
+        "rot90_iou": 0.98471,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 16.2151,
+        "rms": 1.49578,
+        "mad": 1.32027,
+        "harmonic_2_4": 0.069469,
+        "harmonic_5_12_max": 0.012067,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.74151,
+        "rot90_iou": 0.9437,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 16.0812,
+        "rms": 1.58324,
+        "mad": 1.47345,
+        "harmonic_2_4": 0.069584,
+        "harmonic_5_12_max": 0.014953,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.7247,
+        "rot90_iou": 0.98212,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 16.3766,
+        "rms": 1.37602,
+        "mad": 1.38429,
+        "harmonic_2_4": 0.05557,
+        "harmonic_5_12_max": 0.010037,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.76018,
+        "rot90_iou": 0.99266,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 16.3276,
+        "rms": 1.34229,
+        "mad": 1.28873,
+        "harmonic_2_4": 0.054993,
+        "harmonic_5_12_max": 0.007961,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.73012,
+        "rot90_iou": 0.98284,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 16.34,
+        "rms": 1.34463,
+        "mad": 1.28627,
+        "harmonic_2_4": 0.057602,
+        "harmonic_5_12_max": 0.007966,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.73102,
+        "rot90_iou": 0.98529,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "rounded_square",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 16.0478,
+        "rms": 1.54977,
+        "mad": 1.44285,
+        "harmonic_2_4": 0.069344,
+        "harmonic_5_12_max": 0.01375,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.72283,
+        "rot90_iou": 0.98462,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.0802,
+        "rms": 0.64689,
+        "mad": 0.46568,
+        "harmonic_2_4": 0.094022,
+        "harmonic_5_12_max": 0.018623,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42542,
+        "rot90_iou": 0.85714,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.1798,
+        "rms": 0.65624,
+        "mad": 0.55148,
+        "harmonic_2_4": 0.082509,
+        "harmonic_5_12_max": 0.023904,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44724,
+        "rot90_iou": 0.95238,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.1799,
+        "rms": 0.62646,
+        "mad": 0.45643,
+        "harmonic_2_4": 0.076513,
+        "harmonic_5_12_max": 0.02167,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44724,
+        "rot90_iou": 0.95238,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.0802,
+        "rms": 0.64689,
+        "mad": 0.46568,
+        "harmonic_2_4": 0.094022,
+        "harmonic_5_12_max": 0.018623,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42542,
+        "rot90_iou": 0.85714,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 4.8801,
+        "rms": 0.61503,
+        "mad": 0.44499,
+        "harmonic_2_4": 0.06769,
+        "harmonic_5_12_max": 0.022907,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42759,
+        "rot90_iou": 0.84615,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 4.9089,
+        "rms": 0.60096,
+        "mad": 0.4327,
+        "harmonic_2_4": 0.068798,
+        "harmonic_5_12_max": 0.020141,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43353,
+        "rot90_iou": 0.8481,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 4.8801,
+        "rms": 0.61503,
+        "mad": 0.44499,
+        "harmonic_2_4": 0.06769,
+        "harmonic_5_12_max": 0.022907,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42759,
+        "rot90_iou": 0.84615,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 4.8801,
+        "rms": 0.61503,
+        "mad": 0.44499,
+        "harmonic_2_4": 0.06769,
+        "harmonic_5_12_max": 0.022907,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42759,
+        "rot90_iou": 0.84615,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.0802,
+        "rms": 0.64689,
+        "mad": 0.46568,
+        "harmonic_2_4": 0.094022,
+        "harmonic_5_12_max": 0.018623,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42542,
+        "rot90_iou": 0.85714,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.1902,
+        "rms": 0.60367,
+        "mad": 0.45534,
+        "harmonic_2_4": 0.08455,
+        "harmonic_5_12_max": 0.010093,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44724,
+        "rot90_iou": 0.95238,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.1629,
+        "rms": 0.59759,
+        "mad": 0.44432,
+        "harmonic_2_4": 0.084471,
+        "harmonic_5_12_max": 0.01399,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44179,
+        "rot90_iou": 0.92857,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.1118,
+        "rms": 0.61987,
+        "mad": 0.41596,
+        "harmonic_2_4": 0.07973,
+        "harmonic_5_12_max": 0.019128,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43088,
+        "rot90_iou": 0.90361,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.3352,
+        "rms": 0.95833,
+        "mad": 0.73941,
+        "harmonic_2_4": 0.082657,
+        "harmonic_5_12_max": 0.015367,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41233,
+        "rot90_iou": 0.90909,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.2903,
+        "rms": 0.99151,
+        "mad": 0.74705,
+        "harmonic_2_4": 0.083231,
+        "harmonic_5_12_max": 0.012119,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40644,
+        "rot90_iou": 0.90783,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.4109,
+        "rms": 0.9382,
+        "mad": 0.72761,
+        "harmonic_2_4": 0.07191,
+        "harmonic_5_12_max": 0.009859,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42215,
+        "rot90_iou": 0.95455,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.3505,
+        "rms": 0.94662,
+        "mad": 0.73349,
+        "harmonic_2_4": 0.080478,
+        "harmonic_5_12_max": 0.015403,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4143,
+        "rot90_iou": 0.91818,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.1331,
+        "rms": 0.92869,
+        "mad": 0.66733,
+        "harmonic_2_4": 0.067921,
+        "harmonic_5_12_max": 0.012809,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4131,
+        "rot90_iou": 0.90476,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.1331,
+        "rms": 0.92869,
+        "mad": 0.66733,
+        "harmonic_2_4": 0.067921,
+        "harmonic_5_12_max": 0.012809,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4131,
+        "rot90_iou": 0.90476,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.1825,
+        "rms": 0.9189,
+        "mad": 0.63682,
+        "harmonic_2_4": 0.067242,
+        "harmonic_5_12_max": 0.011997,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41929,
+        "rot90_iou": 0.9061,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.1496,
+        "rms": 0.92351,
+        "mad": 0.61027,
+        "harmonic_2_4": 0.067343,
+        "harmonic_5_12_max": 0.011343,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41516,
+        "rot90_iou": 0.90521,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.3352,
+        "rms": 0.95833,
+        "mad": 0.73941,
+        "harmonic_2_4": 0.082657,
+        "harmonic_5_12_max": 0.015367,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41233,
+        "rot90_iou": 0.90909,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.2753,
+        "rms": 0.99113,
+        "mad": 0.74873,
+        "harmonic_2_4": 0.079154,
+        "harmonic_5_12_max": 0.013687,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40448,
+        "rot90_iou": 0.90741,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.3996,
+        "rms": 0.9149,
+        "mad": 0.63028,
+        "harmonic_2_4": 0.06882,
+        "harmonic_5_12_max": 0.012578,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42019,
+        "rot90_iou": 0.94545,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.3056,
+        "rms": 0.95358,
+        "mad": 0.7289,
+        "harmonic_2_4": 0.081968,
+        "harmonic_5_12_max": 0.013615,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40841,
+        "rot90_iou": 0.90826,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 11.5964,
+        "rms": 1.29338,
+        "mad": 0.96971,
+        "harmonic_2_4": 0.076837,
+        "harmonic_5_12_max": 0.015899,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40672,
+        "rot90_iou": 0.93333,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 11.6291,
+        "rms": 1.28147,
+        "mad": 0.95537,
+        "harmonic_2_4": 0.07331,
+        "harmonic_5_12_max": 0.015993,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40973,
+        "rot90_iou": 0.94762,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 11.5967,
+        "rms": 1.28006,
+        "mad": 0.96373,
+        "harmonic_2_4": 0.068769,
+        "harmonic_5_12_max": 0.019868,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40672,
+        "rot90_iou": 0.94258,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.5964,
+        "rms": 1.29338,
+        "mad": 0.96971,
+        "harmonic_2_4": 0.076837,
+        "harmonic_5_12_max": 0.015899,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40672,
+        "rot90_iou": 0.93333,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 11.3936,
+        "rms": 1.26531,
+        "mad": 0.90355,
+        "harmonic_2_4": 0.065294,
+        "harmonic_5_12_max": 0.015038,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40711,
+        "rot90_iou": 0.93103,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 11.4282,
+        "rms": 1.26065,
+        "mad": 0.9244,
+        "harmonic_2_4": 0.069127,
+        "harmonic_5_12_max": 0.015075,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41022,
+        "rot90_iou": 0.93154,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 11.4167,
+        "rms": 1.24317,
+        "mad": 0.86983,
+        "harmonic_2_4": 0.067453,
+        "harmonic_5_12_max": 0.016274,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40919,
+        "rot90_iou": 0.93137,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.3828,
+        "rms": 1.27729,
+        "mad": 0.91,
+        "harmonic_2_4": 0.066697,
+        "harmonic_5_12_max": 0.015831,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40607,
+        "rot90_iou": 0.93086,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 11.5422,
+        "rms": 1.25043,
+        "mad": 0.91053,
+        "harmonic_2_4": 0.074878,
+        "harmonic_5_12_max": 0.014598,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42061,
+        "rot90_iou": 0.93317,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 11.6198,
+        "rms": 1.31112,
+        "mad": 1.0099,
+        "harmonic_2_4": 0.076898,
+        "harmonic_5_12_max": 0.015604,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40873,
+        "rot90_iou": 0.94749,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 11.5975,
+        "rms": 1.31789,
+        "mad": 1.0249,
+        "harmonic_2_4": 0.077023,
+        "harmonic_5_12_max": 0.015737,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40672,
+        "rot90_iou": 0.94258,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "diamond",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.5102,
+        "rms": 1.33115,
+        "mad": 0.98873,
+        "harmonic_2_4": 0.075339,
+        "harmonic_5_12_max": 0.012333,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.39871,
+        "rot90_iou": 0.93204,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.2113,
+        "rms": 1.48952,
+        "mad": 0.63332,
+        "harmonic_2_4": 0.096505,
+        "harmonic_5_12_max": 0.079032,
+        "longest_sign_run": 6,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.40977,
+        "rot90_iou": 0.38,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.2113,
+        "rms": 1.48952,
+        "mad": 0.63332,
+        "harmonic_2_4": 0.096505,
+        "harmonic_5_12_max": 0.079032,
+        "longest_sign_run": 6,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.40977,
+        "rot90_iou": 0.38,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.1207,
+        "rms": 1.70884,
+        "mad": 0.6763,
+        "harmonic_2_4": 0.109949,
+        "harmonic_5_12_max": 0.0614,
+        "longest_sign_run": 12,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.35997,
+        "rot90_iou": 0.36082,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.1389,
+        "rms": 1.70943,
+        "mad": 0.66216,
+        "harmonic_2_4": 0.098735,
+        "harmonic_5_12_max": 0.070213,
+        "longest_sign_run": 10,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.36543,
+        "rot90_iou": 0.35354,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.2957,
+        "rms": 1.56022,
+        "mad": 0.58993,
+        "harmonic_2_4": 0.099947,
+        "harmonic_5_12_max": 0.056377,
+        "longest_sign_run": 8,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.37634,
+        "rot90_iou": 0.35294,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.2957,
+        "rms": 1.56022,
+        "mad": 0.58993,
+        "harmonic_2_4": 0.099947,
+        "harmonic_5_12_max": 0.056377,
+        "longest_sign_run": 8,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.37634,
+        "rot90_iou": 0.35294,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.2757,
+        "rms": 1.57466,
+        "mad": 0.65183,
+        "harmonic_2_4": 0.099844,
+        "harmonic_5_12_max": 0.04915,
+        "longest_sign_run": 5,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.38724,
+        "rot90_iou": 0.36538,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.2759,
+        "rms": 1.56875,
+        "mad": 0.61056,
+        "harmonic_2_4": 0.098875,
+        "harmonic_5_12_max": 0.071797,
+        "longest_sign_run": 9,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.37088,
+        "rot90_iou": 0.36,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.2466,
+        "rms": 1.61539,
+        "mad": 0.61645,
+        "harmonic_2_4": 0.04572,
+        "harmonic_5_12_max": 0.021582,
+        "longest_sign_run": 8,
+        "sector_coverage": 18,
+        "isoperimetric_q": 0.33678,
+        "rot90_iou": 0.31373,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.3241,
+        "rms": 1.65523,
+        "mad": 0.63879,
+        "harmonic_2_4": 0.046182,
+        "harmonic_5_12_max": 0.032952,
+        "longest_sign_run": 7,
+        "sector_coverage": 18,
+        "isoperimetric_q": 0.35186,
+        "rot90_iou": 0.32075,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.3108,
+        "rms": 1.63372,
+        "mad": 0.62915,
+        "harmonic_2_4": 0.033275,
+        "harmonic_5_12_max": 0.028089,
+        "longest_sign_run": 8,
+        "sector_coverage": 18,
+        "isoperimetric_q": 0.35186,
+        "rot90_iou": 0.34615,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.2663,
+        "rms": 1.63207,
+        "mad": 0.58865,
+        "harmonic_2_4": 0.05371,
+        "harmonic_5_12_max": 0.027047,
+        "longest_sign_run": 7,
+        "sector_coverage": 18,
+        "isoperimetric_q": 0.33678,
+        "rot90_iou": 0.31373,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.735,
+        "rms": 2.48061,
+        "mad": 0.89154,
+        "harmonic_2_4": 0.132559,
+        "harmonic_5_12_max": 0.104841,
+        "longest_sign_run": 5,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.37503,
+        "rot90_iou": 0.35461,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.7259,
+        "rms": 2.47297,
+        "mad": 0.88515,
+        "harmonic_2_4": 0.128174,
+        "harmonic_5_12_max": 0.107417,
+        "longest_sign_run": 8,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.3711,
+        "rot90_iou": 0.35484,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.7186,
+        "rms": 2.4731,
+        "mad": 0.89861,
+        "harmonic_2_4": 0.130757,
+        "harmonic_5_12_max": 0.102891,
+        "longest_sign_run": 8,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.37306,
+        "rot90_iou": 0.36201,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.5314,
+        "rms": 2.70982,
+        "mad": 0.9636,
+        "harmonic_2_4": 0.141784,
+        "harmonic_5_12_max": 0.105404,
+        "longest_sign_run": 14,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.36325,
+        "rot90_iou": 0.34545,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.6309,
+        "rms": 2.4932,
+        "mad": 0.8902,
+        "harmonic_2_4": 0.097849,
+        "harmonic_5_12_max": 0.071554,
+        "longest_sign_run": 14,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.36521,
+        "rot90_iou": 0.34783,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.6942,
+        "rms": 2.52569,
+        "mad": 0.93322,
+        "harmonic_2_4": 0.095643,
+        "harmonic_5_12_max": 0.068672,
+        "longest_sign_run": 8,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.36914,
+        "rot90_iou": 0.34767,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.6954,
+        "rms": 2.51934,
+        "mad": 0.96154,
+        "harmonic_2_4": 0.139197,
+        "harmonic_5_12_max": 0.104384,
+        "longest_sign_run": 5,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.37503,
+        "rot90_iou": 0.34507,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.6416,
+        "rms": 2.48485,
+        "mad": 0.86787,
+        "harmonic_2_4": 0.097618,
+        "harmonic_5_12_max": 0.069305,
+        "longest_sign_run": 8,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.36128,
+        "rot90_iou": 0.35294,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.7151,
+        "rms": 2.59239,
+        "mad": 0.85275,
+        "harmonic_2_4": 0.127795,
+        "harmonic_5_12_max": 0.083794,
+        "longest_sign_run": 9,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.35509,
+        "rot90_iou": 0.33803,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.6614,
+        "rms": 2.56853,
+        "mad": 0.80851,
+        "harmonic_2_4": 0.128555,
+        "harmonic_5_12_max": 0.075862,
+        "longest_sign_run": 7,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.35135,
+        "rot90_iou": 0.33808,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.7071,
+        "rms": 2.59072,
+        "mad": 0.86904,
+        "harmonic_2_4": 0.130819,
+        "harmonic_5_12_max": 0.080869,
+        "longest_sign_run": 7,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.35322,
+        "rot90_iou": 0.33099,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.5051,
+        "rms": 2.56434,
+        "mad": 0.86781,
+        "harmonic_2_4": 0.138465,
+        "harmonic_5_12_max": 0.069642,
+        "longest_sign_run": 6,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.36766,
+        "rot90_iou": 0.33835,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.0212,
+        "rms": 3.68667,
+        "mad": 1.16843,
+        "harmonic_2_4": 0.113227,
+        "harmonic_5_12_max": 0.057471,
+        "longest_sign_run": 14,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.35964,
+        "rot90_iou": 0.33706,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.0736,
+        "rms": 3.70385,
+        "mad": 1.24483,
+        "harmonic_2_4": 0.121091,
+        "harmonic_5_12_max": 0.060764,
+        "longest_sign_run": 14,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.3452,
+        "rot90_iou": 0.33458,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.0081,
+        "rms": 3.70521,
+        "mad": 1.26172,
+        "harmonic_2_4": 0.110554,
+        "harmonic_5_12_max": 0.057149,
+        "longest_sign_run": 14,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.36064,
+        "rot90_iou": 0.33581,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.8713,
+        "rms": 3.62168,
+        "mad": 1.14423,
+        "harmonic_2_4": 0.108334,
+        "harmonic_5_12_max": 0.057617,
+        "longest_sign_run": 14,
+        "sector_coverage": 19,
+        "isoperimetric_q": 0.36661,
+        "rot90_iou": 0.33208,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.1403,
+        "rms": 3.49889,
+        "mad": 1.23676,
+        "harmonic_2_4": 0.128664,
+        "harmonic_5_12_max": 0.108475,
+        "longest_sign_run": 14,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.36465,
+        "rot90_iou": 0.35065,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.0461,
+        "rms": 3.74784,
+        "mad": 1.26265,
+        "harmonic_2_4": 0.128789,
+        "harmonic_5_12_max": 0.110181,
+        "longest_sign_run": 14,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.35197,
+        "rot90_iou": 0.34317,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.154,
+        "rms": 3.50115,
+        "mad": 1.26413,
+        "harmonic_2_4": 0.129111,
+        "harmonic_5_12_max": 0.110364,
+        "longest_sign_run": 14,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.36565,
+        "rot90_iou": 0.34438,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 11.9228,
+        "rms": 3.69357,
+        "mad": 1.30096,
+        "harmonic_2_4": 0.125488,
+        "harmonic_5_12_max": 0.113396,
+        "longest_sign_run": 14,
+        "sector_coverage": 21,
+        "isoperimetric_q": 0.36064,
+        "rot90_iou": 0.34078,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.1482,
+        "rms": 3.55216,
+        "mad": 1.02003,
+        "harmonic_2_4": 0.092431,
+        "harmonic_5_12_max": 0.106746,
+        "longest_sign_run": 14,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.35293,
+        "rot90_iou": 0.34438,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.1357,
+        "rms": 3.55008,
+        "mad": 1.03505,
+        "harmonic_2_4": 0.095387,
+        "harmonic_5_12_max": 0.105769,
+        "longest_sign_run": 14,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.35003,
+        "rot90_iou": 0.34074,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.1317,
+        "rms": 3.53791,
+        "mad": 0.98011,
+        "harmonic_2_4": 0.149884,
+        "harmonic_5_12_max": 0.077358,
+        "longest_sign_run": 14,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.35003,
+        "rot90_iou": 0.34572,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "crescent",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 12.0127,
+        "rms": 3.52535,
+        "mad": 1.07128,
+        "harmonic_2_4": 0.093605,
+        "harmonic_5_12_max": 0.074897,
+        "longest_sign_run": 7,
+        "sector_coverage": 20,
+        "isoperimetric_q": 0.35663,
+        "rot90_iou": 0.33333,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.6087,
+        "rms": 1.32472,
+        "mad": 0.48807,
+        "harmonic_2_4": 0.155929,
+        "harmonic_5_12_max": 0.041646,
+        "longest_sign_run": 8,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.42233,
+        "rot90_iou": 0.64706,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.6146,
+        "rms": 1.30924,
+        "mad": 0.48418,
+        "harmonic_2_4": 0.194612,
+        "harmonic_5_12_max": 0.030245,
+        "longest_sign_run": 9,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42664,
+        "rot90_iou": 0.66387,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.6406,
+        "rms": 1.34734,
+        "mad": 0.44356,
+        "harmonic_2_4": 0.195805,
+        "harmonic_5_12_max": 0.029685,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43095,
+        "rot90_iou": 0.65289,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.6091,
+        "rms": 1.33871,
+        "mad": 0.45641,
+        "harmonic_2_4": 0.152759,
+        "harmonic_5_12_max": 0.046548,
+        "longest_sign_run": 6,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.42233,
+        "rot90_iou": 0.64706,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.612,
+        "rms": 1.35709,
+        "mad": 0.46926,
+        "harmonic_2_4": 0.198875,
+        "harmonic_5_12_max": 0.025461,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42664,
+        "rot90_iou": 0.65,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.6195,
+        "rms": 1.36038,
+        "mad": 0.42232,
+        "harmonic_2_4": 0.204597,
+        "harmonic_5_12_max": 0.026767,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43095,
+        "rot90_iou": 0.66667,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.6459,
+        "rms": 1.3989,
+        "mad": 0.43968,
+        "harmonic_2_4": 0.150302,
+        "harmonic_5_12_max": 0.033596,
+        "longest_sign_run": 7,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.43525,
+        "rot90_iou": 0.66942,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.5311,
+        "rms": 1.34005,
+        "mad": 0.4968,
+        "harmonic_2_4": 0.201904,
+        "harmonic_5_12_max": 0.03044,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41371,
+        "rot90_iou": 0.65517,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.5643,
+        "rms": 1.39666,
+        "mad": 0.53737,
+        "harmonic_2_4": 0.214247,
+        "harmonic_5_12_max": 0.029194,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36235,
+        "rot90_iou": 0.65812,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.6075,
+        "rms": 1.39268,
+        "mad": 0.61077,
+        "harmonic_2_4": 0.201988,
+        "harmonic_5_12_max": 0.034365,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36982,
+        "rot90_iou": 0.65,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.6461,
+        "rms": 1.44049,
+        "mad": 0.50067,
+        "harmonic_2_4": 0.184174,
+        "harmonic_5_12_max": 0.035552,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.34907,
+        "rot90_iou": 0.66667,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.5407,
+        "rms": 1.44308,
+        "mad": 0.55672,
+        "harmonic_2_4": 0.167953,
+        "harmonic_5_12_max": 0.030988,
+        "longest_sign_run": 8,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.38068,
+        "rot90_iou": 0.62393,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.2721,
+        "rms": 2.34004,
+        "mad": 0.65518,
+        "harmonic_2_4": 0.182488,
+        "harmonic_5_12_max": 0.032296,
+        "longest_sign_run": 8,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.38399,
+        "rot90_iou": 0.65644,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.1669,
+        "rms": 2.28722,
+        "mad": 0.75637,
+        "harmonic_2_4": 0.187079,
+        "harmonic_5_12_max": 0.035597,
+        "longest_sign_run": 8,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.41267,
+        "rot90_iou": 0.65217,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.2069,
+        "rms": 2.30292,
+        "mad": 0.70149,
+        "harmonic_2_4": 0.188816,
+        "harmonic_5_12_max": 0.034564,
+        "longest_sign_run": 8,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.41733,
+        "rot90_iou": 0.65538,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.0605,
+        "rms": 2.51776,
+        "mad": 0.78763,
+        "harmonic_2_4": 0.185662,
+        "harmonic_5_12_max": 0.034883,
+        "longest_sign_run": 8,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.39344,
+        "rot90_iou": 0.65625,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.1749,
+        "rms": 2.36033,
+        "mad": 0.70136,
+        "harmonic_2_4": 0.247164,
+        "harmonic_5_12_max": 0.043676,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.3783,
+        "rot90_iou": 0.64706,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.2086,
+        "rms": 2.35876,
+        "mad": 0.74788,
+        "harmonic_2_4": 0.244975,
+        "harmonic_5_12_max": 0.045007,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38114,
+        "rot90_iou": 0.64417,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.229,
+        "rms": 2.3699,
+        "mad": 0.73016,
+        "harmonic_2_4": 0.250323,
+        "harmonic_5_12_max": 0.046037,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38399,
+        "rot90_iou": 0.65138,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.0925,
+        "rms": 2.30976,
+        "mad": 0.73888,
+        "harmonic_2_4": 0.25254,
+        "harmonic_5_12_max": 0.042604,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40802,
+        "rot90_iou": 0.64375,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.2615,
+        "rms": 2.42125,
+        "mad": 0.81229,
+        "harmonic_2_4": 0.246383,
+        "harmonic_5_12_max": 0.047268,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37361,
+        "rot90_iou": 0.65559,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.236,
+        "rms": 2.42269,
+        "mad": 0.80043,
+        "harmonic_2_4": 0.253074,
+        "harmonic_5_12_max": 0.045198,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37088,
+        "rot90_iou": 0.64848,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.2397,
+        "rms": 2.41258,
+        "mad": 0.79516,
+        "harmonic_2_4": 0.253522,
+        "harmonic_5_12_max": 0.046634,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37088,
+        "rot90_iou": 0.65854,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.1055,
+        "rms": 2.45386,
+        "mad": 0.76817,
+        "harmonic_2_4": 0.182383,
+        "harmonic_5_12_max": 0.037065,
+        "longest_sign_run": 9,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.39047,
+        "rot90_iou": 0.63863,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.7933,
+        "rms": 3.27448,
+        "mad": 0.96678,
+        "harmonic_2_4": 0.183801,
+        "harmonic_5_12_max": 0.035994,
+        "longest_sign_run": 11,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.38591,
+        "rot90_iou": 0.65287,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.7582,
+        "rms": 3.2676,
+        "mad": 0.9264,
+        "harmonic_2_4": 0.181901,
+        "harmonic_5_12_max": 0.036753,
+        "longest_sign_run": 8,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.38294,
+        "rot90_iou": 0.648,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.6857,
+        "rms": 3.52643,
+        "mad": 1.01656,
+        "harmonic_2_4": 0.268151,
+        "harmonic_5_12_max": 0.048151,
+        "longest_sign_run": 11,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37287,
+        "rot90_iou": 0.6465,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 12.6096,
+        "rms": 3.48418,
+        "mad": 0.99113,
+        "harmonic_2_4": 0.189185,
+        "harmonic_5_12_max": 0.036565,
+        "longest_sign_run": 11,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.3671,
+        "rot90_iou": 0.6526,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.7712,
+        "rms": 3.34144,
+        "mad": 0.97462,
+        "harmonic_2_4": 0.26665,
+        "harmonic_5_12_max": 0.049098,
+        "longest_sign_run": 20,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38591,
+        "rot90_iou": 0.64762,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.8076,
+        "rms": 3.34461,
+        "mad": 0.90158,
+        "harmonic_2_4": 0.258423,
+        "harmonic_5_12_max": 0.045178,
+        "longest_sign_run": 11,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38889,
+        "rot90_iou": 0.65769,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.7842,
+        "rms": 3.34399,
+        "mad": 0.97704,
+        "harmonic_2_4": 0.267574,
+        "harmonic_5_12_max": 0.047651,
+        "longest_sign_run": 10,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38666,
+        "rot90_iou": 0.64557,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 12.7415,
+        "rms": 3.2992,
+        "mad": 0.93933,
+        "harmonic_2_4": 0.26568,
+        "harmonic_5_12_max": 0.046057,
+        "longest_sign_run": 10,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38368,
+        "rot90_iou": 0.64856,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.767,
+        "rms": 3.33976,
+        "mad": 1.10082,
+        "harmonic_2_4": 0.269341,
+        "harmonic_5_12_max": 0.049655,
+        "longest_sign_run": 20,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37647,
+        "rot90_iou": 0.63636,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.7865,
+        "rms": 3.38676,
+        "mad": 1.00249,
+        "harmonic_2_4": 0.273972,
+        "harmonic_5_12_max": 0.050249,
+        "longest_sign_run": 11,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36392,
+        "rot90_iou": 0.64557,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.7854,
+        "rms": 3.34581,
+        "mad": 1.03657,
+        "harmonic_2_4": 0.268455,
+        "harmonic_5_12_max": 0.048454,
+        "longest_sign_run": 20,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36462,
+        "rot90_iou": 0.6566,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "pacman",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 12.6011,
+        "rms": 3.32337,
+        "mad": 1.03716,
+        "harmonic_2_4": 0.276386,
+        "harmonic_5_12_max": 0.047348,
+        "longest_sign_run": 9,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37699,
+        "rot90_iou": 0.62761,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 6.2048,
+        "rms": 0.32477,
+        "mad": 0.20156,
+        "harmonic_2_4": 0.005253,
+        "harmonic_5_12_max": 0.027835,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6545,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.2048,
+        "rms": 0.32477,
+        "mad": 0.20156,
+        "harmonic_2_4": 0.005253,
+        "harmonic_5_12_max": 0.027835,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6545,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.2048,
+        "rms": 0.32477,
+        "mad": 0.20156,
+        "harmonic_2_4": 0.005253,
+        "harmonic_5_12_max": 0.027835,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6545,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.9861,
+        "rms": 0.35055,
+        "mad": 0.28317,
+        "harmonic_2_4": 0.005445,
+        "harmonic_5_12_max": 0.012038,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61087,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.9852,
+        "rms": 0.39318,
+        "mad": 0.33303,
+        "harmonic_2_4": 0.033158,
+        "harmonic_5_12_max": 0.013725,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.61087,
+        "rot90_iou": 0.93103,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 6.0962,
+        "rms": 0.34018,
+        "mad": 0.25748,
+        "harmonic_2_4": 0.006283,
+        "harmonic_5_12_max": 0.01304,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63268,
+        "rot90_iou": 0.9661,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 6.0962,
+        "rms": 0.34018,
+        "mad": 0.25748,
+        "harmonic_2_4": 0.006283,
+        "harmonic_5_12_max": 0.01304,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63268,
+        "rot90_iou": 0.9661,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.9474,
+        "rms": 0.40373,
+        "mad": 0.36168,
+        "harmonic_2_4": 0.022786,
+        "harmonic_5_12_max": 0.019226,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.55292,
+        "rot90_iou": 0.89655,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.9506,
+        "rms": 0.36303,
+        "mad": 0.1782,
+        "harmonic_2_4": 0.034835,
+        "harmonic_5_12_max": 0.007112,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.70751,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.8892,
+        "rms": 0.38421,
+        "mad": 0.23539,
+        "harmonic_2_4": 0.039789,
+        "harmonic_5_12_max": 0.008,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.69453,
+        "rot90_iou": 0.9633,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.9506,
+        "rms": 0.36303,
+        "mad": 0.1782,
+        "harmonic_2_4": 0.034835,
+        "harmonic_5_12_max": 0.007112,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.70751,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.9199,
+        "rms": 0.3833,
+        "mad": 0.25088,
+        "harmonic_2_4": 0.042594,
+        "harmonic_5_12_max": 0.005504,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.70102,
+        "rot90_iou": 0.98165,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.5656,
+        "rms": 0.41378,
+        "mad": 0.38845,
+        "harmonic_2_4": 0.013971,
+        "harmonic_5_12_max": 0.018452,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.68844,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.5656,
+        "rms": 0.41378,
+        "mad": 0.38845,
+        "harmonic_2_4": 0.013971,
+        "harmonic_5_12_max": 0.018452,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.68844,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.5656,
+        "rms": 0.41378,
+        "mad": 0.38845,
+        "harmonic_2_4": 0.013971,
+        "harmonic_5_12_max": 0.018452,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.68844,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.4133,
+        "rms": 0.44199,
+        "mad": 0.27138,
+        "harmonic_2_4": 0.013243,
+        "harmonic_5_12_max": 0.015482,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.66904,
+        "rot90_iou": 0.97143,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.4972,
+        "rms": 0.40126,
+        "mad": 0.30905,
+        "harmonic_2_4": 0.016586,
+        "harmonic_5_12_max": 0.012299,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.64714,
+        "rot90_iou": 0.91186,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.3748,
+        "rms": 0.39719,
+        "mad": 0.2919,
+        "harmonic_2_4": 0.015051,
+        "harmonic_5_12_max": 0.016538,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.66419,
+        "rot90_iou": 0.96416,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.4426,
+        "rms": 0.44464,
+        "mad": 0.33738,
+        "harmonic_2_4": 0.020032,
+        "harmonic_5_12_max": 0.017488,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.60482,
+        "rot90_iou": 0.93728,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.3748,
+        "rms": 0.39719,
+        "mad": 0.2919,
+        "harmonic_2_4": 0.015051,
+        "harmonic_5_12_max": 0.016538,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.66419,
+        "rot90_iou": 0.96416,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.8127,
+        "rms": 0.37221,
+        "mad": 0.30079,
+        "harmonic_2_4": 0.005172,
+        "harmonic_5_12_max": 0.015345,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65486,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.7953,
+        "rms": 0.36881,
+        "mad": 0.2959,
+        "harmonic_2_4": 0.010128,
+        "harmonic_5_12_max": 0.012506,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65269,
+        "rot90_iou": 0.99336,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.7778,
+        "rms": 0.3662,
+        "mad": 0.20742,
+        "harmonic_2_4": 0.009073,
+        "harmonic_5_12_max": 0.011354,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65051,
+        "rot90_iou": 0.98671,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.6013,
+        "rms": 0.39484,
+        "mad": 0.29431,
+        "harmonic_2_4": 0.012224,
+        "harmonic_5_12_max": 0.007654,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.62875,
+        "rot90_iou": 0.9727,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.4264,
+        "rms": 0.43221,
+        "mad": 0.378,
+        "harmonic_2_4": 0.004938,
+        "harmonic_5_12_max": 0.013411,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65527,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.4264,
+        "rms": 0.43221,
+        "mad": 0.378,
+        "harmonic_2_4": 0.004938,
+        "harmonic_5_12_max": 0.013411,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65527,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.4264,
+        "rms": 0.43221,
+        "mad": 0.378,
+        "harmonic_2_4": 0.004938,
+        "harmonic_5_12_max": 0.013411,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65527,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.4264,
+        "rms": 0.43221,
+        "mad": 0.378,
+        "harmonic_2_4": 0.004938,
+        "harmonic_5_12_max": 0.013411,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65527,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.4264,
+        "rms": 0.43221,
+        "mad": 0.378,
+        "harmonic_2_4": 0.004938,
+        "harmonic_5_12_max": 0.013411,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65527,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.3747,
+        "rms": 0.47905,
+        "mad": 0.31677,
+        "harmonic_2_4": 0.007137,
+        "harmonic_5_12_max": 0.013786,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65063,
+        "rot90_iou": 0.98582,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.3748,
+        "rms": 0.45095,
+        "mad": 0.29591,
+        "harmonic_2_4": 0.00453,
+        "harmonic_5_12_max": 0.012394,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.65063,
+        "rot90_iou": 0.99288,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.3488,
+        "rms": 0.45779,
+        "mad": 0.31207,
+        "harmonic_2_4": 0.003036,
+        "harmonic_5_12_max": 0.013477,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.6483,
+        "rot90_iou": 0.97872,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.6484,
+        "rms": 0.48091,
+        "mad": 0.28983,
+        "harmonic_2_4": 0.007234,
+        "harmonic_5_12_max": 0.014864,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.63026,
+        "rot90_iou": 1.0,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.4036,
+        "rms": 0.48736,
+        "mad": 0.36804,
+        "harmonic_2_4": 0.009871,
+        "harmonic_5_12_max": 0.007078,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.50811,
+        "rot90_iou": 0.96167,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.4774,
+        "rms": 0.5268,
+        "mad": 0.36902,
+        "harmonic_2_4": 0.01221,
+        "harmonic_5_12_max": 0.011119,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.48209,
+        "rot90_iou": 0.96897,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "octagon",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.2401,
+        "rms": 0.48953,
+        "mad": 0.44193,
+        "harmonic_2_4": 0.01797,
+        "harmonic_5_12_max": 0.007962,
+        "longest_sign_run": 3,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.58824,
+        "rot90_iou": 0.98545,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.5919,
+        "rms": 0.56651,
+        "mad": 0.5,
+        "harmonic_2_4": 0.023761,
+        "harmonic_5_12_max": 0.030869,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44614,
+        "rot90_iou": 0.74545,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.5413,
+        "rms": 0.55864,
+        "mad": 0.41669,
+        "harmonic_2_4": 0.029598,
+        "harmonic_5_12_max": 0.023451,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4725,
+        "rot90_iou": 0.75701,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.5919,
+        "rms": 0.56651,
+        "mad": 0.5,
+        "harmonic_2_4": 0.023761,
+        "harmonic_5_12_max": 0.030869,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44614,
+        "rot90_iou": 0.74545,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.5413,
+        "rms": 0.55864,
+        "mad": 0.41669,
+        "harmonic_2_4": 0.029598,
+        "harmonic_5_12_max": 0.023451,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4725,
+        "rot90_iou": 0.75701,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.4575,
+        "rms": 0.44225,
+        "mad": 0.33969,
+        "harmonic_2_4": 0.028499,
+        "harmonic_5_12_max": 0.015768,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.50178,
+        "rot90_iou": 0.84,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.48,
+        "rms": 0.54449,
+        "mad": 0.38474,
+        "harmonic_2_4": 0.040326,
+        "harmonic_5_12_max": 0.023937,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.50178,
+        "rot90_iou": 0.76923,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.4101,
+        "rms": 0.50196,
+        "mad": 0.38346,
+        "harmonic_2_4": 0.030618,
+        "harmonic_5_12_max": 0.017043,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.49087,
+        "rot90_iou": 0.8,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.3486,
+        "rms": 0.52732,
+        "mad": 0.42625,
+        "harmonic_2_4": 0.031837,
+        "harmonic_5_12_max": 0.024263,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.47997,
+        "rot90_iou": 0.77778,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.2042,
+        "rms": 0.52785,
+        "mad": 0.47851,
+        "harmonic_2_4": 0.028326,
+        "harmonic_5_12_max": 0.046177,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.45815,
+        "rot90_iou": 0.76842,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.2596,
+        "rms": 0.58063,
+        "mad": 0.46131,
+        "harmonic_2_4": 0.026696,
+        "harmonic_5_12_max": 0.046882,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42726,
+        "rot90_iou": 0.75258,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.1801,
+        "rms": 0.53142,
+        "mad": 0.47873,
+        "harmonic_2_4": 0.015868,
+        "harmonic_5_12_max": 0.049893,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.45269,
+        "rot90_iou": 0.74737,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.1519,
+        "rms": 0.51696,
+        "mad": 0.44486,
+        "harmonic_2_4": 0.024884,
+        "harmonic_5_12_max": 0.04525,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44724,
+        "rot90_iou": 0.76344,
+        "existing_circle": true
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.7178,
+        "rms": 0.84362,
+        "mad": 0.83595,
+        "harmonic_2_4": 0.024352,
+        "harmonic_5_12_max": 0.050527,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38134,
+        "rot90_iou": 0.72794,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.7308,
+        "rms": 0.85564,
+        "mad": 0.88201,
+        "harmonic_2_4": 0.021329,
+        "harmonic_5_12_max": 0.051373,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38296,
+        "rot90_iou": 0.72263,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.7178,
+        "rms": 0.84362,
+        "mad": 0.83595,
+        "harmonic_2_4": 0.024352,
+        "harmonic_5_12_max": 0.050527,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38134,
+        "rot90_iou": 0.72794,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.7152,
+        "rms": 0.82657,
+        "mad": 0.7697,
+        "harmonic_2_4": 0.019497,
+        "harmonic_5_12_max": 0.049038,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38296,
+        "rot90_iou": 0.73529,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.8429,
+        "rms": 0.75556,
+        "mad": 0.52659,
+        "harmonic_2_4": 0.013674,
+        "harmonic_5_12_max": 0.035333,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36078,
+        "rot90_iou": 0.77372,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.8411,
+        "rms": 0.78859,
+        "mad": 0.57751,
+        "harmonic_2_4": 0.02247,
+        "harmonic_5_12_max": 0.0412,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36078,
+        "rot90_iou": 0.76727,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.8795,
+        "rms": 0.79391,
+        "mad": 0.68447,
+        "harmonic_2_4": 0.016669,
+        "harmonic_5_12_max": 0.041262,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.33543,
+        "rot90_iou": 0.75714,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.8439,
+        "rms": 0.78725,
+        "mad": 0.6161,
+        "harmonic_2_4": 0.018786,
+        "harmonic_5_12_max": 0.041552,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.32998,
+        "rot90_iou": 0.75362,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 8.8304,
+        "rms": 0.7364,
+        "mad": 0.55231,
+        "harmonic_2_4": 0.019958,
+        "harmonic_5_12_max": 0.02786,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43099,
+        "rot90_iou": 0.78598,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 8.8681,
+        "rms": 0.75011,
+        "mad": 0.56051,
+        "harmonic_2_4": 0.016237,
+        "harmonic_5_12_max": 0.030172,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41457,
+        "rot90_iou": 0.77455,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 8.8968,
+        "rms": 0.77872,
+        "mad": 0.55972,
+        "harmonic_2_4": 0.021958,
+        "harmonic_5_12_max": 0.030181,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.39594,
+        "rot90_iou": 0.77455,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 8.7939,
+        "rms": 0.71293,
+        "mad": 0.52195,
+        "harmonic_2_4": 0.020913,
+        "harmonic_5_12_max": 0.026182,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42565,
+        "rot90_iou": 0.80377,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.2389,
+        "rms": 0.96889,
+        "mad": 0.81549,
+        "harmonic_2_4": 0.013595,
+        "harmonic_5_12_max": 0.036584,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37921,
+        "rot90_iou": 0.78462,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.26,
+        "rms": 0.95957,
+        "mad": 0.87074,
+        "harmonic_2_4": 0.010779,
+        "harmonic_5_12_max": 0.034115,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38085,
+        "rot90_iou": 0.77863,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.2796,
+        "rms": 0.96327,
+        "mad": 0.87502,
+        "harmonic_2_4": 0.012012,
+        "harmonic_5_12_max": 0.037241,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.3833,
+        "rot90_iou": 0.77652,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 12.1956,
+        "rms": 0.97028,
+        "mad": 0.87897,
+        "harmonic_2_4": 0.011701,
+        "harmonic_5_12_max": 0.037759,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.3909,
+        "rot90_iou": 0.76718,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.3141,
+        "rms": 1.00927,
+        "mad": 0.81198,
+        "harmonic_2_4": 0.003672,
+        "harmonic_5_12_max": 0.041046,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38575,
+        "rot90_iou": 0.76449,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.3115,
+        "rms": 0.99826,
+        "mad": 0.80949,
+        "harmonic_2_4": 0.010794,
+        "harmonic_5_12_max": 0.039989,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38575,
+        "rot90_iou": 0.76449,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.2896,
+        "rms": 0.95816,
+        "mad": 0.80255,
+        "harmonic_2_4": 0.007725,
+        "harmonic_5_12_max": 0.036188,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38412,
+        "rot90_iou": 0.77358,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 12.2588,
+        "rms": 0.99964,
+        "mad": 0.81756,
+        "harmonic_2_4": 0.010843,
+        "harmonic_5_12_max": 0.040378,
+        "longest_sign_run": 2,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.38085,
+        "rot90_iou": 0.76181,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 12.3996,
+        "rms": 1.078,
+        "mad": 0.86076,
+        "harmonic_2_4": 0.012653,
+        "harmonic_5_12_max": 0.042059,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36125,
+        "rot90_iou": 0.74444,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 12.4021,
+        "rms": 1.08431,
+        "mad": 0.88445,
+        "harmonic_2_4": 0.011582,
+        "harmonic_5_12_max": 0.041172,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.36125,
+        "rot90_iou": 0.74122,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 12.4266,
+        "rms": 1.02991,
+        "mad": 0.86741,
+        "harmonic_2_4": 0.011171,
+        "harmonic_5_12_max": 0.039829,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.3736,
+        "rot90_iou": 0.76119,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "gear",
+      "class": "negative",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 12.2445,
+        "rms": 0.97717,
+        "mad": 0.69475,
+        "harmonic_2_4": 0.008515,
+        "harmonic_5_12_max": 0.033859,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.37431,
+        "rot90_iou": 0.77864,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.7595,
+        "rms": 1.04322,
+        "mad": 0.44072,
+        "harmonic_2_4": 0.185471,
+        "harmonic_5_12_max": 0.035461,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.47867,
+        "rot90_iou": 0.73109,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.7621,
+        "rms": 1.04193,
+        "mad": 0.46265,
+        "harmonic_2_4": 0.182384,
+        "harmonic_5_12_max": 0.033028,
+        "longest_sign_run": 4,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.47867,
+        "rot90_iou": 0.71667,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.7867,
+        "rms": 1.07257,
+        "mad": 0.45051,
+        "harmonic_2_4": 0.189716,
+        "harmonic_5_12_max": 0.033632,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.47867,
+        "rot90_iou": 0.70248,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.7331,
+        "rms": 1.01605,
+        "mad": 0.43666,
+        "harmonic_2_4": 0.16662,
+        "harmonic_5_12_max": 0.033465,
+        "longest_sign_run": 5,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.46938,
+        "rot90_iou": 0.71186,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.7837,
+        "rms": 1.08267,
+        "mad": 0.44312,
+        "harmonic_2_4": 0.189475,
+        "harmonic_5_12_max": 0.035424,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44818,
+        "rot90_iou": 0.73333,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.8195,
+        "rms": 1.0557,
+        "mad": 0.42862,
+        "harmonic_2_4": 0.169353,
+        "harmonic_5_12_max": 0.031032,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4568,
+        "rot90_iou": 0.75207,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.8358,
+        "rms": 1.13915,
+        "mad": 0.38924,
+        "harmonic_2_4": 0.192206,
+        "harmonic_5_12_max": 0.030182,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4568,
+        "rot90_iou": 0.72358,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.729,
+        "rms": 1.10613,
+        "mad": 0.41857,
+        "harmonic_2_4": 0.17518,
+        "harmonic_5_12_max": 0.036823,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43956,
+        "rot90_iou": 0.71429,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 5.8145,
+        "rms": 0.95512,
+        "mad": 0.42968,
+        "harmonic_2_4": 0.105553,
+        "harmonic_5_12_max": 0.032143,
+        "longest_sign_run": 7,
+        "sector_coverage": 23,
+        "isoperimetric_q": 0.40873,
+        "rot90_iou": 0.71429,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 5.8018,
+        "rms": 1.146,
+        "mad": 0.48792,
+        "harmonic_2_4": 0.185518,
+        "harmonic_5_12_max": 0.039383,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.3885,
+        "rot90_iou": 0.67742,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 5.7996,
+        "rms": 0.88984,
+        "mad": 0.41423,
+        "harmonic_2_4": 0.145136,
+        "harmonic_5_12_max": 0.043956,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44387,
+        "rot90_iou": 0.74576,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 6.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 5.7511,
+        "rms": 0.93332,
+        "mad": 0.50628,
+        "harmonic_2_4": 0.164053,
+        "harmonic_5_12_max": 0.029257,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.46473,
+        "rot90_iou": 0.7094,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.5295,
+        "rms": 1.71571,
+        "mad": 0.55419,
+        "harmonic_2_4": 0.174895,
+        "harmonic_5_12_max": 0.032273,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.4406,
+        "rot90_iou": 0.74233,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.5995,
+        "rms": 1.51606,
+        "mad": 0.50413,
+        "harmonic_2_4": 0.160916,
+        "harmonic_5_12_max": 0.031945,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.46248,
+        "rot90_iou": 0.75385,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.636,
+        "rms": 1.52358,
+        "mad": 0.50023,
+        "harmonic_2_4": 0.161424,
+        "harmonic_5_12_max": 0.030841,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.46734,
+        "rot90_iou": 0.76147,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.563,
+        "rms": 1.48312,
+        "mad": 0.49065,
+        "harmonic_2_4": 0.161559,
+        "harmonic_5_12_max": 0.030048,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.45761,
+        "rot90_iou": 0.75155,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.5278,
+        "rms": 1.56737,
+        "mad": 0.56215,
+        "harmonic_2_4": 0.166951,
+        "harmonic_5_12_max": 0.036486,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.45599,
+        "rot90_iou": 0.72393,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.549,
+        "rms": 1.54148,
+        "mad": 0.55632,
+        "harmonic_2_4": 0.164321,
+        "harmonic_5_12_max": 0.032988,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.45923,
+        "rot90_iou": 0.7362,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.5507,
+        "rms": 1.53983,
+        "mad": 0.55956,
+        "harmonic_2_4": 0.164344,
+        "harmonic_5_12_max": 0.031393,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.45923,
+        "rot90_iou": 0.7362,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.5186,
+        "rms": 1.53684,
+        "mad": 0.5631,
+        "harmonic_2_4": 0.164322,
+        "harmonic_5_12_max": 0.033305,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.45599,
+        "rot90_iou": 0.73994,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 9.6247,
+        "rms": 1.6409,
+        "mad": 0.63002,
+        "harmonic_2_4": 0.183139,
+        "harmonic_5_12_max": 0.033012,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42462,
+        "rot90_iou": 0.71772,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 9.544,
+        "rms": 1.59207,
+        "mad": 0.61987,
+        "harmonic_2_4": 0.179748,
+        "harmonic_5_12_max": 0.031366,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41868,
+        "rot90_iou": 0.72477,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 9.5537,
+        "rms": 1.61486,
+        "mad": 0.60794,
+        "harmonic_2_4": 0.179786,
+        "harmonic_5_12_max": 0.034672,
+        "longest_sign_run": 6,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43594,
+        "rot90_iou": 0.70821,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 10.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 9.4076,
+        "rms": 1.64675,
+        "mad": 0.57137,
+        "harmonic_2_4": 0.186604,
+        "harmonic_5_12_max": 0.039453,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.46215,
+        "rot90_iou": 0.7,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.291,
+        "rms": 2.22308,
+        "mad": 0.71716,
+        "harmonic_2_4": 0.17851,
+        "harmonic_5_12_max": 0.034183,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44623,
+        "rot90_iou": 0.73333,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.2421,
+        "rms": 2.2205,
+        "mad": 0.74897,
+        "harmonic_2_4": 0.179747,
+        "harmonic_5_12_max": 0.03459,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44214,
+        "rot90_iou": 0.72568,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.2542,
+        "rms": 2.21236,
+        "mad": 0.73856,
+        "harmonic_2_4": 0.174785,
+        "harmonic_5_12_max": 0.034546,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44296,
+        "rot90_iou": 0.72611,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.0,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.1874,
+        "rms": 2.18032,
+        "mad": 0.71588,
+        "harmonic_2_4": 0.168929,
+        "harmonic_5_12_max": 0.034012,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43724,
+        "rot90_iou": 0.72859,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.298,
+        "rms": 2.29251,
+        "mad": 0.7287,
+        "harmonic_2_4": 0.18308,
+        "harmonic_5_12_max": 0.036162,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43218,
+        "rot90_iou": 0.7224,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.3215,
+        "rms": 2.28723,
+        "mad": 0.70391,
+        "harmonic_2_4": 0.182916,
+        "harmonic_5_12_max": 0.035887,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43376,
+        "rot90_iou": 0.72871,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.3282,
+        "rms": 2.32818,
+        "mad": 0.7163,
+        "harmonic_2_4": 0.183554,
+        "harmonic_5_12_max": 0.037814,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.43455,
+        "rot90_iou": 0.71831,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.25,
+        0.0
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.2756,
+        "rms": 2.30401,
+        "mad": 0.76588,
+        "harmonic_2_4": 0.184754,
+        "harmonic_5_12_max": 0.036348,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.44623,
+        "rot90_iou": 0.71698,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "clean",
+      "metrics": {
+        "radius": 13.2905,
+        "rms": 2.29198,
+        "mad": 0.79193,
+        "harmonic_2_4": 0.188159,
+        "harmonic_5_12_max": 0.037129,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.42108,
+        "rot90_iou": 0.7401,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q45",
+      "metrics": {
+        "radius": 13.2676,
+        "rms": 2.2926,
+        "mad": 0.76369,
+        "harmonic_2_4": 0.190176,
+        "harmonic_5_12_max": 0.037405,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41878,
+        "rot90_iou": 0.73333,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "q30",
+      "metrics": {
+        "radius": 13.2704,
+        "rms": 2.27625,
+        "mad": 0.78415,
+        "harmonic_2_4": 0.185169,
+        "harmonic_5_12_max": 0.037611,
+        "longest_sign_run": 8,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.41878,
+        "rot90_iou": 0.73609,
+        "existing_circle": false
+      }
+    },
+    {
+      "shape": "bitten",
+      "class": "appeal",
+      "radius": 14.0,
+      "phase": [
+        0.5,
+        0.5
+      ],
+      "condition": "gamma13_q30",
+      "metrics": {
+        "radius": 13.1373,
+        "rms": 2.24596,
+        "mad": 0.83286,
+        "harmonic_2_4": 0.186823,
+        "harmonic_5_12_max": 0.039063,
+        "longest_sign_run": 7,
+        "sector_coverage": 24,
+        "isoperimetric_q": 0.40957,
+        "rot90_iou": 0.71981,
+        "existing_circle": false
+      }
+    }
+  ]
+}

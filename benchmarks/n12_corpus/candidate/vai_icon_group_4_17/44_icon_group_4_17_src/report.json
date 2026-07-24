@@ -1,0 +1,77 @@
+{
+  "input": "44_icon_group_4_17_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 194,
+  "closed_contours": 324,
+  "rendered_primitive_count": 2150,
+  "actual": {
+    "L": 1413,
+    "Q": 0,
+    "C": 737
+  },
+  "templates": {
+    "paper-regions": 314,
+    "paper-regions-court": 2,
+    "glyph-coverage-rdp": 8
+  },
+  "threshold": 0.0,
+  "glyph_repair": [
+    {
+      "box": 4,
+      "accepted": true,
+      "reference_cc": 3,
+      "reference_holes": 0,
+      "baseline_cc": 6,
+      "baseline_holes": 0,
+      "candidate_holes": 0,
+      "baseline_iou": 0.241,
+      "candidate_iou": 0.7682,
+      "threshold": 0.6,
+      "ink_anchor": 1,
+      "surround_anchor": 0
+    },
+    {
+      "box": 5,
+      "accepted": true,
+      "reference_cc": 4,
+      "reference_holes": 1,
+      "baseline_cc": 12,
+      "baseline_holes": 0,
+      "candidate_holes": 2,
+      "baseline_iou": 0.125,
+      "candidate_iou": 0.5945,
+      "threshold": 0.6,
+      "ink_anchor": 1,
+      "surround_anchor": 3
+    },
+    {
+      "box": 9,
+      "accepted": false,
+      "reason": "not-fragmented",
+      "reference_cc": 4,
+      "baseline_cc": 1,
+      "baseline_iou": 0.0
+    },
+    {
+      "box": 10,
+      "accepted": false,
+      "reason": "not-fragmented",
+      "reference_cc": 6,
+      "baseline_cc": 0,
+      "baseline_iou": 0.0
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 26.035
+}

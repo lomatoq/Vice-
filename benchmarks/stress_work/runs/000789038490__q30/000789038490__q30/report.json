@@ -1,0 +1,38 @@
+{
+  "input": "000789038490__q30.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 4,
+  "closed_contours": 4,
+  "rendered_primitive_count": 47,
+  "actual": {
+    "L": 10,
+    "Q": 0,
+    "C": 37
+  },
+  "templates": {
+    "paper-regions": 4
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 3.08,
+    "mae_native": 3.19,
+    "bf_deblur": 0.9771,
+    "bf_native": 0.9614,
+    "kink_deblur": 4.32,
+    "kink_native": 5.56,
+    "winner": "deblur"
+  },
+  "kink_energy": 4.325
+}

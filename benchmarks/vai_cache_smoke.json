@@ -1,0 +1,197 @@
+{
+ "mode": "paper-regions",
+ "rows": [
+  {
+   "stem": "egtdigitalgames_512",
+   "fallback_loops": 0,
+   "prims": 59,
+   "secs": 0.0,
+   "ours": {
+    "wobble": 0.0,
+    "g2_steps": 0.0263,
+    "kinks_per_100px": 0.038,
+    "staircase_runs": 0,
+    "micro_segs": 2,
+    "total_len": 5217.3,
+    "segments": 59,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.41,
+    "rmse": 5.4,
+    "ink_iou": 0.9949,
+    "ssim": 0.9938,
+    "seam_px": 0.0,
+    "mirror_iou": 0.6981,
+    "region_de2000_p95": 0.0,
+    "de_region_max": 0.0,
+    "color_regions": 4,
+    "source_rot90_iou": 0.5503,
+    "rot90_iou": 0.5506,
+    "rot90_sym_break": 0.0,
+    "boundary_f": 0.9979,
+    "hausdorff95": 0.95
+   },
+   "vai": {
+    "wobble": 0.0017,
+    "g2_steps": 1.6248,
+    "kinks_per_100px": 0.115,
+    "staircase_runs": 0,
+    "micro_segs": 17,
+    "total_len": 5209.9,
+    "segments": 94,
+    "roundness": null,
+    "circles": 0,
+    "mae": 0.16,
+    "rmse": 2.13,
+    "ink_iou": 0.9982,
+    "ssim": 0.9987,
+    "seam_px": 0.0,
+    "mirror_iou": 0.7005,
+    "region_de2000_p95": 0.0,
+    "de_region_max": 0.0,
+    "color_regions": 4,
+    "source_rot90_iou": 0.5503,
+    "rot90_iou": 0.55,
+    "rot90_sym_break": 0.0003,
+    "boundary_f": 0.9998,
+    "hausdorff95": 0.0
+   },
+   "src_mirror_iou": 0.7008
+  }
+ ],
+ "aggregate": {
+  "n": 1,
+  "wins": {
+   "staircase_runs": "0+1t/1",
+   "seam_px": "0+1t/1",
+   "wobble": "1+0t/1",
+   "g2_steps": "1+0t/1",
+   "kinks_per_100px": "1+0t/1",
+   "micro_segs": "1+0t/1",
+   "ink_iou": "0+0t/1",
+   "ssim": "0+0t/1",
+   "mae": "0+0t/1",
+   "boundary_f": "0+0t/1",
+   "hausdorff95": "0+0t/1",
+   "region_de2000_p95": "0+1t/1",
+   "de_region_max": "0+1t/1",
+   "rot90_sym_break": "1+0t/1"
+  },
+  "means": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.0,
+    "vai": 0.0017
+   },
+   "g2_steps": {
+    "ours": 0.0263,
+    "vai": 1.6248
+   },
+   "kinks_per_100px": {
+    "ours": 0.038,
+    "vai": 0.115
+   },
+   "micro_segs": {
+    "ours": 2.0,
+    "vai": 17.0
+   },
+   "ink_iou": {
+    "ours": 0.9949,
+    "vai": 0.9982
+   },
+   "ssim": {
+    "ours": 0.9938,
+    "vai": 0.9987
+   },
+   "mae": {
+    "ours": 0.41,
+    "vai": 0.16
+   },
+   "boundary_f": {
+    "ours": 0.9979,
+    "vai": 0.9998
+   },
+   "hausdorff95": {
+    "ours": 0.95,
+    "vai": 0.0
+   },
+   "region_de2000_p95": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "de_region_max": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "rot90_sym_break": {
+    "ours": 0.0,
+    "vai": 0.0003
+   }
+  },
+  "medians": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.0,
+    "vai": 0.0017
+   },
+   "g2_steps": {
+    "ours": 0.0263,
+    "vai": 1.6248
+   },
+   "kinks_per_100px": {
+    "ours": 0.038,
+    "vai": 0.115
+   },
+   "micro_segs": {
+    "ours": 2.0,
+    "vai": 17.0
+   },
+   "ink_iou": {
+    "ours": 0.9949,
+    "vai": 0.9982
+   },
+   "ssim": {
+    "ours": 0.9938,
+    "vai": 0.9987
+   },
+   "mae": {
+    "ours": 0.41,
+    "vai": 0.16
+   },
+   "boundary_f": {
+    "ours": 0.9979,
+    "vai": 0.9998
+   },
+   "hausdorff95": {
+    "ours": 0.95,
+    "vai": 0.0
+   },
+   "region_de2000_p95": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "de_region_max": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "rot90_sym_break": {
+    "ours": 0.0,
+    "vai": 0.0003
+   }
+  }
+ }
+}

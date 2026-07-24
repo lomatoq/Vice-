@@ -1,0 +1,145 @@
+{
+  "after": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8860120033840329,
+      "mean_best_soft_iou_at_k": 0.8860120033840329,
+      "neural_only_recall_at_5_iou50": 1.0,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.8404724699448557,
+      "mean_best_soft_iou_at_k": 0.8406683838402839,
+      "neural_only_recall_at_5_iou50": 0.9732142857142857,
+      "neural_only_recall_at_k_iou50": 0.9732142857142857,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.8222566565691849,
+      "mean_best_soft_iou_at_k": 0.8225309360227844,
+      "neural_only_recall_at_5_iou50": 0.9625,
+      "neural_only_recall_at_k_iou50": 0.9625
+    }
+  },
+  "batch_size": 32,
+  "before": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8405143485406404,
+      "mean_best_soft_iou_at_k": 0.8405143485406404,
+      "neural_only_recall_at_5_iou50": 0.96875,
+      "neural_only_recall_at_k_iou50": 0.96875
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.6748776238996833,
+      "mean_best_soft_iou_at_k": 0.6820915807367012,
+      "neural_only_recall_at_5_iou50": 0.8035714285714286,
+      "neural_only_recall_at_k_iou50": 0.8392857142857143,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.6086229340433004,
+      "mean_best_soft_iou_at_k": 0.6187224736151254,
+      "neural_only_recall_at_5_iou50": 0.7375,
+      "neural_only_recall_at_k_iou50": 0.7875
+    }
+  },
+  "best_text_line_recall_at_5": 0.9625,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed.pt",
+  "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+  "checkpoint_written": false,
+  "created_at": "2026-07-22T12:49:22.786434+00:00",
+  "device": "cuda",
+  "evaluation_history": [
+    {
+      "step": 0,
+      "text_line_mean_iou_at_5": 0.6086229340433004,
+      "text_line_recall_at_5": 0.7375
+    },
+    {
+      "step": 30,
+      "text_line_mean_iou_at_5": 0.6836141502866082,
+      "text_line_recall_at_5": 0.8125
+    },
+    {
+      "step": 60,
+      "text_line_mean_iou_at_5": 0.7462017259760481,
+      "text_line_recall_at_5": 0.9
+    },
+    {
+      "step": 90,
+      "text_line_mean_iou_at_5": 0.7726361633154403,
+      "text_line_recall_at_5": 0.9125
+    },
+    {
+      "step": 120,
+      "text_line_mean_iou_at_5": 0.7848615897679383,
+      "text_line_recall_at_5": 0.925
+    },
+    {
+      "step": 150,
+      "text_line_mean_iou_at_5": 0.8022427338858055,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 180,
+      "text_line_mean_iou_at_5": 0.8084846874370507,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 210,
+      "text_line_mean_iou_at_5": 0.8154459813057201,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 240,
+      "text_line_mean_iou_at_5": 0.8222566565691849,
+      "text_line_recall_at_5": 0.9625
+    }
+  ],
+  "filter_cache_sha256": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+  "final_loss": 0.7486252188682556,
+  "final_text_failures": [
+    {
+      "source_group": "font-family:cinzel",
+      "support_iou": 0.46620036457857306,
+      "type_confidence": 0.999713122844696
+    },
+    {
+      "source_group": "font-family:cinzel",
+      "support_iou": 0.47437758985531686,
+      "type_confidence": 4.2640923344355874e-13
+    },
+    {
+      "source_group": "font-family:cinzel",
+      "support_iou": 0.3534427182726769,
+      "type_confidence": 0.9656782746315002
+    }
+  ],
+  "initial_loss": 3.8694868087768555,
+  "interpretation": "If train-only text-line Recall@5 cannot approach 1.0, do not start a large run; repair the instance mask objective or architecture.",
+  "learning_rate": 0.0001,
+  "owner_count_rows": {
+    "2": 16,
+    "3": 16
+  },
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "row_count": 32,
+  "schema": "pcdc-proposal-tiny-overfit-preflight/v1",
+  "split": "train-only",
+  "steps": 240,
+  "text_bbox_gate_padding": 0.04,
+  "text_bbox_gate_vertical_only": true
+}

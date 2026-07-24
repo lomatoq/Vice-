@@ -1,0 +1,697 @@
+{
+  "accounted": 51,
+  "budget_seconds": 60.0,
+  "expected": 51,
+  "freeze_hash": "33bc0d63e4b82734bcb5349f5d19385ac16b0fbdc6e31074814728c90238758f",
+  "promotion_gate": "FAIL",
+  "rows": [
+    {
+      "ablations": [],
+      "attempt_seconds": 60.062,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 484.359,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "baseline"
+    },
+    {
+      "ablations": [],
+      "attempt_seconds": 60.063,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 88.656,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "baseline"
+    },
+    {
+      "ablations": [],
+      "attempt_seconds": 60.125,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.984,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "baseline"
+    },
+    {
+      "ablations": [
+        "evidence"
+      ],
+      "attempt_seconds": 60.093,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 482.219,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-evidence"
+    },
+    {
+      "ablations": [
+        "evidence"
+      ],
+      "attempt_seconds": 60.032,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 90.656,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-evidence"
+    },
+    {
+      "ablations": [
+        "evidence"
+      ],
+      "attempt_seconds": 60.094,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.902,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-evidence"
+    },
+    {
+      "ablations": [
+        "appearance"
+      ],
+      "attempt_seconds": 60.203,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 484.043,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-appearance"
+    },
+    {
+      "ablations": [
+        "appearance"
+      ],
+      "attempt_seconds": 60.219,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 89.984,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-appearance"
+    },
+    {
+      "ablations": [
+        "appearance"
+      ],
+      "attempt_seconds": 60.203,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.938,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-appearance"
+    },
+    {
+      "ablations": [
+        "topology"
+      ],
+      "attempt_seconds": 60.156,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 475.207,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-topology"
+    },
+    {
+      "ablations": [
+        "topology"
+      ],
+      "abstained": false,
+      "attempt_seconds": 23.406,
+      "engine_wall_seconds": 22.449265000002924,
+      "peak_rss_mib": 103.16,
+      "primitives": 21,
+      "regions": 18,
+      "render_nll": 0.15272409419016664,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\no-topology\\icon_group_4_62\\94_icon_group_4_62_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_62",
+      "variant": "no-topology"
+    },
+    {
+      "ablations": [
+        "topology"
+      ],
+      "abstained": false,
+      "attempt_seconds": 28.25,
+      "engine_wall_seconds": 27.412923700001556,
+      "peak_rss_mib": 75.539,
+      "primitives": 31,
+      "regions": 30,
+      "render_nll": 0.10812319726618631,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\no-topology\\icon_group_4_54\\85_icon_group_4_54_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_54",
+      "variant": "no-topology"
+    },
+    {
+      "ablations": [
+        "whole_shapes"
+      ],
+      "attempt_seconds": 60.141,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 485.328,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-shapes"
+    },
+    {
+      "ablations": [
+        "whole_shapes"
+      ],
+      "attempt_seconds": 60.093,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 88.559,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-shapes"
+    },
+    {
+      "ablations": [
+        "whole_shapes"
+      ],
+      "attempt_seconds": 60.063,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 92.078,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-shapes"
+    },
+    {
+      "ablations": [
+        "shared_boundaries"
+      ],
+      "attempt_seconds": 60.047,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 475.551,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-shared-boundaries"
+    },
+    {
+      "ablations": [
+        "shared_boundaries"
+      ],
+      "abstained": false,
+      "attempt_seconds": 47.062,
+      "engine_wall_seconds": 46.25672190000478,
+      "peak_rss_mib": 127.883,
+      "primitives": 21,
+      "regions": 18,
+      "render_nll": 0.15272409419016664,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\no-shared-boundaries\\icon_group_4_62\\94_icon_group_4_62_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_62",
+      "variant": "no-shared-boundaries"
+    },
+    {
+      "ablations": [
+        "shared_boundaries"
+      ],
+      "abstained": false,
+      "attempt_seconds": 53.422,
+      "engine_wall_seconds": 52.78755059999821,
+      "peak_rss_mib": 98.473,
+      "primitives": 31,
+      "regions": 30,
+      "render_nll": 0.10812319726618631,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\no-shared-boundaries\\icon_group_4_54\\85_icon_group_4_54_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_54",
+      "variant": "no-shared-boundaries"
+    },
+    {
+      "ablations": [
+        "text_scene",
+        "exact_font_path"
+      ],
+      "attempt_seconds": 60.172,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 484.605,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-text"
+    },
+    {
+      "ablations": [
+        "text_scene",
+        "exact_font_path"
+      ],
+      "attempt_seconds": 60.063,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.977,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-text"
+    },
+    {
+      "ablations": [
+        "text_scene",
+        "exact_font_path"
+      ],
+      "attempt_seconds": 60.093,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 90.0,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-text"
+    },
+    {
+      "ablations": [
+        "exact_font_path"
+      ],
+      "attempt_seconds": 60.234,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 486.953,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-exact-font"
+    },
+    {
+      "ablations": [
+        "exact_font_path"
+      ],
+      "attempt_seconds": 60.156,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 90.996,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-exact-font"
+    },
+    {
+      "ablations": [
+        "exact_font_path"
+      ],
+      "attempt_seconds": 60.156,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 92.039,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-exact-font"
+    },
+    {
+      "ablations": [
+        "forward_court"
+      ],
+      "attempt_seconds": 60.094,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 487.012,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-forward-court"
+    },
+    {
+      "ablations": [
+        "forward_court"
+      ],
+      "attempt_seconds": 60.125,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.051,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-forward-court"
+    },
+    {
+      "ablations": [
+        "forward_court"
+      ],
+      "attempt_seconds": 60.016,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 92.84,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-forward-court"
+    },
+    {
+      "ablations": [
+        "idealization"
+      ],
+      "attempt_seconds": 60.062,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 484.82,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-idealization"
+    },
+    {
+      "ablations": [
+        "idealization"
+      ],
+      "attempt_seconds": 60.141,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 124.273,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-idealization"
+    },
+    {
+      "ablations": [
+        "idealization"
+      ],
+      "attempt_seconds": 60.172,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 92.945,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-idealization"
+    },
+    {
+      "ablations": [
+        "residual_repair"
+      ],
+      "attempt_seconds": 60.078,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 485.688,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-residual-repair"
+    },
+    {
+      "ablations": [
+        "residual_repair"
+      ],
+      "attempt_seconds": 60.016,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 126.949,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-residual-repair"
+    },
+    {
+      "ablations": [
+        "residual_repair"
+      ],
+      "attempt_seconds": 60.203,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.613,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-residual-repair"
+    },
+    {
+      "ablations": [
+        "gap_filler"
+      ],
+      "attempt_seconds": 60.11,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 483.402,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "no-gap-filler"
+    },
+    {
+      "ablations": [
+        "gap_filler"
+      ],
+      "attempt_seconds": 60.125,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 88.797,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "no-gap-filler"
+    },
+    {
+      "ablations": [
+        "gap_filler"
+      ],
+      "attempt_seconds": 60.203,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 92.871,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "no-gap-filler"
+    },
+    {
+      "ablations": [
+        "text_scene",
+        "exact_font_path",
+        "whole_shapes"
+      ],
+      "attempt_seconds": 60.203,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 482.418,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "pair-no-text-shapes"
+    },
+    {
+      "ablations": [
+        "text_scene",
+        "exact_font_path",
+        "whole_shapes"
+      ],
+      "attempt_seconds": 60.078,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 86.578,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "pair-no-text-shapes"
+    },
+    {
+      "ablations": [
+        "text_scene",
+        "exact_font_path",
+        "whole_shapes"
+      ],
+      "attempt_seconds": 60.109,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 90.645,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "pair-no-text-shapes"
+    },
+    {
+      "ablations": [
+        "whole_shapes",
+        "shared_boundaries",
+        "idealization"
+      ],
+      "attempt_seconds": 60.078,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 485.402,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "pair-no-geometry"
+    },
+    {
+      "ablations": [
+        "whole_shapes",
+        "shared_boundaries",
+        "idealization"
+      ],
+      "abstained": false,
+      "attempt_seconds": 55.656,
+      "engine_wall_seconds": 54.514964299989515,
+      "peak_rss_mib": 118.316,
+      "primitives": 21,
+      "regions": 18,
+      "render_nll": 0.15272409419016664,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\pair-no-geometry\\icon_group_4_62\\94_icon_group_4_62_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_62",
+      "variant": "pair-no-geometry"
+    },
+    {
+      "ablations": [
+        "whole_shapes",
+        "shared_boundaries",
+        "idealization"
+      ],
+      "abstained": false,
+      "attempt_seconds": 59.859,
+      "engine_wall_seconds": 58.98213379998924,
+      "peak_rss_mib": 97.727,
+      "primitives": 33,
+      "regions": 32,
+      "render_nll": 0.10741465609312019,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\pair-no-geometry\\icon_group_4_54\\85_icon_group_4_54_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_54",
+      "variant": "pair-no-geometry"
+    },
+    {
+      "ablations": [
+        "forward_court",
+        "idealization"
+      ],
+      "attempt_seconds": 60.265,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 484.25,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "pair-no-court-ideal"
+    },
+    {
+      "ablations": [
+        "forward_court",
+        "idealization"
+      ],
+      "attempt_seconds": 60.125,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 88.164,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "pair-no-court-ideal"
+    },
+    {
+      "ablations": [
+        "forward_court",
+        "idealization"
+      ],
+      "attempt_seconds": 60.078,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.664,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "pair-no-court-ideal"
+    },
+    {
+      "ablations": [
+        "evidence",
+        "topology"
+      ],
+      "attempt_seconds": 60.125,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 471.824,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "pair-no-evidence-topology"
+    },
+    {
+      "ablations": [
+        "evidence",
+        "topology"
+      ],
+      "abstained": false,
+      "attempt_seconds": 25.063,
+      "engine_wall_seconds": 24.276010400004452,
+      "peak_rss_mib": 102.594,
+      "primitives": 21,
+      "regions": 18,
+      "render_nll": 0.15855812114710768,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\pair-no-evidence-topology\\icon_group_4_62\\94_icon_group_4_62_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_62",
+      "variant": "pair-no-evidence-topology"
+    },
+    {
+      "ablations": [
+        "evidence",
+        "topology"
+      ],
+      "abstained": false,
+      "attempt_seconds": 28.344,
+      "engine_wall_seconds": 27.52048739999009,
+      "peak_rss_mib": 75.832,
+      "primitives": 31,
+      "regions": 30,
+      "render_nll": 0.1121372928228912,
+      "report": "benchmarks\\scene_validation\\33bc0d63e4b82734\\ablations_bounded\\pair-no-evidence-topology\\icon_group_4_54\\85_icon_group_4_54_src\\report.json",
+      "status": "completed",
+      "stem": "icon_group_4_54",
+      "variant": "pair-no-evidence-topology"
+    },
+    {
+      "ablations": [
+        "residual_repair",
+        "gap_filler"
+      ],
+      "attempt_seconds": 60.14,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 484.516,
+      "status": "timeout",
+      "stem": "egtdigitalgames_512",
+      "variant": "pair-no-repair-fill"
+    },
+    {
+      "ablations": [
+        "residual_repair",
+        "gap_filler"
+      ],
+      "attempt_seconds": 60.109,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 88.559,
+      "status": "timeout",
+      "stem": "icon_group_4_62",
+      "variant": "pair-no-repair-fill"
+    },
+    {
+      "ablations": [
+        "residual_repair",
+        "gap_filler"
+      ],
+      "attempt_seconds": 60.234,
+      "error": "budget 60s exceeded",
+      "peak_rss_mib": 91.691,
+      "status": "timeout",
+      "stem": "icon_group_4_54",
+      "variant": "pair-no-repair-fill"
+    }
+  ],
+  "schema": "vice-scene-bounded-ablation-matrix/1",
+  "status_counts": {
+    "completed": 8,
+    "timeout": 43
+  },
+  "stems": [
+    "egtdigitalgames_512",
+    "icon_group_4_62",
+    "icon_group_4_54"
+  ],
+  "variants": {
+    "baseline": [],
+    "no-appearance": [
+      "appearance"
+    ],
+    "no-evidence": [
+      "evidence"
+    ],
+    "no-exact-font": [
+      "exact_font_path"
+    ],
+    "no-forward-court": [
+      "forward_court"
+    ],
+    "no-gap-filler": [
+      "gap_filler"
+    ],
+    "no-idealization": [
+      "idealization"
+    ],
+    "no-residual-repair": [
+      "residual_repair"
+    ],
+    "no-shapes": [
+      "whole_shapes"
+    ],
+    "no-shared-boundaries": [
+      "shared_boundaries"
+    ],
+    "no-text": [
+      "text_scene",
+      "exact_font_path"
+    ],
+    "no-topology": [
+      "topology"
+    ],
+    "pair-no-court-ideal": [
+      "forward_court",
+      "idealization"
+    ],
+    "pair-no-evidence-topology": [
+      "evidence",
+      "topology"
+    ],
+    "pair-no-geometry": [
+      "whole_shapes",
+      "shared_boundaries",
+      "idealization"
+    ],
+    "pair-no-repair-fill": [
+      "residual_repair",
+      "gap_filler"
+    ],
+    "pair-no-text-shapes": [
+      "text_scene",
+      "exact_font_path",
+      "whole_shapes"
+    ]
+  }
+}

@@ -1,0 +1,280 @@
+{
+  "after": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8963805407695888,
+      "mean_best_soft_iou_at_k": 0.8963805407695888,
+      "neural_only_recall_at_5_iou50": 1.0,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.8592215937355797,
+      "mean_best_soft_iou_at_k": 0.8619452479319769,
+      "neural_only_recall_at_5_iou50": 0.9732142857142857,
+      "neural_only_recall_at_k_iou50": 0.9821428571428571,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.844358014921976,
+      "mean_best_soft_iou_at_k": 0.8481711307969322,
+      "neural_only_recall_at_5_iou50": 0.9625,
+      "neural_only_recall_at_k_iou50": 0.975
+    }
+  },
+  "batch_size": 8,
+  "before": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8405139819082987,
+      "mean_best_soft_iou_at_k": 0.8405139819082987,
+      "neural_only_recall_at_5_iou50": 0.96875,
+      "neural_only_recall_at_k_iou50": 0.96875
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.6748790371279506,
+      "mean_best_soft_iou_at_k": 0.6820930878983429,
+      "neural_only_recall_at_5_iou50": 0.8035714285714286,
+      "neural_only_recall_at_k_iou50": 0.8392857142857143,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.6086250592158116,
+      "mean_best_soft_iou_at_k": 0.6187247302943605,
+      "neural_only_recall_at_5_iou50": 0.7375,
+      "neural_only_recall_at_k_iou50": 0.7875
+    }
+  },
+  "best_text_line_recall_at_5": 0.9625,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed.pt",
+  "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+  "checkpoint_written": false,
+  "created_at": "2026-07-22T13:43:02.034290+00:00",
+  "device": "cuda",
+  "evaluation_history": [
+    {
+      "step": 0,
+      "text_line_mean_iou_at_5": 0.6086250592158116,
+      "text_line_recall_at_5": 0.7375
+    },
+    {
+      "step": 60,
+      "text_line_mean_iou_at_5": 0.7205223854709906,
+      "text_line_recall_at_5": 0.8375
+    },
+    {
+      "step": 120,
+      "text_line_mean_iou_at_5": 0.7673707024130884,
+      "text_line_recall_at_5": 0.9
+    },
+    {
+      "step": 180,
+      "text_line_mean_iou_at_5": 0.799733072921378,
+      "text_line_recall_at_5": 0.95
+    },
+    {
+      "step": 240,
+      "text_line_mean_iou_at_5": 0.8007671109017138,
+      "text_line_recall_at_5": 0.95
+    },
+    {
+      "step": 300,
+      "text_line_mean_iou_at_5": 0.8191568014115436,
+      "text_line_recall_at_5": 0.9375
+    },
+    {
+      "step": 360,
+      "text_line_mean_iou_at_5": 0.8250749953446441,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 420,
+      "text_line_mean_iou_at_5": 0.8363559930951551,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 480,
+      "text_line_mean_iou_at_5": 0.844358014921976,
+      "text_line_recall_at_5": 0.9625
+    }
+  ],
+  "filter_cache_sha256": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+  "final_loss": 1.9546587467193604,
+  "final_text_failures": [
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.617547,
+        "shift_x": -11,
+        "shift_y": 3
+      },
+      "best_binary_iou": 0.40522875816993464,
+      "best_binary_support_pixels": 152,
+      "best_binary_threshold": 0.5499999999999999,
+      "font_family": "bebasneue",
+      "global_rank": 2,
+      "id": "pair:open-text:bebasneue:c0118b883987edb6:2",
+      "mean_probability_on_target": 0.9653826592460512,
+      "mean_probability_outside_target": 0.02305462826597034,
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.35840198397636414,
+        0.5917949676513672,
+        0.5411878228187561,
+        0.7213698625564575
+      ],
+      "predicted_mass_on_target": 60.81910753250122,
+      "predicted_mass_outside_target": 92.97931579665838,
+      "predicted_support_mass": 153.79842332915962,
+      "query": 17,
+      "raw_support_iou": 0.3446103501205556,
+      "size": 192,
+      "source_id": "font-family:bebasneue",
+      "support_iou": 0.3899177872603514,
+      "target_bbox": [
+        0.3489583432674408,
+        0.6510416865348816,
+        0.5416666865348816,
+        0.7239583134651184
+      ],
+      "target_index": 2,
+      "target_support_pixels": 63,
+      "type_confidence": 0.9999524354934692
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.664181,
+        "shift_x": 4,
+        "shift_y": -2
+      },
+      "best_binary_iou": 0.4782608695652174,
+      "best_binary_support_pixels": 165,
+      "best_binary_threshold": 0.7,
+      "font_family": "cinzel",
+      "global_rank": 4,
+      "id": "pair:open-text:cinzel:513ad9894f50ee70:1",
+      "mean_probability_on_target": 0.8500630395382504,
+      "mean_probability_outside_target": 0.024811980470883174,
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.2809547781944275,
+        0.5151150822639465,
+        0.859300971031189,
+        0.6254010200500488
+      ],
+      "predicted_mass_on_target": 90.95674523059279,
+      "predicted_mass_outside_target": 98.97499009835298,
+      "predicted_support_mass": 189.9317353289458,
+      "query": 17,
+      "raw_support_iou": 0.2618190493769643,
+      "size": 64,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.4415911573625405,
+      "target_bbox": [
+        0.28125,
+        0.515625,
+        0.859375,
+        0.625
+      ],
+      "target_index": 2,
+      "target_support_pixels": 107,
+      "type_confidence": 0.9814127683639526
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 2.032788,
+        "scale": 0.58705,
+        "shift_x": 6,
+        "shift_y": 1
+      },
+      "best_binary_iou": 0.4714285714285714,
+      "best_binary_support_pixels": 69,
+      "best_binary_threshold": 0.3,
+      "font_family": "cinzel",
+      "global_rank": 4,
+      "id": "pair:open-text:cinzel:9d1843aa9a2ca48b:1",
+      "mean_probability_on_target": 0.8705827720901546,
+      "mean_probability_outside_target": 0.009019577836771805,
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.48632436990737915,
+        0.49990400671958923,
+        0.6471349000930786,
+        0.5657620429992676
+      ],
+      "predicted_mass_on_target": 29.599814251065254,
+      "predicted_mass_outside_target": 36.63752517296707,
+      "predicted_support_mass": 66.23733942403231,
+      "query": 11,
+      "raw_support_iou": 0.3635650442865285,
+      "size": 96,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.4190381462598939,
+      "target_bbox": [
+        0.4791666567325592,
+        0.5,
+        0.6458333134651184,
+        0.5625
+      ],
+      "target_index": 1,
+      "target_support_pixels": 34,
+      "type_confidence": 0.9706423878669739
+    }
+  ],
+  "initial_loss": 4.2475080490112305,
+  "interpretation": "If train-only text-line Recall@5 cannot approach 1.0, do not start a large run; repair the instance mask objective or architecture.",
+  "label_contract_sha256": "fb7009fd432b071fd9099703eaf80047ee7f46c2f90cb91dfd4101275a203484",
+  "learning_rate": 0.0001,
+  "minimum_text_line_recall_at_5": 0.99,
+  "owner_count_rows": {
+    "2": 16,
+    "3": 16
+  },
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "passed": false,
+  "probe_model_config": {
+    "attention_heads": 8,
+    "decoder_layers": 3,
+    "hidden_dim": 128,
+    "mask_upsample": 2,
+    "parameter_dim": 16,
+    "query_count": 32,
+    "relation_dim": 8,
+    "spatial_positioning": true,
+    "text_bbox_gate_padding": 0.04,
+    "text_bbox_gate_vertical_only": true
+  },
+  "row_count": 32,
+  "schema": "pcdc-proposal-tiny-overfit-preflight/v1",
+  "split": "train-only",
+  "steps": 480,
+  "text_bbox_gate_padding": 0.04,
+  "text_bbox_gate_vertical_only": true
+}

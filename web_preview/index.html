@@ -1,88 +1,91 @@
 <!doctype html>
-<html lang="ru">
+<html lang="be">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>VAI Primitive Preview</title>
+  <title>V-ICE Vectorizer</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <header>
     <div>
-      <p class="eyebrow">VECTOR ANALYSIS INTERFACE</p>
-      <h1>Contour Lab</h1>
-      <p class="subtitle">Subpixel regions → global geometry → редактируемые примитивы</p>
+      <p class="eyebrow">VECTOR · IDEALIZE · COMPARE · EXPORT</p>
+      <h1>V-ICE Vectorizer</h1>
+      <p class="subtitle">Субпіксельныя рэгіёны → ідэалізаваная геаметрыя → рэдагавальны SVG</p>
     </div>
-    <div class="legend" aria-label="Легенда примитивов">
+    <div class="legend" aria-label="Легенда прымітываў">
       <span><i class="l"></i>line</span><span><i class="a"></i>ellipse</span><span><i class="c"></i>adaptive curve</span>
     </div>
   </header>
-
   <main>
     <section class="controls">
       <label class="dropzone" id="dropzone">
         <input id="fileInput" type="file" accept="image/png,image/jpeg,image/webp,image/bmp" multiple>
         <span class="drop-icon">＋</span>
-        <strong>Брось картинки сюда</strong>
-        <small>PNG, JPG, WEBP или BMP · можно несколько</small>
+        <strong>Перацягні выявы сюды</strong>
+        <small>PNG, JPG, WEBP або BMP · да 25 MB · можна некалькі</small>
       </label>
       <div class="settings">
-        <label>Экстрактор контура
+        <label>Экстрактар контуру
           <select id="extractorSelect">
-            <option value="mininet">MiniNet · subpixel 4×</option>
-            <option value="palette">Palette · стабильный</option>
+            <option value="mininet" selected>MiniNet · subpixel 4×</option>
+            <option value="palette">Palette · стабільны</option>
           </select>
         </label>
-        <label>Интерполяция контура
+        <label>Профіль геаметрыі
           <select id="smoothingSelect">
-            <option value="perceptual" selected>Perceptual · detail/topology first</option>
-            <option value="perceptual-icm">Perceptual + ICM · чистка цвета (Potts)</option>
-            <option value="perceptual-merge">Perceptual + ICM + merge · слияние регионов</option>
-            <option value="paper">Paper · Hoshyari (§4 углы + §5 removal + arc/line fit)</option>
-            <option value="paper-native">Paper-native · канон Hoshyari (без MiniNet/ICM)</option>
-            <option value="paper-perc">Paper × Perceptual · пэйпер на гладкім контуры (эксперимент)</option>
-            <option value="paper-perres">Paper · per-res RF (только paper-данные, авто по резолюции)</option>
-            <option value="paper-regions">Paper §7 · общий граф границ (без швов)</option>
-            <option value="uncertainty">Experimental · uncertainty + global L/A/C</option>
-            <option value="cad">CAD · прямые + сохранение дуг</option>
-            <option value="corner">Taubin · сохраняет углы</option>
-            <option value="chaikin">Chaikin · скругляет</option>
-            <option value="bspline">Cubic B-spline · максимально гладко</option>
-            <option value="none">Без сглаживания</option>
+            <option value="paper-regions" selected>V-ICE Best · stable default</option>
+            <option value="scene">Scene Engine · archived experiment / do not promote</option>
+            <option value="paper">Paper · geometry first</option>
+            <option value="paper-native">Paper Native · без deblur</option>
+            <option value="paper-perc">Paper Perceptual</option>
+            <option value="paper-perres">Paper · per-resolution</option>
+            <option value="perceptual">Perceptual · detail/topology first</option>
+            <option value="perceptual-icm">Perceptual + ICM</option>
+            <option value="perceptual-merge">Perceptual + ICM + merge</option>
+            <option value="uncertainty">Experimental · global L/A/C</option>
+            <option value="cad">CAD · lines + arcs</option>
+            <option value="corner">Taubin · preserve corners</option>
+            <option value="chaikin">Chaikin · rounded</option>
+            <option value="bspline">Cubic B-spline</option>
+            <option value="none">Без згладжвання</option>
           </select>
         </label>
-        <button id="processButton" disabled>Построить примитивы</button>
-        <div class="zoom-row">
-          <button id="zoomOut" title="Уменьшить">−</button>
-          <input id="zoomSlider" type="range" min="25" max="800" value="100">
-          <button id="zoomIn" title="Увеличить">＋</button>
-          <button id="resetView">100%</button>
+        <div class="process-actions">
+          <button id="processButton" disabled>Вектарызаваць · Best</button>
+          <button id="previewButton" class="secondary" disabled>Хуткі draft · ≤45 с</button>
         </div>
-        <p class="hint">Колесо — зум · drag — панорама · двойной клик — сброс</p>
+        <div class="zoom-row">
+          <button id="zoomOut" type="button" title="Паменшыць">−</button>
+          <input id="zoomSlider" type="range" min="25" max="800" value="100">
+          <button id="zoomIn" type="button" title="Павялічыць">＋</button>
+          <button id="resetView" type="button">100%</button>
+        </div>
+        <p class="hint">Best — стабільны асноўны рэжым · Scene — даследчы і пазначае няўпэўненыя вынікі · кола мышы — live SVG zoom</p>
+        <a class="court-link" href="court.html">Адкрыць resolution-honest blind court ↗</a>
+        <a class="court-link" href="locus_review.html">PCDC · 300-locus human review ↗</a>
       </div>
     </section>
-
-    <section id="queue" class="queue" hidden></section>
+    <section id="queue" class="queue" aria-live="polite" hidden></section>
     <section id="empty" class="empty">
       <div class="empty-shape"></div>
-      <h2>Здесь появятся векторные образцы</h2>
-      <p>Загрузи изображение, выбери профиль и увеличивай SVG без потери качества.</p>
+      <h2>Тут з’явіцца параўнанне растра і SVG</h2>
+      <p>Загрузі выяву, пакінь “V-ICE Best” і правер контуры пры вялікім live zoom.</p>
     </section>
     <section id="results" class="results"></section>
   </main>
-
   <template id="resultTemplate">
     <article class="result-card">
       <div class="result-head">
         <div><h2></h2><p class="meta"></p></div>
-        <span class="status">готово</span>
+        <div class="result-actions"><a class="download" data-download="svg" download>Спампаваць SVG</a><span class="status">гатова</span></div>
       </div>
       <div class="viewer-grid">
-        <figure><figcaption>Исходник</figcaption><div class="viewport"><img data-view="original"></div></figure>
-        <figure><figcaption>Чёрный контур</figcaption><div class="viewport"><img data-view="contour"></div></figure>
-        <figure><figcaption>Углы · §4 детектор</figcaption><div class="viewport"><img data-view="corners"></div></figure>
-        <figure class="wide"><figcaption>Карта geometry-first · SVG</figcaption><div class="viewport checker"><img data-view="primitiveMap"></div></figure>
-        <figure class="wide"><figcaption>Собранная фигура · SVG</figcaption><div class="viewport checker"><img data-view="rebuilt"></div></figure>
+        <figure><figcaption>Крыніца · native raster</figcaption><div class="viewport"><img data-view="original" alt="Крыніца"></div></figure>
+        <figure><figcaption>Контур</figcaption><div class="viewport"><img data-view="contour" alt="Контур"></div></figure>
+        <figure><figcaption>Вуглы · §4</figcaption><div class="viewport"><img data-view="corners" alt="Дэтэктар вуглоў"></div></figure>
+        <figure class="wide"><figcaption>Карта прымітываў · live SVG</figcaption><div class="viewport checker"><img data-view="primitiveMap" alt="Карта прымітываў"></div></figure>
+        <figure class="wide"><figcaption>Фінальны рэдагавальны · live SVG</figcaption><div class="viewport checker"><img data-view="rebuilt" alt="Фінальны SVG"></div></figure>
       </div>
       <div class="counts"></div>
     </article>

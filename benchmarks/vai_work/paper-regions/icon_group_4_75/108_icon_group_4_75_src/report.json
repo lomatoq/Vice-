@@ -6,19 +6,322 @@
   "smoothing": "paper-regions",
   "regions": 1,
   "closed_contours": 15,
-  "rendered_primitive_count": 167,
+  "rendered_primitive_count": 112,
   "actual": {
-    "L": 102,
+    "L": 112,
     "Q": 0,
-    "C": 65
+    "C": 0
   },
   "templates": {
-    "paper-joint": 9,
-    "paper-circle-court": 2,
-    "paper-smooth": 1,
-    "paper-tiny": 3
+    "perceptual-source-rdp": 15
   },
   "threshold": 0.0,
+  "perceptual_trace_repair": [
+    {
+      "router": "source-loop-rdp-perceptual-rescue",
+      "source_topology": [
+        1,
+        14
+      ],
+      "incumbent": {
+        "mae": 5.31,
+        "rmse": 20.679,
+        "ink_iou": 0.92378,
+        "ssim": 0.90972,
+        "boundary_f": 0.99548,
+        "hausdorff95": 0.955,
+        "topology": [
+          1,
+          7
+        ],
+        "actual": {
+          "L": 102,
+          "Q": 0,
+          "C": 67
+        },
+        "primitives": 169,
+        "regions": 1,
+        "closed_contours": 15,
+        "micro_segments": 9,
+        "templates": {
+          "paper-smooth": 2,
+          "paper-joint": 8,
+          "paper-circle-court": 2,
+          "paper-tiny": 3
+        },
+        "kink_energy": 12.7535,
+        "staircase_runs": 0,
+        "compact_color_detail": null
+      },
+      "trials": [
+        {
+          "epsilon": "g1-rdp-1.0",
+          "actual": {
+            "L": 67,
+            "Q": 0,
+            "C": 67
+          },
+          "primitives": 134,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 6,
+          "templates": {
+            "perceptual-source-g1-rdp": 9,
+            "paper-joint": 3,
+            "paper-tiny": 3
+          },
+          "kink_energy": 12.8962,
+          "staircase_runs": 0,
+          "mae": 4.681,
+          "rmse": 19.179,
+          "ink_iou": 0.93922,
+          "ssim": 0.92853,
+          "boundary_f": 0.99531,
+          "hausdorff95": 0.955,
+          "topology": [
+            1,
+            9
+          ],
+          "compact_color_detail": null,
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": "g1-rdp-0.8",
+          "actual": {
+            "L": 0,
+            "Q": 0,
+            "C": 90
+          },
+          "primitives": 90,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-g1-rdp": 15
+          },
+          "kink_energy": 14.7149,
+          "staircase_runs": 0,
+          "mae": 5.817,
+          "rmse": 22.964,
+          "ink_iou": 0.91786,
+          "ssim": 0.91153,
+          "boundary_f": 0.96152,
+          "hausdorff95": 1.91,
+          "topology": [
+            1,
+            14
+          ],
+          "compact_color_detail": null,
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": "g1-rdp-0.6",
+          "actual": {
+            "L": 0,
+            "Q": 0,
+            "C": 95
+          },
+          "primitives": 95,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-g1-rdp": 15
+          },
+          "kink_energy": 14.6608,
+          "staircase_runs": 0,
+          "mae": 9.477,
+          "rmse": 32.113,
+          "ink_iou": 0.85665,
+          "ssim": 0.84597,
+          "boundary_f": 0.9189,
+          "hausdorff95": 1.91,
+          "topology": [
+            1,
+            14
+          ],
+          "compact_color_detail": null,
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": "g1-rdp-0.4",
+          "actual": {
+            "L": 0,
+            "Q": 0,
+            "C": 112
+          },
+          "primitives": 112,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 1,
+          "templates": {
+            "perceptual-source-g1-rdp": 15
+          },
+          "kink_energy": 15.6314,
+          "staircase_runs": 0,
+          "mae": 6.072,
+          "rmse": 24.019,
+          "ink_iou": 0.91027,
+          "ssim": 0.9113,
+          "boundary_f": 0.95465,
+          "hausdorff95": 1.91,
+          "topology": [
+            1,
+            14
+          ],
+          "compact_color_detail": null,
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": 1.0,
+          "actual": {
+            "L": 121,
+            "Q": 0,
+            "C": 13
+          },
+          "primitives": 134,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 6,
+          "templates": {
+            "perceptual-source-rdp": 9,
+            "paper-joint": 3,
+            "paper-tiny": 3
+          },
+          "kink_energy": 13.2584,
+          "staircase_runs": 0,
+          "mae": 4.271,
+          "rmse": 17.521,
+          "ink_iou": 0.94921,
+          "ssim": 0.93716,
+          "boundary_f": 0.9974,
+          "hausdorff95": 0.955,
+          "topology": [
+            1,
+            9
+          ],
+          "compact_color_detail": null,
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": 0.8,
+          "actual": {
+            "L": 90,
+            "Q": 0,
+            "C": 0
+          },
+          "primitives": 90,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-rdp": 15
+          },
+          "kink_energy": 15.4231,
+          "staircase_runs": 0,
+          "mae": 2.426,
+          "rmse": 8.338,
+          "ink_iou": 0.98336,
+          "ssim": 0.97973,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.955,
+          "topology": [
+            1,
+            14
+          ],
+          "compact_color_detail": null,
+          "reason": "accepted"
+        },
+        {
+          "epsilon": 0.6,
+          "actual": {
+            "L": 95,
+            "Q": 0,
+            "C": 0
+          },
+          "primitives": 95,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 0,
+          "templates": {
+            "perceptual-source-rdp": 15
+          },
+          "kink_energy": 16.4198,
+          "staircase_runs": 0,
+          "mae": 2.307,
+          "rmse": 7.519,
+          "ink_iou": 0.986,
+          "ssim": 0.98387,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.859,
+          "topology": [
+            1,
+            14
+          ],
+          "compact_color_detail": null,
+          "reason": "accepted"
+        },
+        {
+          "epsilon": 0.4,
+          "actual": {
+            "L": 112,
+            "Q": 0,
+            "C": 0
+          },
+          "primitives": 112,
+          "regions": 1,
+          "closed_contours": 15,
+          "micro_segments": 1,
+          "templates": {
+            "perceptual-source-rdp": 15
+          },
+          "kink_energy": 19.2746,
+          "staircase_runs": 0,
+          "mae": 2.211,
+          "rmse": 7.268,
+          "ink_iou": 0.98529,
+          "ssim": 0.9851,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.0,
+          "topology": [
+            1,
+            14
+          ],
+          "compact_color_detail": null,
+          "reason": "accepted"
+        }
+      ],
+      "accepted": true,
+      "reason": "perceptual+topology+compact-color+idealization-court",
+      "epsilon": 0.4,
+      "candidate": {
+        "mae": 2.211,
+        "rmse": 7.268,
+        "ink_iou": 0.98529,
+        "ssim": 0.9851,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.0,
+        "topology": [
+          1,
+          14
+        ],
+        "actual": {
+          "L": 112,
+          "Q": 0,
+          "C": 0
+        },
+        "primitives": 112,
+        "regions": 1,
+        "closed_contours": 15,
+        "micro_segments": 1,
+        "templates": {
+          "perceptual-source-rdp": 15
+        },
+        "kink_energy": 19.2746,
+        "compact_color_detail": null
+      }
+    }
+  ],
   "corner_detector": {
     "type": "resolution-density-hybrid-cnn",
     "small_model": "corner_cnn.pt",
@@ -28,5 +331,5 @@
     "small_extent_max": 4.0,
     "small_density_min": 8.0
   },
-  "kink_energy": 12.943
+  "kink_energy": 19.275
 }

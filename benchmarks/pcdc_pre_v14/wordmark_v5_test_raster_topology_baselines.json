@@ -1,0 +1,594 @@
+{
+  "best_global_metrics": {
+    "complex_topology_accuracy": 0.18004338394793926,
+    "component_accuracy": 0.3466796875,
+    "component_mean_absolute_error": 5.248046875,
+    "diagnostic_slices": {
+      "length:1": {
+        "complex_topology_accuracy": 0.5,
+        "component_accuracy": 0.5542168674698795,
+        "component_mean_absolute_error": 1.5180722891566265,
+        "hole_accuracy": 0.8313253012048193,
+        "hole_mean_absolute_error": 0.26506024096385544,
+        "joint_topology_accuracy": 0.4939759036144578,
+        "samples": 83
+      },
+      "length:17-32": {
+        "complex_topology_accuracy": 0.06896551724137931,
+        "component_accuracy": 0.23988153998025666,
+        "component_mean_absolute_error": 7.00888450148075,
+        "hole_accuracy": 0.20829220138203355,
+        "hole_mean_absolute_error": 5.750246791707799,
+        "joint_topology_accuracy": 0.08884501480750247,
+        "samples": 1013
+      },
+      "length:2": {
+        "complex_topology_accuracy": 0.4146341463414634,
+        "component_accuracy": 0.5,
+        "component_mean_absolute_error": 2.0535714285714284,
+        "hole_accuracy": 0.75,
+        "hole_mean_absolute_error": 0.6785714285714286,
+        "joint_topology_accuracy": 0.44642857142857145,
+        "samples": 56
+      },
+      "length:3-4": {
+        "complex_topology_accuracy": 0.3783783783783784,
+        "component_accuracy": 0.4859154929577465,
+        "component_mean_absolute_error": 2.7464788732394365,
+        "hole_accuracy": 0.704225352112676,
+        "hole_mean_absolute_error": 1.204225352112676,
+        "joint_topology_accuracy": 0.39436619718309857,
+        "samples": 142
+      },
+      "length:5-8": {
+        "complex_topology_accuracy": 0.36923076923076925,
+        "component_accuracy": 0.516245487364621,
+        "component_mean_absolute_error": 2.487364620938628,
+        "hole_accuracy": 0.6173285198555957,
+        "hole_mean_absolute_error": 1.552346570397112,
+        "joint_topology_accuracy": 0.37906137184115524,
+        "samples": 277
+      },
+      "length:9-16": {
+        "complex_topology_accuracy": 0.2291220556745182,
+        "component_accuracy": 0.37945492662473795,
+        "component_mean_absolute_error": 4.880503144654088,
+        "hole_accuracy": 0.4716981132075472,
+        "hole_mean_absolute_error": 2.461215932914046,
+        "joint_topology_accuracy": 0.2348008385744235,
+        "samples": 477
+      }
+    },
+    "hole_accuracy": 0.3994140625,
+    "hole_mean_absolute_error": 3.740234375,
+    "joint_topology_accuracy": 0.20947265625,
+    "samples": 2048
+  },
+  "best_global_threshold": "0.600",
+  "created_at": "2026-07-23T23:08:54.331938+00:00",
+  "data_recipe": {
+    "connected_wordmark_fraction": 0.18,
+    "jpeg_corruption_fraction": 0.35,
+    "jpeg_quality": [
+      25,
+      90
+    ],
+    "observation_corruptions": [
+      "native-resolution",
+      "blur",
+      "gamma",
+      "noise",
+      "topology-hole-or-island",
+      "codec"
+    ],
+    "ocr_hint_corruptions": [
+      "substitute",
+      "delete",
+      "insert",
+      "transpose"
+    ],
+    "ocr_hint_exact_fraction": 0.75,
+    "outline_wordmark_fraction": 0.12,
+    "sample_rng": "sha256(seed:index)",
+    "schema": "pcdc-wordmark-procedural-data/v5",
+    "source": "family-disjoint locally owned open-font manifest",
+    "text_length": [
+      1,
+      32
+    ],
+    "text_modes": [
+      "uppercase",
+      "lowercase",
+      "uppercase-digits",
+      "lowercase-digits",
+      "mixed-latin-digits-punctuation",
+      "two-word-with-ordered-space"
+    ],
+    "topology_supervision": [
+      "small-component-balanced-support",
+      "enclosed-counter-balanced-background",
+      "two-sided-boundary-band",
+      "true-text-length-slices",
+      "ocr-hint-exactness-slices"
+    ],
+    "tracking_em": [
+      -0.15,
+      0.22
+    ]
+  },
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "model_data_contract_sha256": "9d305836b5ad9dd95cc79a63244271b1f0472407f738e783f9ac14a43c5bc11b",
+  "per_sample_threshold_oracle": {
+    "complex_topology_accuracy": 0.3047722342733189,
+    "component_accuracy": 0.509765625,
+    "component_mean_absolute_error": 1.41845703125,
+    "hole_accuracy": 0.54541015625,
+    "hole_mean_absolute_error": 2.115234375,
+    "joint_topology_accuracy": 0.3310546875,
+    "samples": 2048
+  },
+  "samples": 2048,
+  "schema": "pcdc-wordmark-topology-baselines/v1",
+  "seed": 22260726,
+  "split": "test",
+  "split_seed": 20260722,
+  "thresholds": {
+    "0.200": {
+      "complex_topology_accuracy": 0.10683297180043384,
+      "component_accuracy": 0.2509765625,
+      "component_mean_absolute_error": 6.1572265625,
+      "diagnostic_slices": {
+        "length:1": {
+          "complex_topology_accuracy": 0.25,
+          "component_accuracy": 0.39759036144578314,
+          "component_mean_absolute_error": 3.5783132530120483,
+          "hole_accuracy": 0.7590361445783133,
+          "hole_mean_absolute_error": 0.6867469879518072,
+          "joint_topology_accuracy": 0.3493975903614458,
+          "samples": 83
+        },
+        "length:17-32": {
+          "complex_topology_accuracy": 0.0438871473354232,
+          "component_accuracy": 0.17077986179664364,
+          "component_mean_absolute_error": 8.629812438302073,
+          "hole_accuracy": 0.16584402764067127,
+          "hole_mean_absolute_error": 7.462981243830208,
+          "joint_topology_accuracy": 0.05725567620927937,
+          "samples": 1013
+        },
+        "length:2": {
+          "complex_topology_accuracy": 0.2926829268292683,
+          "component_accuracy": 0.4107142857142857,
+          "component_mean_absolute_error": 4.357142857142857,
+          "hole_accuracy": 0.7142857142857143,
+          "hole_mean_absolute_error": 1.2142857142857142,
+          "joint_topology_accuracy": 0.30357142857142855,
+          "samples": 56
+        },
+        "length:3-4": {
+          "complex_topology_accuracy": 0.2882882882882883,
+          "component_accuracy": 0.4014084507042254,
+          "component_mean_absolute_error": 3.0,
+          "hole_accuracy": 0.6408450704225352,
+          "hole_mean_absolute_error": 3.0,
+          "joint_topology_accuracy": 0.3028169014084507,
+          "samples": 142
+        },
+        "length:5-8": {
+          "complex_topology_accuracy": 0.2076923076923077,
+          "component_accuracy": 0.35379061371841153,
+          "component_mean_absolute_error": 2.8664259927797833,
+          "hole_accuracy": 0.45126353790613716,
+          "hole_mean_absolute_error": 3.660649819494585,
+          "joint_topology_accuracy": 0.21299638989169675,
+          "samples": 277
+        },
+        "length:9-16": {
+          "complex_topology_accuracy": 0.11777301927194861,
+          "component_accuracy": 0.27253668763102723,
+          "component_mean_absolute_error": 4.417190775681342,
+          "hole_accuracy": 0.29979035639413,
+          "hole_mean_absolute_error": 5.0020964360587,
+          "joint_topology_accuracy": 0.12159329140461216,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.3076171875,
+      "hole_mean_absolute_error": 5.62060546875,
+      "joint_topology_accuracy": 0.12890625,
+      "samples": 2048
+    },
+    "0.300": {
+      "complex_topology_accuracy": 0.15726681127982647,
+      "component_accuracy": 0.3388671875,
+      "component_mean_absolute_error": 4.11572265625,
+      "diagnostic_slices": {
+        "length:1": {
+          "complex_topology_accuracy": 0.5,
+          "component_accuracy": 0.5783132530120482,
+          "component_mean_absolute_error": 0.6867469879518072,
+          "hole_accuracy": 0.8674698795180723,
+          "hole_mean_absolute_error": 0.37349397590361444,
+          "joint_topology_accuracy": 0.4939759036144578,
+          "samples": 83
+        },
+        "length:17-32": {
+          "complex_topology_accuracy": 0.07001044932079414,
+          "component_accuracy": 0.2458045409674235,
+          "component_mean_absolute_error": 6.3958538993089835,
+          "hole_accuracy": 0.20927936821322804,
+          "hole_mean_absolute_error": 6.3208292201382035,
+          "joint_topology_accuracy": 0.08983218163869694,
+          "samples": 1013
+        },
+        "length:2": {
+          "complex_topology_accuracy": 0.36585365853658536,
+          "component_accuracy": 0.48214285714285715,
+          "component_mean_absolute_error": 1.0,
+          "hole_accuracy": 0.7857142857142857,
+          "hole_mean_absolute_error": 0.6428571428571429,
+          "joint_topology_accuracy": 0.39285714285714285,
+          "samples": 56
+        },
+        "length:3-4": {
+          "complex_topology_accuracy": 0.34234234234234234,
+          "component_accuracy": 0.4788732394366197,
+          "component_mean_absolute_error": 1.4859154929577465,
+          "hole_accuracy": 0.6619718309859155,
+          "hole_mean_absolute_error": 2.4295774647887325,
+          "joint_topology_accuracy": 0.36619718309859156,
+          "samples": 142
+        },
+        "length:5-8": {
+          "complex_topology_accuracy": 0.3038461538461538,
+          "component_accuracy": 0.48014440433212996,
+          "component_mean_absolute_error": 1.3501805054151625,
+          "hole_accuracy": 0.5451263537906137,
+          "hole_mean_absolute_error": 2.7364620938628157,
+          "joint_topology_accuracy": 0.3140794223826715,
+          "samples": 277
+        },
+        "length:9-16": {
+          "complex_topology_accuracy": 0.18629550321199143,
+          "component_accuracy": 0.35429769392033544,
+          "component_mean_absolute_error": 2.6247379454926625,
+          "hole_accuracy": 0.40041928721174,
+          "hole_mean_absolute_error": 3.89937106918239,
+          "joint_topology_accuracy": 0.1928721174004193,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.373046875,
+      "hole_mean_absolute_error": 4.60595703125,
+      "joint_topology_accuracy": 0.18798828125,
+      "samples": 2048
+    },
+    "0.400": {
+      "complex_topology_accuracy": 0.1621475054229935,
+      "component_accuracy": 0.35498046875,
+      "component_mean_absolute_error": 3.69384765625,
+      "diagnostic_slices": {
+        "length:1": {
+          "complex_topology_accuracy": 0.625,
+          "component_accuracy": 0.5783132530120482,
+          "component_mean_absolute_error": 0.7831325301204819,
+          "hole_accuracy": 0.8674698795180723,
+          "hole_mean_absolute_error": 0.1927710843373494,
+          "joint_topology_accuracy": 0.5060240963855421,
+          "samples": 83
+        },
+        "length:17-32": {
+          "complex_topology_accuracy": 0.06896551724137931,
+          "component_accuracy": 0.2744323790720632,
+          "component_mean_absolute_error": 5.329713721618954,
+          "hole_accuracy": 0.22013820335636722,
+          "hole_mean_absolute_error": 5.661401776900296,
+          "joint_topology_accuracy": 0.09180651530108588,
+          "samples": 1013
+        },
+        "length:2": {
+          "complex_topology_accuracy": 0.3902439024390244,
+          "component_accuracy": 0.48214285714285715,
+          "component_mean_absolute_error": 1.5535714285714286,
+          "hole_accuracy": 0.7857142857142857,
+          "hole_mean_absolute_error": 0.6071428571428571,
+          "joint_topology_accuracy": 0.42857142857142855,
+          "samples": 56
+        },
+        "length:3-4": {
+          "complex_topology_accuracy": 0.34234234234234234,
+          "component_accuracy": 0.47183098591549294,
+          "component_mean_absolute_error": 1.9788732394366197,
+          "hole_accuracy": 0.6690140845070423,
+          "hole_mean_absolute_error": 1.9929577464788732,
+          "joint_topology_accuracy": 0.3732394366197183,
+          "samples": 142
+        },
+        "length:5-8": {
+          "complex_topology_accuracy": 0.3,
+          "component_accuracy": 0.48375451263537905,
+          "component_mean_absolute_error": 1.483754512635379,
+          "hole_accuracy": 0.5848375451263538,
+          "hole_mean_absolute_error": 2.1805054151624548,
+          "joint_topology_accuracy": 0.3104693140794224,
+          "samples": 277
+        },
+        "length:9-16": {
+          "complex_topology_accuracy": 0.20556745182012848,
+          "component_accuracy": 0.36268343815513626,
+          "component_mean_absolute_error": 2.7714884696016773,
+          "hole_accuracy": 0.44025157232704404,
+          "hole_mean_absolute_error": 3.3186582809224316,
+          "joint_topology_accuracy": 0.21174004192872117,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.3935546875,
+      "hole_mean_absolute_error": 4.03076171875,
+      "joint_topology_accuracy": 0.19482421875,
+      "samples": 2048
+    },
+    "0.500": {
+      "complex_topology_accuracy": 0.17733188720173534,
+      "component_accuracy": 0.357421875,
+      "component_mean_absolute_error": 4.0078125,
+      "diagnostic_slices": {
+        "length:1": {
+          "complex_topology_accuracy": 0.5,
+          "component_accuracy": 0.5662650602409639,
+          "component_mean_absolute_error": 0.7590361445783133,
+          "hole_accuracy": 0.8313253012048193,
+          "hole_mean_absolute_error": 0.26506024096385544,
+          "joint_topology_accuracy": 0.4939759036144578,
+          "samples": 83
+        },
+        "length:17-32": {
+          "complex_topology_accuracy": 0.07001044932079414,
+          "component_accuracy": 0.26159921026653504,
+          "component_mean_absolute_error": 5.4422507403751235,
+          "hole_accuracy": 0.22309970384995065,
+          "hole_mean_absolute_error": 5.573543928923988,
+          "joint_topology_accuracy": 0.09081934846989141,
+          "samples": 1013
+        },
+        "length:2": {
+          "complex_topology_accuracy": 0.4146341463414634,
+          "component_accuracy": 0.5178571428571429,
+          "component_mean_absolute_error": 1.4285714285714286,
+          "hole_accuracy": 0.7857142857142857,
+          "hole_mean_absolute_error": 0.5892857142857143,
+          "joint_topology_accuracy": 0.44642857142857145,
+          "samples": 56
+        },
+        "length:3-4": {
+          "complex_topology_accuracy": 0.36936936936936937,
+          "component_accuracy": 0.4859154929577465,
+          "component_mean_absolute_error": 2.852112676056338,
+          "hole_accuracy": 0.704225352112676,
+          "hole_mean_absolute_error": 1.0704225352112675,
+          "joint_topology_accuracy": 0.39436619718309857,
+          "samples": 142
+        },
+        "length:5-8": {
+          "complex_topology_accuracy": 0.36538461538461536,
+          "component_accuracy": 0.5090252707581228,
+          "component_mean_absolute_error": 1.7581227436823104,
+          "hole_accuracy": 0.628158844765343,
+          "hole_mean_absolute_error": 1.6895306859205776,
+          "joint_topology_accuracy": 0.37184115523465705,
+          "samples": 277
+        },
+        "length:9-16": {
+          "complex_topology_accuracy": 0.22055674518201285,
+          "component_accuracy": 0.37945492662473795,
+          "component_mean_absolute_error": 3.480083857442348,
+          "hole_accuracy": 0.4612159329140461,
+          "hole_mean_absolute_error": 2.6729559748427674,
+          "joint_topology_accuracy": 0.22431865828092243,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.40673828125,
+      "hole_mean_absolute_error": 3.708984375,
+      "joint_topology_accuracy": 0.20703125,
+      "samples": 2048
+    },
+    "0.600": {
+      "complex_topology_accuracy": 0.18004338394793926,
+      "component_accuracy": 0.3466796875,
+      "component_mean_absolute_error": 5.248046875,
+      "diagnostic_slices": {
+        "length:1": {
+          "complex_topology_accuracy": 0.5,
+          "component_accuracy": 0.5542168674698795,
+          "component_mean_absolute_error": 1.5180722891566265,
+          "hole_accuracy": 0.8313253012048193,
+          "hole_mean_absolute_error": 0.26506024096385544,
+          "joint_topology_accuracy": 0.4939759036144578,
+          "samples": 83
+        },
+        "length:17-32": {
+          "complex_topology_accuracy": 0.06896551724137931,
+          "component_accuracy": 0.23988153998025666,
+          "component_mean_absolute_error": 7.00888450148075,
+          "hole_accuracy": 0.20829220138203355,
+          "hole_mean_absolute_error": 5.750246791707799,
+          "joint_topology_accuracy": 0.08884501480750247,
+          "samples": 1013
+        },
+        "length:2": {
+          "complex_topology_accuracy": 0.4146341463414634,
+          "component_accuracy": 0.5,
+          "component_mean_absolute_error": 2.0535714285714284,
+          "hole_accuracy": 0.75,
+          "hole_mean_absolute_error": 0.6785714285714286,
+          "joint_topology_accuracy": 0.44642857142857145,
+          "samples": 56
+        },
+        "length:3-4": {
+          "complex_topology_accuracy": 0.3783783783783784,
+          "component_accuracy": 0.4859154929577465,
+          "component_mean_absolute_error": 2.7464788732394365,
+          "hole_accuracy": 0.704225352112676,
+          "hole_mean_absolute_error": 1.204225352112676,
+          "joint_topology_accuracy": 0.39436619718309857,
+          "samples": 142
+        },
+        "length:5-8": {
+          "complex_topology_accuracy": 0.36923076923076925,
+          "component_accuracy": 0.516245487364621,
+          "component_mean_absolute_error": 2.487364620938628,
+          "hole_accuracy": 0.6173285198555957,
+          "hole_mean_absolute_error": 1.552346570397112,
+          "joint_topology_accuracy": 0.37906137184115524,
+          "samples": 277
+        },
+        "length:9-16": {
+          "complex_topology_accuracy": 0.2291220556745182,
+          "component_accuracy": 0.37945492662473795,
+          "component_mean_absolute_error": 4.880503144654088,
+          "hole_accuracy": 0.4716981132075472,
+          "hole_mean_absolute_error": 2.461215932914046,
+          "joint_topology_accuracy": 0.2348008385744235,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.3994140625,
+      "hole_mean_absolute_error": 3.740234375,
+      "joint_topology_accuracy": 0.20947265625,
+      "samples": 2048
+    },
+    "0.700": {
+      "complex_topology_accuracy": 0.17787418655097614,
+      "component_accuracy": 0.3291015625,
+      "component_mean_absolute_error": 7.14013671875,
+      "diagnostic_slices": {
+        "length:1": {
+          "complex_topology_accuracy": 0.5,
+          "component_accuracy": 0.5180722891566265,
+          "component_mean_absolute_error": 2.072289156626506,
+          "hole_accuracy": 0.8554216867469879,
+          "hole_mean_absolute_error": 0.25301204819277107,
+          "joint_topology_accuracy": 0.5060240963855421,
+          "samples": 83
+        },
+        "length:17-32": {
+          "complex_topology_accuracy": 0.06374085684430512,
+          "component_accuracy": 0.2102665350444225,
+          "component_mean_absolute_error": 9.278381046396841,
+          "hole_accuracy": 0.19151036525172754,
+          "hole_mean_absolute_error": 6.329713721618954,
+          "joint_topology_accuracy": 0.07897334649555775,
+          "samples": 1013
+        },
+        "length:2": {
+          "complex_topology_accuracy": 0.34146341463414637,
+          "component_accuracy": 0.4642857142857143,
+          "component_mean_absolute_error": 2.517857142857143,
+          "hole_accuracy": 0.7321428571428571,
+          "hole_mean_absolute_error": 0.6785714285714286,
+          "joint_topology_accuracy": 0.39285714285714285,
+          "samples": 56
+        },
+        "length:3-4": {
+          "complex_topology_accuracy": 0.3333333333333333,
+          "component_accuracy": 0.47183098591549294,
+          "component_mean_absolute_error": 2.816901408450704,
+          "hole_accuracy": 0.6690140845070423,
+          "hole_mean_absolute_error": 1.1408450704225352,
+          "joint_topology_accuracy": 0.3591549295774648,
+          "samples": 142
+        },
+        "length:5-8": {
+          "complex_topology_accuracy": 0.36538461538461536,
+          "component_accuracy": 0.51985559566787,
+          "component_mean_absolute_error": 3.812274368231047,
+          "hole_accuracy": 0.6245487364620939,
+          "hole_mean_absolute_error": 1.8339350180505416,
+          "joint_topology_accuracy": 0.37184115523465705,
+          "samples": 277
+        },
+        "length:9-16": {
+          "complex_topology_accuracy": 0.2505353319057816,
+          "component_accuracy": 0.37945492662473795,
+          "component_mean_absolute_error": 7.243186582809225,
+          "hole_accuracy": 0.4716981132075472,
+          "hole_mean_absolute_error": 2.748427672955975,
+          "joint_topology_accuracy": 0.25157232704402516,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.39013671875,
+      "hole_mean_absolute_error": 4.126953125,
+      "joint_topology_accuracy": 0.2041015625,
+      "samples": 2048
+    },
+    "0.800": {
+      "complex_topology_accuracy": 0.12093275488069415,
+      "component_accuracy": 0.2685546875,
+      "component_mean_absolute_error": 10.1357421875,
+      "diagnostic_slices": {
+        "length:1": {
+          "complex_topology_accuracy": 0.375,
+          "component_accuracy": 0.5180722891566265,
+          "component_mean_absolute_error": 1.6144578313253013,
+          "hole_accuracy": 0.7349397590361446,
+          "hole_mean_absolute_error": 0.40963855421686746,
+          "joint_topology_accuracy": 0.39759036144578314,
+          "samples": 83
+        },
+        "length:17-32": {
+          "complex_topology_accuracy": 0.03343782654127482,
+          "component_accuracy": 0.14807502467917077,
+          "component_mean_absolute_error": 13.05725567620928,
+          "hole_accuracy": 0.1362290227048371,
+          "hole_mean_absolute_error": 7.501480750246792,
+          "joint_topology_accuracy": 0.04837117472852912,
+          "samples": 1013
+        },
+        "length:2": {
+          "complex_topology_accuracy": 0.2926829268292683,
+          "component_accuracy": 0.4107142857142857,
+          "component_mean_absolute_error": 3.017857142857143,
+          "hole_accuracy": 0.625,
+          "hole_mean_absolute_error": 1.1071428571428572,
+          "joint_topology_accuracy": 0.3392857142857143,
+          "samples": 56
+        },
+        "length:3-4": {
+          "complex_topology_accuracy": 0.26126126126126126,
+          "component_accuracy": 0.4225352112676056,
+          "component_mean_absolute_error": 4.014084507042254,
+          "hole_accuracy": 0.5915492957746479,
+          "hole_mean_absolute_error": 1.5070422535211268,
+          "joint_topology_accuracy": 0.29577464788732394,
+          "samples": 142
+        },
+        "length:5-8": {
+          "complex_topology_accuracy": 0.26153846153846155,
+          "component_accuracy": 0.4657039711191336,
+          "component_mean_absolute_error": 5.971119133574007,
+          "hole_accuracy": 0.4981949458483754,
+          "hole_mean_absolute_error": 3.101083032490975,
+          "joint_topology_accuracy": 0.27075812274368233,
+          "samples": 277
+        },
+        "length:9-16": {
+          "complex_topology_accuracy": 0.16916488222698073,
+          "component_accuracy": 0.3039832285115304,
+          "component_mean_absolute_error": 10.49056603773585,
+          "hole_accuracy": 0.34591194968553457,
+          "hole_mean_absolute_error": 3.7253668763102725,
+          "joint_topology_accuracy": 0.1719077568134172,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.30322265625,
+      "hole_mean_absolute_error": 5.14892578125,
+      "joint_topology_accuracy": 0.146484375,
+      "samples": 2048
+    }
+  },
+  "trainer_source_sha256": "9e6a1780ed5e151eb6f04819b0b6d2345f2cb48905832b2591409159e3a521f2"
+}

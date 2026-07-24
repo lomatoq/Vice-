@@ -1,0 +1,190 @@
+{
+  "after": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8958918841929371,
+      "mean_best_soft_iou_at_k": 0.8958918841929371,
+      "neural_only_recall_at_5_iou50": 1.0,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.8645897318993764,
+      "mean_best_soft_iou_at_k": 0.8645897318993764,
+      "neural_only_recall_at_5_iou50": 0.9910714285714286,
+      "neural_only_recall_at_k_iou50": 0.9910714285714286,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.852068870981952,
+      "mean_best_soft_iou_at_k": 0.852068870981952,
+      "neural_only_recall_at_5_iou50": 0.9875,
+      "neural_only_recall_at_k_iou50": 0.9875
+    }
+  },
+  "batch_size": 8,
+  "before": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8405139819082987,
+      "mean_best_soft_iou_at_k": 0.8405139819082987,
+      "neural_only_recall_at_5_iou50": 0.96875,
+      "neural_only_recall_at_k_iou50": 0.96875
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.6748790371279506,
+      "mean_best_soft_iou_at_k": 0.6820930878983429,
+      "neural_only_recall_at_5_iou50": 0.8035714285714286,
+      "neural_only_recall_at_k_iou50": 0.8392857142857143,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.6086250592158116,
+      "mean_best_soft_iou_at_k": 0.6187247302943605,
+      "neural_only_recall_at_5_iou50": 0.7375,
+      "neural_only_recall_at_k_iou50": 0.7875
+    }
+  },
+  "best_text_line_recall_at_5": 0.9875,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed.pt",
+  "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+  "checkpoint_written": false,
+  "created_at": "2026-07-22T13:20:10.574571+00:00",
+  "device": "cuda",
+  "evaluation_history": [
+    {
+      "step": 0,
+      "text_line_mean_iou_at_5": 0.6086250592158116,
+      "text_line_recall_at_5": 0.7375
+    },
+    {
+      "step": 120,
+      "text_line_mean_iou_at_5": 0.7395457422589804,
+      "text_line_recall_at_5": 0.8875
+    },
+    {
+      "step": 240,
+      "text_line_mean_iou_at_5": 0.7735606846245058,
+      "text_line_recall_at_5": 0.9125
+    },
+    {
+      "step": 360,
+      "text_line_mean_iou_at_5": 0.7977513755801228,
+      "text_line_recall_at_5": 0.95
+    },
+    {
+      "step": 480,
+      "text_line_mean_iou_at_5": 0.8234080867214052,
+      "text_line_recall_at_5": 0.975
+    },
+    {
+      "step": 600,
+      "text_line_mean_iou_at_5": 0.8278673094889519,
+      "text_line_recall_at_5": 0.975
+    },
+    {
+      "step": 720,
+      "text_line_mean_iou_at_5": 0.8331457785008887,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 840,
+      "text_line_mean_iou_at_5": 0.8413672996983081,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 960,
+      "text_line_mean_iou_at_5": 0.852068870981952,
+      "text_line_recall_at_5": 0.9875
+    }
+  ],
+  "filter_cache_sha256": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+  "final_loss": 0.8277691602706909,
+  "final_text_failures": [
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 2.032788,
+        "scale": 0.58705,
+        "shift_x": 6,
+        "shift_y": 1
+      },
+      "best_binary_iou": 0.4657534246575342,
+      "best_binary_support_pixels": 73,
+      "best_binary_threshold": 0.65,
+      "font_family": "cinzel",
+      "global_rank": 4,
+      "id": "pair:open-text:cinzel:9d1843aa9a2ca48b:1",
+      "mean_probability_on_target": 0.9628081549616421,
+      "mean_probability_outside_target": 0.01047091627208872,
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.47460535168647766,
+        0.4956522583961487,
+        0.6457353234291077,
+        0.5596863627433777
+      ],
+      "predicted_mass_on_target": 32.73547726869583,
+      "predicted_mass_outside_target": 42.53286189722437,
+      "predicted_support_mass": 75.2683391659202,
+      "query": 11,
+      "raw_support_iou": 0.2795948941368953,
+      "size": 96,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.42773096770154584,
+      "target_bbox": [
+        0.4791666567325592,
+        0.5,
+        0.6458333134651184,
+        0.5625
+      ],
+      "target_index": 1,
+      "target_support_pixels": 34,
+      "type_confidence": 0.9636730551719666
+    }
+  ],
+  "initial_loss": 3.1914567947387695,
+  "interpretation": "If train-only text-line Recall@5 cannot approach 1.0, do not start a large run; repair the instance mask objective or architecture.",
+  "label_contract_sha256": "0376ee17366a3ff77a54a9857e627dce821834443839dc7c71ba2271582e4cf4",
+  "learning_rate": 0.0001,
+  "minimum_text_line_recall_at_5": 0.99,
+  "owner_count_rows": {
+    "2": 16,
+    "3": 16
+  },
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "passed": false,
+  "probe_model_config": {
+    "attention_heads": 8,
+    "decoder_layers": 3,
+    "hidden_dim": 128,
+    "mask_upsample": 2,
+    "parameter_dim": 16,
+    "query_count": 32,
+    "relation_dim": 8,
+    "spatial_positioning": true,
+    "text_bbox_gate_padding": 0.04,
+    "text_bbox_gate_vertical_only": true
+  },
+  "row_count": 32,
+  "schema": "pcdc-proposal-tiny-overfit-preflight/v1",
+  "split": "train-only",
+  "steps": 960,
+  "text_bbox_gate_padding": 0.04,
+  "text_bbox_gate_vertical_only": true
+}

@@ -1,0 +1,74 @@
+{
+  "input": "penspiral_in.jpg",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari",
+  "analysis_scale": 1,
+  "smoothing": "paper",
+  "regions": 9,
+  "closed_contours": 6,
+  "rendered_primitive_count": 171,
+  "actual": {
+    "L": 143,
+    "Q": 0,
+    "C": 28
+  },
+  "templates": {
+    "comb-coverage-rdp": 1,
+    "paper-joint": 4,
+    "paper-smooth-g1-fallback": 1,
+    "stroke": 4
+  },
+  "threshold": 0.0,
+  "comb_coverage_repair": [
+    {
+      "router": "large-saturated-high-comb",
+      "bbox": [
+        211,
+        118,
+        353,
+        278
+      ],
+      "area_ratio": 0.05161,
+      "fill_ratio": 0.50986,
+      "rdp_vertices": 127,
+      "accepted": true,
+      "incumbent": {
+        "mae": 1.538,
+        "rmse": 9.744,
+        "ink_iou": 0.91332,
+        "ssim": 0.96507,
+        "boundary_f": 0.86768,
+        "hausdorff95": 14.901,
+        "topology": [
+          9,
+          1
+        ],
+        "primitives": 236
+      },
+      "candidate": {
+        "mae": 1.348,
+        "rmse": 8.073,
+        "ink_iou": 0.95011,
+        "ssim": 0.97333,
+        "boundary_f": 0.9592,
+        "hausdorff95": 2.865,
+        "topology": [
+          9,
+          1
+        ],
+        "primitives": 171
+      },
+      "reason": "perceptual+topology+complexity-court"
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 5.558
+}

@@ -1,0 +1,44 @@
+{
+  "input": "amigo_2__q30.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 17,
+  "closed_contours": 21,
+  "rendered_primitive_count": 299,
+  "actual": {
+    "L": 129,
+    "Q": 0,
+    "C": 170
+  },
+  "templates": {
+    "occlusion-ellipse": 1,
+    "occlusion-rect": 1,
+    "paper-joint": 9,
+    "paper-smooth": 2,
+    "paper-tiny": 6,
+    "paper-joint-g1-fallback": 1,
+    "tiny-ellipse": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 11.57,
+    "mae_native": 12.68,
+    "bf_deblur": 0.9837,
+    "bf_native": 0.9728,
+    "kink_deblur": 11.93,
+    "kink_native": 11.91,
+    "winner": "deblur"
+  },
+  "kink_energy": 11.931
+}

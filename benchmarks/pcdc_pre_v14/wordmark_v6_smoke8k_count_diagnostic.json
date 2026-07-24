@@ -1,0 +1,544 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_pre_v14\\wordmark_prior_v6_smoke8k.pt",
+  "checkpoint_epoch": 10,
+  "checkpoint_trainer_source_sha256": "647bd203cb1e81705999e6ecffc9aa02109ff1e22a9cfae3ab431c090e99fead",
+  "created_at": "2026-07-23T23:49:00.767003+00:00",
+  "data_recipe": {
+    "connected_wordmark_fraction": 0.18,
+    "jpeg_corruption_fraction": 0.35,
+    "jpeg_quality": [
+      25,
+      90
+    ],
+    "observation_corruptions": [
+      "native-resolution",
+      "blur",
+      "gamma",
+      "noise",
+      "topology-hole-or-island",
+      "codec"
+    ],
+    "ocr_hint_corruptions": [
+      "substitute",
+      "delete",
+      "insert",
+      "transpose"
+    ],
+    "ocr_hint_exact_fraction": 0.75,
+    "outline_wordmark_fraction": 0.12,
+    "sample_rng": "sha256(seed:index)",
+    "schema": "pcdc-wordmark-procedural-data/v6",
+    "source": "family-disjoint locally owned open-font manifest",
+    "text_length": [
+      1,
+      32
+    ],
+    "text_modes": [
+      "uppercase",
+      "lowercase",
+      "uppercase-digits",
+      "lowercase-digits",
+      "mixed-latin-digits-punctuation",
+      "two-word-with-ordered-space"
+    ],
+    "topology_supervision": [
+      "small-component-balanced-support",
+      "enclosed-counter-balanced-background",
+      "two-sided-boundary-band",
+      "true-text-length-slices",
+      "ocr-hint-exactness-slices",
+      "canonical-per-token-component-and-counter-counts",
+      "line-effect-topology-residual"
+    ],
+    "tracking_em": [
+      -0.15,
+      0.22
+    ]
+  },
+  "device": "cuda",
+  "evaluation_trainer_source_sha256": "647bd203cb1e81705999e6ecffc9aa02109ff1e22a9cfae3ab431c090e99fead",
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "methods": {
+    "additive": {
+      "component_accuracy": 0.28125,
+      "component_mean_absolute_error": 7.58740234375,
+      "component_mean_signed_error": 6.51318359375,
+      "conditions": {
+        "ocr_hint_exact:false": {
+          "component_accuracy": 0.2231578947368421,
+          "component_mean_absolute_error": 7.926315789473684,
+          "component_mean_signed_error": 6.869473684210527,
+          "hole_accuracy": 0.10736842105263159,
+          "hole_mean_absolute_error": 4.4926315789473685,
+          "hole_mean_signed_error": 0.06315789473684211,
+          "joint_accuracy": 0.02736842105263158,
+          "samples": 475
+        },
+        "ocr_hint_exact:true": {
+          "component_accuracy": 0.29879211697393515,
+          "component_mean_absolute_error": 7.485060394151303,
+          "component_mean_signed_error": 6.405594405594406,
+          "hole_accuracy": 0.1080737444373808,
+          "hole_mean_absolute_error": 4.61220597584234,
+          "hole_mean_signed_error": 0.0743801652892562,
+          "joint_accuracy": 0.05340114431023522,
+          "samples": 1573
+        }
+      },
+      "diagnostic_slices": {
+        "length:1": {
+          "component_accuracy": 0.8433734939759037,
+          "component_mean_absolute_error": 0.20481927710843373,
+          "component_mean_signed_error": -0.08433734939759036,
+          "hole_accuracy": 0.5180722891566265,
+          "hole_mean_absolute_error": 0.5301204819277109,
+          "hole_mean_signed_error": -0.1686746987951807,
+          "joint_accuracy": 0.4819277108433735,
+          "samples": 83
+        },
+        "length:17-32": {
+          "component_accuracy": 0.16683119447186576,
+          "component_mean_absolute_error": 12.509378084896348,
+          "component_mean_signed_error": 10.955577492596248,
+          "hole_accuracy": 0.059230009871668314,
+          "hole_mean_absolute_error": 6.499506416584403,
+          "hole_mean_signed_error": -0.1441263573543929,
+          "joint_accuracy": 0.009871668311944718,
+          "samples": 1013
+        },
+        "length:2": {
+          "component_accuracy": 0.625,
+          "component_mean_absolute_error": 0.44642857142857145,
+          "component_mean_signed_error": 0.16071428571428573,
+          "hole_accuracy": 0.32142857142857145,
+          "hole_mean_absolute_error": 1.0178571428571428,
+          "hole_mean_signed_error": -0.19642857142857142,
+          "joint_accuracy": 0.17857142857142858,
+          "samples": 56
+        },
+        "length:3-4": {
+          "component_accuracy": 0.49295774647887325,
+          "component_mean_absolute_error": 0.9295774647887324,
+          "component_mean_signed_error": 0.5352112676056338,
+          "hole_accuracy": 0.2112676056338028,
+          "hole_mean_absolute_error": 1.4014084507042253,
+          "hole_mean_signed_error": 0.1619718309859155,
+          "joint_accuracy": 0.09859154929577464,
+          "samples": 142
+        },
+        "length:5-8": {
+          "component_accuracy": 0.37184115523465705,
+          "component_mean_absolute_error": 1.9855595667870036,
+          "component_mean_signed_error": 1.5018050541516246,
+          "hole_accuracy": 0.13357400722021662,
+          "hole_mean_absolute_error": 2.3646209386281587,
+          "hole_mean_signed_error": 0.45126353790613716,
+          "joint_accuracy": 0.04332129963898917,
+          "samples": 277
+        },
+        "length:9-16": {
+          "component_accuracy": 0.27044025157232704,
+          "component_mean_absolute_error": 4.4926624737945495,
+          "component_mean_signed_error": 3.6624737945492662,
+          "hole_accuracy": 0.06918238993710692,
+          "hole_mean_absolute_error": 3.8784067085953877,
+          "hole_mean_signed_error": 0.35639412997903563,
+          "joint_accuracy": 0.023060796645702306,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.10791015625,
+      "hole_mean_absolute_error": 4.58447265625,
+      "hole_mean_signed_error": 0.07177734375,
+      "joint_accuracy": 0.04736328125,
+      "samples": 2048
+    },
+    "categorical": {
+      "component_accuracy": 0.30419921875,
+      "component_mean_absolute_error": 2.453125,
+      "component_mean_signed_error": 0.3017578125,
+      "conditions": {
+        "ocr_hint_exact:false": {
+          "component_accuracy": 0.29894736842105263,
+          "component_mean_absolute_error": 2.4905263157894737,
+          "component_mean_signed_error": 0.4189473684210526,
+          "hole_accuracy": 0.13473684210526315,
+          "hole_mean_absolute_error": 3.3263157894736843,
+          "hole_mean_signed_error": 1.3094736842105263,
+          "joint_accuracy": 0.05052631578947368,
+          "samples": 475
+        },
+        "ocr_hint_exact:true": {
+          "component_accuracy": 0.30578512396694213,
+          "component_mean_absolute_error": 2.441830896376351,
+          "component_mean_signed_error": 0.2663699936427209,
+          "hole_accuracy": 0.15384615384615385,
+          "hole_mean_absolute_error": 3.5460902733630006,
+          "hole_mean_signed_error": 1.3032422123331213,
+          "joint_accuracy": 0.059758423394787034,
+          "samples": 1573
+        }
+      },
+      "diagnostic_slices": {
+        "length:1": {
+          "component_accuracy": 0.8674698795180723,
+          "component_mean_absolute_error": 0.18072289156626506,
+          "component_mean_signed_error": 0.012048192771084338,
+          "hole_accuracy": 0.5180722891566265,
+          "hole_mean_absolute_error": 0.5301204819277109,
+          "hole_mean_signed_error": -0.2891566265060241,
+          "joint_accuracy": 0.4819277108433735,
+          "samples": 83
+        },
+        "length:17-32": {
+          "component_accuracy": 0.24383020730503455,
+          "component_mean_absolute_error": 3.678183613030602,
+          "component_mean_signed_error": 0.8627838104639685,
+          "hole_accuracy": 0.09081934846989141,
+          "hole_mean_absolute_error": 4.903257650542942,
+          "hole_mean_signed_error": 2.0128331688055283,
+          "joint_accuracy": 0.029615004935834157,
+          "samples": 1013
+        },
+        "length:2": {
+          "component_accuracy": 0.5,
+          "component_mean_absolute_error": 0.5892857142857143,
+          "component_mean_signed_error": -0.5178571428571429,
+          "hole_accuracy": 0.3392857142857143,
+          "hole_mean_absolute_error": 0.9642857142857143,
+          "hole_mean_signed_error": -0.07142857142857142,
+          "joint_accuracy": 0.125,
+          "samples": 56
+        },
+        "length:3-4": {
+          "component_accuracy": 0.38028169014084506,
+          "component_mean_absolute_error": 0.8661971830985915,
+          "component_mean_signed_error": -0.5140845070422535,
+          "hole_accuracy": 0.2323943661971831,
+          "hole_mean_absolute_error": 1.3028169014084507,
+          "hole_mean_signed_error": 0.5845070422535211,
+          "joint_accuracy": 0.09859154929577464,
+          "samples": 142
+        },
+        "length:5-8": {
+          "component_accuracy": 0.3249097472924188,
+          "component_mean_absolute_error": 1.1660649819494584,
+          "component_mean_signed_error": -0.516245487364621,
+          "hole_accuracy": 0.19494584837545126,
+          "hole_mean_absolute_error": 1.9891696750902528,
+          "hole_mean_signed_error": 0.855595667870036,
+          "joint_accuracy": 0.05776173285198556,
+          "samples": 277
+        },
+        "length:9-16": {
+          "component_accuracy": 0.27672955974842767,
+          "component_mean_absolute_error": 1.6855345911949686,
+          "component_mean_signed_error": -0.025157232704402517,
+          "hole_accuracy": 0.13626834381551362,
+          "hole_mean_absolute_error": 2.8448637316561847,
+          "hole_mean_signed_error": 0.7148846960167715,
+          "joint_accuracy": 0.023060796645702306,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.1494140625,
+      "hole_mean_absolute_error": 3.4951171875,
+      "hole_mean_signed_error": 1.3046875,
+      "joint_accuracy": 0.0576171875,
+      "samples": 2048
+    },
+    "continuous": {
+      "component_accuracy": 0.2216796875,
+      "component_mean_absolute_error": 2.5908203125,
+      "component_mean_signed_error": 0.6064453125,
+      "conditions": {
+        "ocr_hint_exact:false": {
+          "component_accuracy": 0.20421052631578948,
+          "component_mean_absolute_error": 2.608421052631579,
+          "component_mean_signed_error": 0.8147368421052632,
+          "hole_accuracy": 0.0863157894736842,
+          "hole_mean_absolute_error": 4.090526315789473,
+          "hole_mean_signed_error": 2.6842105263157894,
+          "joint_accuracy": 0.01263157894736842,
+          "samples": 475
+        },
+        "ocr_hint_exact:true": {
+          "component_accuracy": 0.22695486331849968,
+          "component_mean_absolute_error": 2.585505403687222,
+          "component_mean_signed_error": 0.54354736172918,
+          "hole_accuracy": 0.07628734901462174,
+          "hole_mean_absolute_error": 4.273998728544183,
+          "hole_mean_signed_error": 2.4520025429116337,
+          "joint_accuracy": 0.020343293070565798,
+          "samples": 1573
+        }
+      },
+      "diagnostic_slices": {
+        "length:1": {
+          "component_accuracy": 0.07228915662650602,
+          "component_mean_absolute_error": 1.0481927710843373,
+          "component_mean_signed_error": -0.8554216867469879,
+          "hole_accuracy": 0.3253012048192771,
+          "hole_mean_absolute_error": 0.963855421686747,
+          "hole_mean_signed_error": 0.963855421686747,
+          "joint_accuracy": 0.024096385542168676,
+          "samples": 83
+        },
+        "length:17-32": {
+          "component_accuracy": 0.1510365251727542,
+          "component_mean_absolute_error": 3.8321816386969396,
+          "component_mean_signed_error": 1.0463968410661402,
+          "hole_accuracy": 0.045409674234945706,
+          "hole_mean_absolute_error": 5.81243830207305,
+          "hole_mean_signed_error": 3.1806515301085883,
+          "joint_accuracy": 0.008884501480750246,
+          "samples": 1013
+        },
+        "length:2": {
+          "component_accuracy": 0.21428571428571427,
+          "component_mean_absolute_error": 1.0,
+          "component_mean_signed_error": -0.7142857142857143,
+          "hole_accuracy": 0.25,
+          "hole_mean_absolute_error": 1.1785714285714286,
+          "hole_mean_signed_error": 0.7857142857142857,
+          "joint_accuracy": 0.03571428571428571,
+          "samples": 56
+        },
+        "length:3-4": {
+          "component_accuracy": 0.4154929577464789,
+          "component_mean_absolute_error": 0.7535211267605634,
+          "component_mean_signed_error": -0.20422535211267606,
+          "hole_accuracy": 0.1619718309859155,
+          "hole_mean_absolute_error": 1.591549295774648,
+          "hole_mean_signed_error": 1.295774647887324,
+          "joint_accuracy": 0.056338028169014086,
+          "samples": 142
+        },
+        "length:5-8": {
+          "component_accuracy": 0.36101083032490977,
+          "component_mean_absolute_error": 1.0613718411552346,
+          "component_mean_signed_error": -0.01444043321299639,
+          "hole_accuracy": 0.08303249097472924,
+          "hole_mean_absolute_error": 2.4693140794223827,
+          "hole_mean_signed_error": 1.660649819494585,
+          "joint_accuracy": 0.039711191335740074,
+          "samples": 277
+        },
+        "length:9-16": {
+          "component_accuracy": 0.259958071278826,
+          "component_mean_absolute_error": 1.8448637316561844,
+          "component_mean_signed_error": 0.6834381551362684,
+          "hole_accuracy": 0.05870020964360587,
+          "hole_mean_absolute_error": 3.610062893081761,
+          "hole_mean_signed_error": 2.3941299790356396,
+          "joint_accuracy": 0.012578616352201259,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.07861328125,
+      "hole_mean_absolute_error": 4.2314453125,
+      "hole_mean_signed_error": 2.505859375,
+      "joint_accuracy": 0.0185546875,
+      "samples": 2048
+    },
+    "posterior_mean": {
+      "component_accuracy": 0.2880859375,
+      "component_mean_absolute_error": 2.39892578125,
+      "component_mean_signed_error": 0.40283203125,
+      "conditions": {
+        "ocr_hint_exact:false": {
+          "component_accuracy": 0.2631578947368421,
+          "component_mean_absolute_error": 2.4526315789473685,
+          "component_mean_signed_error": 0.5326315789473685,
+          "hole_accuracy": 0.11368421052631579,
+          "hole_mean_absolute_error": 3.2757894736842106,
+          "hole_mean_signed_error": 1.431578947368421,
+          "joint_accuracy": 0.02736842105263158,
+          "samples": 475
+        },
+        "ocr_hint_exact:true": {
+          "component_accuracy": 0.2956134774316593,
+          "component_mean_absolute_error": 2.382708200890019,
+          "component_mean_signed_error": 0.36363636363636365,
+          "hole_accuracy": 0.1354100445009536,
+          "hole_mean_absolute_error": 3.420216147488875,
+          "hole_mean_signed_error": 1.3820724729815639,
+          "joint_accuracy": 0.052765416401780035,
+          "samples": 1573
+        }
+      },
+      "diagnostic_slices": {
+        "length:1": {
+          "component_accuracy": 0.7951807228915663,
+          "component_mean_absolute_error": 0.25301204819277107,
+          "component_mean_signed_error": 0.1566265060240964,
+          "hole_accuracy": 0.3855421686746988,
+          "hole_mean_absolute_error": 0.6144578313253012,
+          "hole_mean_signed_error": 0.3493975903614458,
+          "joint_accuracy": 0.3373493975903614,
+          "samples": 83
+        },
+        "length:17-32": {
+          "component_accuracy": 0.24777887462981243,
+          "component_mean_absolute_error": 3.5804540967423493,
+          "component_mean_signed_error": 0.9210266535044422,
+          "hole_accuracy": 0.08884501480750247,
+          "hole_mean_absolute_error": 4.751233958538993,
+          "hole_mean_signed_error": 1.987166831194472,
+          "joint_accuracy": 0.029615004935834157,
+          "samples": 1013
+        },
+        "length:2": {
+          "component_accuracy": 0.75,
+          "component_mean_absolute_error": 0.3392857142857143,
+          "component_mean_signed_error": -0.08928571428571429,
+          "hole_accuracy": 0.21428571428571427,
+          "hole_mean_absolute_error": 1.0714285714285714,
+          "hole_mean_signed_error": 0.21428571428571427,
+          "joint_accuracy": 0.17857142857142858,
+          "samples": 56
+        },
+        "length:3-4": {
+          "component_accuracy": 0.352112676056338,
+          "component_mean_absolute_error": 0.795774647887324,
+          "component_mean_signed_error": -0.3028169014084507,
+          "hole_accuracy": 0.1619718309859155,
+          "hole_mean_absolute_error": 1.3732394366197183,
+          "hole_mean_signed_error": 0.7394366197183099,
+          "joint_accuracy": 0.06338028169014084,
+          "samples": 142
+        },
+        "length:5-8": {
+          "component_accuracy": 0.24548736462093862,
+          "component_mean_absolute_error": 1.1660649819494584,
+          "component_mean_signed_error": -0.3935018050541516,
+          "hole_accuracy": 0.1407942238267148,
+          "hole_mean_absolute_error": 2.0866425992779782,
+          "hole_mean_signed_error": 1.1046931407942238,
+          "joint_accuracy": 0.02888086642599278,
+          "samples": 277
+        },
+        "length:9-16": {
+          "component_accuracy": 0.23689727463312368,
+          "component_mean_absolute_error": 1.6981132075471699,
+          "component_mean_signed_error": 0.07547169811320754,
+          "hole_accuracy": 0.1488469601677149,
+          "hole_mean_absolute_error": 2.59748427672956,
+          "hole_mean_signed_error": 0.8155136268343816,
+          "joint_accuracy": 0.023060796645702306,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.13037109375,
+      "hole_mean_absolute_error": 3.38671875,
+      "hole_mean_signed_error": 1.3935546875,
+      "joint_accuracy": 0.046875,
+      "samples": 2048
+    },
+    "posterior_median": {
+      "component_accuracy": 0.29931640625,
+      "component_mean_absolute_error": 2.40625,
+      "component_mean_signed_error": 0.3515625,
+      "conditions": {
+        "ocr_hint_exact:false": {
+          "component_accuracy": 0.27578947368421053,
+          "component_mean_absolute_error": 2.4589473684210525,
+          "component_mean_signed_error": 0.4631578947368421,
+          "hole_accuracy": 0.12631578947368421,
+          "hole_mean_absolute_error": 3.258947368421053,
+          "hole_mean_signed_error": 1.3726315789473684,
+          "joint_accuracy": 0.042105263157894736,
+          "samples": 475
+        },
+        "ocr_hint_exact:true": {
+          "component_accuracy": 0.3064208518753973,
+          "component_mean_absolute_error": 2.390336935791481,
+          "component_mean_signed_error": 0.3178639542275906,
+          "hole_accuracy": 0.14812460267005723,
+          "hole_mean_absolute_error": 3.4405594405594404,
+          "hole_mean_signed_error": 1.3591862682771774,
+          "joint_accuracy": 0.06547997457088366,
+          "samples": 1573
+        }
+      },
+      "diagnostic_slices": {
+        "length:1": {
+          "component_accuracy": 0.8313253012048193,
+          "component_mean_absolute_error": 0.21686746987951808,
+          "component_mean_signed_error": 0.04819277108433735,
+          "hole_accuracy": 0.4819277108433735,
+          "hole_mean_absolute_error": 0.5421686746987951,
+          "hole_mean_signed_error": 0.03614457831325301,
+          "joint_accuracy": 0.42168674698795183,
+          "samples": 83
+        },
+        "length:17-32": {
+          "component_accuracy": 0.25468904244817375,
+          "component_mean_absolute_error": 3.6031589338598224,
+          "component_mean_signed_error": 0.87857847976308,
+          "hole_accuracy": 0.09180651530108588,
+          "hole_mean_absolute_error": 4.79466929911155,
+          "hole_mean_signed_error": 1.9990128331688055,
+          "joint_accuracy": 0.034550839091806514,
+          "samples": 1013
+        },
+        "length:2": {
+          "component_accuracy": 0.6607142857142857,
+          "component_mean_absolute_error": 0.42857142857142855,
+          "component_mean_signed_error": -0.2857142857142857,
+          "hole_accuracy": 0.26785714285714285,
+          "hole_mean_absolute_error": 1.0357142857142858,
+          "hole_mean_signed_error": 0.10714285714285714,
+          "joint_accuracy": 0.21428571428571427,
+          "samples": 56
+        },
+        "length:3-4": {
+          "component_accuracy": 0.34507042253521125,
+          "component_mean_absolute_error": 0.8450704225352113,
+          "component_mean_signed_error": -0.39436619718309857,
+          "hole_accuracy": 0.19718309859154928,
+          "hole_mean_absolute_error": 1.3169014084507042,
+          "hole_mean_signed_error": 0.6126760563380281,
+          "joint_accuracy": 0.09154929577464789,
+          "samples": 142
+        },
+        "length:5-8": {
+          "component_accuracy": 0.2815884476534296,
+          "component_mean_absolute_error": 1.144404332129964,
+          "component_mean_signed_error": -0.4368231046931408,
+          "hole_accuracy": 0.1588447653429603,
+          "hole_mean_absolute_error": 2.0433212996389893,
+          "hole_mean_signed_error": 1.0180505415162455,
+          "joint_accuracy": 0.05054151624548736,
+          "samples": 277
+        },
+        "length:9-16": {
+          "component_accuracy": 0.2557651991614256,
+          "component_mean_absolute_error": 1.6750524109014675,
+          "component_mean_signed_error": 0.039832285115303984,
+          "hole_accuracy": 0.1530398322851153,
+          "hole_mean_absolute_error": 2.6142557651991614,
+          "hole_mean_signed_error": 0.8113207547169812,
+          "joint_accuracy": 0.029350104821802937,
+          "samples": 477
+        }
+      },
+      "hole_accuracy": 0.14306640625,
+      "hole_mean_absolute_error": 3.3984375,
+      "hole_mean_signed_error": 1.3623046875,
+      "joint_accuracy": 0.06005859375,
+      "samples": 2048
+    }
+  },
+  "model_data_contract_sha256": "a3e7e5217642c10194fc0346c078452823288d523c1149589e90a4d58a725eb3",
+  "samples": 2048,
+  "schema": "pcdc-wordmark-checkpoint-count-diagnostic/v1",
+  "split": "test",
+  "visual_residual": {
+    "component_mean": -6.111091613769531,
+    "component_mean_absolute": 7.0660223960876465,
+    "hole_mean": 2.4265592098236084,
+    "hole_mean_absolute": 3.2268130779266357
+  }
+}

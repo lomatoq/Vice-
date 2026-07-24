@@ -1,0 +1,71 @@
+{
+  "input": "item053.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 45,
+  "closed_contours": 76,
+  "rendered_primitive_count": 448,
+  "actual": {
+    "L": 312,
+    "Q": 0,
+    "C": 136
+  },
+  "templates": {
+    "paper-regions": 63,
+    "paper-regions-court": 1,
+    "glyph-coverage-rdp": 12
+  },
+  "threshold": 0.0,
+  "glyph_repair": [
+    {
+      "box": 0,
+      "accepted": true,
+      "bbox": [
+        8.333,
+        9.667,
+        42.333,
+        26.0
+      ],
+      "reference_cc": 5,
+      "reference_holes": 2,
+      "baseline_cc": 10,
+      "baseline_holes": 0,
+      "candidate_holes": 3,
+      "baseline_iou": 0.2903,
+      "candidate_iou": 0.7715,
+      "threshold": 0.6,
+      "counter_word": false,
+      "ink_anchor": 1,
+      "surround_anchor": 0
+    },
+    {
+      "box": 1,
+      "accepted": false,
+      "reason": "no-topology-deficit",
+      "reference_cc": 5,
+      "baseline_cc": 5,
+      "baseline_iou": 0.7714
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 13.83,
+    "mae_native": 17.39,
+    "bf_deblur": 0.9659,
+    "bf_native": 0.9465,
+    "kink_deblur": 19.92,
+    "kink_native": 14.39,
+    "winner": "deblur"
+  },
+  "kink_energy": 19.916
+}

@@ -6,16 +6,34 @@
   "smoothing": "paper",
   "regions": 1,
   "closed_contours": 1,
-  "rendered_primitive_count": 11,
+  "rendered_primitive_count": 6,
   "actual": {
-    "L": 2,
+    "L": 6,
     "Q": 0,
-    "C": 9
+    "C": 0
   },
   "templates": {
-    "paper-joint": 1
+    "paper-clean-polygon": 1
   },
   "threshold": 0.0,
+  "diagram_signature": {},
+  "underpaint_renderer_calibration": [
+    {
+      "renderer": "cairosvg",
+      "available": false,
+      "error": "OSError"
+    },
+    {
+      "renderer": "resvg",
+      "available": true,
+      "scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "one_sided_support": 0.75
+    }
+  ],
   "corner_detector": {
     "type": "resolution-density-hybrid-cnn",
     "small_model": "corner_cnn.pt",

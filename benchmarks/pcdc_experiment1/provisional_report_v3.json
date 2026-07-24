@@ -1,0 +1,5398 @@
+{
+  "schema": "pcdc-experiment1/v1",
+  "created_at": "2026-07-20T15:05:07.237800+00:00",
+  "status": "provisional_partial",
+  "gate_pass": false,
+  "would_pass_evidence_gate": false,
+  "required_evidence_reviews": 300,
+  "observed_evidence_reviews": 205,
+  "missing_evidence_reviews": 95,
+  "metrics": {
+    "overall_support_recall_at_32": 0.9856548492345165,
+    "class_floor": 0.9807520149044501,
+    "runtime_p95_ms": 225.4106,
+    "topology_recall": 0.5170731707317073,
+    "boundary_band_feasibility": 0.9936960785395286,
+    "macro_family_recall": 0.8195121951219512,
+    "mean_hierarchy_nodes": 180.1609756097561,
+    "mean_proposal_tokens": 88.74634146341464,
+    "mean_unique_coverage_candidates": 266.13170731707316
+  },
+  "by_class": {
+    "text": {
+      "n": 83,
+      "support_recall_at_32": 0.9816700778904772,
+      "topology_recall": 0.43373493975903615,
+      "boundary_band_feasibility": 0.9922204256408151,
+      "macro_family_recall": 0.5783132530120482
+    },
+    "small_shape": {
+      "n": 57,
+      "support_recall_at_32": 0.9807520149044501,
+      "topology_recall": 0.5263157894736842,
+      "boundary_band_feasibility": 0.9886947684133632,
+      "macro_family_recall": 1.0
+    },
+    "layer_knockout": {
+      "n": 8,
+      "support_recall_at_32": 1.0,
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 0.9997248716067498,
+      "macro_family_recall": 1.0
+    },
+    "stroke_diagram": {
+      "n": 18,
+      "support_recall_at_32": 0.9976015659352748,
+      "topology_recall": 0.8333333333333334,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0
+    },
+    "gradient": {
+      "n": 30,
+      "support_recall_at_32": 0.9937286908145797,
+      "topology_recall": 0.5,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.9333333333333333
+    },
+    "codec_detail": {
+      "n": 9,
+      "support_recall_at_32": 0.9898970963711433,
+      "topology_recall": 0.2222222222222222,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0
+    }
+  },
+  "stop_rule": "Do not build judge/solver; fix evidence/proposals.",
+  "rows": [
+    {
+      "id": "text-000-6d4fd484d908",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.990313961255845,
+        "4": 0.9908706301491873,
+        "8": 0.9908706301491873,
+        "16": 0.9908706301491873,
+        "32": 0.9908706301491873,
+        "all": 0.9908706301491873
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 267,
+      "proposal_tokens": 170,
+      "coverage_candidates": {
+        "hierarchy_candidates": 267,
+        "typed_macro_candidates": 168,
+        "unique_candidates": 434,
+        "eligible_candidates": 46
+      },
+      "runtime_ms": 405.3643,
+      "runtime_budget_ok": false
+    },
+    {
+      "id": "text-001-92b7c53b3d8b",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 95,
+      "proposal_tokens": 10,
+      "coverage_candidates": {
+        "hierarchy_candidates": 95,
+        "typed_macro_candidates": 9,
+        "unique_candidates": 103,
+        "eligible_candidates": 5
+      },
+      "runtime_ms": 24.9604,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-002-f6015a73f1c3",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9939801699716714,
+        "4": 0.9950424929178471,
+        "8": 0.9950424929178471,
+        "16": 0.9950424929178471,
+        "32": 0.9950424929178471,
+        "all": 0.9950424929178471
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 321,
+      "proposal_tokens": 168,
+      "coverage_candidates": {
+        "hierarchy_candidates": 321,
+        "typed_macro_candidates": 166,
+        "unique_candidates": 486,
+        "eligible_candidates": 132
+      },
+      "runtime_ms": 148.8506,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-003-2e1199c15aed",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9414414414414415,
+        "4": 0.9534534534534534,
+        "8": 0.9534534534534534,
+        "16": 0.9534534534534534,
+        "32": 0.9534534534534534,
+        "all": 0.9534534534534534
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 229,
+      "proposal_tokens": 76,
+      "coverage_candidates": {
+        "hierarchy_candidates": 229,
+        "typed_macro_candidates": 75,
+        "unique_candidates": 303,
+        "eligible_candidates": 74
+      },
+      "runtime_ms": 92.2925,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-004-2b3fecb58a9c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9965870307167235,
+        "4": 0.9965870307167235,
+        "8": 0.9965870307167235,
+        "16": 0.9965870307167235,
+        "32": 0.9965870307167235,
+        "all": 0.9965870307167235
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 123,
+      "proposal_tokens": 27,
+      "coverage_candidates": {
+        "hierarchy_candidates": 123,
+        "typed_macro_candidates": 25,
+        "unique_candidates": 147,
+        "eligible_candidates": 24
+      },
+      "runtime_ms": 35.9886,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-006-0a22afb47c57",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 413,
+      "proposal_tokens": 171,
+      "coverage_candidates": {
+        "hierarchy_candidates": 413,
+        "typed_macro_candidates": 169,
+        "unique_candidates": 580,
+        "eligible_candidates": 574
+      },
+      "runtime_ms": 175.5392,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-007-dfd66c64bb0b",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 109,
+      "proposal_tokens": 25,
+      "coverage_candidates": {
+        "hierarchy_candidates": 109,
+        "typed_macro_candidates": 23,
+        "unique_candidates": 132,
+        "eligible_candidates": 62
+      },
+      "runtime_ms": 33.8197,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-008-c7519aa1983f",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9876397881106533,
+        "4": 0.9907788895428683,
+        "8": 0.9907788895428683,
+        "16": 0.9907788895428683,
+        "32": 0.9907788895428683,
+        "all": 0.9907788895428683
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 207,
+      "proposal_tokens": 52,
+      "coverage_candidates": {
+        "hierarchy_candidates": 207,
+        "typed_macro_candidates": 51,
+        "unique_candidates": 257,
+        "eligible_candidates": 93
+      },
+      "runtime_ms": 95.1669,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-009-77c2ec6fd353",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9575818303273214,
+        "4": 0.9619238476953907,
+        "8": 0.9634825205967491,
+        "16": 0.9640391894900913,
+        "32": 0.9640391894900913,
+        "all": 0.9640391894900913
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 273,
+      "proposal_tokens": 50,
+      "coverage_candidates": {
+        "hierarchy_candidates": 273,
+        "typed_macro_candidates": 49,
+        "unique_candidates": 321,
+        "eligible_candidates": 32
+      },
+      "runtime_ms": 178.4655,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-010-4f4e87cde754",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9464958553127355,
+        "4": 0.948756593820648,
+        "8": 0.9495101733232856,
+        "16": 0.9495101733232856,
+        "32": 0.9495101733232856,
+        "all": 0.9495101733232856
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 479,
+      "proposal_tokens": 71,
+      "coverage_candidates": {
+        "hierarchy_candidates": 479,
+        "typed_macro_candidates": 70,
+        "unique_candidates": 548,
+        "eligible_candidates": 122
+      },
+      "runtime_ms": 92.2282,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-011-ae701717e96a",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9890226628895185,
+        "4": 0.990084985835694,
+        "8": 0.990084985835694,
+        "16": 0.990084985835694,
+        "32": 0.990084985835694,
+        "all": 0.990084985835694
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 231,
+      "proposal_tokens": 72,
+      "coverage_candidates": {
+        "hierarchy_candidates": 231,
+        "typed_macro_candidates": 71,
+        "unique_candidates": 301,
+        "eligible_candidates": 73
+      },
+      "runtime_ms": 68.7287,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-012-03d964452686",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 263,
+      "proposal_tokens": 96,
+      "coverage_candidates": {
+        "hierarchy_candidates": 263,
+        "typed_macro_candidates": 95,
+        "unique_candidates": 357,
+        "eligible_candidates": 357
+      },
+      "runtime_ms": 197.1749,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-013-576e3a1eaa3f",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9071803852889667,
+        "4": 0.9281961471103327,
+        "8": 0.9404553415061296,
+        "16": 0.9474605954465849,
+        "32": 0.9474605954465849,
+        "all": 0.9474605954465849
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 223,
+      "proposal_tokens": 50,
+      "coverage_candidates": {
+        "hierarchy_candidates": 223,
+        "typed_macro_candidates": 49,
+        "unique_candidates": 272,
+        "eligible_candidates": 52
+      },
+      "runtime_ms": 40.5783,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-014-3e2edf584c2d",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9848019801980198,
+        "4": 0.9864356435643564,
+        "8": 0.986980198019802,
+        "16": 0.986980198019802,
+        "32": 0.986980198019802,
+        "all": 0.986980198019802
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 411,
+      "proposal_tokens": 172,
+      "coverage_candidates": {
+        "hierarchy_candidates": 411,
+        "typed_macro_candidates": 170,
+        "unique_candidates": 580,
+        "eligible_candidates": 187
+      },
+      "runtime_ms": 266.5253,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-015-9ebea6188af1",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 225,
+      "proposal_tokens": 73,
+      "coverage_candidates": {
+        "hierarchy_candidates": 225,
+        "typed_macro_candidates": 72,
+        "unique_candidates": 295,
+        "eligible_candidates": 295
+      },
+      "runtime_ms": 43.4011,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-016-56e830e2030f",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 99,
+      "proposal_tokens": 16,
+      "coverage_candidates": {
+        "hierarchy_candidates": 99,
+        "typed_macro_candidates": 15,
+        "unique_candidates": 113,
+        "eligible_candidates": 10
+      },
+      "runtime_ms": 21.575,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-017-dae99834c527",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9937655860349127,
+        "4": 0.9940533282179167,
+        "8": 0.9941492422789181,
+        "16": 0.9941492422789181,
+        "32": 0.9941492422789181,
+        "all": 0.9941492422789181
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 551,
+      "proposal_tokens": 172,
+      "coverage_candidates": {
+        "hierarchy_candidates": 551,
+        "typed_macro_candidates": 170,
+        "unique_candidates": 720,
+        "eligible_candidates": 371
+      },
+      "runtime_ms": 255.1486,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-018-8af66fb22cb6",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9920760697305864,
+        "4": 0.9946117274167987,
+        "8": 0.9946117274167987,
+        "16": 0.9946117274167987,
+        "32": 0.9946117274167987,
+        "all": 0.9946117274167987
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 347,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 347,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 511,
+        "eligible_candidates": 87
+      },
+      "runtime_ms": 121.6759,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-019-164d88e1cc0a",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 17,
+      "proposal_tokens": 8,
+      "coverage_candidates": {
+        "hierarchy_candidates": 17,
+        "typed_macro_candidates": 7,
+        "unique_candidates": 24,
+        "eligible_candidates": 3
+      },
+      "runtime_ms": 9.9661,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-020-c7444f88d01b",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9991128634795465,
+        "4": 0.9992771480203713,
+        "8": 0.9993428618367012,
+        "16": 0.9993428618367012,
+        "32": 0.9993428618367012,
+        "all": 0.9993428618367012
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 189,
+      "proposal_tokens": 168,
+      "coverage_candidates": {
+        "hierarchy_candidates": 189,
+        "typed_macro_candidates": 166,
+        "unique_candidates": 354,
+        "eligible_candidates": 121
+      },
+      "runtime_ms": 225.4106,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-021-32541fb76268",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9968785471055619,
+        "4": 0.9972190692395005,
+        "8": 0.9972190692395005,
+        "16": 0.9972190692395005,
+        "32": 0.9972190692395005,
+        "all": 0.9972190692395005
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 231,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 231,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 395,
+        "eligible_candidates": 54
+      },
+      "runtime_ms": 231.5773,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-022-10e3e945f272",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.7580115679224636,
+        "4": 0.8372674691261529,
+        "8": 0.9001094262935752,
+        "16": 0.915429107394091,
+        "32": 0.9198061591370955,
+        "all": 0.9198061591370955
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.9939965694682675,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 255,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 255,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 417,
+        "eligible_candidates": 211
+      },
+      "runtime_ms": 111.5613,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-023-2f7f4f4ac02c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9678867000815946,
+        "4": 0.9721412752069005,
+        "8": 0.9735400396316587,
+        "16": 0.9735400396316587,
+        "32": 0.9735400396316587,
+        "all": 0.9735400396316587
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 477,
+      "proposal_tokens": 48,
+      "coverage_candidates": {
+        "hierarchy_candidates": 477,
+        "typed_macro_candidates": 47,
+        "unique_candidates": 524,
+        "eligible_candidates": 181
+      },
+      "runtime_ms": 113.035,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-024-43d7266e3f11",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9736339319831868,
+        "4": 0.9737103553687428,
+        "8": 0.9737103553687428,
+        "16": 0.9737103553687428,
+        "32": 0.9737103553687428,
+        "all": 0.9737103553687428
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 341,
+      "proposal_tokens": 164,
+      "coverage_candidates": {
+        "hierarchy_candidates": 341,
+        "typed_macro_candidates": 162,
+        "unique_candidates": 503,
+        "eligible_candidates": 140
+      },
+      "runtime_ms": 256.2153,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-025-00fe7087a93e",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 31,
+      "proposal_tokens": 21,
+      "coverage_candidates": {
+        "hierarchy_candidates": 31,
+        "typed_macro_candidates": 20,
+        "unique_candidates": 50,
+        "eligible_candidates": 8
+      },
+      "runtime_ms": 13.2267,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-026-a945411e9790",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9376979936642027,
+        "4": 0.9450897571277719,
+        "8": 0.9461457233368532,
+        "16": 0.9461457233368532,
+        "32": 0.9461457233368532,
+        "all": 0.9461457233368532
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 461,
+      "proposal_tokens": 60,
+      "coverage_candidates": {
+        "hierarchy_candidates": 461,
+        "typed_macro_candidates": 59,
+        "unique_candidates": 519,
+        "eligible_candidates": 166
+      },
+      "runtime_ms": 63.6918,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-027-de960325281d",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9972599164926931,
+        "4": 0.9972599164926931,
+        "8": 0.9972599164926931,
+        "16": 0.9972599164926931,
+        "32": 0.9972599164926931,
+        "all": 0.9972599164926931
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 585,
+      "proposal_tokens": 177,
+      "coverage_candidates": {
+        "hierarchy_candidates": 585,
+        "typed_macro_candidates": 175,
+        "unique_candidates": 759,
+        "eligible_candidates": 252
+      },
+      "runtime_ms": 195.3343,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-028-dce272d1053d",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9997639839509087,
+        "4": 0.9997639839509087,
+        "8": 0.9997639839509087,
+        "16": 0.9997639839509087,
+        "32": 0.9997639839509087,
+        "all": 0.9997639839509087
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 251,
+      "proposal_tokens": 170,
+      "coverage_candidates": {
+        "hierarchy_candidates": 251,
+        "typed_macro_candidates": 168,
+        "unique_candidates": 418,
+        "eligible_candidates": 146
+      },
+      "runtime_ms": 340.1125,
+      "runtime_budget_ok": false
+    },
+    {
+      "id": "text-029-b32e6e6de20f",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.995387276571209,
+        "4": 0.9954513421743866,
+        "8": 0.9954513421743866,
+        "16": 0.9954513421743866,
+        "32": 0.9954513421743866,
+        "all": 0.9954513421743866
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 189,
+      "proposal_tokens": 71,
+      "coverage_candidates": {
+        "hierarchy_candidates": 189,
+        "typed_macro_candidates": 70,
+        "unique_candidates": 258,
+        "eligible_candidates": 64
+      },
+      "runtime_ms": 139.7949,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-030-39256de4026a",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9972324723247232,
+        "4": 0.9972324723247232,
+        "8": 0.9972324723247232,
+        "16": 0.9972324723247232,
+        "32": 0.9972324723247232,
+        "all": 0.9972324723247232
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 439,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 439,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 601,
+        "eligible_candidates": 126
+      },
+      "runtime_ms": 168.8481,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-031-367912c8016b",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 22,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 20,
+        "unique_candidates": 117,
+        "eligible_candidates": 12
+      },
+      "runtime_ms": 21.2576,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-032-5bb563227b62",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9565150936186473,
+        "4": 0.957508597630875,
+        "8": 0.957508597630875,
+        "16": 0.957508597630875,
+        "32": 0.957508597630875,
+        "all": 0.957508597630875
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 339,
+      "proposal_tokens": 74,
+      "coverage_candidates": {
+        "hierarchy_candidates": 339,
+        "typed_macro_candidates": 73,
+        "unique_candidates": 412,
+        "eligible_candidates": 31
+      },
+      "runtime_ms": 153.1605,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-033-72c6c3df946c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.8636363636363636,
+        "4": 0.8939393939393939,
+        "8": 0.8939393939393939,
+        "16": 0.8939393939393939,
+        "32": 0.8939393939393939,
+        "all": 0.8939393939393939
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 31,
+      "proposal_tokens": 19,
+      "coverage_candidates": {
+        "hierarchy_candidates": 31,
+        "typed_macro_candidates": 18,
+        "unique_candidates": 48,
+        "eligible_candidates": 11
+      },
+      "runtime_ms": 17.4136,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-034-829acd8d6a8f",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9951700344997536,
+        "4": 0.996615738459011,
+        "8": 0.9966814522753409,
+        "16": 0.9966814522753409,
+        "32": 0.9966814522753409,
+        "all": 0.9966814522753409
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 191,
+      "proposal_tokens": 51,
+      "coverage_candidates": {
+        "hierarchy_candidates": 191,
+        "typed_macro_candidates": 50,
+        "unique_candidates": 240,
+        "eligible_candidates": 93
+      },
+      "runtime_ms": 135.7455,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-035-eda3d0ec49a9",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 29,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 28,
+        "unique_candidates": 98,
+        "eligible_candidates": 19
+      },
+      "runtime_ms": 29.4036,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-036-5a5d2e5edacd",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9754319654427646,
+        "4": 0.9778617710583153,
+        "8": 0.978671706263499,
+        "16": 0.978671706263499,
+        "32": 0.978671706263499,
+        "all": 0.978671706263499
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 261,
+      "proposal_tokens": 58,
+      "coverage_candidates": {
+        "hierarchy_candidates": 261,
+        "typed_macro_candidates": 57,
+        "unique_candidates": 317,
+        "eligible_candidates": 83
+      },
+      "runtime_ms": 89.1343,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-037-d7076cd7446e",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.7201813350007816,
+        "4": 0.8097545724558387,
+        "8": 0.8840081288103798,
+        "16": 0.9065186806315461,
+        "32": 0.9137095513521963,
+        "all": 0.9137095513521963
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 233,
+      "proposal_tokens": 51,
+      "coverage_candidates": {
+        "hierarchy_candidates": 233,
+        "typed_macro_candidates": 50,
+        "unique_candidates": 282,
+        "eligible_candidates": 143
+      },
+      "runtime_ms": 65.6736,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-038-0217becb20b1",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9784707724425887,
+        "4": 0.9795146137787056,
+        "8": 0.9797755741127349,
+        "16": 0.9797755741127349,
+        "32": 0.9797755741127349,
+        "all": 0.9797755741127349
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 519,
+      "proposal_tokens": 71,
+      "coverage_candidates": {
+        "hierarchy_candidates": 519,
+        "typed_macro_candidates": 70,
+        "unique_candidates": 588,
+        "eligible_candidates": 157
+      },
+      "runtime_ms": 154.5976,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-039-7a7b41ccab7a",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 119,
+      "proposal_tokens": 14,
+      "coverage_candidates": {
+        "hierarchy_candidates": 119,
+        "typed_macro_candidates": 13,
+        "unique_candidates": 132,
+        "eligible_candidates": 11
+      },
+      "runtime_ms": 19.495,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-040-d3001e8b046f",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.995889225443531,
+        "4": 0.9963219385547382,
+        "8": 0.9963219385547382,
+        "16": 0.9963219385547382,
+        "32": 0.9963219385547382,
+        "all": 0.9963219385547382
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 489,
+      "proposal_tokens": 188,
+      "coverage_candidates": {
+        "hierarchy_candidates": 489,
+        "typed_macro_candidates": 186,
+        "unique_candidates": 674,
+        "eligible_candidates": 224
+      },
+      "runtime_ms": 159.8294,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-041-ca0951a3fb33",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 95,
+      "proposal_tokens": 21,
+      "coverage_candidates": {
+        "hierarchy_candidates": 95,
+        "typed_macro_candidates": 20,
+        "unique_candidates": 114,
+        "eligible_candidates": 27
+      },
+      "runtime_ms": 24.3614,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-042-7f89cb813eb5",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.7908704883227177,
+        "4": 0.8906581740976646,
+        "8": 0.9532908704883227,
+        "16": 0.9840764331210191,
+        "32": 0.9851380042462845,
+        "all": 0.9851380042462845
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 219,
+      "proposal_tokens": 64,
+      "coverage_candidates": {
+        "hierarchy_candidates": 219,
+        "typed_macro_candidates": 63,
+        "unique_candidates": 282,
+        "eligible_candidates": 134
+      },
+      "runtime_ms": 42.8641,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-043-e6e9f6b20c8c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 39,
+      "proposal_tokens": 15,
+      "coverage_candidates": {
+        "hierarchy_candidates": 39,
+        "typed_macro_candidates": 14,
+        "unique_candidates": 52,
+        "eligible_candidates": 14
+      },
+      "runtime_ms": 16.221,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-044-d4f2f676c3b0",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 257,
+      "proposal_tokens": 176,
+      "coverage_candidates": {
+        "hierarchy_candidates": 257,
+        "typed_macro_candidates": 174,
+        "unique_candidates": 430,
+        "eligible_candidates": 430
+      },
+      "runtime_ms": 275.192,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-045-f27c3481654c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9706601466992665,
+        "4": 0.9718826405867971,
+        "8": 0.9718826405867971,
+        "16": 0.9718826405867971,
+        "32": 0.9718826405867971,
+        "all": 0.9718826405867971
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 0.935064935064935,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 369,
+      "proposal_tokens": 86,
+      "coverage_candidates": {
+        "hierarchy_candidates": 369,
+        "typed_macro_candidates": 85,
+        "unique_candidates": 453,
+        "eligible_candidates": 94
+      },
+      "runtime_ms": 73.7238,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-046-d1fce1e27315",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9832397481708355,
+        "4": 0.9850263740003403,
+        "8": 0.9851965288412455,
+        "16": 0.9851965288412455,
+        "32": 0.9851965288412455,
+        "all": 0.9851965288412455
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 497,
+      "proposal_tokens": 35,
+      "coverage_candidates": {
+        "hierarchy_candidates": 497,
+        "typed_macro_candidates": 34,
+        "unique_candidates": 531,
+        "eligible_candidates": 204
+      },
+      "runtime_ms": 73.7746,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-047-a10b563a2e61",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9867622724765582,
+        "4": 0.9874057731200588,
+        "8": 0.9874057731200588,
+        "16": 0.9874057731200588,
+        "32": 0.9874057731200588,
+        "all": 0.9874057731200588
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 375,
+      "proposal_tokens": 201,
+      "coverage_candidates": {
+        "hierarchy_candidates": 375,
+        "typed_macro_candidates": 199,
+        "unique_candidates": 573,
+        "eligible_candidates": 150
+      },
+      "runtime_ms": 181.3682,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-048-3e78f2b16c12",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 39,
+      "proposal_tokens": 7,
+      "coverage_candidates": {
+        "hierarchy_candidates": 39,
+        "typed_macro_candidates": 6,
+        "unique_candidates": 44,
+        "eligible_candidates": 2
+      },
+      "runtime_ms": 12.6693,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-049-ce309df4c66a",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 95,
+      "proposal_tokens": 16,
+      "coverage_candidates": {
+        "hierarchy_candidates": 95,
+        "typed_macro_candidates": 15,
+        "unique_candidates": 109,
+        "eligible_candidates": 22
+      },
+      "runtime_ms": 22.7147,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-050-b801b192f2c0",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9982702287142033,
+        "4": 0.9982702287142033,
+        "8": 0.9982702287142033,
+        "16": 0.9982702287142033,
+        "32": 0.9982702287142033,
+        "all": 0.9982702287142033
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 185,
+      "proposal_tokens": 176,
+      "coverage_candidates": {
+        "hierarchy_candidates": 185,
+        "typed_macro_candidates": 174,
+        "unique_candidates": 357,
+        "eligible_candidates": 79
+      },
+      "runtime_ms": 195.8266,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-051-eaf08d510b9e",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.7097391659435455,
+        "4": 0.8608544739931602,
+        "8": 0.8922464396916951,
+        "16": 0.8963554693481701,
+        "32": 0.8983461793680771,
+        "all": 0.8984227451380736
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.4381578947368421,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 237,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 237,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 401,
+        "eligible_candidates": 256
+      },
+      "runtime_ms": 218.8424,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-052-beac28023185",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 36,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 35,
+        "unique_candidates": 105,
+        "eligible_candidates": 22
+      },
+      "runtime_ms": 19.8011,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-053-afba6c7f2e08",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9814356435643564,
+        "4": 0.9827227722772277,
+        "8": 0.983069306930693,
+        "16": 0.983069306930693,
+        "32": 0.983069306930693,
+        "all": 0.983069306930693
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 407,
+      "proposal_tokens": 43,
+      "coverage_candidates": {
+        "hierarchy_candidates": 407,
+        "typed_macro_candidates": 42,
+        "unique_candidates": 448,
+        "eligible_candidates": 159
+      },
+      "runtime_ms": 99.2297,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-054-9b6db4810bb1",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9746835443037974,
+        "4": 0.9746835443037974,
+        "8": 0.9746835443037974,
+        "16": 0.9746835443037974,
+        "32": 0.9746835443037974,
+        "all": 0.9746835443037974
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 319,
+      "proposal_tokens": 168,
+      "coverage_candidates": {
+        "hierarchy_candidates": 319,
+        "typed_macro_candidates": 166,
+        "unique_candidates": 484,
+        "eligible_candidates": 75
+      },
+      "runtime_ms": 120.1173,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-055-13a428f78917",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9776119402985075,
+        "4": 0.9850746268656716,
+        "8": 0.9850746268656716,
+        "16": 0.9850746268656716,
+        "32": 0.9850746268656716,
+        "all": 0.9850746268656716
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 195,
+      "proposal_tokens": 77,
+      "coverage_candidates": {
+        "hierarchy_candidates": 195,
+        "typed_macro_candidates": 76,
+        "unique_candidates": 263,
+        "eligible_candidates": 75
+      },
+      "runtime_ms": 56.5336,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-056-40578e46ac22",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9889698829848456,
+        "4": 0.9905045079608671,
+        "8": 0.9906004220218684,
+        "16": 0.9906004220218684,
+        "32": 0.9906004220218684,
+        "all": 0.9906004220218684
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 433,
+      "proposal_tokens": 43,
+      "coverage_candidates": {
+        "hierarchy_candidates": 433,
+        "typed_macro_candidates": 42,
+        "unique_candidates": 474,
+        "eligible_candidates": 183
+      },
+      "runtime_ms": 93.1126,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-057-62e85bf71344",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.8486352357320099,
+        "4": 0.8833746898263027,
+        "8": 0.8933002481389578,
+        "16": 0.8933002481389578,
+        "32": 0.8933002481389578,
+        "all": 0.8933002481389578
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 219,
+      "proposal_tokens": 76,
+      "coverage_candidates": {
+        "hierarchy_candidates": 219,
+        "typed_macro_candidates": 75,
+        "unique_candidates": 287,
+        "eligible_candidates": 39
+      },
+      "runtime_ms": 44.0178,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-058-1c6594bd1c40",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9968911917098445,
+        "4": 0.9979274611398964,
+        "8": 0.9979274611398964,
+        "16": 0.9979274611398964,
+        "32": 0.9979274611398964,
+        "all": 0.9979274611398964
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 101,
+      "proposal_tokens": 61,
+      "coverage_candidates": {
+        "hierarchy_candidates": 101,
+        "typed_macro_candidates": 59,
+        "unique_candidates": 160,
+        "eligible_candidates": 71
+      },
+      "runtime_ms": 41.4446,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-059-f1fb69d78d65",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 47,
+      "proposal_tokens": 11,
+      "coverage_candidates": {
+        "hierarchy_candidates": 47,
+        "typed_macro_candidates": 10,
+        "unique_candidates": 57,
+        "eligible_candidates": 9
+      },
+      "runtime_ms": 15.1712,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-060-b99997d867b4",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9798676227247656,
+        "4": 0.9808788380216952,
+        "8": 0.9808788380216952,
+        "16": 0.9808788380216952,
+        "32": 0.9808788380216952,
+        "all": 0.9808788380216952
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 365,
+      "proposal_tokens": 116,
+      "coverage_candidates": {
+        "hierarchy_candidates": 365,
+        "typed_macro_candidates": 115,
+        "unique_candidates": 479,
+        "eligible_candidates": 101
+      },
+      "runtime_ms": 153.9891,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-061-bbdae870c9b6",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 83,
+      "proposal_tokens": 19,
+      "coverage_candidates": {
+        "hierarchy_candidates": 83,
+        "typed_macro_candidates": 18,
+        "unique_candidates": 100,
+        "eligible_candidates": 36
+      },
+      "runtime_ms": 17.0643,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-062-df7c9032538b",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.970710332103321,
+        "4": 0.9723247232472325,
+        "8": 0.9730166051660517,
+        "16": 0.9730166051660517,
+        "32": 0.9730166051660517,
+        "all": 0.9730166051660517
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 393,
+      "proposal_tokens": 74,
+      "coverage_candidates": {
+        "hierarchy_candidates": 393,
+        "typed_macro_candidates": 73,
+        "unique_candidates": 466,
+        "eligible_candidates": 80
+      },
+      "runtime_ms": 76.9508,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-063-17d85ac05f2c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 135,
+      "proposal_tokens": 25,
+      "coverage_candidates": {
+        "hierarchy_candidates": 135,
+        "typed_macro_candidates": 23,
+        "unique_candidates": 157,
+        "eligible_candidates": 64
+      },
+      "runtime_ms": 24.6602,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-064-e66c463a455e",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9793747083527765,
+        "4": 0.9796546896873541,
+        "8": 0.9796546896873541,
+        "16": 0.9796546896873541,
+        "32": 0.9796546896873541,
+        "all": 0.9796546896873541
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 497,
+      "proposal_tokens": 71,
+      "coverage_candidates": {
+        "hierarchy_candidates": 497,
+        "typed_macro_candidates": 70,
+        "unique_candidates": 566,
+        "eligible_candidates": 133
+      },
+      "runtime_ms": 169.0017,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-065-6e5aeddcfce0",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9997300215982722,
+        "4": 0.9997300215982722,
+        "8": 0.9997300215982722,
+        "16": 0.9997300215982722,
+        "32": 0.9997300215982722,
+        "all": 0.9997300215982722
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 343,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 343,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 507,
+        "eligible_candidates": 204
+      },
+      "runtime_ms": 120.9449,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-066-75356eb6967e",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9902761387774369,
+        "4": 0.9919282511210762,
+        "8": 0.9927307056879868,
+        "16": 0.9930611281567147,
+        "32": 0.9930611281567147,
+        "all": 0.9930611281567147
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 247,
+      "proposal_tokens": 41,
+      "coverage_candidates": {
+        "hierarchy_candidates": 247,
+        "typed_macro_candidates": 40,
+        "unique_candidates": 286,
+        "eligible_candidates": 69
+      },
+      "runtime_ms": 124.5187,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-067-cde4469ece18",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9792849035187288,
+        "4": 0.9814982973893303,
+        "8": 0.9816685584562996,
+        "16": 0.9816685584562996,
+        "32": 0.9816685584562996,
+        "all": 0.9816685584562996
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 241,
+      "proposal_tokens": 47,
+      "coverage_candidates": {
+        "hierarchy_candidates": 241,
+        "typed_macro_candidates": 46,
+        "unique_candidates": 286,
+        "eligible_candidates": 45
+      },
+      "runtime_ms": 120.3675,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-068-444b908af52e",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 347,
+      "proposal_tokens": 103,
+      "coverage_candidates": {
+        "hierarchy_candidates": 347,
+        "typed_macro_candidates": 102,
+        "unique_candidates": 447,
+        "eligible_candidates": 443
+      },
+      "runtime_ms": 90.0182,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-069-7efeee033836",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9546751188589541,
+        "4": 0.9584786053882726,
+        "8": 0.9613312202852615,
+        "16": 0.9613312202852615,
+        "32": 0.9613312202852615,
+        "all": 0.9613312202852615
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 263,
+      "proposal_tokens": 56,
+      "coverage_candidates": {
+        "hierarchy_candidates": 263,
+        "typed_macro_candidates": 55,
+        "unique_candidates": 317,
+        "eligible_candidates": 44
+      },
+      "runtime_ms": 65.6548,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-070-d70934f7785c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9753353526611857,
+        "4": 0.9764171354392038,
+        "8": 0.9764171354392038,
+        "16": 0.9764171354392038,
+        "32": 0.9764171354392038,
+        "all": 0.9764171354392038
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 405,
+      "proposal_tokens": 112,
+      "coverage_candidates": {
+        "hierarchy_candidates": 405,
+        "typed_macro_candidates": 111,
+        "unique_candidates": 515,
+        "eligible_candidates": 143
+      },
+      "runtime_ms": 109.5992,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-071-2791b905915b",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9401812688821752,
+        "4": 0.9583081570996979,
+        "8": 0.963141993957704,
+        "16": 0.963141993957704,
+        "32": 0.963141993957704,
+        "all": 0.963141993957704
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 403,
+      "proposal_tokens": 88,
+      "coverage_candidates": {
+        "hierarchy_candidates": 403,
+        "typed_macro_candidates": 87,
+        "unique_candidates": 490,
+        "eligible_candidates": 178
+      },
+      "runtime_ms": 71.8301,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-072-69180570d3a9",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 83,
+      "proposal_tokens": 17,
+      "coverage_candidates": {
+        "hierarchy_candidates": 83,
+        "typed_macro_candidates": 16,
+        "unique_candidates": 98,
+        "eligible_candidates": 35
+      },
+      "runtime_ms": 20.4675,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-073-422bd07150c7",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 59,
+      "proposal_tokens": 23,
+      "coverage_candidates": {
+        "hierarchy_candidates": 59,
+        "typed_macro_candidates": 22,
+        "unique_candidates": 80,
+        "eligible_candidates": 19
+      },
+      "runtime_ms": 22.3159,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-074-08769271cff4",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 83,
+      "proposal_tokens": 30,
+      "coverage_candidates": {
+        "hierarchy_candidates": 83,
+        "typed_macro_candidates": 29,
+        "unique_candidates": 111,
+        "eligible_candidates": 36
+      },
+      "runtime_ms": 27.7292,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-075-cd1a1e851d70",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9246009906439185,
+        "4": 0.9257017061089708,
+        "8": 0.9257017061089708,
+        "16": 0.9257017061089708,
+        "32": 0.9257017061089708,
+        "all": 0.9257017061089708
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 281,
+      "proposal_tokens": 68,
+      "coverage_candidates": {
+        "hierarchy_candidates": 281,
+        "typed_macro_candidates": 67,
+        "unique_candidates": 347,
+        "eligible_candidates": 48
+      },
+      "runtime_ms": 87.2617,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-076-ad03ed5373cf",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9959568733153639,
+        "4": 0.9973045822102425,
+        "8": 0.9973045822102425,
+        "16": 0.9973045822102425,
+        "32": 0.9973045822102425,
+        "all": 0.9973045822102425
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 103,
+      "proposal_tokens": 71,
+      "coverage_candidates": {
+        "hierarchy_candidates": 103,
+        "typed_macro_candidates": 69,
+        "unique_candidates": 171,
+        "eligible_candidates": 50
+      },
+      "runtime_ms": 47.1329,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-077-4448c11379d0",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 39,
+      "proposal_tokens": 13,
+      "coverage_candidates": {
+        "hierarchy_candidates": 39,
+        "typed_macro_candidates": 12,
+        "unique_candidates": 50,
+        "eligible_candidates": 9
+      },
+      "runtime_ms": 11.9788,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-078-e18cf86c9b3a",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9927408279380028,
+        "4": 0.998234255444379,
+        "8": 0.9984304492838925,
+        "16": 0.9984304492838925,
+        "32": 0.9984304492838925,
+        "all": 0.9984304492838925
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 249,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 249,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 414,
+        "eligible_candidates": 201
+      },
+      "runtime_ms": 116.6127,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-079-c83b42bb3d36",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9838544097060196,
+        "4": 0.9845076994867009,
+        "8": 0.9845076994867009,
+        "16": 0.9845076994867009,
+        "32": 0.9845076994867009,
+        "all": 0.9845076994867009
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 493,
+      "proposal_tokens": 179,
+      "coverage_candidates": {
+        "hierarchy_candidates": 493,
+        "typed_macro_candidates": 177,
+        "unique_candidates": 669,
+        "eligible_candidates": 233
+      },
+      "runtime_ms": 170.275,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-080-2e597a80227c",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9469026548672567,
+        "4": 0.9532237673830595,
+        "8": 0.9570164348925411,
+        "16": 0.9570164348925411,
+        "32": 0.9570164348925411,
+        "all": 0.9570164348925411
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 327,
+      "proposal_tokens": 92,
+      "coverage_candidates": {
+        "hierarchy_candidates": 327,
+        "typed_macro_candidates": 91,
+        "unique_candidates": 418,
+        "eligible_candidates": 82
+      },
+      "runtime_ms": 48.6444,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-081-21e8415e72f8",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9699265648677002,
+        "4": 0.9769203869914909,
+        "8": 0.9776780510549015,
+        "16": 0.9776780510549015,
+        "32": 0.9776780510549015,
+        "all": 0.9776780510549015
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 475,
+      "proposal_tokens": 164,
+      "coverage_candidates": {
+        "hierarchy_candidates": 475,
+        "typed_macro_candidates": 162,
+        "unique_candidates": 637,
+        "eligible_candidates": 289
+      },
+      "runtime_ms": 199.0443,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-082-b77afa939bc8",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9883443933979922,
+        "4": 0.9900459418070444,
+        "8": 0.99055640632976,
+        "16": 0.9906414837502127,
+        "32": 0.9906414837502127,
+        "all": 0.9906414837502127
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 591,
+      "proposal_tokens": 164,
+      "coverage_candidates": {
+        "hierarchy_candidates": 591,
+        "typed_macro_candidates": 162,
+        "unique_candidates": 753,
+        "eligible_candidates": 358
+      },
+      "runtime_ms": 222.1188,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "text-083-9a353887bf66",
+      "semantic_class": "text",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.8443627450980392,
+        "4": 0.9068627450980392,
+        "8": 0.9178921568627451,
+        "16": 0.9178921568627451,
+        "32": 0.9178921568627451,
+        "all": 0.9178921568627451
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.9870759289176091,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 191,
+      "proposal_tokens": 64,
+      "coverage_candidates": {
+        "hierarchy_candidates": 191,
+        "typed_macro_candidates": 63,
+        "unique_candidates": 251,
+        "eligible_candidates": 106
+      },
+      "runtime_ms": 39.3226,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-000-004ae4772f25",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9814432989690721,
+        "4": 0.9855670103092784,
+        "8": 0.9855670103092784,
+        "16": 0.9855670103092784,
+        "32": 0.9855670103092784,
+        "all": 0.9855670103092784
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.9870848708487084,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 89,
+      "proposal_tokens": 60,
+      "coverage_candidates": {
+        "hierarchy_candidates": 89,
+        "typed_macro_candidates": 59,
+        "unique_candidates": 147,
+        "eligible_candidates": 42
+      },
+      "runtime_ms": 29.8225,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-001-81e5b026d790",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9650400582665696,
+        "4": 0.9664967225054625,
+        "8": 0.9664967225054625,
+        "16": 0.9664967225054625,
+        "32": 0.9664967225054625,
+        "all": 0.9664967225054625
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.9347028613352898,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 109,
+      "proposal_tokens": 156,
+      "coverage_candidates": {
+        "hierarchy_candidates": 109,
+        "typed_macro_candidates": 154,
+        "unique_candidates": 262,
+        "eligible_candidates": 68
+      },
+      "runtime_ms": 65.8257,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-002-1a79193965a7",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9969386553632403,
+        "4": 0.997056399387731,
+        "8": 0.997056399387731,
+        "16": 0.997056399387731,
+        "32": 0.997056399387731,
+        "all": 0.997056399387731
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 113,
+      "proposal_tokens": 175,
+      "coverage_candidates": {
+        "hierarchy_candidates": 113,
+        "typed_macro_candidates": 173,
+        "unique_candidates": 285,
+        "eligible_candidates": 119
+      },
+      "runtime_ms": 150.8106,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-003-51db8135cbfb",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 85,
+      "proposal_tokens": 43,
+      "coverage_candidates": {
+        "hierarchy_candidates": 85,
+        "typed_macro_candidates": 42,
+        "unique_candidates": 126,
+        "eligible_candidates": 10
+      },
+      "runtime_ms": 25.1012,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-004-49bee047039e",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.891213389121339,
+        "4": 0.899581589958159,
+        "8": 0.899581589958159,
+        "16": 0.899581589958159,
+        "32": 0.899581589958159,
+        "all": 0.899581589958159
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 75,
+      "proposal_tokens": 50,
+      "coverage_candidates": {
+        "hierarchy_candidates": 75,
+        "typed_macro_candidates": 49,
+        "unique_candidates": 123,
+        "eligible_candidates": 28
+      },
+      "runtime_ms": 22.3472,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-005-61b0fff71ad2",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9782729805013928,
+        "4": 0.9827298050139276,
+        "8": 0.9838440111420613,
+        "16": 0.9838440111420613,
+        "32": 0.9838440111420613,
+        "all": 0.9838440111420613
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 117,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 117,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 280,
+        "eligible_candidates": 124
+      },
+      "runtime_ms": 75.9624,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-006-fc39be4f30b7",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9352941176470588,
+        "4": 0.9352941176470588,
+        "8": 0.9352941176470588,
+        "16": 0.9352941176470588,
+        "32": 0.9352941176470588,
+        "all": 0.9352941176470588
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 61,
+      "proposal_tokens": 26,
+      "coverage_candidates": {
+        "hierarchy_candidates": 61,
+        "typed_macro_candidates": 25,
+        "unique_candidates": 86,
+        "eligible_candidates": 13
+      },
+      "runtime_ms": 16.1458,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-007-efd4f0b24708",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.936734693877551,
+        "4": 0.936734693877551,
+        "8": 0.936734693877551,
+        "16": 0.936734693877551,
+        "32": 0.936734693877551,
+        "all": 0.936734693877551
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 191,
+      "proposal_tokens": 45,
+      "coverage_candidates": {
+        "hierarchy_candidates": 191,
+        "typed_macro_candidates": 44,
+        "unique_candidates": 235,
+        "eligible_candidates": 25
+      },
+      "runtime_ms": 42.1123,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-008-0ef0da431cbe",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9795918367346939,
+        "4": 0.9836734693877551,
+        "8": 0.9836734693877551,
+        "16": 0.9836734693877551,
+        "32": 0.9836734693877551,
+        "all": 0.9836734693877551
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 197,
+      "proposal_tokens": 113,
+      "coverage_candidates": {
+        "hierarchy_candidates": 197,
+        "typed_macro_candidates": 111,
+        "unique_candidates": 301,
+        "eligible_candidates": 49
+      },
+      "runtime_ms": 76.143,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-009-3c0e22762233",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 153,
+      "proposal_tokens": 50,
+      "coverage_candidates": {
+        "hierarchy_candidates": 153,
+        "typed_macro_candidates": 49,
+        "unique_candidates": 201,
+        "eligible_candidates": 201
+      },
+      "runtime_ms": 103.4917,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-010-2b377dc5af01",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 91,
+      "proposal_tokens": 47,
+      "coverage_candidates": {
+        "hierarchy_candidates": 91,
+        "typed_macro_candidates": 46,
+        "unique_candidates": 136,
+        "eligible_candidates": 25
+      },
+      "runtime_ms": 41.3322,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-011-f02636e0e635",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 95,
+      "proposal_tokens": 57,
+      "coverage_candidates": {
+        "hierarchy_candidates": 95,
+        "typed_macro_candidates": 56,
+        "unique_candidates": 150,
+        "eligible_candidates": 150
+      },
+      "runtime_ms": 46.6013,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-012-4914b87ee1c0",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9800057954216169,
+        "4": 0.9814546508258476,
+        "8": 0.9818893074471168,
+        "16": 0.9818893074471168,
+        "32": 0.9818893074471168,
+        "all": 0.9818893074471168
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 75,
+      "proposal_tokens": 47,
+      "coverage_candidates": {
+        "hierarchy_candidates": 75,
+        "typed_macro_candidates": 46,
+        "unique_candidates": 120,
+        "eligible_candidates": 28
+      },
+      "runtime_ms": 67.9364,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-013-6fd830c523cc",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9237447547388221,
+        "4": 0.9652727535812473,
+        "8": 0.9697583562436695,
+        "16": 0.9700477499638258,
+        "32": 0.9700477499638258,
+        "all": 0.9700477499638258
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 77,
+      "proposal_tokens": 166,
+      "coverage_candidates": {
+        "hierarchy_candidates": 77,
+        "typed_macro_candidates": 164,
+        "unique_candidates": 240,
+        "eligible_candidates": 57
+      },
+      "runtime_ms": 177.9696,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-014-ca52caa2bde7",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 181,
+      "proposal_tokens": 54,
+      "coverage_candidates": {
+        "hierarchy_candidates": 181,
+        "typed_macro_candidates": 54,
+        "unique_candidates": 235,
+        "eligible_candidates": 83
+      },
+      "runtime_ms": 44.3291,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-015-1e2498d73cf2",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 189,
+      "proposal_tokens": 174,
+      "coverage_candidates": {
+        "hierarchy_candidates": 189,
+        "typed_macro_candidates": 172,
+        "unique_candidates": 349,
+        "eligible_candidates": 349
+      },
+      "runtime_ms": 69.3465,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-016-ce93bb6a9342",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9932245149368648,
+        "4": 0.9940457858536085,
+        "8": 0.9940457858536085,
+        "16": 0.9940457858536085,
+        "32": 0.9940457858536085,
+        "all": 0.9940457858536085
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 93,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 93,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 255,
+        "eligible_candidates": 124
+      },
+      "runtime_ms": 141.4933,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-017-c0363841a0e2",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9954601733388362,
+        "4": 0.9954601733388362,
+        "8": 0.9954601733388362,
+        "16": 0.9954601733388362,
+        "32": 0.9954601733388362,
+        "all": 0.9954601733388362
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 0.8520988622989407,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 187,
+      "proposal_tokens": 70,
+      "coverage_candidates": {
+        "hierarchy_candidates": 187,
+        "typed_macro_candidates": 70,
+        "unique_candidates": 256,
+        "eligible_candidates": 81
+      },
+      "runtime_ms": 64.1263,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-018-0d2a19efa931",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9772069464544139,
+        "4": 0.9873371924746743,
+        "8": 0.9876989869753979,
+        "16": 0.9876989869753979,
+        "32": 0.9876989869753979,
+        "all": 0.9876989869753979
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 40,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 39,
+        "unique_candidates": 110,
+        "eligible_candidates": 55
+      },
+      "runtime_ms": 30.6498,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-019-b0e20e54cbd3",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9947450369793694,
+        "4": 0.9953289217594394,
+        "8": 0.9953289217594394,
+        "16": 0.9953289217594394,
+        "32": 0.9953289217594394,
+        "all": 0.9953289217594394
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 85,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 85,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 247,
+        "eligible_candidates": 37
+      },
+      "runtime_ms": 108.4134,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-021-2993e25100b7",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.984624367458155,
+        "4": 0.9867652783184119,
+        "8": 0.987933047878552,
+        "16": 0.9881276761385753,
+        "32": 0.9881276761385753,
+        "all": 0.9881276761385753
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 83,
+      "proposal_tokens": 40,
+      "coverage_candidates": {
+        "hierarchy_candidates": 83,
+        "typed_macro_candidates": 39,
+        "unique_candidates": 122,
+        "eligible_candidates": 22
+      },
+      "runtime_ms": 50.0812,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-022-25d84f3e7a08",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9759470835838846,
+        "4": 0.9789536981358989,
+        "8": 0.9795550210463019,
+        "16": 0.9795550210463019,
+        "32": 0.9795550210463019,
+        "all": 0.9795550210463019
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.9939347990902199,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 117,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 117,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 274,
+        "eligible_candidates": 72
+      },
+      "runtime_ms": 72.6294,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-023-7ebae1bfa0d3",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 193,
+      "proposal_tokens": 34,
+      "coverage_candidates": {
+        "hierarchy_candidates": 193,
+        "typed_macro_candidates": 33,
+        "unique_candidates": 226,
+        "eligible_candidates": 206
+      },
+      "runtime_ms": 96.3162,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-025-231d3014a641",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 145,
+      "proposal_tokens": 52,
+      "coverage_candidates": {
+        "hierarchy_candidates": 145,
+        "typed_macro_candidates": 51,
+        "unique_candidates": 195,
+        "eligible_candidates": 195
+      },
+      "runtime_ms": 33.1948,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-026-77768668dfb6",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9924082665541966,
+        "4": 0.9936735554618304,
+        "8": 0.9936735554618304,
+        "16": 0.9936735554618304,
+        "32": 0.9936735554618304,
+        "all": 0.9936735554618304
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 249,
+      "proposal_tokens": 166,
+      "coverage_candidates": {
+        "hierarchy_candidates": 249,
+        "typed_macro_candidates": 164,
+        "unique_candidates": 412,
+        "eligible_candidates": 96
+      },
+      "runtime_ms": 120.5465,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-027-53e3672b41e0",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.987726787620064,
+        "4": 0.9881270010672358,
+        "8": 0.9881270010672358,
+        "16": 0.9881270010672358,
+        "32": 0.9881270010672358,
+        "all": 0.9881270010672358
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 79,
+      "proposal_tokens": 166,
+      "coverage_candidates": {
+        "hierarchy_candidates": 79,
+        "typed_macro_candidates": 164,
+        "unique_candidates": 241,
+        "eligible_candidates": 139
+      },
+      "runtime_ms": 132.1318,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-028-ab74be43a0e8",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9782089552238806,
+        "4": 0.9891940298507462,
+        "8": 0.9905074626865672,
+        "16": 0.9905671641791045,
+        "32": 0.9905671641791045,
+        "all": 0.9905671641791045
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 69,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 69,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 231,
+        "eligible_candidates": 138
+      },
+      "runtime_ms": 126.6364,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-029-c88fff742bcf",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9567654123298639,
+        "4": 0.9607686148919136,
+        "8": 0.9607686148919136,
+        "16": 0.9607686148919136,
+        "32": 0.9607686148919136,
+        "all": 0.9607686148919136
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 81,
+      "proposal_tokens": 48,
+      "coverage_candidates": {
+        "hierarchy_candidates": 81,
+        "typed_macro_candidates": 47,
+        "unique_candidates": 127,
+        "eligible_candidates": 23
+      },
+      "runtime_ms": 42.8551,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-030-5910699f5645",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 193,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 193,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 355,
+        "eligible_candidates": 325
+      },
+      "runtime_ms": 261.8109,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-031-0328847cb1e2",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 153,
+      "proposal_tokens": 177,
+      "coverage_candidates": {
+        "hierarchy_candidates": 153,
+        "typed_macro_candidates": 175,
+        "unique_candidates": 327,
+        "eligible_candidates": 327
+      },
+      "runtime_ms": 185.4746,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-032-ba8d8872416f",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9814424293547026,
+        "4": 0.981864192323914,
+        "8": 0.981864192323914,
+        "16": 0.981864192323914,
+        "32": 0.981864192323914,
+        "all": 0.981864192323914
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 225,
+      "proposal_tokens": 44,
+      "coverage_candidates": {
+        "hierarchy_candidates": 225,
+        "typed_macro_candidates": 43,
+        "unique_candidates": 268,
+        "eligible_candidates": 40
+      },
+      "runtime_ms": 49.0992,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-033-cc750a3f03c3",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9749303621169917,
+        "4": 0.9782729805013928,
+        "8": 0.9782729805013928,
+        "16": 0.9782729805013928,
+        "32": 0.9782729805013928,
+        "all": 0.9782729805013928
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 117,
+      "proposal_tokens": 51,
+      "coverage_candidates": {
+        "hierarchy_candidates": 117,
+        "typed_macro_candidates": 50,
+        "unique_candidates": 166,
+        "eligible_candidates": 52
+      },
+      "runtime_ms": 45.6975,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-034-ae75c4412740",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 283,
+      "proposal_tokens": 166,
+      "coverage_candidates": {
+        "hierarchy_candidates": 283,
+        "typed_macro_candidates": 164,
+        "unique_candidates": 446,
+        "eligible_candidates": 421
+      },
+      "runtime_ms": 94.8582,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-036-500b2ab4ed7d",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 111,
+      "proposal_tokens": 170,
+      "coverage_candidates": {
+        "hierarchy_candidates": 111,
+        "typed_macro_candidates": 168,
+        "unique_candidates": 274,
+        "eligible_candidates": 274
+      },
+      "runtime_ms": 104.978,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-037-aeb6abb4cf52",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9912238805970149,
+        "4": 0.9935522388059701,
+        "8": 0.9937910447761193,
+        "16": 0.9937910447761193,
+        "32": 0.9937910447761193,
+        "all": 0.9937910447761193
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 40,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 39,
+        "unique_candidates": 110,
+        "eligible_candidates": 57
+      },
+      "runtime_ms": 64.7961,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-038-5e89d5c27a10",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9900028977108085,
+        "4": 0.991161982034193,
+        "8": 0.9914517531150391,
+        "16": 0.9914517531150391,
+        "32": 0.9914517531150391,
+        "all": 0.9914517531150391
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 83,
+      "proposal_tokens": 168,
+      "coverage_candidates": {
+        "hierarchy_candidates": 83,
+        "typed_macro_candidates": 166,
+        "unique_candidates": 248,
+        "eligible_candidates": 74
+      },
+      "runtime_ms": 150.6603,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-039-9ca5d915096b",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9880313660751135,
+        "4": 0.9909203466776723,
+        "8": 0.9917457697069748,
+        "16": 0.9917457697069748,
+        "32": 0.9917457697069748,
+        "all": 0.9917457697069748
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.8524911730090231,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 239,
+      "proposal_tokens": 170,
+      "coverage_candidates": {
+        "hierarchy_candidates": 239,
+        "typed_macro_candidates": 169,
+        "unique_candidates": 406,
+        "eligible_candidates": 137
+      },
+      "runtime_ms": 95.2708,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-040-d81aee8ebc12",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.8560541913632514,
+        "4": 0.9331075359864521,
+        "8": 0.9419983065198984,
+        "16": 0.945385266723116,
+        "32": 0.945385266723116,
+        "all": 0.945385266723116
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 107,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 107,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 266,
+        "eligible_candidates": 163
+      },
+      "runtime_ms": 79.4533,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-041-e459cd4e65eb",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 38,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 37,
+        "unique_candidates": 108,
+        "eligible_candidates": 88
+      },
+      "runtime_ms": 27.3672,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-042-0d484f855f3a",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9710512273212379,
+        "4": 0.9733191035218783,
+        "8": 0.9739861259338314,
+        "16": 0.9739861259338314,
+        "32": 0.9739861259338314,
+        "all": 0.9739861259338314
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.9997242140099283,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 77,
+      "proposal_tokens": 39,
+      "coverage_candidates": {
+        "hierarchy_candidates": 77,
+        "typed_macro_candidates": 38,
+        "unique_candidates": 115,
+        "eligible_candidates": 31
+      },
+      "runtime_ms": 57.2034,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-043-39b56e6c6077",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.527336860670194,
+        "4": 0.7142857142857143,
+        "8": 0.8112874779541446,
+        "16": 0.8447971781305115,
+        "32": 0.8465608465608465,
+        "all": 0.8465608465608465
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 107,
+      "proposal_tokens": 74,
+      "coverage_candidates": {
+        "hierarchy_candidates": 107,
+        "typed_macro_candidates": 72,
+        "unique_candidates": 170,
+        "eligible_candidates": 31
+      },
+      "runtime_ms": 44.5121,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-044-a5ec52589a3f",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.993368700265252,
+        "4": 0.9946949602122016,
+        "8": 0.9946949602122016,
+        "16": 0.9946949602122016,
+        "32": 0.9946949602122016,
+        "all": 0.9946949602122016
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 135,
+      "proposal_tokens": 96,
+      "coverage_candidates": {
+        "hierarchy_candidates": 135,
+        "typed_macro_candidates": 95,
+        "unique_candidates": 226,
+        "eligible_candidates": 85
+      },
+      "runtime_ms": 69.5448,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-045-dc85254ebcf2",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9957575757575757,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 0.9817708333333334,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 91,
+      "proposal_tokens": 166,
+      "coverage_candidates": {
+        "hierarchy_candidates": 91,
+        "typed_macro_candidates": 164,
+        "unique_candidates": 248,
+        "eligible_candidates": 200
+      },
+      "runtime_ms": 79.191,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-046-726feeec2f7d",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9740518962075848,
+        "4": 0.9753825681969395,
+        "8": 0.9753825681969395,
+        "16": 0.9753825681969395,
+        "32": 0.9753825681969395,
+        "all": 0.9753825681969395
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 139,
+      "proposal_tokens": 79,
+      "coverage_candidates": {
+        "hierarchy_candidates": 139,
+        "typed_macro_candidates": 78,
+        "unique_candidates": 216,
+        "eligible_candidates": 61
+      },
+      "runtime_ms": 57.8257,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-047-c528ee7e427c",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9637760702524698,
+        "4": 0.969264544456641,
+        "8": 0.973655323819978,
+        "16": 0.9747530186608123,
+        "32": 0.9747530186608123,
+        "all": 0.9747530186608123
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 85,
+      "proposal_tokens": 40,
+      "coverage_candidates": {
+        "hierarchy_candidates": 85,
+        "typed_macro_candidates": 39,
+        "unique_candidates": 124,
+        "eligible_candidates": 19
+      },
+      "runtime_ms": 32.9537,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-048-09f46b1c0098",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 147,
+      "proposal_tokens": 45,
+      "coverage_candidates": {
+        "hierarchy_candidates": 147,
+        "typed_macro_candidates": 45,
+        "unique_candidates": 191,
+        "eligible_candidates": 66
+      },
+      "runtime_ms": 114.4555,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-049-7e076e82931d",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9872836453549982,
+        "4": 0.9885788296243966,
+        "8": 0.9891675497468504,
+        "16": 0.9891675497468504,
+        "32": 0.9891675497468504,
+        "all": 0.9891675497468504
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 113,
+      "proposal_tokens": 73,
+      "coverage_candidates": {
+        "hierarchy_candidates": 113,
+        "typed_macro_candidates": 72,
+        "unique_candidates": 184,
+        "eligible_candidates": 56
+      },
+      "runtime_ms": 105.5695,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-050-67aee960712f",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 85,
+      "proposal_tokens": 60,
+      "coverage_candidates": {
+        "hierarchy_candidates": 85,
+        "typed_macro_candidates": 59,
+        "unique_candidates": 134,
+        "eligible_candidates": 134
+      },
+      "runtime_ms": 27.4494,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-051-aa2c59cbb948",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9937766131673763,
+        "4": 0.99475925319358,
+        "8": 0.99475925319358,
+        "16": 0.99475925319358,
+        "32": 0.99475925319358,
+        "all": 0.99475925319358
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 247,
+      "proposal_tokens": 164,
+      "coverage_candidates": {
+        "hierarchy_candidates": 247,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 402,
+        "eligible_candidates": 191
+      },
+      "runtime_ms": 86.4483,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-052-a41bfac8d00f",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 213,
+      "proposal_tokens": 53,
+      "coverage_candidates": {
+        "hierarchy_candidates": 213,
+        "typed_macro_candidates": 52,
+        "unique_candidates": 265,
+        "eligible_candidates": 242
+      },
+      "runtime_ms": 51.4998,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-053-a4ef899eb659",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9885748647023451,
+        "4": 0.9891761876127481,
+        "8": 0.9891761876127481,
+        "16": 0.9891761876127481,
+        "32": 0.9891761876127481,
+        "all": 0.9891761876127481
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 0.9939347990902199,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 85,
+      "proposal_tokens": 65,
+      "coverage_candidates": {
+        "hierarchy_candidates": 85,
+        "typed_macro_candidates": 64,
+        "unique_candidates": 147,
+        "eligible_candidates": 45
+      },
+      "runtime_ms": 42.6488,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-054-bd2d1597067c",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9871676419258802,
+        "4": 0.9881942305718099,
+        "8": 0.9885022071655888,
+        "16": 0.9885022071655888,
+        "32": 0.9885022071655888,
+        "all": 0.9885022071655888
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 47,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 46,
+        "unique_candidates": 142,
+        "eligible_candidates": 37
+      },
+      "runtime_ms": 74.5798,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-055-d9730af6b733",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 0.9243156199677939,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 147,
+      "proposal_tokens": 54,
+      "coverage_candidates": {
+        "hierarchy_candidates": 147,
+        "typed_macro_candidates": 54,
+        "unique_candidates": 201,
+        "eligible_candidates": 53
+      },
+      "runtime_ms": 35.9453,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-056-439876166ab2",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9614382867891766,
+        "4": 0.9750397916365214,
+        "8": 0.9750397916365214,
+        "16": 0.9750397916365214,
+        "32": 0.9750397916365214,
+        "all": 0.9750397916365214
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 75,
+      "proposal_tokens": 54,
+      "coverage_candidates": {
+        "hierarchy_candidates": 75,
+        "typed_macro_candidates": 53,
+        "unique_candidates": 127,
+        "eligible_candidates": 36
+      },
+      "runtime_ms": 81.3683,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-057-040c8cd1bac5",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.844106463878327,
+        "4": 0.8859315589353612,
+        "8": 0.8897338403041825,
+        "16": 0.8897338403041825,
+        "32": 0.8897338403041825,
+        "all": 0.8897338403041825
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 0.8355437665782494,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 73,
+      "proposal_tokens": 40,
+      "coverage_candidates": {
+        "hierarchy_candidates": 73,
+        "typed_macro_candidates": 39,
+        "unique_candidates": 111,
+        "eligible_candidates": 23
+      },
+      "runtime_ms": 22.7071,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-058-a6c21954bcb1",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.905588484335309,
+        "4": 0.9280270956816258,
+        "8": 0.9343776460626587,
+        "16": 0.9356477561388654,
+        "32": 0.9356477561388654,
+        "all": 0.9356477561388654
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 59,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 58,
+        "unique_candidates": 153,
+        "eligible_candidates": 57
+      },
+      "runtime_ms": 35.3647,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "small_shape-059-30536a9fe0ab",
+      "semantic_class": "small_shape",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.7529411764705882,
+        "4": 0.95,
+        "8": 0.9764705882352941,
+        "16": 0.9794117647058823,
+        "32": 0.9794117647058823,
+        "all": 0.9794117647058823
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 77,
+      "proposal_tokens": 69,
+      "coverage_candidates": {
+        "hierarchy_candidates": 77,
+        "typed_macro_candidates": 68,
+        "unique_candidates": 141,
+        "eligible_candidates": 69
+      },
+      "runtime_ms": 25.564,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-000-46f6159da20c",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 109,
+      "proposal_tokens": 138,
+      "coverage_candidates": {
+        "hierarchy_candidates": 109,
+        "typed_macro_candidates": 137,
+        "unique_candidates": 246,
+        "eligible_candidates": 131
+      },
+      "runtime_ms": 66.1229,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-001-15fd223c4854",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 0.9977989728539985,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 81,
+      "proposal_tokens": 122,
+      "coverage_candidates": {
+        "hierarchy_candidates": 81,
+        "typed_macro_candidates": 121,
+        "unique_candidates": 196,
+        "eligible_candidates": 97
+      },
+      "runtime_ms": 64.2972,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-002-53533395efa6",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 249,
+      "proposal_tokens": 44,
+      "coverage_candidates": {
+        "hierarchy_candidates": 249,
+        "typed_macro_candidates": 43,
+        "unique_candidates": 291,
+        "eligible_candidates": 68
+      },
+      "runtime_ms": 142.6081,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-003-797a86c60562",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 85,
+      "proposal_tokens": 40,
+      "coverage_candidates": {
+        "hierarchy_candidates": 85,
+        "typed_macro_candidates": 39,
+        "unique_candidates": 123,
+        "eligible_candidates": 28
+      },
+      "runtime_ms": 61.7385,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-004-4317f959c7dc",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 99,
+      "proposal_tokens": 45,
+      "coverage_candidates": {
+        "hierarchy_candidates": 99,
+        "typed_macro_candidates": 44,
+        "unique_candidates": 143,
+        "eligible_candidates": 38
+      },
+      "runtime_ms": 83.5439,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-005-ab259600eb92",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 48,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 47,
+        "unique_candidates": 142,
+        "eligible_candidates": 29
+      },
+      "runtime_ms": 92.9646,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-006-cd27c2fe4808",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 253,
+      "proposal_tokens": 51,
+      "coverage_candidates": {
+        "hierarchy_candidates": 253,
+        "typed_macro_candidates": 50,
+        "unique_candidates": 303,
+        "eligible_candidates": 77
+      },
+      "runtime_ms": 73.4809,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "layer_knockout-007-5ed3e17e2fb3",
+      "semantic_class": "layer_knockout",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 117,
+      "proposal_tokens": 52,
+      "coverage_candidates": {
+        "hierarchy_candidates": 117,
+        "typed_macro_candidates": 51,
+        "unique_candidates": 167,
+        "eligible_candidates": 51
+      },
+      "runtime_ms": 66.8339,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-000-832813e2d6bf",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.993455497382199,
+        "4": 0.9967277486910995,
+        "8": 0.9967277486910995,
+        "16": 0.9967277486910995,
+        "32": 0.9967277486910995,
+        "all": 0.9967277486910995
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 27,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 26,
+        "unique_candidates": 97,
+        "eligible_candidates": 23
+      },
+      "runtime_ms": 29.0678,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-001-2d92b976e590",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9998286497601097,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 62,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 60,
+        "unique_candidates": 157,
+        "eligible_candidates": 23
+      },
+      "runtime_ms": 71.2397,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-002-1407990ceea1",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9919743178170144,
+        "4": 0.9959871589085072,
+        "8": 0.9959871589085072,
+        "16": 0.9959871589085072,
+        "32": 0.9959871589085072,
+        "all": 0.9959871589085072
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 25,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 24,
+        "unique_candidates": 95,
+        "eligible_candidates": 18
+      },
+      "runtime_ms": 22.1097,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-003-b5e024b01330",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9948081915200462,
+        "4": 0.9953850591289299,
+        "8": 0.9953850591289299,
+        "16": 0.9953850591289299,
+        "32": 0.9953850591289299,
+        "all": 0.9953850591289299
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 39,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 38,
+        "unique_candidates": 108,
+        "eligible_candidates": 30
+      },
+      "runtime_ms": 32.4857,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-004-f4c85f1cfcb2",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9999316145797716,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 260,
+        "eligible_candidates": 147
+      },
+      "runtime_ms": 127.0689,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-005-5e8cb178ac42",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9961825122704963,
+        "4": 0.9966369750954371,
+        "8": 0.9967278676604254,
+        "16": 0.9967278676604254,
+        "32": 0.9967278676604254,
+        "all": 0.9967278676604254
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 39,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 38,
+        "unique_candidates": 134,
+        "eligible_candidates": 37
+      },
+      "runtime_ms": 87.2404,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-006-f5ba5bd7a8e0",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.99764307284378,
+        "4": 0.9979376887383075,
+        "8": 0.9979376887383075,
+        "16": 0.9979376887383075,
+        "32": 0.9979376887383075,
+        "all": 0.9979376887383075
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 39,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 38,
+        "unique_candidates": 134,
+        "eligible_candidates": 42
+      },
+      "runtime_ms": 77.0938,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-007-679ca3bc7268",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9994546446100709,
+        "4": 0.9995455371750591,
+        "8": 0.9995455371750591,
+        "16": 0.9995455371750591,
+        "32": 0.9995455371750591,
+        "all": 0.9995455371750591
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 95,
+      "proposal_tokens": 134,
+      "coverage_candidates": {
+        "hierarchy_candidates": 95,
+        "typed_macro_candidates": 132,
+        "unique_candidates": 225,
+        "eligible_candidates": 83
+      },
+      "runtime_ms": 112.3966,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-008-1a66625a41be",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.996197046077651,
+        "4": 0.9969045723887857,
+        "8": 0.9970814539665693,
+        "16": 0.9970814539665693,
+        "32": 0.9970814539665693,
+        "all": 0.9970814539665693
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 36,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 35,
+        "unique_candidates": 131,
+        "eligible_candidates": 34
+      },
+      "runtime_ms": 64.2722,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-009-73185b93bd03",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9974697394515489,
+        "4": 0.9979484373931478,
+        "8": 0.9979484373931478,
+        "16": 0.9979484373931478,
+        "32": 0.9979484373931478,
+        "all": 0.9979484373931478
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 37,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 36,
+        "unique_candidates": 132,
+        "eligible_candidates": 40
+      },
+      "runtime_ms": 71.4176,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-010-7b093ab06d12",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9946275071633238,
+        "4": 0.9953438395415473,
+        "8": 0.9953438395415473,
+        "16": 0.9953438395415473,
+        "32": 0.9953438395415473,
+        "all": 0.9953438395415473
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 39,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 38,
+        "unique_candidates": 108,
+        "eligible_candidates": 33
+      },
+      "runtime_ms": 43.0054,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-011-1681fb534836",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9990424983427856,
+        "4": 0.9991898062900494,
+        "8": 0.9991898062900494,
+        "16": 0.9991898062900494,
+        "32": 0.9991898062900494,
+        "all": 0.9991898062900494
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 95,
+      "proposal_tokens": 114,
+      "coverage_candidates": {
+        "hierarchy_candidates": 95,
+        "typed_macro_candidates": 112,
+        "unique_candidates": 196,
+        "eligible_candidates": 50
+      },
+      "runtime_ms": 98.614,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-012-163f52a6d28d",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9953917050691244,
+        "4": 0.9976958525345622,
+        "8": 0.9976958525345622,
+        "16": 0.9976958525345622,
+        "32": 0.9976958525345622,
+        "all": 0.9976958525345622
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 26,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 25,
+        "unique_candidates": 122,
+        "eligible_candidates": 20
+      },
+      "runtime_ms": 47.4898,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-013-3c31c0fa08f9",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.995945945945946,
+        "4": 0.9972972972972973,
+        "8": 0.9972972972972973,
+        "16": 0.9972972972972973,
+        "32": 0.9972972972972973,
+        "all": 0.9972972972972973
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 37,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 36,
+        "unique_candidates": 106,
+        "eligible_candidates": 33
+      },
+      "runtime_ms": 32.9029,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-014-6057f7b54a40",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.991000346140533,
+        "4": 0.9920387677397023,
+        "8": 0.9920387677397023,
+        "16": 0.9920387677397023,
+        "32": 0.9920387677397023,
+        "all": 0.9920387677397023
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 71,
+      "proposal_tokens": 36,
+      "coverage_candidates": {
+        "hierarchy_candidates": 71,
+        "typed_macro_candidates": 35,
+        "unique_candidates": 105,
+        "eligible_candidates": 28
+      },
+      "runtime_ms": 28.8356,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-015-0a3cea340ad5",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9965729952021933,
+        "4": 0.9986291980808774,
+        "8": 0.9986291980808774,
+        "16": 0.9986291980808774,
+        "32": 0.9986291980808774,
+        "all": 0.9986291980808774
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 27,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 26,
+        "unique_candidates": 123,
+        "eligible_candidates": 22
+      },
+      "runtime_ms": 48.9325,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-016-ad4ad47de396",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 63,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 61,
+        "unique_candidates": 157,
+        "eligible_candidates": 25
+      },
+      "runtime_ms": 79.5628,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "stroke_diagram-017-db940a9e9c01",
+      "semantic_class": "stroke_diagram",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9991155921110816,
+        "4": 0.9992924736888653,
+        "8": 0.9992924736888653,
+        "16": 0.9992924736888653,
+        "32": 0.9992924736888653,
+        "all": 0.9992924736888653
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 81,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 79,
+        "unique_candidates": 174,
+        "eligible_candidates": 43
+      },
+      "runtime_ms": 100.9212,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-000-e35c67dd730b",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.995070653959908,
+        "4": 0.9976996385146237,
+        "8": 0.9986855077226421,
+        "16": 0.9986855077226421,
+        "32": 0.9986855077226421,
+        "all": 0.9986855077226421
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 161,
+      "proposal_tokens": 51,
+      "coverage_candidates": {
+        "hierarchy_candidates": 161,
+        "typed_macro_candidates": 50,
+        "unique_candidates": 211,
+        "eligible_candidates": 112
+      },
+      "runtime_ms": 58.2862,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-001-f9da644d9f12",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9502308876346844,
+        "4": 0.9697280656747049,
+        "8": 0.9805028219599795,
+        "16": 0.9846074910210364,
+        "32": 0.9846074910210364,
+        "all": 0.9846074910210364
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 97,
+      "proposal_tokens": 94,
+      "coverage_candidates": {
+        "hierarchy_candidates": 97,
+        "typed_macro_candidates": 92,
+        "unique_candidates": 189,
+        "eligible_candidates": 105
+      },
+      "runtime_ms": 89.1779,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-002-8b5aa26d1b6e",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9425770308123249,
+        "4": 0.9957983193277311,
+        "8": 0.9991596638655462,
+        "16": 0.9991596638655462,
+        "32": 0.9991596638655462,
+        "all": 0.9991596638655462
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 357,
+      "proposal_tokens": 172,
+      "coverage_candidates": {
+        "hierarchy_candidates": 357,
+        "typed_macro_candidates": 170,
+        "unique_candidates": 523,
+        "eligible_candidates": 170
+      },
+      "runtime_ms": 128.0624,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-003-7da89e8733af",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9947420308905686,
+        "4": 0.9996713769306605,
+        "8": 0.9996713769306605,
+        "16": 0.9996713769306605,
+        "32": 0.9996713769306605,
+        "all": 0.9996713769306605
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 159,
+      "proposal_tokens": 109,
+      "coverage_candidates": {
+        "hierarchy_candidates": 159,
+        "typed_macro_candidates": 107,
+        "unique_candidates": 265,
+        "eligible_candidates": 125
+      },
+      "runtime_ms": 67.6606,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-004-44e50830aaf7",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.996969696969697,
+        "4": 0.9972727272727273,
+        "8": 0.9972727272727273,
+        "16": 0.9972727272727273,
+        "32": 0.9972727272727273,
+        "all": 0.9972727272727273
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 83,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 83,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 245,
+        "eligible_candidates": 204
+      },
+      "runtime_ms": 90.47,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-005-5766aae74366",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9234322731375777,
+        "4": 0.9978760686029842,
+        "8": 0.9978760686029842,
+        "16": 0.9978760686029842,
+        "32": 0.9978760686029842,
+        "all": 0.9978760686029842
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 79,
+      "proposal_tokens": 66,
+      "coverage_candidates": {
+        "hierarchy_candidates": 79,
+        "typed_macro_candidates": 65,
+        "unique_candidates": 144,
+        "eligible_candidates": 98
+      },
+      "runtime_ms": 104.8031,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-006-574949a12155",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.970912738214644,
+        "4": 0.9722500835840856,
+        "8": 0.972584419926446,
+        "16": 0.972584419926446,
+        "32": 0.972584419926446,
+        "all": 0.972584419926446
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 277,
+      "proposal_tokens": 86,
+      "coverage_candidates": {
+        "hierarchy_candidates": 277,
+        "typed_macro_candidates": 85,
+        "unique_candidates": 361,
+        "eligible_candidates": 86
+      },
+      "runtime_ms": 70.5922,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-007-196026ac8bcd",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9545454545454546,
+        "4": 0.9932659932659933,
+        "8": 0.9966329966329966,
+        "16": 0.9966329966329966,
+        "32": 0.9966329966329966,
+        "all": 0.9966329966329966
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 203,
+      "proposal_tokens": 53,
+      "coverage_candidates": {
+        "hierarchy_candidates": 203,
+        "typed_macro_candidates": 52,
+        "unique_candidates": 253,
+        "eligible_candidates": 74
+      },
+      "runtime_ms": 37.7958,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-008-06e3f5f1fb7d",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9916874480465503,
+        "4": 0.9954280964256027,
+        "8": 0.9966749792186201,
+        "16": 0.9966749792186201,
+        "32": 0.9966749792186201,
+        "all": 0.9966749792186201
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 149,
+      "proposal_tokens": 57,
+      "coverage_candidates": {
+        "hierarchy_candidates": 149,
+        "typed_macro_candidates": 56,
+        "unique_candidates": 205,
+        "eligible_candidates": 90
+      },
+      "runtime_ms": 71.6986,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-009-eda9ea2f6018",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9779374037968189,
+        "4": 0.986659825551565,
+        "8": 0.9876859928168291,
+        "16": 0.9876859928168291,
+        "32": 0.9876859928168291,
+        "all": 0.9876859928168291
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 91,
+      "proposal_tokens": 48,
+      "coverage_candidates": {
+        "hierarchy_candidates": 91,
+        "typed_macro_candidates": 47,
+        "unique_candidates": 137,
+        "eligible_candidates": 78
+      },
+      "runtime_ms": 48.7987,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-010-8e29cd3e733f",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9044817927170868,
+        "4": 0.9949579831932773,
+        "8": 0.9980392156862745,
+        "16": 0.9980392156862745,
+        "32": 0.9980392156862745,
+        "all": 0.9980392156862745
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 281,
+      "proposal_tokens": 75,
+      "coverage_candidates": {
+        "hierarchy_candidates": 281,
+        "typed_macro_candidates": 74,
+        "unique_candidates": 354,
+        "eligible_candidates": 123
+      },
+      "runtime_ms": 87.6712,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-011-e55270719dfb",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9778761061946902,
+        "4": 0.9977876106194691,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 67,
+      "proposal_tokens": 59,
+      "coverage_candidates": {
+        "hierarchy_candidates": 67,
+        "typed_macro_candidates": 58,
+        "unique_candidates": 124,
+        "eligible_candidates": 85
+      },
+      "runtime_ms": 38.1727,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-012-8f18c826863d",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9956114686951434,
+        "4": 0.9971474546518432,
+        "8": 0.997366881217086,
+        "16": 0.997366881217086,
+        "32": 0.997366881217086,
+        "all": 0.997366881217086
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 133,
+      "proposal_tokens": 70,
+      "coverage_candidates": {
+        "hierarchy_candidates": 133,
+        "typed_macro_candidates": 69,
+        "unique_candidates": 201,
+        "eligible_candidates": 89
+      },
+      "runtime_ms": 155.9481,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-013-9a8aa45dcebb",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9343252950230888,
+        "4": 0.9579271421241662,
+        "8": 0.9733196511031298,
+        "16": 0.9774243201641868,
+        "32": 0.9774243201641868,
+        "all": 0.9774243201641868
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 99,
+      "proposal_tokens": 114,
+      "coverage_candidates": {
+        "hierarchy_candidates": 99,
+        "typed_macro_candidates": 112,
+        "unique_candidates": 211,
+        "eligible_candidates": 102
+      },
+      "runtime_ms": 71.1446,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-014-e69c986b2c14",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.996389316625073,
+        "4": 0.9989380343014921,
+        "8": 0.9989380343014921,
+        "16": 0.9989380343014921,
+        "32": 0.9989380343014921,
+        "all": 0.9989380343014921
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 81,
+      "proposal_tokens": 166,
+      "coverage_candidates": {
+        "hierarchy_candidates": 81,
+        "typed_macro_candidates": 164,
+        "unique_candidates": 245,
+        "eligible_candidates": 201
+      },
+      "runtime_ms": 160.3889,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-015-377f514b4c70",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9962697483908719,
+        "4": 0.9983177296664716,
+        "8": 0.9983177296664716,
+        "16": 0.9983177296664716,
+        "32": 0.9983177296664716,
+        "all": 0.9983177296664716
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 129,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 129,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 290,
+        "eligible_candidates": 125
+      },
+      "runtime_ms": 168.7942,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-016-b071b9f45aee",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.6771084337349398,
+        "4": 0.8698795180722891,
+        "8": 0.9518072289156626,
+        "16": 0.9734939759036144,
+        "32": 0.9734939759036144,
+        "all": 0.9734939759036144
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 0.0,
+      "hierarchy_nodes": 93,
+      "proposal_tokens": 66,
+      "coverage_candidates": {
+        "hierarchy_candidates": 93,
+        "typed_macro_candidates": 65,
+        "unique_candidates": 156,
+        "eligible_candidates": 69
+      },
+      "runtime_ms": 41.8603,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-017-001a9d0000f5",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9975842817264333,
+        "4": 0.9979600601245437,
+        "8": 0.9979600601245437,
+        "16": 0.9979600601245437,
+        "32": 0.9979600601245437,
+        "all": 0.9979600601245437
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 121,
+      "proposal_tokens": 53,
+      "coverage_candidates": {
+        "hierarchy_candidates": 121,
+        "typed_macro_candidates": 52,
+        "unique_candidates": 173,
+        "eligible_candidates": 82
+      },
+      "runtime_ms": 110.8042,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-018-f211df9412f9",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9044497607655503,
+        "4": 0.99688995215311,
+        "8": 0.9994258373205742,
+        "16": 0.9994258373205742,
+        "32": 0.9994258373205742,
+        "all": 0.9994258373205742
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 239,
+      "proposal_tokens": 174,
+      "coverage_candidates": {
+        "hierarchy_candidates": 239,
+        "typed_macro_candidates": 172,
+        "unique_candidates": 410,
+        "eligible_candidates": 157
+      },
+      "runtime_ms": 253.9544,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-019-0c31a669946c",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9924959216965742,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 87,
+      "proposal_tokens": 117,
+      "coverage_candidates": {
+        "hierarchy_candidates": 87,
+        "typed_macro_candidates": 115,
+        "unique_candidates": 201,
+        "eligible_candidates": 133
+      },
+      "runtime_ms": 64.4296,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-020-beb3b551a0ad",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9987184963690731,
+        "4": 0.9987795203514981,
+        "8": 0.9987795203514981,
+        "16": 0.9987795203514981,
+        "32": 0.9987795203514981,
+        "all": 0.9987795203514981
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 225,
+      "proposal_tokens": 170,
+      "coverage_candidates": {
+        "hierarchy_candidates": 225,
+        "typed_macro_candidates": 168,
+        "unique_candidates": 392,
+        "eligible_candidates": 149
+      },
+      "runtime_ms": 238.6826,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-021-54fa133e4dbe",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.983790523690773,
+        "4": 0.9975062344139651,
+        "8": 0.9995843724023276,
+        "16": 0.9995843724023276,
+        "32": 0.9995843724023276,
+        "all": 0.9995843724023276
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 159,
+      "proposal_tokens": 157,
+      "coverage_candidates": {
+        "hierarchy_candidates": 159,
+        "typed_macro_candidates": 155,
+        "unique_candidates": 314,
+        "eligible_candidates": 130
+      },
+      "runtime_ms": 89.4497,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-022-7e04e8097662",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.990304246071548,
+        "4": 0.9906385824139083,
+        "8": 0.9906385824139083,
+        "16": 0.9906385824139083,
+        "32": 0.9906385824139083,
+        "all": 0.9906385824139083
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 297,
+      "proposal_tokens": 170,
+      "coverage_candidates": {
+        "hierarchy_candidates": 297,
+        "typed_macro_candidates": 168,
+        "unique_candidates": 464,
+        "eligible_candidates": 125
+      },
+      "runtime_ms": 130.3096,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-023-d0842744d9a9",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.6734094616639478,
+        "4": 0.9928221859706362,
+        "8": 0.9944535073409462,
+        "16": 0.9944535073409462,
+        "32": 0.9944535073409462,
+        "all": 0.9944535073409462
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 73,
+      "proposal_tokens": 67,
+      "coverage_candidates": {
+        "hierarchy_candidates": 73,
+        "typed_macro_candidates": 66,
+        "unique_candidates": 139,
+        "eligible_candidates": 94
+      },
+      "runtime_ms": 59.5461,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-024-1ae312e554be",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.996969696969697,
+        "4": 0.996969696969697,
+        "8": 0.996969696969697,
+        "16": 0.996969696969697,
+        "32": 0.996969696969697,
+        "all": 0.996969696969697
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 73,
+      "proposal_tokens": 51,
+      "coverage_candidates": {
+        "hierarchy_candidates": 73,
+        "typed_macro_candidates": 50,
+        "unique_candidates": 123,
+        "eligible_candidates": 103
+      },
+      "runtime_ms": 43.2915,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-025-9cbdaf4b7834",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.8933014354066986,
+        "4": 0.9986602870813397,
+        "8": 0.9989952153110048,
+        "16": 0.9989952153110048,
+        "32": 0.9989952153110048,
+        "all": 0.9989952153110048
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 231,
+      "proposal_tokens": 75,
+      "coverage_candidates": {
+        "hierarchy_candidates": 231,
+        "typed_macro_candidates": 74,
+        "unique_candidates": 304,
+        "eligible_candidates": 95
+      },
+      "runtime_ms": 172.7922,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-026-4dbb58e0612d",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9868188197961799,
+        "4": 0.9876121315677061,
+        "8": 0.9879782754622567,
+        "16": 0.9879782754622567,
+        "32": 0.9879782754622567,
+        "all": 0.9879782754622567
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 229,
+      "proposal_tokens": 89,
+      "coverage_candidates": {
+        "hierarchy_candidates": 229,
+        "typed_macro_candidates": 88,
+        "unique_candidates": 316,
+        "eligible_candidates": 66
+      },
+      "runtime_ms": 158.1302,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-027-62880c67d9e9",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9764243614931237,
+        "4": 0.9882121807465619,
+        "8": 0.9921414538310412,
+        "16": 0.9921414538310412,
+        "32": 0.9921414538310412,
+        "all": 0.9921414538310412
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 75,
+      "proposal_tokens": 32,
+      "coverage_candidates": {
+        "hierarchy_candidates": 75,
+        "typed_macro_candidates": 31,
+        "unique_candidates": 105,
+        "eligible_candidates": 50
+      },
+      "runtime_ms": 24.3107,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-028-60ea0d39a1ef",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9666495638789122,
+        "4": 0.9774243201641868,
+        "8": 0.9805028219599795,
+        "16": 0.9805028219599795,
+        "32": 0.9805028219599795,
+        "all": 0.9805028219599795
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 79,
+      "proposal_tokens": 45,
+      "coverage_candidates": {
+        "hierarchy_candidates": 79,
+        "typed_macro_candidates": 44,
+        "unique_candidates": 122,
+        "eligible_candidates": 58
+      },
+      "runtime_ms": 28.756,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "gradient-029-8e7db5e47942",
+      "semantic_class": "gradient",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9935897435897436,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 125,
+      "proposal_tokens": 54,
+      "coverage_candidates": {
+        "hierarchy_candidates": 125,
+        "typed_macro_candidates": 53,
+        "unique_candidates": 178,
+        "eligible_candidates": 80
+      },
+      "runtime_ms": 24.1441,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-000-2fc8fc413f1e",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9886892880904857,
+        "4": 0.9886892880904857,
+        "8": 0.9886892880904857,
+        "16": 0.9886892880904857,
+        "32": 0.9886892880904857,
+        "all": 0.9886892880904857
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 147,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 147,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 311,
+        "eligible_candidates": 94
+      },
+      "runtime_ms": 69.3655,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-001-f7eeb5040fe6",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 1.0,
+        "4": 1.0,
+        "8": 1.0,
+        "16": 1.0,
+        "32": 1.0,
+        "all": 1.0
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 91,
+      "proposal_tokens": 170,
+      "coverage_candidates": {
+        "hierarchy_candidates": 91,
+        "typed_macro_candidates": 168,
+        "unique_candidates": 257,
+        "eligible_candidates": 257
+      },
+      "runtime_ms": 170.7661,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-002-f161013c4885",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9695756605284227,
+        "4": 0.9727782225780625,
+        "8": 0.9727782225780625,
+        "16": 0.9727782225780625,
+        "32": 0.9727782225780625,
+        "all": 0.9727782225780625
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 93,
+      "proposal_tokens": 167,
+      "coverage_candidates": {
+        "hierarchy_candidates": 93,
+        "typed_macro_candidates": 165,
+        "unique_candidates": 253,
+        "eligible_candidates": 36
+      },
+      "runtime_ms": 88.546,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-003-da81b879966c",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9798206278026906,
+        "4": 0.9798206278026906,
+        "8": 0.9798206278026906,
+        "16": 0.9798206278026906,
+        "32": 0.9798206278026906,
+        "all": 0.9798206278026906
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 93,
+      "proposal_tokens": 51,
+      "coverage_candidates": {
+        "hierarchy_candidates": 93,
+        "typed_macro_candidates": 49,
+        "unique_candidates": 141,
+        "eligible_candidates": 9
+      },
+      "runtime_ms": 32.9164,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-004-2c0749d5c20b",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9634587554269175,
+        "4": 0.9844428364688856,
+        "8": 0.9876989869753979,
+        "16": 0.9876989869753979,
+        "32": 0.9876989869753979,
+        "all": 0.9876989869753979
+      },
+      "topology_recall": 1.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 87,
+      "proposal_tokens": 166,
+      "coverage_candidates": {
+        "hierarchy_candidates": 87,
+        "typed_macro_candidates": 164,
+        "unique_candidates": 249,
+        "eligible_candidates": 159
+      },
+      "runtime_ms": 78.3118,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-005-597cddaa49ac",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.986827661909989,
+        "4": 0.986827661909989,
+        "8": 0.986827661909989,
+        "16": 0.986827661909989,
+        "32": 0.986827661909989,
+        "all": 0.986827661909989
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 95,
+      "proposal_tokens": 137,
+      "coverage_candidates": {
+        "hierarchy_candidates": 95,
+        "typed_macro_candidates": 135,
+        "unique_candidates": 227,
+        "eligible_candidates": 23
+      },
+      "runtime_ms": 72.4617,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-006-a25cdcac1126",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9983895211509556,
+        "4": 0.9996242216018896,
+        "8": 0.9996242216018896,
+        "16": 0.9996242216018896,
+        "32": 0.9996242216018896,
+        "all": 0.9996242216018896
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 125,
+      "proposal_tokens": 165,
+      "coverage_candidates": {
+        "hierarchy_candidates": 125,
+        "typed_macro_candidates": 163,
+        "unique_candidates": 286,
+        "eligible_candidates": 178
+      },
+      "runtime_ms": 148.7407,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-007-6a13cc15dc95",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9960468298616391,
+        "4": 0.9961228523642999,
+        "8": 0.9961228523642999,
+        "16": 0.9961228523642999,
+        "32": 0.9961228523642999,
+        "all": 0.9961228523642999
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 159,
+      "proposal_tokens": 173,
+      "coverage_candidates": {
+        "hierarchy_candidates": 159,
+        "typed_macro_candidates": 172,
+        "unique_candidates": 325,
+        "eligible_candidates": 89
+      },
+      "runtime_ms": 184.4498,
+      "runtime_budget_ok": true
+    },
+    {
+      "id": "codec_detail-008-c1f721dd84a4",
+      "semantic_class": "codec_detail",
+      "cache_hit": false,
+      "support_recall_at_k": {
+        "1": 0.9970491234160735,
+        "4": 0.9974541456922988,
+        "8": 0.9975120060174738,
+        "16": 0.9975120060174738,
+        "32": 0.9975120060174738,
+        "all": 0.9975120060174738
+      },
+      "topology_recall": 0.0,
+      "boundary_band_feasibility": 1.0,
+      "macro_family_recall": 1.0,
+      "hierarchy_nodes": 145,
+      "proposal_tokens": 173,
+      "coverage_candidates": {
+        "hierarchy_candidates": 145,
+        "typed_macro_candidates": 172,
+        "unique_candidates": 306,
+        "eligible_candidates": 123
+      },
+      "runtime_ms": 175.2347,
+      "runtime_budget_ok": true
+    }
+  ]
+}

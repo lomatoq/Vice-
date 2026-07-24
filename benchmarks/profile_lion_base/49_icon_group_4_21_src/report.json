@@ -1,0 +1,140 @@
+{
+  "input": "49_icon_group_4_21_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 7,
+  "closed_contours": 8,
+  "rendered_primitive_count": 142,
+  "actual": {
+    "L": 19,
+    "Q": 0,
+    "C": 123
+  },
+  "templates": {
+    "paper-joint-g1-fallback": 4,
+    "paper-smooth": 2,
+    "paper-joint": 1,
+    "paper-tiny": 1
+  },
+  "threshold": 0.0,
+  "codec_legitimacy_court": [
+    {
+      "accepted": false,
+      "reason": "uncertain-codec-abstain",
+      "condition": {
+        "detected": false,
+        "source": "coefficient-lattice",
+        "quality": 95,
+        "grid": {
+          "period": 8,
+          "phase_x": 3,
+          "phase_y": 3,
+          "confidence": 0.5989649486715742,
+          "confidence_x": 0.3638881686317704,
+          "confidence_y": 0.9859045736114075,
+          "z_x": 1.9047617912292483,
+          "z_y": 9.523809807641166
+        },
+        "confidence": 0.0,
+        "false_alarm": 2.1011072832850165e-19,
+        "bin_false_alarm": 1.0,
+        "bin_score": 0.08559937609093074,
+        "runner_up_score": 0.09057390871877932,
+        "psf_sigma": 0.6761622809314564,
+        "chroma_mode": "unknown"
+      }
+    }
+  ],
+  "digital_circle_court": [
+    {
+      "winner": "deliberate-crescent",
+      "reason": "codec-uncertain-abstain",
+      "extent": 14.5
+    },
+    {
+      "winner": "deliberate-crescent",
+      "reason": "codec-uncertain-abstain",
+      "extent": 10.0
+    }
+  ],
+  "structural_diagram_lane": [
+    {
+      "accepted": false,
+      "reason": "nfa-margin-below-destructive-court",
+      "segments": 10,
+      "relations": 11,
+      "evidence_nfa": 84.24778282463102,
+      "model_code": 76.33940075514599,
+      "evidence_ratio": 1.1035950242110322,
+      "required_ratio": 4.0
+    }
+  ],
+  "diagram_signature": {
+    "accepted": false,
+    "masks": 7,
+    "panel_ratio": 0.0,
+    "frame_networks": 0,
+    "connectors": 0
+  },
+  "underpaint_renderer_calibration": [
+    {
+      "renderer": "cairosvg",
+      "available": false,
+      "error": "OSError"
+    },
+    {
+      "renderer": "resvg",
+      "available": true,
+      "scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "one_sided_support": 0.75
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 8.279,
+  "perceptual_aa_calibration": [
+    {
+      "router": "direct-svg-subpixel-aa",
+      "deviation": 0.1,
+      "incumbent": {
+        "mae": 4.577,
+        "rmse": 14.504,
+        "ink_iou": 0.91828,
+        "ssim": 0.96512,
+        "boundary_f": 0.99931,
+        "hausdorff95": 0.0,
+        "topology": [
+          5,
+          1
+        ]
+      },
+      "candidate": {
+        "mae": 4.765,
+        "rmse": 14.68,
+        "ink_iou": 0.91774,
+        "ssim": 0.96498,
+        "boundary_f": 0.99931,
+        "hausdorff95": 0.0,
+        "topology": [
+          5,
+          1
+        ]
+      },
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ]
+}

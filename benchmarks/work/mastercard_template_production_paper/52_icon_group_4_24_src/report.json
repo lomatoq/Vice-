@@ -1,0 +1,133 @@
+{
+  "input": "52_icon_group_4_24_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari+known-vector-retrieval",
+  "analysis_scale": 4,
+  "smoothing": "paper",
+  "regions": 26,
+  "closed_contours": 37,
+  "rendered_primitive_count": 340,
+  "actual": {
+    "L": 130,
+    "Q": 0,
+    "C": 210
+  },
+  "templates": {
+    "known-vector-idealized": 35,
+    "template-topology-pixel": 2
+  },
+  "threshold": 0.0,
+  "glyph_repair": [
+    {
+      "box": 1,
+      "accepted": false,
+      "reference_cc": 11,
+      "baseline_cc": 10,
+      "baseline_iou": 0.3719
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "known_template_retrieval": [
+    {
+      "template": "mastercard-1996",
+      "router": "visual-affine-palette-only",
+      "quick_match": {
+        "ssim": 0.93827,
+        "ink_iou": 0.94735,
+        "mae": 5.45799,
+        "x": 5,
+        "y": 6,
+        "width": 87,
+        "height": 53,
+        "palette": [
+          [
+            213,
+            54,
+            44
+          ],
+          [
+            225,
+            126,
+            47
+          ],
+          [
+            255,
+            255,
+            255
+          ],
+          [
+            23,
+            25,
+            30
+          ],
+          [
+            255,
+            255,
+            255
+          ]
+        ]
+      },
+      "incumbent": {
+        "mae": 6.508,
+        "rmse": 22.834,
+        "ink_iou": 0.9238,
+        "ssim": 0.89728,
+        "boundary_f": 0.99517,
+        "hausdorff95": 0.955,
+        "topology": [
+          4,
+          4
+        ]
+      },
+      "accepted": true,
+      "candidate": {
+        "mae": 5.726,
+        "rmse": 19.627,
+        "ink_iou": 0.94172,
+        "ssim": 0.9294,
+        "boundary_f": 0.99436,
+        "hausdorff95": 0.955,
+        "topology": [
+          5,
+          7
+        ],
+        "actual": {
+          "L": 130,
+          "Q": 0,
+          "C": 210
+        },
+        "primitives": 340,
+        "regions": 26,
+        "closed_contours": 37,
+        "micro_segments": 42,
+        "templates": {
+          "known-vector-idealized": 35,
+          "template-topology-pixel": 2
+        },
+        "kink_energy": 11.992,
+        "topology_operations": [
+          {
+            "x": 16,
+            "y": 34,
+            "ink": false
+          },
+          {
+            "x": 19,
+            "y": 36,
+            "ink": false
+          }
+        ]
+      },
+      "reason": "perceptual+topology+complexity-court"
+    }
+  ],
+  "kink_energy": 11.992
+}

@@ -1,0 +1,601 @@
+{
+  "appearances": [
+    {
+      "confidence": 0.9955374598503113,
+      "covariance": [
+        0.00020222818420734257,
+        1.3277621951292932e-18,
+        1.3258951450891845e-18
+      ],
+      "id": "appearance-shape-0",
+      "kind": "solid",
+      "parameters": [],
+      "provenance": [
+        "soft-oklab-mixture"
+      ],
+      "rgba_linear": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "stops": []
+    },
+    {
+      "confidence": 0.7613324521338909,
+      "covariance": [
+        0.020491082221269608,
+        8.136323205616951e-16,
+        1.6964909233668101e-16
+      ],
+      "id": "appearance-shape-1",
+      "kind": "linear-gradient",
+      "parameters": [
+        23.213080596577253,
+        11.208029491928524,
+        14.468162461000055,
+        14.031957996575066
+      ],
+      "provenance": [
+        "soft-oklab-mixture",
+        "linear-gradient-mdl"
+      ],
+      "rgba_linear": [
+        0.04970656707882881,
+        0.0497065931558609,
+        0.049706555902957916,
+        1.0
+      ],
+      "stops": [
+        {
+          "offset": 0.0,
+          "rgba_linear": [
+            0.21005803324767408,
+            0.21005803324767408,
+            0.2100580332476742,
+            1.0
+          ]
+        },
+        {
+          "offset": 1.0,
+          "rgba_linear": [
+            0.025638506533877448,
+            0.025638506533877448,
+            0.02563850653387756,
+            1.0
+          ]
+        }
+      ]
+    }
+  ],
+  "constraints": [
+    {
+      "evidence": [
+        "text-line-group"
+      ],
+      "id": "constraint-text-line-0-baseline",
+      "kind": "baseline",
+      "members": [
+        "shape-1",
+        "shape-0"
+      ],
+      "weight_or_hardness": 0.85
+    },
+    {
+      "evidence": [
+        "glyph-sdf"
+      ],
+      "id": "constraint-text-line-0-stem",
+      "kind": "stroke-width-class",
+      "members": [
+        "shape-1",
+        "shape-0"
+      ],
+      "weight_or_hardness": 0.65
+    }
+  ],
+  "coordinate_space": "native-pixel",
+  "corners": [
+    {
+      "confidence": 0.8637219984728591,
+      "continuity": "C0",
+      "covariance": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "corner-0",
+      "incident_interfaces": [
+        "interface-0",
+        "interface-1",
+        "interface-2"
+      ],
+      "position": [
+        16.0,
+        9.0
+      ],
+      "role": "junction"
+    },
+    {
+      "confidence": 0.7592943178979974,
+      "continuity": "C0",
+      "covariance": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "id": "corner-1",
+      "incident_interfaces": [
+        "interface-1",
+        "interface-2"
+      ],
+      "position": [
+        22.000000000000004,
+        9.0
+      ],
+      "role": "corner"
+    }
+  ],
+  "height": 24,
+  "interfaces": [
+    {
+      "confidence_profile": [
+        0.9362176656723022,
+        0.9362176656723022,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9046124219894409
+      ],
+      "corner_nodes": [
+        "corner-0"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              16.0,
+              9.0
+            ],
+            [
+              22.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-pca-line"
+          ]
+        }
+      ],
+      "id": "interface-0",
+      "left_shape": null,
+      "right_shape": "shape-0"
+    },
+    {
+      "confidence_profile": [
+        0.6589180827140808,
+        0.6589180827140808,
+        0.5486840009689331,
+        0.632318913936615,
+        0.632318913936615,
+        0.632318913936615,
+        0.632318913936615,
+        0.6005763411521912,
+        0.42199093103408813,
+        0.8240612745285034,
+        0.9478668570518494,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.944424033164978,
+        0.944424033164978,
+        0.9408254027366638,
+        0.9408254027366638,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9154054522514343,
+        0.5366241335868835
+      ],
+      "corner_nodes": [
+        "corner-0",
+        "corner-1"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              16.0,
+              9.0
+            ],
+            [
+              15.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              9.0
+            ],
+            [
+              15.0,
+              16.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              16.0
+            ],
+            [
+              22.0,
+              16.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              22.0,
+              16.0
+            ],
+            [
+              22.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              22.0,
+              15.0
+            ],
+            [
+              23.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              23.0,
+              15.0
+            ],
+            [
+              23.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              23.0,
+              9.0
+            ],
+            [
+              22.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        }
+      ],
+      "id": "interface-1",
+      "left_shape": null,
+      "right_shape": "shape-1"
+    },
+    {
+      "confidence_profile": [
+        0.9631764888763428,
+        0.9631764888763428,
+        1.0,
+        1.0,
+        1.0,
+        1.0,
+        0.9478669166564941,
+        0.4686286449432373,
+        0.367681086063385,
+        0.367681086063385,
+        0.367681086063385,
+        0.367681086063385,
+        0.633400559425354,
+        0.633400559425354,
+        0.596489429473877,
+        0.596489429473877,
+        0.596489429473877,
+        0.596489429473877,
+        0.8731094002723694
+      ],
+      "corner_nodes": [
+        "corner-0",
+        "corner-1"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              16.0,
+              9.0
+            ],
+            [
+              16.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              16.0,
+              15.0
+            ],
+            [
+              22.0,
+              15.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              22.0,
+              15.0
+            ],
+            [
+              22.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        }
+      ],
+      "id": "interface-2",
+      "left_shape": "shape-0",
+      "right_shape": "shape-1"
+    }
+  ],
+  "layer_edges": [
+    {
+      "above": "shape-0",
+      "below": "shape-1"
+    }
+  ],
+  "loops": [
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-0-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 0.8,
+          "evidence_rms_px": 0.0,
+          "kind": "rounded-rect",
+          "parameters": [
+            19.0,
+            12.0,
+            6.25,
+            6.25,
+            -90.0,
+            0.5
+          ],
+          "points": [],
+          "provenance": [
+            "rounded-rectangle-grid",
+            "digital-edge-expansion"
+          ]
+        }
+      ],
+      "signed_area": 38.836095006125106
+    },
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-1-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 0.6872892787909722,
+          "evidence_rms_px": 0.375,
+          "kind": "rect",
+          "parameters": [
+            19.0,
+            12.5,
+            6.75,
+            7.75,
+            -90.0
+          ],
+          "points": [
+            [
+              22.875,
+              15.875
+            ],
+            [
+              15.125,
+              15.875
+            ],
+            [
+              15.125,
+              9.125
+            ],
+            [
+              22.875,
+              9.125
+            ],
+            [
+              22.875,
+              15.875
+            ]
+          ],
+          "provenance": [
+            "minimum-area-rectangle",
+            "digital-edge-expansion"
+          ]
+        }
+      ],
+      "signed_area": 52.3125
+    }
+  ],
+  "pixel_size_native": 1.0,
+  "schema_version": "vice-scene/1",
+  "shapes": [
+    {
+      "appearance_id": "appearance-shape-0",
+      "confidence": 0.9845026555599049,
+      "id": "shape-0",
+      "layer": 1,
+      "model_family": "rounded-rectangle",
+      "model_params": [
+        19.0,
+        12.0,
+        6.25,
+        6.25,
+        -90.0,
+        0.5
+      ],
+      "negative_loops": [],
+      "parent": null,
+      "positive_loop": "loop-0-positive",
+      "provenance": [
+        "topology-27763126ebd3",
+        "soft-argmax-proposal",
+        "whole-shape-tournament",
+        "glyph-prototype-1",
+        "font-free-path-B",
+        "no-counter",
+        "candidate-replacement",
+        "candidate-replacement"
+      ],
+      "semantic_group": "text-line-0",
+      "topology_id": "topology-region-0"
+    },
+    {
+      "appearance_id": "appearance-shape-1",
+      "confidence": 0.11472675608685073,
+      "id": "shape-1",
+      "layer": 0,
+      "model_family": "rectangle",
+      "model_params": [
+        19.0,
+        12.5,
+        6.75,
+        7.75,
+        -90.0
+      ],
+      "negative_loops": [],
+      "parent": "shape-0",
+      "positive_loop": "loop-1-positive",
+      "provenance": [
+        "topology-27763126ebd3",
+        "soft-argmax-proposal",
+        "whole-shape-tournament",
+        "glyph-prototype-0",
+        "font-free-path-B",
+        "no-counter",
+        "candidate-replacement",
+        "candidate-replacement"
+      ],
+      "semantic_group": "text-line-0",
+      "topology_id": "topology-region-1"
+    }
+  ],
+  "width": 31
+}

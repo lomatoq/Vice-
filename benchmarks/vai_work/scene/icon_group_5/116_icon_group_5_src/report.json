@@ -1,0 +1,59 @@
+{
+  "engine": "vice-scene",
+  "engine_version": "0.1.0",
+  "config_hash": "fe78d9b2babdc3bcca4ce6a8d71c8164714e3d3b307d0d19103ee765fcb64fd9",
+  "source_hash": "aa2a65baca8d6f9c4c6721a8e1276121c629b7f25771f53ec43be69cd39a860e",
+  "extractor_used": "scene:deterministic-evidence/1",
+  "analysis_scale": 1,
+  "regions": 34,
+  "closed_contours": 37,
+  "rendered_primitive_count": 37,
+  "actual": {
+    "circle": 1,
+    "ellipse": 3,
+    "polyline": 18,
+    "quadrilateral": 3,
+    "rect": 5,
+    "rounded-rect": 1,
+    "triangle": 6
+  },
+  "templates": {
+    "circle": 1,
+    "generic": 15,
+    "quadrilateral": 3,
+    "rectangle": 5,
+    "ribbon": 3,
+    "rounded-rectangle": 1,
+    "triangle": 6
+  },
+  "topology_hypotheses": 4,
+  "interfaces": 82,
+  "corners": 65,
+  "constraints": 0,
+  "render_model": "hard",
+  "render_nll": 0.053934523666338705,
+  "render_map_nll": 0.05036652788519859,
+  "abstained": false,
+  "cache_hit": false,
+  "resource": {
+    "wall_seconds": 1016.1126078000016,
+    "cpu_seconds": 1013.21875,
+    "tracemalloc_current_bytes": 140959188,
+    "tracemalloc_peak_bytes": 198306607,
+    "pid": 34620
+  },
+  "profile": {
+    "artwork_prob": 0.9800000190734863,
+    "photo_prob": 0.019999980926513672,
+    "text_probability": 0.21211591362953186,
+    "diagram_probability": 1.0,
+    "gradient_probability": 0.1725819134993447,
+    "transparency_probability": 0.0
+  },
+  "artifacts": {
+    "scene": "scene.json",
+    "trace": "decision_trace.json",
+    "config": "config.json",
+    "profile": "profile.json"
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v12_spatial.pt",
+  "checkpoint_sha256": "89b894d072d808b62254c8c020dc3ac1daafeeee2766f8a4a9d581fcb852bf50",
+  "class_counts": {
+    "calibration": {
+      "codec_detail": 7,
+      "gradient": 4,
+      "layer_knockout": 7,
+      "small_shape": 9,
+      "stroke_diagram": 6,
+      "text": 14
+    },
+    "test": {
+      "codec_detail": 2,
+      "gradient": 4,
+      "layer_knockout": 7,
+      "small_shape": 10,
+      "stroke_diagram": 6,
+      "text": 15
+    },
+    "train": {
+      "codec_detail": 21,
+      "gradient": 22,
+      "layer_knockout": 26,
+      "small_shape": 41,
+      "stroke_diagram": 28,
+      "text": 71
+    }
+  },
+  "config": {
+    "attention_heads": 8,
+    "decoder_layers": 3,
+    "hidden_dim": 128,
+    "mask_upsample": 2,
+    "parameter_dim": 16,
+    "query_count": 32,
+    "relation_dim": 8,
+    "spatial_positioning": true
+  },
+  "created_at": "2026-07-22T08:59:56.640477+00:00",
+  "device": "cpu",
+  "gate_pass": false,
+  "global_neural_only_recall_at_5_iou50": {
+    "calibration": {
+      "codec_detail": 1.0,
+      "glyph_group": 0.42857142857142855,
+      "gradient": 0.0,
+      "layer_knockout": 0.8571428571428571,
+      "overall": 0.6382978723404256,
+      "small_shape": 1.0,
+      "stroke_diagram": 0.0,
+      "text": 0.5714285714285714
+    },
+    "test": {
+      "codec_detail": 0.5,
+      "glyph_group": 0.13333333333333333,
+      "gradient": 0.0,
+      "layer_knockout": 0.8571428571428571,
+      "overall": 0.5454545454545454,
+      "small_shape": 1.0,
+      "stroke_diagram": 0.0,
+      "text": 0.4666666666666667
+    },
+    "train": {
+      "codec_detail": 0.9047619047619048,
+      "glyph_group": 0.36619718309859156,
+      "gradient": 0.4090909090909091,
+      "layer_knockout": 0.7692307692307693,
+      "overall": 0.5311004784688995,
+      "small_shape": 0.8536585365853658,
+      "stroke_diagram": 0.0,
+      "text": 0.39436619718309857
+    }
+  },
+  "promotion_rights": "diagnostic-only; conformal and downstream gates remain separate",
+  "schema": "pcdc-proposal-real-locus-evaluation/v1",
+  "split_counts": {
+    "calibration": 47,
+    "test": 44,
+    "train": 209
+  },
+  "split_policy": "source-asset-family-disjoint",
+  "test_gates": {
+    "glyph_group": {
+      "passed": false,
+      "threshold": 0.99,
+      "value": 0.13333333333333333
+    },
+    "layer_knockout": {
+      "passed": false,
+      "threshold": 0.95,
+      "value": 0.8571428571428571
+    },
+    "overall": {
+      "passed": false,
+      "threshold": 0.97,
+      "value": 0.5454545454545454
+    },
+    "small_shape": {
+      "passed": true,
+      "threshold": 0.98,
+      "value": 1.0
+    },
+    "text": {
+      "passed": false,
+      "threshold": 0.99,
+      "value": 0.4666666666666667
+    }
+  }
+}

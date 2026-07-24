@@ -1,0 +1,796 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_proposal_large_v13_mixed\\epoch_checkpoints\\epoch_001.pt",
+  "checkpoint_sha256": "8d404eba734adb853c8f4996be938636f4506499cff0184a46ff5d6b46b96855",
+  "class_counts": {
+    "calibration": {
+      "gradient": 4,
+      "layer_knockout": 5,
+      "small_shape": 12,
+      "text": 10
+    },
+    "test": {
+      "gradient": 4,
+      "layer_knockout": 2,
+      "small_shape": 9,
+      "text": 14
+    },
+    "train": {
+      "gradient": 22,
+      "layer_knockout": 7,
+      "small_shape": 48,
+      "text": 59
+    }
+  },
+  "config": {
+    "attention_heads": 8,
+    "decoder_layers": 3,
+    "hidden_dim": 128,
+    "mask_upsample": 2,
+    "parameter_dim": 16,
+    "query_count": 32,
+    "relation_dim": 8,
+    "spatial_positioning": true
+  },
+  "created_at": "2026-07-22T11:07:16.907246+00:00",
+  "device": "cpu",
+  "excluded_untyped_count": 104,
+  "excluded_untyped_loci": [
+    {
+      "id": "text-005-c03bedf72488",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-084-aa2a65baca8d",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-085-9670009dab3a",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-086-8197058560e3",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-087-3d4f7d25788b",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-088-04703b811383",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-089-f9fea5b14b15",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-090-6c7a6b2f69a3",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-091-d929069d1198",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-092-6c1e78a84a06",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-093-68a3ca36c34b",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-094-07af0b3229bf",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-095-9fe8f0c9547f",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-096-5516979aa7ef",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-097-84fddbf5f3e5",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-098-33894f80744f",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "text-099-13869862c179",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "text"
+    },
+    {
+      "id": "small_shape-020-7059d849d19b",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "small_shape"
+    },
+    {
+      "id": "small_shape-024-1a87d8ceb7ab",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "small_shape"
+    },
+    {
+      "id": "small_shape-035-86a826b8e33f",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "small_shape"
+    },
+    {
+      "id": "layer_knockout-008-9999f567d3d3",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-009-a78e2a504c6d",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-010-eb94100da0cf",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-011-4874da76b74b",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-012-2e4596e24946",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-013-c00df23718da",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-014-4f47ca0851d5",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-015-5e36c985147b",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-016-00dae2b7c973",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-017-1984eb7ebb3e",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-018-37477d1648cd",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-019-b5920fb88ddc",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-020-99149308720e",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-021-5c57ee5fc008",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-022-2e90c1e7626d",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-023-687d4fa92e38",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-024-131a6d5d92d6",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-025-24cca38c5f7c",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-026-ca7acf1bec86",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-027-65da2be354c5",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-028-23076d25e7e4",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-029-888d9423080d",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-030-ad5155eddd49",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-031-42c9aca88b66",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-032-dc644979d431",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-033-b9492ddcd40f",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-034-5707fe41ff21",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-035-e264643e4d0e",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-036-a59da46c8ff1",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-037-f67bcdabc42f",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-038-a21bbc1ccae2",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "layer_knockout-039-fcf5a81780d6",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "layer_knockout"
+    },
+    {
+      "id": "stroke_diagram-018-6a8fef259aea",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-019-3550103f3ef0",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-020-51f1fe5974b6",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-021-0a3b059a9bd8",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-022-55f4915204a5",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-023-8ba0d2651766",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-024-ae29708788e2",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-025-d122fd638ad3",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-026-3ba329756719",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-027-0d5534dab8de",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-028-104453089542",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-029-fc0c55f12bb3",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-030-371147a57f9a",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-031-3c8aa6c15f7b",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-032-9dd37b4b33dc",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-033-0f1cec6f48c8",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-034-31c7cefb3a0f",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-035-d301dd66bf40",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-036-84608fdec9c2",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-037-b3ca5648cd09",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-038-4462510606eb",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "stroke_diagram-039-dc79ba517040",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "stroke_diagram"
+    },
+    {
+      "id": "codec_detail-000-2fc8fc413f1e",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-001-f7eeb5040fe6",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-002-f161013c4885",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-003-da81b879966c",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-004-2c0749d5c20b",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-005-597cddaa49ac",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-006-a25cdcac1126",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-007-6a13cc15dc95",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-008-c1f721dd84a4",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-009-98108b2bd514",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-010-8b7a4b7bb282",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-011-8fbd5bdf9ebc",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-012-4786cdf8d2cc",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-013-c3df2561dc43",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-014-ad890d77c612",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-015-f85f7a4539d1",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-016-857feb34b4d6",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-017-2db1eec6b237",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-018-3a07b1daa6ad",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-019-34ef065a19f0",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-020-e0c492058541",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-021-d705491bd20c",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-022-e075ffabade0",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-023-7a1f99e6fe0a",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-024-9042e39f17e9",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-025-17b594ebdf24",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-026-603eab3a5a66",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-027-a385ca4968eb",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-028-f0978e79305c",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    },
+    {
+      "id": "codec_detail-029-6343f7644fa1",
+      "reason": "missing-explicit-proposal-family",
+      "sampling_bucket": "codec_detail"
+    }
+  ],
+  "failure_decomposition": {
+    "calibration": {
+      "glyph_group": {
+        "geometry_any_at_32": 10,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 10,
+        "typed_at_32": 10,
+        "typed_at_5": 8,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.8
+      },
+      "gradient": {
+        "geometry_any_at_32": 4,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 4,
+        "typed_at_32": 2,
+        "typed_at_5": 1,
+        "typed_recall_at_32": 0.5,
+        "typed_recall_at_5": 0.25
+      },
+      "layer_knockout": {
+        "geometry_any_at_32": 5,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 5,
+        "typed_at_32": 5,
+        "typed_at_5": 3,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.6
+      },
+      "small_shape": {
+        "geometry_any_at_32": 12,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 12,
+        "typed_at_32": 12,
+        "typed_at_5": 11,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.9166666666666666
+      },
+      "text": {
+        "geometry_any_at_32": 10,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 10,
+        "typed_at_32": 10,
+        "typed_at_5": 10,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 1.0
+      }
+    },
+    "test": {
+      "glyph_group": {
+        "geometry_any_at_32": 14,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 14,
+        "typed_at_32": 13,
+        "typed_at_5": 8,
+        "typed_recall_at_32": 0.9285714285714286,
+        "typed_recall_at_5": 0.5714285714285714
+      },
+      "gradient": {
+        "geometry_any_at_32": 4,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 4,
+        "typed_at_32": 0,
+        "typed_at_5": 0,
+        "typed_recall_at_32": 0.0,
+        "typed_recall_at_5": 0.0
+      },
+      "layer_knockout": {
+        "geometry_any_at_32": 2,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 2,
+        "typed_at_32": 2,
+        "typed_at_5": 2,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 1.0
+      },
+      "small_shape": {
+        "geometry_any_at_32": 9,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 9,
+        "typed_at_32": 9,
+        "typed_at_5": 9,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 1.0
+      },
+      "text": {
+        "geometry_any_at_32": 14,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 14,
+        "typed_at_32": 13,
+        "typed_at_5": 12,
+        "typed_recall_at_32": 0.9285714285714286,
+        "typed_recall_at_5": 0.8571428571428571
+      }
+    },
+    "train": {
+      "glyph_group": {
+        "geometry_any_at_32": 59,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 59,
+        "typed_at_32": 42,
+        "typed_at_5": 31,
+        "typed_recall_at_32": 0.711864406779661,
+        "typed_recall_at_5": 0.5254237288135594
+      },
+      "gradient": {
+        "geometry_any_at_32": 22,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 22,
+        "typed_at_32": 17,
+        "typed_at_5": 9,
+        "typed_recall_at_32": 0.7727272727272727,
+        "typed_recall_at_5": 0.4090909090909091
+      },
+      "layer_knockout": {
+        "geometry_any_at_32": 7,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 7,
+        "typed_at_32": 7,
+        "typed_at_5": 5,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.7142857142857143
+      },
+      "small_shape": {
+        "geometry_any_at_32": 48,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 48,
+        "typed_at_32": 43,
+        "typed_at_5": 40,
+        "typed_recall_at_32": 0.8958333333333334,
+        "typed_recall_at_5": 0.8333333333333334
+      },
+      "text": {
+        "geometry_any_at_32": 59,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 59,
+        "typed_at_32": 49,
+        "typed_at_5": 43,
+        "typed_recall_at_32": 0.8305084745762712,
+        "typed_recall_at_5": 0.7288135593220338
+      }
+    }
+  },
+  "gate_pass": false,
+  "global_neural_only_recall_at_5_iou50": {
+    "calibration": {
+      "glyph_group": 0.8,
+      "gradient": 0.25,
+      "layer_knockout": 0.6,
+      "overall": 0.8064516129032258,
+      "small_shape": 0.9166666666666666,
+      "text": 1.0
+    },
+    "test": {
+      "glyph_group": 0.5714285714285714,
+      "gradient": 0.0,
+      "layer_knockout": 1.0,
+      "overall": 0.7931034482758621,
+      "small_shape": 1.0,
+      "text": 0.8571428571428571
+    },
+    "train": {
+      "glyph_group": 0.5254237288135594,
+      "gradient": 0.4090909090909091,
+      "layer_knockout": 0.7142857142857143,
+      "overall": 0.7132352941176471,
+      "small_shape": 0.8333333333333334,
+      "text": 0.7288135593220338
+    }
+  },
+  "promotion_rights": "diagnostic-only; every typed real slice and sample floor must pass, while conformal and downstream gates remain separate",
+  "schema": "pcdc-proposal-real-locus-evaluation/v1",
+  "split_counts": {
+    "calibration": 31,
+    "test": 29,
+    "train": 136
+  },
+  "split_policy": "source-asset-family-disjoint",
+  "test_gates": {
+    "codec_detail": {
+      "instances": 0,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.95,
+      "value": 0.0
+    },
+    "glyph_group": {
+      "instances": 14,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.99,
+      "value": 0.5714285714285714
+    },
+    "gradient": {
+      "instances": 4,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.95,
+      "value": 0.0
+    },
+    "layer_knockout": {
+      "instances": 2,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.95,
+      "value": 1.0
+    },
+    "overall": {
+      "instances": 29,
+      "minimum_instances": 100,
+      "passed": false,
+      "threshold": 0.97,
+      "value": 0.7931034482758621
+    },
+    "small_shape": {
+      "instances": 9,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.98,
+      "value": 1.0
+    },
+    "stroke_diagram": {
+      "instances": 0,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.98,
+      "value": 0.0
+    },
+    "text": {
+      "instances": 14,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.99,
+      "value": 0.8571428571428571
+    }
+  },
+  "typed_annotation_contract": "explicit review.proposal_family; corpus semantic_class is never used as an implicit model label"
+}

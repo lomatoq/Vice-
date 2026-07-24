@@ -1,0 +1,88 @@
+{
+  "accepted_pair_count": 73368,
+  "all_required_axes_disjoint": true,
+  "compiler_source_sha256": "4d33b4cbed681a3230184457f6af89d6996cb67795973c22b8be952df5460c1a",
+  "contamination_detected": false,
+  "corpus_data_contract_sha256": "6565ac4a36724042c2ea4aa156f4ff908c28c83db0fdfe96632cf431a92b3c89",
+  "created_at": "2026-07-23T18:34:30.118749+00:00",
+  "duplicate_input_payload_count": 0,
+  "duplicate_target_payload_count": 0,
+  "evaluation_source_sha256": "ad9ccd451f53e3890202b92a084111b1e918443c76a4e0bc4b98874cdf306e8c",
+  "filter_cache": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v14_relation\\filter_cache.json",
+  "filter_cache_sha256": "e187df82d4d4f7f4eb66abb14b36a952497f9edf72eb398292eced28f9105f90",
+  "forbidden_checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v14_mixed.pt",
+  "group_overlap_count": 0,
+  "held_out_degradations": [
+    "webp"
+  ],
+  "held_out_renderers": [
+    "resvg-pillow-webp/v1"
+  ],
+  "holdout_pair_count": 389,
+  "minimum_holdout_pair_count": 300,
+  "minimum_typed_family_pair_count": 80,
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v14_relation",
+  "passed": true,
+  "rejected_pair_count": 2022,
+  "schema": "pcdc-untouched-holdout/v1",
+  "sealed_before_training": true,
+  "split_degradations": {
+    "calibration": [
+      "background-composite",
+      "blur",
+      "clean",
+      "jpeg",
+      "noise",
+      "rotation"
+    ],
+    "test": [
+      "background-composite",
+      "blur",
+      "clean",
+      "jpeg",
+      "noise",
+      "rotation",
+      "webp"
+    ],
+    "train": [
+      "background-composite",
+      "blur",
+      "clean",
+      "jpeg",
+      "noise",
+      "rotation"
+    ]
+  },
+  "split_group_counts": {
+    "calibration": 1240,
+    "test": 1261,
+    "train": 9976
+  },
+  "split_renderers": {
+    "calibration": [
+      "cairosvg-pillow-jpeg/v1",
+      "cairosvg-pillow-png/v1",
+      "resvg-pillow-jpeg/v1",
+      "resvg-pillow-png/v1"
+    ],
+    "test": [
+      "cairosvg-pillow-jpeg/v1",
+      "cairosvg-pillow-png/v1",
+      "resvg-pillow-jpeg/v1",
+      "resvg-pillow-png/v1",
+      "resvg-pillow-webp/v1"
+    ],
+    "train": [
+      "cairosvg-pillow-jpeg/v1",
+      "cairosvg-pillow-png/v1",
+      "resvg-pillow-jpeg/v1",
+      "resvg-pillow-png/v1"
+    ]
+  },
+  "typed_family_counts": {
+    "appearance_model": 94,
+    "layer_relation": 103,
+    "stroke_network": 82,
+    "symmetry_repeat_group": 110
+  }
+}

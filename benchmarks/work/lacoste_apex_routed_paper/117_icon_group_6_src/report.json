@@ -1,0 +1,77 @@
+{
+  "input": "117_icon_group_6_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari",
+  "analysis_scale": 4,
+  "smoothing": "paper",
+  "regions": 11,
+  "closed_contours": 46,
+  "rendered_primitive_count": 339,
+  "actual": {
+    "L": 131,
+    "Q": 0,
+    "C": 208
+  },
+  "templates": {
+    "paper-joint": 10,
+    "paper-tiny-ellipse": 26,
+    "paper-tiny": 8,
+    "paper-smooth": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 8.3,
+    "mae_native": 9.81,
+    "bf_deblur": 0.9996,
+    "bf_native": 0.9996,
+    "kink_deblur": 6.85,
+    "kink_native": 17.11,
+    "winner": "deblur"
+  },
+  "coverage_calibration": [
+    {
+      "router": "compact-wide-exact-topology",
+      "stroke_width": 0.3,
+      "translate": [
+        0.0,
+        0.1
+      ],
+      "incumbent": {
+        "mae": 8.984,
+        "rmse": 21.777,
+        "ink_iou": 0.91397,
+        "ssim": 0.93244,
+        "boundary_f": 0.99363,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          2
+        ]
+      },
+      "candidate": {
+        "mae": 8.617,
+        "rmse": 20.262,
+        "ink_iou": 0.93294,
+        "ssim": 0.93957,
+        "boundary_f": 0.99363,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          2
+        ]
+      },
+      "accepted": true,
+      "reason": "perceptual+topology-court"
+    }
+  ],
+  "kink_energy": 6.847
+}

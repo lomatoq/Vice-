@@ -1,0 +1,58 @@
+{
+  "checkpoint": {
+    "epoch": 0,
+    "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed_preflight.pt",
+    "selection_key": [
+      0.0,
+      0.8672764122018396,
+      0.5668928670557722
+    ],
+    "sha256": "8bf88a97ec4e016af4aa23083bfc7fca07baf2d354614d2100e190c5dadb9aac"
+  },
+  "created_at": "2026-07-22T10:32:36.292865+00:00",
+  "label_contract_sha256": "6f1672dc700d51ec82820e3f6ddcf41c5710ec8f1d3144e10b921dfec1026033",
+  "label_contract_version": "pcdc-explicit-owner-typed-mixed-replay-labels/v2",
+  "schema": "pcdc-proposal-label-contract-archive/v1",
+  "sources": [
+    {
+      "archive": "train_proposal_net_large.py",
+      "sha256": "acece745074170b4a927031386795ec8740dc7468b35ca06c41958eee3c7f72d",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\train_proposal_net_large.py"
+    },
+    {
+      "archive": "proposal_net.py",
+      "sha256": "fa7b7872d408dd1a3762d4af09e231425be8287800f596b2ac8ab1e03bf7fac0",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\proposal_net.py"
+    },
+    {
+      "archive": "proposal_instance_labels.py",
+      "sha256": "afac543cc8fb74e859c2293380d71b8281a4fae4d36f05ffa46cdafb8e900a00",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\proposal_instance_labels.py"
+    },
+    {
+      "archive": "explicit_svg_owners.py",
+      "sha256": "66e5725c2c386d7a23d7d37a5f0e3e51d6a3e3420401688474ff72524c4fb8c6",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\explicit_svg_owners.py"
+    },
+    {
+      "archive": "proposal_data_contract.py",
+      "sha256": "8342312957a6b8dc046979d36f89bd20a6dd19d6ed8a6ad1b7895f8ff00d1e3a",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\proposal_data_contract.py"
+    },
+    {
+      "archive": "proposal_replay.py",
+      "sha256": "d4a193a6efcfb54d83558487e8f456d9b09e69d40e64c262fe0836ca206b6b33",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\proposal_replay.py"
+    },
+    {
+      "archive": "proposal_mixed_corpus.py",
+      "sha256": "6540c77a006337f40fe9a2bdcd7f02e449cc777d196c78dde2fe603a4831828a",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\proposal_mixed_corpus.py"
+    },
+    {
+      "archive": "proposal_filter_cache.py",
+      "sha256": "d5e751dc8add823352141d1730bb74025961eb9275ec0860f84b4d357b6adbe5",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vice_compiler\\proposal_filter_cache.py"
+    }
+  ]
+}

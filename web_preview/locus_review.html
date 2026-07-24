@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="be">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PCDC · Real Locus Review</title>
+  <style>
+    :root { color-scheme: dark; --bg:#0c1118; --panel:#141c27; --ink:#eef5ff; --muted:#91a1b8; --line:#2a3a50; --accent:#66d9ff; --good:#6ee7a8; --warn:#ffd166; }
+    * { box-sizing:border-box; }
+    body { margin:0; background:var(--bg); color:var(--ink); font:14px/1.45 Inter,Segoe UI,sans-serif; }
+    header { position:sticky; top:0; z-index:5; display:flex; gap:18px; align-items:center; padding:12px 18px; background:#0c1118f2; border-bottom:1px solid var(--line); }
+    h1 { margin:0; font-size:18px; }
+    a { color:var(--accent); }
+    .stats { margin-left:auto; color:var(--muted); }
+    main { display:grid; grid-template-columns:minmax(0,1.5fr) minmax(330px,.7fr); min-height:calc(100vh - 55px); }
+    .visual { min-width:0; padding:16px; border-right:1px solid var(--line); }
+    .toolbar { display:flex; gap:8px; align-items:center; margin-bottom:12px; flex-wrap:wrap; }
+    button,select,input,textarea { min-width:0; max-width:100%; color:var(--ink); background:#101824; border:1px solid var(--line); border-radius:5px; padding:7px 9px; }
+    button { cursor:pointer; }
+    button.primary { background:#0f5168; border-color:#2585a5; }
+    button:disabled { opacity:.45; cursor:not-allowed; }
+    .viewport { height:calc(100vh - 135px); min-height:420px; overflow:auto; display:grid; place-items:start; padding:28px; background-color:#fff; background-image:linear-gradient(45deg,#eee 25%,transparent 25%),linear-gradient(-45deg,#eee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#eee 75%),linear-gradient(-45deg,transparent 75%,#eee 75%); background-size:24px 24px; background-position:0 0,0 12px,12px -12px,-12px 0; }
+    #imageStage { position:relative; transform-origin:top left; box-shadow:0 0 0 1px #0005; }
+    #source { position:absolute; inset:0; display:block; width:100%; height:100%; }
+    #supportCanvas { position:absolute; inset:0; width:100%; height:100%; cursor:crosshair; touch-action:none; }
+    aside { padding:18px; background:var(--panel); overflow:auto; }
+    .meta { color:var(--muted); padding:9px 0 14px; border-bottom:1px solid var(--line); margin-bottom:14px; overflow-wrap:anywhere; }
+    .form-grid { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    label { display:grid; gap:5px; color:var(--muted); }
+    label.wide { grid-column:1/-1; }
+    .wide { grid-column:1/-1; }
+    .instance-editor { display:grid; gap:8px; padding:10px; border:1px solid var(--line); border-radius:6px; background:#101824; }
+    .instance-actions { display:flex; gap:7px; flex-wrap:wrap; align-items:center; }
+    textarea { min-height:70px; resize:vertical; }
+    .actions { display:flex; gap:8px; margin-top:16px; align-items:center; }
+    #message { min-height:22px; margin-top:10px; color:var(--warn); }
+    .complete { color:var(--good)!important; }
+    .note { border-left:3px solid var(--warn); padding:8px 10px; background:#2d2618; color:#ffe8ad; margin-bottom:14px; }
+    @media (max-width:900px) { main { grid-template-columns:1fr; } .visual { border-right:0; } .viewport { height:55vh; } }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>PCDC · Real Locus Corpus</h1>
+    <a href="/">← вектарайзер</a>
+    <span class="stats" id="stats">загрузка…</span>
+  </header>
+  <main>
+    <section class="visual">
+      <div class="toolbar">
+        <button id="prev">←</button>
+        <button id="next">→</button>
+        <select id="classFilter"><option value="">усе класы</option></select>
+        <select id="statusFilter">
+          <option value="pending_review">толькі pending</option>
+          <option value="" selected>усе статусы</option>
+          <option value="ground_truth_derived">GT derived</option>
+          <option value="evidence_reviewed">human reviewed</option>
+          <option value="complete">complete</option>
+        </select>
+        <select id="proposalFilter">
+          <option value="missing" selected>needs ProposalNet family</option>
+          <option value="">all ProposalNet labels</option>
+          <option value="text_line">text line</option>
+          <option value="whole_shape">whole shape</option>
+          <option value="stroke_network">stroke network</option>
+          <option value="layer_relation">layer relation</option>
+          <option value="appearance_model">appearance</option>
+          <option value="symmetry_repeat_group">repeat</option>
+          <option value="risk_hard_negative">codec/detail risk</option>
+        </select>
+        <span id="position"></span>
+        <label>zoom <input id="zoom" type="range" min="0.1" max="12" step="0.1" value="4"></label>
+        <button id="fit">fit</button>
+        <button id="native">1× native</button>
+        <button id="paint" class="primary">support brush</button>
+        <button id="erase">erase</button>
+        <label>brush <input id="brush" type="range" min="1" max="40" value="8"></label>
+        <button id="autoMask">auto mask</button>
+        <button id="invertMask">invert mask</button>
+        <button id="clearMask">clear</button>
+        <span id="maskInfo"></span>
+      </div>
+      <div class="viewport" id="viewport"><div id="imageStage"><img id="source" alt="locus source"><canvas id="supportCanvas"></canvas></div></div>
+    </section>
+    <aside>
+      <div class="meta" id="meta"></div>
+      <div class="note"><b>Што рабіць:</b> magenta-маска павінна пакрываць толькі бачную значную графіку. Калі фон і аб'ект пераблытаныя — націсні <b>invert mask</b>. Падпраў brush/erase пры патрэбе; ROI, components і holes лічацца аўтаматычна. Калі маска правільная — націсні «Захаваць і далей».</div>
+      <div class="note">Ужо захаваныя маскі можна выправіць: <button id="editReviewed">рэдагаваць human reviewed</button>. Змяні маску або палі і зноў націсні «Захаваць і далей» — стары запіс абновіцца.</div>
+      <div class="note">Machine suggestion — толькі падказка. Owned-SVG loci лічацца толькі з alignment proof; астатнія — толькі пасля human evidence review. Статус “complete” патрабуе таксама blind preference паміж рэальнымі candidates.</div>
+      <div class="form-grid">
+        <label class="wide">Reviewer <input id="reviewer" value="local-human"></label>
+        <label class="wide">ROI x1,y1,x2,y2 <input id="roi" placeholder="0,0,w,h"></label>
+        <label>Components <input id="components" type="number" min="0"></label>
+        <label>Holes <input id="holes" type="number" min="0"></label>
+        <label class="wide">Acceptable support notes <textarea id="support" placeholder="Magenta mask = acceptable visible support; тут толькі тлумачэнне"></textarea></label>
+        <label>Macro family
+          <select id="macro">
+            <option>text</option><option>small_shape</option><option>layer_knockout</option><option>stroke_diagram</option><option>gradient</option><option>codec_detail</option><option>generic_region</option><option>mixed</option>
+          </select>
+        </label>
+        <label>ProposalNet family
+          <select id="proposalFamily">
+            <option value="">needs typed review</option>
+            <option value="text_line">text line (+ glyph group)</option>
+            <option value="whole_shape">whole shape</option>
+            <option value="stroke_network">stroke network</option>
+            <option value="layer_relation">layer relation</option>
+            <option value="appearance_model">appearance / gradient</option>
+            <option value="symmetry_repeat_group">symmetry / repeat</option>
+            <option value="risk_hard_negative">codec/detail risk locus</option>
+          </select>
+        </label>
+        <div class="wide instance-editor">
+          <b>ProposalNet query instances</b>
+          <span>Адзін logo/locus можа мець некалькі масак: shape, text/glyph, appearance, repeat, layer або risk. Root review застаецца для Phase 0.</span>
+          <div class="instance-actions">
+            <select id="proposalInstance"><option value="-1">root review</option></select>
+            <button type="button" id="addProposalInstance">add current mask</button>
+            <button type="button" id="updateProposalInstance">update instance</button>
+            <button type="button" id="deleteProposalInstance">delete instance</button>
+          </div>
+          <label>Relation evidence
+            <select id="relationEvidence">
+              <option value="">unknown / not applicable</option>
+              <option value="text_group">same text/glyph group</option>
+              <option value="repeat">repeat group</option>
+              <option value="mirror">mirror group</option>
+              <option value="layer_order">ordered overlap (front + behind)</option>
+              <option value="appearance">same appearance field</option>
+              <option value="stroke">same stroke network</option>
+            </select>
+          </label>
+        </div>
+        <label>Text-line membership
+          <select id="textLine"><option value="yes">yes</option><option value="no">no</option><option value="not_applicable">n/a</option></select>
+        </label>
+        <label>Layer relation
+          <select id="layer"><option value="none">none</option><option value="top_of">top of</option><option value="below">below</option><option value="knockout">knockout</option><option value="overlap">overlap</option><option value="unknown">unknown</option></select>
+        </label>
+        <label>Status
+          <select id="status"><option value="ground_truth_derived" disabled>owned SVG GT derived</option><option value="evidence_reviewed">evidence reviewed</option><option value="complete">complete + preference</option><option value="pending_review">pending</option></select>
+        </label>
+        <label class="wide">Preferred candidate <input id="preference" placeholder="Пакінуць пустым да candidate court"></label>
+        <label class="wide">Notes <textarea id="notes"></textarea></label>
+      </div>
+      <div class="actions">
+        <button class="primary" id="save">Захаваць і далей</button>
+        <button id="skip">Прапусціць</button>
+      </div>
+      <div class="meta">Shortcuts: A auto-mask · I invert mask · B brush · E erase · ←/→ navigate · Ctrl+Enter save</div>
+      <div id="message"></div>
+    </aside>
+  </main>
+  <script src="locus_review.js?v=32"></script>
+</body>
+</html>

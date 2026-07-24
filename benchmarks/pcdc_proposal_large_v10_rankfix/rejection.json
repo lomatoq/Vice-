@@ -1,0 +1,27 @@
+{
+  "schema": "pcdc-proposal-candidate-rejection/v1",
+  "candidate": "models/proposal_net_large_candidate_v10_rankfix.pt",
+  "baseline": "models/proposal_net_large_candidate_v9.pt",
+  "status": "rejected",
+  "reason": "Positive-slot-adjusted global Recall@5 rank loss did not outperform the v9 calibration baseline and failed fixed held-out gates.",
+  "calibration_selection_key": [
+    0.6692180605224084,
+    0.8688095085947984,
+    0.7437457007637542
+  ],
+  "v9_calibration_selection_key": [
+    0.6784198088545914,
+    0.8715572880056234,
+    0.7445292777002431
+  ],
+  "test_recall_at_5": {
+    "overall": 0.8725252147926784,
+    "text_line": 0.6961583236321304,
+    "glyph_group": 0.6923748544819558,
+    "small_shape": 0.9919093851132686,
+    "layer_relation": 0.9330985915492958,
+    "symmetry_repeat_group": 0.45
+  },
+  "oracle_capacity_gate_feasible": true,
+  "production_promoted": false
+}

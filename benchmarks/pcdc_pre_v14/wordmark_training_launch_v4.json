@@ -1,0 +1,30 @@
+{
+  "schema": "pcdc-wordmark-prior-training-launch/v1",
+  "started_at": "2026-07-23T12:53:59.6901108+02:00",
+  "status": "running",
+  "snapshot": "C:\\Users\\nirrt\\Toolset\\v-ice part\\.training_snapshots\\wordmark_full_v4_20260723",
+  "model_data_contract_sha256": "61d786d233ae293424cf82b1f6f0bb23258db9df35ba0862bec7201284425d0c",
+  "trainer_source_sha256": "9548320a0c975623bf478364269253fe00b154ff590642e3084100d4e4876d70",
+  "compiler_source_sha256": "065ec226e385b7ad4aeb72cfc425e2034b7e1a1ed0eaa9eef22be8402e548107",
+  "preflight_report": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_pre_v14\\wordmark_prior_preflight_v4.json",
+  "preflight_report_sha256": "cc0841e2a7ebae228a34d4244d7773537e07e811ce9658af09abd4b86b6aa554",
+  "output_report": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_pre_v14\\wordmark_prior_full_v1.json",
+  "candidate_checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\wordmark_prior_candidate_v1.pt",
+  "latest_checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\wordmark_prior_candidate_v1_latest.pt",
+  "contract": {
+    "unique_training_variants": 2000000,
+    "epochs": 4,
+    "training_sample_presentations": 8000000,
+    "held_out_samples_per_split": 20000,
+    "batch_size": 48,
+    "evaluation_batch_size": 64,
+    "loader_workers": 8,
+    "evaluation_loader_workers": 4,
+    "learning_rate": 0.0002,
+    "base_channels": 24,
+    "text_embedding_dim": 64,
+    "device": "cuda",
+    "seed": 20260723,
+    "family_split_seed": 20260722
+  }
+}

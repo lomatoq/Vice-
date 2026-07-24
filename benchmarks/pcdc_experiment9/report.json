@@ -1,0 +1,123 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_v1.pt",
+  "checkpoint_sha256": "1fb455eaea1792e5abf2b03b633b9737c0519fb96684f5080647edf841af8e22",
+  "classical_geometry_role": "precise-boundary source; neural queries are unioned, never replacement",
+  "conformal_target_coverage": 0.99,
+  "conformal_thresholds": [
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 5,
+      "empirical_coverage": 1.0,
+      "family": "appearance_model",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 6,
+      "empirical_coverage": 1.0,
+      "family": "layer_relation",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 5,
+      "empirical_coverage": 1.0,
+      "family": "risk_hard_negative",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 6,
+      "empirical_coverage": 1.0,
+      "family": "stroke_network",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 15,
+      "empirical_coverage": 1.0,
+      "family": "text_line",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 9,
+      "empirical_coverage": 1.0,
+      "family": "whole_shape",
+      "threshold": 1.0
+    }
+  ],
+  "conformal_vacuous_classes": [
+    "appearance_model",
+    "layer_relation",
+    "risk_hard_negative",
+    "stroke_network",
+    "text_line",
+    "whole_shape"
+  ],
+  "created_at": "2026-07-21T09:16:04.789618+00:00",
+  "device": "cuda",
+  "epochs": 8,
+  "gate": {
+    "hard_negative_ranking_ge_95pct": true,
+    "text_shape_conformal_coverage_ge_99pct": true,
+    "text_shape_recall_at_32_ge_99pct": true
+  },
+  "gate_pass": true,
+  "hard_negative_pairwise_accuracy": 1.0,
+  "hard_negative_types": [
+    "fill_counter",
+    "split_glyph",
+    "fuse_letters",
+    "false_circle",
+    "wrong_layer",
+    "preserve_jpeg_halo",
+    "remove_real_accent",
+    "jagged_overfit",
+    "gradient_band_explosion",
+    "stroke_fill_confusion"
+  ],
+  "hybrid_support_recall_at_32": {
+    "codec_detail": 0.9946807332404641,
+    "gradient": 0.9980623100358214,
+    "layer_knockout": 0.9989381333828184,
+    "small_shape": 0.9976223082782075,
+    "stroke_diagram": 1.0,
+    "text": 0.9945108843664983
+  },
+  "individual_query_iou50_recall_at_32_diagnostic": {
+    "codec_detail": 1.0,
+    "gradient": 1.0,
+    "layer_knockout": 1.0,
+    "small_shape": 0.4444444444444444,
+    "stroke_diagram": 0.6666666666666666,
+    "text": 1.0
+  },
+  "loss_history": [
+    4.758827368418376,
+    3.8054014444351196,
+    3.1216523249944053,
+    2.8948345846600003,
+    2.672776308324602,
+    2.5162344641155667,
+    2.5442487001419067,
+    2.2121935619248285
+  ],
+  "schema": "pcdc-experiment9/v1",
+  "split_counts": {
+    "calibration": 46,
+    "test": 44,
+    "train": 210
+  },
+  "split_policy": "source-asset-hash stratified by semantic class",
+  "status": "passed",
+  "test_conformal_coverage_by_family": {
+    "appearance_model": 1.0,
+    "layer_relation": 1.0,
+    "risk_hard_negative": 1.0,
+    "stroke_network": 1.0,
+    "text_line": 1.0,
+    "whole_shape": 1.0
+  },
+  "training_seconds": 27.56601480000245
+}

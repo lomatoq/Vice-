@@ -1,0 +1,4162 @@
+{
+  "case_count": 12,
+  "created_at": "2026-07-21T09:40:17.301596+00:00",
+  "gate": {
+    "all_requests_valid": true,
+    "balanced_p50_lt_2s": true,
+    "balanced_p95_lt_5s": true,
+    "fast_p50_lt_1s": true,
+    "fast_p95_lt_2s": true,
+    "max_has_no_minute_tail": true,
+    "native_backend_active": true
+  },
+  "gate_pass": true,
+  "measurement": "cold content-addressed REIR per mode; warm persistent ProposalNet; end-to-end compile through best valid anytime checkpoint",
+  "modes": {
+    "balanced": {
+      "count": 12,
+      "max_ms": 2534.3632999865804,
+      "ok": 12,
+      "p50_ms": 823.8697999913711,
+      "p95_ms": 2534.3632999865804,
+      "rows": [
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 955.1263000030303,
+          "error": null,
+          "id": "codec_detail-000-2fc8fc413f1e",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-digital-ocean_2__h64_q30.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 23.8641,
+              "wall_ms_mean": 23.8641,
+              "wall_ms_total": 23.8641
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 18.8746,
+              "wall_ms_mean": 18.8746,
+              "wall_ms_total": 18.8746
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 76.7858,
+              "wall_ms_mean": 76.7858,
+              "wall_ms_total": 76.7858
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.8042,
+              "wall_ms_mean": 0.8042,
+              "wall_ms_total": 0.8042
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 71.3275,
+              "wall_ms_mean": 71.3275,
+              "wall_ms_total": 71.3275
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 921.875,
+              "cpu_ms_total": 921.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 678.6978,
+              "wall_ms_mean": 678.6978,
+              "wall_ms_total": 678.6978
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 23.7476,
+              "wall_ms_mean": 23.7476,
+              "wall_ms_total": 23.7476
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.4465,
+              "wall_ms_mean": 9.4465,
+              "wall_ms_total": 9.4465
+            }
+          },
+          "runtime_elapsed_ms": 906.3080999912927,
+          "selected_macros": 49,
+          "semantic_class": "codec_detail",
+          "status": "ok",
+          "typed_columns": 124,
+          "typed_rois": 60,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1268.44689999416,
+          "error": null,
+          "id": "codec_detail-001-f7eeb5040fe6",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-erlang_2__h160_q60.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.4745,
+              "wall_ms_mean": 12.4745,
+              "wall_ms_total": 12.4745
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.9002,
+              "wall_ms_mean": 12.9002,
+              "wall_ms_total": 12.9002
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 140.625,
+              "cpu_ms_total": 140.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 101.8077,
+              "wall_ms_mean": 101.8077,
+              "wall_ms_total": 101.8077
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.3246,
+              "wall_ms_mean": 0.3246,
+              "wall_ms_total": 0.3246
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 64.4387,
+              "wall_ms_mean": 64.4387,
+              "wall_ms_total": 64.4387
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1875.0,
+              "cpu_ms_total": 1875.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 1019.2448,
+              "wall_ms_mean": 1019.2448,
+              "wall_ms_total": 1019.2448
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.08,
+              "wall_ms_mean": 12.08,
+              "wall_ms_total": 12.08
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.7126,
+              "wall_ms_mean": 3.7126,
+              "wall_ms_total": 3.7126
+            }
+          },
+          "runtime_elapsed_ms": 1228.6034999997355,
+          "selected_macros": 18,
+          "semantic_class": "codec_detail",
+          "status": "ok",
+          "typed_columns": 118,
+          "typed_rois": 57,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 882.4093000002904,
+          "error": null,
+          "id": "gradient-000-e35c67dd730b",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\gradients\\7mojos_2__h64.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 32.3607,
+              "wall_ms_mean": 32.3607,
+              "wall_ms_total": 32.3607
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 21.2195,
+              "wall_ms_mean": 21.2195,
+              "wall_ms_total": 21.2195
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 69.8603,
+              "wall_ms_mean": 69.8603,
+              "wall_ms_total": 69.8603
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.5512,
+              "wall_ms_mean": 0.5512,
+              "wall_ms_total": 0.5512
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 74.4018,
+              "wall_ms_mean": 74.4018,
+              "wall_ms_total": 74.4018
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 781.25,
+              "cpu_ms_total": 781.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 594.3566,
+              "wall_ms_mean": 594.3566,
+              "wall_ms_total": 594.3566
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 21.7555,
+              "wall_ms_mean": 21.7555,
+              "wall_ms_total": 21.7555
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 10.9021,
+              "wall_ms_mean": 10.9021,
+              "wall_ms_total": 10.9021
+            }
+          },
+          "runtime_elapsed_ms": 827.2342999989633,
+          "selected_macros": 32,
+          "semantic_class": "gradient",
+          "status": "ok",
+          "typed_columns": 106,
+          "typed_rois": 56,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 638.1988000066485,
+          "error": null,
+          "id": "gradient-001-f9da644d9f12",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\gradients\\emojione-2nd-place-medal__h64_q40.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.7343,
+              "wall_ms_mean": 12.7343,
+              "wall_ms_total": 12.7343
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.9177,
+              "wall_ms_mean": 8.9177,
+              "wall_ms_total": 8.9177
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 46.3076,
+              "wall_ms_mean": 46.3076,
+              "wall_ms_total": 46.3076
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4745,
+              "wall_ms_mean": 0.4745,
+              "wall_ms_total": 0.4745
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 39.0586,
+              "wall_ms_mean": 39.0586,
+              "wall_ms_total": 39.0586
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 625.0,
+              "cpu_ms_total": 625.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 483.5794,
+              "wall_ms_mean": 483.5794,
+              "wall_ms_total": 483.5794
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.1936,
+              "wall_ms_mean": 13.1936,
+              "wall_ms_total": 13.1936
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 5.8257,
+              "wall_ms_mean": 5.8257,
+              "wall_ms_total": 5.8257
+            }
+          },
+          "runtime_elapsed_ms": 611.847599997418,
+          "selected_macros": 34,
+          "semantic_class": "gradient",
+          "status": "ok",
+          "typed_columns": 121,
+          "typed_rois": 58,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 469.1527000104543,
+          "error": null,
+          "id": "layer_knockout-000-46f6159da20c",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\transparency\\logos-mapzen-icon_2__h64_alpha.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 18.4063,
+              "wall_ms_mean": 18.4063,
+              "wall_ms_total": 18.4063
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 11.4683,
+              "wall_ms_mean": 11.4683,
+              "wall_ms_total": 11.4683
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 57.2242,
+              "wall_ms_mean": 57.2242,
+              "wall_ms_total": 57.2242
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.5257,
+              "wall_ms_mean": 0.5257,
+              "wall_ms_total": 0.5257
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 37.4206,
+              "wall_ms_mean": 37.4206,
+              "wall_ms_total": 37.4206
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 437.5,
+              "cpu_ms_total": 437.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 305.6571,
+              "wall_ms_mean": 305.6571,
+              "wall_ms_total": 305.6571
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 14.1087,
+              "wall_ms_mean": 14.1087,
+              "wall_ms_total": 14.1087
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.2386,
+              "wall_ms_mean": 2.2386,
+              "wall_ms_total": 2.2386
+            }
+          },
+          "runtime_elapsed_ms": 448.6557000054745,
+          "selected_macros": 18,
+          "semantic_class": "layer_knockout",
+          "status": "ok",
+          "typed_columns": 74,
+          "typed_rois": 50,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 528.6349999951199,
+          "error": null,
+          "id": "layer_knockout-001-15fd223c4854",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\transparency\\logos-concourse_2__h64_alpha.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.6718,
+              "wall_ms_mean": 9.6718,
+              "wall_ms_total": 9.6718
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.2125,
+              "wall_ms_mean": 9.2125,
+              "wall_ms_total": 9.2125
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 48.7682,
+              "wall_ms_mean": 48.7682,
+              "wall_ms_total": 48.7682
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.2473,
+              "wall_ms_mean": 0.2473,
+              "wall_ms_total": 0.2473
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 35.5393,
+              "wall_ms_mean": 35.5393,
+              "wall_ms_total": 35.5393
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 546.875,
+              "cpu_ms_total": 546.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 382.0493,
+              "wall_ms_mean": 382.0493,
+              "wall_ms_total": 382.0493
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 14.3925,
+              "wall_ms_mean": 14.3925,
+              "wall_ms_total": 14.3925
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 5.5192,
+              "wall_ms_mean": 5.5192,
+              "wall_ms_total": 5.5192
+            }
+          },
+          "runtime_elapsed_ms": 507.0548000076087,
+          "selected_macros": 29,
+          "semantic_class": "layer_knockout",
+          "status": "ok",
+          "typed_columns": 110,
+          "typed_rois": 54,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 468.8371000083862,
+          "error": null,
+          "id": "small_shape-000-004ae4772f25",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\ui_icons\\devicon-aarch64__h32.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.3737,
+              "wall_ms_mean": 12.3737,
+              "wall_ms_total": 12.3737
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.9933,
+              "wall_ms_mean": 9.9933,
+              "wall_ms_total": 9.9933
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 45.5083,
+              "wall_ms_mean": 45.5083,
+              "wall_ms_total": 45.5083
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4623,
+              "wall_ms_mean": 0.4623,
+              "wall_ms_total": 0.4623
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 37.8826,
+              "wall_ms_mean": 37.8826,
+              "wall_ms_total": 37.8826
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 453.125,
+              "cpu_ms_total": 453.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 312.9239,
+              "wall_ms_mean": 312.9239,
+              "wall_ms_total": 312.9239
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 15.8929,
+              "wall_ms_mean": 15.8929,
+              "wall_ms_total": 15.8929
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.5221,
+              "wall_ms_mean": 3.5221,
+              "wall_ms_total": 3.5221
+            }
+          },
+          "runtime_elapsed_ms": 440.5088000057731,
+          "selected_macros": 14,
+          "semantic_class": "small_shape",
+          "status": "ok",
+          "typed_columns": 102,
+          "typed_rois": 54,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 823.8697999913711,
+          "error": null,
+          "id": "small_shape-001-81e5b026d790",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-concourse_2__h64_q30.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 17.2203,
+              "wall_ms_mean": 17.2203,
+              "wall_ms_total": 17.2203
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.8878,
+              "wall_ms_mean": 13.8878,
+              "wall_ms_total": 13.8878
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 67.8088,
+              "wall_ms_mean": 67.8088,
+              "wall_ms_total": 67.8088
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4969,
+              "wall_ms_mean": 0.4969,
+              "wall_ms_total": 0.4969
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 46.1258,
+              "wall_ms_mean": 46.1258,
+              "wall_ms_total": 46.1258
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 968.75,
+              "cpu_ms_total": 968.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 620.7823,
+              "wall_ms_mean": 620.7823,
+              "wall_ms_total": 620.7823
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 16.268,
+              "wall_ms_mean": 16.268,
+              "wall_ms_total": 16.268
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.205,
+              "wall_ms_mean": 9.205,
+              "wall_ms_total": 9.205
+            }
+          },
+          "runtime_elapsed_ms": 793.285100007779,
+          "selected_macros": 33,
+          "semantic_class": "small_shape",
+          "status": "ok",
+          "typed_columns": 129,
+          "typed_rois": 60,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 530.1869999966584,
+          "error": null,
+          "id": "stroke_diagram-000-832813e2d6bf",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\diagrams\\000f72a9ee75__h96.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.9191,
+              "wall_ms_mean": 6.9191,
+              "wall_ms_total": 6.9191
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.6562,
+              "wall_ms_mean": 13.6562,
+              "wall_ms_total": 13.6562
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 37.963,
+              "wall_ms_mean": 37.963,
+              "wall_ms_total": 37.963
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.2239,
+              "wall_ms_mean": 0.2239,
+              "wall_ms_total": 0.2239
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 41.1658,
+              "wall_ms_mean": 41.1658,
+              "wall_ms_total": 41.1658
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 453.125,
+              "cpu_ms_total": 453.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 387.2049,
+              "wall_ms_mean": 387.2049,
+              "wall_ms_total": 387.2049
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.9124,
+              "wall_ms_mean": 13.9124,
+              "wall_ms_total": 13.9124
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 5.4072,
+              "wall_ms_mean": 5.4072,
+              "wall_ms_total": 5.4072
+            }
+          },
+          "runtime_elapsed_ms": 507.8664999891771,
+          "selected_macros": 32,
+          "semantic_class": "stroke_diagram",
+          "status": "ok",
+          "typed_columns": 120,
+          "typed_rois": 51,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1059.4732000026852,
+          "error": null,
+          "id": "stroke_diagram-001-2d92b976e590",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\diagrams\\000f72a9ee75__h192_q55.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 14.3825,
+              "wall_ms_mean": 14.3825,
+              "wall_ms_total": 14.3825
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 16.6017,
+              "wall_ms_mean": 16.6017,
+              "wall_ms_total": 16.6017
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 85.5371,
+              "wall_ms_mean": 85.5371,
+              "wall_ms_total": 85.5371
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4185,
+              "wall_ms_mean": 0.4185,
+              "wall_ms_total": 0.4185
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 84.5526,
+              "wall_ms_mean": 84.5526,
+              "wall_ms_total": 84.5526
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1140.625,
+              "cpu_ms_total": 1140.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 791.2751,
+              "wall_ms_mean": 791.2751,
+              "wall_ms_total": 791.2751
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 18.0437,
+              "wall_ms_mean": 18.0437,
+              "wall_ms_total": 18.0437
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 4.7016,
+              "wall_ms_mean": 4.7016,
+              "wall_ms_total": 4.7016
+            }
+          },
+          "runtime_elapsed_ms": 1017.0915999915451,
+          "selected_macros": 40,
+          "semantic_class": "stroke_diagram",
+          "status": "ok",
+          "typed_columns": 115,
+          "typed_rois": 55,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 2534.3632999865804,
+          "error": null,
+          "id": "text-000-6d4fd484d908",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\small_text\\spadegaming_2__h160_q60.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 63.7447,
+              "wall_ms_mean": 63.7447,
+              "wall_ms_total": 63.7447
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 30.1149,
+              "wall_ms_mean": 30.1149,
+              "wall_ms_total": 30.1149
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 218.75,
+              "cpu_ms_total": 218.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 166.956,
+              "wall_ms_mean": 166.956,
+              "wall_ms_total": 166.956
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.1132,
+              "wall_ms_mean": 2.1132,
+              "wall_ms_total": 2.1132
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 218.75,
+              "cpu_ms_total": 218.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 228.2849,
+              "wall_ms_mean": 228.2849,
+              "wall_ms_total": 228.2849
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 3734.375,
+              "cpu_ms_total": 3734.375,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 1886.3851,
+              "wall_ms_mean": 1886.3851,
+              "wall_ms_total": 1886.3851
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 37.6244,
+              "wall_ms_mean": 37.6244,
+              "wall_ms_total": 37.6244
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 7.0024,
+              "wall_ms_mean": 7.0024,
+              "wall_ms_total": 7.0024
+            }
+          },
+          "runtime_elapsed_ms": 2424.4847999943886,
+          "selected_macros": 89,
+          "semantic_class": "text",
+          "status": "ok",
+          "typed_columns": 84,
+          "typed_rois": 59,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 366.01830000290647,
+          "error": null,
+          "id": "text-001-92b7c53b3d8b",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\small_text\\.-61af7e4b1ca0__h24.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.4193,
+              "wall_ms_mean": 12.4193,
+              "wall_ms_total": 12.4193
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.0913,
+              "wall_ms_mean": 12.0913,
+              "wall_ms_total": 12.0913
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 28.4126,
+              "wall_ms_mean": 28.4126,
+              "wall_ms_total": 28.4126
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.476,
+              "wall_ms_mean": 0.476,
+              "wall_ms_total": 0.476
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 28.0779,
+              "wall_ms_mean": 28.0779,
+              "wall_ms_total": 28.0779
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 359.375,
+              "cpu_ms_total": 359.375,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 228.7165,
+              "wall_ms_mean": 228.7165,
+              "wall_ms_total": 228.7165
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 18.1466,
+              "wall_ms_mean": 18.1466,
+              "wall_ms_total": 18.1466
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.8199,
+              "wall_ms_mean": 9.8199,
+              "wall_ms_total": 9.8199
+            }
+          },
+          "runtime_elapsed_ms": 340.1268000015989,
+          "selected_macros": 12,
+          "semantic_class": "text",
+          "status": "ok",
+          "typed_columns": 99,
+          "typed_rois": 42,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        }
+      ]
+    },
+    "fast": {
+      "count": 12,
+      "max_ms": 1629.2503000004217,
+      "ok": 12,
+      "p50_ms": 531.6800000000512,
+      "p95_ms": 1629.2503000004217,
+      "rows": [
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 653.9573999907589,
+          "error": null,
+          "id": "codec_detail-000-2fc8fc413f1e",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-digital-ocean_2__h64_q30.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 21.3003,
+              "wall_ms_mean": 21.3003,
+              "wall_ms_total": 21.3003
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.7012,
+              "wall_ms_mean": 12.7012,
+              "wall_ms_total": 12.7012
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 109.375,
+              "cpu_ms_total": 109.375,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 115.5144,
+              "wall_ms_mean": 115.5144,
+              "wall_ms_total": 115.5144
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4375,
+              "wall_ms_mean": 0.4375,
+              "wall_ms_total": 0.4375
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 703.125,
+              "cpu_ms_total": 703.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 443.0399,
+              "wall_ms_mean": 443.0399,
+              "wall_ms_total": 443.0399
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 16.2464,
+              "wall_ms_mean": 16.2464,
+              "wall_ms_total": 16.2464
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.3365,
+              "wall_ms_mean": 2.3365,
+              "wall_ms_total": 2.3365
+            }
+          },
+          "runtime_elapsed_ms": 614.334099998814,
+          "selected_macros": 34,
+          "semantic_class": "codec_detail",
+          "status": "ok",
+          "typed_columns": 58,
+          "typed_rois": 32,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 858.9829999982612,
+          "error": null,
+          "id": "codec_detail-001-f7eeb5040fe6",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-erlang_2__h160_q60.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 10.9375,
+              "wall_ms_mean": 10.9375,
+              "wall_ms_total": 10.9375
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.4085,
+              "wall_ms_mean": 8.4085,
+              "wall_ms_total": 8.4085
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 140.625,
+              "cpu_ms_total": 140.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 93.8421,
+              "wall_ms_mean": 93.8421,
+              "wall_ms_total": 93.8421
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4679,
+              "wall_ms_mean": 0.4679,
+              "wall_ms_total": 0.4679
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1234.375,
+              "cpu_ms_total": 1234.375,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 701.9736,
+              "wall_ms_mean": 701.9736,
+              "wall_ms_total": 701.9736
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.6408,
+              "wall_ms_mean": 8.6408,
+              "wall_ms_total": 8.6408
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.3099,
+              "wall_ms_mean": 3.3099,
+              "wall_ms_total": 3.3099
+            }
+          },
+          "runtime_elapsed_ms": 828.9489000017056,
+          "selected_macros": 20,
+          "semantic_class": "codec_detail",
+          "status": "ok",
+          "typed_columns": 55,
+          "typed_rois": 29,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 531.6800000000512,
+          "error": null,
+          "id": "gradient-000-e35c67dd730b",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\gradients\\7mojos_2__h64.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 29.4496,
+              "wall_ms_mean": 29.4496,
+              "wall_ms_total": 29.4496
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.1949,
+              "wall_ms_mean": 8.1949,
+              "wall_ms_total": 8.1949
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 109.375,
+              "cpu_ms_total": 109.375,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 63.6259,
+              "wall_ms_mean": 63.6259,
+              "wall_ms_total": 63.6259
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.5505,
+              "wall_ms_mean": 0.5505,
+              "wall_ms_total": 0.5505
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 562.5,
+              "cpu_ms_total": 562.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 375.9045,
+              "wall_ms_mean": 375.9045,
+              "wall_ms_total": 375.9045
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.098,
+              "wall_ms_mean": 13.098,
+              "wall_ms_total": 13.098
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 5.3686,
+              "wall_ms_mean": 5.3686,
+              "wall_ms_total": 5.3686
+            }
+          },
+          "runtime_elapsed_ms": 497.5641000055475,
+          "selected_macros": 32,
+          "semantic_class": "gradient",
+          "status": "ok",
+          "typed_columns": 49,
+          "typed_rois": 29,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 411.17029999441,
+          "error": null,
+          "id": "gradient-001-f9da644d9f12",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\gradients\\emojione-2nd-place-medal__h64_q40.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.3084,
+              "wall_ms_mean": 12.3084,
+              "wall_ms_total": 12.3084
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.1693,
+              "wall_ms_mean": 6.1693,
+              "wall_ms_total": 6.1693
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 55.9136,
+              "wall_ms_mean": 55.9136,
+              "wall_ms_total": 55.9136
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.3391,
+              "wall_ms_mean": 0.3391,
+              "wall_ms_total": 0.3391
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 437.5,
+              "cpu_ms_total": 437.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 304.6485,
+              "wall_ms_mean": 304.6485,
+              "wall_ms_total": 304.6485
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.6836,
+              "wall_ms_mean": 8.6836,
+              "wall_ms_total": 8.6836
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.1127,
+              "wall_ms_mean": 3.1127,
+              "wall_ms_total": 3.1127
+            }
+          },
+          "runtime_elapsed_ms": 392.490700003691,
+          "selected_macros": 31,
+          "semantic_class": "gradient",
+          "status": "ok",
+          "typed_columns": 58,
+          "typed_rois": 31,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 303.67319998913445,
+          "error": null,
+          "id": "layer_knockout-000-46f6159da20c",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\transparency\\logos-mapzen-icon_2__h64_alpha.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 17.16,
+              "wall_ms_mean": 17.16,
+              "wall_ms_total": 17.16
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.5377,
+              "wall_ms_mean": 12.5377,
+              "wall_ms_total": 12.5377
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 56.5543,
+              "wall_ms_mean": 56.5543,
+              "wall_ms_total": 56.5543
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.3449,
+              "wall_ms_mean": 0.3449,
+              "wall_ms_total": 0.3449
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 296.875,
+              "cpu_ms_total": 296.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 179.4274,
+              "wall_ms_mean": 179.4274,
+              "wall_ms_total": 179.4274
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 11.8966,
+              "wall_ms_mean": 11.8966,
+              "wall_ms_total": 11.8966
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.7259,
+              "wall_ms_mean": 3.7259,
+              "wall_ms_total": 3.7259
+            }
+          },
+          "runtime_elapsed_ms": 283.2501999946544,
+          "selected_macros": 18,
+          "semantic_class": "layer_knockout",
+          "status": "ok",
+          "typed_columns": 39,
+          "typed_rois": 28,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 339.2596999910893,
+          "error": null,
+          "id": "layer_knockout-001-15fd223c4854",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\transparency\\logos-concourse_2__h64_alpha.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.6454,
+              "wall_ms_mean": 8.6454,
+              "wall_ms_total": 8.6454
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.0533,
+              "wall_ms_mean": 6.0533,
+              "wall_ms_total": 6.0533
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 49.0597,
+              "wall_ms_mean": 49.0597,
+              "wall_ms_total": 49.0597
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.2793,
+              "wall_ms_mean": 0.2793,
+              "wall_ms_total": 0.2793
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 375.0,
+              "cpu_ms_total": 375.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 247.9742,
+              "wall_ms_mean": 247.9742,
+              "wall_ms_total": 247.9742
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.815,
+              "wall_ms_mean": 8.815,
+              "wall_ms_total": 8.815
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.9485,
+              "wall_ms_mean": 2.9485,
+              "wall_ms_total": 2.9485
+            }
+          },
+          "runtime_elapsed_ms": 325.188499991782,
+          "selected_macros": 21,
+          "semantic_class": "layer_knockout",
+          "status": "ok",
+          "typed_columns": 57,
+          "typed_rois": 30,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 297.07209998741746,
+          "error": null,
+          "id": "small_shape-000-004ae4772f25",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\ui_icons\\devicon-aarch64__h32.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.9519,
+              "wall_ms_mean": 13.9519,
+              "wall_ms_total": 13.9519
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 5.0427,
+              "wall_ms_mean": 5.0427,
+              "wall_ms_total": 5.0427
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 43.5436,
+              "wall_ms_mean": 43.5436,
+              "wall_ms_total": 43.5436
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.5258,
+              "wall_ms_mean": 0.5258,
+              "wall_ms_total": 0.5258
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 296.875,
+              "cpu_ms_total": 296.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 201.1053,
+              "wall_ms_mean": 201.1053,
+              "wall_ms_total": 201.1053
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.5248,
+              "wall_ms_mean": 8.5248,
+              "wall_ms_total": 8.5248
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.4979,
+              "wall_ms_mean": 2.4979,
+              "wall_ms_total": 2.4979
+            }
+          },
+          "runtime_elapsed_ms": 276.6859999974258,
+          "selected_macros": 23,
+          "semantic_class": "small_shape",
+          "status": "ok",
+          "typed_columns": 62,
+          "typed_rois": 31,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 567.1220999938669,
+          "error": null,
+          "id": "small_shape-001-81e5b026d790",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-concourse_2__h64_q30.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 25.1066,
+              "wall_ms_mean": 25.1066,
+              "wall_ms_total": 25.1066
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.4,
+              "wall_ms_mean": 9.4,
+              "wall_ms_total": 9.4
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 73.9286,
+              "wall_ms_mean": 73.9286,
+              "wall_ms_total": 73.9286
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.6733,
+              "wall_ms_mean": 0.6733,
+              "wall_ms_total": 0.6733
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 656.25,
+              "cpu_ms_total": 656.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 415.3007,
+              "wall_ms_mean": 415.3007,
+              "wall_ms_total": 415.3007
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.1916,
+              "wall_ms_mean": 9.1916,
+              "wall_ms_total": 9.1916
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.157,
+              "wall_ms_mean": 6.157,
+              "wall_ms_total": 6.157
+            }
+          },
+          "runtime_elapsed_ms": 541.6599000018323,
+          "selected_macros": 30,
+          "semantic_class": "small_shape",
+          "status": "ok",
+          "typed_columns": 63,
+          "typed_rois": 32,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 318.53119999868795,
+          "error": null,
+          "id": "stroke_diagram-000-832813e2d6bf",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\diagrams\\000f72a9ee75__h96.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.1045,
+              "wall_ms_mean": 9.1045,
+              "wall_ms_total": 9.1045
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.3527,
+              "wall_ms_mean": 6.3527,
+              "wall_ms_total": 6.3527
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 37.5805,
+              "wall_ms_mean": 37.5805,
+              "wall_ms_total": 37.5805
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.2594,
+              "wall_ms_mean": 0.2594,
+              "wall_ms_total": 0.2594
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 375.0,
+              "cpu_ms_total": 375.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 239.8521,
+              "wall_ms_mean": 239.8521,
+              "wall_ms_total": 239.8521
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.5064,
+              "wall_ms_mean": 6.5064,
+              "wall_ms_total": 6.5064
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.9346,
+              "wall_ms_mean": 3.9346,
+              "wall_ms_total": 3.9346
+            }
+          },
+          "runtime_elapsed_ms": 305.18039999878965,
+          "selected_macros": 28,
+          "semantic_class": "stroke_diagram",
+          "status": "ok",
+          "typed_columns": 63,
+          "typed_rois": 28,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 594.1474999999627,
+          "error": null,
+          "id": "stroke_diagram-001-2d92b976e590",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\diagrams\\000f72a9ee75__h192_q55.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.9265,
+              "wall_ms_mean": 13.9265,
+              "wall_ms_total": 13.9265
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 7.764,
+              "wall_ms_mean": 7.764,
+              "wall_ms_total": 7.764
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 140.625,
+              "cpu_ms_total": 140.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 82.1232,
+              "wall_ms_mean": 82.1232,
+              "wall_ms_total": 82.1232
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.5075,
+              "wall_ms_mean": 0.5075,
+              "wall_ms_total": 0.5075
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 796.875,
+              "cpu_ms_total": 796.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 454.0314,
+              "wall_ms_mean": 454.0314,
+              "wall_ms_total": 454.0314
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.839,
+              "wall_ms_mean": 8.839,
+              "wall_ms_total": 8.839
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.5093,
+              "wall_ms_mean": 3.5093,
+              "wall_ms_total": 3.5093
+            }
+          },
+          "runtime_elapsed_ms": 572.2062999993796,
+          "selected_macros": 41,
+          "semantic_class": "stroke_diagram",
+          "status": "ok",
+          "typed_columns": 53,
+          "typed_rois": 27,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1629.2503000004217,
+          "error": null,
+          "id": "text-000-6d4fd484d908",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\small_text\\spadegaming_2__h160_q60.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 76.0699,
+              "wall_ms_mean": 76.0699,
+              "wall_ms_total": 76.0699
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 26.8106,
+              "wall_ms_mean": 26.8106,
+              "wall_ms_total": 26.8106
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 203.125,
+              "cpu_ms_total": 203.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 132.601,
+              "wall_ms_mean": 132.601,
+              "wall_ms_total": 132.601
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 1.045,
+              "wall_ms_mean": 1.045,
+              "wall_ms_total": 1.045
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 2093.75,
+              "cpu_ms_total": 2093.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 1270.0319,
+              "wall_ms_mean": 1270.0319,
+              "wall_ms_total": 1270.0319
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 28.4388,
+              "wall_ms_mean": 28.4388,
+              "wall_ms_total": 28.4388
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.6755,
+              "wall_ms_mean": 6.6755,
+              "wall_ms_total": 6.6755
+            }
+          },
+          "runtime_elapsed_ms": 1543.9613000053214,
+          "selected_macros": 84,
+          "semantic_class": "text",
+          "status": "ok",
+          "typed_columns": 52,
+          "typed_rois": 31,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 202.57539999147411,
+          "error": null,
+          "id": "text-001-92b7c53b3d8b",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\small_text\\.-61af7e4b1ca0__h24.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.5793,
+              "wall_ms_mean": 9.5793,
+              "wall_ms_total": 9.5793
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.1339,
+              "wall_ms_mean": 8.1339,
+              "wall_ms_total": 8.1339
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 29.8172,
+              "wall_ms_mean": 29.8172,
+              "wall_ms_total": 29.8172
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.2839,
+              "wall_ms_mean": 0.2839,
+              "wall_ms_total": 0.2839
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 171.875,
+              "cpu_ms_total": 171.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 127.8214,
+              "wall_ms_mean": 127.8214,
+              "wall_ms_total": 127.8214
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.981,
+              "wall_ms_mean": 9.981,
+              "wall_ms_total": 9.981
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.6468,
+              "wall_ms_mean": 2.6468,
+              "wall_ms_total": 2.6468
+            }
+          },
+          "runtime_elapsed_ms": 189.6433999936562,
+          "selected_macros": 12,
+          "semantic_class": "text",
+          "status": "ok",
+          "typed_columns": 47,
+          "typed_rois": 26,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        }
+      ]
+    },
+    "max": {
+      "count": 12,
+      "max_ms": 3179.3531000002986,
+      "ok": 12,
+      "p50_ms": 1040.7357000076445,
+      "p95_ms": 3179.3531000002986,
+      "rows": [
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1446.1103999929037,
+          "error": null,
+          "id": "codec_detail-000-2fc8fc413f1e",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-digital-ocean_2__h64_q30.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 29.2546,
+              "wall_ms_mean": 29.2546,
+              "wall_ms_total": 29.2546
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 18.6215,
+              "wall_ms_mean": 18.6215,
+              "wall_ms_total": 18.6215
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 71.7479,
+              "wall_ms_mean": 71.7479,
+              "wall_ms_total": 71.7479
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.7102,
+              "wall_ms_mean": 0.7102,
+              "wall_ms_total": 0.7102
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 67.676,
+              "wall_ms_mean": 67.676,
+              "wall_ms_total": 67.676
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1578.125,
+              "cpu_ms_total": 1578.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 1178.5417,
+              "wall_ms_mean": 1178.5417,
+              "wall_ms_total": 1178.5417
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 20.1544,
+              "wall_ms_mean": 20.1544,
+              "wall_ms_total": 20.1544
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.6721,
+              "wall_ms_mean": 9.6721,
+              "wall_ms_total": 9.6721
+            }
+          },
+          "runtime_elapsed_ms": 1399.5566999947187,
+          "selected_macros": 49,
+          "semantic_class": "codec_detail",
+          "status": "ok",
+          "typed_columns": 173,
+          "typed_rois": 88,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1743.7743000045884,
+          "error": null,
+          "id": "codec_detail-001-f7eeb5040fe6",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-erlang_2__h160_q60.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 14.4582,
+              "wall_ms_mean": 14.4582,
+              "wall_ms_total": 14.4582
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.4933,
+              "wall_ms_mean": 13.4933,
+              "wall_ms_total": 13.4933
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 109.375,
+              "cpu_ms_total": 109.375,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 109.9617,
+              "wall_ms_mean": 109.9617,
+              "wall_ms_total": 109.9617
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4389,
+              "wall_ms_mean": 0.4389,
+              "wall_ms_total": 0.4389
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 85.2272,
+              "wall_ms_mean": 85.2272,
+              "wall_ms_total": 85.2272
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 2312.5,
+              "cpu_ms_total": 2312.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 1449.8749,
+              "wall_ms_mean": 1449.8749,
+              "wall_ms_total": 1449.8749
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 14.1433,
+              "wall_ms_mean": 14.1433,
+              "wall_ms_total": 14.1433
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 11.7497,
+              "wall_ms_mean": 11.7497,
+              "wall_ms_total": 11.7497
+            }
+          },
+          "runtime_elapsed_ms": 1700.9179000015138,
+          "selected_macros": 37,
+          "semantic_class": "codec_detail",
+          "status": "ok",
+          "typed_columns": 179,
+          "typed_rois": 86,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1224.4074000045657,
+          "error": null,
+          "id": "gradient-000-e35c67dd730b",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\gradients\\7mojos_2__h64.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 29.7108,
+              "wall_ms_mean": 29.7108,
+              "wall_ms_total": 29.7108
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 25.2912,
+              "wall_ms_mean": 25.2912,
+              "wall_ms_total": 25.2912
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 57.3109,
+              "wall_ms_mean": 57.3109,
+              "wall_ms_total": 57.3109
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.8082,
+              "wall_ms_mean": 0.8082,
+              "wall_ms_total": 0.8082
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 86.0321,
+              "wall_ms_mean": 86.0321,
+              "wall_ms_total": 86.0321
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1250.0,
+              "cpu_ms_total": 1250.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 889.8982,
+              "wall_ms_mean": 889.8982,
+              "wall_ms_total": 889.8982
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 37.7507,
+              "wall_ms_mean": 37.7507,
+              "wall_ms_total": 37.7507
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 16.0219,
+              "wall_ms_mean": 16.0219,
+              "wall_ms_total": 16.0219
+            }
+          },
+          "runtime_elapsed_ms": 1144.4500999932643,
+          "selected_macros": 18,
+          "semantic_class": "gradient",
+          "status": "ok",
+          "typed_columns": 167,
+          "typed_rois": 86,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 912.518099998124,
+          "error": null,
+          "id": "gradient-001-f9da644d9f12",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\gradients\\emojione-2nd-place-medal__h64_q40.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.0428,
+              "wall_ms_mean": 12.0428,
+              "wall_ms_total": 12.0428
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.5453,
+              "wall_ms_mean": 12.5453,
+              "wall_ms_total": 12.5453
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 57.4104,
+              "wall_ms_mean": 57.4104,
+              "wall_ms_total": 57.4104
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.3466,
+              "wall_ms_mean": 0.3466,
+              "wall_ms_total": 0.3466
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 46.398,
+              "wall_ms_mean": 46.398,
+              "wall_ms_total": 46.398
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1000.0,
+              "cpu_ms_total": 1000.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 714.8178,
+              "wall_ms_mean": 714.8178,
+              "wall_ms_total": 714.8178
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 18.9882,
+              "wall_ms_mean": 18.9882,
+              "wall_ms_total": 18.9882
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.6016,
+              "wall_ms_mean": 9.6016,
+              "wall_ms_total": 9.6016
+            }
+          },
+          "runtime_elapsed_ms": 873.9860999921802,
+          "selected_macros": 34,
+          "semantic_class": "gradient",
+          "status": "ok",
+          "typed_columns": 183,
+          "typed_rois": 88,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 595.4534000047715,
+          "error": null,
+          "id": "layer_knockout-000-46f6159da20c",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\transparency\\logos-mapzen-icon_2__h64_alpha.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 14.3691,
+              "wall_ms_mean": 14.3691,
+              "wall_ms_total": 14.3691
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.7492,
+              "wall_ms_mean": 9.7492,
+              "wall_ms_total": 9.7492
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 60.1366,
+              "wall_ms_mean": 60.1366,
+              "wall_ms_total": 60.1366
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4195,
+              "wall_ms_mean": 0.4195,
+              "wall_ms_total": 0.4195
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 29.8967,
+              "wall_ms_mean": 29.8967,
+              "wall_ms_total": 29.8967
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 593.75,
+              "cpu_ms_total": 593.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 441.5254,
+              "wall_ms_mean": 441.5254,
+              "wall_ms_total": 441.5254
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.4646,
+              "wall_ms_mean": 13.4646,
+              "wall_ms_total": 13.4646
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.573,
+              "wall_ms_mean": 2.573,
+              "wall_ms_total": 2.573
+            }
+          },
+          "runtime_elapsed_ms": 573.5172999993665,
+          "selected_macros": 18,
+          "semantic_class": "layer_knockout",
+          "status": "ok",
+          "typed_columns": 114,
+          "typed_rois": 76,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 666.3209000107599,
+          "error": null,
+          "id": "layer_knockout-001-15fd223c4854",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\transparency\\logos-concourse_2__h64_alpha.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 6.516,
+              "wall_ms_mean": 6.516,
+              "wall_ms_total": 6.516
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.2815,
+              "wall_ms_mean": 9.2815,
+              "wall_ms_total": 9.2815
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 32.7493,
+              "wall_ms_mean": 32.7493,
+              "wall_ms_total": 32.7493
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.1957,
+              "wall_ms_mean": 0.1957,
+              "wall_ms_total": 0.1957
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 36.116,
+              "wall_ms_mean": 36.116,
+              "wall_ms_total": 36.116
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 718.75,
+              "cpu_ms_total": 718.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 530.3879,
+              "wall_ms_mean": 530.3879,
+              "wall_ms_total": 530.3879
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 17.2771,
+              "wall_ms_mean": 17.2771,
+              "wall_ms_total": 17.2771
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 7.1395,
+              "wall_ms_mean": 7.1395,
+              "wall_ms_total": 7.1395
+            }
+          },
+          "runtime_elapsed_ms": 641.0490999987815,
+          "selected_macros": 29,
+          "semantic_class": "layer_knockout",
+          "status": "ok",
+          "typed_columns": 153,
+          "typed_rois": 80,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 536.547800002154,
+          "error": null,
+          "id": "small_shape-000-004ae4772f25",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\ui_icons\\devicon-aarch64__h32.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 9.3191,
+              "wall_ms_mean": 9.3191,
+              "wall_ms_total": 9.3191
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 10.0093,
+              "wall_ms_mean": 10.0093,
+              "wall_ms_total": 10.0093
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 39.5906,
+              "wall_ms_mean": 39.5906,
+              "wall_ms_total": 39.5906
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.3062,
+              "wall_ms_mean": 0.3062,
+              "wall_ms_total": 0.3062
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 34.4557,
+              "wall_ms_mean": 34.4557,
+              "wall_ms_total": 34.4557
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 453.125,
+              "cpu_ms_total": 453.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 383.8051,
+              "wall_ms_mean": 383.8051,
+              "wall_ms_total": 383.8051
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 16.2178,
+              "wall_ms_mean": 16.2178,
+              "wall_ms_total": 16.2178
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 5.1668,
+              "wall_ms_mean": 5.1668,
+              "wall_ms_total": 5.1668
+            }
+          },
+          "runtime_elapsed_ms": 500.4352999967523,
+          "selected_macros": 14,
+          "semantic_class": "small_shape",
+          "status": "ok",
+          "typed_columns": 140,
+          "typed_rois": 80,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1040.7357000076445,
+          "error": null,
+          "id": "small_shape-001-81e5b026d790",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\logos\\logos-concourse_2__h64_q30.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 18.9118,
+              "wall_ms_mean": 18.9118,
+              "wall_ms_total": 18.9118
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 13.0041,
+              "wall_ms_mean": 13.0041,
+              "wall_ms_total": 13.0041
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 62.5,
+              "cpu_ms_total": 62.5,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 68.0613,
+              "wall_ms_mean": 68.0613,
+              "wall_ms_total": 68.0613
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.4334,
+              "wall_ms_mean": 0.4334,
+              "wall_ms_total": 0.4334
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 50.2333,
+              "wall_ms_mean": 50.2333,
+              "wall_ms_total": 50.2333
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1109.375,
+              "cpu_ms_total": 1109.375,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 814.8946,
+              "wall_ms_mean": 814.8946,
+              "wall_ms_total": 814.8946
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 17.7293,
+              "wall_ms_mean": 17.7293,
+              "wall_ms_total": 17.7293
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 12.0044,
+              "wall_ms_mean": 12.0044,
+              "wall_ms_total": 12.0044
+            }
+          },
+          "runtime_elapsed_ms": 996.962600009283,
+          "selected_macros": 33,
+          "semantic_class": "small_shape",
+          "status": "ok",
+          "typed_columns": 190,
+          "typed_rois": 90,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 698.9265000011073,
+          "error": null,
+          "id": "stroke_diagram-000-832813e2d6bf",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\diagrams\\000f72a9ee75__h96.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 7.9198,
+              "wall_ms_mean": 7.9198,
+              "wall_ms_total": 7.9198
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 19.7175,
+              "wall_ms_mean": 19.7175,
+              "wall_ms_total": 19.7175
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 34.8796,
+              "wall_ms_mean": 34.8796,
+              "wall_ms_total": 34.8796
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.5109,
+              "wall_ms_mean": 0.5109,
+              "wall_ms_total": 0.5109
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 51.4608,
+              "wall_ms_mean": 51.4608,
+              "wall_ms_total": 51.4608
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 765.625,
+              "cpu_ms_total": 765.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 523.1724,
+              "wall_ms_mean": 523.1724,
+              "wall_ms_total": 523.1724
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 20.0518,
+              "wall_ms_mean": 20.0518,
+              "wall_ms_total": 20.0518
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 7.7419,
+              "wall_ms_mean": 7.7419,
+              "wall_ms_total": 7.7419
+            }
+          },
+          "runtime_elapsed_ms": 666.9724999956088,
+          "selected_macros": 32,
+          "semantic_class": "stroke_diagram",
+          "status": "ok",
+          "typed_columns": 169,
+          "typed_rois": 77,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 1509.6726999909151,
+          "error": null,
+          "id": "stroke_diagram-001-2d92b976e590",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\diagrams\\000f72a9ee75__h192_q55.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 14.6818,
+              "wall_ms_mean": 14.6818,
+              "wall_ms_total": 14.6818
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 19.4667,
+              "wall_ms_mean": 19.4667,
+              "wall_ms_total": 19.4667
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 73.1581,
+              "wall_ms_mean": 73.1581,
+              "wall_ms_total": 73.1581
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.3775,
+              "wall_ms_mean": 0.3775,
+              "wall_ms_total": 0.3775
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 93.75,
+              "cpu_ms_total": 93.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 96.3185,
+              "wall_ms_mean": 96.3185,
+              "wall_ms_total": 96.3185
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 1593.75,
+              "cpu_ms_total": 1593.75,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 1224.7095,
+              "wall_ms_mean": 1224.7095,
+              "wall_ms_total": 1224.7095
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 24.979,
+              "wall_ms_mean": 24.979,
+              "wall_ms_total": 24.979
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.5236,
+              "wall_ms_mean": 8.5236,
+              "wall_ms_total": 8.5236
+            }
+          },
+          "runtime_elapsed_ms": 1463.6203999980353,
+          "selected_macros": 41,
+          "semantic_class": "stroke_diagram",
+          "status": "ok",
+          "typed_columns": 173,
+          "typed_rois": 85,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 3179.3531000002986,
+          "error": null,
+          "id": "text-000-6d4fd484d908",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\small_text\\spadegaming_2__h160_q60.jpg",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 78.125,
+              "cpu_ms_total": 78.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 70.0001,
+              "wall_ms_mean": 70.0001,
+              "wall_ms_total": 70.0001
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 28.4472,
+              "wall_ms_mean": 28.4472,
+              "wall_ms_total": 28.4472
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 281.25,
+              "cpu_ms_total": 281.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 181.5831,
+              "wall_ms_mean": 181.5831,
+              "wall_ms_total": 181.5831
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2.2898,
+              "wall_ms_mean": 2.2898,
+              "wall_ms_total": 2.2898
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 250.0,
+              "cpu_ms_total": 250.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 244.0545,
+              "wall_ms_mean": 244.0545,
+              "wall_ms_total": 244.0545
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 4328.125,
+              "cpu_ms_total": 4328.125,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 2489.5406,
+              "wall_ms_mean": 2489.5406,
+              "wall_ms_total": 2489.5406
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 46.875,
+              "cpu_ms_total": 46.875,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 41.3051,
+              "wall_ms_mean": 41.3051,
+              "wall_ms_total": 41.3051
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 8.8077,
+              "wall_ms_mean": 8.8077,
+              "wall_ms_total": 8.8077
+            }
+          },
+          "runtime_elapsed_ms": 3067.8154999914113,
+          "selected_macros": 91,
+          "semantic_class": "text",
+          "status": "ok",
+          "typed_columns": 126,
+          "typed_rois": 89,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        },
+        {
+          "best_stage": "T4",
+          "deadline_exceeded": false,
+          "elapsed_ms": 272.25470000121277,
+          "error": null,
+          "id": "text-001-92b7c53b3d8b",
+          "native_backend": {
+            "available": true,
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ],
+            "language": "rust",
+            "version": 1
+          },
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\small_text\\.-61af7e4b1ca0__h24.png",
+          "profile": {
+            "base_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 10.6752,
+              "wall_ms_mean": 10.6752,
+              "wall_ms_total": 10.6752
+            },
+            "design_abstraction": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 11.3851,
+              "wall_ms_mean": 11.3851,
+              "wall_ms_total": 11.3851
+            },
+            "evidence": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 22.5538,
+              "wall_ms_mean": 22.5538,
+              "wall_ms_total": 22.5538
+            },
+            "hierarchy_solution": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 0.3558,
+              "wall_ms_mean": 0.3558,
+              "wall_ms_total": 0.3558
+            },
+            "layers_and_refinement": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 31.25,
+              "cpu_ms_total": 31.25,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 26.947,
+              "wall_ms_mean": 26.947,
+              "wall_ms_total": 26.947
+            },
+            "typed_macro_generation": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 250.0,
+              "cpu_ms_total": 250.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 163.3949,
+              "wall_ms_mean": 163.3949,
+              "wall_ms_total": 163.3949
+            },
+            "typed_registry": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 15.625,
+              "cpu_ms_total": 15.625,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 11.9986,
+              "wall_ms_mean": 11.9986,
+              "wall_ms_total": 11.9986
+            },
+            "visible_extract": {
+              "budget_failures": 0,
+              "count": 1,
+              "cpu_ms_mean": 0.0,
+              "cpu_ms_total": 0.0,
+              "failures": 0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_max": 3.4168,
+              "wall_ms_mean": 3.4168,
+              "wall_ms_total": 3.4168
+            }
+          },
+          "runtime_elapsed_ms": 252.10830000287388,
+          "selected_macros": 12,
+          "semantic_class": "text",
+          "status": "ok",
+          "typed_columns": 109,
+          "typed_rois": 46,
+          "warnings": [
+            "REIR cache hit=False",
+            "font/glyph cache hit=False"
+          ]
+        }
+      ]
+    }
+  },
+  "schema": "pcdc-experiment10/v1",
+  "status": "passed"
+}

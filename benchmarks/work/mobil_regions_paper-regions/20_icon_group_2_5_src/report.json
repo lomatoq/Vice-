@@ -1,0 +1,82 @@
+{
+  "input": "20_icon_group_2_5_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 1,
+  "smoothing": "paper-regions",
+  "regions": 6,
+  "closed_contours": 8,
+  "rendered_primitive_count": 62,
+  "actual": {
+    "L": 32,
+    "Q": 0,
+    "C": 30
+  },
+  "templates": {
+    "paper-joint": 5,
+    "paper-smooth": 3
+  },
+  "threshold": 0.0,
+  "codec_legitimacy_court": [
+    {
+      "accepted": false,
+      "reason": "uncertain-codec-abstain",
+      "condition": {
+        "detected": false,
+        "source": "coefficient-lattice",
+        "quality": 90,
+        "grid": {
+          "period": 8,
+          "phase_x": 0,
+          "phase_y": 4,
+          "confidence": 0.0,
+          "confidence_x": 0.0,
+          "confidence_y": 0.0,
+          "z_x": 0.7261904648372106,
+          "z_y": 0.7450549304485321
+        },
+        "confidence": 0.0,
+        "false_alarm": 1.0,
+        "bin_false_alarm": 3.143053022988224e-18,
+        "bin_score": 0.07720465013493932,
+        "runner_up_score": 0.08533624369281413,
+        "psf_sigma": 0.8171480321877784,
+        "chroma_mode": "unknown"
+      }
+    }
+  ],
+  "diagram_signature": {
+    "accepted": false,
+    "masks": 6,
+    "panel_ratio": 0.192373,
+    "frame_networks": 0,
+    "connectors": 0
+  },
+  "underpaint_renderer_calibration": [
+    {
+      "renderer": "cairosvg",
+      "available": false,
+      "error": "OSError"
+    },
+    {
+      "renderer": "resvg",
+      "available": true,
+      "scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "one_sided_support": 0.75
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 0.789
+}

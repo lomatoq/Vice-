@@ -1,0 +1,93 @@
+{
+  "input": "22_icon_group_3_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 11,
+  "closed_contours": 13,
+  "rendered_primitive_count": 97,
+  "actual": {
+    "L": 50,
+    "Q": 0,
+    "C": 47
+  },
+  "templates": {
+    "paper-joint": 10,
+    "paper-smooth": 1,
+    "paper-tiny": 1,
+    "native-tiny-detail-rect": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 5.59,
+    "mae_native": 5.98,
+    "bf_deblur": 0.9999,
+    "bf_native": 0.9977,
+    "kink_deblur": 1.79,
+    "kink_native": 1.66,
+    "winner": "deblur"
+  },
+  "kink_energy": 1.793,
+  "native_tiny_detail": [
+    {
+      "router": "multicolour-emblem-native-tiny",
+      "hue_families": 7,
+      "incumbent_tiny": 0.0107,
+      "candidate_tiny": 0.68349,
+      "details": [
+        {
+          "score": 0.01069901748638145,
+          "box": [
+            108.0,
+            94.5,
+            109.75,
+            96.5
+          ],
+          "color": [
+            8,
+            141,
+            184
+          ]
+        }
+      ],
+      "incumbent": {
+        "mae": 5.686,
+        "rmse": 11.881,
+        "ink_iou": 0.9715,
+        "ssim": 0.94005,
+        "boundary_f": 0.99991,
+        "hausdorff95": 0.955,
+        "topology": [
+          9,
+          2
+        ]
+      },
+      "candidate": {
+        "mae": 5.684,
+        "rmse": 11.874,
+        "ink_iou": 0.97162,
+        "ssim": 0.94022,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          9,
+          2
+        ]
+      },
+      "primitive_delta": 4,
+      "micro_delta": 0,
+      "accepted": true,
+      "reason": "tiny+perceptual+topology-court"
+    }
+  ]
+}

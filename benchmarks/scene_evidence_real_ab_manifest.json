@@ -1,0 +1,27 @@
+{
+  "schema": "vice-scene-evidence-real-ab-manifest/1",
+  "policy": "owned real raster inputs only; no Vectorizer.AI output used for training",
+  "gates": {
+    "ssim_tolerance": 0.002,
+    "ink_iou_tolerance": 0.002,
+    "mae_tolerance": 0.2,
+    "latency_factor": 1.15,
+    "latency_slack_seconds": 1.0,
+    "require_no_catastrophe_increase": true,
+    "require_one_aggregate_win": true
+  },
+  "items": [
+    {
+      "id": "dunkin-text-detail",
+      "source": "C:/Users/nirrt/Toolset/v-ice pictures/problem cases/Small/94_icon_group_4_62_src.png"
+    },
+    {
+      "id": "mastercard-overlap-knockout",
+      "source": "C:/Users/nirrt/Toolset/v-ice pictures/problem cases/Small/52_icon_group_4_24_src.png"
+    },
+    {
+      "id": "city-breach-light-text",
+      "source": "C:/Users/nirrt/Toolset/v-ice pictures/problem cases/Small/98_icon_group_4_66_src.png"
+    }
+  ]
+}

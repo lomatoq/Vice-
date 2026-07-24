@@ -1,0 +1,959 @@
+{
+  "schema": "pcdc-experiment4-exact-font-probe/v1",
+  "created_at": "2026-07-23T06:47:12.689759+00:00",
+  "selection_blinding": "source-only; frozen reviews are never loaded",
+  "configuration": {
+    "limit": 10,
+    "max_fonts": 12,
+    "top_k": 4,
+    "refine_rounds": 1,
+    "allow_upscale_ocr": true
+  },
+  "metrics": {
+    "rows": 10,
+    "rows_with_ocr": 7,
+    "ocr_hints": 10,
+    "exact_font_attempted": 10,
+    "exact_font_admitted": 0,
+    "admission_rate_per_attempt": 0.0,
+    "mean_ms": 2558.5283499996876,
+    "p50_ms": 1307.6015499973437,
+    "p95_ms": 8927.333799986804
+  },
+  "rows": [
+    {
+      "id": "text-000-6d4fd484d908",
+      "cache_hit": true,
+      "processing_size": [
+        482,
+        160
+      ],
+      "provider_ms": 81.19480000459589,
+      "generation_ms": 2059.580700006336,
+      "total_ms": 2140.775500010932,
+      "ocr_hints": [
+        {
+          "text": "Spadegaming",
+          "bbox_xyxy": [
+            96,
+            55,
+            482,
+            140
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "proposals": [
+        {
+          "id": "text-line-253f9b84fcd09c23",
+          "roi_xyxy": [
+            0,
+            35,
+            482,
+            125
+          ],
+          "score": 0.9713351696041619,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-component-layout",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-9971ece63ea1291f",
+          "roi_xyxy": [
+            0,
+            35,
+            482,
+            125
+          ],
+          "score": 0.8706766536966987,
+          "sources": [
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "linear-rgb-distance:0.450",
+            "multithreshold-native-ink",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-de10171b7b482d49",
+          "roi_xyxy": [
+            95,
+            54,
+            482,
+            122
+          ],
+          "score": 0.870455691541382,
+          "sources": [
+            "OCR",
+            "OCR-color-distance-to-modal-background",
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "ocr-text:Spadegaming",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-37405161fd38f93c",
+          "roi_xyxy": [
+            0,
+            35,
+            480,
+            125
+          ],
+          "score": 0.8439976858525654,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-component-layout",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-component/counter-filter",
+            "persistent-physical-midline-topology"
+          ]
+        }
+      ],
+      "line_proposals": 4,
+      "exact_font_attempted": 1,
+      "exact_font_admitted": 0,
+      "audits": [
+        {
+          "line_id": "text-line-de10171b7b482d49",
+          "recognized_text": "Spadegaming",
+          "fonts_considered": 241,
+          "candidates_returned": 4,
+          "elapsed_ms": 1828.829499980202,
+          "fail_open_reason": null,
+          "best_retrieval_score": 0.7062723331180216,
+          "best_silhouette_iou": 0.4781783681214421,
+          "best_boundary_deviation_px": 6.0,
+          "coarse_best_score": 0.6676370961046971
+        }
+      ]
+    },
+    {
+      "id": "text-001-92b7c53b3d8b",
+      "cache_hit": true,
+      "processing_size": [
+        31,
+        24
+      ],
+      "provider_ms": 30.963199998950586,
+      "generation_ms": 5.923599994275719,
+      "total_ms": 36.886799993226305,
+      "ocr_hints": [],
+      "proposals": [],
+      "line_proposals": 0,
+      "exact_font_attempted": 0,
+      "exact_font_admitted": 0,
+      "audits": []
+    },
+    {
+      "id": "text-002-f6015a73f1c3",
+      "cache_hit": true,
+      "processing_size": [
+        161,
+        64
+      ],
+      "provider_ms": 49.07849998562597,
+      "generation_ms": 1710.3389000112657,
+      "total_ms": 1759.4173999968916,
+      "ocr_hints": [
+        {
+          "text": "SMARTSO",
+          "bbox_xyxy": [
+            53,
+            13,
+            139,
+            30
+          ],
+          "confidence": 0.8
+        },
+        {
+          "text": "GAMING",
+          "bbox_xyxy": [
+            54,
+            35,
+            129,
+            50
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "proposals": [
+        {
+          "id": "text-line-158bfb8f8726ace8",
+          "roi_xyxy": [
+            0,
+            6,
+            161,
+            58
+          ],
+          "score": 0.8823383383131271,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-topology-consensus",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-1809861e71a71312",
+          "roi_xyxy": [
+            0,
+            6,
+            161,
+            58
+          ],
+          "score": 0.8790399708241725,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-topology-consensus",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-e1dafdd285db09f4",
+          "roi_xyxy": [
+            52,
+            13,
+            141,
+            31
+          ],
+          "score": 0.8777347534608462,
+          "sources": [
+            "OCR",
+            "OCR-bounded-physical-subset-with-connectivity-uncertainty",
+            "OCR-semantic-digital-preimage-topology",
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "ocr-text:SMARTSO"
+          ]
+        },
+        {
+          "id": "text-line-10292a45f460ab70",
+          "roi_xyxy": [
+            52,
+            34,
+            130,
+            52
+          ],
+          "score": 0.8688770119366749,
+          "sources": [
+            "OCR",
+            "OCR-bounded-physical-subset-with-connectivity-uncertainty",
+            "OCR-semantic-digital-preimage-topology",
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "ocr-text:GAMING"
+          ]
+        }
+      ],
+      "line_proposals": 4,
+      "exact_font_attempted": 2,
+      "exact_font_admitted": 0,
+      "audits": [
+        {
+          "line_id": "text-line-e1dafdd285db09f4",
+          "recognized_text": "SMARTSO",
+          "fonts_considered": 241,
+          "candidates_returned": 4,
+          "elapsed_ms": 594.6104000031482,
+          "fail_open_reason": null,
+          "best_retrieval_score": 0.8341642548222222,
+          "best_silhouette_iou": 0.713527851458886,
+          "best_boundary_deviation_px": 2.196899890899658,
+          "coarse_best_score": 0.8029999883313745
+        },
+        {
+          "line_id": "text-line-10292a45f460ab70",
+          "recognized_text": "GAMING",
+          "fonts_considered": 241,
+          "candidates_returned": 4,
+          "elapsed_ms": 591.2161000014748,
+          "fail_open_reason": null,
+          "best_retrieval_score": 0.7384891554643315,
+          "best_silhouette_iou": 0.5551601423487544,
+          "best_boundary_deviation_px": 3.0,
+          "coarse_best_score": 0.7190644546886588
+        }
+      ]
+    },
+    {
+      "id": "text-003-2e1199c15aed",
+      "cache_hit": true,
+      "processing_size": [
+        77,
+        24
+      ],
+      "provider_ms": 35.87540000444278,
+      "generation_ms": 536.9114000059199,
+      "total_ms": 572.7868000103626,
+      "ocr_hints": [
+        {
+          "text": "airbnb",
+          "bbox_xyxy": [
+            27,
+            5,
+            77,
+            18
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "proposals": [
+        {
+          "id": "text-line-fea7092d46737a1c",
+          "roi_xyxy": [
+            0,
+            0,
+            77,
+            24
+          ],
+          "score": 0.9607194313200071,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-topology-consensus",
+            "both-polarities",
+            "component-alignment",
+            "lightweight-query-token",
+            "linear-rgb-distance:0.280",
+            "multithreshold-native-ink",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-7c82f91bf846a636",
+          "roi_xyxy": [
+            0,
+            0,
+            77,
+            24
+          ],
+          "score": 0.9579593164855925,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-topology-consensus",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-4340ec1ee9fe28e3",
+          "roi_xyxy": [
+            0,
+            0,
+            77,
+            24
+          ],
+          "score": 0.8696176918411879,
+          "sources": [
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "linear-rgb-distance:0.450",
+            "multithreshold-native-ink",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-ab2af63d39230c0c",
+          "roi_xyxy": [
+            25,
+            3,
+            77,
+            20
+          ],
+          "score": 0.8674607724087354,
+          "sources": [
+            "OCR",
+            "OCR-color-distance-to-modal-background",
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "ocr-text:airbnb",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-18c24fc601bfffe8",
+          "roi_xyxy": [
+            0,
+            0,
+            77,
+            24
+          ],
+          "score": 0.8244437766718945,
+          "sources": [
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "linear-rgb-distance:0.620",
+            "multithreshold-native-ink",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-327b2817d11aeb37",
+          "roi_xyxy": [
+            0,
+            0,
+            77,
+            24
+          ],
+          "score": 0.7958833940936714,
+          "sources": [
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "persistent-physical-midline-topology",
+            "repeated-size/stem-evidence"
+          ]
+        }
+      ],
+      "line_proposals": 6,
+      "exact_font_attempted": 1,
+      "exact_font_admitted": 0,
+      "audits": [
+        {
+          "line_id": "text-line-ab2af63d39230c0c",
+          "recognized_text": "airbnb",
+          "fonts_considered": 241,
+          "candidates_returned": 4,
+          "elapsed_ms": 496.7862000048626,
+          "fail_open_reason": null,
+          "best_retrieval_score": 0.8827268828953163,
+          "best_silhouette_iou": 0.8306010928961749,
+          "best_boundary_deviation_px": 1.399999976158142,
+          "coarse_best_score": 0.8616107007787648
+        }
+      ]
+    },
+    {
+      "id": "text-004-2b3fecb58a9c",
+      "cache_hit": true,
+      "processing_size": [
+        30,
+        48
+      ],
+      "provider_ms": 36.611300020013005,
+      "generation_ms": 16.267200000584126,
+      "total_ms": 52.87850002059713,
+      "ocr_hints": [],
+      "proposals": [],
+      "line_proposals": 0,
+      "exact_font_attempted": 0,
+      "exact_font_admitted": 0,
+      "audits": []
+    },
+    {
+      "id": "text-005-c03bedf72488",
+      "cache_hit": true,
+      "processing_size": [
+        482,
+        160
+      ],
+      "provider_ms": 50.58599999756552,
+      "generation_ms": 6335.028400004376,
+      "total_ms": 6385.614400001941,
+      "ocr_hints": [
+        {
+          "text": "N O WC NOW",
+          "bbox_xyxy": [
+            28,
+            61,
+            465,
+            101
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "proposals": [
+        {
+          "id": "text-line-bd906125aad96401",
+          "roi_xyxy": [
+            27,
+            59,
+            467,
+            103
+          ],
+          "score": 0.8096051378234919,
+          "sources": [
+            "OCR",
+            "OCR-adaptive-per-glyph-topology-plateau",
+            "OCR-bounded-physical-subset-with-connectivity-uncertainty",
+            "OCR-semantic-digital-preimage-topology",
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "linear-RGB-soft-coverage",
+            "ocr-text:N O WC NOW"
+          ]
+        },
+        {
+          "id": "text-line-7590cdb4971df020",
+          "roi_xyxy": [
+            27,
+            59,
+            467,
+            103
+          ],
+          "score": 0.8008203634580122,
+          "sources": [
+            "OCR",
+            "OCR-color-distance-to-modal-background",
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "ocr-text:N O WC NOW",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-b5097ee99b454fe9",
+          "roi_xyxy": [
+            114,
+            69,
+            366,
+            93
+          ],
+          "score": 0.7167850730356372,
+          "sources": [
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology",
+            "stable-small-component-line"
+          ]
+        }
+      ],
+      "line_proposals": 3,
+      "exact_font_attempted": 1,
+      "exact_font_admitted": 0,
+      "audits": [
+        {
+          "line_id": "text-line-bd906125aad96401",
+          "recognized_text": "N O WC NOW",
+          "fonts_considered": 241,
+          "candidates_returned": 4,
+          "elapsed_ms": 744.2302999843378,
+          "fail_open_reason": null,
+          "best_retrieval_score": 0.6434568615982595,
+          "best_silhouette_iou": 0.4016759776536313,
+          "best_boundary_deviation_px": 20.772096633911133,
+          "coarse_best_score": 0.5856233752362016
+        }
+      ]
+    },
+    {
+      "id": "text-006-0a22afb47c57",
+      "cache_hit": true,
+      "processing_size": [
+        185,
+        64
+      ],
+      "provider_ms": 85.32499999273568,
+      "generation_ms": 2626.14969999413,
+      "total_ms": 2711.4746999868657,
+      "ocr_hints": [
+        {
+          "text": "STORRICRRFT",
+          "bbox_xyxy": [
+            66,
+            18,
+            185,
+            38
+          ],
+          "confidence": 0.8
+        },
+        {
+          "text": "STUD to S",
+          "bbox_xyxy": [
+            82,
+            40,
+            168,
+            48
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "proposals": [
+        {
+          "id": "text-line-89c0d0f3d25b5d07",
+          "roi_xyxy": [
+            64,
+            16,
+            185,
+            39
+          ],
+          "score": 0.8744933107990847,
+          "sources": [
+            "OCR",
+            "OCR-bounded-physical-subset-with-connectivity-uncertainty",
+            "OCR-color-distance-to-modal-background",
+            "OCR-semantic-digital-preimage-topology",
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "ocr-text:STORRICRRFT"
+          ]
+        },
+        {
+          "id": "text-line-93e35563c3de8b77",
+          "roi_xyxy": [
+            81,
+            39,
+            170,
+            50
+          ],
+          "score": 0.86730868592087,
+          "sources": [
+            "OCR",
+            "OCR-color-distance-to-modal-background",
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "ocr-text:STUD to S",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-ee9207e886773e55",
+          "roi_xyxy": [
+            81,
+            39,
+            170,
+            50
+          ],
+          "score": 0.843963346135024,
+          "sources": [
+            "OCR",
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "ocr-text:STUD to S",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-9b0ccffcdb5888b5",
+          "roi_xyxy": [
+            0,
+            5,
+            185,
+            60
+          ],
+          "score": 0.7494068803032242,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-component-layout",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-component/counter-filter",
+            "persistent-physical-midline-topology"
+          ]
+        }
+      ],
+      "line_proposals": 4,
+      "exact_font_attempted": 2,
+      "exact_font_admitted": 0,
+      "audits": [
+        {
+          "line_id": "text-line-89c0d0f3d25b5d07",
+          "recognized_text": "STORRICRRFT",
+          "fonts_considered": 241,
+          "candidates_returned": 4,
+          "elapsed_ms": 700.5809000111185,
+          "fail_open_reason": null,
+          "best_retrieval_score": 0.8081653096719477,
+          "best_silhouette_iou": 0.6744345442083619,
+          "best_boundary_deviation_px": 2.196899890899658,
+          "coarse_best_score": 0.8117352381273047
+        },
+        {
+          "line_id": "text-line-93e35563c3de8b77",
+          "recognized_text": "STUD to S",
+          "fonts_considered": 241,
+          "candidates_returned": 0,
+          "elapsed_ms": 458.688600017922,
+          "fail_open_reason": null,
+          "best_retrieval_score": null,
+          "best_silhouette_iou": null,
+          "best_boundary_deviation_px": null,
+          "coarse_best_score": 0.3997456416016092
+        }
+      ]
+    },
+    {
+      "id": "text-007-dfd66c64bb0b",
+      "cache_hit": true,
+      "processing_size": [
+        58,
+        48
+      ],
+      "provider_ms": 46.936600003391504,
+      "generation_ms": 15.804700000444427,
+      "total_ms": 62.74130000383593,
+      "ocr_hints": [],
+      "proposals": [
+        {
+          "id": "text-line-e0c818366673d637",
+          "roi_xyxy": [
+            16,
+            7,
+            57,
+            41
+          ],
+          "score": 0.7068428103829192,
+          "sources": [
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "linear-rgb-distance:0.080",
+            "multithreshold-native-ink",
+            "persistent-physical-midline-topology"
+          ]
+        }
+      ],
+      "line_proposals": 1,
+      "exact_font_attempted": 0,
+      "exact_font_admitted": 0,
+      "audits": []
+    },
+    {
+      "id": "text-008-c7519aa1983f",
+      "cache_hit": true,
+      "processing_size": [
+        168,
+        64
+      ],
+      "provider_ms": 38.41899998951703,
+      "generation_ms": 10968.503399984911,
+      "total_ms": 11006.922399974428,
+      "ocr_hints": [
+        {
+          "text": "CENT",
+          "bbox_xyxy": [
+            0,
+            0,
+            168,
+            64
+          ],
+          "confidence": 0.875
+        },
+        {
+          "text": "*dbt",
+          "bbox_xyxy": [
+            0,
+            0,
+            168,
+            64
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "proposals": [
+        {
+          "id": "text-line-a2ca1c53daddf7f5",
+          "roi_xyxy": [
+            76,
+            8,
+            168,
+            56
+          ],
+          "score": 0.9277949239961997,
+          "sources": [
+            "OCR",
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "ocr-text:*dbt",
+            "ocr-text:CENT",
+            "persistent-physical-midline-topology",
+            "repeated-size/stem-evidence"
+          ]
+        },
+        {
+          "id": "text-line-956d3bc429824252",
+          "roi_xyxy": [
+            0,
+            0,
+            168,
+            64
+          ],
+          "score": 0.9275267947731031,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-topology-consensus",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-85b40ac2b3b5f7e5",
+          "roi_xyxy": [
+            0,
+            0,
+            168,
+            64
+          ],
+          "score": 0.8707223506364294,
+          "sources": [
+            "OCR",
+            "OCR-color-distance-to-modal-background",
+            "SWT/stroke-consistency",
+            "component-alignment",
+            "ocr-text:*dbt",
+            "ocr-text:CENT",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-86b48126e0cd5c7c",
+          "roi_xyxy": [
+            85,
+            28,
+            168,
+            49
+          ],
+          "score": 0.7995553069209236,
+          "sources": [
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "persistent-physical-midline-topology",
+            "repeated-size/stem-evidence"
+          ]
+        }
+      ],
+      "line_proposals": 4,
+      "exact_font_attempted": 2,
+      "exact_font_admitted": 0,
+      "audits": [
+        {
+          "line_id": "text-line-a2ca1c53daddf7f5",
+          "recognized_text": "CENT",
+          "fonts_considered": 241,
+          "candidates_returned": 0,
+          "elapsed_ms": 419.459700002335,
+          "fail_open_reason": null,
+          "best_retrieval_score": null,
+          "best_silhouette_iou": null,
+          "best_boundary_deviation_px": null,
+          "coarse_best_score": 0.5747892835127882
+        },
+        {
+          "line_id": "text-line-85b40ac2b3b5f7e5",
+          "recognized_text": "CENT",
+          "fonts_considered": 241,
+          "candidates_returned": 0,
+          "elapsed_ms": 130.06910000694916,
+          "fail_open_reason": null,
+          "best_retrieval_score": null,
+          "best_silhouette_iou": null,
+          "best_boundary_deviation_px": null,
+          "coarse_best_score": 0.5747116862264289
+        }
+      ]
+    },
+    {
+      "id": "text-009-77c2ec6fd353",
+      "cache_hit": true,
+      "processing_size": [
+        482,
+        160
+      ],
+      "provider_ms": 69.38070000614971,
+      "generation_ms": 786.404999991646,
+      "total_ms": 855.7856999977957,
+      "ocr_hints": [
+        {
+          "text": "Spadegaming",
+          "bbox_xyxy": [
+            96,
+            55,
+            482,
+            140
+          ],
+          "confidence": 0.8
+        }
+      ],
+      "proposals": [
+        {
+          "id": "text-line-7b65b1788d3a84ce",
+          "roi_xyxy": [
+            0,
+            35,
+            482,
+            125
+          ],
+          "score": 0.9712570975961384,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-topology-consensus",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-430af02fe4d983ea",
+          "roi_xyxy": [
+            0,
+            35,
+            482,
+            125
+          ],
+          "score": 0.9709639779495316,
+          "sources": [
+            "SWT/stroke-consistency",
+            "adaptive-foreground-topology-consensus",
+            "component-alignment",
+            "lightweight-query-token",
+            "persistent-physical-midline-topology"
+          ]
+        },
+        {
+          "id": "text-line-033a6afc9bdf43bc",
+          "roi_xyxy": [
+            95,
+            55,
+            482,
+            122
+          ],
+          "score": 0.8708970124859103,
+          "sources": [
+            "OCR",
+            "SWT/stroke-consistency",
+            "both-polarities",
+            "component-alignment",
+            "ocr-text:Spadegaming",
+            "persistent-physical-midline-topology"
+          ]
+        }
+      ],
+      "line_proposals": 3,
+      "exact_font_attempted": 1,
+      "exact_font_admitted": 0,
+      "audits": [
+        {
+          "line_id": "text-line-033a6afc9bdf43bc",
+          "recognized_text": "Spadegaming",
+          "fonts_considered": 241,
+          "candidates_returned": 4,
+          "elapsed_ms": 581.1485000012908,
+          "fail_open_reason": null,
+          "best_retrieval_score": 0.707792856975335,
+          "best_silhouette_iou": 0.48016729627630866,
+          "best_boundary_deviation_px": 5.0,
+          "coarse_best_score": 0.6998096431843369
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "after": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8676439807403586,
+      "mean_best_soft_iou_at_k": 0.8677506456056817,
+      "neural_only_recall_at_5_iou50": 1.0,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.6587933097841274,
+      "mean_best_soft_iou_at_k": 0.6591180153329402,
+      "neural_only_recall_at_5_iou50": 0.7321428571428571,
+      "neural_only_recall_at_k_iou50": 0.7321428571428571,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.5752530414016349,
+      "mean_best_soft_iou_at_k": 0.5756649632238436,
+      "neural_only_recall_at_5_iou50": 0.625,
+      "neural_only_recall_at_k_iou50": 0.625
+    }
+  },
+  "batch_size": 8,
+  "before": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8405139819082987,
+      "mean_best_soft_iou_at_k": 0.8405139819082987,
+      "neural_only_recall_at_5_iou50": 0.96875,
+      "neural_only_recall_at_k_iou50": 0.96875
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.545236305670891,
+      "mean_best_soft_iou_at_k": 0.5481128833048537,
+      "neural_only_recall_at_5_iou50": 0.5178571428571429,
+      "neural_only_recall_at_k_iou50": 0.5178571428571429,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.42712523517592793,
+      "mean_best_soft_iou_at_k": 0.43115244386347573,
+      "neural_only_recall_at_5_iou50": 0.3375,
+      "neural_only_recall_at_k_iou50": 0.3375
+    }
+  },
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed.pt",
+  "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+  "checkpoint_written": false,
+  "created_at": "2026-07-22T11:59:21.591658+00:00",
+  "device": "cuda",
+  "filter_cache_sha256": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+  "final_loss": 1.3550366163253784,
+  "initial_loss": 2.5323400497436523,
+  "interpretation": "If train-only text-line Recall@5 cannot approach 1.0, do not start a large run; repair the instance mask objective or architecture.",
+  "learning_rate": 0.0003,
+  "owner_count_rows": {
+    "2": 16,
+    "3": 16
+  },
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "row_count": 32,
+  "schema": "pcdc-proposal-tiny-overfit-preflight/v1",
+  "split": "train-only",
+  "steps": 120
+}

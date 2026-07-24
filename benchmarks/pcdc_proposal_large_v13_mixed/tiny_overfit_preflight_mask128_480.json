@@ -1,0 +1,505 @@
+{
+  "after": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8095946369740157,
+      "mean_best_soft_iou_at_k": 0.8095946369740157,
+      "neural_only_recall_at_5_iou50": 0.9375,
+      "neural_only_recall_at_k_iou50": 0.9375
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.7608570523913192,
+      "mean_best_soft_iou_at_k": 0.7608570523913192,
+      "neural_only_recall_at_5_iou50": 0.8928571428571429,
+      "neural_only_recall_at_k_iou50": 0.8928571428571429,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.7413620185582405,
+      "mean_best_soft_iou_at_k": 0.7413620185582405,
+      "neural_only_recall_at_5_iou50": 0.875,
+      "neural_only_recall_at_k_iou50": 0.875
+    }
+  },
+  "batch_size": 8,
+  "before": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.7268040023724642,
+      "mean_best_soft_iou_at_k": 0.7278563371689767,
+      "neural_only_recall_at_5_iou50": 0.90625,
+      "neural_only_recall_at_k_iou50": 0.90625
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.5944139778426203,
+      "mean_best_soft_iou_at_k": 0.6004549268689257,
+      "neural_only_recall_at_5_iou50": 0.7142857142857143,
+      "neural_only_recall_at_k_iou50": 0.7321428571428571,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.5414579680306826,
+      "mean_best_soft_iou_at_k": 0.5494943627489053,
+      "neural_only_recall_at_5_iou50": 0.6375,
+      "neural_only_recall_at_k_iou50": 0.6625
+    }
+  },
+  "best_text_line_recall_at_5": 0.875,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed.pt",
+  "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+  "checkpoint_written": false,
+  "created_at": "2026-07-22T13:12:10.747158+00:00",
+  "device": "cuda",
+  "evaluation_history": [
+    {
+      "step": 0,
+      "text_line_mean_iou_at_5": 0.5414579680306826,
+      "text_line_recall_at_5": 0.6375
+    },
+    {
+      "step": 60,
+      "text_line_mean_iou_at_5": 0.6353606608771258,
+      "text_line_recall_at_5": 0.7375
+    },
+    {
+      "step": 120,
+      "text_line_mean_iou_at_5": 0.6688365986799398,
+      "text_line_recall_at_5": 0.7875
+    },
+    {
+      "step": 180,
+      "text_line_mean_iou_at_5": 0.6906005762762194,
+      "text_line_recall_at_5": 0.8125
+    },
+    {
+      "step": 240,
+      "text_line_mean_iou_at_5": 0.6979175176591379,
+      "text_line_recall_at_5": 0.8375
+    },
+    {
+      "step": 300,
+      "text_line_mean_iou_at_5": 0.7156351600384779,
+      "text_line_recall_at_5": 0.8375
+    },
+    {
+      "step": 360,
+      "text_line_mean_iou_at_5": 0.7226781510202136,
+      "text_line_recall_at_5": 0.8375
+    },
+    {
+      "step": 420,
+      "text_line_mean_iou_at_5": 0.73162689133815,
+      "text_line_recall_at_5": 0.8625
+    },
+    {
+      "step": 480,
+      "text_line_mean_iou_at_5": 0.7413620185582405,
+      "text_line_recall_at_5": 0.875
+    }
+  ],
+  "filter_cache_sha256": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+  "final_loss": 1.5440140962600708,
+  "final_text_failures": [
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.662406,
+        "shift_x": -7,
+        "shift_y": -1
+      },
+      "font_family": "cinzel",
+      "global_rank": 4,
+      "id": "pair:open-text:cinzel:2c943452defaf115:2",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.30049213767051697,
+        0.4852752685546875,
+        0.6024914383888245,
+        0.5540180802345276
+      ],
+      "query": 11,
+      "size": 128,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.3787688544131581,
+      "target_bbox": [
+        0.2890625,
+        0.484375,
+        0.6015625,
+        0.5546875
+      ],
+      "target_index": 1,
+      "target_support_pixels": 136,
+      "type_confidence": 0.999505877494812
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.662406,
+        "shift_x": -7,
+        "shift_y": -1
+      },
+      "font_family": "cinzel",
+      "global_rank": 2,
+      "id": "pair:open-text:cinzel:2c943452defaf115:2",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.16781073808670044,
+        0.5725021958351135,
+        0.7502312064170837,
+        0.6575284004211426
+      ],
+      "query": 17,
+      "size": 128,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.4336668287485183,
+      "target_bbox": [
+        0.140625,
+        0.5703125,
+        0.75,
+        0.65625
+      ],
+      "target_index": 2,
+      "target_support_pixels": 279,
+      "type_confidence": 0.9999539852142334
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.664181,
+        "shift_x": 4,
+        "shift_y": -2
+      },
+      "font_family": "cinzel",
+      "global_rank": 1,
+      "id": "pair:open-text:cinzel:513ad9894f50ee70:1",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.2803288996219635,
+        0.3125872015953064,
+        0.673058807849884,
+        0.4501064121723175
+      ],
+      "query": 20,
+      "size": 64,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.4912378442772605,
+      "target_bbox": [
+        0.28125,
+        0.3125,
+        0.671875,
+        0.421875
+      ],
+      "target_index": 0,
+      "target_support_pixels": 312,
+      "type_confidence": 0.9997930526733398
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.664181,
+        "shift_x": 4,
+        "shift_y": -2
+      },
+      "font_family": "cinzel",
+      "global_rank": 2,
+      "id": "pair:open-text:cinzel:513ad9894f50ee70:1",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.27337726950645447,
+        0.4375653862953186,
+        0.6511239409446716,
+        0.472962349653244
+      ],
+      "query": 11,
+      "size": 64,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.4421946242193746,
+      "target_bbox": [
+        0.265625,
+        0.4375,
+        0.640625,
+        0.5
+      ],
+      "target_index": 1,
+      "target_support_pixels": 224,
+      "type_confidence": 0.9984019994735718
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.664181,
+        "shift_x": 4,
+        "shift_y": -2
+      },
+      "font_family": "cinzel",
+      "global_rank": 4,
+      "id": "pair:open-text:cinzel:513ad9894f50ee70:1",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.2870728373527527,
+        0.5166610479354858,
+        0.8537426590919495,
+        0.6260649561882019
+      ],
+      "query": 17,
+      "size": 64,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.4296701514746158,
+      "target_bbox": [
+        0.28125,
+        0.515625,
+        0.859375,
+        0.625
+      ],
+      "target_index": 2,
+      "target_support_pixels": 428,
+      "type_confidence": 0.9955841302871704
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 2.032788,
+        "scale": 0.58705,
+        "shift_x": 6,
+        "shift_y": 1
+      },
+      "font_family": "cinzel",
+      "global_rank": 4,
+      "id": "pair:open-text:cinzel:9d1843aa9a2ca48b:1",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.4938189387321472,
+        0.5015320181846619,
+        0.6379221677780151,
+        0.5645473599433899
+      ],
+      "query": 11,
+      "size": 96,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.29833521602825364,
+      "target_bbox": [
+        0.4791666567325592,
+        0.5,
+        0.6458333134651184,
+        0.5625
+      ],
+      "target_index": 1,
+      "target_support_pixels": 107,
+      "type_confidence": 0.9235131144523621
+    },
+    {
+      "augmentation": {
+        "background": "transparent",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 2.032788,
+        "scale": 0.58705,
+        "shift_x": 6,
+        "shift_y": 1
+      },
+      "font_family": "cinzel",
+      "global_rank": 3,
+      "id": "pair:open-text:cinzel:9d1843aa9a2ca48b:1",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.4495692551136017,
+        0.5803119540214539,
+        0.6877194046974182,
+        0.624976396560669
+      ],
+      "query": 17,
+      "size": 96,
+      "source_id": "font-family:cinzel",
+      "support_iou": 0.41929573534556724,
+      "target_bbox": [
+        0.4479166567325592,
+        0.5729166865348816,
+        0.6875,
+        0.625
+      ],
+      "target_index": 2,
+      "target_support_pixels": 132,
+      "type_confidence": 0.9963992834091187
+    },
+    {
+      "augmentation": {
+        "background": "dark",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.741218,
+        "shift_x": -4,
+        "shift_y": 6
+      },
+      "font_family": "comfortaa",
+      "global_rank": 2,
+      "id": "pair:open-text:comfortaa:84fc0f796d91a96c:3",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.14170463383197784,
+        0.5066268444061279,
+        0.3186708092689514,
+        0.5770912766456604
+      ],
+      "query": 11,
+      "size": 128,
+      "source_id": "font-family:comfortaa",
+      "support_iou": 0.453987410224739,
+      "target_bbox": [
+        0.1328125,
+        0.5078125,
+        0.3125,
+        0.578125
+      ],
+      "target_index": 1,
+      "target_support_pixels": 88,
+      "type_confidence": 0.999262273311615
+    },
+    {
+      "augmentation": {
+        "background": "white",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.689823,
+        "shift_x": 5,
+        "shift_y": -6
+      },
+      "font_family": "comfortaa",
+      "global_rank": 4,
+      "id": "pair:open-text:comfortaa:975fda52963485df:2",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.21890752017498016,
+        0.4632126986980438,
+        0.3296375870704651,
+        0.5105434656143188
+      ],
+      "query": 11,
+      "size": 128,
+      "source_id": "font-family:comfortaa",
+      "support_iou": 0.4972748904183892,
+      "target_bbox": [
+        0.2109375,
+        0.4609375,
+        0.328125,
+        0.515625
+      ],
+      "target_index": 1,
+      "target_support_pixels": 46,
+      "type_confidence": 0.9843940734863281
+    },
+    {
+      "augmentation": {
+        "background": "white",
+        "blur_radius": 0.0,
+        "jpeg_quality": null,
+        "noise_sigma": 0.0,
+        "renderer": "resvg-pillow/v1",
+        "rotate_degrees": 0.0,
+        "scale": 0.689823,
+        "shift_x": 5,
+        "shift_y": -6
+      },
+      "font_family": "comfortaa",
+      "global_rank": 1,
+      "id": "pair:open-text:comfortaa:975fda52963485df:2",
+      "owner_count": 3,
+      "predicted_bbox": [
+        0.24306660890579224,
+        0.5266437530517578,
+        0.5961211323738098,
+        0.5691381096839905
+      ],
+      "query": 17,
+      "size": 128,
+      "source_id": "font-family:comfortaa",
+      "support_iou": 0.40865007068942505,
+      "target_bbox": [
+        0.2109375,
+        0.5234375,
+        0.5546875,
+        0.5703125
+      ],
+      "target_index": 2,
+      "target_support_pixels": 128,
+      "type_confidence": 0.9999604225158691
+    }
+  ],
+  "initial_loss": 3.0968809127807617,
+  "interpretation": "If train-only text-line Recall@5 cannot approach 1.0, do not start a large run; repair the instance mask objective or architecture.",
+  "label_contract_sha256": "40ba912d121a628e1ba843093350697ae9f65067100e2b4196d6351b268bc800",
+  "learning_rate": 0.0001,
+  "minimum_text_line_recall_at_5": 0.99,
+  "owner_count_rows": {
+    "2": 16,
+    "3": 16
+  },
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "passed": false,
+  "probe_model_config": {
+    "attention_heads": 8,
+    "decoder_layers": 3,
+    "hidden_dim": 128,
+    "mask_upsample": 4,
+    "parameter_dim": 16,
+    "query_count": 32,
+    "relation_dim": 8,
+    "spatial_positioning": true,
+    "text_bbox_gate_padding": 0.04,
+    "text_bbox_gate_vertical_only": true
+  },
+  "row_count": 32,
+  "schema": "pcdc-proposal-tiny-overfit-preflight/v1",
+  "split": "train-only",
+  "steps": 480,
+  "text_bbox_gate_padding": 0.04,
+  "text_bbox_gate_vertical_only": true
+}

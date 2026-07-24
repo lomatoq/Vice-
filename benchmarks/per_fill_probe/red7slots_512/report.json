@@ -1,0 +1,105 @@
+{
+  "input": "126_red7slots_512_src.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 13,
+  "closed_contours": 11,
+  "rendered_primitive_count": 229,
+  "actual": {
+    "L": 108,
+    "Q": 0,
+    "C": 121
+  },
+  "templates": {
+    "paper-joint": 6,
+    "stroke": 4,
+    "paper-tiny": 5
+  },
+  "threshold": 0.0,
+  "comb_coverage_repair": [
+    {
+      "router": "large-saturated-high-comb",
+      "bbox": [
+        0,
+        217,
+        187,
+        434
+      ],
+      "area_ratio": 0.08334,
+      "fill_ratio": 0.48897,
+      "rdp_vertices": 82,
+      "accepted": false,
+      "incumbent": {
+        "mae": 2.246,
+        "rmse": 16.64,
+        "ink_iou": 0.97206,
+        "ssim": 0.96494,
+        "boundary_f": 0.99417,
+        "hausdorff95": 0.955,
+        "topology": [
+          7,
+          3
+        ],
+        "primitives": 229
+      },
+      "candidate": {
+        "mae": 2.353,
+        "rmse": 16.933,
+        "ink_iou": 0.97073,
+        "ssim": 0.96237,
+        "boundary_f": 0.9942,
+        "hausdorff95": 0.955,
+        "topology": [
+          7,
+          3
+        ],
+        "primitives": 288
+      },
+      "reason": "court-rejected"
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 1.334,
+  "perceptual_aa_calibration": [
+    {
+      "router": "direct-svg-subpixel-aa",
+      "deviation": 0.1,
+      "incumbent": {
+        "mae": 2.246,
+        "rmse": 16.64,
+        "ink_iou": 0.97206,
+        "ssim": 0.96494,
+        "boundary_f": 0.99417,
+        "hausdorff95": 0.955,
+        "topology": [
+          7,
+          3
+        ]
+      },
+      "candidate": {
+        "mae": 2.518,
+        "rmse": 17.772,
+        "ink_iou": 0.96982,
+        "ssim": 0.96256,
+        "boundary_f": 0.98777,
+        "hausdorff95": 0.955,
+        "topology": [
+          7,
+          3
+        ]
+      },
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ]
+}

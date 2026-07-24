@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="be">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>V-ICE · Phase-12 locked blind court</title>
+  <style>
+    :root{color-scheme:dark;--bg:#090c10;--panel:#121820;--line:#2a3440;--text:#f4f7fa;--muted:#91a0ae;--accent:#ff6b35;--ok:#66d69e;--scale:2}
+    *{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 16% 0,#172536 0,transparent 32%),var(--bg);color:var(--text);font-family:Inter,Segoe UI,sans-serif}
+    header{position:sticky;top:0;z-index:8;display:flex;justify-content:space-between;align-items:center;gap:18px;padding:13px 20px;background:#090c10ef;border-bottom:1px solid var(--line);backdrop-filter:blur(12px)}
+    h1{margin:0;font-size:20px}header p{margin:3px 0 0;color:var(--muted);font-size:12px}.toolbar,.scale-buttons,.nav,.choices{display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+    button{border:1px solid var(--line);border-radius:8px;background:#1c2430;color:var(--text);padding:8px 11px;font-weight:750;cursor:pointer}button.active,.choice.active{background:var(--accent);border-color:var(--accent)}button:disabled{opacity:.4;cursor:not-allowed}
+    #progress{font:700 12px ui-monospace,Consolas,monospace;white-space:nowrap}.wrap{width:min(1800px,calc(100% - 20px));margin:16px auto 60px}.contract{color:#bbc6d0;font-size:13px;line-height:1.5;margin:0 0 12px}
+    .case{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--panel);box-shadow:0 18px 55px #0006}.case-head{display:flex;justify-content:space-between;gap:12px;padding:10px 14px;color:var(--muted);font:700 11px ui-monospace,Consolas,monospace}.case-head .saved{color:var(--ok)}
+    .triptych{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line)}figure{margin:0;min-width:0;background:#0d1218;text-align:center}.viewport{height:min(64vh,680px);overflow:auto;display:grid;place-items:center;padding:20px;background:linear-gradient(45deg,#e7eaed 25%,transparent 25%),linear-gradient(-45deg,#e7eaed 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e7eaed 75%),linear-gradient(-45deg,transparent 75%,#e7eaed 75%),#f8f9fa;background-size:20px 20px;background-position:0 0,0 10px,10px -10px,-10px 0}
+    body.dark-canvas .viewport{background:#171b21}.art{display:block;flex:none;width:calc(var(--native-w) * var(--scale) * 1px);height:calc(var(--native-h) * var(--scale) * 1px);max-width:none;max-height:none}.pixel-debug .source-art{image-rendering:pixelated}figcaption{padding:8px;color:#c8d0d8;font-size:10px;letter-spacing:.11em}
+    .review{padding:14px}.choices{justify-content:center}.choice{min-width:145px;padding:11px 15px}.note{display:block;width:min(980px,100%);margin:12px auto 0;border:1px solid var(--line);border-radius:8px;background:#0b1016;color:var(--text);padding:10px}.review-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-top:12px}.message{color:var(--muted);font-size:12px}.message.error{color:#ff9292}.done{display:none;padding:40px;text-align:center;border:1px solid var(--line);border-radius:14px;background:var(--panel)}.done.show{display:block}
+    @media(max-width:900px){header{position:relative;align-items:flex-start;flex-direction:column}.triptych{grid-template-columns:1fr}.viewport{height:420px}.wrap{width:calc(100% - 10px)}}
+  </style>
+</head>
+<body>
+  <header>
+    <div><h1>Phase 12 · V-ICE vs VAI</h1><p>LOCKED BUILD · LIVE SVG · аднолькавы viewport · zoom/pan · auto-save</p></div>
+    <div class="toolbar"><span id="progress">0 / 0</span><div class="scale-buttons"><button data-scale="1">1× native</button><button class="active" data-scale="2">2×</button><button data-scale="4">4×</button><button data-scale="8">8×</button></div><button id="canvas">фон</button></div>
+  </header>
+  <main class="wrap">
+    <p class="contract">A і B заўсёды застаюцца жывымі SVG — ніякіх паніжаных preview-raster. Крыніца паказваецца ў тым самым native viewport. Маштаб змяняе ўсе тры панэлі аднолькава; на 4×/8× raster-крыніца паказвае рэальныя пікселі, SVG працягвае рэндэрыцца вектарна.</p>
+    <section id="case" class="case" hidden>
+      <div class="case-head"><span id="caseLabel">LOADING</span><span id="native">—</span><span id="saved">—</span></div>
+      <div class="triptych" id="triptych">
+        <figure><div class="viewport"><img id="a" class="art" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure><div class="viewport"><img id="source" class="art source-art" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE RASTER</figcaption></figure>
+        <figure><div class="viewport"><img id="b" class="art" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="review">
+        <div class="choices"><button class="choice" data-choice="A">A лепш <small>[A]</small></button><button class="choice" data-choice="tie">роўна <small>[T]</small></button><button class="choice" data-choice="B">B лепш <small>[B]</small></button></div>
+        <input id="note" class="note" placeholder="Неабавязкова: тэкст, форма, колер, швы, артэфакты…">
+        <div class="review-foot"><div class="nav"><button id="prev">← назад</button><button id="next">далей →</button></div><span id="message" class="message">—</span></div>
+      </div>
+    </section>
+    <section id="done" class="done"><h2>Blind court завершаны</h2><p>Адказы захаваныя на серверы. Вынік не раскрываецца ў інтэрфейсе да promotion audit.</p></section>
+  </main>
+  <script>
+    const state={cases:[],answers:{},index:0,saving:false,scale:'2'};const $=id=>document.getElementById(id);const current=()=>state.cases[state.index];
+    function answered(){return Object.keys(state.answers).filter(id=>state.cases.some(row=>row.id===id)).length}
+    function updateProgress(){ $('progress').textContent=`${answered()} / ${state.cases.length}` }
+    function applyScale(){document.documentElement.style.setProperty('--scale',state.scale);document.body.classList.toggle('pixel-debug',Number(state.scale)>=4);document.querySelectorAll('[data-scale]').forEach(b=>b.classList.toggle('active',b.dataset.scale===state.scale))}
+    function prefetch(){for(const row of state.cases.slice(state.index+1,state.index+3))for(const url of [row.a_url,row.b_url,row.source_url]){const image=new Image();image.src=url}}
+    function show(){const row=current();if(!row)return;const answer=state.answers[row.id]||{};$('case').hidden=false;$('done').classList.remove('show');$('caseLabel').textContent=`CASE ${String(state.index+1).padStart(3,'0')} / ${state.cases.length} · ${row.slice}`;$('native').textContent=`NATIVE ${row.native_size[0]}×${row.native_size[1]}`;$('triptych').style.setProperty('--native-w',row.native_size[0]);$('triptych').style.setProperty('--native-h',row.native_size[1]);$('a').src=row.a_url;$('b').src=row.b_url;$('source').src=row.source_url;$('note').value=answer.note||'';document.querySelectorAll('.choice').forEach(button=>button.classList.toggle('active',button.dataset.choice===answer.blind_choice));$('saved').textContent=answer.blind_choice?'захавана':'не ацэнена';$('prev').disabled=state.index===0;$('next').disabled=state.index===state.cases.length-1;$('message').textContent=answer.blind_choice?'адказ на серверы':'A / T / B';$('message').className='message';history.replaceState(null,'',`?id=${encodeURIComponent(row.id)}`);localStorage.setItem('pcdc-phase12-last',row.id);applyScale();updateProgress();prefetch()}
+    async function choose(choice){if(state.saving)return;const row=current();state.saving=true;document.querySelectorAll('.choice').forEach(button=>button.disabled=true);$('message').textContent='захаванне…';try{const response=await fetch('/api/phase12-blind-review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({id:row.id,choice,note:$('note').value})});const payload=await response.json();if(!response.ok)throw new Error(payload.error||`HTTP ${response.status}`);state.answers[row.id]=payload.answer;updateProgress();if(answered()===state.cases.length){$('case').hidden=true;$('done').classList.add('show');return}let next=state.cases.findIndex((item,index)=>index>state.index&&!state.answers[item.id]);if(next<0)next=state.cases.findIndex(item=>!state.answers[item.id]);state.index=next>=0?next:Math.min(state.index+1,state.cases.length-1);show()}catch(error){$('message').textContent=`памылка: ${error.message}`;$('message').className='message error'}finally{state.saving=false;document.querySelectorAll('.choice').forEach(button=>button.disabled=false)}}
+    document.querySelectorAll('[data-scale]').forEach(button=>button.onclick=()=>{state.scale=button.dataset.scale;applyScale()});$('canvas').onclick=()=>document.body.classList.toggle('dark-canvas');document.querySelectorAll('.choice').forEach(button=>button.onclick=()=>choose(button.dataset.choice));$('prev').onclick=()=>{state.index=Math.max(0,state.index-1);show()};$('next').onclick=()=>{state.index=Math.min(state.cases.length-1,state.index+1);show()};
+    addEventListener('keydown',event=>{if(event.target.tagName==='INPUT')return;if(event.key.toLowerCase()==='a')choose('A');if(event.key.toLowerCase()==='t')choose('tie');if(event.key.toLowerCase()==='b')choose('B');if(event.key==='ArrowLeft')$('prev').click();if(event.key==='ArrowRight')$('next').click()});
+    async function init(){try{const response=await fetch('/api/phase12-blind-review');const payload=await response.json();if(!response.ok||payload.error)throw new Error(payload.error||`HTTP ${response.status}`);state.cases=payload.manifest.cases;state.answers=payload.review.answers||{};const params=new URLSearchParams(location.search),resume=params.get('id')||localStorage.getItem('pcdc-phase12-last');const found=state.cases.findIndex(row=>row.id===resume);state.index=found>=0?found:Math.max(0,state.cases.findIndex(row=>!state.answers[row.id]));if(answered()===state.cases.length){$('done').classList.add('show')}else show();updateProgress()}catch(error){$('case').hidden=false;$('message').textContent=`памылка загрузкі: ${error.message}`;$('message').className='message error'}}
+    init();
+  </script>
+</body>
+</html>

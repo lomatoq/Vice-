@@ -1,0 +1,46 @@
+{
+  "date": "2026-07-18",
+  "dp4x_contract": {
+    "status": "corrected_harness",
+    "db4_fixed_slice": {
+      "loops": 20,
+      "joint_used": 20,
+      "precision": 0.4659,
+      "recall": 0.9431,
+      "f1": 0.6237,
+      "tp": 116,
+      "fp": 133,
+      "fn": 7
+    },
+    "kill_rule": "precision >= 0.4: no additional machinery retuning; finish D3 units and w_turn only"
+  },
+  "equivalence_gate_head": {
+    "status": "RED_EXPECTED",
+    "star": {"expected": 10, "native": 11, "db4": 15, "max_position_delta_px": null},
+    "lshape": {"expected": 6, "native": 6, "db4": 6, "max_position_delta_px": 1.4203},
+    "rect": {"expected": 4, "native": 4, "db4": 4, "max_position_delta_px": 1.384}
+  },
+  "item057_requantizer_probe": {
+    "artifact": "benchmarks/probe_dp4x_item057.json",
+    "scale4_calls": 4,
+    "fallback_calls": 2,
+    "fallback_rate": 0.5,
+    "median_requant_to_loop_extent_ratio": 0.27,
+    "hypothesis_extent_quartered": true,
+    "paper_regions_scale4_calls": 0,
+    "paper_regions_note": "closed graph cycles do not forward lattice_scale at region_graph.py:404; N4 wiring required"
+  },
+  "eye_metric_additions": {
+    "region_de2000_p95_losses_above_all_wins": "3/11",
+    "de_region_max_losses_above_all_wins": "5/11",
+    "rot90_sym_break_losses_above_all_wins": "3/11",
+    "combined_battery_explained_losses": "11/11"
+  },
+  "perceptual_embedding": {
+    "backend": "frozen local DINOv2-L/14-Reg on CUDA",
+    "artifact": "benchmarks/worst_tile_dino_battery.json",
+    "losses_above_all_wins": "5/11",
+    "direction_correct_non_ties": "7/14",
+    "verdict": "FAIL kill rule; diagnostic only, not a promoted gate"
+  }
+}

@@ -1,0 +1,111 @@
+{
+  "calibration_neural_only": {
+    "glyph_group": {
+      "instances": 128,
+      "mean_best_soft_iou": 0.005079580074361976,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "risk_hard_negative": {
+      "instances": 21,
+      "mean_best_soft_iou": 0.002609936638342353,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "text_line": {
+      "instances": 22,
+      "mean_best_soft_iou": 0.0015701042425145459,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "whole_shape": {
+      "instances": 2,
+      "mean_best_soft_iou": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    }
+  },
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\proposal_bench.pt",
+  "checkpoint_sha256": "c46797aa6f841b414aea57c490ffd700f3d0f42cbd2a061fa423c398764c0282",
+  "conformal_nonvacuous": true,
+  "conformal_thresholds": [
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 128,
+      "empirical_coverage": 1.0,
+      "family": "glyph_group",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 21,
+      "empirical_coverage": 1.0,
+      "family": "risk_hard_negative",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 22,
+      "empirical_coverage": 1.0,
+      "family": "text_line",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 2,
+      "empirical_coverage": 1.0,
+      "family": "whole_shape",
+      "threshold": 1.0
+    }
+  ],
+  "created_at": "2026-07-21T11:20:18.183854+00:00",
+  "device": "cuda",
+  "elapsed_seconds": 31.52063359999738,
+  "epochs": 1,
+  "family_counts": {
+    "glyph_group": 242,
+    "text_line": 242,
+    "whole_shape": 14
+  },
+  "gate_pass": false,
+  "loss_history": [
+    5.803774697440011
+  ],
+  "minimum_recall_gate": 0.0,
+  "minimum_required_recall": 0.0,
+  "pair_count": 256,
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\raster_vector_pairs",
+  "promotion_policy": "candidate only; runtime promotion requires neural-only held-out gate, non-vacuous calibration and downstream full PCDC ablation",
+  "required_families": [],
+  "schema": "pcdc-proposal-large-training/v1",
+  "source_disjoint": true,
+  "split_counts": {
+    "calibration": 24,
+    "test": 20,
+    "train": 212
+  },
+  "split_source_counts": {
+    "calibration": 12,
+    "test": 10,
+    "train": 107
+  },
+  "status": "failed",
+  "test_neural_only": {
+    "glyph_group": {
+      "instances": 79,
+      "mean_best_soft_iou": 0.010521334694004625,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "risk_hard_negative": {
+      "instances": 16,
+      "mean_best_soft_iou": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "text_line": {
+      "instances": 16,
+      "mean_best_soft_iou": 0.0021222022569902573,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "whole_shape": {
+      "instances": 4,
+      "mean_best_soft_iou": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    }
+  }
+}

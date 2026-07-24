@@ -1,0 +1,34 @@
+{
+  "schema": "pcdc-proposal-large-rejection/v1",
+  "status": "rejected",
+  "promotion_ready": false,
+  "completed_training_epoch": 36,
+  "best_checkpoint": {
+    "path": "models/proposal_net_large_candidate_v8.pt",
+    "epoch": 30,
+    "sha256": "592f6975ce9db4449bb83cfa56a10d127cde3a98a27d54244750f9f7f80c5956",
+    "calibration_selection_key": [
+      0.9955378467489194,
+      0.9688503063904289,
+      0.8852198305701021
+    ]
+  },
+  "latest_checkpoint": {
+    "path": "models/proposal_net_large_candidate_v8_latest.pt",
+    "epoch": 36,
+    "sha256": "8540632c754edf7d4964f5e07a7b7adcd40447a5886bebfcb4f3d2a707d6d6b2",
+    "calibration_selection_key": [
+      0.9862174222035814,
+      0.9669536037350452,
+      0.8775083061960194
+    ]
+  },
+  "decision": "epoch-36-did-not-improve-the-fixed-calibration-selection-key",
+  "final_evaluation": {
+    "status": "aborted-fail-closed",
+    "reason": "old run encountered a pair rejected by the corrected SVG-owner alignment contract",
+    "row": "pair:local:dark:alg:1"
+  },
+  "label_contract": "legacy-degraded-full-scene-support",
+  "replacement_run": "v9-source-disjoint-clean-SVG-owner-labels"
+}

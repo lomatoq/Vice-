@@ -1,0 +1,377 @@
+[
+  {
+    "stem": "icon_group_7",
+    "paths": 8,
+    "incumbent": {
+      "mae": 7.567,
+      "rmse": 13.152,
+      "ink_iou": 0.9645,
+      "ssim": 0.96146,
+      "boundary_f": 1.0,
+      "hausdorff95": 0.955,
+      "topology": [
+        8,
+        5
+      ]
+    },
+    "candidate": {
+      "mae": 7.299,
+      "rmse": 12.438,
+      "ink_iou": 0.95476,
+      "ssim": 0.96561,
+      "boundary_f": 1.0,
+      "hausdorff95": 0.955,
+      "topology": [
+        8,
+        5
+      ]
+    },
+    "params": [
+      [
+        0.0,
+        0.2,
+        0.2,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.1,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        -0.1,
+        -0.1,
+        0.99,
+        0.99
+      ],
+      [
+        0.0,
+        0.1,
+        0.0,
+        0.99,
+        1.0
+      ],
+      [
+        0.0,
+        0.1,
+        -0.1,
+        0.99,
+        0.99
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ],
+      [
+        0.0,
+        0.0,
+        0.1,
+        1.02,
+        0.99
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0,
+        1.0
+      ]
+    ],
+    "trail": [
+      {
+        "pass": 0,
+        "path": 0,
+        "kind": "coverage",
+        "params": [
+          0.0,
+          0.2,
+          0.2,
+          1.0,
+          1.0
+        ],
+        "mae": 7.46,
+        "rmse": 12.967,
+        "ink_iou": 0.96049,
+        "ssim": 0.9629,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 1,
+        "kind": "coverage",
+        "params": [
+          0.0,
+          0.0,
+          0.1,
+          1.0,
+          1.0
+        ],
+        "mae": 7.431,
+        "rmse": 12.911,
+        "ink_iou": 0.95686,
+        "ssim": 0.96342,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 2,
+        "kind": "coverage",
+        "params": [
+          0.0,
+          -0.1,
+          -0.1,
+          1.0,
+          1.0
+        ],
+        "mae": 7.428,
+        "rmse": 12.886,
+        "ink_iou": 0.95651,
+        "ssim": 0.96349,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 2,
+        "kind": "sx",
+        "params": [
+          0.0,
+          -0.1,
+          -0.1,
+          0.99,
+          1.0
+        ],
+        "mae": 7.429,
+        "rmse": 12.844,
+        "ink_iou": 0.95633,
+        "ssim": 0.96354,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 2,
+        "kind": "sy",
+        "params": [
+          0.0,
+          -0.1,
+          -0.1,
+          0.99,
+          0.99
+        ],
+        "mae": 7.423,
+        "rmse": 12.825,
+        "ink_iou": 0.95597,
+        "ssim": 0.96357,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 3,
+        "kind": "coverage",
+        "params": [
+          0.0,
+          0.1,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "mae": 7.412,
+        "rmse": 12.816,
+        "ink_iou": 0.95511,
+        "ssim": 0.96364,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 3,
+        "kind": "sx",
+        "params": [
+          0.0,
+          0.1,
+          0.0,
+          0.99,
+          1.0
+        ],
+        "mae": 7.37,
+        "rmse": 12.673,
+        "ink_iou": 0.95562,
+        "ssim": 0.96438,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 4,
+        "kind": "coverage",
+        "params": [
+          0.0,
+          0.1,
+          -0.1,
+          1.0,
+          1.0
+        ],
+        "mae": 7.368,
+        "rmse": 12.64,
+        "ink_iou": 0.95495,
+        "ssim": 0.96462,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 4,
+        "kind": "sx",
+        "params": [
+          0.0,
+          0.1,
+          -0.1,
+          0.99,
+          1.0
+        ],
+        "mae": 7.339,
+        "rmse": 12.554,
+        "ink_iou": 0.9551,
+        "ssim": 0.96494,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 4,
+        "kind": "sy",
+        "params": [
+          0.0,
+          0.1,
+          -0.1,
+          0.99,
+          0.99
+        ],
+        "mae": 7.328,
+        "rmse": 12.515,
+        "ink_iou": 0.95372,
+        "ssim": 0.96503,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 6,
+        "kind": "coverage",
+        "params": [
+          0.0,
+          0.0,
+          0.1,
+          1.0,
+          1.0
+        ],
+        "mae": 7.331,
+        "rmse": 12.521,
+        "ink_iou": 0.95355,
+        "ssim": 0.96506,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 6,
+        "kind": "sx",
+        "params": [
+          0.0,
+          0.0,
+          0.1,
+          1.02,
+          1.0
+        ],
+        "mae": 7.318,
+        "rmse": 12.489,
+        "ink_iou": 0.9551,
+        "ssim": 0.96538,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      },
+      {
+        "pass": 0,
+        "path": 6,
+        "kind": "sy",
+        "params": [
+          0.0,
+          0.0,
+          0.1,
+          1.02,
+          0.99
+        ],
+        "mae": 7.299,
+        "rmse": 12.438,
+        "ink_iou": 0.95476,
+        "ssim": 0.96561,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.955,
+        "topology": [
+          8,
+          5
+        ]
+      }
+    ],
+    "output": "benchmarks\\vai_work\\paper-regions\\icon_group_7\\118_icon_group_7_src\\03_rebuilt_incremental_path.svg"
+  }
+]

@@ -1,0 +1,42 @@
+{
+  "input": "devicon-aarch64__gamma1.3.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 23,
+  "closed_contours": 35,
+  "rendered_primitive_count": 354,
+  "actual": {
+    "L": 250,
+    "Q": 0,
+    "C": 104
+  },
+  "templates": {
+    "occlusion-rect": 1,
+    "paper-joint": 12,
+    "paper-tiny": 20,
+    "paper-smooth": 1,
+    "paper-smooth-g1-fallback": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 6.93,
+    "mae_native": 9.64,
+    "bf_deblur": 0.9982,
+    "bf_native": 0.9959,
+    "kink_deblur": 9.85,
+    "kink_native": 15.08,
+    "winner": "deblur"
+  },
+  "kink_energy": 9.848
+}

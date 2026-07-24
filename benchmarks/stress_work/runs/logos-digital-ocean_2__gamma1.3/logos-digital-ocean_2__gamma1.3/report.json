@@ -1,0 +1,45 @@
+{
+  "input": "logos-digital-ocean_2__gamma1.3.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 15,
+  "closed_contours": 19,
+  "rendered_primitive_count": 188,
+  "actual": {
+    "L": 70,
+    "Q": 0,
+    "C": 118
+  },
+  "templates": {
+    "paper-joint": 9,
+    "paper-smooth": 3,
+    "paper-tiny-ellipse": 2,
+    "paper-tiny": 1,
+    "stroke": 2,
+    "tiny-rrect": 1,
+    "tiny-rect": 1,
+    "tiny-circle": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 5.6,
+    "mae_native": 6.49,
+    "bf_deblur": 0.9986,
+    "bf_native": 0.9968,
+    "kink_deblur": 5.75,
+    "kink_native": 7.35,
+    "winner": "deblur"
+  },
+  "kink_energy": 5.748
+}

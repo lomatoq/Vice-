@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="be">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>V-ICE · resolution-honest blind court</title>
+  <style>
+    :root { color-scheme:dark; --bg:#0a0d11; --card:#141920; --line:#2a333e; --text:#f3f6f8; --muted:#8e9aa7; --accent:#ff6b35; --court-scale:2 }
+    * { box-sizing:border-box }
+    body { margin:0; background:radial-gradient(circle at 20% 0,#182330 0,transparent 30%),var(--bg); color:var(--text); font-family:Inter,Segoe UI,sans-serif }
+    header { position:sticky; top:0; z-index:5; display:flex; justify-content:space-between; gap:18px; align-items:center; padding:15px 24px; background:#0a0d11ee; border-bottom:1px solid var(--line); backdrop-filter:blur(14px) }
+    h1 { margin:0; font-size:22px } header p { margin:4px 0 0; color:var(--muted); font-size:12px }
+    .actions,.scales { display:flex; flex-wrap:wrap; gap:7px; align-items:center } a,button { border:1px solid var(--line); border-radius:8px; background:#202732; color:var(--text); padding:8px 11px; font-weight:700; text-decoration:none; cursor:pointer } button.selected,#export { background:var(--accent); border-color:var(--accent) }
+    main { width:min(1500px,calc(100% - 24px)); margin:20px auto 80px; display:grid; gap:20px } .instructions { color:#bdc6cf; font-size:13px; line-height:1.55; max-width:980px }
+    .case { border:1px solid var(--line); border-radius:14px; overflow:hidden; background:var(--card); box-shadow:0 14px 40px #0004 } .case-head { display:flex; justify-content:space-between; padding:10px 14px; font-size:10px; letter-spacing:.12em; color:var(--muted) } .case.answered .saved { color:#77d899 }
+    .triptych { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:1px; background:var(--line) } figure { margin:0; min-width:0; background:#0d1116; text-align:center } figure.source { background:#171d24 }
+    .viewport { height:360px; overflow:auto; display:grid; place-items:center; padding:20px; background:linear-gradient(45deg,#e8ebee 25%,transparent 25%),linear-gradient(-45deg,#e8ebee 25%,transparent 25%),linear-gradient(45deg,transparent 75%,#e8ebee 75%),linear-gradient(-45deg,transparent 75%,#e8ebee 75%),#f7f8f9; background-size:20px 20px; background-position:0 0,0 10px,10px -10px,-10px 0 }
+    body.dark-art .viewport { background:#171b20 }
+    .art { display:block; flex:none; width:calc(var(--native-w) * var(--court-scale) * 1px); height:calc(var(--native-h) * var(--court-scale) * 1px); max-width:none; max-height:none }
+    body.pixel-debug .source-art { image-rendering:pixelated } figcaption { padding:8px; color:#c4ccd4; font-size:10px; letter-spacing:.1em }
+    .vote { display:flex; gap:8px; justify-content:center; padding:13px 14px 7px } .note { display:block; width:calc(100% - 28px); margin:0 14px 14px; padding:10px; border:1px solid var(--line); border-radius:8px; background:#0c1015; color:var(--text) } #progress { font:700 12px ui-monospace,monospace; white-space:nowrap }
+    @media(max-width:820px) { header { position:relative; align-items:flex-start; padding:13px; flex-direction:column } main { width:calc(100% - 12px); margin-top:10px } .triptych { grid-template-columns:1fr } }
+  </style>
+</head>
+<body>
+  <header>
+    <div><h1>Blind court · V-ICE vs VAI</h1><p>Live SVG · native source · зафіксаваны build · без LANCZOS-панэляў</p></div>
+    <div class="actions"><span id="progress">0 / 12</span><div class="scales"><button data-scale=".5">0.5×</button><button data-scale="1">1× native</button><button class="selected" data-scale="2">2× compare</button><button data-scale="4" data-pixels="1">4× pixels</button></div><button id="background" type="button">фон</button><a href="/">← Vectorizer</a><button id="reset" type="button">Скінуць</button><button id="export" type="button">Экспартаваць JSON</button></div>
+  </header>
+  <main>
+    <p class="instructions">Па змаўчанні 2× compare: A, native-крыніца і B адначасова бачныя ў аднолькавым памеры. 1× native правярае рэальны display scale, а 4× pixels — форму SVG супраць піксельнай структуры растра без згладжвання. A і B заўсёды застаюцца жывымі SVG.</p>
+    
+    <article class="case" data-case="1" style="--native-w:112;--native-h:105">
+      <div class="case-head"><span>КЕЙС 01</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_01_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_01_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_01_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 1">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="2" style="--native-w:112;--native-h:82">
+      <div class="case-head"><span>КЕЙС 02</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_02_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_02_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_02_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 2">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="3" style="--native-w:112;--native-h:112">
+      <div class="case-head"><span>КЕЙС 03</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_03_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_03_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_03_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 3">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="4" style="--native-w:112;--native-h:75">
+      <div class="case-head"><span>КЕЙС 04</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_04_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_04_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_04_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 4">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="5" style="--native-w:88;--native-h:41">
+      <div class="case-head"><span>КЕЙС 05</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_05_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_05_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_05_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 5">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="6" style="--native-w:112;--native-h:76">
+      <div class="case-head"><span>КЕЙС 06</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_06_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_06_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_06_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 6">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="7" style="--native-w:112;--native-h:112">
+      <div class="case-head"><span>КЕЙС 07</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_07_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_07_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_07_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 7">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="8" style="--native-w:83;--native-h:79">
+      <div class="case-head"><span>КЕЙС 08</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_08_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_08_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_08_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 8">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="9" style="--native-w:91;--native-h:48">
+      <div class="case-head"><span>КЕЙС 09</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_09_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_09_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_09_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 9">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="10" style="--native-w:76;--native-h:92">
+      <div class="case-head"><span>КЕЙС 10</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_10_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_10_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_10_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 10">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="11" style="--native-w:83;--native-h:84">
+      <div class="case-head"><span>КЕЙС 11</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_11_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_11_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_11_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 11">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+    <article class="case" data-case="12" style="--native-w:95;--native-h:43">
+      <div class="case-head"><span>КЕЙС 12</span><span class="saved">не ацэнены</span></div>
+      <div class="triptych">
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_12_a.svg" alt="Варыянт A"></div><figcaption>A · LIVE SVG</figcaption></figure>
+        <figure class="source"><div class="viewport"><img class="art source-art" src="court_assets/case_12_source.png" alt="Крыніца"></div><figcaption>КРЫНІЦА · NATIVE PNG</figcaption></figure>
+        <figure><div class="viewport"><img class="art candidate" src="court_assets/case_12_b.svg" alt="Варыянт B"></div><figcaption>B · LIVE SVG</figcaption></figure>
+      </div>
+      <div class="vote" role="group" aria-label="Ацэнка кейса 12">
+        <button type="button" data-choice="A">A лепш</button>
+        <button type="button" data-choice="tie">роўна</button>
+        <button type="button" data-choice="B">B лепш</button>
+      </div>
+      <input class="note" type="text" placeholder="Што вырашыла выбар: форма, тэкст, шво, колер…">
+    </article>
+  </main>
+  <script>
+    const storageKey="v-ice-vai-crop-v2-hard-tail-36d8f52f4d09", total=12;
+    let answers=JSON.parse(localStorage.getItem(storageKey)||'{}');
+    function save() { localStorage.setItem(storageKey,JSON.stringify(answers)); render(); }
+    function render() {
+      document.querySelectorAll('.case').forEach(card => { const key=card.dataset.case, answer=answers[key]||{}; card.classList.toggle('answered',Boolean(answer.choice)); card.querySelector('.saved').textContent=answer.choice?`захавана · ${answer.choice}`:'не ацэнены'; card.querySelectorAll('[data-choice]').forEach(button=>button.classList.toggle('selected',button.dataset.choice===answer.choice)); const note=card.querySelector('.note'); if(document.activeElement!==note) note.value=answer.note||''; });
+      document.getElementById('progress').textContent=`${Object.values(answers).filter(x=>x.choice).length} / ${total}`;
+    }
+    document.querySelectorAll('[data-scale]').forEach(button=>button.addEventListener('click',()=>{ document.documentElement.style.setProperty('--court-scale',button.dataset.scale); document.body.classList.toggle('pixel-debug',Boolean(button.dataset.pixels)); document.querySelectorAll('[data-scale]').forEach(item=>item.classList.toggle('selected',item===button)); }));
+    document.getElementById('background').addEventListener('click',()=>document.body.classList.toggle('dark-art'));
+    document.querySelectorAll('.case').forEach(card => { card.querySelectorAll('[data-choice]').forEach(button=>button.addEventListener('click',()=>{ const key=card.dataset.case; answers[key]={...(answers[key]||{}),choice:button.dataset.choice}; save(); })); card.querySelector('.note').addEventListener('input',event=>{ const key=card.dataset.case; answers[key]={...(answers[key]||{}),note:event.target.value}; localStorage.setItem(storageKey,JSON.stringify(answers)); }); });
+    document.getElementById('reset').addEventListener('click',()=>{ answers={}; localStorage.removeItem(storageKey); render(); });
+    document.getElementById('export').addEventListener('click',()=>{ const payload={court:"v-ice-vai-crop-v2-hard-tail-36d8f52f4d09",exported_at:new Date().toISOString(),answers}, blob=new Blob([JSON.stringify(payload,null,2)],{type:'application/json'}), link=document.createElement('a'); link.href=URL.createObjectURL(blob); link.download='v-ice-crop-court-answers.json'; link.click(); setTimeout(()=>URL.revokeObjectURL(link.href),5000); });
+    render();
+  </script>
+</body>
+</html>

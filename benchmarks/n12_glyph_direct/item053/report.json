@@ -1,0 +1,58 @@
+{
+  "input": "item053.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 45,
+  "closed_contours": 76,
+  "rendered_primitive_count": 430,
+  "actual": {
+    "L": 280,
+    "Q": 0,
+    "C": 150
+  },
+  "templates": {
+    "paper-regions": 63,
+    "paper-regions-court": 1,
+    "paper-smooth": 6,
+    "paper-joint": 3,
+    "paper-joint-fallback": 3
+  },
+  "threshold": 0.0,
+  "glyph_repair": [
+    {
+      "box": 0,
+      "accepted": true,
+      "reference_cc": 5,
+      "reference_holes": 2,
+      "baseline_cc": 10,
+      "baseline_holes": 0,
+      "candidate_holes": 3,
+      "baseline_iou": 0.2903,
+      "candidate_iou": 0.7715,
+      "threshold": 0.6,
+      "ink_anchor": 1,
+      "surround_anchor": 0
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 14.77,
+    "mae_native": 17.01,
+    "bf_deblur": 0.9662,
+    "bf_native": 0.9486,
+    "kink_deblur": 15.33,
+    "kink_native": 15.06,
+    "winner": "deblur"
+  },
+  "kink_energy": 15.33
+}

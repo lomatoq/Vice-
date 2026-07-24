@@ -6,20 +6,20 @@
   "smoothing": "paper-regions",
   "regions": 64,
   "closed_contours": 123,
-  "rendered_primitive_count": 1073,
+  "rendered_primitive_count": 1057,
   "actual": {
-    "L": 619,
+    "L": 642,
     "Q": 0,
-    "C": 454
+    "C": 415
   },
   "templates": {
     "occlusion-rect": 1,
-    "paper-joint": 61,
+    "paper-joint": 64,
     "paper-tiny": 45,
     "paper-smooth-g1-fallback": 4,
     "paper-smooth": 6,
     "paper-circle-court": 1,
-    "paper-joint-g1-fallback": 4,
+    "paper-joint-g1-fallback": 1,
     "tiny-circle": 1
   },
   "threshold": 0.0,
@@ -32,5 +32,382 @@
     "small_extent_max": 4.0,
     "small_density_min": 8.0
   },
-  "kink_energy": 5.333
+  "kink_energy": 5.189,
+  "residual_coverage_calibration": [
+    {
+      "router": "bounded-editable-coverage-residual",
+      "paths": 64,
+      "incumbent": {
+        "mae": 5.476,
+        "rmse": 11.903,
+        "ink_iou": 0.9573,
+        "ssim": 0.97709,
+        "boundary_f": 0.99506,
+        "hausdorff95": 0.955,
+        "topology": [
+          55,
+          3
+        ]
+      },
+      "source_topology": [
+        53,
+        3
+      ],
+      "topology_gap": 2,
+      "incumbent_seam_px": 0.0,
+      "trials": [
+        {
+          "min_area": 1,
+          "fit_px": 0.25,
+          "opacity": 0.25,
+          "correction_paths": 24,
+          "correction_primitives": 165,
+          "mae": 5.446,
+          "rmse": 11.658,
+          "ink_iou": 0.96022,
+          "ssim": 0.97776,
+          "boundary_f": 0.99509,
+          "hausdorff95": 0.955,
+          "topology": [
+            55,
+            3
+          ],
+          "seam_px": 0.0
+        },
+        {
+          "min_area": 1,
+          "fit_px": 0.25,
+          "opacity": 0.5,
+          "correction_paths": 24,
+          "correction_primitives": 165,
+          "mae": 5.426,
+          "rmse": 11.514,
+          "ink_iou": 0.96272,
+          "ssim": 0.97807,
+          "boundary_f": 0.99541,
+          "hausdorff95": 0.955,
+          "topology": [
+            55,
+            3
+          ],
+          "seam_px": 0.0
+        },
+        {
+          "min_area": 1,
+          "fit_px": 0.25,
+          "opacity": 1.0,
+          "correction_paths": 24,
+          "correction_primitives": 165,
+          "mae": 5.422,
+          "rmse": 11.543,
+          "ink_iou": 0.96339,
+          "ssim": 0.97799,
+          "boundary_f": 0.99547,
+          "hausdorff95": 0.955,
+          "topology": [
+            55,
+            3
+          ],
+          "seam_px": 0.0
+        },
+        {
+          "min_area": 1,
+          "fit_px": 0.4,
+          "opacity": 0.25,
+          "correction_paths": 24,
+          "correction_primitives": 166,
+          "mae": 5.446,
+          "rmse": 11.642,
+          "ink_iou": 0.96064,
+          "ssim": 0.97776,
+          "boundary_f": 0.99506,
+          "hausdorff95": 0.955,
+          "topology": [
+            55,
+            3
+          ],
+          "seam_px": 0.0
+        },
+        {
+          "min_area": 1,
+          "fit_px": 0.4,
+          "opacity": 0.5,
+          "correction_paths": 24,
+          "correction_primitives": 166,
+          "mae": 5.426,
+          "rmse": 11.491,
+          "ink_iou": 0.96273,
+          "ssim": 0.97807,
+          "boundary_f": 0.99534,
+          "hausdorff95": 0.955,
+          "topology": [
+            55,
+            3
+          ],
+          "seam_px": 0.0
+        },
+        {
+          "min_area": 1,
+          "fit_px": 0.4,
+          "opacity": 1.0,
+          "correction_paths": 24,
+          "correction_primitives": 166,
+          "mae": 5.422,
+          "rmse": 11.535,
+          "ink_iou": 0.96333,
+          "ssim": 0.97794,
+          "boundary_f": 0.99535,
+          "hausdorff95": 0.955,
+          "topology": [
+            55,
+            3
+          ],
+          "seam_px": 0.0
+        }
+      ],
+      "accepted": true,
+      "reason": "perceptual+unchanged-topology+bounded-vector-court",
+      "candidate": {
+        "mae": 5.422,
+        "rmse": 11.543,
+        "ink_iou": 0.96339,
+        "ssim": 0.97799,
+        "boundary_f": 0.99547,
+        "hausdorff95": 0.955,
+        "topology": [
+          55,
+          3
+        ],
+        "min_area": 1,
+        "fit_px": 0.25,
+        "opacity": 1.0,
+        "correction_paths": 24,
+        "correction_primitives": 165,
+        "components": [
+          {
+            "kind": "add",
+            "area": 80,
+            "extent": [
+              14,
+              65
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "add",
+            "area": 75,
+            "extent": [
+              4,
+              65
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "add",
+            "area": 50,
+            "extent": [
+              1,
+              50
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "add",
+            "area": 50,
+            "extent": [
+              1,
+              50
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "add",
+            "area": 46,
+            "extent": [
+              6,
+              32
+            ],
+            "primitives": 11
+          },
+          {
+            "kind": "add",
+            "area": 40,
+            "extent": [
+              1,
+              40
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "add",
+            "area": 40,
+            "extent": [
+              1,
+              40
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "add",
+            "area": 37,
+            "extent": [
+              1,
+              37
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "add",
+            "area": 37,
+            "extent": [
+              1,
+              37
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "add",
+            "area": 36,
+            "extent": [
+              1,
+              36
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "add",
+            "area": 35,
+            "extent": [
+              1,
+              35
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "add",
+            "area": 35,
+            "extent": [
+              7,
+              17
+            ],
+            "primitives": 13
+          },
+          {
+            "kind": "erase",
+            "area": 27,
+            "extent": [
+              13,
+              15
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "erase",
+            "area": 23,
+            "extent": [
+              10,
+              14
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "erase",
+            "area": 23,
+            "extent": [
+              18,
+              7
+            ],
+            "primitives": 13
+          },
+          {
+            "kind": "erase",
+            "area": 20,
+            "extent": [
+              16,
+              12
+            ],
+            "primitives": 19
+          },
+          {
+            "kind": "erase",
+            "area": 7,
+            "extent": [
+              7,
+              2
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 6,
+            "extent": [
+              4,
+              4
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "erase",
+            "area": 6,
+            "extent": [
+              6,
+              2
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 5,
+            "extent": [
+              4,
+              3
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 5,
+            "extent": [
+              5,
+              5
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "erase",
+            "area": 5,
+            "extent": [
+              5,
+              3
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "erase",
+            "area": 5,
+            "extent": [
+              4,
+              2
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "erase",
+            "area": 4,
+            "extent": [
+              3,
+              4
+            ],
+            "primitives": 4
+          }
+        ],
+        "seam_px": 0.0
+      },
+      "gains": {
+        "ssim": 0.0009,
+        "ink_iou": 0.00609,
+        "mae_reduction": 0.054
+      }
+    }
+  ]
 }

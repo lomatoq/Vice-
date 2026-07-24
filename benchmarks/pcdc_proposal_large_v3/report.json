@@ -1,0 +1,305 @@
+{
+  "calibration_neural_only": {
+    "appearance_model": {
+      "instances": 48,
+      "mean_best_soft_iou_at_5": 0.7335388610245291,
+      "mean_best_soft_iou_at_k": 0.7824105482558439,
+      "neural_only_recall_at_5_iou50": 0.7708333333333334,
+      "neural_only_recall_at_k_iou50": 0.8333333333333334
+    },
+    "glyph_group": {
+      "instances": 1734,
+      "mean_best_soft_iou_at_5": 0.8432659927679667,
+      "mean_best_soft_iou_at_k": 0.851259798936125,
+      "neural_only_recall_at_5_iou50": 0.9769319492502884,
+      "neural_only_recall_at_k_iou50": 0.9815455594002307
+    },
+    "layer_relation": {
+      "instances": 484,
+      "mean_best_soft_iou_at_5": 0.8868523963913524,
+      "mean_best_soft_iou_at_k": 0.9288043121779409,
+      "neural_only_recall_at_5_iou50": 0.9338842975206612,
+      "neural_only_recall_at_k_iou50": 0.9752066115702479
+    },
+    "overall": {
+      "instances": 13708,
+      "mean_best_soft_iou_at_5": 0.8607852385088003,
+      "mean_best_soft_iou_at_k": 0.8705956948328853,
+      "neural_only_recall_at_5_iou50": 0.9604610446454626,
+      "neural_only_recall_at_k_iou50": 0.9670995039393055
+    },
+    "risk_hard_negative": {
+      "instances": 5146,
+      "mean_best_soft_iou_at_5": 0.8081881728211272,
+      "mean_best_soft_iou_at_k": 0.8207645500244155,
+      "neural_only_recall_at_5_iou50": 0.9354838709677419,
+      "neural_only_recall_at_k_iou50": 0.9418966187329965
+    },
+    "small_shape": {
+      "instances": 591,
+      "mean_best_soft_iou_at_5": 0.9204980219241556,
+      "mean_best_soft_iou_at_k": 0.924283499633763,
+      "neural_only_recall_at_5_iou50": 0.9780033840947546,
+      "neural_only_recall_at_k_iou50": 0.9780033840947546
+    },
+    "stroke_network": {
+      "instances": 8,
+      "mean_best_soft_iou_at_5": 0.5500440137032458,
+      "mean_best_soft_iou_at_k": 0.7453428591746591,
+      "neural_only_recall_at_5_iou50": 0.625,
+      "neural_only_recall_at_k_iou50": 0.875
+    },
+    "symmetry_repeat_group": {
+      "instances": 26,
+      "mean_best_soft_iou_at_5": 0.6659430725233607,
+      "mean_best_soft_iou_at_k": 0.9434874805078141,
+      "neural_only_recall_at_5_iou50": 0.6923076923076923,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "text_line": {
+      "instances": 1734,
+      "mean_best_soft_iou_at_5": 0.8415619660283611,
+      "mean_best_soft_iou_at_k": 0.8492084033315994,
+      "neural_only_recall_at_5_iou50": 0.9763552479815456,
+      "neural_only_recall_at_k_iou50": 0.9821222606689735
+    },
+    "whole_shape": {
+      "instances": 4528,
+      "mean_best_soft_iou_at_5": 0.93486191130973,
+      "mean_best_soft_iou_at_k": 0.9373385902902631,
+      "neural_only_recall_at_5_iou50": 0.9834363957597173,
+      "neural_only_recall_at_k_iou50": 0.984982332155477
+    }
+  },
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v3.pt",
+  "checkpoint_sha256": "af8357e8815a88c47d96b5a6c48691b941d226aa55ce2f1958cf936cd2ba3c2a",
+  "conformal_nonvacuous": false,
+  "conformal_required_families": [
+    "text_line",
+    "glyph_group",
+    "whole_shape",
+    "layer_relation"
+  ],
+  "conformal_thresholds": [
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 48,
+      "empirical_coverage": 0.8333333333333334,
+      "family": "appearance_model",
+      "threshold": 0.9999999999999983
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 1734,
+      "empirical_coverage": 0.9907727797001153,
+      "family": "glyph_group",
+      "threshold": 0.9999999999961844
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 484,
+      "empirical_coverage": 1.0,
+      "family": "layer_relation",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 5146,
+      "empirical_coverage": 0.9945588806840264,
+      "family": "risk_hard_negative",
+      "threshold": 0.9999999999999999
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 8,
+      "empirical_coverage": 0.875,
+      "family": "stroke_network",
+      "threshold": 0.9999999999999983
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 26,
+      "empirical_coverage": 1.0,
+      "family": "symmetry_repeat_group",
+      "threshold": 0.9999999999999983
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 1734,
+      "empirical_coverage": 0.9907727797001153,
+      "family": "text_line",
+      "threshold": 0.9999999999208622
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 4528,
+      "empirical_coverage": 0.9902826855123675,
+      "family": "whole_shape",
+      "threshold": 0.999999999998732
+    }
+  ],
+  "continuation_epochs": 4,
+  "created_at": "2026-07-21T15:51:22.418909+00:00",
+  "device": "cuda",
+  "elapsed_seconds": 2203.133692000003,
+  "epochs": 12,
+  "evaluation_contract": {
+    "glyph_group_target": "whole-group-not-per-component",
+    "instance_matching": "one-to-one-Hungarian-within-family",
+    "neural_only": true,
+    "promotion_metric": "Recall@5 IoU>=0.50",
+    "query_ranking": "global-top-k-across-families"
+  },
+  "family_counts": {
+    "appearance_model": 504,
+    "glyph_group": 16000,
+    "layer_relation": 4150,
+    "stroke_network": 50,
+    "symmetry_repeat_group": 194,
+    "text_line": 16000,
+    "whole_shape": 44190
+  },
+  "gate_pass": false,
+  "label_contract": {
+    "generic_parameters_supervised": 16,
+    "hard_negative_head_supervised": true,
+    "semantic_scene_labels": "conservative-explicit-cues-only",
+    "small_shape_factory": "deterministic-source-disjoint-procedural-recomposition"
+  },
+  "loss_history": [
+    0.09411008470880994,
+    0.043905556037583775,
+    0.015266151333671003,
+    -0.019677047831265327
+  ],
+  "minimum_recall_gate": 0.97,
+  "minimum_required_recall": 0.957286432160804,
+  "pair_count": 60190,
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\raster_vector_pairs",
+  "promotion_policy": "candidate only; runtime promotion requires neural-only held-out gate, non-vacuous calibration and downstream full PCDC ablation",
+  "recall_gate_results": {
+    "glyph_group": {
+      "instances": 1520,
+      "passed": false,
+      "recall": 0.9763157894736842,
+      "threshold": 0.99
+    },
+    "layer_relation": {
+      "instances": 398,
+      "passed": true,
+      "recall": 0.957286432160804,
+      "threshold": 0.95
+    },
+    "overall": {
+      "instances": 13043,
+      "passed": false,
+      "recall": 0.9579851261212912,
+      "threshold": 0.97
+    },
+    "small_shape": {
+      "instances": 633,
+      "passed": false,
+      "recall": 0.9684044233807267,
+      "threshold": 0.98
+    },
+    "text_line": {
+      "instances": 1520,
+      "passed": false,
+      "recall": 0.9809210526315789,
+      "threshold": 0.99
+    }
+  },
+  "required_recall_slices": [
+    "overall",
+    "text_line",
+    "glyph_group",
+    "small_shape",
+    "layer_relation"
+  ],
+  "resumed_from": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v2.pt",
+  "schema": "pcdc-proposal-large-training/v2-honest-top5",
+  "source_disjoint": true,
+  "split_counts": {
+    "calibration": 6262,
+    "test": 6072,
+    "train": 47856
+  },
+  "split_source_counts": {
+    "calibration": 3131,
+    "test": 3036,
+    "train": 23928
+  },
+  "status": "failed",
+  "test_neural_only": {
+    "appearance_model": {
+      "instances": 50,
+      "mean_best_soft_iou_at_5": 0.5982685537934629,
+      "mean_best_soft_iou_at_k": 0.7474502607435697,
+      "neural_only_recall_at_5_iou50": 0.64,
+      "neural_only_recall_at_k_iou50": 0.82
+    },
+    "glyph_group": {
+      "instances": 1520,
+      "mean_best_soft_iou_at_5": 0.8363891239964425,
+      "mean_best_soft_iou_at_k": 0.8471742140122346,
+      "neural_only_recall_at_5_iou50": 0.9763157894736842,
+      "neural_only_recall_at_k_iou50": 0.9842105263157894
+    },
+    "layer_relation": {
+      "instances": 398,
+      "mean_best_soft_iou_at_5": 0.9180983053314209,
+      "mean_best_soft_iou_at_k": 0.9419355326935582,
+      "neural_only_recall_at_5_iou50": 0.957286432160804,
+      "neural_only_recall_at_k_iou50": 0.9874371859296482
+    },
+    "overall": {
+      "instances": 13043,
+      "mean_best_soft_iou_at_5": 0.8607795727201216,
+      "mean_best_soft_iou_at_k": 0.869627893721762,
+      "neural_only_recall_at_5_iou50": 0.9579851261212912,
+      "neural_only_recall_at_k_iou50": 0.9641186843517595
+    },
+    "risk_hard_negative": {
+      "instances": 4989,
+      "mean_best_soft_iou_at_5": 0.8066244416963344,
+      "mean_best_soft_iou_at_k": 0.8193795998373611,
+      "neural_only_recall_at_5_iou50": 0.9268390459009822,
+      "neural_only_recall_at_k_iou50": 0.9340549208258168
+    },
+    "small_shape": {
+      "instances": 633,
+      "mean_best_soft_iou_at_5": 0.9093153536199544,
+      "mean_best_soft_iou_at_k": 0.9134835044074306,
+      "neural_only_recall_at_5_iou50": 0.9684044233807267,
+      "neural_only_recall_at_k_iou50": 0.9684044233807267
+    },
+    "stroke_network": {
+      "instances": 4,
+      "mean_best_soft_iou_at_5": 0.9081257705414719,
+      "mean_best_soft_iou_at_k": 0.9167533099100971,
+      "neural_only_recall_at_5_iou50": 1.0,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "symmetry_repeat_group": {
+      "instances": 10,
+      "mean_best_soft_iou_at_5": 0.7530083130359901,
+      "mean_best_soft_iou_at_k": 0.9420899042994545,
+      "neural_only_recall_at_5_iou50": 0.8,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "text_line": {
+      "instances": 1520,
+      "mean_best_soft_iou_at_5": 0.8407129697131752,
+      "mean_best_soft_iou_at_k": 0.845253640488262,
+      "neural_only_recall_at_5_iou50": 0.9809210526315789,
+      "neural_only_recall_at_k_iou50": 0.9835526315789473
+    },
+    "whole_shape": {
+      "instances": 4552,
+      "mean_best_soft_iou_at_5": 0.9330457613143258,
+      "mean_best_soft_iou_at_k": 0.9351561265491525,
+      "neural_only_recall_at_5_iou50": 0.9822056239015817,
+      "neural_only_recall_at_k_iou50": 0.9833040421792618
+    }
+  }
+}

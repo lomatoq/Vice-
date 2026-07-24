@@ -1,0 +1,29 @@
+{
+  "input": "7mojos_2__clean.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 43,
+  "closed_contours": 49,
+  "rendered_primitive_count": 579,
+  "actual": {
+    "L": 294,
+    "Q": 0,
+    "C": 285
+  },
+  "templates": {
+    "paper-regions": 49
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 9.475
+}

@@ -1,0 +1,504 @@
+{
+  "all_pre_phase9_requirements_complete": false,
+  "audit_rule": "complete requires production contract plus behavioral regression; measured gates additionally require current compiler/native hashes",
+  "blocking_requirements": [
+    {
+      "checks": {
+        "candidate_report_current": true,
+        "mean_iou_not_worse": true,
+        "model_changes_delivered_output": false,
+        "no_line_topology_regression": true,
+        "same_100_loci": true,
+        "warm_p95_under_200ms": true
+      },
+      "complete": false,
+      "evidence": "fresh model-OFF/ON Experiment-4 ablation",
+      "phase": "phase4_text",
+      "requirement": "trained glyph prior changes certified delivered output"
+    },
+    {
+      "checks": {
+        "compiler_hash_current": true,
+        "gate_pass": false,
+        "native_hash_current": true,
+        "report_exists": true,
+        "schema_matches": true,
+        "status_passed": false
+      },
+      "complete": false,
+      "evidence": "benchmarks/pcdc_experiment4/report_model_current_pre_v14.json",
+      "phase": "phase4_text",
+      "requirement": "Experiment 4 current and passing"
+    }
+  ],
+  "canonical_plan": "V-ICE_proof_carrying_design_compiler_plan_ru_v2.md",
+  "compiler_source_sha256": "a0c7ae5d5928e57c486eb9acba8eb1a1eeb9ec920836cbc282f30be90d881bed",
+  "created_at": "2026-07-23T06:43:38.928083+00:00",
+  "diagnostics": {
+    "experiments": {
+      "experiment1": {
+        "actual_compiler_source_sha256": "a0c7ae5d5928e57c486eb9acba8eb1a1eeb9ec920836cbc282f30be90d881bed",
+        "actual_native_runtime_sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c",
+        "actual_schema": "pcdc-experiment1/v1",
+        "actual_status": "passed",
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "path": "benchmarks/pcdc_experiment1/report.json"
+      },
+      "experiment1b": {
+        "actual_compiler_source_sha256": "a0c7ae5d5928e57c486eb9acba8eb1a1eeb9ec920836cbc282f30be90d881bed",
+        "actual_native_runtime_sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c",
+        "actual_schema": "pcdc-experiment1b/v1",
+        "actual_status": "passed",
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "path": "benchmarks/pcdc_experiment1b/report.json"
+      },
+      "experiment2": {
+        "actual_compiler_source_sha256": "a0c7ae5d5928e57c486eb9acba8eb1a1eeb9ec920836cbc282f30be90d881bed",
+        "actual_native_runtime_sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c",
+        "actual_schema": "pcdc-experiment2/v1",
+        "actual_status": "passed",
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "path": "benchmarks/pcdc_experiment2/report.json"
+      },
+      "experiment3": {
+        "actual_compiler_source_sha256": "a0c7ae5d5928e57c486eb9acba8eb1a1eeb9ec920836cbc282f30be90d881bed",
+        "actual_native_runtime_sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c",
+        "actual_schema": "pcdc-experiment3/v1",
+        "actual_status": "passed",
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "path": "benchmarks/pcdc_experiment3/report.json"
+      },
+      "experiment4": {
+        "actual_compiler_source_sha256": "a0c7ae5d5928e57c486eb9acba8eb1a1eeb9ec920836cbc282f30be90d881bed",
+        "actual_native_runtime_sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c",
+        "actual_schema": "pcdc-experiment4-textline/v2",
+        "actual_status": "machine_gate_failed",
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": false,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": false
+        },
+        "complete": false,
+        "path": "benchmarks/pcdc_experiment4/report_model_current_pre_v14.json"
+      },
+      "experiment5": {
+        "actual_compiler_source_sha256": "a0c7ae5d5928e57c486eb9acba8eb1a1eeb9ec920836cbc282f30be90d881bed",
+        "actual_native_runtime_sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c",
+        "actual_schema": "pcdc-experiment5/v1",
+        "actual_status": "passed",
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "path": "benchmarks/pcdc_experiment5/report.json"
+      }
+    },
+    "glyph_prior_runtime_ablation": {
+      "baseline_gcr_rate": 0.37,
+      "baseline_mean_iou": 0.7756121590818307,
+      "baseline_report": "benchmarks/pcdc_experiment4/report_no_model_current_pre_v14.json",
+      "candidate_gcr_rate": 0.37,
+      "candidate_mean_iou": 0.7756121590818307,
+      "candidate_report": "benchmarks/pcdc_experiment4/report_model_current_pre_v14.json",
+      "checks": {
+        "candidate_report_current": true,
+        "mean_iou_not_worse": true,
+        "model_changes_delivered_output": false,
+        "no_line_topology_regression": true,
+        "same_100_loci": true,
+        "warm_p95_under_200ms": true
+      },
+      "complete": false,
+      "delivered_rows_changed": 0,
+      "full_p95_ms_per_line": 2412.164449990083,
+      "warm_p95_ms_per_line": 184.9996050237678
+    },
+    "glyph_prior_training": {
+      "checkpoint": "models\\glyph_prior_candidate_v1.pt",
+      "checkpoint_sha256": "304867ba6ffd6fcf76879472f3f30392e88de664e6013cf3fd7c63233f1044bf",
+      "checks": {
+        "candidate_gate_passed": true,
+        "checkpoint_exists": true,
+        "checkpoint_hash_matches": true,
+        "held_out_family_samples_ge_20000": true,
+        "held_out_support_iou_ge_090": true,
+        "held_out_topology_ge_097": true,
+        "model_data_contract_current": true,
+        "report_exists": true,
+        "schema_matches": true,
+        "two_million_variants": true
+      },
+      "complete": true,
+      "current_model_contract_sha256": "f1d5230d4dbfba71ae8a746b02d6c4eb0047c449b93784618dea58ccbfa6c462",
+      "report": "benchmarks\\pcdc_pre_v14\\glyph_prior_training.json",
+      "training_compiler_hash_is_current": false
+    }
+  },
+  "phase_status": {
+    "phase0_freeze_current_truth": true,
+    "phase1_reir": true,
+    "phase2_cmir_extractor": true,
+    "phase3_court_certificates": true,
+    "phase4_text": false,
+    "phase5_shapes_strokes_appearance": true,
+    "phase6_layers": true,
+    "phase7_continuous_refinement": true,
+    "phase8_design_abstraction": true
+  },
+  "phases": {
+    "phase0_freeze_current_truth": [
+      {
+        "complete": true,
+        "evidence": "hash-checked fallback reaches the exact production writer",
+        "requirement": "V-ICE Best production fallback"
+      },
+      {
+        "complete": true,
+        "evidence": "production route and frozen ledger mark Scene Engine archived",
+        "requirement": "Scene Engine archived experimental"
+      },
+      {
+        "checks": {
+          "behavioral_ledger_test_present": true,
+          "challenge_has_115_explicit_rows": true,
+          "ledger_complete": true,
+          "vai50_has_50_explicit_rows": true
+        },
+        "complete": true,
+        "evidence": "VAI50 50/50 and challenge115 115/115 explicit input ledger; this is not the deferred Phase-12 quality campaign",
+        "requirement": "benchmark input completeness"
+      },
+      {
+        "complete": true,
+        "evidence": "300-locus seed exists; 2k-5k reviewed calibration target is later",
+        "requirement": "Real Locus Corpus seed"
+      },
+      {
+        "complete": true,
+        "evidence": "runtime checkpoints are asserted on the production service",
+        "requirement": "stage profiler"
+      }
+    ],
+    "phase1_reir": [
+      {
+        "complete": true,
+        "evidence": "REIR cache and immutability have behavioral regressions",
+        "requirement": "canonical immutable evidence cache"
+      },
+      {
+        "complete": true,
+        "evidence": "the evidence lattice is tested as one immutable contract",
+        "requirement": "UCM, inclusion trees, core/bands and half-edge interfaces"
+      },
+      {
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "evidence": "benchmarks/pcdc_experiment1/report.json",
+        "requirement": "Experiment 1 current and passing"
+      }
+    ],
+    "phase2_cmir_extractor": [
+      {
+        "complete": true,
+        "evidence": "base registry feasibility is asserted, not inferred from a file",
+        "requirement": "atomic fallback, legacy adapter and feasible exact cover"
+      },
+      {
+        "complete": true,
+        "evidence": "selection behavior and deterministic fallback are tested",
+        "requirement": "hierarchy DP, sparse conflict components and bounded exact solve"
+      },
+      {
+        "complete": true,
+        "evidence": "bounded column generation is wired into CMIR",
+        "requirement": "2-4 dual-guided pricing rounds without manual risk gate"
+      },
+      {
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "evidence": "benchmarks/pcdc_experiment1b/report.json",
+        "requirement": "Experiment 1B current and passing"
+      },
+      {
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "evidence": "benchmarks/pcdc_experiment2/report.json",
+        "requirement": "Experiment 2 current and passing"
+      }
+    ],
+    "phase3_court_certificates": [
+      {
+        "complete": true,
+        "evidence": "candidate and fallback share one sealed posterior",
+        "requirement": "fixed fallback-conditioned renderer posterior"
+      },
+      {
+        "complete": true,
+        "evidence": "cascade order is asserted by behavioral court tests",
+        "requirement": "cheap-to-expensive court with SDF/topology/exact ROI atlas"
+      },
+      {
+        "complete": true,
+        "evidence": "hook exists and abstention/tie returns fallback",
+        "requirement": "optional human-preference tie-break only on physical ties"
+      },
+      {
+        "complete": true,
+        "evidence": "hard certificates are required before selection",
+        "requirement": "topology, support, geometry and resource proof bundles"
+      },
+      {
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "evidence": "benchmarks/pcdc_experiment3/report.json",
+        "requirement": "Experiment 3 current and passing"
+      }
+    ],
+    "phase4_text": [
+      {
+        "complete": true,
+        "evidence": "proposal recall is a union; one source is sufficient",
+        "requirement": "parallel REIR-direct line proposals from all planned sources"
+      },
+      {
+        "complete": true,
+        "evidence": "shared/multicolour line ink reaches production text delivery",
+        "requirement": "joint line appearance before palette commit"
+      },
+      {
+        "complete": true,
+        "evidence": "licensed exact font is fail-open and writer emits real outlines",
+        "requirement": "exact-font retrieval, fit, topology/silhouette wall and true outlines"
+      },
+      {
+        "complete": true,
+        "evidence": "deterministic dual-loop representation and topology-safe fallback exist; this alone is not the trained glyph prior",
+        "requirement": "font-free dual-loop/SDF program representation"
+      },
+      {
+        "checks": {
+          "candidate_gate_passed": true,
+          "checkpoint_exists": true,
+          "checkpoint_hash_matches": true,
+          "held_out_family_samples_ge_20000": true,
+          "held_out_support_iou_ge_090": true,
+          "held_out_topology_ge_097": true,
+          "model_data_contract_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "two_million_variants": true
+        },
+        "complete": true,
+        "evidence": "checkpoint is bound to the current model/data contract; compiler edits require downstream A/B, not automatic retraining",
+        "requirement": "trained font-free glyph prior on family-disjoint open fonts"
+      },
+      {
+        "checks": {
+          "candidate_report_current": true,
+          "mean_iou_not_worse": true,
+          "model_changes_delivered_output": false,
+          "no_line_topology_regression": true,
+          "same_100_loci": true,
+          "warm_p95_under_200ms": true
+        },
+        "complete": false,
+        "evidence": "fresh model-OFF/ON Experiment-4 ablation",
+        "requirement": "trained glyph prior changes certified delivered output"
+      },
+      {
+        "checks": {
+          "all_variables_have_delivery_regression": true,
+          "baseline_reaches_exact_delivery": true,
+          "cap_height_reaches_exact_delivery": true,
+          "overshoot_reaches_exact_delivery": true,
+          "prototype_assignments_reach_delivery": true,
+          "shared_stem_classes_reach_delivery": true,
+          "slant_reaches_exact_delivery": true,
+          "tracking_reaches_font_free_delivery": true,
+          "x_height_reaches_exact_delivery": true
+        },
+        "complete": true,
+        "evidence": "baseline/x-height/cap-height/overshoot/slant/stems/tracking/prototypes",
+        "requirement": "all planned font-free line variables deploy into geometry"
+      },
+      {
+        "complete": true,
+        "evidence": "prototype+affine instances are not metadata-only",
+        "requirement": "repeated-glyph EM is transactionally materialized"
+      },
+      {
+        "complete": true,
+        "evidence": "all planned text families enter the same extractor",
+        "requirement": "exact-font, font-free, conservative, custom and effect TextLine macros compete"
+      },
+      {
+        "complete": true,
+        "evidence": "primary GCR is catastrophic-line rate; component damage is reported separately and cannot impersonate the gate",
+        "requirement": "Experiment 4 uses line-level Glyph Catastrophe Rate"
+      },
+      {
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": false,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": false
+        },
+        "complete": false,
+        "evidence": "benchmarks/pcdc_experiment4/report_model_current_pre_v14.json",
+        "requirement": "Experiment 4 current and passing"
+      }
+    ],
+    "phase5_shapes_strokes_appearance": [
+      {
+        "complete": true,
+        "evidence": "analytic and free-curve programs are production-delivered",
+        "requirement": "whole-shape typed macros reach exact SVG delivery"
+      },
+      {
+        "complete": true,
+        "evidence": "stroke programs compete with filled regions and ship natively",
+        "requirement": "stroke graphs, dashes, markers and diagram networks"
+      },
+      {
+        "complete": true,
+        "evidence": "appearance models and bounded K-stack are behaviorally exercised",
+        "requirement": "solid/gradient/translucent appearance before palette commit"
+      },
+      {
+        "complete": true,
+        "evidence": "risk query proposes only; fixed-posterior court decides",
+        "requirement": "codec/detail counterfactuals reach raster-free bounded export"
+      },
+      {
+        "complete": true,
+        "evidence": "shared parameters are deployable, not export-only metadata",
+        "requirement": "repeated parameter and symmetry groups compete before selection"
+      },
+      {
+        "checks": {
+          "compiler_hash_current": true,
+          "gate_pass": true,
+          "native_hash_current": true,
+          "report_exists": true,
+          "schema_matches": true,
+          "status_passed": true
+        },
+        "complete": true,
+        "evidence": "benchmarks/pcdc_experiment5/report.json",
+        "requirement": "Experiment 5 current and passing"
+      }
+    ],
+    "phase6_layers": [
+      {
+        "complete": true,
+        "evidence": "hidden geometry cannot repair wrong visible ownership",
+        "requirement": "visible support is frozen before hidden completion"
+      },
+      {
+        "complete": true,
+        "evidence": "cycle alternatives are explicitly solved",
+        "requirement": "bounded top-layer cues and acyclic layer DAG"
+      },
+      {
+        "complete": true,
+        "evidence": "K<=3 ordered stack is represented as one exact-cover column",
+        "requirement": "opaque or bounded ordered translucent ownership"
+      }
+    ],
+    "phase7_continuous_refinement": [
+      {
+        "complete": true,
+        "evidence": "one sparse CMIR graph binds curve/G1-G2/interface, shape, stroke, text, appearance and repeat variables to exact production delivery; runtime immutable re-key and court transaction are mandatory",
+        "requirement": "common sparse group optimizer"
+      },
+      {
+        "complete": true,
+        "evidence": "continuous edits commit only after exact production rerender",
+        "requirement": "exact rerender and certificate rollback"
+      }
+    ],
+    "phase8_design_abstraction": [
+      {
+        "complete": true,
+        "evidence": "only certified-equivalent programs are rewritten",
+        "requirement": "guarded post-selection e-graph"
+      },
+      {
+        "complete": true,
+        "evidence": "all adapters exist; Phase-12 semantic parity is still unmeasured",
+        "requirement": "DPIR/XIR reaches SVG, EPS, PDF, DXF and PNG adapters"
+      }
+    ]
+  },
+  "schema": "pcdc-plan-traceability/v2"
+}

@@ -1,0 +1,918 @@
+{
+  "schema": 7,
+  "complete": true,
+  "scanned": 55,
+  "accepted_count": 4,
+  "accepted_names": [
+    "challenge_053",
+    "problem_114_bank",
+    "vai_icon_group_4_20",
+    "vai_icon_group_3_3"
+  ],
+  "deltas_candidate_minus_baseline": {
+    "wobble": {
+      "median": -6.8949,
+      "min": -1488.1804,
+      "max": -2.2630999999999997
+    },
+    "g2_steps": {
+      "median": -0.009800000000000031,
+      "min": -0.1727,
+      "max": 0.06190000000000001
+    },
+    "kinks_per_100px": {
+      "median": -0.867,
+      "min": -16.737,
+      "max": -0.2140000000000004
+    },
+    "micro_segs": {
+      "median": -29.0,
+      "min": -120.0,
+      "max": 1.0
+    },
+    "roundness": {
+      "median": 0.00020999999999999838,
+      "min": -0.0037100000000000015,
+      "max": 0.002890000000000002
+    },
+    "mae": {
+      "median": -0.3100000000000005,
+      "min": -1.7100000000000009,
+      "max": -0.17999999999999972
+    },
+    "ink_iou": {
+      "median": 0.0040999999999999925,
+      "min": 0.0030999999999999917,
+      "max": 0.016800000000000037
+    },
+    "ssim": {
+      "median": 0.010800000000000032,
+      "min": 0.0028000000000000247,
+      "max": 0.03759999999999997
+    },
+    "seam_px": {
+      "median": 0.0,
+      "min": -15.940000000000001,
+      "max": 2.81
+    },
+    "boundary_f": {
+      "median": 0.0023000000000000798,
+      "min": -0.0020000000000000018,
+      "max": 0.0025999999999999357
+    },
+    "hausdorff95": {
+      "median": 0.0,
+      "min": -0.42999999999999994,
+      "max": 0.0
+    },
+    "region_de2000_p95": {
+      "median": 0.3055999999999983,
+      "min": -43.7779,
+      "max": 3.9941999999999993
+    },
+    "de_region_max": {
+      "median": -2.468399999999999,
+      "min": -5.228099999999998,
+      "max": 9.474200000000003
+    }
+  },
+  "damaging": [],
+  "verdict": "PROMOTE",
+  "rows": [
+    {
+      "name": "challenge_027",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\eval\\crops\\item027.png",
+      "accepted": []
+    },
+    {
+      "name": "challenge_043",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\eval\\crops\\item043.png",
+      "accepted": []
+    },
+    {
+      "name": "challenge_053",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\eval\\crops\\item053.png",
+      "accepted": [
+        {
+          "box": 0,
+          "accepted": true,
+          "bbox": [
+            8.0,
+            9.0,
+            43.5,
+            26.0
+          ],
+          "reference_cc": 5,
+          "reference_holes": 2,
+          "baseline_cc": 10,
+          "baseline_holes": 0,
+          "candidate_holes": 3,
+          "baseline_iou": 0.3074,
+          "candidate_iou": 0.7714,
+          "threshold": 0.6,
+          "counter_word": false,
+          "ink_anchor": 1,
+          "surround_anchor": 0
+        }
+      ],
+      "baseline": {
+        "wobble": 2.8951,
+        "g2_steps": 0.4067,
+        "kinks_per_100px": 7.299,
+        "staircase_runs": 0,
+        "micro_segs": 143,
+        "total_len": 1068.7,
+        "segments": 403,
+        "roundness": 0.01624,
+        "circles": 4,
+        "mae": 14.88,
+        "rmse": 28.02,
+        "ink_iou": 0.8837,
+        "ssim": 0.7988,
+        "seam_px": 1.94,
+        "mirror_iou": 0.4391,
+        "region_de2000_p95": 26.511,
+        "de_region_max": 44.3138,
+        "color_regions": 64,
+        "source_rot90_iou": 0.338,
+        "rot90_iou": 0.3176,
+        "rot90_sym_break": 0.0203,
+        "boundary_f": 0.9741,
+        "hausdorff95": 1.8
+      },
+      "candidate": {
+        "wobble": 0.632,
+        "g2_steps": 0.3969,
+        "kinks_per_100px": 7.085,
+        "staircase_runs": 2,
+        "micro_segs": 84,
+        "total_len": 1086.8,
+        "segments": 448,
+        "roundness": 0.01253,
+        "circles": 3,
+        "mae": 14.28,
+        "rmse": 26.81,
+        "ink_iou": 0.8874,
+        "ssim": 0.8096,
+        "seam_px": 4.75,
+        "mirror_iou": 0.4225,
+        "region_de2000_p95": 23.4395,
+        "de_region_max": 39.0857,
+        "color_regions": 64,
+        "source_rot90_iou": 0.338,
+        "rot90_iou": 0.3345,
+        "rot90_sym_break": 0.0035,
+        "boundary_f": 0.9764,
+        "hausdorff95": 1.37
+      },
+      "candidate_report": {
+        "input": "item053.png",
+        "pipeline": "geometry-first",
+        "extractor_used": "paper-hoshyari-regions",
+        "analysis_scale": 4,
+        "smoothing": "paper-regions",
+        "regions": 45,
+        "closed_contours": 76,
+        "rendered_primitive_count": 448,
+        "actual": {
+          "L": 312,
+          "Q": 0,
+          "C": 136
+        },
+        "templates": {
+          "paper-regions": 63,
+          "paper-regions-court": 1,
+          "glyph-coverage-rdp": 12
+        },
+        "threshold": 0.0,
+        "glyph_repair": [
+          {
+            "box": 0,
+            "accepted": true,
+            "bbox": [
+              8.333,
+              9.667,
+              42.333,
+              26.0
+            ],
+            "reference_cc": 5,
+            "reference_holes": 2,
+            "baseline_cc": 10,
+            "baseline_holes": 0,
+            "candidate_holes": 3,
+            "baseline_iou": 0.2903,
+            "candidate_iou": 0.7715,
+            "threshold": 0.6,
+            "counter_word": false,
+            "ink_anchor": 1,
+            "surround_anchor": 0
+          },
+          {
+            "box": 1,
+            "accepted": false,
+            "reason": "no-topology-deficit",
+            "reference_cc": 5,
+            "baseline_cc": 5,
+            "baseline_iou": 0.7714
+          }
+        ],
+        "corner_detector": {
+          "type": "resolution-density-hybrid-cnn",
+          "small_model": "corner_cnn.pt",
+          "small_threshold": 0.28,
+          "large_model": "corner_cnn_hybrid_large_v1.pt",
+          "large_threshold": 0.36,
+          "small_extent_max": 4.0,
+          "small_density_min": 8.0
+        },
+        "route_arbiter": {
+          "mae_deblur": 13.83,
+          "mae_native": 17.39,
+          "bf_deblur": 0.9659,
+          "bf_native": 0.9465,
+          "kink_deblur": 19.92,
+          "kink_native": 14.39,
+          "winner": "deblur"
+        },
+        "kink_energy": 19.916
+      }
+    },
+    {
+      "name": "challenge_081",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\eval\\crops\\item081.png",
+      "accepted": []
+    },
+    {
+      "name": "problem_114_bank",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\114_icon_group_4_80_src.png",
+      "accepted": [
+        {
+          "box": 0,
+          "accepted": true,
+          "bbox": [
+            5.0,
+            5.0,
+            105.0,
+            15.0
+          ],
+          "reference_cc": 6,
+          "reference_holes": 10,
+          "baseline_cc": 6,
+          "baseline_holes": 11,
+          "candidate_holes": 10,
+          "baseline_iou": 0.9317,
+          "candidate_iou": 1.0,
+          "threshold": -2.0,
+          "counter_word": true,
+          "ink_anchor": 1,
+          "surround_anchor": 0
+        }
+      ],
+      "baseline": {
+        "wobble": 1488.1804,
+        "g2_steps": 0.1727,
+        "kinks_per_100px": 16.892,
+        "staircase_runs": 1,
+        "micro_segs": 144,
+        "total_len": 467.7,
+        "segments": 374,
+        "roundness": null,
+        "circles": 0,
+        "mae": 11.33,
+        "rmse": 37.58,
+        "ink_iou": 0.7743,
+        "ssim": 0.8578,
+        "seam_px": 0.0,
+        "mirror_iou": 0.7438,
+        "region_de2000_p95": 67.0429,
+        "de_region_max": 19.9532,
+        "color_regions": 6,
+        "source_rot90_iou": 0.0455,
+        "rot90_iou": 0.047,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.95
+      },
+      "candidate": {
+        "wobble": 0.0,
+        "g2_steps": 0.0,
+        "kinks_per_100px": 0.155,
+        "staircase_runs": 0,
+        "micro_segs": 24,
+        "total_len": 1289.1,
+        "segments": 528,
+        "roundness": 0.03872,
+        "circles": 2,
+        "mae": 9.62,
+        "rmse": 37.6,
+        "ink_iou": 0.7774,
+        "ssim": 0.8954,
+        "seam_px": 0.0,
+        "mirror_iou": 0.6687,
+        "region_de2000_p95": 23.265,
+        "de_region_max": 17.4848,
+        "color_regions": 6,
+        "source_rot90_iou": 0.0455,
+        "rot90_iou": 0.0545,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 0.998,
+        "hausdorff95": 0.95
+      },
+      "candidate_report": {
+        "input": "114_icon_group_4_80_src.png",
+        "pipeline": "geometry-first",
+        "extractor_used": "paper-hoshyari-regions-isolated",
+        "analysis_scale": 4,
+        "smoothing": "paper-regions",
+        "regions": 36,
+        "closed_contours": 42,
+        "rendered_primitive_count": 528,
+        "actual": {
+          "L": 528,
+          "Q": 0,
+          "C": 0
+        },
+        "templates": {
+          "glyph-coverage-counter-rdp": 18,
+          "glyph-coverage-native-tiny": 2,
+          "glyph-coverage-counter-bridge": 2,
+          "glyph-coverage-counter": 10,
+          "glyph-coverage-separator": 10
+        },
+        "threshold": 0.0,
+        "glyph_repair": [
+          {
+            "box": 0,
+            "accepted": true,
+            "bbox": [
+              4.667,
+              4.667,
+              105.333,
+              15.333
+            ],
+            "reference_cc": 6,
+            "reference_holes": 10,
+            "baseline_cc": 6,
+            "baseline_holes": 11,
+            "candidate_holes": 10,
+            "baseline_iou": 0.9298,
+            "candidate_iou": 1.0,
+            "threshold": -2.0,
+            "counter_word": true,
+            "ink_anchor": 1,
+            "surround_anchor": 0
+          },
+          {
+            "box": 1,
+            "accepted": true,
+            "bbox": [
+              5.0,
+              5.0,
+              105.0,
+              15.0
+            ],
+            "reference_cc": 6,
+            "reference_holes": 10,
+            "baseline_cc": 6,
+            "baseline_holes": 10,
+            "candidate_holes": 10,
+            "baseline_iou": 0.9935,
+            "candidate_iou": 1.0,
+            "threshold": -2.0,
+            "counter_word": true,
+            "ink_anchor": 1,
+            "surround_anchor": 0
+          }
+        ],
+        "corner_detector": {
+          "type": "resolution-density-hybrid-cnn",
+          "small_model": "corner_cnn.pt",
+          "small_threshold": 0.28,
+          "large_model": "corner_cnn_hybrid_large_v1.pt",
+          "large_threshold": 0.36,
+          "small_extent_max": 4.0,
+          "small_density_min": 8.0
+        },
+        "kink_energy": 40.649
+      }
+    },
+    {
+      "name": "vai_egtdigitalgames_512",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\7_egtdigitalgames_512_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_62",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\94_icon_group_4_62_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_54",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\85_icon_group_4_54_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_75",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\108_icon_group_4_75_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_20",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\48_icon_group_4_20_src.png",
+      "accepted": [
+        {
+          "box": 3,
+          "accepted": true,
+          "bbox": [
+            21.0,
+            12.0,
+            38.0,
+            21.0
+          ],
+          "reference_cc": 3,
+          "reference_holes": 0,
+          "baseline_cc": 4,
+          "baseline_holes": 0,
+          "candidate_holes": 0,
+          "baseline_iou": 0.5196,
+          "candidate_iou": 0.8765,
+          "threshold": 0.65,
+          "counter_word": false,
+          "ink_anchor": 2,
+          "surround_anchor": 3
+        }
+      ],
+      "baseline": {
+        "wobble": 1035.1675,
+        "g2_steps": 0.4185,
+        "kinks_per_100px": 9.087,
+        "staircase_runs": 3,
+        "micro_segs": 173,
+        "total_len": 2751.3,
+        "segments": 1284,
+        "roundness": 0.01512,
+        "circles": 6,
+        "mae": 14.5,
+        "rmse": 33.44,
+        "ink_iou": 0.8439,
+        "ssim": 0.7443,
+        "seam_px": 37.06,
+        "mirror_iou": 0.6748,
+        "region_de2000_p95": 44.2271,
+        "de_region_max": 62.3992,
+        "color_regions": 91,
+        "source_rot90_iou": 0.5999,
+        "rot90_iou": 0.5084,
+        "rot90_sym_break": 0.0915,
+        "boundary_f": 0.9806,
+        "hausdorff95": 0.98
+      },
+      "candidate": {
+        "wobble": 0.9438,
+        "g2_steps": 0.3711,
+        "kinks_per_100px": 7.643,
+        "staircase_runs": 1,
+        "micro_segs": 144,
+        "total_len": 2839.2,
+        "segments": 1301,
+        "roundness": 0.01801,
+        "circles": 10,
+        "mae": 14.32,
+        "rmse": 32.91,
+        "ink_iou": 0.8607,
+        "ssim": 0.7471,
+        "seam_px": 21.12,
+        "mirror_iou": 0.6853,
+        "region_de2000_p95": 48.2213,
+        "de_region_max": 71.8734,
+        "color_regions": 91,
+        "source_rot90_iou": 0.5999,
+        "rot90_iou": 0.5225,
+        "rot90_sym_break": 0.0774,
+        "boundary_f": 0.9832,
+        "hausdorff95": 0.95
+      },
+      "candidate_report": {
+        "input": "48_icon_group_4_20_src.png",
+        "pipeline": "geometry-first",
+        "extractor_used": "paper-hoshyari-regions",
+        "analysis_scale": 4,
+        "smoothing": "paper-regions",
+        "regions": 160,
+        "closed_contours": 212,
+        "rendered_primitive_count": 1295,
+        "actual": {
+          "L": 844,
+          "Q": 0,
+          "C": 451
+        },
+        "templates": {
+          "paper-regions": 209,
+          "glyph-coverage-rdp": 3
+        },
+        "threshold": 0.0,
+        "glyph_repair": [
+          {
+            "box": 3,
+            "accepted": true,
+            "bbox": [
+              21.0,
+              12.0,
+              38.0,
+              21.0
+            ],
+            "reference_cc": 3,
+            "reference_holes": 0,
+            "baseline_cc": 4,
+            "baseline_holes": 0,
+            "candidate_holes": 0,
+            "baseline_iou": 0.5196,
+            "candidate_iou": 0.8765,
+            "threshold": 0.65,
+            "counter_word": false,
+            "ink_anchor": 2,
+            "surround_anchor": 3
+          }
+        ],
+        "corner_detector": {
+          "type": "resolution-density-hybrid-cnn",
+          "small_model": "corner_cnn.pt",
+          "small_threshold": 0.28,
+          "large_model": "corner_cnn_hybrid_large_v1.pt",
+          "large_threshold": 0.36,
+          "small_extent_max": 4.0,
+          "small_density_min": 8.0
+        },
+        "kink_energy": 24.081
+      }
+    },
+    {
+      "name": "vai_icon_group_4_7",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\102_icon_group_4_7_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_55",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\86_icon_group_4_55_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_2",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\47_icon_group_4_2_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_eyecon_512",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\8_eyecon_512_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_3_10",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\24_icon_group_3_10_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_your_logo",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\128_your_logo_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_66",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\98_icon_group_4_66_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_44",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\74_icon_group_4_44_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_58",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\89_icon_group_4_58_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_63",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\95_icon_group_4_63_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_5",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\116_icon_group_5_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_17",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\44_icon_group_4_17_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_16",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\43_icon_group_4_16_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_73",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\106_icon_group_4_73_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_24",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\52_icon_group_4_24_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_77",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\110_icon_group_4_77_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_7",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\118_icon_group_7_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_33",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\62_icon_group_4_33_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_plankgaming_512",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\123_plankgaming_512_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_betsoft_512",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\5_betsoft_512_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_18",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\45_icon_group_4_18_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_22",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\50_icon_group_4_22_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_65",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\97_icon_group_4_65_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_SYNTH_SHEET",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\2_SYNTH_SHEET_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_3_2",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\27_icon_group_3_2_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_1",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\13_icon_group_1_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_6",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\117_icon_group_6_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_47",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\77_icon_group_4_47_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_red7slots_512",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\126_red7slots_512_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_13",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\40_icon_group_4_13_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_2_1",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\16_icon_group_2_1_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\35_icon_group_4_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_50",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\81_icon_group_4_50_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_41",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\71_icon_group_4_41_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_4",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\69_icon_group_4_4_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_52",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\83_icon_group_4_52_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_61",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\93_icon_group_4_61_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_34",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\63_icon_group_4_34_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_2_5",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\20_icon_group_2_5_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_78",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\111_icon_group_4_78_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_platipus_512",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\124_platipus_512_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_3_3",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\28_icon_group_3_3_src.png",
+      "accepted": [
+        {
+          "box": 8,
+          "accepted": true,
+          "bbox": [
+            108.0,
+            71.75,
+            152.0,
+            83.25
+          ],
+          "reference_cc": 10,
+          "reference_holes": 0,
+          "baseline_cc": 12,
+          "baseline_holes": 0,
+          "candidate_holes": 0,
+          "baseline_iou": 0.6223,
+          "candidate_iou": 0.8936,
+          "threshold": 0.4,
+          "counter_word": false,
+          "ink_anchor": 4,
+          "surround_anchor": 0
+        }
+      ],
+      "baseline": {
+        "wobble": 8.0434,
+        "g2_steps": 0.2893,
+        "kinks_per_100px": 7.549,
+        "staircase_runs": 1,
+        "micro_segs": 96,
+        "total_len": 2464.0,
+        "segments": 879,
+        "roundness": 0.0206,
+        "circles": 16,
+        "mae": 9.55,
+        "rmse": 23.34,
+        "ink_iou": 0.8132,
+        "ssim": 0.8647,
+        "seam_px": 1.88,
+        "mirror_iou": 0.4318,
+        "region_de2000_p95": 29.2481,
+        "de_region_max": 42.3375,
+        "color_regions": 130,
+        "source_rot90_iou": 0.1547,
+        "rot90_iou": 0.1404,
+        "rot90_sym_break": 0.0143,
+        "boundary_f": 0.981,
+        "hausdorff95": 0.95
+      },
+      "candidate": {
+        "wobble": 1.1485,
+        "g2_steps": 0.3512,
+        "kinks_per_100px": 6.682,
+        "staircase_runs": 0,
+        "micro_segs": 97,
+        "total_len": 2439.5,
+        "segments": 889,
+        "roundness": 0.02081,
+        "circles": 10,
+        "mae": 9.24,
+        "rmse": 22.3,
+        "ink_iou": 0.8173,
+        "ssim": 0.8731,
+        "seam_px": 1.88,
+        "mirror_iou": 0.4305,
+        "region_de2000_p95": 29.5537,
+        "de_region_max": 38.6265,
+        "color_regions": 130,
+        "source_rot90_iou": 0.1547,
+        "rot90_iou": 0.1358,
+        "rot90_sym_break": 0.0189,
+        "boundary_f": 0.9809,
+        "hausdorff95": 0.95
+      },
+      "candidate_report": {
+        "input": "28_icon_group_3_3_src.png",
+        "pipeline": "geometry-first",
+        "extractor_used": "paper-hoshyari-regions",
+        "analysis_scale": 4,
+        "smoothing": "paper-regions",
+        "regions": 121,
+        "closed_contours": 140,
+        "rendered_primitive_count": 885,
+        "actual": {
+          "L": 499,
+          "Q": 0,
+          "C": 386
+        },
+        "templates": {
+          "paper-regions": 126,
+          "paper-regions-court": 4,
+          "glyph-coverage-rdp": 10
+        },
+        "threshold": 0.0,
+        "glyph_repair": [
+          {
+            "box": 2,
+            "accepted": false,
+            "reason": "ambiguous-large-holeless-triplet",
+            "reference_cc": 3,
+            "baseline_cc": 6,
+            "candidate_native_area": 47.188
+          },
+          {
+            "box": 8,
+            "accepted": false,
+            "reason": "non-idealizable-complexity",
+            "reference_cc": 5,
+            "baseline_cc": 7,
+            "rdp_max": 15,
+            "rdp_mean": 11.167
+          },
+          {
+            "box": 9,
+            "accepted": true,
+            "bbox": [
+              108.0,
+              71.75,
+              152.0,
+              83.25
+            ],
+            "reference_cc": 10,
+            "reference_holes": 0,
+            "baseline_cc": 12,
+            "baseline_holes": 0,
+            "candidate_holes": 0,
+            "baseline_iou": 0.6223,
+            "candidate_iou": 0.8936,
+            "threshold": 0.4,
+            "counter_word": false,
+            "ink_anchor": 4,
+            "surround_anchor": 0
+          }
+        ],
+        "corner_detector": {
+          "type": "resolution-density-hybrid-cnn",
+          "small_model": "corner_cnn.pt",
+          "small_threshold": 0.28,
+          "large_model": "corner_cnn_hybrid_large_v1.pt",
+          "large_threshold": 0.36,
+          "small_extent_max": 4.0,
+          "small_density_min": 8.0
+        },
+        "kink_energy": 24.151
+      }
+    },
+    {
+      "name": "vai_icon_group_4_1",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\36_icon_group_4_1_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group_4_70",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\103_icon_group_4_70_src.png",
+      "accepted": []
+    },
+    {
+      "name": "vai_icon_group",
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\12_icon_group_src.png",
+      "accepted": []
+    }
+  ]
+}

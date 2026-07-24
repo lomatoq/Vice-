@@ -1,0 +1,39 @@
+{
+  "input": "logos-concourse_2__q60.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 4,
+  "closed_contours": 4,
+  "rendered_primitive_count": 57,
+  "actual": {
+    "L": 8,
+    "Q": 0,
+    "C": 49
+  },
+  "templates": {
+    "paper-joint": 3,
+    "tiny-circle": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 4.25,
+    "mae_native": 4.34,
+    "bf_deblur": 0.9841,
+    "bf_native": 0.9737,
+    "kink_deblur": 2.01,
+    "kink_native": 5.69,
+    "winner": "deblur"
+  },
+  "kink_energy": 2.008
+}

@@ -1,0 +1,39 @@
+{
+  "input": "jelly_2__q45.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 1,
+  "smoothing": "paper-regions",
+  "regions": 36,
+  "closed_contours": 40,
+  "rendered_primitive_count": 364,
+  "actual": {
+    "L": 179,
+    "Q": 0,
+    "C": 185
+  },
+  "templates": {
+    "paper-regions": 40,
+    "stroke": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 8.47,
+    "mae_native": 9.51,
+    "bf_deblur": 0.9194,
+    "bf_native": 0.9158,
+    "kink_deblur": 4.67,
+    "kink_native": 2.42,
+    "winner": "native"
+  },
+  "kink_energy": 4.666
+}

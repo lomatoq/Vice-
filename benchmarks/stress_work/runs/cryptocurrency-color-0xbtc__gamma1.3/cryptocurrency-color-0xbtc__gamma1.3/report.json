@@ -1,0 +1,38 @@
+{
+  "input": "cryptocurrency-color-0xbtc__gamma1.3.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 8,
+  "closed_contours": 11,
+  "rendered_primitive_count": 64,
+  "actual": {
+    "L": 18,
+    "Q": 0,
+    "C": 46
+  },
+  "templates": {
+    "paper-regions": 11
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 5.89,
+    "mae_native": 6.27,
+    "bf_deblur": 0.9793,
+    "bf_native": 0.9815,
+    "kink_deblur": 0.25,
+    "kink_native": 0.31,
+    "winner": "deblur"
+  },
+  "kink_energy": 0.246
+}

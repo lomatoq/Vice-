@@ -1,0 +1,846 @@
+{
+  "checks": {
+    "all_splits_nonempty": true,
+    "canonical_samples_per_split": 2048,
+    "degradation_target_distinct": true,
+    "deterministic_sample": true,
+    "family_splits_disjoint": true,
+    "finite_forward": true,
+    "finite_gradients": true,
+    "finite_optimizer_step": true,
+    "license_manifest_valid": true
+  },
+  "compiler_source_sha256": "96a4e83667675cb8c5df49f1cdd867c3c95fd258a31e806161c44c724238edf8",
+  "contract": {
+    "compiler_source_sha256": "96a4e83667675cb8c5df49f1cdd867c3c95fd258a31e806161c44c724238edf8",
+    "config": {
+      "base_channels": 24,
+      "character_embedding_dim": 16,
+      "component_classes": 6,
+      "hole_classes": 5,
+      "image_size": 64,
+      "input_channels": 3,
+      "topology_embedding_dim": 8
+    },
+    "family_assignment": [
+      [
+        "akshar",
+        "train"
+      ],
+      [
+        "alegreya",
+        "train"
+      ],
+      [
+        "alexbrush",
+        "train"
+      ],
+      [
+        "allura",
+        "train"
+      ],
+      [
+        "anton",
+        "train"
+      ],
+      [
+        "archivo",
+        "test"
+      ],
+      [
+        "archivonarrow",
+        "train"
+      ],
+      [
+        "arvo",
+        "train"
+      ],
+      [
+        "audiowide",
+        "calibration"
+      ],
+      [
+        "bangers",
+        "train"
+      ],
+      [
+        "barlowcondensed",
+        "train"
+      ],
+      [
+        "bebasneue",
+        "train"
+      ],
+      [
+        "bigshouldersdisplay",
+        "train"
+      ],
+      [
+        "bitter",
+        "train"
+      ],
+      [
+        "blackopsone",
+        "train"
+      ],
+      [
+        "bodonimoda",
+        "train"
+      ],
+      [
+        "caveat",
+        "train"
+      ],
+      [
+        "changa",
+        "train"
+      ],
+      [
+        "cinzel",
+        "calibration"
+      ],
+      [
+        "comfortaa",
+        "train"
+      ],
+      [
+        "cookie",
+        "train"
+      ],
+      [
+        "cormorantgaramond",
+        "train"
+      ],
+      [
+        "courgette",
+        "train"
+      ],
+      [
+        "crimsonpro",
+        "train"
+      ],
+      [
+        "dancingscript",
+        "train"
+      ],
+      [
+        "dmserifdisplay",
+        "train"
+      ],
+      [
+        "ebgaramond",
+        "train"
+      ],
+      [
+        "electrolize",
+        "train"
+      ],
+      [
+        "exo2",
+        "calibration"
+      ],
+      [
+        "firacode",
+        "test"
+      ],
+      [
+        "firasans",
+        "train"
+      ],
+      [
+        "fraunces",
+        "train"
+      ],
+      [
+        "grandhotel",
+        "train"
+      ],
+      [
+        "greatvibes",
+        "train"
+      ],
+      [
+        "inter",
+        "train"
+      ],
+      [
+        "kaushanscript",
+        "train"
+      ],
+      [
+        "lato",
+        "test"
+      ],
+      [
+        "librebaskerville",
+        "train"
+      ],
+      [
+        "lobster",
+        "test"
+      ],
+      [
+        "lora",
+        "train"
+      ],
+      [
+        "manrope",
+        "train"
+      ],
+      [
+        "marckscript",
+        "train"
+      ],
+      [
+        "merriweather",
+        "calibration"
+      ],
+      [
+        "michroma",
+        "test"
+      ],
+      [
+        "montserrat",
+        "train"
+      ],
+      [
+        "nothingyoucoulddo",
+        "train"
+      ],
+      [
+        "notosans",
+        "train"
+      ],
+      [
+        "notoserif",
+        "train"
+      ],
+      [
+        "notoserifdisplay",
+        "train"
+      ],
+      [
+        "nunito",
+        "train"
+      ],
+      [
+        "opensans",
+        "train"
+      ],
+      [
+        "orbitron",
+        "calibration"
+      ],
+      [
+        "oswald",
+        "train"
+      ],
+      [
+        "oxanium",
+        "calibration"
+      ],
+      [
+        "pacifico",
+        "train"
+      ],
+      [
+        "parisienne",
+        "train"
+      ],
+      [
+        "playfairdisplay",
+        "train"
+      ],
+      [
+        "poppins",
+        "train"
+      ],
+      [
+        "ptsans",
+        "train"
+      ],
+      [
+        "ptserif",
+        "train"
+      ],
+      [
+        "quantico",
+        "train"
+      ],
+      [
+        "rajdhani",
+        "train"
+      ],
+      [
+        "raleway",
+        "test"
+      ],
+      [
+        "righteous",
+        "calibration"
+      ],
+      [
+        "roboto",
+        "train"
+      ],
+      [
+        "rubik",
+        "train"
+      ],
+      [
+        "russoone",
+        "train"
+      ],
+      [
+        "sacramento",
+        "train"
+      ],
+      [
+        "sairacondensed",
+        "test"
+      ],
+      [
+        "shadowsintolight",
+        "train"
+      ],
+      [
+        "sourcesans3",
+        "train"
+      ],
+      [
+        "sourceserif4",
+        "train"
+      ],
+      [
+        "spectral",
+        "train"
+      ],
+      [
+        "staatliches",
+        "train"
+      ],
+      [
+        "stardosstencil",
+        "train"
+      ],
+      [
+        "teko",
+        "train"
+      ],
+      [
+        "titilliumweb",
+        "calibration"
+      ],
+      [
+        "ubuntu",
+        "train"
+      ],
+      [
+        "unbounded",
+        "test"
+      ],
+      [
+        "worksans",
+        "train"
+      ],
+      [
+        "zillaslab",
+        "train"
+      ]
+    ],
+    "family_count": 81,
+    "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+    "font_count": 241,
+    "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+    "glyph_prior_source_sha256": "f1d5230d4dbfba71ae8a746b02d6c4eb0047c449b93784618dea58ccbfa6c462",
+    "topology_corruption_gate": {
+      "minimum_fraction": 0.65,
+      "minimum_hard_support_iou": 0.88,
+      "minimum_hard_topology_accuracy": 0.95,
+      "minimum_prior_hard_support_iou": 0.78,
+      "minimum_prior_hard_topology_accuracy": 0.88,
+      "minimum_prior_severe_support_iou": 0.7,
+      "minimum_prior_severe_topology_accuracy": 0.8,
+      "minimum_prior_support_iou": 0.82,
+      "minimum_prior_topology_accuracy": 0.9,
+      "minimum_severe_fraction": 0.18,
+      "minimum_severe_support_iou": 0.8,
+      "minimum_severe_topology_accuracy": 0.88
+    },
+    "training_topology_enrichment": {
+      "calibration_and_test_probability": 0.0,
+      "characters": "B8ij&@",
+      "probability": 0.25
+    }
+  },
+  "created_at": "2026-07-23T03:44:31.470523+00:00",
+  "data_audit": {
+    "calibration": {
+      "all_samples_unique": true,
+      "character_counts": {
+        "&": 31,
+        "0": 32,
+        "1": 25,
+        "2": 30,
+        "3": 29,
+        "4": 24,
+        "5": 37,
+        "6": 32,
+        "7": 32,
+        "8": 31,
+        "9": 34,
+        "@": 22,
+        "A": 27,
+        "B": 36,
+        "C": 31,
+        "D": 29,
+        "E": 30,
+        "F": 30,
+        "G": 32,
+        "H": 39,
+        "I": 43,
+        "J": 32,
+        "K": 38,
+        "L": 40,
+        "M": 33,
+        "N": 25,
+        "O": 29,
+        "P": 28,
+        "Q": 40,
+        "R": 37,
+        "S": 25,
+        "T": 40,
+        "U": 34,
+        "V": 31,
+        "W": 42,
+        "X": 40,
+        "Y": 28,
+        "Z": 40,
+        "a": 30,
+        "b": 34,
+        "c": 32,
+        "d": 35,
+        "e": 31,
+        "f": 32,
+        "g": 25,
+        "h": 32,
+        "i": 32,
+        "j": 36,
+        "k": 39,
+        "l": 37,
+        "m": 26,
+        "n": 27,
+        "o": 29,
+        "p": 22,
+        "q": 23,
+        "r": 29,
+        "s": 33,
+        "t": 34,
+        "u": 27,
+        "v": 36,
+        "w": 32,
+        "x": 39,
+        "y": 29,
+        "z": 29
+      },
+      "character_coverage": 1.0,
+      "corruption_profile_counts": {
+        "compound:counter-fill+spurious-island": 14,
+        "compound:counter-fill+stroke-break": 12,
+        "compound:counter-punch+counter-punch": 33,
+        "compound:counter-punch+spurious-island": 38,
+        "compound:counter-punch+stroke-break": 32,
+        "compound:spurious-island+counter-fill": 7,
+        "compound:spurious-island+counter-punch": 25,
+        "compound:spurious-island+spurious-island": 45,
+        "compound:spurious-island+stroke-break": 94,
+        "compound:stroke-break+counter-fill": 2,
+        "compound:stroke-break+counter-punch": 46,
+        "compound:stroke-break+spurious-island": 82,
+        "compound:stroke-break+stroke-break": 162,
+        "counter-fill": 27,
+        "counter-punch": 108,
+        "photometric-only": 281,
+        "sampling-topology": 676,
+        "spurious-island": 135,
+        "stroke-break": 229
+      },
+      "family_counts": {
+        "audiowide": 270,
+        "cinzel": 271,
+        "exo2": 274,
+        "merriweather": 234,
+        "orbitron": 250,
+        "oxanium": 268,
+        "righteous": 228,
+        "titilliumweb": 253
+      },
+      "family_coverage": 1.0,
+      "family_max_min_ratio": 1.2017543859649122,
+      "finite_bounded_shapes_and_labels": true,
+      "mean_degradation_delta": 0.1097966105398882,
+      "mean_topology_corruption_distance": 1.66455078125,
+      "samples": 2048,
+      "severe_topology_corruption_fraction": 0.50244140625,
+      "topology_corruption_fraction": 0.86279296875,
+      "topology_counts": {
+        "1:0": 1364,
+        "1:1": 482,
+        "1:2": 86,
+        "2:0": 109,
+        "2:1": 7
+      },
+      "unique_sample_digests": 2048
+    },
+    "test": {
+      "all_samples_unique": true,
+      "character_counts": {
+        "&": 29,
+        "0": 36,
+        "1": 30,
+        "2": 39,
+        "3": 32,
+        "4": 36,
+        "5": 27,
+        "6": 39,
+        "7": 25,
+        "8": 36,
+        "9": 32,
+        "@": 39,
+        "A": 30,
+        "B": 31,
+        "C": 36,
+        "D": 28,
+        "E": 31,
+        "F": 29,
+        "G": 33,
+        "H": 31,
+        "I": 33,
+        "J": 31,
+        "K": 22,
+        "L": 38,
+        "M": 31,
+        "N": 23,
+        "O": 23,
+        "P": 27,
+        "Q": 33,
+        "R": 27,
+        "S": 37,
+        "T": 29,
+        "U": 32,
+        "V": 34,
+        "W": 31,
+        "X": 26,
+        "Y": 42,
+        "Z": 32,
+        "a": 33,
+        "b": 41,
+        "c": 29,
+        "d": 39,
+        "e": 36,
+        "f": 34,
+        "g": 30,
+        "h": 37,
+        "i": 40,
+        "j": 35,
+        "k": 30,
+        "l": 36,
+        "m": 37,
+        "n": 33,
+        "o": 26,
+        "p": 34,
+        "q": 33,
+        "r": 30,
+        "s": 26,
+        "t": 31,
+        "u": 26,
+        "v": 35,
+        "w": 27,
+        "x": 24,
+        "y": 32,
+        "z": 34
+      },
+      "character_coverage": 1.0,
+      "corruption_profile_counts": {
+        "compound:counter-fill+counter-fill": 1,
+        "compound:counter-fill+spurious-island": 10,
+        "compound:counter-fill+stroke-break": 21,
+        "compound:counter-punch+counter-punch": 18,
+        "compound:counter-punch+spurious-island": 39,
+        "compound:counter-punch+stroke-break": 35,
+        "compound:spurious-island+counter-fill": 11,
+        "compound:spurious-island+counter-punch": 36,
+        "compound:spurious-island+spurious-island": 46,
+        "compound:spurious-island+stroke-break": 87,
+        "compound:stroke-break+counter-fill": 4,
+        "compound:stroke-break+counter-punch": 38,
+        "compound:stroke-break+spurious-island": 109,
+        "compound:stroke-break+stroke-break": 172,
+        "counter-fill": 26,
+        "counter-punch": 110,
+        "photometric-only": 281,
+        "sampling-topology": 659,
+        "spurious-island": 133,
+        "stroke-break": 212
+      },
+      "family_counts": {
+        "archivo": 263,
+        "firacode": 259,
+        "lato": 242,
+        "lobster": 272,
+        "michroma": 262,
+        "raleway": 254,
+        "sairacondensed": 243,
+        "unbounded": 253
+      },
+      "family_coverage": 1.0,
+      "family_max_min_ratio": 1.1239669421487604,
+      "finite_bounded_shapes_and_labels": true,
+      "mean_degradation_delta": 0.1100788469748295,
+      "mean_topology_corruption_distance": 1.75634765625,
+      "samples": 2048,
+      "severe_topology_corruption_fraction": 0.50048828125,
+      "topology_corruption_fraction": 0.86279296875,
+      "topology_counts": {
+        "1:0": 1267,
+        "1:1": 607,
+        "1:2": 88,
+        "1:3": 2,
+        "2:0": 73,
+        "2:1": 8,
+        "5:0": 3
+      },
+      "unique_sample_digests": 2048
+    },
+    "train": {
+      "all_samples_unique": true,
+      "character_counts": {
+        "&": 143,
+        "0": 30,
+        "1": 23,
+        "2": 29,
+        "3": 33,
+        "4": 19,
+        "5": 22,
+        "6": 19,
+        "7": 29,
+        "8": 102,
+        "9": 22,
+        "@": 114,
+        "A": 26,
+        "B": 101,
+        "C": 20,
+        "D": 24,
+        "E": 19,
+        "F": 25,
+        "G": 22,
+        "H": 24,
+        "I": 23,
+        "J": 27,
+        "K": 30,
+        "L": 33,
+        "M": 27,
+        "N": 19,
+        "O": 23,
+        "P": 19,
+        "Q": 15,
+        "R": 24,
+        "S": 35,
+        "T": 16,
+        "U": 21,
+        "V": 20,
+        "W": 21,
+        "X": 23,
+        "Y": 12,
+        "Z": 34,
+        "a": 28,
+        "b": 27,
+        "c": 21,
+        "d": 23,
+        "e": 27,
+        "f": 17,
+        "g": 33,
+        "h": 22,
+        "i": 126,
+        "j": 104,
+        "k": 22,
+        "l": 16,
+        "m": 25,
+        "n": 26,
+        "o": 25,
+        "p": 23,
+        "q": 23,
+        "r": 20,
+        "s": 18,
+        "t": 19,
+        "u": 23,
+        "v": 20,
+        "w": 19,
+        "x": 27,
+        "y": 20,
+        "z": 26
+      },
+      "character_coverage": 1.0,
+      "corruption_profile_counts": {
+        "compound:counter-fill+spurious-island": 17,
+        "compound:counter-fill+stroke-break": 18,
+        "compound:counter-punch+counter-punch": 16,
+        "compound:counter-punch+spurious-island": 17,
+        "compound:counter-punch+stroke-break": 20,
+        "compound:spurious-island+counter-fill": 14,
+        "compound:spurious-island+counter-punch": 29,
+        "compound:spurious-island+spurious-island": 44,
+        "compound:spurious-island+stroke-break": 74,
+        "compound:stroke-break+counter-fill": 3,
+        "compound:stroke-break+counter-punch": 28,
+        "compound:stroke-break+spurious-island": 74,
+        "compound:stroke-break+stroke-break": 143,
+        "counter-fill": 30,
+        "counter-punch": 70,
+        "photometric-only": 223,
+        "sampling-topology": 954,
+        "spurious-island": 117,
+        "stroke-break": 157
+      },
+      "family_counts": {
+        "akshar": 44,
+        "alegreya": 31,
+        "alexbrush": 29,
+        "allura": 34,
+        "anton": 32,
+        "archivonarrow": 30,
+        "arvo": 36,
+        "bangers": 36,
+        "barlowcondensed": 22,
+        "bebasneue": 28,
+        "bigshouldersdisplay": 29,
+        "bitter": 36,
+        "blackopsone": 36,
+        "bodonimoda": 38,
+        "caveat": 28,
+        "changa": 24,
+        "comfortaa": 32,
+        "cookie": 24,
+        "cormorantgaramond": 46,
+        "courgette": 39,
+        "crimsonpro": 31,
+        "dancingscript": 37,
+        "dmserifdisplay": 23,
+        "ebgaramond": 31,
+        "electrolize": 33,
+        "firasans": 31,
+        "fraunces": 26,
+        "grandhotel": 26,
+        "greatvibes": 26,
+        "inter": 27,
+        "kaushanscript": 43,
+        "librebaskerville": 39,
+        "lora": 38,
+        "manrope": 44,
+        "marckscript": 25,
+        "montserrat": 40,
+        "nothingyoucoulddo": 40,
+        "notosans": 24,
+        "notoserif": 32,
+        "notoserifdisplay": 27,
+        "nunito": 29,
+        "opensans": 28,
+        "oswald": 36,
+        "pacifico": 34,
+        "parisienne": 31,
+        "playfairdisplay": 22,
+        "poppins": 34,
+        "ptsans": 21,
+        "ptserif": 27,
+        "quantico": 27,
+        "rajdhani": 27,
+        "roboto": 37,
+        "rubik": 30,
+        "russoone": 41,
+        "sacramento": 31,
+        "shadowsintolight": 35,
+        "sourcesans3": 31,
+        "sourceserif4": 32,
+        "spectral": 24,
+        "staatliches": 22,
+        "stardosstencil": 26,
+        "teko": 36,
+        "ubuntu": 31,
+        "worksans": 25,
+        "zillaslab": 34
+      },
+      "family_coverage": 1.0,
+      "family_max_min_ratio": 2.1904761904761907,
+      "finite_bounded_shapes_and_labels": true,
+      "mean_degradation_delta": 0.10581971779993182,
+      "mean_topology_corruption_distance": 1.94970703125,
+      "samples": 2048,
+      "severe_topology_corruption_fraction": 0.5673828125,
+      "topology_corruption_fraction": 0.89111328125,
+      "topology_counts": {
+        "1:0": 890,
+        "1:1": 535,
+        "1:2": 300,
+        "1:3": 6,
+        "2:0": 244,
+        "2:1": 20,
+        "2:2": 5,
+        "2:3": 4,
+        "2:4": 1,
+        "3:0": 32,
+        "3:1": 1,
+        "3:2": 1,
+        "4:0": 5,
+        "4:2": 1,
+        "5:0": 1,
+        "5:1": 2
+      },
+      "unique_sample_digests": 2048
+    }
+  },
+  "gate_pass": true,
+  "native_runtime_identity": {
+    "artifacts": {
+      "native/pcdc_native_core/Cargo.toml": {
+        "bytes": 179,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\Cargo.toml",
+        "sha256": "402328feedee55c35179e36149b59c67d974311d1310acebddc5e8ed9e47fee9"
+      },
+      "native/pcdc_native_core/src/lib.rs": {
+        "bytes": 3571,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\src\\lib.rs",
+        "sha256": "0161904eeeaa179fa7d974dd4da289d5d39f0fd3e0643cc35cc296552af35151"
+      },
+      "native/pcdc_native_core/target/release/pcdc_native_core.dll": {
+        "bytes": 94720,
+        "exists": true,
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\native\\pcdc_native_core\\target\\release\\pcdc_native_core.dll",
+        "sha256": "3ec90775463ed6a18523f153494255f901f6f590f5d67d79ca9ab055f515a996"
+      }
+    },
+    "complete": true,
+    "schema": "pcdc-native-runtime-identity/v1",
+    "sha256": "7e27f9888767e2abf1744a29b514fbf92d9fdcb74c17327a74d6719971ce763c"
+  },
+  "reason": "preflight proves data/model mechanics only; full training still requires an explicitly supplied current hash-bound report",
+  "sample_sha256": "863d8559e50ab2c6a5844d1c9a51a33ef6bb1cf46f5ec91764b157ecf3517229",
+  "schema": "pcdc-glyph-prior-preflight/v1",
+  "split_family_counts": {
+    "calibration": 8,
+    "test": 8,
+    "train": 65
+  },
+  "split_font_counts": {
+    "calibration": 20,
+    "test": 35,
+    "train": 186
+  },
+  "status": "passed",
+  "tiny_step": {
+    "loss_after": 4.32947301864624,
+    "loss_before": 6.928404808044434
+  },
+  "training_authorized": false
+}

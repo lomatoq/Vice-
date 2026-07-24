@@ -1,0 +1,362 @@
+{
+ "mode": "scene",
+ "rows": [
+  {
+   "stem": "icon_group_1",
+   "conditions": {
+    "scale": "medium",
+    "layout": "compact",
+    "source_format": "png"
+   },
+   "fallback_loops": 0,
+   "prims": 248,
+   "secs": 0.0,
+   "ours": {
+    "wobble": 0.1363,
+    "g2_steps": 0.0,
+    "kinks_per_100px": 1.487,
+    "kink_cvar10_deg": 22.2201,
+    "detail_cvar10": 0.58007,
+    "staircase_runs": 36,
+    "micro_segs": 23,
+    "total_len": 6790.2,
+    "segments": 2125,
+    "roundness": 0.01346,
+    "circles": 26,
+    "mae": 7.74,
+    "rmse": 24.74,
+    "ink_iou": 0.9793,
+    "ssim": 0.9027,
+    "seam_px": 192.5,
+    "mirror_iou": 0.9405,
+    "region_de2000_p95": 2.1997,
+    "de_region_max": 41.1456,
+    "color_regions": 23,
+    "source_rot90_iou": 0.5696,
+    "rot90_iou": 0.5642,
+    "rot90_sym_break": 0.0054,
+    "boundary_f": 0.962,
+    "hausdorff95": 1.91,
+    "local_de_max": 12.6411,
+    "local_de_x": 136,
+    "local_de_y": 208,
+    "local_de_window": [
+     32,
+     32
+    ],
+    "census_errors": 166,
+    "components_source": 23,
+    "components_render": 145,
+    "components_vanished": 14,
+    "components_fused": 0,
+    "components_added": 118,
+    "holes_lost": 1,
+    "holes_gained": 33,
+    "topology_levels_de": [
+     2.3,
+     4.6,
+     9.2,
+     18.4
+    ],
+    "source_betti_curve": [
+     [
+      27,
+      208
+     ],
+     [
+      84,
+      34
+     ],
+     [
+      20,
+      4
+     ],
+     [
+      11,
+      4
+     ]
+    ],
+    "render_betti_curve": [
+     [
+      11,
+      5
+     ],
+     [
+      11,
+      8
+     ],
+     [
+      11,
+      15
+     ],
+     [
+      11,
+      42
+     ]
+    ],
+    "persistent_beta0_error": 24.5,
+    "persistent_beta1_error": 69.5,
+    "persistent_components_lost": 24.5,
+    "persistent_holes_lost": 57.25,
+    "persistent_holes_gained": 12.25,
+    "any_counter_failure": true,
+    "catastrophic_locus_count": 50,
+    "catastrophic_locus_rate": 0.37479,
+    "worst_locus_severity": 18.0492,
+    "boundary_cvar10": 8.9755,
+    "boundary_p99": 12.7938,
+    "detail_de_cvar10": 24.5005,
+    "repeated_component_pairs": 10,
+    "equal_width_violation": 0.01479,
+    "equal_height_violation": 0.08386,
+    "repeated_radius_violation": 0.01501,
+    "equal_gap_violation": 0.0,
+    "group_regularity_violation": 0.08386
+   },
+   "vai": {
+    "wobble": 0.3903,
+    "g2_steps": 1.5362,
+    "kinks_per_100px": 0.51,
+    "staircase_runs": 0,
+    "micro_segs": 94,
+    "total_len": 2744.4,
+    "segments": 273,
+    "roundness": 0.02267,
+    "circles": 6,
+    "mae": 3.39,
+    "rmse": 7.31,
+    "ink_iou": 0.9931,
+    "ssim": 0.9706,
+    "seam_px": 0.0,
+    "mirror_iou": 0.9479,
+    "region_de2000_p95": 1.8983,
+    "de_region_max": 11.4407,
+    "color_regions": 23,
+    "source_rot90_iou": 0.5696,
+    "rot90_iou": 0.5659,
+    "rot90_sym_break": 0.0037,
+    "boundary_f": 0.9939,
+    "hausdorff95": 0.95
+   },
+   "src_mirror_iou": 0.9484
+  }
+ ],
+ "aggregate": {
+  "n": 1,
+  "wins": {
+   "staircase_runs": "0+0t/1",
+   "seam_px": "0+0t/1",
+   "wobble": "1+0t/1",
+   "g2_steps": "1+0t/1",
+   "kinks_per_100px": "0+0t/1",
+   "micro_segs": "1+0t/1",
+   "roundness": "1+0t/1",
+   "ink_iou": "0+0t/1",
+   "ssim": "0+0t/1",
+   "mae": "0+0t/1",
+   "boundary_f": "0+0t/1",
+   "hausdorff95": "0+0t/1",
+   "region_de2000_p95": "0+0t/1",
+   "de_region_max": "0+0t/1",
+   "rot90_sym_break": "0+0t/1"
+  },
+  "means": {
+   "staircase_runs": {
+    "ours": 36.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 192.5,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.1363,
+    "vai": 0.3903
+   },
+   "g2_steps": {
+    "ours": 0.0,
+    "vai": 1.5362
+   },
+   "kinks_per_100px": {
+    "ours": 1.487,
+    "vai": 0.51
+   },
+   "micro_segs": {
+    "ours": 23.0,
+    "vai": 94.0
+   },
+   "roundness": {
+    "ours": 0.0135,
+    "vai": 0.0227
+   },
+   "ink_iou": {
+    "ours": 0.9793,
+    "vai": 0.9931
+   },
+   "ssim": {
+    "ours": 0.9027,
+    "vai": 0.9706
+   },
+   "mae": {
+    "ours": 7.74,
+    "vai": 3.39
+   },
+   "boundary_f": {
+    "ours": 0.962,
+    "vai": 0.9939
+   },
+   "hausdorff95": {
+    "ours": 1.91,
+    "vai": 0.95
+   },
+   "region_de2000_p95": {
+    "ours": 2.1997,
+    "vai": 1.8983
+   },
+   "de_region_max": {
+    "ours": 41.1456,
+    "vai": 11.4407
+   },
+   "rot90_sym_break": {
+    "ours": 0.0054,
+    "vai": 0.0037
+   }
+  },
+  "tails": {
+   "staircase_runs": {
+    "ours_p95": 36.0,
+    "vai_p95": 0.0,
+    "ours_cvar10": 36.0,
+    "vai_cvar10": 0.0
+   },
+   "seam_px": {
+    "ours_p95": 192.5,
+    "vai_p95": 0.0,
+    "ours_cvar10": 192.5,
+    "vai_cvar10": 0.0
+   },
+   "wobble": {
+    "ours_p95": 0.1363,
+    "vai_p95": 0.3903,
+    "ours_cvar10": 0.1363,
+    "vai_cvar10": 0.3903
+   },
+   "g2_steps": {
+    "ours_p95": 0.0,
+    "vai_p95": 1.5362,
+    "ours_cvar10": 0.0,
+    "vai_cvar10": 1.5362
+   },
+   "kinks_per_100px": {
+    "ours_p95": 1.487,
+    "vai_p95": 0.51,
+    "ours_cvar10": 1.487,
+    "vai_cvar10": 0.51
+   },
+   "micro_segs": {
+    "ours_p95": 23.0,
+    "vai_p95": 94.0,
+    "ours_cvar10": 23.0,
+    "vai_cvar10": 94.0
+   },
+   "roundness": {
+    "ours_p95": 0.0135,
+    "vai_p95": 0.0227,
+    "ours_cvar10": 0.0135,
+    "vai_cvar10": 0.0227
+   },
+   "mae": {
+    "ours_p95": 7.74,
+    "vai_p95": 3.39,
+    "ours_cvar10": 7.74,
+    "vai_cvar10": 3.39
+   },
+   "hausdorff95": {
+    "ours_p95": 1.91,
+    "vai_p95": 0.95,
+    "ours_cvar10": 1.91,
+    "vai_cvar10": 0.95
+   },
+   "region_de2000_p95": {
+    "ours_p95": 2.1997,
+    "vai_p95": 1.8983,
+    "ours_cvar10": 2.1997,
+    "vai_cvar10": 1.8983
+   },
+   "de_region_max": {
+    "ours_p95": 41.1456,
+    "vai_p95": 11.4407,
+    "ours_cvar10": 41.1456,
+    "vai_cvar10": 11.4407
+   },
+   "rot90_sym_break": {
+    "ours_p95": 0.0054,
+    "vai_p95": 0.0037,
+    "ours_cvar10": 0.0054,
+    "vai_cvar10": 0.0037
+   }
+  },
+  "medians": {
+   "staircase_runs": {
+    "ours": 36.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 192.5,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.1363,
+    "vai": 0.3903
+   },
+   "g2_steps": {
+    "ours": 0.0,
+    "vai": 1.5362
+   },
+   "kinks_per_100px": {
+    "ours": 1.487,
+    "vai": 0.51
+   },
+   "micro_segs": {
+    "ours": 23.0,
+    "vai": 94.0
+   },
+   "roundness": {
+    "ours": 0.0135,
+    "vai": 0.0227
+   },
+   "ink_iou": {
+    "ours": 0.9793,
+    "vai": 0.9931
+   },
+   "ssim": {
+    "ours": 0.9027,
+    "vai": 0.9706
+   },
+   "mae": {
+    "ours": 7.74,
+    "vai": 3.39
+   },
+   "boundary_f": {
+    "ours": 0.962,
+    "vai": 0.9939
+   },
+   "hausdorff95": {
+    "ours": 1.91,
+    "vai": 0.95
+   },
+   "region_de2000_p95": {
+    "ours": 2.1997,
+    "vai": 1.8983
+   },
+   "de_region_max": {
+    "ours": 41.1456,
+    "vai": 11.4407
+   },
+   "rot90_sym_break": {
+    "ours": 0.0054,
+    "vai": 0.0037
+   }
+  }
+ }
+}

@@ -1,0 +1,36 @@
+{
+  "input": "goodtimesstudios_2__clean.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 33,
+  "closed_contours": 41,
+  "rendered_primitive_count": 449,
+  "actual": {
+    "L": 264,
+    "Q": 0,
+    "C": 185
+  },
+  "templates": {
+    "occlusion-rect": 1,
+    "paper-joint": 14,
+    "paper-tiny": 20,
+    "paper-joint-g1-fallback": 1,
+    "paper-tiny-ellipse": 1,
+    "stroke": 1,
+    "paper-smooth-g1-fallback": 1,
+    "paper-smooth": 3
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 13.782
+}

@@ -1,0 +1,72 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>V-ICE Chromium seam gate</title>
+<style>
+  body { margin: 20px; font: 14px system-ui; background: #eceff3; color: #172033; }
+  #samples { display: flex; align-items: flex-start; gap: 24px; }
+  figure { margin: 0; padding: 12px; background: white; border-radius: 10px; }
+  svg { display: block; background: white; image-rendering: auto; }
+  pre { padding: 12px; background: #121722; color: #cfe3ff; border-radius: 8px; }
+</style>
+<h1>Chromium SVG seam gate</h1>
+<div id="samples"></div>
+<pre id="result">running…</pre>
+<script>
+const scales = [0.5, 1, 2];
+
+function seamSvg(scale) {
+  const width = Math.round(60 * scale);
+  const height = Math.round(40 * scale);
+  return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 40"
+      width="${width}" height="${height}" data-scale="${scale}">
+    <path d="M30 5V35" fill="none" stroke="rgb(230,120,40)"
+      stroke-width="1" stroke-linecap="butt"/>
+    <path d="M5 5H30V35H5Z" fill="rgb(20,80,160)" fill-rule="evenodd"/>
+    <path d="M30 5H55V35H30Z" fill="rgb(230,120,40)" fill-rule="evenodd"/>
+  </svg>`;
+}
+
+async function inspect(scale) {
+  const markup = seamSvg(scale);
+  const figure = document.createElement("figure");
+  figure.innerHTML = `${markup}<figcaption>${scale}×</figcaption>`;
+  document.querySelector("#samples").append(figure);
+  const blob = new Blob([markup], {type: "image/svg+xml"});
+  const url = URL.createObjectURL(blob);
+  const image = new Image();
+  await new Promise((resolve, reject) => {
+    image.onload = resolve;
+    image.onerror = reject;
+    image.src = url;
+  });
+  const width = Math.round(60 * scale);
+  const height = Math.round(40 * scale);
+  const canvas = document.createElement("canvas");
+  canvas.width = width;
+  canvas.height = height;
+  const context = canvas.getContext("2d", {willReadFrequently: true});
+  context.fillStyle = "white";
+  context.fillRect(0, 0, width, height);
+  context.drawImage(image, 0, 0, width, height);
+  URL.revokeObjectURL(url);
+  const pixels = context.getImageData(0, 0, width, height).data;
+  const seamX = Math.round(30 * scale);
+  let white = 0;
+  let tested = 0;
+  for (let y = Math.round(10 * scale); y < Math.round(30 * scale); y++) {
+    for (let x = Math.max(0, seamX - 1); x < Math.min(width, seamX + 1); x++) {
+      const offset = 4 * (y * width + x);
+      tested++;
+      if (pixels[offset] >= 250 && pixels[offset + 1] >= 250 && pixels[offset + 2] >= 250) white++;
+    }
+  }
+  return {scale, width, height, tested, white, pass: white === 0};
+}
+
+window.gatePromise = Promise.all(scales.map(inspect)).then(results => {
+  window.gateResults = results;
+  document.querySelector("#result").textContent = JSON.stringify(results, null, 2);
+  document.body.dataset.pass = results.every(result => result.pass) ? "true" : "false";
+  return results;
+});
+</script>

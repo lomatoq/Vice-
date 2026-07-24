@@ -1,0 +1,90 @@
+{
+  "builder_source_sha256": "6540c77a006337f40fe9a2bdcd7f02e449cc777d196c78dde2fe603a4831828a",
+  "created_at": "2026-07-22T09:28:14.697281+00:00",
+  "data_contract_source_sha256": "8342312957a6b8dc046979d36f89bd20a6dd19d6ed8a6ad1b7895f8ff00d1e3a",
+  "inputs": [
+    {
+      "attestation": "summary.json",
+      "attestation_sha256": "123094967dcb2ee220279b13159a35aa6e2fbda71de46338fc6e3475f1c2c0e3",
+      "pairs": 60190,
+      "pairs_jsonl_sha256": "c9a13effdb0e63619d94c0076d82d17d4fe4cf18d70f345cd0063f966d3c70b0",
+      "payload_content_sha256": "9dec1da872fc86d7966c7b5ec9a26c769746007cdcf1b662a44e98c133e06c83",
+      "payload_file_count": 90285,
+      "root": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\raster_vector_pairs",
+      "schema": "unversioned"
+    },
+    {
+      "attestation": "report.json",
+      "attestation_sha256": "d89fb7666c14752ce47f9bddd1643c9c4c56c2838f6388b7b52c7ba99c1d3d2a",
+      "pairs": 7200,
+      "pairs_jsonl_sha256": "4bd473c9b7a8dc78a7c2a9a98ce2e27b48f7ff8ebcfb013c046fe654ca0c5755",
+      "payload_content_sha256": "082b547a3cfc613eab4c3ca18c640d57043f54134b5d453827684cc580a16dca",
+      "payload_file_count": 9000,
+      "root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_text_factory_v2_curve_7k",
+      "schema": "pcdc-proposal-text-data-factory/v2"
+    },
+    {
+      "attestation": "report.json",
+      "attestation_sha256": "d6af73631037fb65def079ef1e2b10b76a0e7a1513878a36de06fc15548b43b8",
+      "pairs": 8000,
+      "pairs_jsonl_sha256": "5fe40f20a13c9f36be177b7bab905aad41624af236d31bdb869ad80eba06e262",
+      "payload_content_sha256": "fa3411a953f03566e493c581c69143bb53feff6834871888466c1f1ba3bf36fa",
+      "payload_file_count": 10000,
+      "root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_structure_factory_v1_curve_8k",
+      "schema": "pcdc-proposal-structure-data-factory/v1"
+    }
+  ],
+  "pair_count": 75390,
+  "pairs_jsonl_sha256": "172fbc3b56705e38fb6ee6eeb3b2ab4d8dac1f23c3b711cd859560f09d9b805e",
+  "payload_policy": "absolute-read-only-references/no-copy",
+  "schema": "pcdc-proposal-mixed-corpus/v1",
+  "split_audit": {
+    "declared_supplement_target_counts": {
+      "appearance_model|calibration": 192,
+      "appearance_model|test": 164,
+      "appearance_model|train": 1644,
+      "glyph_group|calibration": 600,
+      "glyph_group|test": 1000,
+      "glyph_group|train": 5600,
+      "layer_relation|calibration": 224,
+      "layer_relation|test": 184,
+      "layer_relation|train": 1592,
+      "stroke_network|calibration": 136,
+      "stroke_network|test": 188,
+      "stroke_network|train": 1676,
+      "symmetry_repeat_group|calibration": 180,
+      "symmetry_repeat_group|test": 192,
+      "symmetry_repeat_group|train": 1628,
+      "text_line|calibration": 600,
+      "text_line|test": 1000,
+      "text_line|train": 5600
+    },
+    "group_counts": {
+      "calibration": 1032,
+      "test": 1047,
+      "train": 8407
+    },
+    "group_overlap": false,
+    "policy": "sha256-group-80/10/10",
+    "source_pair_counts": {
+      "iconify|calibration": 2872,
+      "iconify|test": 4494,
+      "iconify|train": 18634,
+      "local|calibration": 186,
+      "local|test": 210,
+      "local|train": 1794,
+      "synthetic-geometry|calibration": 1608,
+      "synthetic-geometry|test": 1616,
+      "synthetic-geometry|train": 12776,
+      "synthetic-open-text|calibration": 600,
+      "synthetic-open-text|test": 1000,
+      "synthetic-open-text|train": 5600,
+      "synthetic-structure-v2|calibration": 732,
+      "synthetic-structure-v2|test": 728,
+      "synthetic-structure-v2|train": 6540,
+      "synthetic-text|calibration": 2190,
+      "synthetic-text|test": 3150,
+      "synthetic-text|train": 10660
+    }
+  }
+}

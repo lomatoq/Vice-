@@ -1,0 +1,39 @@
+{
+  "input": "amigo_2__q45.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 63,
+  "closed_contours": 67,
+  "rendered_primitive_count": 429,
+  "actual": {
+    "L": 214,
+    "Q": 0,
+    "C": 215
+  },
+  "templates": {
+    "paper-regions": 65,
+    "paper-regions-court": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 11.11,
+    "mae_native": 12.44,
+    "bf_deblur": 0.9857,
+    "bf_native": 0.9597,
+    "kink_deblur": 20.19,
+    "kink_native": 19.71,
+    "winner": "deblur"
+  },
+  "kink_energy": 20.192
+}

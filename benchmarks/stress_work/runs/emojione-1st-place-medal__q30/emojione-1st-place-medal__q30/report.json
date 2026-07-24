@@ -1,0 +1,38 @@
+{
+  "input": "emojione-1st-place-medal__q30.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 7,
+  "closed_contours": 10,
+  "rendered_primitive_count": 126,
+  "actual": {
+    "L": 74,
+    "Q": 0,
+    "C": 52
+  },
+  "templates": {
+    "paper-regions": 10
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 5.96,
+    "mae_native": 6.08,
+    "bf_deblur": 0.8367,
+    "bf_native": 0.8232,
+    "kink_deblur": 3.85,
+    "kink_native": 3.63,
+    "winner": "deblur"
+  },
+  "kink_energy": 3.855
+}

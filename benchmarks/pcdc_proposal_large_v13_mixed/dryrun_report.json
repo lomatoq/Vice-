@@ -1,0 +1,3475 @@
+{
+  "calibration_neural_only": {
+    "appearance_model": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 210,
+      "mean_best_soft_iou_at_5": 0.49650554638251276,
+      "mean_best_soft_iou_at_k": 0.5314168318378633,
+      "neural_only_recall_at_5_iou50": 0.5285714285714286,
+      "neural_only_recall_at_k_iou50": 0.5666666666666667
+    },
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 2938,
+      "mean_best_soft_iou_at_5": 0.6874232785339027,
+      "mean_best_soft_iou_at_k": 0.6979075523181941,
+      "neural_only_recall_at_5_iou50": 0.8886997957794418,
+      "neural_only_recall_at_k_iou50": 0.904356705241661
+    },
+    "layer_relation": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 895,
+      "mean_best_soft_iou_at_5": 0.7518101998499108,
+      "mean_best_soft_iou_at_k": 0.8583304040339281,
+      "neural_only_recall_at_5_iou50": 0.8022346368715084,
+      "neural_only_recall_at_k_iou50": 0.929608938547486
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 0.9995842644078367,
+      "instances": 19243,
+      "mean_best_soft_iou_at_5": 0.7614302346163503,
+      "mean_best_soft_iou_at_k": 0.7783667297958876,
+      "neural_only_recall_at_5_iou50": 0.8672764122018396,
+      "neural_only_recall_at_k_iou50": 0.8853089435119265,
+      "rows": 8132,
+      "rows_over_global_top5_capacity": 4
+    },
+    "risk_hard_negative": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 6743,
+      "mean_best_soft_iou_at_5": 0.8550091146411719,
+      "mean_best_soft_iou_at_k": 0.8671000580501316,
+      "neural_only_recall_at_5_iou50": 0.9605516832270503,
+      "neural_only_recall_at_k_iou50": 0.9770131988729053
+    },
+    "small_shape": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 612,
+      "mean_best_soft_iou_at_5": 0.9097292666332563,
+      "mean_best_soft_iou_at_k": 0.9097814924488614,
+      "neural_only_recall_at_5_iou50": 0.9950980392156863,
+      "neural_only_recall_at_k_iou50": 0.9950980392156863
+    },
+    "stroke_network": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 136,
+      "mean_best_soft_iou_at_5": 0.08959556227116132,
+      "mean_best_soft_iou_at_k": 0.09472021726031343,
+      "neural_only_recall_at_5_iou50": 0.11029411764705882,
+      "neural_only_recall_at_k_iou50": 0.11764705882352941
+    },
+    "symmetry_repeat_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 184,
+      "mean_best_soft_iou_at_5": 0.0,
+      "mean_best_soft_iou_at_k": 0.0,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 3625,
+      "mean_best_soft_iou_at_5": 0.5505326005736836,
+      "mean_best_soft_iou_at_k": 0.5756828305976294,
+      "neural_only_recall_at_5_iou50": 0.6433103448275862,
+      "neural_only_recall_at_k_iou50": 0.6568275862068965
+    },
+    "whole_shape": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 4512,
+      "mean_best_soft_iou_at_5": 0.9047482236724116,
+      "mean_best_soft_iou_at_k": 0.908968848528202,
+      "neural_only_recall_at_5_iou50": 0.980718085106383,
+      "neural_only_recall_at_k_iou50": 0.9847074468085106
+    }
+  },
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed_dryrun.pt",
+  "checkpoint_selection_contract": "calibration-min-normalized-required-Recall@5/v1",
+  "checkpoint_selection_key": [
+    0.0,
+    0.8672764122018396,
+    0.5668928670557722
+  ],
+  "checkpoint_sha256": "f60a5b5c9b21d9efca8085d9b912a8fe9fd196a458e045080e215066ca110ecf",
+  "conformal_coverage_gate_passed": false,
+  "conformal_nonvacuous": false,
+  "conformal_required_families": [
+    "text_line",
+    "glyph_group",
+    "whole_shape",
+    "layer_relation",
+    "stroke_network",
+    "appearance_model",
+    "symmetry_repeat_group",
+    "risk_hard_negative"
+  ],
+  "conformal_thresholds": [
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 210,
+      "empirical_coverage": 1.0,
+      "family": "appearance_model",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 2938,
+      "empirical_coverage": 0.9904697072838666,
+      "family": "glyph_group",
+      "threshold": 0.9999999999985968
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 895,
+      "empirical_coverage": 1.0,
+      "family": "layer_relation",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 6743,
+      "empirical_coverage": 1.0,
+      "family": "risk_hard_negative",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 136,
+      "empirical_coverage": 1.0,
+      "family": "stroke_network",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 184,
+      "empirical_coverage": 1.0,
+      "family": "symmetry_repeat_group",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 3625,
+      "empirical_coverage": 0.9903448275862069,
+      "family": "text_line",
+      "threshold": 0.9999999999998788
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 4512,
+      "empirical_coverage": 0.9902482269503546,
+      "family": "whole_shape",
+      "threshold": 0.9999999999591073
+    }
+  ],
+  "continuation_epochs": 0,
+  "created_at": "2026-07-22T09:51:19.244178+00:00",
+  "device": "cuda",
+  "elapsed_seconds": 171.63149100000737,
+  "epochs": 0,
+  "evaluation_contract": {
+    "glyph_group_target": "whole-group-not-per-component",
+    "instance_matching": "one-to-one-Hungarian-within-family",
+    "neural_only": true,
+    "oracle_capacity_audit": "global min(5,target-count) and individual-family top5 ceiling",
+    "promotion_metric": "Recall@5 IoU>=0.50",
+    "query_ranking": "global-top-k-across-families"
+  },
+  "expected_replay_shares": {
+    "synthetic-open-text": 0.3,
+    "synthetic-structure-v2": 0.29999999999999993
+  },
+  "family_counts": {
+    "appearance_model": 2502,
+    "glyph_group": 25103,
+    "layer_relation": 6091,
+    "stroke_network": 2049,
+    "symmetry_repeat_group": 2194,
+    "text_line": 25103,
+    "whole_shape": 42544
+  },
+  "gate_pass": false,
+  "initialized_from": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v12_spatial.pt",
+  "label_contract": {
+    "compound_svg_owner_factory": "exact named SVG text-row owners plus one compound glyph union; heuristic local-owner fallback; both projected by recorded augmentation and registered to observed support",
+    "generic_parameters_supervised": 16,
+    "hard_negative_head_supervised": true,
+    "loss_version": "recall-k-balanced-support/v2",
+    "positive_weighting": "risk=1.85,small-shape=x3,text/glyph=1.50; class-balanced mask+bbox+global-top5-rank",
+    "ranking_objective": "target-weighted-positive-slot-adjusted-global-Recall@5-margin",
+    "semantic_scene_labels": "conservative-explicit-cues-only",
+    "small_shape_factory": "deterministic-source-disjoint-procedural-recomposition",
+    "source_sha256": "bf2dffa87609c85a32c932f1e786679677cfebe5d347d43a6e4a3a30d32fb9f3",
+    "split_grouping": "open-font-family/icon-library/local-asset-family/typed-structure-source/otherwise-source-asset",
+    "support_lattice": "64x64 conservative-digital-preimage",
+    "training_sampler": "deterministic-gate-balanced-replacement/v1; small-shape=3.0,text/glyph=1.65,layer=1.50,degraded=1.20,stroke=48,symmetry=12,appearance=4,cap=64; fixed source mass after within-source balancing",
+    "typed_structure_factory": "typed-generator/v1 exact family supervision for stroke/appearance/layer/repeat",
+    "unobservable_pair_policy": "exclude-unobservable/invalid/unaligned-before-source-disjoint-split-and-report-reason",
+    "version": "pcdc-explicit-owner-typed-mixed-replay-labels/v2"
+  },
+  "latest_checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed_dryrun_latest.pt",
+  "loss_history": [],
+  "minimum_recall_gate": 0.97,
+  "minimum_required_recall": 0.0330188679245283,
+  "mixed_corpus_attestation_sha256": "7b792d8b93aea3938201d90fc4b00d8edc13a607ed37bf72a724b403e21d4075",
+  "oracle_capacity_gate_feasible": true,
+  "pair_count": 74703,
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "promotion_policy": "candidate only; runtime promotion requires neural-only held-out gate, non-vacuous calibration and downstream full PCDC ablation",
+  "raw_pair_count": 75390,
+  "recall_gate_results": {
+    "appearance_model": {
+      "instances": 164,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": false,
+      "recall": 0.5609756097560976,
+      "threshold": 0.95
+    },
+    "glyph_group": {
+      "instances": 4291,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": false,
+      "recall": 0.8729899790258681,
+      "threshold": 0.99
+    },
+    "layer_relation": {
+      "instances": 752,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": false,
+      "recall": 0.8550531914893617,
+      "threshold": 0.95
+    },
+    "overall": {
+      "instances": 26383,
+      "mathematically_feasible": true,
+      "oracle_capacity": 0.9991661297047341,
+      "passed": false,
+      "recall": 0.8599097903953303,
+      "threshold": 0.97
+    },
+    "risk_hard_negative": {
+      "instances": 9246,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": true,
+      "recall": 0.9569543586415747,
+      "threshold": 0.95
+    },
+    "small_shape": {
+      "instances": 618,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": true,
+      "recall": 0.9919093851132686,
+      "threshold": 0.98
+    },
+    "stroke_network": {
+      "instances": 188,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": false,
+      "recall": 0.0797872340425532,
+      "threshold": 0.98
+    },
+    "symmetry_repeat_group": {
+      "instances": 212,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": false,
+      "recall": 0.0330188679245283,
+      "threshold": 0.95
+    },
+    "text_line": {
+      "instances": 5362,
+      "mathematically_feasible": true,
+      "oracle_capacity": 1.0,
+      "passed": false,
+      "recall": 0.6118985453189109,
+      "threshold": 0.99
+    }
+  },
+  "rejected_pair_count": 687,
+  "rejected_pairs": [
+    {
+      "id": "pair:devicon:datatables:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:fxemoji:regionalindicatorc:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:fxemoji:regionalindicatorp:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.2115732368896926,
+      "id": "pair:local:dark:4theplayer:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.17748344370860927,
+      "id": "pair:local:dark:7777:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.315018315018315,
+      "id": "pair:local:dark:acceptance:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:adlunam:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.21836228287841192,
+      "id": "pair:local:dark:ainsworth:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.29072613543649717,
+      "id": "pair:local:dark:alg:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.14919354838709678,
+      "id": "pair:local:dark:all41studios:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.0,
+      "id": "pair:local:dark:apparat:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2745995423340961,
+      "id": "pair:local:dark:arcadem:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.22043010752688172,
+      "id": "pair:local:dark:aruze:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32872200263504614,
+      "id": "pair:local:dark:atmosfera:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3224489795918367,
+      "id": "pair:local:dark:authentic:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2297872340425532,
+      "id": "pair:local:dark:avatarux:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.1746449237243556,
+      "id": "pair:local:dark:avatarux:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33865248226950356,
+      "id": "pair:local:dark:aviatrix:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:backseat:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:backseatgaming:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:backseatgaming:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:baddingo:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.2085526584241237,
+      "id": "pair:local:dark:barbara-bang:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.22916666666666666,
+      "id": "pair:local:dark:barbarabang:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.14035087719298245,
+      "id": "pair:local:dark:betcore:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.16051660516605165,
+      "id": "pair:local:dark:betcore:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.05162804341449105,
+      "id": "pair:local:dark:bfgames:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.052083333333333336,
+      "id": "pair:local:dark:bfgames:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:bigtime:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.20353982300884957,
+      "id": "pair:local:dark:boomerangstudios:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2297154899894626,
+      "id": "pair:local:dark:bragg:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:bullsharkgames:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.33630748112560055,
+      "id": "pair:local:dark:cggames:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.19008264462809918,
+      "id": "pair:local:dark:copacabana:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:darwin:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:dtech:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.22702373706634205,
+      "id": "pair:local:dark:eagaming:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2987012987012987,
+      "id": "pair:local:dark:enjoy:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:evolution-maxwingaming:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.02158273381294964,
+      "id": "pair:local:dark:evolution:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:evolution:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.03822815533980582,
+      "id": "pair:local:dark:evolutionezugi:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.039220236713854724,
+      "id": "pair:local:dark:evolutionezugi:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.20083160083160084,
+      "id": "pair:local:dark:evoplay:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.20642857142857143,
+      "id": "pair:local:dark:evoplay:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:expansestudios:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.05475504322766571,
+      "id": "pair:local:dark:ezugi:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:fantasmagames:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.0,
+      "id": "pair:local:dark:fortunefactory:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:fortunefactory:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:foxhoundgames:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:gamatron:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:gamatron:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.3372093023255814,
+      "id": "pair:local:dark:gamesinc:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34517045454545453,
+      "id": "pair:local:dark:gamesinc:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2827868852459016,
+      "id": "pair:local:dark:gameslab:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.04797047970479705,
+      "id": "pair:local:dark:gaming-corps:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.03056768558951965,
+      "id": "pair:local:dark:gamingcorps:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.020887728459530026,
+      "id": "pair:local:dark:gamingcorps:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.12468827930174564,
+      "id": "pair:local:dark:gamzix:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.21602787456445993,
+      "id": "pair:local:dark:ganapati:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.21980762379764873,
+      "id": "pair:local:dark:gonggaming:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:hacksaw-backseatgaming:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.3346303501945525,
+      "id": "pair:local:dark:hacksaw-bullsharkgames:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:hacksaw:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:hacksaw:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:halfpixel:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.3024902901530729,
+      "id": "pair:local:dark:hub88:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:igrosoft:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.12385786802030457,
+      "id": "pair:local:dark:irondogstudio:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:jaderabbit:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:jaderabbitstudios:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.002145922746781116,
+      "id": "pair:local:dark:jftw:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.0035899481451934583,
+      "id": "pair:local:dark:jftw:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:kitsunestudios:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:kitsunestudios:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.12804054054054054,
+      "id": "pair:local:dark:leap:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.12898348453128636,
+      "id": "pair:local:dark:leapgaming:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2565789473684211,
+      "id": "pair:local:dark:mancala:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:maxwin:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:maxwingaming:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.31445904954499493,
+      "id": "pair:local:dark:mrslotty:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.30520393811533053,
+      "id": "pair:local:dark:mrslotty:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:n2games-novomatic:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.18820861678004536,
+      "id": "pair:local:dark:nailedit:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.1911231884057971,
+      "id": "pair:local:dark:nailedit:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32007575757575757,
+      "id": "pair:local:dark:netgame:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.30686695278969955,
+      "id": "pair:local:dark:netgaming:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.25274725274725274,
+      "id": "pair:local:dark:northernlights:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.09641873278236915,
+      "id": "pair:local:dark:northernlights:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:novomatic:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.2827529021558872,
+      "id": "pair:local:dark:nucleus:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.015026660203587009,
+      "id": "pair:local:dark:nyx:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3335561497326203,
+      "id": "pair:local:dark:onetouch:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.20660146699266504,
+      "id": "pair:local:dark:pascal:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:penguinking:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.006944444444444444,
+      "id": "pair:local:dark:petersons:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.07487520798668885,
+      "id": "pair:local:dark:pgsoft:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.059013141581948925,
+      "id": "pair:local:dark:pgsoft:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:playreels:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.25120772946859904,
+      "id": "pair:local:dark:playson:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:playtech:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:playtech:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.0050115651503469544,
+      "id": "pair:local:dark:push:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3028462998102467,
+      "id": "pair:local:dark:quickfire-electricelephant:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:quickfire-fantasma:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:quickfire-goldenrock:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.0,
+      "id": "pair:local:dark:quickfire-goldenrock:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3111111111111111,
+      "id": "pair:local:dark:quickfire-northernlights:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:realistic:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.30357142857142855,
+      "id": "pair:local:dark:redgennplayson:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2915129151291513,
+      "id": "pair:local:dark:redstone:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.26689316723291806,
+      "id": "pair:local:dark:redtiger:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:reelweb:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:reelweb:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.2277580071174377,
+      "id": "pair:local:dark:relax-4theplayer:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.20359281437125748,
+      "id": "pair:local:dark:relax-avatarux:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.27020506634499397,
+      "id": "pair:local:dark:relax-backseatgaming:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2296157450796626,
+      "id": "pair:local:dark:relax-boomerangstudios:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:relax-bullsharkgames:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:relax-bullsharkgames:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:relax-fantasma:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.0707070707070707,
+      "id": "pair:local:dark:relax-pgsoft:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:relax:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:relax:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.20522388059701493,
+      "id": "pair:local:dark:revolver:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:rfranco:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.22321428571428573,
+      "id": "pair:local:dark:rival:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.23183268344558666,
+      "id": "pair:local:dark:rival:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3010033444816054,
+      "id": "pair:local:dark:rogue:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.27694668200997313,
+      "id": "pair:local:dark:skillzzgaming:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2597402597402597,
+      "id": "pair:local:dark:skywind:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.27315914489311166,
+      "id": "pair:local:dark:skywindlive:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.27456258411843876,
+      "id": "pair:local:dark:slotmill:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:snowborn:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:spinthon:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.2792656587473002,
+      "id": "pair:local:dark:spinza:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:spribe-aggregator:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:spribe:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:stormcraft:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.32197728790915164,
+      "id": "pair:local:dark:technology:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3169845594913715,
+      "id": "pair:local:dark:technology:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.006024096385542169,
+      "id": "pair:local:dark:thunderspin:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:thunderspin:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.1305732484076433,
+      "id": "pair:local:dark:tornadogames:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32608695652173914,
+      "id": "pair:local:dark:triplecherry:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:truelab:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:local:dark:truelab:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.14576271186440679,
+      "id": "pair:local:dark:trusty:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:trusty:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.314963376351587,
+      "id": "pair:local:dark:tvbet:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:local:dark:wazdan:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.24939903846153846,
+      "id": "pair:local:dark:wizardgames:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2361275088547816,
+      "id": "pair:local:dark:wizardgames:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3487450462351387,
+      "id": "pair:local:default:amatic:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3108433734939759,
+      "id": "pair:local:default:northernlights:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.283571915473756,
+      "id": "pair:local:default:quickfire-northernlights:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.23322683706070288,
+      "id": "pair:local:default:winfinity:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.21733053808525507,
+      "id": "pair:local:default:winfinity:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2422879177377892,
+      "id": "pair:local:light:apollogames:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33673036093418257,
+      "id": "pair:local:light:atomicslotlab:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3247470101195952,
+      "id": "pair:local:light:creedroomz:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.24391396832900022,
+      "id": "pair:local:light:espressogames:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34048140043763675,
+      "id": "pair:local:light:espressogames:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34172661870503596,
+      "id": "pair:local:light:goldcoinstudios:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3163777741778714,
+      "id": "pair:local:light:pulse8:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33276740237691,
+      "id": "pair:local:light:quickfire-northernlights:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3004459308807135,
+      "id": "pair:local:light:realdealer:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2863827795975667,
+      "id": "pair:local:light:redgennplayson:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3328921244209133,
+      "id": "pair:local:light:rtgslots:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3080708661417323,
+      "id": "pair:local:light:slotmill:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.30408287629494213,
+      "id": "pair:local:light:slotmill:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33980582524271846,
+      "id": "pair:local:light:spearhead:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3492822966507177,
+      "id": "pair:local:light:switchstudios:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.19624217118997914,
+      "id": "pair:logos:appcircle:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.330028328611898,
+      "id": "pair:logos:appcircle:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3325842696629214,
+      "id": "pair:logos:chevereto:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:logos:google-inbox:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:logos:google-inbox:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:logos:horizon:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:logos:horizon:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "id": "pair:logos:million-icon:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:logos:million-icon:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.2503293807641634,
+      "id": "pair:logos:overloop:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.1803405572755418,
+      "id": "pair:logos:oxc-dark:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.14153784380646456,
+      "id": "pair:logos:oxc-dark:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3383838383838384,
+      "id": "pair:logos:quarkus:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:bald:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:bald:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:face-with-stuck-out-tongue-and-winking-eye:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:face-with-stuck-out-tongue-and-winking-eye:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:man-elf-tone4:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:man-elf-tone4:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:man-in-business-suit-levitating-light-skin-tone:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:man-in-business-suit-levitating-light-skin-tone:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:mermaid-tone2:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:mermaid-tone2:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:smiling-face-with-open-mouth-and-cold-sweat:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:smiling-face-with-open-mouth-and-cold-sweat:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:smiling-face-with-open-mouth-and-smiling-eyes:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:smiling-face-with-open-mouth-and-smiling-eyes:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:white-haired:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:white-haired:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:woman-climbing-tone1:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:woman-climbing-tone1:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:woman-mage-tone3:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "error": "ParseError",
+      "id": "pair:noto:woman-mage-tone3:1",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "alignment_iou": 0.31929347826086957,
+      "id": "pair:open-text:cinzel:04c7f9417b4dea46:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31725888324873097,
+      "id": "pair:open-text:cinzel:546d18ef7a55f4b6:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33064516129032256,
+      "id": "pair:open-text:cinzel:5ecb058ea5bb879d:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3393939393939394,
+      "id": "pair:open-text:cinzel:7099a6be5a079a91:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.21367521367521367,
+      "id": "pair:open-text:cinzel:c580aa1d2f106b66:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3446153846153846,
+      "id": "pair:open-text:cinzel:dfda02195af41936:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34253361641896674,
+      "id": "pair:open-text:comfortaa:ce841d433b1099d9:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32982592881267864,
+      "id": "pair:open-text:dmserifdisplay:ac63178264911f1f:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.311787072243346,
+      "id": "pair:open-text:exo2:6320051214ae9686:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.284796573875803,
+      "id": "pair:open-text:firacode:426d0a978d13723e:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2847380410022779,
+      "id": "pair:open-text:firacode:9a464ee0b3c27c1f:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.294049008168028,
+      "id": "pair:open-text:firasans:123651c5cd7c536b:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2425531914893617,
+      "id": "pair:open-text:firasans:45af7f4b71d9558c:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2818471337579618,
+      "id": "pair:open-text:firasans:64ecf99d493aa7d5:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3183139534883721,
+      "id": "pair:open-text:firasans:64ecf99d493aa7d5:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3049792531120332,
+      "id": "pair:open-text:firasans:acd25cf515dc9a0b:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3428672316384181,
+      "id": "pair:open-text:firasans:e56f18a9c1e21ff5:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3456221198156682,
+      "id": "pair:open-text:inter:2a9a1bb07039184a:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33242506811989103,
+      "id": "pair:open-text:lato:73dd7b958b73df64:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.1282051282051282,
+      "id": "pair:open-text:lato:a2b8431284b85c87:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.28846153846153844,
+      "id": "pair:open-text:lato:a2b8431284b85c87:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.235,
+      "id": "pair:open-text:lato:a2b8431284b85c87:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31556503198294245,
+      "id": "pair:open-text:lato:d7542258c891cc58:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3380035026269702,
+      "id": "pair:open-text:manrope:30b4ebdcb2acc4be:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3062857142857143,
+      "id": "pair:open-text:manrope:32771a057d122186:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3285171102661597,
+      "id": "pair:open-text:manrope:be46c671c0ccbcf7:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33652173913043476,
+      "id": "pair:open-text:manrope:d0424219f261a350:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3333333333333333,
+      "id": "pair:open-text:montserrat:3aeabb877101325b:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.29874213836477986,
+      "id": "pair:open-text:montserrat:3f1da2c6fafb9f3c:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3090909090909091,
+      "id": "pair:open-text:montserrat:44aeb571961da648:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3159057437407953,
+      "id": "pair:open-text:montserrat:474784e47f3ad723:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:open-text:montserrat:55221503f0214425:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "alignment_iou": 0.27058823529411763,
+      "id": "pair:open-text:montserrat:55221503f0214425:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3341380975374215,
+      "id": "pair:open-text:montserrat:5974b0fbc05069c0:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3346534653465347,
+      "id": "pair:open-text:montserrat:5974b0fbc05069c0:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31451612903225806,
+      "id": "pair:open-text:montserrat:62a9680ee3d98a9a:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.21804511278195488,
+      "id": "pair:open-text:montserrat:73eabe7b55d41720:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.22608695652173913,
+      "id": "pair:open-text:montserrat:874df0898b17751d:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.23167848699763594,
+      "id": "pair:open-text:montserrat:901e201e98e6df34:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2885375494071146,
+      "id": "pair:open-text:montserrat:9bcd2166e03c9170:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2662236987818383,
+      "id": "pair:open-text:montserrat:9bcd2166e03c9170:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31894484412470026,
+      "id": "pair:open-text:montserrat:9cea38e8014830e2:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.19273743016759776,
+      "id": "pair:open-text:montserrat:9cea38e8014830e2:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33532934131736525,
+      "id": "pair:open-text:montserrat:a6fa54d6f2429fce:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33620689655172414,
+      "id": "pair:open-text:montserrat:b1f6b330966c0c98:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.17177914110429449,
+      "id": "pair:open-text:montserrat:c4632fc7b05246b5:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3325705568268497,
+      "id": "pair:open-text:montserrat:cde106e5fef603b3:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.013377926421404682,
+      "id": "pair:open-text:montserrat:cde106e5fef603b3:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34454638124362896,
+      "id": "pair:open-text:montserrat:d006599f836b2c80:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.15976331360946747,
+      "id": "pair:open-text:montserrat:d4ae4e9d1bdebd97:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.10382513661202186,
+      "id": "pair:open-text:montserrat:d4ae4e9d1bdebd97:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.1592356687898089,
+      "id": "pair:open-text:montserrat:d9c29b8d66161076:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2987012987012987,
+      "id": "pair:open-text:montserrat:e1cce3f7ea26b0d4:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.11386138613861387,
+      "id": "pair:open-text:montserrat:e385b271ca0655e6:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.16783216783216784,
+      "id": "pair:open-text:montserrat:e385b271ca0655e6:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2968980797636632,
+      "id": "pair:open-text:montserrat:fb2bc50aad33ba35:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.30538922155688625,
+      "id": "pair:open-text:montserrat:fb2bc50aad33ba35:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32148499210110587,
+      "id": "pair:open-text:nunito:2260c1411ce3467d:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.349438202247191,
+      "id": "pair:open-text:nunito:3ebe4350c7971b6b:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34390862944162437,
+      "id": "pair:open-text:nunito:4c04d4576068f531:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2969460688758934,
+      "id": "pair:open-text:nunito:5801dd5c11807ff8:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3279569892473118,
+      "id": "pair:open-text:nunito:6decc1f286bbd5b5:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34464751958224543,
+      "id": "pair:open-text:nunito:a361b55331ec4ed9:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3411105926271582,
+      "id": "pair:open-text:nunito:f0fdf1fa9a4e8bc1:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33231474407944994,
+      "id": "pair:open-text:nunito:f6a0a7cc1e15316f:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3293943870014771,
+      "id": "pair:open-text:nunito:f8aeb3f02885f882:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2797055730809674,
+      "id": "pair:open-text:opensans:ee73ab2627e5c2e8:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32682926829268294,
+      "id": "pair:open-text:pacifico:1395feb178f23df7:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.21266968325791855,
+      "id": "pair:open-text:playfairdisplay:0e72f2b336a7b0c2:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3390191897654584,
+      "id": "pair:open-text:playfairdisplay:0e72f2b336a7b0c2:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33980582524271846,
+      "id": "pair:open-text:playfairdisplay:4a91f07831db0c8d:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33043478260869563,
+      "id": "pair:open-text:playfairdisplay:59084801d3aaba42:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.19052224371373308,
+      "id": "pair:open-text:playfairdisplay:c8970ebd5da89a0e:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33729216152019004,
+      "id": "pair:open-text:playfairdisplay:fe09508fef9a6ab2:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31088082901554404,
+      "id": "pair:open-text:poppins:85fe4f50053ea81a:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2846975088967972,
+      "id": "pair:open-text:poppins:b6576fa2564b44ec:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.22924901185770752,
+      "id": "pair:open-text:poppins:c13d5ecb08e8e093:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.23201856148491878,
+      "id": "pair:open-text:poppins:c13d5ecb08e8e093:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2701793721973094,
+      "id": "pair:open-text:poppins:d1b7f6aab1c299ac:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.17751307379430564,
+      "id": "pair:open-text:poppins:fa57174bedba6a4c:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33472803347280333,
+      "id": "pair:open-text:ptserif:6e099255fe58c184:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3373597929249353,
+      "id": "pair:open-text:raleway:04eab42087b94c4c:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2920892494929006,
+      "id": "pair:open-text:raleway:0658bbad5934431c:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2320675105485232,
+      "id": "pair:open-text:raleway:0eefa063eed468a1:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32003891050583655,
+      "id": "pair:open-text:raleway:0fb937a8ed48a75c:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33477011494252873,
+      "id": "pair:open-text:raleway:210f087145b94f60:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2625607779578606,
+      "id": "pair:open-text:raleway:25542115d4efc5b6:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33454545454545453,
+      "id": "pair:open-text:raleway:27644dfb036189f0:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.1608695652173913,
+      "id": "pair:open-text:raleway:34250c19dc7a3fb1:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.20109689213893966,
+      "id": "pair:open-text:raleway:34250c19dc7a3fb1:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.047244094488188976,
+      "id": "pair:open-text:raleway:4d34458e4b151dd2:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33729216152019004,
+      "id": "pair:open-text:raleway:53e3c45ccd5818b5:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3342002600780234,
+      "id": "pair:open-text:raleway:581bcfcbdabffe2f:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.04516129032258064,
+      "id": "pair:open-text:raleway:581bcfcbdabffe2f:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.26797723745473356,
+      "id": "pair:open-text:raleway:5de7f6e3e19a10d3:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3253012048192771,
+      "id": "pair:open-text:raleway:5de7f6e3e19a10d3:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.05782312925170068,
+      "id": "pair:open-text:raleway:764080c986c6a389:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2896281800391389,
+      "id": "pair:open-text:raleway:828f65756680ccd3:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34,
+      "id": "pair:open-text:raleway:828f65756680ccd3:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3467153284671533,
+      "id": "pair:open-text:raleway:83929167848a7ba4:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3411513859275053,
+      "id": "pair:open-text:raleway:842e787ed688f117:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.14146341463414633,
+      "id": "pair:open-text:raleway:842e787ed688f117:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31057268722466963,
+      "id": "pair:open-text:raleway:92330561105baad8:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.24865591397849462,
+      "id": "pair:open-text:raleway:92330561105baad8:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.27647058823529413,
+      "id": "pair:open-text:raleway:9bcb7d7005a48481:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2509157509157509,
+      "id": "pair:open-text:raleway:a9066b47cde568aa:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3044719314938154,
+      "id": "pair:open-text:raleway:b0005bb28b8b491c:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3023255813953488,
+      "id": "pair:open-text:raleway:b0005bb28b8b491c:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3095487932843652,
+      "id": "pair:open-text:raleway:c435b3e367f9c81a:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34977064220183485,
+      "id": "pair:open-text:raleway:c96f54dfad634de6:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31683168316831684,
+      "id": "pair:open-text:raleway:c96f54dfad634de6:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.28807947019867547,
+      "id": "pair:open-text:raleway:ccfcbf942f469784:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2808080808080808,
+      "id": "pair:open-text:raleway:e0cd9818c8732994:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.28109028960817717,
+      "id": "pair:open-text:raleway:f3f950a4d37422a0:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.29623228482544073,
+      "id": "pair:open-text:raleway:f3f950a4d37422a0:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3414179104477612,
+      "id": "pair:open-text:raleway:f5b5b2b87bbd828f:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.21818181818181817,
+      "id": "pair:open-text:raleway:f5b5b2b87bbd828f:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3153846153846154,
+      "id": "pair:open-text:raleway:f78c785726cb5ea5:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3309395571514063,
+      "id": "pair:open-text:raleway:fd7cb8c1d6476fb1:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33597621407333994,
+      "id": "pair:open-text:raleway:fd7cb8c1d6476fb1:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34960629921259845,
+      "id": "pair:open-text:roboto:21bc257eaed5217b:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3187817258883249,
+      "id": "pair:open-text:rubik:a71255329df42ff7:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3005952380952381,
+      "id": "pair:open-text:rubik:fce4b561ef4af619:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31791044776119404,
+      "id": "pair:open-text:sourcesans3:405837d4bc7ced0d:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3284218689414502,
+      "id": "pair:open-text:sourcesans3:46341e89ec59720e:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31197097944377267,
+      "id": "pair:open-text:sourcesans3:4e53877f17dc120c:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.32923832923832924,
+      "id": "pair:open-text:sourcesans3:691761d81a7401c1:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2798507462686567,
+      "id": "pair:open-text:sourcesans3:7985497c44331e94:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3076388888888889,
+      "id": "pair:open-text:sourcesans3:7985497c44331e94:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3269230769230769,
+      "id": "pair:open-text:sourcesans3:96b52ac62d58b382:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3270440251572327,
+      "id": "pair:open-text:sourcesans3:96b52ac62d58b382:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3127906976744186,
+      "id": "pair:open-text:sourcesans3:9b9f26800c4e2fc2:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34545454545454546,
+      "id": "pair:open-text:sourcesans3:a6600e7899abd126:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3318777292576419,
+      "id": "pair:open-text:sourcesans3:a7467c29644299e2:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3333333333333333,
+      "id": "pair:open-text:sourcesans3:d72e2a8622251448:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.2794759825327511,
+      "id": "pair:open-text:sourcesans3:d72e2a8622251448:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3323262839879154,
+      "id": "pair:open-text:sourcesans3:e90c62e5e8bc059e:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.24470674129958628,
+      "id": "pair:open-text:sourceserif4:2379310371195184:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.33879781420765026,
+      "id": "pair:open-text:sourceserif4:42b79c727bfbdcf0:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34532374100719426,
+      "id": "pair:open-text:sourceserif4:652c431afe91b61c:3",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.3158425832492432,
+      "id": "pair:open-text:ubuntu:e47ac96d8f3bd868:1",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.31906300484652667,
+      "id": "pair:open-text:worksans:0977f2b5de9e16da:2",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "alignment_iou": 0.34141201264488935,
+      "id": "pair:open-text:worksans:3d74b580154e7b7d:0",
+      "reason": "owner-alignment-below-proof-floor"
+    },
+    {
+      "id": "pair:structure-v2:stroke_network:orbit:f29c9286c1cc4e8e:2",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:0392061684f6:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:0c450b313034:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:0d5ee6cab2a4:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:164156d08c36:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:1760c3ed8422:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:1dfac41f4fef:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:1fe6e9667e09:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:219e98dfb261:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:21a3e4f52273:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:2a42bb398e9a:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:33e79ab7c969:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:3da02cfdbea5:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:3db6e4fc54ae:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:404023cdd3fc:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:404023cdd3fc:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:497e692ec3f1:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:52fa2f9957ae:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:541beed9ed4d:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:5457b9316ebf:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:6e303628a327:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:6e606d393484:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:73af809b60a7:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:8dba6217a226:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:916025c85d5b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:afc99ed18f5e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:b1f52d926b3c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:b62b5480c161:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:b9e8774cb1c6:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:c8de53356e36:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:d10388955b3c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:d10bc2db1e0d:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:de7036d8d81d:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:e05cd44dd650:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:e9b8b51d64f7:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:ecbf300e562b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:ef762e168417:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:f0132665a60d:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:arrow:f2066aff8764:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:0d1427de3017:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:140fd377a157:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:140fd377a157:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:18649ceb3701:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:1c27291de480:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:28ad087ec51d:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:3abbb0fb3331:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:3b98dd6a0446:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:3ec5cb299cfa:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:43a033e1c8b4:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:4b4bc6bebd3d:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:54c7c6ac1c20:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:56d15b7240ce:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:5d7b27cb848a:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:5e361300f0c1:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:6803219d4263:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:6a88a62fecae:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:7d58e93c3b1a:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:8e6380ede20c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:916ef492a275:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:959b3cc957e4:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:990d5bf53764:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:a53fc256f4e4:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:a6641492f7b9:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:a88d5678ea06:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:a88d5678ea06:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:a90916e92aba:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:aa97fb83971b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:b231b331193c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:b231b331193c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:ba0e54bfdfb0:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:bc1b2ab0a9ee:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:bd45577c1032:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:bd45577c1032:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:c4bfcae39bcf:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:c67a2b7bb30b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:c67a2b7bb30b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:ca920661d0c1:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:cd4fccd8f19e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:d0c8ca1c1356:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:e4d1035aaa39:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:e5412e47ef3f:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:badge:e7f21910d48c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:00774b0dba01:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:057a94c6990e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:228873b3fe86:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:261363b8dec9:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:2f155bda886c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:33c254933b30:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:33e8c6be3d62:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:434be43a342e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:4c3575f1e89e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:4eaab9802d2c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:5a325d8c27ca:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:5b06068cf043:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:681f31468ede:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:7789989c9455:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:79bf92f7fbc4:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:90dead7af454:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:a9b1e6768b04:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:ab0425c282ce:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:ae5dd2e36dfa:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:aed05e545495:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:b4ea2cfebcea:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:ba00a24bb854:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:bad27266654f:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:c389a60e036f:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:c572df9e4b94:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:d3f78a8431de:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:ea59d9534507:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:ea59d9534507:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:ea6daac9a335:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:f3062ff5115b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:monogram-frame:fae40aeb4cf3:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:01ec55c3a414:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:01ec55c3a414:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:0534884c60a1:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:069ddf3e9a7b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:076083562ff4:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:086dcdb4d736:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:107be8e92870:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:112012102f4c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:192eb1f3155b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:192eb1f3155b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:1ec275980cfb:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:1f4293510851:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "error": "ValueError",
+      "id": "pair:synthetic-geometry:polygon:264543cf1983:0",
+      "reason": "invalid-clean-render-target"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:264543cf1983:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:29b9410c333e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:2d6a15b87e8e:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:3642ff3bd266:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:3dd8dcc29e57:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:3dd8dcc29e57:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:4177677bdb51:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:4177677bdb51:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:43e6c31c742f:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:466418f5f698:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:5e35755ba171:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:5fad973f4a00:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:67e9e6a2ff56:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:67e9e6a2ff56:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:6b397bd32411:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:6c0868416d3a:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:70c612a0abca:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:70c612a0abca:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:74d3e7996f08:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:812b8311174b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:97c5f19f0e3d:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:a0ba1b095eeb:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:a22a26d8d1c6:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:a87632aa86e4:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:ad0aa5c4b7a9:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:b0eebc64514c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:b1dde9b467d2:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:bd1b08be876e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:c15bef285966:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:c6131110c7c3:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:c6131110c7c3:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:c6e15480d608:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:cade74a5ac94:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:cfebfa31cd96:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:de0b909edaea:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:e67301a547ac:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:e88f217e1191:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:f6d14ea54f06:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:f7c25ef2aea5:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:fbaa3065ce44:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:polygon:fd418d6bfa76:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:08ac100a6ff2:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:08ac100a6ff2:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:0d63eaa37472:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:0e7c515815f2:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:150a14329c2c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:1856593873ad:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:1b5633fd7074:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:20f529bab2c8:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:210ae0b6c4c9:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:32fb8ce00403:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:47cc2772de7c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:47cc2772de7c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:5396ecd430c6:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:5c6646c40ba5:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:5c77f3d20d8c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:618b1a3ec501:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:690fdabc5f0b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:70ef2494523b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:73825d8d60d5:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:79edcd4987b5:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:7dac8690a24f:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:7dac8690a24f:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:830f3f34e3eb:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:9111c52eccb6:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:9111c52eccb6:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:97b295e03cf2:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:a701cacfaa28:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:a701cacfaa28:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:ac53263d2061:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:aeb1484bc80e:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:b7a644c0a3dd:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:bbe004be3a8b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:c5958309667c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:c8326023fb9f:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:c8326023fb9f:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:cd8d03c728f0:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:e06b0f594ddf:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:e8faff1036a7:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:f10d933ee75c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:f1f2190ddaef:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:f9cf7445f7f6:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ribbon:f9cf7445f7f6:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:06ed87e75e6a:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:0a30b5d2ec08:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:10dc5f8877e2:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:15d949904a96:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:1947d3690337:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:1c3ba59d26df:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:2c736350edcf:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:2c736350edcf:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:310bb639f0e2:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:3846eb624c32:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:68a11669255e:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:6f46f1c1ed7b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:6f46f1c1ed7b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:73fccc37e733:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:7bea83434094:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:7bea83434094:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:836683fb1c0a:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:88d349ff6563:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:8b3f654362f2:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:918963feb8e6:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:9f2dc47ecdc7:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:b76032034761:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:be68f732b5b1:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:c08598eb07f7:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:c34803d6182c:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:ca7e260d1b24:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:ce10d8367b7a:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:d2a0e7cb8e86:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:e9178e7b4991:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:ring:f018bb348c97:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:06fc9260027b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:0df88558cff5:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:11b1c7a14796:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:1235fc8fa446:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:28a23dc316bb:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:33068944c337:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:3592b69a0bf9:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:38b0cb9c4795:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:39aabb74e52d:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:42ba82297c7a:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:44376bf5f327:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:4635ab000b31:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:4635ab000b31:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:4d121928719e:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:5011d424b631:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:559b6cf9e86b:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:559b6cf9e86b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:56ec746094f3:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:5e12eda745a3:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:6aa8e5592dd4:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:831a746feffd:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:846ef48d2504:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:9ed43f152c92:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:9f29e07e37a2:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:a0cd1c6d194b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:a858fdbca5f3:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:ae0185021a63:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:afb1d9402200:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:b5cf646d3b55:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:b6a920b2dd32:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:b6a920b2dd32:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:bb1d252eaac2:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:bda4a2d05ca7:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:bfe4585c3d63:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:c0fe33de65ab:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:c6b6247d0e70:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:c996714e3a45:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:cabc4cf49466:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:cd56399215f5:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:d50d569a23bc:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:d60ba6025996:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:d60ba6025996:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:e511e923118f:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:ef2a2c0c1906:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:f5dcb810f3de:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:f6d9c95cfad2:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:shield:fdb945854a70:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:0060077fb6ef:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:04819a8f1584:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:05fe6fc0c1d1:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:0706c275c7b8:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:12754fe4fcd1:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:1a4e45fb5f8f:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:1f35f7b05abb:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:26c563df0869:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:2e04735d0599:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:3a2babf3d951:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:3d3165650fa8:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:3e1aea2ed031:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:3fe3d3cedc2f:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:417ca0056be5:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:417ca0056be5:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:5214201f8e27:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:587ea238788c:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:5d903475f1f7:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:5fb63b93e9a7:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:62f16ff1b1dd:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:6c3c9981b999:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:72c23bdb2e24:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:7513d53a7def:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:75b2331d3ae7:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:781077e70a98:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:781077e70a98:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:9d985a68487a:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:a538b255741a:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:aa72ec99b53b:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:ac6d6f868f43:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:b7301cb38d49:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:c0252ab7a214:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:c9dda050f494:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:c9dda050f494:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:e0cfacbe3019:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:e694bb7ffa43:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:f1f497bf6f57:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:synthetic-geometry:star:fa350febaf92:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:text-shape:consola:disk-layer:399bf09847ef:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:text-shape:cour:color-flash:2f8608f30fee:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:text-shape:courbd:canvas-grid:31c185f9aa8d:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:aag:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:abl:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:abl:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:abr:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:algo:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:erg:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:fear:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:solo:1",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:token-branded:vemp:0",
+      "reason": "unobservable-raster"
+    },
+    {
+      "id": "pair:vscode-icons:file-type-go-white:1",
+      "reason": "unobservable-raster"
+    }
+  ],
+  "requested_replay_shares": {
+    "synthetic-open-text": 0.3,
+    "synthetic-structure-v2": 0.3
+  },
+  "required_recall_slices": [
+    "overall",
+    "text_line",
+    "glyph_group",
+    "small_shape",
+    "layer_relation",
+    "stroke_network",
+    "appearance_model",
+    "symmetry_repeat_group",
+    "risk_hard_negative"
+  ],
+  "resumed_from": null,
+  "schema": "pcdc-proposal-large-training/v2-honest-top5",
+  "selection_history": [
+    {
+      "epoch": 0,
+      "mean_required_iou_at_5": 0.5668928670557722,
+      "minimum_normalized_gate_margin": 0.0,
+      "overall_recall_at_5": 0.8672764122018396,
+      "source": "immutable-initialization-baseline",
+      "training_loss": null
+    }
+  ],
+  "source_disjoint": true,
+  "split_counts": {
+    "calibration": 8132,
+    "test": 11112,
+    "train": 55459
+  },
+  "split_group_counts": {
+    "calibration": 1030,
+    "test": 1045,
+    "train": 8379
+  },
+  "split_source_counts": {
+    "calibration": 3757,
+    "test": 5164,
+    "train": 24894
+  },
+  "status": "failed",
+  "test_conformal_coverage_by_family": {
+    "appearance_model": 1.0,
+    "glyph_group": 0.9890468422279189,
+    "layer_relation": 1.0,
+    "risk_hard_negative": 1.0,
+    "stroke_network": 1.0,
+    "symmetry_repeat_group": 1.0,
+    "text_line": 0.9839612085042895,
+    "whole_shape": 0.9912451361867705
+  },
+  "test_neural_only": {
+    "appearance_model": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 164,
+      "mean_best_soft_iou_at_5": 0.5360867385656727,
+      "mean_best_soft_iou_at_k": 0.5835806756081628,
+      "neural_only_recall_at_5_iou50": 0.5609756097560976,
+      "neural_only_recall_at_k_iou50": 0.6158536585365854
+    },
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 4291,
+      "mean_best_soft_iou_at_5": 0.6846908500704335,
+      "mean_best_soft_iou_at_k": 0.6974353095035042,
+      "neural_only_recall_at_5_iou50": 0.8729899790258681,
+      "neural_only_recall_at_k_iou50": 0.8930319272896761
+    },
+    "layer_relation": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 752,
+      "mean_best_soft_iou_at_5": 0.7993242630448784,
+      "mean_best_soft_iou_at_k": 0.8832103839384778,
+      "neural_only_recall_at_5_iou50": 0.8550531914893617,
+      "neural_only_recall_at_k_iou50": 0.9574468085106383
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 0.9991661297047341,
+      "instances": 26383,
+      "mean_best_soft_iou_at_5": 0.7513697369987363,
+      "mean_best_soft_iou_at_k": 0.7671880153384089,
+      "neural_only_recall_at_5_iou50": 0.8599097903953303,
+      "neural_only_recall_at_k_iou50": 0.8764734867149301,
+      "rows": 11112,
+      "rows_over_global_top5_capacity": 17
+    },
+    "risk_hard_negative": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 9246,
+      "mean_best_soft_iou_at_5": 0.8356770585935372,
+      "mean_best_soft_iou_at_k": 0.8485332791947904,
+      "neural_only_recall_at_5_iou50": 0.9569543586415747,
+      "neural_only_recall_at_k_iou50": 0.9731775903093229
+    },
+    "small_shape": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 618,
+      "mean_best_soft_iou_at_5": 0.9079199523274957,
+      "mean_best_soft_iou_at_k": 0.9081448259176267,
+      "neural_only_recall_at_5_iou50": 0.9919093851132686,
+      "neural_only_recall_at_k_iou50": 0.9919093851132686
+    },
+    "stroke_network": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 188,
+      "mean_best_soft_iou_at_5": 0.06507478985670943,
+      "mean_best_soft_iou_at_k": 0.0736880772892206,
+      "neural_only_recall_at_5_iou50": 0.0797872340425532,
+      "neural_only_recall_at_k_iou50": 0.09042553191489362
+    },
+    "symmetry_repeat_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 212,
+      "mean_best_soft_iou_at_5": 0.030144868774417546,
+      "mean_best_soft_iou_at_k": 0.030144868774417546,
+      "neural_only_recall_at_5_iou50": 0.0330188679245283,
+      "neural_only_recall_at_k_iou50": 0.0330188679245283
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 5362,
+      "mean_best_soft_iou_at_5": 0.539634738693082,
+      "mean_best_soft_iou_at_k": 0.5671605176851975,
+      "neural_only_recall_at_5_iou50": 0.6118985453189109,
+      "neural_only_recall_at_k_iou50": 0.628496829541216
+    },
+    "whole_shape": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 6168,
+      "mean_best_soft_iou_at_5": 0.9010299833575746,
+      "mean_best_soft_iou_at_k": 0.9048715288746143,
+      "neural_only_recall_at_5_iou50": 0.9816796368352788,
+      "neural_only_recall_at_k_iou50": 0.9855706874189365
+    }
+  },
+  "training_data_contract_sha256": "aa17170c69405c73a80e38dd18298fa5144df1535f2011a315b4380a5216a282",
+  "training_rows_sha256": "266a8ccc2a71b89972d5c43b168b73b411e0c3115b4857a2a1967324d928cbb9",
+  "training_sources_sha256": "c632e56e5213334cfb9938c448c2a0b9c6106add0df7e5295a8266524bf7ed80"
+}

@@ -1,0 +1,109 @@
+{
+  "schema": "vice-vai-plate-split-audit/1",
+  "plates": [
+    {
+      "plate": 1,
+      "status": "complete",
+      "graphics": 1530,
+      "assigned_to_cells": 1529,
+      "shared_plate_compound_paths": 1,
+      "unassigned": 0,
+      "coverage": 1.0,
+      "cells": 67,
+      "cells_with_graphics": 67
+    },
+    {
+      "plate": 2,
+      "status": "complete",
+      "graphics": 1176,
+      "assigned_to_cells": 1175,
+      "shared_plate_compound_paths": 1,
+      "unassigned": 0,
+      "coverage": 1.0,
+      "cells": 32,
+      "cells_with_graphics": 32
+    },
+    {
+      "plate": 3,
+      "status": "complete",
+      "graphics": 1443,
+      "assigned_to_cells": 1442,
+      "shared_plate_compound_paths": 1,
+      "unassigned": 0,
+      "coverage": 1.0,
+      "cells": 6,
+      "cells_with_graphics": 6
+    },
+    {
+      "plate": 4,
+      "status": "complete",
+      "graphics": 1030,
+      "assigned_to_cells": 1029,
+      "shared_plate_compound_paths": 1,
+      "unassigned": 0,
+      "coverage": 1.0,
+      "cells": 10,
+      "cells_with_graphics": 10
+    }
+  ],
+  "raster_fidelity": {
+    "status": "PASS",
+    "items": 115,
+    "mae_mean": 0.02444,
+    "mae_p95": 0.0975,
+    "mae_max": 0.225586,
+    "exact_items": 17,
+    "worst": [
+      {
+        "item": 52,
+        "mae": 0.225586,
+        "max_channel_delta": 55
+      },
+      {
+        "item": 25,
+        "mae": 0.179414,
+        "max_channel_delta": 44
+      },
+      {
+        "item": 43,
+        "mae": 0.157335,
+        "max_channel_delta": 21
+      },
+      {
+        "item": 37,
+        "mae": 0.145426,
+        "max_channel_delta": 24
+      },
+      {
+        "item": 78,
+        "mae": 0.120451,
+        "max_channel_delta": 71
+      },
+      {
+        "item": 20,
+        "mae": 0.099982,
+        "max_channel_delta": 28
+      },
+      {
+        "item": 47,
+        "mae": 0.096436,
+        "max_channel_delta": 38
+      },
+      {
+        "item": 33,
+        "mae": 0.096294,
+        "max_channel_delta": 44
+      },
+      {
+        "item": 18,
+        "mae": 0.093074,
+        "max_channel_delta": 41
+      },
+      {
+        "item": 27,
+        "mae": 0.084366,
+        "max_channel_delta": 38
+      }
+    ]
+  }
+}

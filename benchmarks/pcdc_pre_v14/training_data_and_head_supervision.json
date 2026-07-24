@@ -1,0 +1,369 @@
+{
+  "accepted_pair_count": 73368,
+  "corpus_data_contract_sha256": "6565ac4a36724042c2ea4aa156f4ff908c28c83db0fdfe96632cf431a92b3c89",
+  "created_at": "2026-07-23T19:05:55.880364+00:00",
+  "duplicate_accepted_ids": 0,
+  "elapsed_seconds": 1754.621836599952,
+  "error_count": 0,
+  "error_problem_counts": {},
+  "error_source_counts": {},
+  "error_split_counts": {},
+  "errors": [],
+  "filter_cache": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v14_relation\\filter_cache.json",
+  "filter_cache_sha256": "e187df82d4d4f7f4eb66abb14b36a952497f9edf72eb398292eced28f9105f90",
+  "gates": {
+    "accepted_ids_unique": true,
+    "all_10_hard_negatives_in_every_split": true,
+    "all_8_relation_tokens_have_positive_and_negative_supervision_in_every_split": true,
+    "all_families_in_every_split": true,
+    "all_input_corpora_versioned": true,
+    "all_parameter_dimensions_in_every_split": true,
+    "all_recall_at_5_gates_mathematically_feasible": true,
+    "all_rows_renderer_attested": true,
+    "degradation_disjoint_holdout_exists": true,
+    "every_row_materializes": true,
+    "filter_cache_valid": true,
+    "mixed_corpus_attestation_valid": true,
+    "renderer_disjoint_holdout_exists": true,
+    "renderer_diversity_ge_4": true,
+    "split_groups_disjoint": true
+  },
+  "input_corpus_schemas": [
+    "pcdc-external-raster-vector-corpus-attestation/v2",
+    "pcdc-proposal-text-data-factory/v2",
+    "pcdc-proposal-structure-data-factory/v2"
+  ],
+  "label_contract_sha256": "91e4c02eb3517b0c382f0f2d938708f85b84046cf2338b05f0b80688b028e6d2",
+  "label_contract_version": "pcdc-explicit-owner-counterfactual-mixed-replay-labels/v4",
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v14_relation",
+  "pair_root_report_sha256": "52e94cb45305c8a423c3a684482731422e21f632963ddc3e72f8c75d67b15e6f",
+  "pairs_jsonl_sha256": "4ca2df91b8c6ea37d0db2acf28e128b64b36c8ff32a076717642d6b0ada9997d",
+  "passed": true,
+  "raw_pair_count": 75390,
+  "rejected_pair_count": 2022,
+  "renderer_counts": {
+    "cairosvg-pillow-jpeg/v1": 35138,
+    "cairosvg-pillow-png/v1": 23326,
+    "resvg-pillow-jpeg/v1": 9548,
+    "resvg-pillow-png/v1": 4967,
+    "resvg-pillow-webp/v1": 389
+  },
+  "schema": "pcdc-pre-v14-training-data-audit/v1",
+  "source_counts": {
+    "iconify": 25922,
+    "local": 2014,
+    "synthetic-geometry": 15600,
+    "synthetic-open-text": 7084,
+    "synthetic-structure-v2": 7820,
+    "synthetic-text": 14928
+  },
+  "split_degradation_families": {
+    "calibration": [
+      "background-composite",
+      "blur",
+      "clean",
+      "jpeg",
+      "noise",
+      "rotation"
+    ],
+    "test": [
+      "background-composite",
+      "blur",
+      "clean",
+      "jpeg",
+      "noise",
+      "rotation",
+      "webp"
+    ],
+    "train": [
+      "background-composite",
+      "blur",
+      "clean",
+      "jpeg",
+      "noise",
+      "rotation"
+    ]
+  },
+  "split_group_counts": {
+    "calibration": 1240,
+    "test": 1261,
+    "train": 9976
+  },
+  "split_group_overlap": {
+    "calibration|test": [],
+    "train|calibration": [],
+    "train|test": []
+  },
+  "split_renderers": {
+    "calibration": [
+      "cairosvg-pillow-jpeg/v1",
+      "cairosvg-pillow-png/v1",
+      "resvg-pillow-jpeg/v1",
+      "resvg-pillow-png/v1"
+    ],
+    "test": [
+      "cairosvg-pillow-jpeg/v1",
+      "cairosvg-pillow-png/v1",
+      "resvg-pillow-jpeg/v1",
+      "resvg-pillow-png/v1",
+      "resvg-pillow-webp/v1"
+    ],
+    "train": [
+      "cairosvg-pillow-jpeg/v1",
+      "cairosvg-pillow-png/v1",
+      "resvg-pillow-jpeg/v1",
+      "resvg-pillow-png/v1"
+    ]
+  },
+  "splits": {
+    "calibration": {
+      "all_hard_negative_classes_present": true,
+      "all_parameter_dimensions_supervised": true,
+      "all_relation_tokens_have_observed_negatives": true,
+      "all_relation_tokens_present": true,
+      "all_required_families_present": true,
+      "family_counts": {
+        "appearance_model": 217,
+        "glyph_group": 3211,
+        "layer_relation": 889,
+        "risk_hard_negative": 15343,
+        "stroke_network": 149,
+        "symmetry_repeat_group": 191,
+        "text_line": 4309,
+        "whole_shape": 4502
+      },
+      "global_top5_gate_mathematically_feasible": true,
+      "hard_negative_counts": {
+        "false_circle": 1774,
+        "fill_counter": 1370,
+        "fuse_letters": 295,
+        "gradient_band_explosion": 217,
+        "jagged_overfit": 1825,
+        "preserve_jpeg_halo": 6268,
+        "remove_real_accent": 2141,
+        "split_glyph": 417,
+        "stroke_fill_confusion": 149,
+        "wrong_layer": 887
+      },
+      "oracle_recall_at_5_capacity": {
+        "appearance_model": 1.0,
+        "glyph_group": 1.0,
+        "layer_relation": 1.0,
+        "overall": 0.9912533407379126,
+        "risk_hard_negative": 1.0,
+        "small_shape": 1.0,
+        "stroke_network": 1.0,
+        "symmetry_repeat_group": 1.0,
+        "text_line": 1.0
+      },
+      "pair_count": 8416,
+      "parameter_dimension_counts": [
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811,
+        28811
+      ],
+      "relation_negative_token_counts": {
+        "behind": 535,
+        "front_of": 535,
+        "mirror": 620,
+        "repeat": 566,
+        "same_appearance": 554,
+        "same_group": 199,
+        "stroke_membership": 604,
+        "text_membership": 753
+      },
+      "relation_token_counts": {
+        "behind": 218,
+        "front_of": 218,
+        "mirror": 133,
+        "repeat": 187,
+        "same_appearance": 199,
+        "same_group": 3589,
+        "stroke_membership": 149,
+        "text_membership": 3035
+      },
+      "rows_over_global_top5_capacity": 244,
+      "small_shape_count": 609,
+      "target_count": 28811
+    },
+    "test": {
+      "all_hard_negative_classes_present": true,
+      "all_parameter_dimensions_supervised": true,
+      "all_relation_tokens_have_observed_negatives": true,
+      "all_relation_tokens_present": true,
+      "all_required_families_present": true,
+      "family_counts": {
+        "appearance_model": 188,
+        "glyph_group": 4046,
+        "layer_relation": 772,
+        "risk_hard_negative": 19970,
+        "stroke_network": 169,
+        "symmetry_repeat_group": 240,
+        "text_line": 5019,
+        "whole_shape": 6150
+      },
+      "global_top5_gate_mathematically_feasible": true,
+      "hard_negative_counts": {
+        "false_circle": 2814,
+        "fill_counter": 1719,
+        "fuse_letters": 403,
+        "gradient_band_explosion": 188,
+        "jagged_overfit": 2446,
+        "preserve_jpeg_halo": 8227,
+        "remove_real_accent": 2739,
+        "split_glyph": 495,
+        "stroke_fill_confusion": 169,
+        "wrong_layer": 770
+      },
+      "oracle_recall_at_5_capacity": {
+        "appearance_model": 1.0,
+        "glyph_group": 1.0,
+        "layer_relation": 1.0,
+        "overall": 0.9935985117907753,
+        "risk_hard_negative": 1.0,
+        "small_shape": 1.0,
+        "stroke_network": 1.0,
+        "symmetry_repeat_group": 1.0,
+        "text_line": 1.0
+      },
+      "pair_count": 10903,
+      "parameter_dimension_counts": [
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554,
+        36554
+      ],
+      "relation_negative_token_counts": {
+        "behind": 577,
+        "front_of": 577,
+        "mirror": 637,
+        "repeat": 563,
+        "same_appearance": 595,
+        "same_group": 188,
+        "stroke_membership": 614,
+        "text_membership": 783
+      },
+      "relation_token_counts": {
+        "behind": 206,
+        "front_of": 206,
+        "mirror": 146,
+        "repeat": 220,
+        "same_appearance": 188,
+        "same_group": 3229,
+        "stroke_membership": 169,
+        "text_membership": 2634
+      },
+      "rows_over_global_top5_capacity": 212,
+      "small_shape_count": 612,
+      "target_count": 36554
+    },
+    "train": {
+      "all_hard_negative_classes_present": true,
+      "all_parameter_dimensions_supervised": true,
+      "all_relation_tokens_have_observed_negatives": true,
+      "all_relation_tokens_present": true,
+      "all_required_families_present": true,
+      "family_counts": {
+        "appearance_model": 2093,
+        "glyph_group": 16799,
+        "layer_relation": 4421,
+        "risk_hard_negative": 98263,
+        "stroke_network": 1673,
+        "symmetry_repeat_group": 1644,
+        "text_line": 22751,
+        "whole_shape": 31781
+      },
+      "global_top5_gate_mathematically_feasible": true,
+      "hard_negative_counts": {
+        "false_circle": 13459,
+        "fill_counter": 7748,
+        "fuse_letters": 1609,
+        "gradient_band_explosion": 2093,
+        "jagged_overfit": 12008,
+        "preserve_jpeg_halo": 40633,
+        "remove_real_accent": 12628,
+        "split_glyph": 1999,
+        "stroke_fill_confusion": 1673,
+        "wrong_layer": 4413
+      },
+      "oracle_recall_at_5_capacity": {
+        "appearance_model": 1.0,
+        "glyph_group": 1.0,
+        "layer_relation": 1.0,
+        "overall": 0.9916734011425387,
+        "risk_hard_negative": 1.0,
+        "small_shape": 1.0,
+        "stroke_network": 1.0,
+        "symmetry_repeat_group": 1.0,
+        "text_line": 1.0
+      },
+      "pair_count": 54049,
+      "parameter_dimension_counts": [
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425,
+        179425
+      ],
+      "relation_negative_token_counts": {
+        "behind": 4708,
+        "front_of": 4708,
+        "mirror": 5156,
+        "repeat": 4808,
+        "same_appearance": 4675,
+        "same_group": 1609,
+        "stroke_membership": 4661,
+        "text_membership": 6284
+      },
+      "relation_token_counts": {
+        "behind": 1576,
+        "front_of": 1576,
+        "mirror": 1128,
+        "repeat": 1476,
+        "same_appearance": 1609,
+        "same_group": 20338,
+        "stroke_membership": 1623,
+        "text_membership": 15663
+      },
+      "rows_over_global_top5_capacity": 1355,
+      "small_shape_count": 4667,
+      "target_count": 179425
+    }
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "schema": "vice-human-court-disclosure/1",
+  "court": "v-ice-vai-crop-v1",
+  "answers_source": "C:/Users/nirrt/Downloads/v-ice-crop-court-answers.json",
+  "manifest": "benchmarks/vai_crop_court_manifest.json",
+  "scope": "legacy Best (paper-regions), not the frozen Scene Engine",
+  "display_validity": "diagnostic-only",
+  "display_caveat": "The evaluator reported that SVG was shown at an inadequate resolution, preventing a reliable quality comparison.",
+  "totals": {
+    "ours": 5,
+    "vai": 6,
+    "tie": 1
+  },
+  "single_metric_alignment_on_11_non_ties": {
+    "ssim": {"correct": 6, "wrong": 5, "metric_ties": 0},
+    "ink_iou": {"correct": 4, "wrong": 7, "metric_ties": 0},
+    "mae": {"correct": 5, "wrong": 6, "metric_ties": 0},
+    "boundary_f": {"correct": 4, "wrong": 5, "metric_ties": 2},
+    "hausdorff95": {"correct": 2, "wrong": 4, "metric_ties": 5},
+    "wobble": {"correct": 5, "wrong": 6, "metric_ties": 0},
+    "g2_steps": {"correct": 5, "wrong": 6, "metric_ties": 0}
+  },
+  "metric_alignment_note": "No single frozen scalar metric reliably predicted the evaluator's preference; SSIM was only 6/11 and ink IoU 4/11. This supports hard semantic/topology/text gates plus a calibrated human court instead of scalar-score promotion.",
+  "rows": [
+    {"case": 1, "stem": "icon_group_4_62", "choice": "B", "A": "ours", "B": "vai", "winner": "vai"},
+    {"case": 2, "stem": "icon_group_3_2", "choice": "A", "A": "vai", "B": "ours", "winner": "vai"},
+    {"case": 3, "stem": "icon_group_2_1", "choice": "B", "A": "ours", "B": "vai", "winner": "vai"},
+    {"case": 4, "stem": "icon_group_4_77", "choice": "B", "A": "vai", "B": "ours", "winner": "ours"},
+    {"case": 5, "stem": "icon_group_4_13", "choice": "B", "A": "vai", "B": "ours", "winner": "ours"},
+    {"case": 6, "stem": "icon_group_4_63", "choice": "B", "A": "ours", "B": "vai", "winner": "vai"},
+    {"case": 7, "stem": "icon_group_4_55", "choice": "B", "A": "vai", "B": "ours", "winner": "ours"},
+    {"case": 8, "stem": "icon_group_7", "choice": "A", "A": "vai", "B": "ours", "winner": "vai"},
+    {"case": 9, "stem": "egtdigitalgames_512", "choice": "B", "A": "vai", "B": "ours", "winner": "ours"},
+    {"case": 10, "stem": "icon_group", "choice": "B", "A": "ours", "B": "vai", "winner": "vai"},
+    {"case": 11, "stem": "icon_group_4_70", "choice": "B", "A": "vai", "B": "ours", "winner": "ours"},
+    {"case": 12, "stem": "icon_group_4_17", "choice": "tie", "A": "vai", "B": "ours", "winner": "tie"}
+  ],
+  "promotion_eligible": false,
+  "reason": "The court predates the Scene freeze and its display contract was rejected by the evaluator. Re-run at native/live-SVG resolution is mandatory."
+}

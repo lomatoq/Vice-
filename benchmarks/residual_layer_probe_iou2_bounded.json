@@ -1,0 +1,681 @@
+[
+  {
+    "stem": "icon_group",
+    "incumbent": {
+      "raster": {
+        "mae": 5.48,
+        "rmse": 11.9,
+        "ink_iou": 0.9573,
+        "ssim": 0.9771,
+        "seam_px": 2.5,
+        "mirror_iou": 0.1322,
+        "region_de2000_p95": 8.5863,
+        "de_region_max": 87.2967,
+        "color_regions": 551,
+        "source_rot90_iou": 0.0212,
+        "rot90_iou": 0.0199,
+        "rot90_sym_break": 0.0013,
+        "boundary_f": 0.9951,
+        "hausdorff95": 0.95
+      },
+      "geometry": {
+        "wobble": 0.0273,
+        "g2_steps": 0.1089,
+        "kinks_per_100px": 1.476,
+        "staircase_runs": 2,
+        "micro_segs": 64,
+        "total_len": 11860.2,
+        "segments": 1058
+      }
+    },
+    "best": {
+      "min_area": 3,
+      "fit_px": 0.4,
+      "close_radius": 0,
+      "correction_paths": 8,
+      "correction_primitives": 50,
+      "components": [
+        {
+          "kind": "add",
+          "area": 80,
+          "extent": [
+            14,
+            65
+          ],
+          "primitives": 10
+        },
+        {
+          "kind": "add",
+          "area": 75,
+          "extent": [
+            4,
+            65
+          ],
+          "primitives": 8
+        },
+        {
+          "kind": "add",
+          "area": 50,
+          "extent": [
+            1,
+            50
+          ],
+          "primitives": 4
+        },
+        {
+          "kind": "add",
+          "area": 50,
+          "extent": [
+            1,
+            50
+          ],
+          "primitives": 4
+        },
+        {
+          "kind": "erase",
+          "area": 65,
+          "extent": [
+            65,
+            1
+          ],
+          "primitives": 4
+        },
+        {
+          "kind": "erase",
+          "area": 27,
+          "extent": [
+            13,
+            15
+          ],
+          "primitives": 8
+        },
+        {
+          "kind": "erase",
+          "area": 23,
+          "extent": [
+            10,
+            14
+          ],
+          "primitives": 8
+        },
+        {
+          "kind": "erase",
+          "area": 16,
+          "extent": [
+            16,
+            1
+          ],
+          "primitives": 4
+        }
+      ],
+      "raster": {
+        "mae": 5.44,
+        "rmse": 11.67,
+        "ink_iou": 0.9609,
+        "ssim": 0.9776,
+        "seam_px": 2.5,
+        "mirror_iou": 0.1317,
+        "region_de2000_p95": 8.3934,
+        "de_region_max": 87.2967,
+        "color_regions": 551,
+        "source_rot90_iou": 0.0212,
+        "rot90_iou": 0.02,
+        "rot90_sym_break": 0.0011,
+        "boundary_f": 0.9953,
+        "hausdorff95": 0.95
+      },
+      "geometry": {
+        "wobble": 0.0823,
+        "g2_steps": 0.1108,
+        "kinks_per_100px": 1.402,
+        "staircase_runs": 2,
+        "micro_segs": 66,
+        "total_len": 12622.7,
+        "segments": 1108
+      },
+      "output": "benchmarks\\vai_work\\paper-regions\\icon_group\\12_icon_group_src\\03_rebuilt_residual_a3_p0.40_c0.svg"
+    },
+    "trials": [
+      {
+        "min_area": 3,
+        "fit_px": 0.4,
+        "close_radius": 0,
+        "correction_paths": 8,
+        "correction_primitives": 50,
+        "components": [
+          {
+            "kind": "add",
+            "area": 80,
+            "extent": [
+              14,
+              65
+            ],
+            "primitives": 10
+          },
+          {
+            "kind": "add",
+            "area": 75,
+            "extent": [
+              4,
+              65
+            ],
+            "primitives": 8
+          },
+          {
+            "kind": "add",
+            "area": 50,
+            "extent": [
+              1,
+              50
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "add",
+            "area": 50,
+            "extent": [
+              1,
+              50
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 65,
+            "extent": [
+              65,
+              1
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 27,
+            "extent": [
+              13,
+              15
+            ],
+            "primitives": 8
+          },
+          {
+            "kind": "erase",
+            "area": 23,
+            "extent": [
+              10,
+              14
+            ],
+            "primitives": 8
+          },
+          {
+            "kind": "erase",
+            "area": 16,
+            "extent": [
+              16,
+              1
+            ],
+            "primitives": 4
+          }
+        ],
+        "raster": {
+          "mae": 5.44,
+          "rmse": 11.67,
+          "ink_iou": 0.9609,
+          "ssim": 0.9776,
+          "seam_px": 2.5,
+          "mirror_iou": 0.1317,
+          "region_de2000_p95": 8.3934,
+          "de_region_max": 87.2967,
+          "color_regions": 551,
+          "source_rot90_iou": 0.0212,
+          "rot90_iou": 0.02,
+          "rot90_sym_break": 0.0011,
+          "boundary_f": 0.9953,
+          "hausdorff95": 0.95
+        },
+        "geometry": {
+          "wobble": 0.0823,
+          "g2_steps": 0.1108,
+          "kinks_per_100px": 1.402,
+          "staircase_runs": 2,
+          "micro_segs": 66,
+          "total_len": 12622.7,
+          "segments": 1108
+        },
+        "output": "benchmarks\\vai_work\\paper-regions\\icon_group\\12_icon_group_src\\03_rebuilt_residual_a3_p0.40_c0.svg"
+      },
+      {
+        "min_area": 3,
+        "fit_px": 0.25,
+        "close_radius": 0,
+        "correction_paths": 8,
+        "correction_primitives": 63,
+        "components": [
+          {
+            "kind": "add",
+            "area": 80,
+            "extent": [
+              14,
+              65
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "add",
+            "area": 75,
+            "extent": [
+              4,
+              65
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "add",
+            "area": 50,
+            "extent": [
+              1,
+              50
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "add",
+            "area": 50,
+            "extent": [
+              1,
+              50
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "erase",
+            "area": 65,
+            "extent": [
+              65,
+              1
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 27,
+            "extent": [
+              13,
+              15
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "erase",
+            "area": 23,
+            "extent": [
+              10,
+              14
+            ],
+            "primitives": 9
+          },
+          {
+            "kind": "erase",
+            "area": 23,
+            "extent": [
+              18,
+              7
+            ],
+            "primitives": 13
+          }
+        ],
+        "raster": {
+          "mae": 5.44,
+          "rmse": 11.66,
+          "ink_iou": 0.9608,
+          "ssim": 0.9777,
+          "seam_px": 2.5,
+          "mirror_iou": 0.1317,
+          "region_de2000_p95": 8.3934,
+          "de_region_max": 87.2967,
+          "color_regions": 551,
+          "source_rot90_iou": 0.0212,
+          "rot90_iou": 0.02,
+          "rot90_sym_break": 0.0011,
+          "boundary_f": 0.9954,
+          "hausdorff95": 0.95
+        },
+        "geometry": {
+          "wobble": 0.0646,
+          "g2_steps": 0.1157,
+          "kinks_per_100px": 1.394,
+          "staircase_runs": 2,
+          "micro_segs": 68,
+          "total_len": 12623.6,
+          "segments": 1121
+        },
+        "output": "benchmarks\\vai_work\\paper-regions\\icon_group\\12_icon_group_src\\03_rebuilt_residual_a3_p0.25_c0.svg"
+      }
+    ]
+  },
+  {
+    "stem": "icon_group_6",
+    "incumbent": {
+      "raster": {
+        "mae": 6.63,
+        "rmse": 11.25,
+        "ink_iou": 0.9591,
+        "ssim": 0.9663,
+        "seam_px": 0.0,
+        "mirror_iou": 0.3738,
+        "region_de2000_p95": 6.3978,
+        "de_region_max": 25.349,
+        "color_regions": 28,
+        "source_rot90_iou": 0.1833,
+        "rot90_iou": 0.1872,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.95
+      },
+      "geometry": {
+        "wobble": 0.0,
+        "g2_steps": 0.0,
+        "kinks_per_100px": 3.004,
+        "staircase_runs": 0,
+        "micro_segs": 0,
+        "total_len": 1931.0,
+        "segments": 419
+      }
+    },
+    "best": {
+      "min_area": 3,
+      "fit_px": 0.4,
+      "close_radius": 0,
+      "correction_paths": 7,
+      "correction_primitives": 25,
+      "components": [
+        {
+          "kind": "add",
+          "area": 8,
+          "extent": [
+            8,
+            1
+          ],
+          "primitives": 4
+        },
+        {
+          "kind": "add",
+          "area": 4,
+          "extent": [
+            4,
+            1
+          ],
+          "primitives": 3
+        },
+        {
+          "kind": "add",
+          "area": 4,
+          "extent": [
+            4,
+            4
+          ],
+          "primitives": 4
+        },
+        {
+          "kind": "erase",
+          "area": 18,
+          "extent": [
+            18,
+            1
+          ],
+          "primitives": 4
+        },
+        {
+          "kind": "erase",
+          "area": 16,
+          "extent": [
+            16,
+            1
+          ],
+          "primitives": 4
+        },
+        {
+          "kind": "erase",
+          "area": 5,
+          "extent": [
+            5,
+            1
+          ],
+          "primitives": 3
+        },
+        {
+          "kind": "erase",
+          "area": 4,
+          "extent": [
+            4,
+            1
+          ],
+          "primitives": 3
+        }
+      ],
+      "raster": {
+        "mae": 6.59,
+        "rmse": 11.16,
+        "ink_iou": 0.9678,
+        "ssim": 0.9667,
+        "seam_px": 0.0,
+        "mirror_iou": 0.3688,
+        "region_de2000_p95": 6.3978,
+        "de_region_max": 25.349,
+        "color_regions": 28,
+        "source_rot90_iou": 0.1833,
+        "rot90_iou": 0.1891,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.95
+      },
+      "geometry": {
+        "wobble": 0.279,
+        "g2_steps": 0.1146,
+        "kinks_per_100px": 2.825,
+        "staircase_runs": 0,
+        "micro_segs": 4,
+        "total_len": 2052.9,
+        "segments": 444
+      },
+      "output": "benchmarks\\vai_work\\paper-regions\\icon_group_6\\117_icon_group_6_src\\03_rebuilt_residual_a3_p0.40_c0.svg"
+    },
+    "trials": [
+      {
+        "min_area": 3,
+        "fit_px": 0.4,
+        "close_radius": 0,
+        "correction_paths": 7,
+        "correction_primitives": 25,
+        "components": [
+          {
+            "kind": "add",
+            "area": 8,
+            "extent": [
+              8,
+              1
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "add",
+            "area": 4,
+            "extent": [
+              4,
+              1
+            ],
+            "primitives": 3
+          },
+          {
+            "kind": "add",
+            "area": 4,
+            "extent": [
+              4,
+              4
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 18,
+            "extent": [
+              18,
+              1
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 16,
+            "extent": [
+              16,
+              1
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 5,
+            "extent": [
+              5,
+              1
+            ],
+            "primitives": 3
+          },
+          {
+            "kind": "erase",
+            "area": 4,
+            "extent": [
+              4,
+              1
+            ],
+            "primitives": 3
+          }
+        ],
+        "raster": {
+          "mae": 6.59,
+          "rmse": 11.16,
+          "ink_iou": 0.9678,
+          "ssim": 0.9667,
+          "seam_px": 0.0,
+          "mirror_iou": 0.3688,
+          "region_de2000_p95": 6.3978,
+          "de_region_max": 25.349,
+          "color_regions": 28,
+          "source_rot90_iou": 0.1833,
+          "rot90_iou": 0.1891,
+          "rot90_sym_break": 0.0,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.95
+        },
+        "geometry": {
+          "wobble": 0.279,
+          "g2_steps": 0.1146,
+          "kinks_per_100px": 2.825,
+          "staircase_runs": 0,
+          "micro_segs": 4,
+          "total_len": 2052.9,
+          "segments": 444
+        },
+        "output": "benchmarks\\vai_work\\paper-regions\\icon_group_6\\117_icon_group_6_src\\03_rebuilt_residual_a3_p0.40_c0.svg"
+      },
+      {
+        "min_area": 3,
+        "fit_px": 0.25,
+        "close_radius": 0,
+        "correction_paths": 7,
+        "correction_primitives": 30,
+        "components": [
+          {
+            "kind": "add",
+            "area": 8,
+            "extent": [
+              8,
+              1
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "add",
+            "area": 4,
+            "extent": [
+              4,
+              1
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "add",
+            "area": 4,
+            "extent": [
+              4,
+              4
+            ],
+            "primitives": 4
+          },
+          {
+            "kind": "erase",
+            "area": 18,
+            "extent": [
+              18,
+              1
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "erase",
+            "area": 16,
+            "extent": [
+              16,
+              1
+            ],
+            "primitives": 5
+          },
+          {
+            "kind": "erase",
+            "area": 5,
+            "extent": [
+              5,
+              1
+            ],
+            "primitives": 3
+          },
+          {
+            "kind": "erase",
+            "area": 4,
+            "extent": [
+              4,
+              1
+            ],
+            "primitives": 4
+          }
+        ],
+        "raster": {
+          "mae": 6.58,
+          "rmse": 11.14,
+          "ink_iou": 0.968,
+          "ssim": 0.9667,
+          "seam_px": 0.0,
+          "mirror_iou": 0.3685,
+          "region_de2000_p95": 6.3978,
+          "de_region_max": 25.349,
+          "color_regions": 28,
+          "source_rot90_iou": 0.1833,
+          "rot90_iou": 0.189,
+          "rot90_sym_break": 0.0,
+          "boundary_f": 1.0,
+          "hausdorff95": 0.95
+        },
+        "geometry": {
+          "wobble": 0.1116,
+          "g2_steps": 0.1729,
+          "kinks_per_100px": 2.828,
+          "staircase_runs": 0,
+          "micro_segs": 4,
+          "total_len": 2050.6,
+          "segments": 449
+        },
+        "output": "benchmarks\\vai_work\\paper-regions\\icon_group_6\\117_icon_group_6_src\\03_rebuilt_residual_a3_p0.25_c0.svg"
+      }
+    ]
+  }
+]

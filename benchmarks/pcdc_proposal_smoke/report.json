@@ -1,0 +1,234 @@
+{
+  "calibration_neural_only": {
+    "glyph_group": {
+      "instances": 4,
+      "mean_best_soft_iou_at_5": 0.03670565846747468,
+      "mean_best_soft_iou_at_k": 0.03670565846747468,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "overall": {
+      "instances": 15,
+      "mean_best_soft_iou_at_5": 0.05396586055383987,
+      "mean_best_soft_iou_at_k": 0.06266166446295122,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "risk_hard_negative": {
+      "instances": 5,
+      "mean_best_soft_iou_at_5": 0.10328505631198767,
+      "mean_best_soft_iou_at_k": 0.10328505631198767,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "small_shape": {
+      "instances": 1,
+      "mean_best_soft_iou_at_5": 0.0,
+      "mean_best_soft_iou_at_k": 0.03765096476657946,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "text_line": {
+      "instances": 4,
+      "mean_best_soft_iou_at_5": 0.03655999821944021,
+      "mean_best_soft_iou_at_k": 0.03660529596289945,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "whole_shape": {
+      "instances": 2,
+      "mean_best_soft_iou_at_5": 0.0,
+      "mean_best_soft_iou_at_k": 0.06512793383141671,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    }
+  },
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_proposal_smoke\\best.pt",
+  "checkpoint_selection_contract": "calibration-min-normalized-required-Recall@5/v1",
+  "checkpoint_selection_key": [
+    0.0,
+    0.0,
+    0.025446303448150954
+  ],
+  "checkpoint_sha256": "bfbb5aceac84f55d32f1e3ff3eb27e093743b8cb29aa257e68ef2897c43568ff",
+  "conformal_nonvacuous": false,
+  "conformal_required_families": [
+    "text_line",
+    "glyph_group",
+    "whole_shape",
+    "layer_relation"
+  ],
+  "conformal_thresholds": [
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 4,
+      "empirical_coverage": 1.0,
+      "family": "glyph_group",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 5,
+      "empirical_coverage": 1.0,
+      "family": "risk_hard_negative",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 4,
+      "empirical_coverage": 1.0,
+      "family": "text_line",
+      "threshold": 1.0
+    },
+    {
+      "alpha": 0.010000000000000009,
+      "calibration_count": 2,
+      "empirical_coverage": 1.0,
+      "family": "whole_shape",
+      "threshold": 1.0
+    }
+  ],
+  "continuation_epochs": 1,
+  "created_at": "2026-07-21T22:43:12.773284+00:00",
+  "device": "cuda",
+  "elapsed_seconds": 1.6431795000098646,
+  "epochs": 1,
+  "evaluation_contract": {
+    "glyph_group_target": "whole-group-not-per-component",
+    "instance_matching": "one-to-one-Hungarian-within-family",
+    "neural_only": true,
+    "promotion_metric": "Recall@5 IoU>=0.50",
+    "query_ranking": "global-top-k-across-families"
+  },
+  "family_counts": {
+    "glyph_group": 58,
+    "text_line": 58,
+    "whole_shape": 6
+  },
+  "gate_pass": false,
+  "label_contract": {
+    "generic_parameters_supervised": 16,
+    "hard_negative_head_supervised": true,
+    "loss_version": "recall-k-balanced-support/v2",
+    "positive_weighting": "risk=1.85,small-shape=x3,text/glyph=1.50; class-balanced mask+bbox+global-top5-rank",
+    "ranking_objective": "target-weighted-matched-query-margin-over-global-fifth-competitor",
+    "semantic_scene_labels": "conservative-explicit-cues-only",
+    "small_shape_factory": "deterministic-source-disjoint-procedural-recomposition",
+    "training_sampler": "deterministic-gate-balanced-replacement/v1; small-shape=3.0,text/glyph=1.65,layer=1.50,degraded=1.20"
+  },
+  "latest_checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_proposal_smoke\\latest.pt",
+  "loss_history": [
+    10.564746141433716
+  ],
+  "minimum_recall_gate": 0.97,
+  "minimum_required_recall": 0.0,
+  "pair_count": 64,
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\raster_vector_pairs",
+  "promotion_policy": "candidate only; runtime promotion requires neural-only held-out gate, non-vacuous calibration and downstream full PCDC ablation",
+  "recall_gate_results": {
+    "glyph_group": {
+      "instances": 2,
+      "passed": false,
+      "recall": 0.0,
+      "threshold": 0.99
+    },
+    "layer_relation": {
+      "instances": 0,
+      "passed": false,
+      "recall": 0.0,
+      "threshold": 0.95
+    },
+    "overall": {
+      "instances": 9,
+      "passed": false,
+      "recall": 0.0,
+      "threshold": 0.97
+    },
+    "small_shape": {
+      "instances": 1,
+      "passed": false,
+      "recall": 0.0,
+      "threshold": 0.98
+    },
+    "text_line": {
+      "instances": 2,
+      "passed": false,
+      "recall": 0.0,
+      "threshold": 0.99
+    }
+  },
+  "required_recall_slices": [
+    "overall",
+    "text_line",
+    "glyph_group",
+    "small_shape",
+    "layer_relation"
+  ],
+  "resumed_from": null,
+  "schema": "pcdc-proposal-large-training/v2-honest-top5",
+  "selection_history": [
+    {
+      "epoch": 1,
+      "mean_required_iou_at_5": 0.025446303448150954,
+      "minimum_normalized_gate_margin": 0.0,
+      "overall_recall_at_5": 0.0,
+      "training_loss": 10.564746141433716
+    }
+  ],
+  "source_disjoint": true,
+  "split_counts": {
+    "calibration": 6,
+    "test": 4,
+    "train": 54
+  },
+  "split_source_counts": {
+    "calibration": 3,
+    "test": 2,
+    "train": 28
+  },
+  "status": "failed",
+  "test_neural_only": {
+    "glyph_group": {
+      "instances": 2,
+      "mean_best_soft_iou_at_5": 0.026695667986121576,
+      "mean_best_soft_iou_at_k": 0.026695667986121576,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "overall": {
+      "instances": 9,
+      "mean_best_soft_iou_at_5": 0.04152919681782799,
+      "mean_best_soft_iou_at_k": 0.058683704616000615,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "risk_hard_negative": {
+      "instances": 3,
+      "mean_best_soft_iou_at_5": 0.08904350938998438,
+      "mean_best_soft_iou_at_k": 0.08904350938998438,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "small_shape": {
+      "instances": 1,
+      "mean_best_soft_iou_at_5": 0.0,
+      "mean_best_soft_iou_at_k": 0.015393953106964002,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "text_line": {
+      "instances": 2,
+      "mean_best_soft_iou_at_5": 0.026620453609127792,
+      "mean_best_soft_iou_at_k": 0.026636012087014695,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    },
+    "whole_shape": {
+      "instances": 2,
+      "mean_best_soft_iou_at_5": 0.0,
+      "mean_best_soft_iou_at_k": 0.0771797266138899,
+      "neural_only_recall_at_5_iou50": 0.0,
+      "neural_only_recall_at_k_iou50": 0.0
+    }
+  }
+}

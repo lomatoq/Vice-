@@ -1,0 +1,1022 @@
+{
+  "appearances": [
+    {
+      "confidence": 0.7098202705383301,
+      "covariance": [
+        0.0016643899725750089,
+        2.1132931057874184e-17,
+        5.648054156190158e-18
+      ],
+      "id": "appearance-shape-0",
+      "kind": "solid",
+      "parameters": [],
+      "provenance": [
+        "soft-oklab-mixture"
+      ],
+      "rgba_linear": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "stops": []
+    },
+    {
+      "confidence": 0.7098202705383301,
+      "covariance": [
+        0.0016643899725750089,
+        2.1132931057874184e-17,
+        5.648054156190158e-18
+      ],
+      "id": "appearance-shape-1",
+      "kind": "solid",
+      "parameters": [],
+      "provenance": [
+        "soft-oklab-mixture"
+      ],
+      "rgba_linear": [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ],
+      "stops": []
+    },
+    {
+      "confidence": 0.7248955965042114,
+      "covariance": [
+        0.057465072721242905,
+        3.883677826896489e-15,
+        1.9248015074587143e-16
+      ],
+      "id": "appearance-shape-2",
+      "kind": "solid",
+      "parameters": [],
+      "provenance": [
+        "soft-oklab-mixture"
+      ],
+      "rgba_linear": [
+        0.014069694094359875,
+        0.014069708064198494,
+        0.014069696888327599,
+        1.0
+      ],
+      "stops": []
+    },
+    {
+      "confidence": 0.5,
+      "covariance": [],
+      "id": "appearance-residual-3",
+      "kind": "solid",
+      "parameters": [],
+      "provenance": [
+        "residual-color"
+      ],
+      "rgba_linear": [
+        0.0140729621052742,
+        0.0140729621052742,
+        0.0140729621052742,
+        1.0
+      ],
+      "stops": []
+    },
+    {
+      "confidence": 0.5,
+      "covariance": [],
+      "id": "appearance-residual-4",
+      "kind": "solid",
+      "parameters": [],
+      "provenance": [
+        "residual-color"
+      ],
+      "rgba_linear": [
+        0.016601495444774628,
+        0.016601495444774628,
+        0.016601495444774628,
+        1.0
+      ],
+      "stops": []
+    }
+  ],
+  "constraints": [],
+  "coordinate_space": "native-pixel",
+  "corners": [
+    {
+      "confidence": 0.6664589470341091,
+      "continuity": "C0",
+      "covariance": [
+        5.627644174632504e-27,
+        5.627644174632504e-27,
+        5.6276441746325045e-27
+      ],
+      "id": "corner-0",
+      "incident_interfaces": [
+        "interface-0",
+        "interface-2",
+        "interface-3"
+      ],
+      "position": [
+        14.999999999999998,
+        7.0
+      ],
+      "role": "junction"
+    },
+    {
+      "confidence": 0.689339551187697,
+      "continuity": "G1-unknown",
+      "covariance": [
+        0.04,
+        0.0,
+        0.04
+      ],
+      "id": "corner-1",
+      "incident_interfaces": [
+        "interface-0"
+      ],
+      "position": [
+        16.0,
+        8.0
+      ],
+      "role": "endpoint"
+    },
+    {
+      "confidence": 0.6501182119051615,
+      "continuity": "G1-unknown",
+      "covariance": [
+        0.04,
+        0.0,
+        0.04
+      ],
+      "id": "corner-2",
+      "incident_interfaces": [
+        "interface-1"
+      ],
+      "position": [
+        3.0,
+        6.0
+      ],
+      "role": "endpoint"
+    },
+    {
+      "confidence": 0.6501182119051615,
+      "continuity": "G1-unknown",
+      "covariance": [
+        0.04,
+        0.0,
+        0.04
+      ],
+      "id": "corner-3",
+      "incident_interfaces": [
+        "interface-1"
+      ],
+      "position": [
+        4.0,
+        6.0
+      ],
+      "role": "endpoint"
+    }
+  ],
+  "height": 16,
+  "interfaces": [
+    {
+      "confidence_profile": [
+        0.33131372928619385,
+        0.33131372928619385,
+        0.5090481042861938,
+        0.8425312638282776,
+        0.3557286858558655,
+        0.48160994052886963,
+        0.9311263561248779,
+        0.9041897058486938,
+        0.8756889700889587,
+        0.8692346215248108,
+        0.8692346215248108,
+        0.8756889700889587,
+        0.9041897058486938,
+        0.9301751852035522,
+        0.37526974081993103,
+        0.767116129398346,
+        0.767116129398346,
+        0.49056023359298706,
+        0.32130008935928345,
+        0.8718473315238953,
+        0.8718473315238953
+      ],
+      "corner_nodes": [
+        "corner-0",
+        "corner-1"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              7.0
+            ],
+            [
+              15.0,
+              5.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              5.0
+            ],
+            [
+              14.0,
+              5.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              14.0,
+              5.0
+            ],
+            [
+              14.0,
+              4.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              14.0,
+              4.0
+            ],
+            [
+              13.0,
+              4.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              13.0,
+              4.0
+            ],
+            [
+              13.0,
+              12.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              13.0,
+              12.0
+            ],
+            [
+              15.0,
+              12.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              12.0
+            ],
+            [
+              15.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              9.0
+            ],
+            [
+              16.0,
+              9.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              16.0,
+              9.0
+            ],
+            [
+              16.0,
+              8.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        }
+      ],
+      "id": "interface-0",
+      "left_shape": null,
+      "right_shape": "shape-0"
+    },
+    {
+      "confidence_profile": [
+        0.8236876130104065,
+        0.8804649710655212,
+        0.8697213530540466,
+        0.8692346215248108,
+        0.8765607476234436,
+        0.8694623112678528,
+        0.724303662776947,
+        0.9466431140899658,
+        0.047334183007478714,
+        0.047334183007478714,
+        0.4018546938896179,
+        0.5741830468177795,
+        0.6747077703475952,
+        0.6747077703475952,
+        0.5741830468177795,
+        0.3891989290714264,
+        0.10252695530653,
+        0.7963361144065857,
+        0.9762168526649475,
+        0.7669102549552917,
+        0.7669102549552917
+      ],
+      "corner_nodes": [
+        "corner-2",
+        "corner-3"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              3.0,
+              6.0
+            ],
+            [
+              3.0,
+              11.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              3.0,
+              11.0
+            ],
+            [
+              4.0,
+              11.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              4.0,
+              11.0
+            ],
+            [
+              4.0,
+              12.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              4.0,
+              12.0
+            ],
+            [
+              5.0,
+              12.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              5.0,
+              12.0
+            ],
+            [
+              5.0,
+              4.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              5.0,
+              4.0
+            ],
+            [
+              4.0,
+              4.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        },
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "line",
+          "parameters": [],
+          "points": [
+            [
+              4.0,
+              4.0
+            ],
+            [
+              4.0,
+              6.0
+            ]
+          ],
+          "provenance": [
+            "shared-interface-polyline"
+          ]
+        }
+      ],
+      "id": "interface-1",
+      "left_shape": null,
+      "right_shape": "shape-1"
+    },
+    {
+      "confidence_profile": [
+        0.8841995596885681,
+        0.8841995596885681,
+        0.8759498000144958
+      ],
+      "corner_nodes": [
+        "corner-0"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 0.997004495503373,
+          "evidence_rms_px": 5.706503147070311e-14,
+          "kind": "circular-arc",
+          "parameters": [
+            15.499999999999979,
+            7.5,
+            0.7071067811866079,
+            -2.3561944901923235,
+            0.785398163397427
+          ],
+          "points": [],
+          "provenance": [
+            "shared-interface-circular-arc"
+          ]
+        }
+      ],
+      "id": "interface-2",
+      "left_shape": null,
+      "right_shape": "shape-2"
+    },
+    {
+      "confidence_profile": [
+        0.22206702828407288,
+        0.22206702828407288,
+        0.8759498000144958
+      ],
+      "corner_nodes": [
+        "corner-0"
+      ],
+      "evidence_refs": [
+        "boundary_prob",
+        "boundary_normal",
+        "uncertainty"
+      ],
+      "geometry": [
+        {
+          "confidence": 0.997004495503373,
+          "evidence_rms_px": 8.705960933385517e-14,
+          "kind": "circular-arc",
+          "parameters": [
+            15.499999999999979,
+            7.5000000000001235,
+            0.7071067811864722,
+            -2.3561944901922,
+            -5.497787143782283
+          ],
+          "points": [],
+          "provenance": [
+            "shared-interface-circular-arc"
+          ]
+        }
+      ],
+      "id": "interface-3",
+      "left_shape": "shape-0",
+      "right_shape": "shape-2"
+    }
+  ],
+  "layer_edges": [
+    {
+      "above": "shape-1",
+      "below": "shape-0"
+    },
+    {
+      "above": "shape-2",
+      "below": "shape-1"
+    },
+    {
+      "above": "shape-residual-3",
+      "below": "shape-2"
+    },
+    {
+      "above": "shape-residual-4",
+      "below": "shape-residual-3"
+    }
+  ],
+  "loops": [
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-0-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 0.4270486188780028,
+          "evidence_rms_px": 0.8508574106942557,
+          "kind": "rect",
+          "parameters": [
+            14.5,
+            8.0,
+            7.75,
+            2.75,
+            -90.0
+          ],
+          "points": [
+            [
+              15.875,
+              11.875
+            ],
+            [
+              13.125,
+              11.875
+            ],
+            [
+              13.125,
+              4.125
+            ],
+            [
+              15.875,
+              4.125
+            ],
+            [
+              15.875,
+              11.875
+            ]
+          ],
+          "provenance": [
+            "minimum-area-rectangle",
+            "digital-edge-expansion"
+          ]
+        }
+      ],
+      "signed_area": 21.3125
+    },
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-1-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "triangle",
+          "parameters": [],
+          "points": [
+            [
+              4.5,
+              12.5
+            ],
+            [
+              4.5,
+              4.5
+            ],
+            [
+              2.5,
+              8.5
+            ],
+            [
+              4.5,
+              12.5
+            ]
+          ],
+          "provenance": [
+            "isosceles-triangle-snap"
+          ]
+        }
+      ],
+      "signed_area": 8.0
+    },
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-2-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "polyline",
+          "parameters": [],
+          "points": [
+            [
+              15.0,
+              7.0
+            ],
+            [
+              16.0,
+              7.0
+            ],
+            [
+              16.0,
+              8.0
+            ],
+            [
+              15.0,
+              8.0
+            ],
+            [
+              15.0,
+              7.0
+            ]
+          ],
+          "provenance": [
+            "uncertainty-adaptive-generic-loop"
+          ]
+        }
+      ],
+      "signed_area": 1.0
+    },
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-residual-3-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 1.0,
+          "evidence_rms_px": 0.0,
+          "kind": "polyline",
+          "parameters": [],
+          "points": [
+            [
+              6.5,
+              2.5
+            ],
+            [
+              4.5,
+              4.5
+            ],
+            [
+              4.5,
+              5.5
+            ],
+            [
+              3.5,
+              6.5
+            ],
+            [
+              5.5,
+              8.5
+            ],
+            [
+              5.5,
+              10.5
+            ],
+            [
+              4.5,
+              11.5
+            ],
+            [
+              4.5,
+              13.5
+            ],
+            [
+              5.5,
+              14.5
+            ],
+            [
+              8.5,
+              14.5
+            ],
+            [
+              5.5,
+              11.5
+            ],
+            [
+              5.5,
+              4.5
+            ],
+            [
+              7.5,
+              2.5
+            ],
+            [
+              8.5,
+              2.5
+            ],
+            [
+              6.5,
+              2.5
+            ]
+          ],
+          "provenance": [
+            "uncertainty-adaptive-generic-loop"
+          ]
+        }
+      ],
+      "signed_area": 30.0
+    },
+    {
+      "coordinate_space": "native-pixel",
+      "id": "loop-residual-4-positive",
+      "orientation": 1,
+      "pixel_size_native": 1.0,
+      "primitives": [
+        {
+          "confidence": 0.5320402348944834,
+          "evidence_rms_px": 0.6310361629993506,
+          "kind": "rect",
+          "parameters": [
+            13.000001907348633,
+            3.9500002384185793,
+            2.8713202476501465,
+            4.285533905029297,
+            -45.0
+          ],
+          "points": [
+            [
+              13.500001907348633,
+              6.480329990386963
+            ],
+            [
+              10.469671249389648,
+              3.450000286102295
+            ],
+            [
+              12.500001907348633,
+              1.4196704626083374
+            ],
+            [
+              15.530332565307617,
+              4.450000286102295
+            ],
+            [
+              13.500001907348633,
+              6.480329990386963
+            ]
+          ],
+          "provenance": [
+            "minimum-area-rectangle",
+            "digital-edge-expansion",
+            "digital-preimage-refine"
+          ]
+        }
+      ],
+      "signed_area": 10.0
+    }
+  ],
+  "pixel_size_native": 1.0,
+  "schema_version": "vice-scene/1",
+  "shapes": [
+    {
+      "appearance_id": "appearance-shape-0",
+      "confidence": 0.16454157678403256,
+      "id": "shape-0",
+      "layer": 0,
+      "model_family": "rectangle",
+      "model_params": [
+        14.5,
+        8.0,
+        7.75,
+        2.75,
+        -90.0
+      ],
+      "negative_loops": [],
+      "parent": null,
+      "positive_loop": "loop-0-positive",
+      "provenance": [
+        "topology-b00f0ec37a65",
+        "soft-spatial-proposal-sigma-1.15",
+        "whole-shape-tournament",
+        "candidate-replacement",
+        "candidate-replacement",
+        "candidate-replacement"
+      ],
+      "semantic_group": null,
+      "topology_id": "topology-region-0"
+    },
+    {
+      "appearance_id": "appearance-shape-1",
+      "confidence": 0.43510976323805034,
+      "id": "shape-1",
+      "layer": 1,
+      "model_family": "isosceles-triangle",
+      "model_params": [
+        4.5,
+        12.5,
+        4.5,
+        4.5,
+        2.5,
+        8.5
+      ],
+      "negative_loops": [],
+      "parent": null,
+      "positive_loop": "loop-1-positive",
+      "provenance": [
+        "topology-b00f0ec37a65",
+        "soft-spatial-proposal-sigma-1.15",
+        "whole-shape-tournament"
+      ],
+      "semantic_group": null,
+      "topology_id": "topology-region-1"
+    },
+    {
+      "appearance_id": "appearance-shape-2",
+      "confidence": 0.5256611704826355,
+      "id": "shape-2",
+      "layer": 2,
+      "model_family": "generic",
+      "model_params": [],
+      "negative_loops": [],
+      "parent": null,
+      "positive_loop": "loop-2-positive",
+      "provenance": [
+        "topology-b00f0ec37a65",
+        "soft-spatial-proposal-sigma-1.15",
+        "whole-shape-tournament"
+      ],
+      "semantic_group": null,
+      "topology_id": "topology-region-2"
+    },
+    {
+      "appearance_id": "appearance-residual-3",
+      "confidence": 0.24181129072477714,
+      "id": "shape-residual-3",
+      "layer": 3,
+      "model_family": "generic",
+      "model_params": [],
+      "negative_loops": [],
+      "parent": null,
+      "positive_loop": "loop-residual-3-positive",
+      "provenance": [
+        "residual-add",
+        "forward-loss-court"
+      ],
+      "semantic_group": null,
+      "topology_id": "residual-region-1"
+    },
+    {
+      "appearance_id": "appearance-residual-4",
+      "confidence": 0.7260345802762961,
+      "id": "shape-residual-4",
+      "layer": 4,
+      "model_family": "rectangle",
+      "model_params": [
+        13.000001907348633,
+        3.9500002384185793,
+        2.8713202476501465,
+        4.285533905029297,
+        -45.0
+      ],
+      "negative_loops": [],
+      "parent": null,
+      "positive_loop": "loop-residual-4-positive",
+      "provenance": [
+        "residual-add",
+        "forward-loss-court"
+      ],
+      "semantic_group": null,
+      "topology_id": "residual-region-2"
+    }
+  ],
+  "width": 17
+}

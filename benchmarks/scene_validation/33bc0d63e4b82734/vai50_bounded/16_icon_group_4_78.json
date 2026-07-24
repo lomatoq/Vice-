@@ -1,0 +1,347 @@
+{
+ "mode": "scene",
+ "rows": [
+  {
+   "stem": "icon_group_4_78",
+   "conditions": {
+    "scale": "tiny",
+    "layout": "strip",
+    "source_format": "png"
+   },
+   "fallback_loops": 0,
+   "prims": 12,
+   "secs": 22.3,
+   "ours": {
+    "wobble": 0.0194,
+    "g2_steps": 0.0,
+    "kinks_per_100px": 30.555,
+    "kink_cvar10_deg": 6.8128,
+    "detail_cvar10": 0.86433,
+    "staircase_runs": 0,
+    "micro_segs": 128,
+    "total_len": 412.4,
+    "segments": 233,
+    "roundness": 0.0,
+    "circles": 1,
+    "mae": 22.19,
+    "rmse": 51.88,
+    "ink_iou": 0.75,
+    "ssim": 0.6627,
+    "seam_px": 0.0,
+    "mirror_iou": 0.6536,
+    "region_de2000_p95": 38.8031,
+    "de_region_max": 4.8629,
+    "color_regions": 7,
+    "source_rot90_iou": 0.0757,
+    "rot90_iou": 0.0708,
+    "rot90_sym_break": 0.0049,
+    "boundary_f": 0.9984,
+    "hausdorff95": 0.95,
+    "local_de_max": 10.039,
+    "local_de_x": 72,
+    "local_de_y": 13,
+    "local_de_window": [
+     32,
+     26
+    ],
+    "census_errors": 4,
+    "components_source": 7,
+    "components_render": 8,
+    "components_vanished": 2,
+    "components_fused": 0,
+    "components_added": 0,
+    "holes_lost": 2,
+    "holes_gained": 0,
+    "topology_levels_de": [
+     2.3,
+     4.6,
+     9.2,
+     18.4
+    ],
+    "source_betti_curve": [
+     [
+      5,
+      2
+     ],
+     [
+      6,
+      2
+     ],
+     [
+      7,
+      2
+     ],
+     [
+      7,
+      2
+     ]
+    ],
+    "render_betti_curve": [
+     [
+      6,
+      2
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      6,
+      3
+     ],
+     [
+      7,
+      2
+     ]
+    ],
+    "persistent_beta0_error": 0.5,
+    "persistent_beta1_error": 0.5,
+    "persistent_components_lost": 0.25,
+    "persistent_holes_lost": 0.0,
+    "persistent_holes_gained": 0.5,
+    "any_counter_failure": false,
+    "catastrophic_locus_count": 14,
+    "catastrophic_locus_rate": 0.05069,
+    "worst_locus_severity": 2.0,
+    "boundary_cvar10": 1.2157,
+    "boundary_p99": 2.0,
+    "detail_de_cvar10": 69.3275,
+    "repeated_component_pairs": 6,
+    "equal_width_violation": 0.47552,
+    "equal_height_violation": 0.05468,
+    "repeated_radius_violation": 0.29382,
+    "equal_gap_violation": 0.83303,
+    "group_regularity_violation": 0.83303
+   },
+   "vai": {
+    "wobble": 0.8637,
+    "g2_steps": 1.9254,
+    "kinks_per_100px": 1.865,
+    "staircase_runs": 0,
+    "micro_segs": 62,
+    "total_len": 482.7,
+    "segments": 163,
+    "roundness": null,
+    "circles": 0,
+    "mae": 3.78,
+    "rmse": 10.89,
+    "ink_iou": 0.9739,
+    "ssim": 0.988,
+    "seam_px": 0.0,
+    "mirror_iou": 0.6362,
+    "region_de2000_p95": 2.4191,
+    "de_region_max": 2.4191,
+    "color_regions": 7,
+    "source_rot90_iou": 0.0757,
+    "rot90_iou": 0.0753,
+    "rot90_sym_break": 0.0005,
+    "boundary_f": 1.0,
+    "hausdorff95": 0.0
+   },
+   "src_mirror_iou": 0.638
+  }
+ ],
+ "aggregate": {
+  "n": 1,
+  "wins": {
+   "staircase_runs": "0+1t/1",
+   "seam_px": "0+1t/1",
+   "wobble": "1+0t/1",
+   "g2_steps": "1+0t/1",
+   "kinks_per_100px": "0+0t/1",
+   "micro_segs": "0+0t/1",
+   "ink_iou": "0+0t/1",
+   "ssim": "0+0t/1",
+   "mae": "0+0t/1",
+   "boundary_f": "0+0t/1",
+   "hausdorff95": "0+0t/1",
+   "region_de2000_p95": "0+0t/1",
+   "de_region_max": "0+0t/1",
+   "rot90_sym_break": "0+0t/1"
+  },
+  "means": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.0194,
+    "vai": 0.8637
+   },
+   "g2_steps": {
+    "ours": 0.0,
+    "vai": 1.9254
+   },
+   "kinks_per_100px": {
+    "ours": 30.555,
+    "vai": 1.865
+   },
+   "micro_segs": {
+    "ours": 128.0,
+    "vai": 62.0
+   },
+   "ink_iou": {
+    "ours": 0.75,
+    "vai": 0.9739
+   },
+   "ssim": {
+    "ours": 0.6627,
+    "vai": 0.988
+   },
+   "mae": {
+    "ours": 22.19,
+    "vai": 3.78
+   },
+   "boundary_f": {
+    "ours": 0.9984,
+    "vai": 1.0
+   },
+   "hausdorff95": {
+    "ours": 0.95,
+    "vai": 0.0
+   },
+   "region_de2000_p95": {
+    "ours": 38.8031,
+    "vai": 2.4191
+   },
+   "de_region_max": {
+    "ours": 4.8629,
+    "vai": 2.4191
+   },
+   "rot90_sym_break": {
+    "ours": 0.0049,
+    "vai": 0.0005
+   }
+  },
+  "tails": {
+   "staircase_runs": {
+    "ours_p95": 0.0,
+    "vai_p95": 0.0,
+    "ours_cvar10": 0.0,
+    "vai_cvar10": 0.0
+   },
+   "seam_px": {
+    "ours_p95": 0.0,
+    "vai_p95": 0.0,
+    "ours_cvar10": 0.0,
+    "vai_cvar10": 0.0
+   },
+   "wobble": {
+    "ours_p95": 0.0194,
+    "vai_p95": 0.8637,
+    "ours_cvar10": 0.0194,
+    "vai_cvar10": 0.8637
+   },
+   "g2_steps": {
+    "ours_p95": 0.0,
+    "vai_p95": 1.9254,
+    "ours_cvar10": 0.0,
+    "vai_cvar10": 1.9254
+   },
+   "kinks_per_100px": {
+    "ours_p95": 30.555,
+    "vai_p95": 1.865,
+    "ours_cvar10": 30.555,
+    "vai_cvar10": 1.865
+   },
+   "micro_segs": {
+    "ours_p95": 128.0,
+    "vai_p95": 62.0,
+    "ours_cvar10": 128.0,
+    "vai_cvar10": 62.0
+   },
+   "mae": {
+    "ours_p95": 22.19,
+    "vai_p95": 3.78,
+    "ours_cvar10": 22.19,
+    "vai_cvar10": 3.78
+   },
+   "hausdorff95": {
+    "ours_p95": 0.95,
+    "vai_p95": 0.0,
+    "ours_cvar10": 0.95,
+    "vai_cvar10": 0.0
+   },
+   "region_de2000_p95": {
+    "ours_p95": 38.8031,
+    "vai_p95": 2.4191,
+    "ours_cvar10": 38.8031,
+    "vai_cvar10": 2.4191
+   },
+   "de_region_max": {
+    "ours_p95": 4.8629,
+    "vai_p95": 2.4191,
+    "ours_cvar10": 4.8629,
+    "vai_cvar10": 2.4191
+   },
+   "rot90_sym_break": {
+    "ours_p95": 0.0049,
+    "vai_p95": 0.0005,
+    "ours_cvar10": 0.0049,
+    "vai_cvar10": 0.0005
+   }
+  },
+  "medians": {
+   "staircase_runs": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "seam_px": {
+    "ours": 0.0,
+    "vai": 0.0
+   },
+   "wobble": {
+    "ours": 0.0194,
+    "vai": 0.8637
+   },
+   "g2_steps": {
+    "ours": 0.0,
+    "vai": 1.9254
+   },
+   "kinks_per_100px": {
+    "ours": 30.555,
+    "vai": 1.865
+   },
+   "micro_segs": {
+    "ours": 128.0,
+    "vai": 62.0
+   },
+   "ink_iou": {
+    "ours": 0.75,
+    "vai": 0.9739
+   },
+   "ssim": {
+    "ours": 0.6627,
+    "vai": 0.988
+   },
+   "mae": {
+    "ours": 22.19,
+    "vai": 3.78
+   },
+   "boundary_f": {
+    "ours": 0.9984,
+    "vai": 1.0
+   },
+   "hausdorff95": {
+    "ours": 0.95,
+    "vai": 0.0
+   },
+   "region_de2000_p95": {
+    "ours": 38.8031,
+    "vai": 2.4191
+   },
+   "de_region_max": {
+    "ours": 4.8629,
+    "vai": 2.4191
+   },
+   "rot90_sym_break": {
+    "ours": 0.0049,
+    "vai": 0.0005
+   }
+  }
+ }
+}

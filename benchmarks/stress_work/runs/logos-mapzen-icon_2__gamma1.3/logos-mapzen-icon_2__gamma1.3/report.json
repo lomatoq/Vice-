@@ -1,0 +1,41 @@
+{
+  "input": "logos-mapzen-icon_2__gamma1.3.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions-isolated",
+  "analysis_scale": 1,
+  "smoothing": "paper-regions",
+  "regions": 17,
+  "closed_contours": 16,
+  "rendered_primitive_count": 122,
+  "actual": {
+    "L": 91,
+    "Q": 0,
+    "C": 31
+  },
+  "templates": {
+    "paper-joint": 9,
+    "paper-smooth": 1,
+    "paper-tiny": 6,
+    "stroke": 2
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 5.91,
+    "mae_native": 7.54,
+    "bf_deblur": 0.9893,
+    "bf_native": 0.9883,
+    "kink_deblur": 6.08,
+    "kink_native": 4.57,
+    "winner": "native"
+  },
+  "kink_energy": 6.08
+}

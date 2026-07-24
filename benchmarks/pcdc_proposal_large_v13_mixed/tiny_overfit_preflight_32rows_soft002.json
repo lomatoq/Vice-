@@ -1,0 +1,149 @@
+{
+  "after": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8773157481506973,
+      "mean_best_soft_iou_at_k": 0.8773157481506973,
+      "neural_only_recall_at_5_iou50": 1.0,
+      "neural_only_recall_at_k_iou50": 1.0
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.8441074486385162,
+      "mean_best_soft_iou_at_k": 0.8441074486385162,
+      "neural_only_recall_at_5_iou50": 0.9732142857142857,
+      "neural_only_recall_at_k_iou50": 0.9732142857142857,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.8308241288336438,
+      "mean_best_soft_iou_at_k": 0.8308241288336438,
+      "neural_only_recall_at_5_iou50": 0.9625,
+      "neural_only_recall_at_k_iou50": 0.9625
+    }
+  },
+  "batch_size": 8,
+  "before": {
+    "glyph_group": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 32,
+      "mean_best_soft_iou_at_5": 0.8405139819082987,
+      "mean_best_soft_iou_at_k": 0.8405139819082987,
+      "neural_only_recall_at_5_iou50": 0.96875,
+      "neural_only_recall_at_k_iou50": 0.96875
+    },
+    "overall": {
+      "global_oracle_recall_at_5_capacity": 1.0,
+      "instances": 112,
+      "mean_best_soft_iou_at_5": 0.6753568781922514,
+      "mean_best_soft_iou_at_k": 0.6826514272755219,
+      "neural_only_recall_at_5_iou50": 0.8035714285714286,
+      "neural_only_recall_at_k_iou50": 0.8392857142857143,
+      "rows": 32,
+      "rows_over_global_top5_capacity": 0
+    },
+    "text_line": {
+      "individual_family_oracle_recall_at_5_capacity": 1.0,
+      "instances": 80,
+      "mean_best_soft_iou_at_5": 0.6092940367058326,
+      "mean_best_soft_iou_at_k": 0.6195064054224112,
+      "neural_only_recall_at_5_iou50": 0.7375,
+      "neural_only_recall_at_k_iou50": 0.7875
+    }
+  },
+  "best_text_line_recall_at_5": 0.9625,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\proposal_net_large_candidate_v13_mixed.pt",
+  "checkpoint_sha256": "f93ae78dee141eb980a3fe715b41369519b3161eaa9e4a3e4b81900a7e5ebd4b",
+  "checkpoint_written": false,
+  "created_at": "2026-07-22T12:55:57.863526+00:00",
+  "device": "cuda",
+  "evaluation_history": [
+    {
+      "step": 0,
+      "text_line_mean_iou_at_5": 0.6092940367058326,
+      "text_line_recall_at_5": 0.7375
+    },
+    {
+      "step": 60,
+      "text_line_mean_iou_at_5": 0.7657759764895191,
+      "text_line_recall_at_5": 0.9125
+    },
+    {
+      "step": 120,
+      "text_line_mean_iou_at_5": 0.7896880927563952,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 180,
+      "text_line_mean_iou_at_5": 0.798165158191028,
+      "text_line_recall_at_5": 0.9375
+    },
+    {
+      "step": 240,
+      "text_line_mean_iou_at_5": 0.8083153559626298,
+      "text_line_recall_at_5": 0.95
+    },
+    {
+      "step": 300,
+      "text_line_mean_iou_at_5": 0.8141565993494642,
+      "text_line_recall_at_5": 0.9375
+    },
+    {
+      "step": 360,
+      "text_line_mean_iou_at_5": 0.8202062218811047,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 420,
+      "text_line_mean_iou_at_5": 0.8210039393306212,
+      "text_line_recall_at_5": 0.9625
+    },
+    {
+      "step": 480,
+      "text_line_mean_iou_at_5": 0.8308241288336438,
+      "text_line_recall_at_5": 0.9625
+    }
+  ],
+  "filter_cache_sha256": "c73ee7559d2d1ad283db3f21969b9d123a0e59aeba88df60efd5bbc58ed390de",
+  "final_loss": 1.2021845579147339,
+  "final_text_failures": [
+    {
+      "source_group": "font-family:cinzel",
+      "support_iou": 0.4755085781329626,
+      "type_confidence": 0.999069333076477
+    },
+    {
+      "source_group": "font-family:cinzel",
+      "support_iou": 0.45761803741812285,
+      "type_confidence": 0.9996837377548218
+    },
+    {
+      "source_group": "font-family:cinzel",
+      "support_iou": 0.4857759473628233,
+      "type_confidence": 0.9994969367980957
+    }
+  ],
+  "initial_loss": 2.700183868408203,
+  "interpretation": "If train-only text-line Recall@5 cannot approach 1.0, do not start a large run; repair the instance mask objective or architecture.",
+  "label_contract_sha256": "f6edff30be7fa7c7e9ebb956ca55f129acceb550cdb51f66cc1808b5c33624d0",
+  "learning_rate": 0.0001,
+  "minimum_text_line_recall_at_5": 0.99,
+  "owner_count_rows": {
+    "2": 16,
+    "3": 16
+  },
+  "pair_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_proposal_mixed_v13_curve",
+  "passed": false,
+  "row_count": 32,
+  "schema": "pcdc-proposal-tiny-overfit-preflight/v1",
+  "split": "train-only",
+  "steps": 480,
+  "text_bbox_gate_padding": 0.04,
+  "text_bbox_gate_softness": 0.002,
+  "text_bbox_gate_vertical_only": true
+}

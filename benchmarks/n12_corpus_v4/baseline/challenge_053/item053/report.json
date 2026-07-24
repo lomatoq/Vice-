@@ -1,0 +1,39 @@
+{
+  "input": "item053.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari-regions",
+  "analysis_scale": 4,
+  "smoothing": "paper-regions",
+  "regions": 51,
+  "closed_contours": 74,
+  "rendered_primitive_count": 403,
+  "actual": {
+    "L": 235,
+    "Q": 0,
+    "C": 168
+  },
+  "templates": {
+    "paper-regions": 73,
+    "paper-regions-court": 1
+  },
+  "threshold": 0.0,
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "route_arbiter": {
+    "mae_deblur": 14.38,
+    "mae_native": 17.39,
+    "bf_deblur": 0.9668,
+    "bf_native": 0.9465,
+    "kink_deblur": 20.36,
+    "kink_native": 14.39,
+    "winner": "deblur"
+  },
+  "kink_energy": 20.362
+}

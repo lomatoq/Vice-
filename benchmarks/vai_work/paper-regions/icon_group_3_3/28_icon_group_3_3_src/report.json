@@ -4,19 +4,389 @@
   "extractor_used": "paper-hoshyari-regions",
   "analysis_scale": 4,
   "smoothing": "paper-regions",
-  "regions": 133,
-  "closed_contours": 147,
-  "rendered_primitive_count": 884,
+  "regions": 127,
+  "closed_contours": 160,
+  "rendered_primitive_count": 798,
   "actual": {
-    "L": 462,
+    "L": 776,
     "Q": 0,
-    "C": 422
+    "C": 22
   },
   "templates": {
-    "paper-regions": 145,
-    "paper-regions-court": 2
+    "perceptual-source-rdp": 114,
+    "paper-regions": 26,
+    "perceptual-source-bridge": 18,
+    "perceptual-topology-pixel": 2
   },
   "threshold": 0.0,
+  "glyph_repair": [
+    {
+      "box": 2,
+      "accepted": true,
+      "bbox": [
+        29.0,
+        74.0,
+        87.0,
+        86.0
+      ],
+      "reference_cc": 3,
+      "reference_holes": 1,
+      "baseline_cc": 4,
+      "baseline_holes": 1,
+      "candidate_holes": 1,
+      "baseline_iou": 0.2151,
+      "candidate_iou": 1.0,
+      "threshold": 0.4,
+      "counter_word": false,
+      "ink_anchor": 4,
+      "surround_anchor": 0
+    },
+    {
+      "box": 3,
+      "accepted": true,
+      "bbox": [
+        102.0,
+        73.0,
+        143.0,
+        87.0
+      ],
+      "reference_cc": 4,
+      "reference_holes": 0,
+      "baseline_cc": 5,
+      "baseline_holes": 0,
+      "candidate_holes": 0,
+      "baseline_iou": 0.2533,
+      "candidate_iou": 0.9538,
+      "threshold": 0.4,
+      "counter_word": false,
+      "ink_anchor": 4,
+      "surround_anchor": 0
+    },
+    {
+      "box": 7,
+      "accepted": false,
+      "reason": "non-idealizable-complexity",
+      "reference_cc": 4,
+      "baseline_cc": 5,
+      "rdp_max": 18,
+      "rdp_mean": 12.0
+    }
+  ],
+  "perceptual_trace_repair": [
+    {
+      "router": "source-loop-rdp-perceptual-rescue",
+      "source_topology": [
+        19,
+        5
+      ],
+      "incumbent": {
+        "mae": 9.242,
+        "rmse": 22.302,
+        "ink_iou": 0.81727,
+        "ssim": 0.87308,
+        "boundary_f": 0.98092,
+        "hausdorff95": 0.955,
+        "topology": [
+          22,
+          6
+        ],
+        "actual": {
+          "L": 499,
+          "Q": 0,
+          "C": 386
+        },
+        "primitives": 885,
+        "regions": 121,
+        "closed_contours": 140,
+        "micro_segments": 93,
+        "templates": {
+          "paper-regions": 126,
+          "paper-regions-court": 4,
+          "glyph-coverage-rdp": 10
+        },
+        "kink_energy": 24.1506,
+        "staircase_runs": 0,
+        "compact_color_detail": 0.01983
+      },
+      "trials": [
+        {
+          "epsilon": "g1-rdp-1.0",
+          "actual": {
+            "L": 129,
+            "Q": 0,
+            "C": 577
+          },
+          "primitives": 706,
+          "regions": 126,
+          "closed_contours": 160,
+          "micro_segments": 38,
+          "templates": {
+            "perceptual-source-g1-rdp": 104,
+            "paper-regions": 36,
+            "perceptual-source-bridge": 19,
+            "perceptual-topology-pixel": 1
+          },
+          "kink_energy": 23.951,
+          "staircase_runs": 0,
+          "topology_bridge_pixels": 24,
+          "topology_ops": 1,
+          "mae": 9.077,
+          "rmse": 21.768,
+          "ink_iou": 0.83599,
+          "ssim": 0.88056,
+          "boundary_f": 0.9816,
+          "hausdorff95": 0.955,
+          "topology": [
+            19,
+            5
+          ],
+          "compact_color_detail": 0.03007,
+          "reason": "accepted"
+        },
+        {
+          "epsilon": "g1-rdp-0.8",
+          "actual": {
+            "L": 108,
+            "Q": 0,
+            "C": 682
+          },
+          "primitives": 790,
+          "regions": 127,
+          "closed_contours": 158,
+          "micro_segments": 32,
+          "templates": {
+            "perceptual-source-g1-rdp": 114,
+            "paper-regions": 26,
+            "perceptual-source-bridge": 16,
+            "perceptual-topology-pixel": 2
+          },
+          "kink_energy": 26.4504,
+          "staircase_runs": 0,
+          "topology_bridge_pixels": 22,
+          "topology_ops": 2,
+          "mae": 8.292,
+          "rmse": 19.52,
+          "ink_iou": 0.8597,
+          "ssim": 0.90135,
+          "boundary_f": 0.98245,
+          "hausdorff95": 0.955,
+          "topology": [
+            19,
+            5
+          ],
+          "compact_color_detail": 0.14294,
+          "reason": "accepted"
+        },
+        {
+          "epsilon": "g1-rdp-0.6",
+          "actual": {
+            "L": 66,
+            "Q": 0,
+            "C": 900
+          },
+          "primitives": 966,
+          "regions": 126,
+          "closed_contours": 152,
+          "micro_segments": 21,
+          "templates": {
+            "perceptual-source-g1-rdp": 130,
+            "paper-regions": 10,
+            "perceptual-source-bridge": 12
+          },
+          "kink_energy": 30.9955,
+          "staircase_runs": 6,
+          "topology_bridge_pixels": 19,
+          "mae": 7.447,
+          "rmse": 17.337,
+          "ink_iou": 0.88186,
+          "ssim": 0.91879,
+          "boundary_f": 0.98312,
+          "hausdorff95": 0.955,
+          "topology": [
+            18,
+            3
+          ],
+          "compact_color_detail": 0.14294,
+          "reason": "perceptual-or-topology-court"
+        },
+        {
+          "epsilon": "g1-rdp-0.4",
+          "actual": {
+            "L": 16,
+            "Q": 0,
+            "C": 1186
+          },
+          "primitives": 1202,
+          "regions": 121,
+          "closed_contours": 140,
+          "micro_segments": 45,
+          "templates": {
+            "perceptual-source-g1-rdp": 133,
+            "paper-regions": 7
+          },
+          "kink_energy": 37.5701,
+          "staircase_runs": 10,
+          "reason": "kink-budget"
+        },
+        {
+          "epsilon": 1.0,
+          "actual": {
+            "L": 677,
+            "Q": 0,
+            "C": 33
+          },
+          "primitives": 710,
+          "regions": 126,
+          "closed_contours": 161,
+          "micro_segments": 38,
+          "templates": {
+            "perceptual-source-rdp": 104,
+            "paper-regions": 36,
+            "perceptual-source-bridge": 20,
+            "perceptual-topology-pixel": 1
+          },
+          "kink_energy": 25.4988,
+          "staircase_runs": 0,
+          "topology_bridge_pixels": 24,
+          "topology_ops": 1,
+          "mae": 8.766,
+          "rmse": 20.874,
+          "ink_iou": 0.84156,
+          "ssim": 0.88733,
+          "boundary_f": 0.98261,
+          "hausdorff95": 0.955,
+          "topology": [
+            19,
+            5
+          ],
+          "compact_color_detail": 0.03007,
+          "reason": "accepted"
+        },
+        {
+          "epsilon": 0.8,
+          "actual": {
+            "L": 776,
+            "Q": 0,
+            "C": 22
+          },
+          "primitives": 798,
+          "regions": 127,
+          "closed_contours": 160,
+          "micro_segments": 32,
+          "templates": {
+            "perceptual-source-rdp": 114,
+            "paper-regions": 26,
+            "perceptual-source-bridge": 18,
+            "perceptual-topology-pixel": 2
+          },
+          "kink_energy": 29.2265,
+          "staircase_runs": 0,
+          "topology_bridge_pixels": 23,
+          "topology_ops": 2,
+          "mae": 8.049,
+          "rmse": 18.792,
+          "ink_iou": 0.86253,
+          "ssim": 0.90607,
+          "boundary_f": 0.98306,
+          "hausdorff95": 0.955,
+          "topology": [
+            19,
+            5
+          ],
+          "compact_color_detail": 0.14219,
+          "reason": "accepted"
+        },
+        {
+          "epsilon": 0.6,
+          "actual": {
+            "L": 914,
+            "Q": 0,
+            "C": 4
+          },
+          "primitives": 918,
+          "regions": 121,
+          "closed_contours": 140,
+          "micro_segments": 21,
+          "templates": {
+            "perceptual-source-rdp": 130,
+            "paper-regions": 10
+          },
+          "kink_energy": 34.0765,
+          "staircase_runs": 6,
+          "reason": "kink-budget"
+        },
+        {
+          "epsilon": 0.4,
+          "actual": {
+            "L": 1202,
+            "Q": 0,
+            "C": 0
+          },
+          "primitives": 1202,
+          "regions": 121,
+          "closed_contours": 140,
+          "micro_segments": 45,
+          "templates": {
+            "perceptual-source-rdp": 133,
+            "paper-regions": 7
+          },
+          "kink_energy": 43.8829,
+          "staircase_runs": 10,
+          "reason": "kink-budget"
+        },
+        {
+          "variant": "native-palette-paper-0.15",
+          "actual": {
+            "L": 4257,
+            "Q": 0,
+            "C": 288
+          },
+          "primitives": 4545,
+          "regions": 350,
+          "closed_contours": 684,
+          "micro_segments": 9,
+          "templates": {
+            "native-palette-paper": 684
+          },
+          "kink_energy": 57.2129,
+          "staircase_runs": 0,
+          "reason": "native-palette-complexity-budget"
+        }
+      ],
+      "accepted": true,
+      "reason": "perceptual+topology+compact-color+idealization-court",
+      "epsilon": 0.8,
+      "candidate": {
+        "mae": 8.049,
+        "rmse": 18.792,
+        "ink_iou": 0.86253,
+        "ssim": 0.90607,
+        "boundary_f": 0.98306,
+        "hausdorff95": 0.955,
+        "topology": [
+          19,
+          5
+        ],
+        "actual": {
+          "L": 776,
+          "Q": 0,
+          "C": 22
+        },
+        "primitives": 798,
+        "regions": 127,
+        "closed_contours": 160,
+        "micro_segments": 32,
+        "templates": {
+          "perceptual-source-rdp": 114,
+          "paper-regions": 26,
+          "perceptual-source-bridge": 18,
+          "perceptual-topology-pixel": 2
+        },
+        "kink_energy": 29.2265,
+        "compact_color_detail": 0.14219
+      }
+    }
+  ],
   "corner_detector": {
     "type": "resolution-density-hybrid-cnn",
     "small_model": "corner_cnn.pt",
@@ -26,5 +396,166 @@
     "small_extent_max": 4.0,
     "small_density_min": 8.0
   },
-  "kink_energy": 21.601
+  "per_fill_coverage_calibration": [
+    {
+      "router": "clustered-gradient-strip-subpixel-coverage",
+      "paths": 127,
+      "fills": 79,
+      "groups": 8,
+      "incumbent": {
+        "mae": 8.049,
+        "rmse": 18.792,
+        "ink_iou": 0.86253,
+        "ssim": 0.90607,
+        "boundary_f": 0.98306,
+        "hausdorff95": 0.955,
+        "topology": [
+          19,
+          5
+        ]
+      },
+      "candidate": {
+        "mae": 7.357,
+        "rmse": 17.061,
+        "ink_iou": 0.89737,
+        "ssim": 0.92024,
+        "boundary_f": 0.98329,
+        "hausdorff95": 0.955,
+        "topology": [
+          19,
+          5
+        ]
+      },
+      "trail": [
+        {
+          "group": 0,
+          "params": [
+            0.24,
+            0.0,
+            0.12
+          ],
+          "ssim": 0.91236,
+          "ink_iou": 0.87486,
+          "mae": 7.722
+        },
+        {
+          "group": 1,
+          "params": [
+            0.16,
+            -0.12,
+            0.12
+          ],
+          "ssim": 0.91287,
+          "ink_iou": 0.87692,
+          "mae": 7.682
+        },
+        {
+          "group": 2,
+          "params": [
+            0.24,
+            -0.12,
+            0.0
+          ],
+          "ssim": 0.91289,
+          "ink_iou": 0.87692,
+          "mae": 7.68
+        },
+        {
+          "group": 3,
+          "params": [
+            0.24,
+            0.0,
+            -0.12
+          ],
+          "ssim": 0.91367,
+          "ink_iou": 0.87727,
+          "mae": 7.657
+        },
+        {
+          "group": 4,
+          "params": [
+            0.24,
+            -0.12,
+            0.0
+          ],
+          "ssim": 0.91647,
+          "ink_iou": 0.88578,
+          "mae": 7.528
+        },
+        {
+          "group": 5,
+          "params": [
+            0.24,
+            0.12,
+            -0.12
+          ],
+          "ssim": 0.91767,
+          "ink_iou": 0.8881,
+          "mae": 7.492
+        },
+        {
+          "group": 6,
+          "params": [
+            0.08,
+            -0.12,
+            -0.12
+          ],
+          "ssim": 0.91792,
+          "ink_iou": 0.89029,
+          "mae": 7.479
+        },
+        {
+          "group": 7,
+          "params": [
+            0.24,
+            -0.12,
+            0.12
+          ],
+          "ssim": 0.92024,
+          "ink_iou": 0.89737,
+          "mae": 7.357
+        }
+      ],
+      "accepted": true,
+      "gains": {
+        "ssim": 0.01417,
+        "ink_iou": 0.03484,
+        "mae_reduction": 0.692
+      },
+      "reason": "perceptual+topology+unchanged-path-court"
+    }
+  ],
+  "kink_energy": 29.227,
+  "perceptual_aa_calibration": [
+    {
+      "router": "direct-svg-subpixel-aa",
+      "deviation": 0.18,
+      "incumbent": {
+        "mae": 7.357,
+        "rmse": 17.061,
+        "ink_iou": 0.89737,
+        "ssim": 0.92024,
+        "boundary_f": 0.98329,
+        "hausdorff95": 0.955,
+        "topology": [
+          19,
+          5
+        ]
+      },
+      "candidate": {
+        "mae": 7.528,
+        "rmse": 17.436,
+        "ink_iou": 0.89007,
+        "ssim": 0.9166,
+        "boundary_f": 0.98315,
+        "hausdorff95": 0.955,
+        "topology": [
+          19,
+          5
+        ]
+      },
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ]
 }

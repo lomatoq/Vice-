@@ -1,0 +1,288 @@
+{
+  "schema": "pcdc-experiment12/v1",
+  "created_at": "2026-07-21T10:56:00.239059+00:00",
+  "compiler_fingerprint": "5271645897a8d221273747060d9e997ba6c619a75f634944960bf0709857e8fa",
+  "build_freeze": {
+    "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\PCDC_BUILD_FREEZE.json",
+    "valid": false,
+    "freeze_hash": "e542adbf45e2f0ee8264274c2411db4ea30b3fc3da340a168d184603e8de3c41",
+    "errors": [
+      "changed: vice_compiler\\cleanup_macros.py",
+      "changed: vice_compiler\\export_writer.py",
+      "changed: vice_compiler\\layer_solver.py",
+      "changed: vice_compiler\\macro_registry.py",
+      "changed: vice_compiler\\runtime_service.py",
+      "changed: vice_compiler\\shape_macros.py",
+      "changed: vice_compiler\\text_macros.py"
+    ]
+  },
+  "requested": 2,
+  "completed": 0,
+  "failures": 2,
+  "suite_counts": {
+    "vai50": 2
+  },
+  "stage_counts": {},
+  "speed": {
+    "runtime_p50_ms": null,
+    "runtime_p95_ms": null,
+    "runtime_max_ms": null,
+    "metered_worker_p50_ms": null,
+    "peak_working_set_mib": null
+  },
+  "topology_failure_ids": [],
+  "metrics": {},
+  "human_evidence": {
+    "certificate_answers": 35,
+    "textline_answers": 100,
+    "legacy_vai_court": {
+      "schema": "vice-human-court-disclosure/1",
+      "court": "v-ice-vai-crop-v1",
+      "answers_source": "C:/Users/nirrt/Downloads/v-ice-crop-court-answers.json",
+      "manifest": "benchmarks/vai_crop_court_manifest.json",
+      "scope": "legacy Best (paper-regions), not the frozen Scene Engine",
+      "display_validity": "diagnostic-only",
+      "display_caveat": "The evaluator reported that SVG was shown at an inadequate resolution, preventing a reliable quality comparison.",
+      "totals": {
+        "ours": 5,
+        "vai": 6,
+        "tie": 1
+      },
+      "single_metric_alignment_on_11_non_ties": {
+        "ssim": {
+          "correct": 6,
+          "wrong": 5,
+          "metric_ties": 0
+        },
+        "ink_iou": {
+          "correct": 4,
+          "wrong": 7,
+          "metric_ties": 0
+        },
+        "mae": {
+          "correct": 5,
+          "wrong": 6,
+          "metric_ties": 0
+        },
+        "boundary_f": {
+          "correct": 4,
+          "wrong": 5,
+          "metric_ties": 2
+        },
+        "hausdorff95": {
+          "correct": 2,
+          "wrong": 4,
+          "metric_ties": 5
+        },
+        "wobble": {
+          "correct": 5,
+          "wrong": 6,
+          "metric_ties": 0
+        },
+        "g2_steps": {
+          "correct": 5,
+          "wrong": 6,
+          "metric_ties": 0
+        }
+      },
+      "metric_alignment_note": "No single frozen scalar metric reliably predicted the evaluator's preference; SSIM was only 6/11 and ink IoU 4/11. This supports hard semantic/topology/text gates plus a calibrated human court instead of scalar-score promotion.",
+      "rows": [
+        {
+          "case": 1,
+          "stem": "icon_group_4_62",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 2,
+          "stem": "icon_group_3_2",
+          "choice": "A",
+          "A": "vai",
+          "B": "ours",
+          "winner": "vai"
+        },
+        {
+          "case": 3,
+          "stem": "icon_group_2_1",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 4,
+          "stem": "icon_group_4_77",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 5,
+          "stem": "icon_group_4_13",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 6,
+          "stem": "icon_group_4_63",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 7,
+          "stem": "icon_group_4_55",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 8,
+          "stem": "icon_group_7",
+          "choice": "A",
+          "A": "vai",
+          "B": "ours",
+          "winner": "vai"
+        },
+        {
+          "case": 9,
+          "stem": "egtdigitalgames_512",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 10,
+          "stem": "icon_group",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 11,
+          "stem": "icon_group_4_70",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 12,
+          "stem": "icon_group_4_17",
+          "choice": "tie",
+          "A": "vai",
+          "B": "ours",
+          "winner": "tie"
+        }
+      ],
+      "promotion_eligible": false,
+      "reason": "The court predates the Scene freeze and its display contract was rejected by the evaluator. Re-run at native/live-SVG resolution is mandatory."
+    },
+    "phase12_blind_vai_court_complete": false,
+    "note": "Existing VAI court is diagnostic-only and its display contract was rejected; a new locked live-SVG Phase-12 court is required."
+  },
+  "gates": {
+    "canonical_50_plus_115": false,
+    "all_requested_completed": false,
+    "zero_timeout_or_error": false,
+    "deterministic_export": false,
+    "zero_whole_scene_topology_failures": true,
+    "balanced_speed": false,
+    "non_vacuous_99pct_conformal_calibration": false,
+    "locked_blind_vai_parity_at_least_50pct": false
+  },
+  "promotion_ready": false,
+  "rows": [
+    {
+      "id": "vai50-00-egtdigitalgames_512",
+      "suite": "vai50",
+      "position": 0,
+      "stem": "egtdigitalgames_512",
+      "category": null,
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\7_egtdigitalgames_512_src.png",
+      "reference": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\egtdigitalgames_512_vai.svg",
+      "reference_metrics": {
+        "wobble": 0.0017,
+        "g2_steps": 1.6248,
+        "kinks_per_100px": 0.115,
+        "staircase_runs": 0,
+        "micro_segs": 17,
+        "total_len": 5209.9,
+        "segments": 94,
+        "roundness": null,
+        "circles": 0,
+        "mae": 0.16,
+        "rmse": 2.13,
+        "ink_iou": 0.9982,
+        "ssim": 0.9987,
+        "seam_px": 0.0,
+        "mirror_iou": 0.7005,
+        "region_de2000_p95": 0.0,
+        "de_region_max": 0.0,
+        "color_regions": 4,
+        "source_rot90_iou": 0.5503,
+        "rot90_iou": 0.55,
+        "rot90_sym_break": 0.0003,
+        "boundary_f": 0.9998,
+        "hausdorff95": 0.0
+      },
+      "status": "timeout",
+      "error": "worker timeout",
+      "compiler_fingerprint": "5271645897a8d221273747060d9e997ba6c619a75f634944960bf0709857e8fa",
+      "worker_wall_ms": 45182.090299989795,
+      "peak_working_set_mib": 1503.37109375,
+      "worker_returncode": 1,
+      "worker_stderr_tail": ""
+    },
+    {
+      "id": "vai50-01-icon_group_4_62",
+      "suite": "vai50",
+      "position": 1,
+      "stem": "icon_group_4_62",
+      "category": null,
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\94_icon_group_4_62_src.png",
+      "reference": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_62_vai.svg",
+      "reference_metrics": {
+        "wobble": 67.8036,
+        "g2_steps": 1.3339,
+        "kinks_per_100px": 7.286,
+        "staircase_runs": 0,
+        "micro_segs": 285,
+        "total_len": 1262.6,
+        "segments": 722,
+        "roundness": 0.00096,
+        "circles": 3,
+        "mae": 6.45,
+        "rmse": 15.81,
+        "ink_iou": 0.9408,
+        "ssim": 0.96,
+        "seam_px": 5.88,
+        "mirror_iou": 0.5426,
+        "region_de2000_p95": 21.9358,
+        "de_region_max": 37.9498,
+        "color_regions": 33,
+        "source_rot90_iou": 0.1819,
+        "rot90_iou": 0.1867,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.0
+      },
+      "status": "timeout",
+      "error": "worker timeout",
+      "compiler_fingerprint": "5271645897a8d221273747060d9e997ba6c619a75f634944960bf0709857e8fa",
+      "worker_wall_ms": 45178.189099999145,
+      "peak_working_set_mib": 1000.57421875,
+      "worker_returncode": 1,
+      "worker_stderr_tail": ""
+    }
+  ]
+}

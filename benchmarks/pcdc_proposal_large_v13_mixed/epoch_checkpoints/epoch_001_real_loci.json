@@ -1,0 +1,338 @@
+{
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_proposal_large_v13_mixed\\epoch_checkpoints\\epoch_001.pt",
+  "checkpoint_sha256": "8d404eba734adb853c8f4996be938636f4506499cff0184a46ff5d6b46b96855",
+  "class_counts": {
+    "calibration": {
+      "codec_detail": 7,
+      "gradient": 4,
+      "layer_knockout": 7,
+      "small_shape": 9,
+      "stroke_diagram": 6,
+      "text": 14
+    },
+    "test": {
+      "codec_detail": 2,
+      "gradient": 4,
+      "layer_knockout": 7,
+      "small_shape": 10,
+      "stroke_diagram": 6,
+      "text": 15
+    },
+    "train": {
+      "codec_detail": 21,
+      "gradient": 22,
+      "layer_knockout": 26,
+      "small_shape": 41,
+      "stroke_diagram": 28,
+      "text": 71
+    }
+  },
+  "config": {
+    "attention_heads": 8,
+    "decoder_layers": 3,
+    "hidden_dim": 128,
+    "mask_upsample": 2,
+    "parameter_dim": 16,
+    "query_count": 32,
+    "relation_dim": 8,
+    "spatial_positioning": true
+  },
+  "created_at": "2026-07-22T10:57:26.186250+00:00",
+  "device": "cpu",
+  "failure_decomposition": {
+    "calibration": {
+      "codec_detail": {
+        "geometry_any_at_32": 7,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 7,
+        "typed_at_32": 7,
+        "typed_at_5": 6,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.8571428571428571
+      },
+      "glyph_group": {
+        "geometry_any_at_32": 14,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 14,
+        "typed_at_32": 10,
+        "typed_at_5": 8,
+        "typed_recall_at_32": 0.7142857142857143,
+        "typed_recall_at_5": 0.5714285714285714
+      },
+      "gradient": {
+        "geometry_any_at_32": 4,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 4,
+        "typed_at_32": 2,
+        "typed_at_5": 1,
+        "typed_recall_at_32": 0.5,
+        "typed_recall_at_5": 0.25
+      },
+      "layer_knockout": {
+        "geometry_any_at_32": 7,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 7,
+        "typed_at_32": 7,
+        "typed_at_5": 3,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.42857142857142855
+      },
+      "small_shape": {
+        "geometry_any_at_32": 9,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 9,
+        "typed_at_32": 9,
+        "typed_at_5": 8,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.8888888888888888
+      },
+      "stroke_diagram": {
+        "geometry_any_at_32": 6,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 6,
+        "typed_at_32": 0,
+        "typed_at_5": 0,
+        "typed_recall_at_32": 0.0,
+        "typed_recall_at_5": 0.0
+      },
+      "text": {
+        "geometry_any_at_32": 14,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 14,
+        "typed_at_32": 11,
+        "typed_at_5": 10,
+        "typed_recall_at_32": 0.7857142857142857,
+        "typed_recall_at_5": 0.7142857142857143
+      }
+    },
+    "test": {
+      "codec_detail": {
+        "geometry_any_at_32": 2,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 2,
+        "typed_at_32": 2,
+        "typed_at_5": 0,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 0.0
+      },
+      "glyph_group": {
+        "geometry_any_at_32": 15,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 15,
+        "typed_at_32": 14,
+        "typed_at_5": 8,
+        "typed_recall_at_32": 0.9333333333333333,
+        "typed_recall_at_5": 0.5333333333333333
+      },
+      "gradient": {
+        "geometry_any_at_32": 4,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 4,
+        "typed_at_32": 0,
+        "typed_at_5": 0,
+        "typed_recall_at_32": 0.0,
+        "typed_recall_at_5": 0.0
+      },
+      "layer_knockout": {
+        "geometry_any_at_32": 7,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 7,
+        "typed_at_32": 6,
+        "typed_at_5": 5,
+        "typed_recall_at_32": 0.8571428571428571,
+        "typed_recall_at_5": 0.7142857142857143
+      },
+      "small_shape": {
+        "geometry_any_at_32": 10,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 10,
+        "typed_at_32": 10,
+        "typed_at_5": 10,
+        "typed_recall_at_32": 1.0,
+        "typed_recall_at_5": 1.0
+      },
+      "stroke_diagram": {
+        "geometry_any_at_32": 6,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 6,
+        "typed_at_32": 0,
+        "typed_at_5": 0,
+        "typed_recall_at_32": 0.0,
+        "typed_recall_at_5": 0.0
+      },
+      "text": {
+        "geometry_any_at_32": 15,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 15,
+        "typed_at_32": 14,
+        "typed_at_5": 13,
+        "typed_recall_at_32": 0.9333333333333333,
+        "typed_recall_at_5": 0.8666666666666667
+      }
+    },
+    "train": {
+      "codec_detail": {
+        "geometry_any_at_32": 21,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 21,
+        "typed_at_32": 20,
+        "typed_at_5": 18,
+        "typed_recall_at_32": 0.9523809523809523,
+        "typed_recall_at_5": 0.8571428571428571
+      },
+      "glyph_group": {
+        "geometry_any_at_32": 71,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 71,
+        "typed_at_32": 56,
+        "typed_at_5": 37,
+        "typed_recall_at_32": 0.7887323943661971,
+        "typed_recall_at_5": 0.5211267605633803
+      },
+      "gradient": {
+        "geometry_any_at_32": 22,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 22,
+        "typed_at_32": 17,
+        "typed_at_5": 9,
+        "typed_recall_at_32": 0.7727272727272727,
+        "typed_recall_at_5": 0.4090909090909091
+      },
+      "layer_knockout": {
+        "geometry_any_at_32": 26,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 26,
+        "typed_at_32": 25,
+        "typed_at_5": 9,
+        "typed_recall_at_32": 0.9615384615384616,
+        "typed_recall_at_5": 0.34615384615384615
+      },
+      "small_shape": {
+        "geometry_any_at_32": 41,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 41,
+        "typed_at_32": 36,
+        "typed_at_5": 33,
+        "typed_recall_at_32": 0.8780487804878049,
+        "typed_recall_at_5": 0.8048780487804879
+      },
+      "stroke_diagram": {
+        "geometry_any_at_32": 28,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 28,
+        "typed_at_32": 2,
+        "typed_at_5": 0,
+        "typed_recall_at_32": 0.07142857142857142,
+        "typed_recall_at_5": 0.0
+      },
+      "text": {
+        "geometry_any_at_32": 71,
+        "geometry_any_recall_at_32": 1.0,
+        "instances": 71,
+        "typed_at_32": 64,
+        "typed_at_5": 54,
+        "typed_recall_at_32": 0.9014084507042254,
+        "typed_recall_at_5": 0.7605633802816901
+      }
+    }
+  },
+  "gate_pass": false,
+  "global_neural_only_recall_at_5_iou50": {
+    "calibration": {
+      "codec_detail": 0.8571428571428571,
+      "glyph_group": 0.5714285714285714,
+      "gradient": 0.25,
+      "layer_knockout": 0.42857142857142855,
+      "overall": 0.5957446808510638,
+      "small_shape": 0.8888888888888888,
+      "stroke_diagram": 0.0,
+      "text": 0.7142857142857143
+    },
+    "test": {
+      "codec_detail": 0.0,
+      "glyph_group": 0.5333333333333333,
+      "gradient": 0.0,
+      "layer_knockout": 0.7142857142857143,
+      "overall": 0.6363636363636364,
+      "small_shape": 1.0,
+      "stroke_diagram": 0.0,
+      "text": 0.8666666666666667
+    },
+    "train": {
+      "codec_detail": 0.8571428571428571,
+      "glyph_group": 0.5211267605633803,
+      "gradient": 0.4090909090909091,
+      "layer_knockout": 0.34615384615384615,
+      "overall": 0.5885167464114832,
+      "small_shape": 0.8048780487804879,
+      "stroke_diagram": 0.0,
+      "text": 0.7605633802816901
+    }
+  },
+  "promotion_rights": "diagnostic-only; every typed real slice and sample floor must pass, while conformal and downstream gates remain separate",
+  "schema": "pcdc-proposal-real-locus-evaluation/v1",
+  "split_counts": {
+    "calibration": 47,
+    "test": 44,
+    "train": 209
+  },
+  "split_policy": "source-asset-family-disjoint",
+  "test_gates": {
+    "codec_detail": {
+      "instances": 2,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.95,
+      "value": 0.0
+    },
+    "glyph_group": {
+      "instances": 15,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.99,
+      "value": 0.5333333333333333
+    },
+    "gradient": {
+      "instances": 4,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.95,
+      "value": 0.0
+    },
+    "layer_knockout": {
+      "instances": 7,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.95,
+      "value": 0.7142857142857143
+    },
+    "overall": {
+      "instances": 44,
+      "minimum_instances": 100,
+      "passed": false,
+      "threshold": 0.97,
+      "value": 0.6363636363636364
+    },
+    "small_shape": {
+      "instances": 10,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.98,
+      "value": 1.0
+    },
+    "stroke_diagram": {
+      "instances": 6,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.98,
+      "value": 0.0
+    },
+    "text": {
+      "instances": 15,
+      "minimum_instances": 20,
+      "passed": false,
+      "threshold": 0.99,
+      "value": 0.8666666666666667
+    }
+  }
+}

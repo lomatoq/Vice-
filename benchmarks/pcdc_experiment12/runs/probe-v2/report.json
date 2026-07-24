@@ -1,0 +1,1168 @@
+{
+  "schema": "pcdc-experiment12/v1",
+  "created_at": "2026-07-21T10:58:01.432155+00:00",
+  "compiler_fingerprint": "84acd0945fadd4fdbcee687146f44045c549feb3644a8e8cd8cc4018b96e74d9",
+  "build_freeze": {
+    "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\PCDC_BUILD_FREEZE.json",
+    "valid": false,
+    "freeze_hash": "e542adbf45e2f0ee8264274c2411db4ea30b3fc3da340a168d184603e8de3c41",
+    "errors": [
+      "changed: vice_compiler\\cleanup_macros.py",
+      "changed: vice_compiler\\export_writer.py",
+      "changed: vice_compiler\\layer_solver.py",
+      "changed: vice_compiler\\macro_registry.py",
+      "changed: vice_compiler\\runtime_service.py",
+      "changed: vice_compiler\\shape_macros.py",
+      "changed: vice_compiler\\text_macros.py"
+    ]
+  },
+  "requested": 2,
+  "completed": 2,
+  "failures": 0,
+  "suite_counts": {
+    "vai50": 2
+  },
+  "stage_counts": {
+    "T0": 2
+  },
+  "speed": {
+    "runtime_p50_ms": 2628.5140500040143,
+    "runtime_p95_ms": 4158.060225009831,
+    "runtime_max_ms": 4328.009800010477,
+    "metered_worker_p50_ms": 11507.257649995154,
+    "peak_working_set_mib": 1497.0390625
+  },
+  "topology_failure_ids": [
+    "vai50-01-icon_group_4_62"
+  ],
+  "metrics": {
+    "mae": {
+      "count": 2,
+      "ours_median": 2.7,
+      "reference_median": 3.305,
+      "median_delta": -0.605,
+      "wins": 1,
+      "ties": 0,
+      "losses": 1
+    },
+    "rmse": {
+      "count": 2,
+      "ours_median": 10.745000000000001,
+      "reference_median": 8.97,
+      "median_delta": 1.775,
+      "wins": 0,
+      "ties": 0,
+      "losses": 2
+    },
+    "hausdorff95": {
+      "count": 2,
+      "ours_median": 0.95,
+      "reference_median": 0.0,
+      "median_delta": 0.95,
+      "wins": 0,
+      "ties": 0,
+      "losses": 2
+    },
+    "kinks_per_100px": {
+      "count": 2,
+      "ours_median": 0.113,
+      "reference_median": 3.7005,
+      "median_delta": -3.5874999999999995,
+      "wins": 2,
+      "ties": 0,
+      "losses": 0
+    },
+    "g2_steps": {
+      "count": 2,
+      "ours_median": 0.05765,
+      "reference_median": 1.4793500000000002,
+      "median_delta": -1.4217,
+      "wins": 2,
+      "ties": 0,
+      "losses": 0
+    },
+    "wobble": {
+      "count": 2,
+      "ours_median": 0.579,
+      "reference_median": 33.90265,
+      "median_delta": -33.32365,
+      "wins": 2,
+      "ties": 0,
+      "losses": 0
+    },
+    "micro_segs": {
+      "count": 2,
+      "ours_median": 10.5,
+      "reference_median": 151.0,
+      "median_delta": -140.5,
+      "wins": 2,
+      "ties": 0,
+      "losses": 0
+    },
+    "segments": {
+      "count": 2,
+      "ours_median": 355.0,
+      "reference_median": 408.0,
+      "median_delta": -53.0,
+      "wins": 2,
+      "ties": 0,
+      "losses": 0
+    },
+    "ink_iou": {
+      "count": 2,
+      "ours_median": 0.9791000000000001,
+      "reference_median": 0.9695,
+      "median_delta": 0.009600000000000053,
+      "wins": 1,
+      "ties": 0,
+      "losses": 1
+    },
+    "ssim": {
+      "count": 2,
+      "ours_median": 0.97445,
+      "reference_median": 0.9793499999999999,
+      "median_delta": -0.0049000000000000155,
+      "wins": 0,
+      "ties": 0,
+      "losses": 2
+    },
+    "boundary_f": {
+      "count": 2,
+      "ours_median": 0.99855,
+      "reference_median": 0.9999,
+      "median_delta": -0.0013500000000000179,
+      "wins": 0,
+      "ties": 0,
+      "losses": 2
+    }
+  },
+  "human_evidence": {
+    "certificate_answers": 35,
+    "textline_answers": 100,
+    "legacy_vai_court": {
+      "schema": "vice-human-court-disclosure/1",
+      "court": "v-ice-vai-crop-v1",
+      "answers_source": "C:/Users/nirrt/Downloads/v-ice-crop-court-answers.json",
+      "manifest": "benchmarks/vai_crop_court_manifest.json",
+      "scope": "legacy Best (paper-regions), not the frozen Scene Engine",
+      "display_validity": "diagnostic-only",
+      "display_caveat": "The evaluator reported that SVG was shown at an inadequate resolution, preventing a reliable quality comparison.",
+      "totals": {
+        "ours": 5,
+        "vai": 6,
+        "tie": 1
+      },
+      "single_metric_alignment_on_11_non_ties": {
+        "ssim": {
+          "correct": 6,
+          "wrong": 5,
+          "metric_ties": 0
+        },
+        "ink_iou": {
+          "correct": 4,
+          "wrong": 7,
+          "metric_ties": 0
+        },
+        "mae": {
+          "correct": 5,
+          "wrong": 6,
+          "metric_ties": 0
+        },
+        "boundary_f": {
+          "correct": 4,
+          "wrong": 5,
+          "metric_ties": 2
+        },
+        "hausdorff95": {
+          "correct": 2,
+          "wrong": 4,
+          "metric_ties": 5
+        },
+        "wobble": {
+          "correct": 5,
+          "wrong": 6,
+          "metric_ties": 0
+        },
+        "g2_steps": {
+          "correct": 5,
+          "wrong": 6,
+          "metric_ties": 0
+        }
+      },
+      "metric_alignment_note": "No single frozen scalar metric reliably predicted the evaluator's preference; SSIM was only 6/11 and ink IoU 4/11. This supports hard semantic/topology/text gates plus a calibrated human court instead of scalar-score promotion.",
+      "rows": [
+        {
+          "case": 1,
+          "stem": "icon_group_4_62",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 2,
+          "stem": "icon_group_3_2",
+          "choice": "A",
+          "A": "vai",
+          "B": "ours",
+          "winner": "vai"
+        },
+        {
+          "case": 3,
+          "stem": "icon_group_2_1",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 4,
+          "stem": "icon_group_4_77",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 5,
+          "stem": "icon_group_4_13",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 6,
+          "stem": "icon_group_4_63",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 7,
+          "stem": "icon_group_4_55",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 8,
+          "stem": "icon_group_7",
+          "choice": "A",
+          "A": "vai",
+          "B": "ours",
+          "winner": "vai"
+        },
+        {
+          "case": 9,
+          "stem": "egtdigitalgames_512",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 10,
+          "stem": "icon_group",
+          "choice": "B",
+          "A": "ours",
+          "B": "vai",
+          "winner": "vai"
+        },
+        {
+          "case": 11,
+          "stem": "icon_group_4_70",
+          "choice": "B",
+          "A": "vai",
+          "B": "ours",
+          "winner": "ours"
+        },
+        {
+          "case": 12,
+          "stem": "icon_group_4_17",
+          "choice": "tie",
+          "A": "vai",
+          "B": "ours",
+          "winner": "tie"
+        }
+      ],
+      "promotion_eligible": false,
+      "reason": "The court predates the Scene freeze and its display contract was rejected by the evaluator. Re-run at native/live-SVG resolution is mandatory."
+    },
+    "phase12_blind_vai_court_complete": false,
+    "note": "Existing VAI court is diagnostic-only and its display contract was rejected; a new locked live-SVG Phase-12 court is required."
+  },
+  "gates": {
+    "canonical_50_plus_115": false,
+    "all_requested_completed": true,
+    "zero_timeout_or_error": true,
+    "deterministic_export": true,
+    "zero_whole_scene_topology_failures": false,
+    "balanced_speed": false,
+    "non_vacuous_99pct_conformal_calibration": false,
+    "locked_blind_vai_parity_at_least_50pct": false
+  },
+  "promotion_ready": false,
+  "rows": [
+    {
+      "id": "vai50-00-egtdigitalgames_512",
+      "suite": "vai50",
+      "position": 0,
+      "stem": "egtdigitalgames_512",
+      "category": null,
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\7_egtdigitalgames_512_src.png",
+      "reference": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\egtdigitalgames_512_vai.svg",
+      "reference_metrics": {
+        "wobble": 0.0017,
+        "g2_steps": 1.6248,
+        "kinks_per_100px": 0.115,
+        "staircase_runs": 0,
+        "micro_segs": 17,
+        "total_len": 5209.9,
+        "segments": 94,
+        "roundness": null,
+        "circles": 0,
+        "mae": 0.16,
+        "rmse": 2.13,
+        "ink_iou": 0.9982,
+        "ssim": 0.9987,
+        "seam_px": 0.0,
+        "mirror_iou": 0.7005,
+        "region_de2000_p95": 0.0,
+        "de_region_max": 0.0,
+        "color_regions": 4,
+        "source_rot90_iou": 0.5503,
+        "rot90_iou": 0.55,
+        "rot90_sym_break": 0.0003,
+        "boundary_f": 0.9998,
+        "hausdorff95": 0.0
+      },
+      "schema": "pcdc-phase12-item/v1",
+      "status": "ok",
+      "source_sha256": "f67bcdabc42f39abf5cb6db30c4fded93d64d87c18ac19891c04b1b97b50536a",
+      "reference_sha256": "e60a0d0360437503870fbabdcccaeaf93a7c94007876e4f347b93118abd455f2",
+      "size": [
+        512,
+        512
+      ],
+      "mode": "balanced",
+      "wall_ms": 14714.706200000364,
+      "runtime": {
+        "schema": "pcdc-runtime-result/v1",
+        "mode": "balanced",
+        "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\7_egtdigitalgames_512_src.png",
+        "elapsed_ms": 4328.009800010477,
+        "deadline_ms": null,
+        "deadline_exceeded": false,
+        "best_stage": "T0",
+        "visible_render_audit": {
+          "passed": false,
+          "ink_iou": 0.9614256498573812,
+          "boundary_f": 0.9556741442268603,
+          "normalized_mae": 0.01138429343700409,
+          "source_topology": [
+            4,
+            1
+          ],
+          "rendered_topology": [
+            4,
+            1
+          ],
+          "topology_error": 0,
+          "baseline_available": true,
+          "baseline_ink_iou": 0.994851960344007,
+          "baseline_boundary_f": 0.9979352082591669,
+          "baseline_normalized_mae": 0.0016155068296939135,
+          "baseline_topology_error": 0,
+          "regressed_vs_baseline": true,
+          "reason": "failed:baseline-regression"
+        },
+        "selected_macros": 1,
+        "proposal_queries": 48,
+        "checkpoints": [
+          {
+            "stage": "T0",
+            "elapsed_ms": 362.02050000429153,
+            "selected_ids": [
+              "legacy-scene-676fd389e9aad87e"
+            ],
+            "utility": 0.001,
+            "exact_cover": true,
+            "proof_valid": true,
+            "note": "real V-ICE Best fallback available"
+          }
+        ],
+        "contract": {
+          "hierarchy_nodes": 647,
+          "hierarchy_limit": 648,
+          "typed_rois": 52,
+          "typed_roi_limit": 64,
+          "generated_typed_columns": 74,
+          "generated_column_limit": 220,
+          "exact_finalists_per_roi": 4,
+          "exact_roi_renders": 0,
+          "exact_roi_render_limit": 192,
+          "image_formation_models": 4,
+          "visible_extractions": 1,
+          "hidden_extractions": 0,
+          "final_full_renders": 1,
+          "one_reir_pass": true,
+          "native_backend": {
+            "available": true,
+            "version": 1,
+            "language": "rust",
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ]
+          }
+        },
+        "profile": {
+          "schema": "pcdc-stage-profile/v1",
+          "complete": true,
+          "record_count": 8,
+          "by_stage": {
+            "evidence": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 164.8153,
+              "wall_ms_max": 164.8153,
+              "cpu_ms_total": 171.875,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 164.8153,
+              "cpu_ms_mean": 171.875
+            },
+            "legacy_resolve": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 1.7518,
+              "wall_ms_max": 1.7518,
+              "cpu_ms_total": 0.0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 1.7518,
+              "cpu_ms_mean": 0.0
+            },
+            "base_registry": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 194.9548,
+              "wall_ms_max": 194.9548,
+              "cpu_ms_total": 203.125,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 194.9548,
+              "cpu_ms_mean": 203.125
+            },
+            "hierarchy_solution": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 2.7557,
+              "wall_ms_max": 2.7557,
+              "cpu_ms_total": 0.0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 2.7557,
+              "cpu_ms_mean": 0.0
+            },
+            "typed_macro_generation": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 3250.194,
+              "wall_ms_max": 3250.194,
+              "cpu_ms_total": 5296.875,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 3250.194,
+              "cpu_ms_mean": 5296.875
+            },
+            "typed_registry": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 48.8979,
+              "wall_ms_max": 48.8979,
+              "cpu_ms_total": 46.875,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 48.8979,
+              "cpu_ms_mean": 46.875
+            },
+            "visible_extract": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 28.1537,
+              "wall_ms_max": 28.1537,
+              "cpu_ms_total": 31.25,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 28.1537,
+              "cpu_ms_mean": 31.25
+            },
+            "visible_full_render_court": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 475.4938,
+              "wall_ms_max": 475.4938,
+              "cpu_ms_total": 453.125,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 475.4938,
+              "cpu_ms_mean": 453.125
+            }
+          },
+          "records": [
+            {
+              "name": "evidence",
+              "wall_ms": 164.8153,
+              "cpu_ms": 171.875,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": {
+                "mode": "balanced"
+              }
+            },
+            {
+              "name": "legacy_resolve",
+              "wall_ms": 1.7518,
+              "cpu_ms": 0.0,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "base_registry",
+              "wall_ms": 194.9548,
+              "cpu_ms": 203.125,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "hierarchy_solution",
+              "wall_ms": 2.7557,
+              "cpu_ms": 0.0,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "typed_macro_generation",
+              "wall_ms": 3250.194,
+              "cpu_ms": 5296.875,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "typed_registry",
+              "wall_ms": 48.8979,
+              "cpu_ms": 46.875,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "visible_extract",
+              "wall_ms": 28.1537,
+              "cpu_ms": 31.25,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "visible_full_render_court",
+              "wall_ms": 475.4938,
+              "cpu_ms": 453.125,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            }
+          ]
+        },
+        "warnings": [
+          "REIR cache hit=True",
+          "V-ICE Best fallback=C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_work\\paper-regions\\egtdigitalgames_512\\7_egtdigitalgames_512_src\\03_rebuilt_filled.svg",
+          "font/glyph cache hit=False",
+          "T2 full-render court rejected typed scene: failed:baseline-regression"
+        ]
+      },
+      "best_stage": "T0",
+      "selected_macros": 1,
+      "deterministic_export": true,
+      "exports": {
+        "svg": {
+          "target": "svg",
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_experiment12\\runs\\probe-v2\\items\\vai50-00-egtdigitalgames_512\\result.svg",
+          "sha256": "08d5594372c1d978ed46035004f7c1fbe5dc5ef036a63272065f284a215e5bbf",
+          "bytes": 2286,
+          "native_primitives": 0,
+          "fallback_paths": 5,
+          "raster_images_embedded": 0,
+          "editable_score": 0.55,
+          "provenance": [
+            "selected-proof-carrying-scene",
+            "deterministic-export",
+            "no-preview-only-geometry-in-production"
+          ]
+        }
+      },
+      "ours": {
+        "wobble": 0.0,
+        "g2_steps": 0.0263,
+        "kinks_per_100px": 0.036,
+        "kink_cvar10_deg": 3.9054,
+        "detail_cvar10": 0.29154,
+        "staircase_runs": 0,
+        "micro_segs": 2,
+        "total_len": 5617.3,
+        "segments": 63,
+        "roundness": null,
+        "circles": 0,
+        "mae": 0.41,
+        "rmse": 5.4,
+        "ink_iou": 0.9949,
+        "ssim": 0.9938,
+        "seam_px": 0.0,
+        "mirror_iou": 0.6981,
+        "region_de2000_p95": 0.0,
+        "de_region_max": 0.0,
+        "color_regions": 4,
+        "source_rot90_iou": 0.5503,
+        "rot90_iou": 0.5506,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 0.9979,
+        "hausdorff95": 0.95,
+        "local_de_max": 1.5574,
+        "local_de_x": 344,
+        "local_de_y": 488,
+        "local_de_window": [
+          32,
+          32
+        ],
+        "census_errors": 0,
+        "components_source": 4,
+        "components_render": 4,
+        "components_vanished": 0,
+        "components_fused": 0,
+        "components_added": 0,
+        "holes_lost": 0,
+        "holes_gained": 0,
+        "topology_levels_de": [
+          2.3,
+          4.6,
+          9.2,
+          18.4
+        ],
+        "source_betti_curve": [
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "render_betti_curve": [
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            1
+          ],
+          [
+            4,
+            1
+          ]
+        ],
+        "persistent_beta0_error": 0.0,
+        "persistent_beta1_error": 0.0,
+        "persistent_components_lost": 0.0,
+        "persistent_holes_lost": 0.0,
+        "persistent_holes_gained": 0.0,
+        "any_counter_failure": false,
+        "catastrophic_locus_count": 4,
+        "catastrophic_locus_rate": 0.00293,
+        "worst_locus_severity": 8.0,
+        "boundary_cvar10": 1.0604,
+        "boundary_p99": 1.0,
+        "detail_de_cvar10": 2.5173,
+        "repeated_component_pairs": 1,
+        "equal_width_violation": 0.00235,
+        "equal_height_violation": 0.00446,
+        "repeated_radius_violation": 0.0,
+        "equal_gap_violation": 0.0,
+        "group_regularity_violation": 0.00446
+      },
+      "working_set_mib": 1255.7265625,
+      "compiler_fingerprint": "84acd0945fadd4fdbcee687146f44045c549feb3644a8e8cd8cc4018b96e74d9",
+      "worker_wall_ms": 15868.63440000161,
+      "peak_working_set_mib": 1497.0390625,
+      "worker_returncode": 0,
+      "worker_stderr_tail": ""
+    },
+    {
+      "id": "vai50-01-icon_group_4_62",
+      "suite": "vai50",
+      "position": 1,
+      "stem": "icon_group_4_62",
+      "category": null,
+      "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\94_icon_group_4_62_src.png",
+      "reference": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_62_vai.svg",
+      "reference_metrics": {
+        "wobble": 67.8036,
+        "g2_steps": 1.3339,
+        "kinks_per_100px": 7.286,
+        "staircase_runs": 0,
+        "micro_segs": 285,
+        "total_len": 1262.6,
+        "segments": 722,
+        "roundness": 0.00096,
+        "circles": 3,
+        "mae": 6.45,
+        "rmse": 15.81,
+        "ink_iou": 0.9408,
+        "ssim": 0.96,
+        "seam_px": 5.88,
+        "mirror_iou": 0.5426,
+        "region_de2000_p95": 21.9358,
+        "de_region_max": 37.9498,
+        "color_regions": 33,
+        "source_rot90_iou": 0.1819,
+        "rot90_iou": 0.1867,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 1.0,
+        "hausdorff95": 0.0
+      },
+      "schema": "pcdc-phase12-item/v1",
+      "status": "ok",
+      "source_sha256": "5cde7b5cccac540fb7d92d3e203c633844e8188aa6f1a64b2105e38c0e489913",
+      "reference_sha256": "0c1e68c80611b6fe71e5b1d5dc943d7697819e88faa5721734904730563e098e",
+      "size": [
+        91,
+        48
+      ],
+      "mode": "balanced",
+      "wall_ms": 6012.693299999228,
+      "runtime": {
+        "schema": "pcdc-runtime-result/v1",
+        "mode": "balanced",
+        "source": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\94_icon_group_4_62_src.png",
+        "elapsed_ms": 929.0182999975514,
+        "deadline_ms": null,
+        "deadline_exceeded": false,
+        "best_stage": "T0",
+        "visible_render_audit": {
+          "passed": false,
+          "ink_iou": 0.5767272727272728,
+          "boundary_f": 0.9864125487717933,
+          "normalized_mae": 0.07069986313581467,
+          "source_topology": [
+            27,
+            35
+          ],
+          "rendered_topology": [
+            35,
+            3
+          ],
+          "topology_error": 40,
+          "baseline_available": true,
+          "baseline_ink_iou": 0.9632623071271125,
+          "baseline_boundary_f": 0.9992132179386309,
+          "baseline_normalized_mae": 0.019577616825699806,
+          "baseline_topology_error": 13,
+          "regressed_vs_baseline": true,
+          "reason": "failed:topology,ink-iou,mae-fuse,baseline-regression"
+        },
+        "selected_macros": 1,
+        "proposal_queries": 48,
+        "checkpoints": [
+          {
+            "stage": "T0",
+            "elapsed_ms": 61.138400007621385,
+            "selected_ids": [
+              "legacy-scene-167ec1b787d0c863"
+            ],
+            "utility": 0.001,
+            "exact_cover": true,
+            "proof_valid": true,
+            "note": "real V-ICE Best fallback available"
+          }
+        ],
+        "contract": {
+          "hierarchy_nodes": 185,
+          "hierarchy_limit": 186,
+          "typed_rois": 54,
+          "typed_roi_limit": 64,
+          "generated_typed_columns": 91,
+          "generated_column_limit": 220,
+          "exact_finalists_per_roi": 4,
+          "exact_roi_renders": 0,
+          "exact_roi_render_limit": 192,
+          "image_formation_models": 4,
+          "visible_extractions": 1,
+          "hidden_extractions": 0,
+          "final_full_renders": 1,
+          "one_reir_pass": true,
+          "native_backend": {
+            "available": true,
+            "version": 1,
+            "language": "rust",
+            "kernels": [
+              "conflict-bitsets",
+              "circle-sdf",
+              "atlas-pack"
+            ]
+          }
+        },
+        "profile": {
+          "schema": "pcdc-stage-profile/v1",
+          "complete": false,
+          "record_count": 8,
+          "by_stage": {
+            "evidence": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 27.5616,
+              "wall_ms_max": 27.5616,
+              "cpu_ms_total": 15.625,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 27.5616,
+              "cpu_ms_mean": 15.625
+            },
+            "legacy_resolve": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 1.9875,
+              "wall_ms_max": 1.9875,
+              "cpu_ms_total": 0.0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 1.9875,
+              "cpu_ms_mean": 0.0
+            },
+            "base_registry": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 31.1631,
+              "wall_ms_max": 31.1631,
+              "cpu_ms_total": 31.25,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 31.1631,
+              "cpu_ms_mean": 31.25
+            },
+            "hierarchy_solution": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 0.6622,
+              "wall_ms_max": 0.6622,
+              "cpu_ms_total": 0.0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 0.6622,
+              "cpu_ms_mean": 0.0
+            },
+            "typed_macro_generation": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 621.1445,
+              "wall_ms_max": 621.1445,
+              "cpu_ms_total": 2234.375,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 621.1445,
+              "cpu_ms_mean": 2234.375
+            },
+            "typed_registry": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 23.9575,
+              "wall_ms_max": 23.9575,
+              "cpu_ms_total": 0.0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 23.9575,
+              "cpu_ms_mean": 0.0
+            },
+            "visible_extract": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 1,
+              "wall_ms_total": 148.099,
+              "wall_ms_max": 148.099,
+              "cpu_ms_total": 125.0,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 148.099,
+              "cpu_ms_mean": 125.0
+            },
+            "visible_full_render_court": {
+              "count": 1,
+              "failures": 0,
+              "budget_failures": 0,
+              "wall_ms_total": 54.9698,
+              "wall_ms_max": 54.9698,
+              "cpu_ms_total": 62.5,
+              "peak_python_bytes_max": 0,
+              "wall_ms_mean": 54.9698,
+              "cpu_ms_mean": 62.5
+            }
+          },
+          "records": [
+            {
+              "name": "evidence",
+              "wall_ms": 27.5616,
+              "cpu_ms": 15.625,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": {
+                "mode": "balanced"
+              }
+            },
+            {
+              "name": "legacy_resolve",
+              "wall_ms": 1.9875,
+              "cpu_ms": 0.0,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "base_registry",
+              "wall_ms": 31.1631,
+              "cpu_ms": 31.25,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "hierarchy_solution",
+              "wall_ms": 0.6622,
+              "cpu_ms": 0.0,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "typed_macro_generation",
+              "wall_ms": 621.1445,
+              "cpu_ms": 2234.375,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "typed_registry",
+              "wall_ms": 23.9575,
+              "cpu_ms": 0.0,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "visible_extract",
+              "wall_ms": 148.099,
+              "cpu_ms": 125.0,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": false,
+              "error": null,
+              "metadata": null
+            },
+            {
+              "name": "visible_full_render_court",
+              "wall_ms": 54.9698,
+              "cpu_ms": 62.5,
+              "peak_python_bytes": 0,
+              "ok": true,
+              "budget_ok": true,
+              "error": null,
+              "metadata": null
+            }
+          ]
+        },
+        "warnings": [
+          "REIR cache hit=True",
+          "V-ICE Best fallback=C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_work\\paper-regions\\icon_group_4_62\\94_icon_group_4_62_src\\03_rebuilt_filled.svg",
+          "font/glyph cache hit=False",
+          "T2 full-render court rejected typed scene: failed:topology,ink-iou,mae-fuse,baseline-regression"
+        ]
+      },
+      "best_stage": "T0",
+      "selected_macros": 1,
+      "deterministic_export": true,
+      "exports": {
+        "svg": {
+          "target": "svg",
+          "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_experiment12\\runs\\probe-v2\\items\\vai50-01-icon_group_4_62\\result.svg",
+          "sha256": "c5be47c398b9be3002b9bac7aa1fc6ea8e50db6181e8b152823486e96fd9179f",
+          "bytes": 15668,
+          "native_primitives": 0,
+          "fallback_paths": 43,
+          "raster_images_embedded": 0,
+          "editable_score": 0.55,
+          "provenance": [
+            "selected-proof-carrying-scene",
+            "deterministic-export",
+            "no-preview-only-geometry-in-production"
+          ]
+        }
+      },
+      "ours": {
+        "wobble": 1.158,
+        "g2_steps": 0.089,
+        "kinks_per_100px": 0.19,
+        "kink_cvar10_deg": 3.8782,
+        "detail_cvar10": 0.64161,
+        "staircase_runs": 0,
+        "micro_segs": 19,
+        "total_len": 1578.1,
+        "segments": 647,
+        "roundness": null,
+        "circles": 0,
+        "mae": 4.99,
+        "rmse": 16.09,
+        "ink_iou": 0.9633,
+        "ssim": 0.9551,
+        "seam_px": 1.81,
+        "mirror_iou": 0.5662,
+        "region_de2000_p95": 10.1947,
+        "de_region_max": 9.2492,
+        "color_regions": 33,
+        "source_rot90_iou": 0.1819,
+        "rot90_iou": 0.1862,
+        "rot90_sym_break": 0.0,
+        "boundary_f": 0.9992,
+        "hausdorff95": 0.95,
+        "local_de_max": 3.636,
+        "local_de_x": 24,
+        "local_de_y": 24,
+        "local_de_window": [
+          32,
+          32
+        ],
+        "census_errors": 12,
+        "components_source": 33,
+        "components_render": 29,
+        "components_vanished": 0,
+        "components_fused": 1,
+        "components_added": 0,
+        "holes_lost": 0,
+        "holes_gained": 11,
+        "topology_levels_de": [
+          2.3,
+          4.6,
+          9.2,
+          18.4
+        ],
+        "source_betti_curve": [
+          [
+            11,
+            19
+          ],
+          [
+            19,
+            14
+          ],
+          [
+            23,
+            27
+          ],
+          [
+            29,
+            36
+          ]
+        ],
+        "render_betti_curve": [
+          [
+            24,
+            19
+          ],
+          [
+            25,
+            19
+          ],
+          [
+            25,
+            20
+          ],
+          [
+            26,
+            27
+          ]
+        ],
+        "persistent_beta0_error": 6.0,
+        "persistent_beta1_error": 5.25,
+        "persistent_components_lost": 0.75,
+        "persistent_holes_lost": 4.0,
+        "persistent_holes_gained": 1.25,
+        "any_counter_failure": true,
+        "catastrophic_locus_count": 6,
+        "catastrophic_locus_rate": 0.02361,
+        "worst_locus_severity": 2.0,
+        "boundary_cvar10": 1.1122,
+        "boundary_p99": 1.4,
+        "detail_de_cvar10": 20.2488,
+        "repeated_component_pairs": 24,
+        "equal_width_violation": 0.11353,
+        "equal_height_violation": 0.0,
+        "repeated_radius_violation": 0.0193,
+        "equal_gap_violation": 0.22648,
+        "group_regularity_violation": 0.22648
+      },
+      "working_set_mib": 1001.0078125,
+      "compiler_fingerprint": "84acd0945fadd4fdbcee687146f44045c549feb3644a8e8cd8cc4018b96e74d9",
+      "worker_wall_ms": 7145.880899988697,
+      "peak_working_set_mib": 1008.8828125,
+      "worker_returncode": 0,
+      "worker_stderr_tail": ""
+    }
+  ]
+}

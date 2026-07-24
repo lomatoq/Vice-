@@ -1,0 +1,74 @@
+{
+  "input": "bars_clean.png",
+  "pipeline": "geometry-first",
+  "extractor_used": "paper-hoshyari",
+  "analysis_scale": 1,
+  "smoothing": "paper",
+  "regions": 18,
+  "closed_contours": 1,
+  "rendered_primitive_count": 60,
+  "actual": {
+    "L": 59,
+    "Q": 0,
+    "C": 1
+  },
+  "templates": {
+    "paper-joint": 1,
+    "stroke": 17
+  },
+  "threshold": 0.0,
+  "underpaint_renderer_calibration": [
+    {
+      "renderer": "cairosvg",
+      "available": false,
+      "error": "OSError"
+    },
+    {
+      "renderer": "resvg",
+      "available": true,
+      "scales": [
+        0.5,
+        1.0,
+        2.0
+      ],
+      "one_sided_support": 0.75
+    }
+  ],
+  "corner_detector": {
+    "type": "resolution-density-hybrid-cnn",
+    "small_model": "corner_cnn.pt",
+    "small_threshold": 0.28,
+    "large_model": "corner_cnn_hybrid_large_v1.pt",
+    "large_threshold": 0.36,
+    "small_extent_max": 4.0,
+    "small_density_min": 8.0
+  },
+  "kink_energy": 0.242,
+  "residual_coverage_calibration": [
+    {
+      "router": "bounded-editable-coverage-residual",
+      "paths": 18,
+      "incumbent": {
+        "mae": 1.32,
+        "rmse": 15.477,
+        "ink_iou": 0.96615,
+        "ssim": 0.98605,
+        "boundary_f": 0.85668,
+        "hausdorff95": 10.505,
+        "topology": [
+          2,
+          0
+        ]
+      },
+      "source_topology": [
+        2,
+        0
+      ],
+      "topology_gap": 0,
+      "incumbent_seam_px": null,
+      "trials": [],
+      "accepted": false,
+      "reason": "court-rejected"
+    }
+  ]
+}
