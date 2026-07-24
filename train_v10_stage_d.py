@@ -198,6 +198,15 @@ def main() -> None:
         "over the replayed clean target - the S11.4 data-side card",
     )
     parser.add_argument(
+        "--polarity", choices=("ink", "luminance"), default="ink",
+        help="'ink' trains on raw degraded coverage (ink=1). 'luminance' "
+        "reconstructs a pseudo-luminance observation ink_lum*obs + "
+        "0.5*(1-obs) with ink_lum measured from the pair's actual raster "
+        "at support pixels - the convention the real domain (and the "
+        "real fine-tune) actually uses; icons invisible on the 0.5 "
+        "composite (|ink_lum-0.5|<0.08) are skipped",
+    )
+    parser.add_argument(
         "--hard-subset", action="store_true",
         help="only pairs with blur/noise/jpeg degradation: Otsu saturates "
         "the easy pairs and drowns the model's value in the aggregate",
@@ -295,6 +304,15 @@ def main() -> None:
                 observed = degrade_wordmark(
                     coverage, support, seed=degrade_seed,
                 )
+                if args.polarity == "luminance":
+                    # raster still holds the pair's true composited gray
+                    # here; the reassignment below overwrites it.
+                    ink_lum = float(np.median(raster[support])) / 255.0
+                    if abs(ink_lum - 0.5) < 0.08:
+                        continue
+                    observed = (
+                        ink_lum * observed + 0.5 * (1.0 - observed)
+                    )
                 raster = np.rint(
                     np.clip(observed, 0.0, 1.0) * 255.0
                 ).astype(np.uint8)

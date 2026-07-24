@@ -1,0 +1,26 @@
+{
+  "schema": "vice-stage-d-realft/v1",
+  "created_at": "2026-07-24T17:18:14.221028+00:00",
+  "data": "300 human-reviewed v1 loci masks, id-hash 80/20 split",
+  "base_checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\stage_d_full_candidate_v1.pt",
+  "metrics": {
+    "pre_finetune_iou": 0.1546465265416925,
+    "pre_finetune_edit": 17.548387096774192,
+    "post_finetune_iou": 0.7724897482818289,
+    "post_finetune_edit": 9.951612903225806,
+    "otsu_iou": 0.4249503181393245,
+    "otsu_edit": 9.612903225806452
+  },
+  "gate": {
+    "beats_otsu_iou": true,
+    "beats_pre_finetune_iou": true,
+    "not_worse_edit_than_otsu": false
+  },
+  "gate_pass": false,
+  "train_samples": 5922,
+  "val_samples": 62,
+  "seed": 20260732,
+  "device": "cuda",
+  "elapsed_seconds": 70.98400750000292,
+  "checkpoint": "models\\stage_d_mixft_lum4000.pt"
+}
