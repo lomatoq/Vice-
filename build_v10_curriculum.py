@@ -53,6 +53,10 @@ def uber_bindings() -> dict:
         "splits_summary": UBER / "splits" / "summary.json",
         "family_disjoint_splits_summary":
             UBER / "splits" / "family_disjoint" / "summary.json",
+        "text_shapes_v2_jsonl":
+            UBER / "text_shapes_v2" / "text_shapes_v2.jsonl",
+        "text_shapes_v2_family_splits":
+            UBER / "text_shapes_v2" / "family_splits_summary.json",
     }.items():
         attested[label] = {
             "path": str(path),
@@ -135,9 +139,11 @@ def main() -> None:
                 "records": len(records),
                 "skipped_renders": skipped,
                 "uber_base": (
-                    "text_shapes: 150k clean text-line SVG programs with "
-                    "font/font_file labels (per-glyph programs derivable "
-                    "from the vector paths)"
+                    "text_shapes_v2 (PRIMARY, 2026-07-24): 150k clean "
+                    "text-line SVG programs across 1957 font families with "
+                    "exact family field and family-disjoint splits "
+                    "(train 1367 / cal 294 / test 296 families); "
+                    "text_shapes v1 (21 families) kept as legacy"
                 ),
                 "generator": (
                     "per-glyph 256px clean render + topology signature "

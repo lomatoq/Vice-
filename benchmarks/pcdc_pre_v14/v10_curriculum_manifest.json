@@ -1,6 +1,6 @@
 {
   "schema": "vice-v10-curriculum/v2",
-  "created_at": "2026-07-24T13:43:04.001960+00:00",
+  "created_at": "2026-07-24T14:12:22.216761+00:00",
   "font_bank": "fonts/google-fonts-manifest-v2-full.json",
   "font_bank_content_sha256": "fe29d7656916e93d18a69e85088b0634f5b032f726f76143c007d692f8ed0e1d",
   "curriculum_base": {
@@ -49,6 +49,16 @@
         "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\splits\\family_disjoint\\summary.json",
         "sha256": "68ff4c5c947cd3201ce239657bc41a4f5ede9651d44c2a2c575087b58016abae",
         "bytes": 2969
+      },
+      "text_shapes_v2_jsonl": {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\text_shapes_v2\\text_shapes_v2.jsonl",
+        "sha256": "822a1b85231c0073e9d26ebaa022efc4ce9ff334a93d63482fc07e62b6bc90e7",
+        "bytes": 1701083687
+      },
+      "text_shapes_v2_family_splits": {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\text_shapes_v2\\family_splits_summary.json",
+        "sha256": "6e8a23bc4215cea3e81d4a35a4cfc3c43c7980b4d00b78f2a69f1b2c9bc80ec0",
+        "bytes": 387
       }
     },
     "family_disjoint_splits": "BUILT 2026-07-24 (splits/family_disjoint): text by font family (45 faces -> 21 families), iconify by collection, geometry by id-hash, local wholly in test. Honest gap: 21 text families vs ~600 saturation point of the Stage-A probe - regenerate Stage A/B text data from the google-fonts v2 bank before the full run",
@@ -61,7 +71,7 @@
       "payload_sha256": "e4f219827de825af7ddebebe5c52610d0365526a01cddf6c626ce62cb449e530",
       "records": 29695,
       "skipped_renders": 113,
-      "uber_base": "text_shapes: 150k clean text-line SVG programs with font/font_file labels (per-glyph programs derivable from the vector paths)",
+      "uber_base": "text_shapes_v2 (PRIMARY, 2026-07-24): 150k clean text-line SVG programs across 1957 font families with exact family field and family-disjoint splits (train 1367 / cal 294 / test 296 families); text_shapes v1 (21 families) kept as legacy",
       "generator": "per-glyph 256px clean render + topology signature (auxiliary shard); primary data = uber text_shapes; full stage adds template shortlist, variant labels, SDF/corner targets (audit S10 Stage A)",
       "gate": "unseen-family per-glyph topology >= 99.9%"
     },
@@ -97,5 +107,5 @@
     }
   },
   "note": "Stages A-D are data-materialized on the attested uber base (plus the Stage-A auxiliary shard); stage E is a generator spec on its prerequisite; stage F queue is live. Family-disjoint splits (S11.3) remain to be derived from the font/font_file metadata before any full run.",
-  "elapsed_seconds": 44.77579369999876
+  "elapsed_seconds": 45.178702400000475
 }
