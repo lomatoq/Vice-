@@ -218,9 +218,14 @@ def main() -> None:
             tracking_value = float(replay.uniform(-0.15, 0.22))
             stroke_value = int(replay.integers(0, 8))
             effect_value = float(replay.random())
-            coverage, support = render_clean_wordmark(
-                font.path, text, config, seed=render_seed,
-            )
+            try:
+                coverage, support = render_clean_wordmark(
+                    font.path, text, config, seed=render_seed,
+                )
+            except OSError:
+                # Pathological faces in the full v2 bank (PIL layout
+                # failures): resample, never crash a pilot.
+                continue
             if not np.any(support):
                 continue
             observed = degrade_wordmark(

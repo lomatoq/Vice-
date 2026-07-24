@@ -64,11 +64,18 @@ GLYPH_RENDER_SIZE = 256
 @lru_cache(maxsize=100000)
 def _glyph_topology(font_path: str, character: str) -> tuple[int, int] | None:
     """(components, holes) of one glyph at 256 px - the analytic template
-    topology for retrieval purposes."""
+    topology for retrieval purposes. Pathological faces (PIL/Raqm layout
+    failures in the full bank) are skipped, never fatal."""
     try:
-        font = ImageFont.truetype(font_path, GLYPH_RENDER_SIZE)
-    except OSError:
+        return _glyph_topology_unsafe(font_path, character)
+    except (OSError, ValueError):
         return None
+
+
+def _glyph_topology_unsafe(
+    font_path: str, character: str,
+) -> tuple[int, int] | None:
+    font = ImageFont.truetype(font_path, GLYPH_RENDER_SIZE)
     bounds = font.getbbox(character)
     if bounds[2] <= bounds[0] or bounds[3] <= bounds[1]:
         return None

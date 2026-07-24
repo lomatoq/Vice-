@@ -1,0 +1,49 @@
+{
+  "schema": "vice-v10-curriculum/v1",
+  "created_at": "2026-07-24T12:02:29.851427+00:00",
+  "font_bank": "fonts/google-fonts-manifest-v2-full.json",
+  "font_bank_content_sha256": "fe29d7656916e93d18a69e85088b0634f5b032f726f76143c007d692f8ed0e1d",
+  "stages": {
+    "A_clean_glyph_program": {
+      "status": "pilot-shard-materialized",
+      "payload": "datasets/v10_curriculum_stage_a_pilot/stage_a_pilot_records.jsonl",
+      "payload_sha256": "e4f219827de825af7ddebebe5c52610d0365526a01cddf6c626ce62cb449e530",
+      "records": 29695,
+      "skipped_renders": 113,
+      "generator": "per-glyph 256px clean render + topology signature; full stage adds template shortlist, variant labels, SDF/corner targets (audit S10 Stage A)",
+      "gate": "unseen-family per-glyph topology >= 99.9%"
+    },
+    "B_clean_line_layout": {
+      "status": "defined",
+      "generator": "variable length 1-32, dynamic width, oracle transcript + oracle boxes from the vector font source",
+      "prerequisite": "Stage A model green",
+      "gate": "line exact topology >= 99% clean"
+    },
+    "C_visual_layout_inference": {
+      "status": "defined",
+      "generator": "Stage B minus oracle boxes",
+      "prerequisite": "Stage B green",
+      "gate": "layout Recall@K, per-glyph crop ownership"
+    },
+    "D_degradation_inverse": {
+      "status": "defined",
+      "generator": "blur/JPEG/gamma/resampling over Stage B/C corpora; renderer family held out per audit S11.4",
+      "prerequisite": "Stage C green",
+      "gate": "candidate topology Recall@K (not top-1 mask)"
+    },
+    "E_ocr_uncertainty": {
+      "status": "defined",
+      "generator": "N-best transcripts, token posteriors, corrupted flags (audit S13; hard-wrong-token forbidden per Experiment E)",
+      "prerequisite": "Stage D green",
+      "gate": "no degradation from OCR conditioning"
+    },
+    "F_real_locus_calibration": {
+      "status": "blocked-on-human-capacity",
+      "generator": "expanded reviewed loci 2k-5k (audit S11.6)",
+      "prerequisite": "human annotation capacity decision",
+      "gate": "delivered SVG effect + human court"
+    }
+  },
+  "note": "Only Stage A carries a materialized attested payload; stages B-E are generator specs gated on their prerequisites; stage F is blocked on the human capacity decision. The readiness gate must not read 'defined' as 'materialized'.",
+  "elapsed_seconds": 36.575428300002386
+}
