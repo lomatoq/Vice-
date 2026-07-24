@@ -185,6 +185,11 @@ class ApproximateTemplateProvider:
                 tracking_grid=(-0.16, 0.0, 0.16, 0.32),
                 x_scale_grid=(0.85, 1.0, 1.15),
                 y_scale_grid=(0.90, 1.0, 1.10), supersample=2,
+                # Experiment-D lesson: cumulative per-glyph offsets absorb
+                # the linear tracking residual on long lines. Flag-gated;
+                # exact-font routes keep their default-off byte-identical
+                # behaviour.
+                per_glyph_refine=True,
             )
             result = []
             for match, local_mask in matches:

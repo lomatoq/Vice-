@@ -1,0 +1,22 @@
+{
+  "schema": "vice-v10-stage-a-v1/retrieval-pilot",
+  "created_at": "2026-07-24T15:02:27.726142+00:00",
+  "mode": "representative-pilot",
+  "metrics": {
+    "retrieval_topology_top1": 0.8073333333333333,
+    "retrieval_topology_top8": 0.892,
+    "handcrafted_baseline_top1": 0.927,
+    "gate": 0.999
+  },
+  "gate_pass": false,
+  "train_samples": 24000,
+  "val_samples": 1500,
+  "train_families": 1367,
+  "db_entries": 44735,
+  "seed": 20260728,
+  "bank_v2_content_sha256": "fe29d7656916e93d18a69e85088b0634f5b032f726f76143c007d692f8ed0e1d",
+  "device": "cuda",
+  "authorizes_full_training": false,
+  "elapsed_seconds": 156.50806250000096,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\stage_a_v1_retrieval_pilot.pt"
+}

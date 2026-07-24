@@ -410,6 +410,177 @@ def ink_bbox(mask: np.ndarray) -> tuple[int, int, int, int]:
     return int(xs.min()), int(ys.min()), int(xs.max()) + 1, int(ys.max()) + 1
 
 
+def render_tracked_layers(
+    font_path: str | Path,
+    text: str,
+    tracking_em: float,
+    *,
+    font_size: int = 192,
+) -> tuple[np.ndarray, list[np.ndarray]]:
+    """Per-glyph layers in the same cropped frame as render_tracked_text.
+
+    The joint array matches render_tracked_text's geometry; each layer holds
+    one glyph so a bounded per-glyph offset stage can move glyphs without
+    re-rendering.
+    """
+
+    if not text:
+        raise ValueError("text cannot be empty")
+    font = ImageFont.truetype(str(font_path), font_size)
+    tracking_px = float(tracking_em) * font_size
+    positions: list[float] = []
+    boxes: list[tuple[int, int, int, int] | None] = []
+    for index, char in enumerate(text):
+        prefix_advance = float(font.getlength(text[:index]))
+        positions.append(prefix_advance + index * tracking_px)
+        try:
+            box = font.getbbox(char, anchor="ls")
+        except ValueError:
+            box = font.getbbox(char)
+        boxes.append(box)
+    painted = [
+        (positions[index] + box[0], box[1], positions[index] + box[2], box[3])
+        for index, box in enumerate(boxes)
+        if box is not None and box[2] > box[0] and box[3] > box[1]
+    ]
+    if not painted:
+        raise ValueError(f"font produced no visible glyphs for {text!r}")
+    min_x = math.floor(min(box[0] for box in painted)) - 2
+    min_y = math.floor(min(box[1] for box in painted)) - 2
+    max_x = math.ceil(max(box[2] for box in painted)) + 2
+    max_y = math.ceil(max(box[3] for box in painted)) + 2
+    width, height = max(1, max_x - min_x), max(1, max_y - min_y)
+    joint = np.zeros((height, width), dtype=np.uint8)
+    layers: list[np.ndarray] = []
+    for index, char in enumerate(text):
+        canvas = Image.new("L", (width, height), 0)
+        draw = ImageDraw.Draw(canvas)
+        try:
+            draw.text(
+                (positions[index] - min_x, -min_y), char,
+                font=font, fill=255, anchor="ls",
+            )
+        except ValueError:
+            draw.text(
+                (positions[index] - min_x, -min_y), char, font=font, fill=255,
+            )
+        layer = np.asarray(canvas)
+        layers.append(layer)
+        joint = np.maximum(joint, layer)
+    ys, xs = np.nonzero(joint > 0)
+    if not len(xs):
+        raise ValueError(f"font produced an empty raster for {text!r}")
+    y0, y1 = int(ys.min()), int(ys.max()) + 1
+    x0, x1 = int(xs.min()), int(xs.max()) + 1
+    return joint[y0:y1, x0:x1], [layer[y0:y1, x0:x1] for layer in layers]
+
+
+def compose_layers_with_offsets(
+    layers: list[np.ndarray],
+    target_mask: np.ndarray,
+    *,
+    x_scale: float = 1.0,
+    y_scale: float = 1.0,
+    dx_px: float = 0.0,
+    dy_px: float = 0.0,
+    supersample: int = 4,
+    threshold: int = 96,
+    shift_limit: int = 3,
+) -> np.ndarray:
+    """compose_candidate geometry per layer plus bounded per-glyph offsets.
+
+    Experiment-D lesson (2026-07-24): a linear tracking residual of half a
+    pixel per glyph crosses many pixels over a long line and no global grid
+    absorbs it; cumulative per-glyph offsets around the previous glyph's
+    correction do, while the layout stays monotonic. Each glyph is scored
+    only inside its own column band so it cannot be pulled onto a
+    neighbour's ink.
+    """
+
+    if x_scale <= 0 or y_scale <= 0 or supersample < 1:
+        raise ValueError("scales and supersample must be positive")
+    height, width = target_mask.shape
+    x0, y0, x1, y1 = ink_bbox(target_mask)
+    joint_height, joint_width = layers[0].shape
+    target_ink_height = max(1, y1 - y0)
+    base_scale = target_ink_height / max(1, joint_height)
+    destination_width = max(
+        1, int(round(joint_width * base_scale * x_scale * supersample)),
+    )
+    destination_height = max(
+        1, int(round(joint_height * base_scale * y_scale * supersample)),
+    )
+    center_x = ((x0 + x1) * 0.5 + dx_px) * supersample
+    center_y = ((y0 + y1) * 0.5 + dy_px) * supersample
+    left = int(round(center_x - destination_width * 0.5))
+    top = int(round(center_y - destination_height * 0.5))
+    canvas_shape = (height * supersample, width * supersample)
+    target_float = target_mask.astype(np.float32)
+
+    final_layers: list[np.ndarray] = []
+    for layer in layers:
+        if not layer.any():
+            final_layers.append(np.zeros((height, width), np.float32))
+            continue
+        resized = cv2.resize(
+            layer,
+            (destination_width, destination_height),
+            interpolation=(
+                cv2.INTER_AREA
+                if destination_height < joint_height else cv2.INTER_CUBIC
+            ),
+        )
+        canvas = np.zeros(canvas_shape, dtype=np.uint8)
+        src_x0, src_y0 = max(0, -left), max(0, -top)
+        dst_x0, dst_y0 = max(0, left), max(0, top)
+        copy_width = min(destination_width - src_x0, canvas.shape[1] - dst_x0)
+        copy_height = min(
+            destination_height - src_y0, canvas.shape[0] - dst_y0,
+        )
+        if copy_width > 0 and copy_height > 0:
+            canvas[
+                dst_y0:dst_y0 + copy_height, dst_x0:dst_x0 + copy_width,
+            ] = resized[
+                src_y0:src_y0 + copy_height, src_x0:src_x0 + copy_width,
+            ]
+        if supersample > 1:
+            canvas = cv2.resize(
+                canvas, (width, height), interpolation=cv2.INTER_AREA,
+            )
+        final_layers.append(canvas.astype(np.float32))
+
+    composed = np.zeros((height, width), np.float32)
+    cumulative_dx = 0
+    for layer in final_layers:
+        columns = np.flatnonzero((layer >= threshold).any(axis=0))
+        if not len(columns):
+            continue
+        band0 = max(0, int(columns[0]) + cumulative_dx - shift_limit - 1)
+        band1 = min(width, int(columns[-1]) + cumulative_dx + shift_limit + 2)
+        best_score, best_dx = -1.0, cumulative_dx
+        for step in range(-shift_limit, shift_limit + 1):
+            glyph_dx = cumulative_dx + step
+            shifted = np.roll(layer, glyph_dx, axis=1)
+            if glyph_dx > 0:
+                shifted[:, :glyph_dx] = 0.0
+            elif glyph_dx < 0:
+                shifted[:, glyph_dx:] = 0.0
+            score = float(np.sum(
+                np.minimum(shifted[:, band0:band1] / 255.0,
+                           target_float[:, band0:band1])
+            ))
+            if score > best_score:
+                best_score, best_dx = score, glyph_dx
+        shifted = np.roll(layer, best_dx, axis=1)
+        if best_dx > 0:
+            shifted[:, :best_dx] = 0.0
+        elif best_dx < 0:
+            shifted[:, best_dx:] = 0.0
+        composed = np.maximum(composed, shifted)
+        cumulative_dx = best_dx
+    return composed >= threshold
+
+
 def compose_candidate(
     source_alpha: np.ndarray,
     target_mask: np.ndarray,
@@ -526,6 +697,7 @@ def _search_one_font(
     supersample: int,
     refine_rounds: int,
     render_font_size: int,
+    per_glyph_refine: bool = False,
 ) -> tuple[dict[str, float | MaskMetrics], np.ndarray] | None:
     path = Path(record.path)
     if not path.is_file() or not _font_has_text(path, text):
@@ -603,6 +775,29 @@ def _search_one_font(
                     best_params, best_metrics, best_mask = trial, metrics, mask
         steps = {name: value * 0.5 for name, value in steps.items()}
 
+    if per_glyph_refine and len(text) >= 2:
+        # Bounded per-glyph offset stage (Experiment-D lesson): only ever
+        # kept when it scores strictly better, so the default path is
+        # byte-identical with the flag off.
+        try:
+            _joint, layers = render_tracked_layers(
+                path, text, best_params["tracking_em"],
+                font_size=render_font_size,
+            )
+            mask = compose_layers_with_offsets(
+                layers, target,
+                x_scale=best_params["x_scale"],
+                y_scale=best_params["y_scale"],
+                dx_px=best_params["dx_px"],
+                dy_px=best_params["dy_px"],
+                supersample=supersample,
+            )
+            metrics = scorer.score(mask)
+            if metrics.score > best_metrics.score:
+                best_metrics, best_mask = metrics, mask
+        except (OSError, ValueError):
+            pass
+
     return {**best_params, "metrics": best_metrics}, best_mask
 
 
@@ -618,6 +813,7 @@ def match_fonts(
     refine_rounds: int = 3,
     top_k: int = 8,
     render_font_size: int = 192,
+    per_glyph_refine: bool = False,
 ) -> list[tuple[FontMatch, np.ndarray]]:
     """Return the best fit for each font, sorted deterministically by score."""
 
@@ -639,6 +835,7 @@ def match_fonts(
             supersample=supersample,
             refine_rounds=refine_rounds,
             render_font_size=render_font_size,
+            per_glyph_refine=per_glyph_refine,
         )
         if result is not None:
             parameters, mask = result
