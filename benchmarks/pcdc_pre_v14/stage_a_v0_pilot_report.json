@@ -1,0 +1,23 @@
+{
+  "schema": "vice-v10-stage-a-pilot/v1",
+  "created_at": "2026-07-24T14:43:18.105206+00:00",
+  "mode": "representative-pilot",
+  "gate": "unseen-family joint topology >= 0.999",
+  "gate_pass": false,
+  "metrics": {
+    "components": 0.9536666666666667,
+    "holes": 0.865,
+    "joint_topology": 0.8336666666666667
+  },
+  "train_samples": 24000,
+  "val_samples": 3000,
+  "train_faces": 1757,
+  "test_faces": 376,
+  "seed": 20260727,
+  "bank_v2_content_sha256": "fe29d7656916e93d18a69e85088b0634f5b032f726f76143c007d692f8ed0e1d",
+  "splits_source": "text_shapes_v2 family assignment (deterministic replay)",
+  "device": "cuda",
+  "authorizes_full_training": false,
+  "elapsed_seconds": 89.4630139999972,
+  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\stage_a_v0_pilot.pt"
+}

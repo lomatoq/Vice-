@@ -727,6 +727,18 @@ IoU ужо вышэй мінімальнага `0.88`, але topology далё�
     зандажы — Stage A/B тэкст трэба перагенераваць з банка v2 да
     поўнага запуску. Readiness трымае TRAIN.
 
+84. Stage A v0 — першы сапраўдны v10-трэнінг пад §4.7 (2026-07-24, ноч):
+    tiny-overfit 300 крокаў — 1.000 па ўсіх галовах; рэпрэзентатыўны пілот
+    (24k, family-disjoint 1367 train / 296 test сем'яў з text_shapes_v2)
+    — unseen joint topology 0.8337 пры гейце 0.999: ПІКСЕЛЬНАЯ галава
+    гейт не нясе (тая ж столь валасяных каўнтэраў на 64px, што ва ўсіх
+    сённяшніх вымярэннях). Высновы замацаваны: гейт Stage A нясе
+    retrieval + topology by construction (§8.6), нейронная роля —
+    навучаны retrieval-эмбэдынг (vector R@1 ужо 0.927 на монагліфах з
+     handcrafted-фічамі; вучоны эмбэдынг — наступны крок Stage A v1).
+    Чэкпойнт: models/stage_a_v0_pilot.pt (candidate, нічога не
+    аўтарызуе); справаздача stage_a_v0_pilot_report.json.
+
 ## Дакладны promotion gate для full checkpoint
 
 Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не
