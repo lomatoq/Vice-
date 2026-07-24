@@ -497,7 +497,7 @@ def _oracle_ceiling(
 
 def evaluate_locus(
     locus: dict[str, Any], review: dict[str, Any], cache: EvidenceCache,
-    *, exact_font: bool = False,
+    *, exact_font: bool = False, template_lane: bool = False,
     review_artifacts: list[TextLineReviewArtifacts] | None = None,
 ) -> dict[str, Any]:
     reir, cache_hit = cache.get_or_build(locus["source"]["path"])
@@ -646,6 +646,15 @@ def evaluate_locus(
             # cheap font-identity certificate.
             enable_font_search=False,
         )
+        if template_lane:
+            # v9.5 bridge lane (audit S9): style retrieval buys bounded
+            # affine fits that the exact lane's pricing wall never buys;
+            # rows enter only through the unchanged admission walls.
+            from .template_warp_provider import ApproximateTemplateProvider
+
+            exact_provider = ApproximateTemplateProvider(
+                reir, inner=exact_provider,
+            )
         exact_generated = generate_text_macros(
             reir, exact_font_provider=exact_provider,
             max_line_proposals=32, validate_reir=False,
@@ -962,6 +971,7 @@ def _human_status(
 
 def build_report(
     corpus_dir: Path = CORPUS, *, exact_font: bool = True,
+    template_lane: bool = False,
 ) -> dict[str, Any]:
     input_identity = real_locus_input_identity(corpus_dir)
     font_catalog_identity = font_catalog_input_identity() if exact_font else None
@@ -989,6 +999,7 @@ def build_report(
     rows = [
         evaluate_locus(
             row, reviews[row["id"]], cache, exact_font=exact_font,
+            template_lane=template_lane,
         )
         for row in admitted
     ]
@@ -1106,7 +1117,10 @@ def build_report(
             if exact_font else
             "legacy fail-open plus Phase-4 font-free TextLine CMIR columns"
         ),
-        "exact_font_mode": "fast-catalog-2" if exact_font else "disabled",
+        "exact_font_mode": (
+            "approximate-template-top8" if exact_font and template_lane
+            else "fast-catalog-2" if exact_font else "disabled"
+        ),
         "glyph_prior_checkpoint": glyph_prior_checkpoint,
         "wordmark_prior_checkpoint": wordmark_prior_checkpoint,
         "machine": machine, "human": human, "gate_pass": gate, "rows": rows,
@@ -1117,9 +1131,13 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--font-free-only", action="store_true")
+    parser.add_argument("--approximate-template", action="store_true")
     args = parser.parse_args()
     report = bind_report(
-        build_report(exact_font=not args.font_free_only),
+        build_report(
+            exact_font=not args.font_free_only,
+            template_lane=args.approximate_template,
+        ),
         evaluator_source=__file__,
     )
     args.out.parent.mkdir(parents=True, exist_ok=True)

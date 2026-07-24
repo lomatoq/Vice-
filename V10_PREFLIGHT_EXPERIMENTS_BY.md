@@ -301,6 +301,58 @@ N-best у v4/v9 непрадстаўляльны (адзін hard string); ка�
 
 ---
 
+## Experiment R — Recall@K на вектарным узроўні (СТАТУС: ЗАКРЫТЫ)
+
+Артэфакты: `benchmarks/pcdc_pre_v14/vector_topology_recall_{openbank,unseenfont}_k8.json`
+(1344 сэмплы кожны; ісціна пераранджана на 256px тым жа seed; сэмплы з
+64px-эфектамі выключаны рэплэем генератара — гэта задача класіфікацыі
+аператараў, не retrieval).
+
+| | R@1 | R@8 | столь (truth==сума гліфаў) |
+|---|---|---|---|
+| агулам | 0.469 | 0.617 | 0.567 |
+| L=1 | 0.927 | 0.969 | 0.958 |
+| L=32 | 0.245 | 0.469 | 0.406 |
+
+unseen-font зноў ідэнтычны openbank (0.614 супраць 0.617 R@8).
+
+**Галоўны факт:** R@8 упіраецца не ў якасць пошуку, а ў СТОЛЬ КАМПАЗІЦЫІ:
+у доўгіх радках ісціна супадае з наіўнай сумай тапалогій гліфаў толькі ў
+41–54% — дотыкі (адмоўны трэкінг) і строук зліваюць літары. **Без
+мадэлявання злучэнняў (§8.11 pair interactions) гейт Recall@8 ≥ 99%
+недасягальны ў прынцыпе** — гэта цяпер нумар 1 у чарзе v10-мадэлі,
+вышэй за паляпшэнне retrieval.
+
+## Experiment H — рэальныя лоці праз PCDC-суд (СТАТУС: ідзе)
+
+### Hypothesis card (v9.5 approximate-template lane)
+
+- **Problem:** exact-font lane на 100 рэальных лоці прапускае 0/0
+  (pricing-сцяна не купляе фіты для не-каталожных шрыфтоў); GCR-рэдукцыя
+  застаецца 15.9% пры гейце 70% (свежы baseline
+  `report_baseline_pre_template_20260724.json`, гэты ж хэш кампілятара).
+- **Mechanism:** новы правайдэр `vice_compiler/template_warp_provider.py`
+  (пратакол ExactFontProvider): стылявое сеянне (дэскрыптарны банк 241
+  твару) замест sil-сцяны; top-8 твараў купляюць па адным абмежаваным
+  афінным фіце праз існуючы `font_match.match_fonts`. Радкі НЕ прэтэндуюць
+  на ідэнтычнасць шрыфта (provenance `no-font-identity-claim`) і ўваходзяць
+  толькі праз НЯЗМЕННЫЯ сцены `generate_text_macros`
+  (strict / semantic-font-idealization); суд можа адхіліць; поўны fail-open.
+- **Route identity (§4.8):** provenance
+  `approximate-template-retrieval/style-top8`; флаг
+  `--approximate-template` у experiment4; rollback = не канструяваць
+  правайдэр.
+- **Positive controls:** лініі з чытэльным OCR і блізкім па стылі шрыфтам.
+- **Negative controls:** усе не-OCR лініі; gate «all lines not worse».
+- **Expected signal:** admitted > 0; змененыя delivered радкі; GCR-рэдукцыя
+  вышэй 15.9% без рэгрэсій; p95 сумленна фіксуецца (лайн-бюджэт пакуль
+  не мэта).
+- **Stop:** калі admissions = 0 або net-рэгрэсія — лінія паркуецца, прычына
+  ў гэты дакумент.
+- **Proof impact:** змена `vice_compiler` робіць старыя hash-bound
+  справаздачы застарэлымі — пасля фазы патрэбны source freeze і reruns
+  (§17 Step 9); тэсты experiment4 11/11 зялёныя з новым кодам.
+
 ## Вынік фазы прэфлайту — handoff (§19 кантракта)
 
 ### Current verdict
