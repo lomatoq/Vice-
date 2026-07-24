@@ -1,6 +1,6 @@
 {
   "schema": "vice-v10-curriculum/v2",
-  "created_at": "2026-07-24T13:11:02.284438+00:00",
+  "created_at": "2026-07-24T13:43:04.001960+00:00",
   "font_bank": "fonts/google-fonts-manifest-v2-full.json",
   "font_bank_content_sha256": "fe29d7656916e93d18a69e85088b0634f5b032f726f76143c007d692f8ed0e1d",
   "curriculum_base": {
@@ -44,9 +44,15 @@
         "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\splits\\summary.json",
         "sha256": "d1b7e24477ceb0ff9e0321b999c666d9270d9a92a5961d048832efd1b4f50c1a",
         "bytes": 371
+      },
+      "family_disjoint_splits_summary": {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ize train\\dataset\\splits\\family_disjoint\\summary.json",
+        "sha256": "68ff4c5c947cd3201ce239657bc41a4f5ede9651d44c2a2c575087b58016abae",
+        "bytes": 2969
       }
     },
-    "todo_family_disjoint_splits": "existing splits are complexity/source-based; audit S11.3 requires family-disjoint splits - buildable, text_shapes records carry font/font_file metadata"
+    "family_disjoint_splits": "BUILT 2026-07-24 (splits/family_disjoint): text by font family (45 faces -> 21 families), iconify by collection, geometry by id-hash, local wholly in test. Honest gap: 21 text families vs ~600 saturation point of the Stage-A probe - regenerate Stage A/B text data from the google-fonts v2 bank before the full run",
+    "supervision_attestation": "benchmarks/pcdc_pre_v14/uber_supervision_attestation.json: 8849 brand/logo records evidence_reviewed (user bulk attestation + 316 live entries, 2026-07-24)"
   },
   "stages": {
     "A_clean_glyph_program": {
@@ -91,5 +97,5 @@
     }
   },
   "note": "Stages A-D are data-materialized on the attested uber base (plus the Stage-A auxiliary shard); stage E is a generator spec on its prerequisite; stage F queue is live. Family-disjoint splits (S11.3) remain to be derived from the font/font_file metadata before any full run.",
-  "elapsed_seconds": 40.60090180000043
+  "elapsed_seconds": 44.77579369999876
 }

@@ -51,6 +51,8 @@ def uber_bindings() -> dict:
         "corpus_metadata_jsonl":
             UBER / "metadata" / "corpus_metadata.jsonl",
         "splits_summary": UBER / "splits" / "summary.json",
+        "family_disjoint_splits_summary":
+            UBER / "splits" / "family_disjoint" / "summary.json",
     }.items():
         attested[label] = {
             "path": str(path),
@@ -69,10 +71,18 @@ def uber_bindings() -> dict:
             "local_ground_truth_svgs": 1095,
         },
         "attested_files": attested,
-        "todo_family_disjoint_splits": (
-            "existing splits are complexity/source-based; audit S11.3 "
-            "requires family-disjoint splits - buildable, text_shapes "
-            "records carry font/font_file metadata"
+        "family_disjoint_splits": (
+            "BUILT 2026-07-24 (splits/family_disjoint): text by font family "
+            "(45 faces -> 21 families), iconify by collection, geometry by "
+            "id-hash, local wholly in test. Honest gap: 21 text families "
+            "vs ~600 saturation point of the Stage-A probe - regenerate "
+            "Stage A/B text data from the google-fonts v2 bank before the "
+            "full run"
+        ),
+        "supervision_attestation": (
+            "benchmarks/pcdc_pre_v14/uber_supervision_attestation.json: "
+            "8849 brand/logo records evidence_reviewed (user bulk "
+            "attestation + 316 live entries, 2026-07-24)"
         ),
     }
 
