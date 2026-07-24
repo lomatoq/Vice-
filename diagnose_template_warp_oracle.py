@@ -170,6 +170,8 @@ def _robust_ink(mask: np.ndarray) -> np.ndarray | None:
     )
     areas = stats[1:, cv2.CC_STAT_AREA]
     keep = np.flatnonzero(areas >= max(4, 0.05 * areas.max())) + 1
+    if not keep.size:
+        return None
     return np.isin(labels, keep)
 
 

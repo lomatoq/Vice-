@@ -195,6 +195,7 @@ def main() -> None:
     truth_is_glyph_sum = np.zeros(total, bool)
     sample_length = np.zeros(total, np.int64)
     skipped_effects = 0
+    unqueryable = 0
 
     generated = 0
     for length_index, length in enumerate(lengths):
@@ -249,7 +250,13 @@ def main() -> None:
                 np.clip(observed, 0.0, 1.0).astype(np.float32)
             )
             if query is None:
-                raise RuntimeError(f"no queryable ink for {text!r}")
+                # Degradation left only sub-4px speckles at the query
+                # thresholds: retrieval has nothing to rank - an explicit
+                # recall miss, not a crash.
+                unqueryable += 1
+                sample_length[row] = length
+                generated += 1
+                continue
             vector = np.array([
                 (query[name] - normalization[name]["mean"])
                 / normalization[name]["std"]
@@ -317,6 +324,7 @@ def main() -> None:
         "exclude_gt_family": bool(args.exclude_gt_family),
         "no_effect_samples_only": True,
         "skipped_effect_samples": int(skipped_effects),
+        "unqueryable_samples": int(unqueryable),
         "font_manifest_sha256": str(manifest["content_sha256"]),
         "family_split_sha256": split.digest,
         "seed": int(args.seed),
