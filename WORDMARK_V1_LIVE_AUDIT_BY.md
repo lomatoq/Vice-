@@ -781,6 +781,16 @@ IoU ужо вышэй мінімальнага `0.88`, але topology далё�
     лоссы §12. Артэфакты: stage_d_v0_pilot_report.json,
     stage_d_v0_pilot_attempt2_report.json; чэкпойнты пад candidate-імёнамі.
 
+88. Дзень запячатаны freeze-кандыдатам (2026-07-24, ноч):
+    `BUILD_FREEZE_candidate_20260724.json`, freeze_hash 40b81350...,
+    complete=false / promotion_ready=false — СУМЛЕННА, бо прапушчанае
+    гэта гейтаваная будучыня: непрамоўтнуты wordmark_prior.pt (так і
+    трэба), ProposalNet promotion (NO-TRAIN дзейнічае), human-court
+    маніфесты (патрэбен новы сляпы раунд). Усе выканальныя пункты плана
+    на гэтую дату выкананы да сваіх гейтаў; далейшыя крокі патрабуюць
+    або ўдзелу чалавека (суд/рэв'ю), або новых hypothesis-карт пасля
+    паркоўкі (Stage-D REIR-уваход), або гейтаваных поўных трэніровак.
+
 ## Дакладны promotion gate для full checkpoint
 
 Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не
