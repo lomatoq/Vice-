@@ -1,6 +1,6 @@
 {
   "schema": "vice-v10-preflight-state/v1",
-  "created_at": "2026-07-24T09:36:24.224245+00:00",
+  "created_at": "2026-07-24T09:55:09.669250+00:00",
   "protocol": {
     "held_out_family_split_seed": 20260722,
     "sample_seed": 20260724,
@@ -60,7 +60,47 @@
       "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d"
     }
   },
-  "template_warp_oracle": {},
+  "template_warp_oracle": {
+    "fixed": {
+      "selected_topology": 0.36049107142857145,
+      "oracle_topology": 0.4185267857142857,
+      "selected_edit_distance": 9.311383928571429,
+      "oracle_edit_distance": 7.214285714285714,
+      "selected_iou_gt": 0.6357741499352793,
+      "oracle_iou_gt": 0.6685252551277018,
+      "len32": {
+        "samples": 128,
+        "pixels_per_glyph_mean": 7.618408203125,
+        "selected_topology_accuracy": 0.0234375,
+        "oracle_topology_accuracy": 0.0234375,
+        "selected_topology_edit_distance": 28.96875,
+        "oracle_topology_edit_distance": 20.2890625,
+        "selected_iou_gt": 0.46673750076074605,
+        "oracle_iou_gt": 0.5072770687189233,
+        "selected_iou_observed": 0.41355977438070113
+      }
+    },
+    "dynamic": {
+      "selected_topology": 0.4564732142857143,
+      "oracle_topology": 0.5602678571428571,
+      "selected_edit_distance": 4.3515625,
+      "oracle_edit_distance": 3.6026785714285716,
+      "selected_iou_gt": 0.7199075421388546,
+      "oracle_iou_gt": 0.768435326201716,
+      "len32": {
+        "samples": 128,
+        "pixels_per_glyph_mean": 35.218505859375,
+        "selected_topology_accuracy": 0.2578125,
+        "oracle_topology_accuracy": 0.375,
+        "selected_topology_edit_distance": 10.6953125,
+        "oracle_topology_edit_distance": 9.9765625,
+        "selected_iou_gt": 0.7304488733801471,
+        "oracle_iou_gt": 0.7562748419238701,
+        "selected_iou_observed": 0.6081784613197669
+      }
+    }
+  },
+  "template_warp_retrieval": {},
   "verdicts": {
     "experiment_B_clean_identity": {
       "status": "closed",
@@ -84,6 +124,19 @@
       "reason": "feeding oracle glyph boxes to the v4 model needs a new conditioning path (net-new architecture change); the fitter's per-glyph offset stage already exercises layout externally"
     },
     "experiment_D_oracle_template": {
+      "status": "closed",
+      "arenas": {
+        "fixed": {
+          "oracle_iou_gt": 0.6685252551277018,
+          "oracle_edit_distance": 7.214285714285714
+        },
+        "dynamic": {
+          "oracle_iou_gt": 0.768435326201716,
+          "oracle_edit_distance": 3.6026785714285716
+        }
+      }
+    },
+    "experiment_F_retrieval_lane": {
       "status": "running"
     }
   },
@@ -136,12 +189,26 @@
       "schema": "vice-wordmark-clean-identity-diagnostic/v1"
     },
     {
-      "artifact": "template_warp_oracle_fixed_896.json",
+      "artifact": "template_warp_retrieval_openbank_k8.json",
       "status": "missing"
     },
     {
-      "artifact": "template_warp_oracle_dynamic_896.json",
+      "artifact": "template_warp_retrieval_unseenfont_k8.json",
       "status": "missing"
+    },
+    {
+      "artifact": "template_warp_oracle_fixed_896.json",
+      "status": "present",
+      "sha256": "9f1cc78955364c7ca126d0973dbcf9dc1c383bb6100e850acb448086a8016570",
+      "created_at": "2026-07-24T09:53:43.122903+00:00",
+      "schema": "vice-template-warp-oracle-diagnostic/v3"
+    },
+    {
+      "artifact": "template_warp_oracle_dynamic_896.json",
+      "status": "present",
+      "sha256": "8e68b86acf61942397b5535def7b3d01b8ccd5a18cc57bd0131483b6338177cc",
+      "created_at": "2026-07-24T09:45:57.628389+00:00",
+      "schema": "vice-template-warp-oracle-diagnostic/v3"
     }
   ]
 }
