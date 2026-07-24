@@ -47,8 +47,12 @@ from PIL import Image, ImageDraw, ImageFont
 ROOT = Path(__file__).resolve().parent
 
 from diagnose_template_warp_oracle import (  # noqa: E402
+    _render_glyph_layers,
     _sample_fixed_length_text,
 )
+
+COMPOSITION_TRACKINGS = (-0.10, 0.0, 0.10)
+COMPOSITION_STROKES = (0, 2, 4)  # render-res dilation radii (shared stroke)
 from diagnose_template_warp_retrieval import (  # noqa: E402
     QUERY_FEATURES,
     query_features,
@@ -84,6 +88,41 @@ def _glyph_topology(font_path: str, character: str) -> tuple[int, int] | None:
     inverted = np.pad(1 - mask, 1, constant_values=1)
     holes = int(cv2.connectedComponents(inverted, connectivity=4)[0]) - 2
     return components, max(0, holes)
+
+
+def _mask_topology(mask: np.ndarray) -> tuple[int, int]:
+    binary = mask.astype(np.uint8)
+    components = int(cv2.connectedComponents(binary, connectivity=8)[0]) - 1
+    inverted = np.pad(1 - binary, 1, constant_values=1)
+    holes = int(cv2.connectedComponents(inverted, connectivity=4)[0]) - 2
+    return components, max(0, holes)
+
+
+def _composed_topologies(
+    font_path: str, text: str,
+) -> set[tuple[int, int]] | None:
+    """Candidate topology SET under explicit pair-interaction operators.
+
+    The audit's S8.11: adjacent glyphs may be separate, touching (tracking)
+    or joined by a shared stroke. Each (tracking, stroke) variant is one
+    explicit operator choice; the composed line topology is measured on the
+    actual composition, not assumed to be the glyph sum.
+    """
+    variants: set[tuple[int, int]] = set()
+    for tracking in COMPOSITION_TRACKINGS:
+        rendered = _render_glyph_layers(font_path, text, tracking)
+        if rendered is None:
+            continue
+        joint = rendered[0] >= 128
+        for stroke in COMPOSITION_STROKES:
+            mask = joint
+            if stroke:
+                kernel = cv2.getStructuringElement(
+                    cv2.MORPH_ELLIPSE, (2 * stroke + 1, 2 * stroke + 1),
+                )
+                mask = cv2.dilate(joint.astype(np.uint8), kernel) > 0
+            variants.add(_mask_topology(mask))
+    return variants or None
 
 
 def _line_topology_from_glyphs(
@@ -122,6 +161,12 @@ def main() -> None:
         / "font_style_descriptors.json",
     )
     parser.add_argument("--top-k", type=int, default=8)
+    parser.add_argument(
+        "--composition", choices=("sum", "composed"), default="sum",
+        help="sum = naive per-glyph topology sum; composed = measure the "
+        "composed line under explicit pair-interaction operators (S8.11: "
+        "tracking x shared-stroke variants)",
+    )
     parser.add_argument("--exclude-gt-family", action="store_true")
     parser.add_argument("--lengths", type=str, default="1,2,4,8,16,24,32")
     parser.add_argument("--samples-per-length", type=int, default=192)
@@ -131,9 +176,10 @@ def main() -> None:
     args = parser.parse_args()
     if args.out is None:
         mode = "unseenfont" if args.exclude_gt_family else "openbank"
+        suffix = "" if args.composition == "sum" else "_composed"
         args.out = (
             ROOT / "benchmarks" / "pcdc_pre_v14"
-            / f"vector_topology_recall_{mode}_k{args.top_k}.json"
+            / f"vector_topology_recall_{mode}{suffix}_k{args.top_k}.json"
         )
 
     source_root = args.source_root.resolve()
@@ -283,10 +329,14 @@ def main() -> None:
             )
 
             for rank, key in enumerate(retrieved):
-                candidate = _line_topology_from_glyphs(
-                    str(ROOT / faces[key]["path"]), text,
-                )
-                if candidate is not None and candidate == truth:
+                face_path = str(ROOT / faces[key]["path"])
+                if args.composition == "sum":
+                    candidate = _line_topology_from_glyphs(face_path, text)
+                    matched = candidate is not None and candidate == truth
+                else:
+                    variants = _composed_topologies(face_path, text)
+                    matched = variants is not None and truth in variants
+                if matched:
                     if rank == 0:
                         recall_at[1][row] = True
                     recall_at[args.top_k][row] = True
@@ -321,6 +371,9 @@ def main() -> None:
             "topology composition equals the 4x-truth line topology"
         ),
         "top_k": int(args.top_k),
+        "composition": args.composition,
+        "composition_trackings": list(COMPOSITION_TRACKINGS),
+        "composition_strokes": list(COMPOSITION_STROKES),
         "exclude_gt_family": bool(args.exclude_gt_family),
         "no_effect_samples_only": True,
         "skipped_effect_samples": int(skipped_effects),
