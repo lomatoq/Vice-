@@ -1,6 +1,6 @@
 {
   "schema": "vice-v10-training-readiness/v1",
-  "created_at": "2026-07-24T11:49:49.806128+00:00",
+  "created_at": "2026-07-24T12:06:56.776784+00:00",
   "status": "NO-TRAIN",
   "gates": {
     "preflight_experiments_closed": {
@@ -25,13 +25,13 @@
     },
     "family_learning_curve": {
       "ok": false,
-      "evidence": "experiment_g_family_curve.json",
-      "detail": "missing or flat"
+      "evidence": "g_train_fam{81,600,full}.json (training-side G)",
+      "detail": "points [(81, 0.6787), (600, 0.6713), (1985, 0.6902)]"
     },
     "curriculum_datasets": {
-      "ok": false,
+      "ok": true,
       "evidence": "v10_curriculum_manifest.json",
-      "detail": "missing"
+      "detail": "stage A attested (29695 records), B-E defined on prerequisites, F on capacity"
     },
     "pair_interaction_design": {
       "ok": true,
@@ -39,9 +39,9 @@
       "detail": "present"
     },
     "human_capacity": {
-      "ok": false,
+      "ok": true,
       "evidence": "real_annotation_capacity.json",
-      "detail": "missing"
+      "detail": "present"
     }
   },
   "note": "Fail-closed: a missing artifact is a closed gate. This file must be regenerated and green at launch time; a stale copy authorizes nothing."

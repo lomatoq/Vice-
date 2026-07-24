@@ -1,0 +1,33 @@
+{
+  "schema": "vice-v10-operator-pilot/v1",
+  "created_at": "2026-07-24T11:54:34.921001+00:00",
+  "purpose": "bounded representative pilot: are S8.11 operators readable from the degraded raster, and does predicting them compress the candidate set without losing Recall@8",
+  "train_samples": 16000,
+  "train_families": 81,
+  "val_samples": 2000,
+  "epochs": 4,
+  "seed": 20260725,
+  "split_seed": 20260722,
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "device": "cuda",
+  "val_accuracy": {
+    "stroke": 0.4965,
+    "tracking": 0.704,
+    "effect": 0.8355
+  },
+  "majority_baseline": {
+    "stroke": 0.3905,
+    "tracking": 0.4485,
+    "effect": 0.707
+  },
+  "downstream": {
+    "skipped": true
+  },
+  "gate": {
+    "val_beats_majority": true
+  },
+  "gate_pass": true,
+  "authorizes_full_training": false,
+  "elapsed_seconds": 155.07519890000003
+}

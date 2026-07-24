@@ -691,6 +691,18 @@ IoU ужо вышэй мінімальнага `0.88`, але topology далё�
     spec); адкрытыя — training-side G, curriculum-маніфесты, human
     capacity. Спецыфікацыя аператараў: `V10_PAIR_INTERACTION_SPEC_BY.md`.
 
+81. Readiness v10 дасягнуў 7/8 (2026-07-24, статус NO-TRAIN трымаецца
+    правільна): Stage-A curriculum-шард матэрыялізаваны і атэставаны
+    (29 695 гліф-запісаў над банкам v2, sha-прывязка), карыстальнік
+    задэклараваў рэальную рэв'ю-ёмістасць ~2000 лоці/дзень (запісана ў
+    `real_annotation_capacity.json`; бягучая чарга рэв'ю ПУСТАЯ — усе
+    300 лоці разгледжаны, пашырэнне чаргі з `v-ice pictures` — наступны
+    інжынерны крок). Training-side Experiment G таксама пляскаты
+    (0.679/0.671/0.690 пры 81/600/1985 сем'ях) — D5 не звязвае
+    аператарную задачу; апошні адкрыты гейт `family_learning_curve`
+    чакае Stage-A-зандаж (форма гліфаў). Поўны спіс гейтаў:
+    `v10_training_readiness.json`.
+
 ## Дакладны promotion gate для full checkpoint
 
 Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не

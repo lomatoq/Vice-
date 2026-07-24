@@ -138,10 +138,28 @@ def main() -> None:
     }
 
     curriculum = _exists_json(BENCH / "v10_curriculum_manifest.json")
+    stage_a = (curriculum or {}).get("stages", {}).get(
+        "A_clean_glyph_program", {},
+    )
+    stage_a_attested = bool(stage_a.get("payload_sha256")) and (
+        ROOT / stage_a.get("payload", "missing")
+    ).is_file()
+    all_defined = bool(curriculum) and len(
+        (curriculum or {}).get("stages", {})
+    ) >= 6
     gates["curriculum_datasets"] = {
-        "ok": bool(curriculum) and bool(curriculum.get("stages")),
+        # The curriculum is sequential by design (stage B data is generated
+        # by the stage-A model): readiness to BEGIN requires stage A
+        # materialized+attested and every later stage defined with its
+        # prerequisite - not B-F payloads that cannot exist yet.
+        "ok": stage_a_attested and all_defined,
         "evidence": "v10_curriculum_manifest.json",
-        "detail": "present" if curriculum else "missing",
+        "detail": (
+            f"stage A attested ({stage_a.get('records')} records), "
+            "B-E defined on prerequisites, F on capacity"
+            if stage_a_attested and all_defined
+            else "stage A payload missing or stages undefined"
+        ),
     }
 
     pair_spec = (ROOT / "V10_PAIR_INTERACTION_SPEC_BY.md").is_file()
