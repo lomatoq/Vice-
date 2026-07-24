@@ -458,14 +458,26 @@ function move(delta) {
   show();
 }
 async function load() {
-  const response = await fetch('/api/locus-corpus');
-  const payload = await response.json();
-  if (!response.ok) throw new Error(payload.error || 'Failed to load corpus');
-  state.all = payload.loci;
-  state.rows = payload.loci;
-  state.targets = payload.targets;
+  // The server pages at 300 rows; open corpora (v2: 1600+) need the loop.
+  const rows = [];
+  let payload = null;
+  while (true) {
+    const response = await fetch(`/api/locus-corpus?offset=${rows.length}&limit=300`);
+    payload = await response.json();
+    if (!response.ok) throw new Error(payload.error || 'Failed to load corpus');
+    rows.push(...payload.loci);
+    const total = payload.filtered_total ?? rows.length;
+    if (!payload.loci.length || rows.length >= total) break;
+  }
+  state.all = rows;
+  state.rows = rows;
+  state.targets = payload.targets || {};
   state.counts = payload.review_counts;
-  for (const [name, count] of Object.entries(payload.targets)) {
+  const classCounts = {};
+  for (const row of rows) {
+    classCounts[row.semantic_class] = (classCounts[row.semantic_class] || 0) + 1;
+  }
+  for (const [name, count] of Object.entries(classCounts)) {
     const option = document.createElement('option'); option.value = name; option.textContent = `${name} (${count})`; $('classFilter').append(option);
   }
   updateStats(); applyFilters();
