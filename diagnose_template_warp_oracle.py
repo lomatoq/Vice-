@@ -214,6 +214,127 @@ def _iou(first: np.ndarray, second: np.ndarray) -> float:
     return float(np.sum(first & second) / max(1, union))
 
 
+def fit_template_line(
+    font_path: str, text: str, observed_float: np.ndarray,
+    observed_bbox: tuple[int, int, int, int], consider,
+) -> bool:
+    """The v9.5 fit cascade for one template face against one line.
+
+    Calls `consider(candidate_mask)` for every candidate produced.
+    Returns False when the face renders no ink for the text.
+    """
+    height, arena_width = observed_float.shape
+    obs_x0, obs_x1, obs_y0, obs_y1 = observed_bbox
+    # Tracking solved analytically from the observed ink width: the
+    # letterbox factor is known from the probe render, so the missing
+    # width must come from tracking.
+    probe = _render_glyph_layers(font_path, text, 0.0)
+    if probe is None:
+        return False
+    probe_joint, _probe_layers = probe
+    probe_factor, _x, _y = _letterbox_geometry(
+        probe_joint.shape, height, arena_width,
+    )
+    observed_width = float(obs_x1 - obs_x0 + 1)
+    observed_height = float(obs_y1 - obs_y0 + 1)
+    # Vertical scale from observed ink height when height-driven.
+    factor = min(probe_factor, observed_height / probe_joint.shape[0])
+    width_gap = observed_width / max(1e-6, factor) - probe_joint.shape[1]
+    analytic_tracking = width_gap / max(1, len(text)) / FONT_SIZE
+    analytic_tracking = float(np.clip(analytic_tracking, -0.25, 0.30))
+
+    for refine in TRACKING_REFINE:
+        tracking = analytic_tracking + refine
+        rendered = _render_glyph_layers(
+            font_path, text, tracking,
+        )
+        if rendered is None:
+            continue
+        joint, layers = rendered
+        geometry_factor, x0, y0 = _letterbox_geometry(
+            joint.shape, height, arena_width,
+        )
+        boxed_base = [
+            _letterbox_layer(
+                layer, geometry_factor, x0, y0, height, arena_width,
+            ) >= 0.5
+            for layer in layers
+        ]
+        if not any(np.any(layer) for layer in boxed_base):
+            continue
+
+        # Per-glyph bounded offsets: the topology-preserving warp
+        # stage - each glyph keeps its own topology, only its
+        # placement moves within +/-GLYPH_SHIFT_LIMIT px.
+        for xscale in XSCALE_GRID:
+            # Per-glyph width (audit: "per-glyph width/offset"): the
+            # GT stroke widens glyphs while the height-driven global
+            # factor cannot compensate width independently.
+            boxed = [
+                _xscale_layer(layer, xscale) for layer in boxed_base
+            ]
+            base = np.zeros((height, arena_width), bool)
+            for layer in boxed:
+                base |= layer
+            if not np.any(base):
+                continue
+            # Global alignment onto the robust observed ink box.
+            c_x0, c_x1, c_y0, c_y1 = _bbox(base)
+            dx = int(round((obs_x0 + obs_x1) / 2 - (c_x0 + c_x1) / 2))
+            dy = int(round((obs_y0 + obs_y1) / 2 - (c_y0 + c_y1) / 2))
+            boxed = [_shift(layer, dx, dy) for layer in boxed]
+            # Per-glyph CUMULATIVE offsets, left to right: each glyph
+            # searches +/-GLYPH_SHIFT_LIMIT around the previous
+            # glyph's correction, so a linear tracking residual
+            # (0.5 px/glyph crosses 15 px over 32 glyphs) is absorbed
+            # while the layout stays monotonic - the audit's
+            # explicit-layout stage.
+            fitted = []
+            cumulative_dx = 0
+            for layer in boxed:
+                if not np.any(layer):
+                    fitted.append(layer)
+                    continue
+                l_x0, l_x1, _l_y0, _l_y1 = _bbox(layer)
+                best_shift = (-1.0, layer, cumulative_dx)
+                for step in range(
+                    -GLYPH_SHIFT_LIMIT, GLYPH_SHIFT_LIMIT + 1,
+                ):
+                    glyph_dx = cumulative_dx + step
+                    moved = _shift(layer, glyph_dx, 0)
+                    band0 = max(0, l_x0 + glyph_dx - 1)
+                    band1 = min(arena_width, l_x1 + glyph_dx + 2)
+                    if band1 <= band0:
+                        continue
+                    # Score only inside the glyph's own column band -
+                    # against the full mask a glyph is pulled toward
+                    # its neighbours' ink.
+                    score = float(np.sum(np.minimum(
+                        moved[:, band0:band1].astype(np.float32),
+                        observed_float[:, band0:band1],
+                    )))
+                    if score > best_shift[0]:
+                        best_shift = (score, moved, glyph_dx)
+                fitted.append(best_shift[1])
+                cumulative_dx = best_shift[2]
+            composed = np.zeros((height, arena_width), bool)
+            for layer in fitted:
+                composed |= layer
+            for stroke in STROKE_RADII:
+                thick = composed
+                if stroke:
+                    kernel = cv2.getStructuringElement(
+                        cv2.MORPH_ELLIPSE,
+                        (2 * stroke + 1, 2 * stroke + 1),
+                    )
+                    thick = cv2.dilate(
+                        composed.astype(np.uint8), kernel,
+                    ) > 0
+                for effect in EFFECTS:
+                    consider(_apply_effect(thick, effect))
+    return True
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument(
@@ -368,114 +489,12 @@ def main() -> None:
                 if iou_gt > best_gt[0]:
                     best_gt = (iou_gt, candidate)
 
-            # Tracking solved analytically from the observed ink width: the
-            # letterbox factor is known from the probe render, so the missing
-            # width must come from tracking.
-            probe = _render_glyph_layers(str(font.path), text, 0.0)
-            if probe is None:
-                raise RuntimeError(f"font renders no ink for {text!r}")
-            probe_joint, _probe_layers = probe
-            probe_factor, _x, _y = _letterbox_geometry(
-                probe_joint.shape, height, arena_width,
+            fitted_any = fit_template_line(
+                str(font.path), text, observed_float,
+                (obs_x0, obs_x1, obs_y0, obs_y1), _consider,
             )
-            observed_width = float(obs_x1 - obs_x0 + 1)
-            observed_height = float(obs_y1 - obs_y0 + 1)
-            # Vertical scale from observed ink height when height-driven.
-            factor = min(probe_factor, observed_height / probe_joint.shape[0])
-            width_gap = observed_width / max(1e-6, factor) - probe_joint.shape[1]
-            analytic_tracking = width_gap / max(1, length) / FONT_SIZE
-            analytic_tracking = float(np.clip(analytic_tracking, -0.25, 0.30))
-
-            for refine in TRACKING_REFINE:
-                tracking = analytic_tracking + refine
-                rendered = _render_glyph_layers(
-                    str(font.path), text, tracking,
-                )
-                if rendered is None:
-                    continue
-                joint, layers = rendered
-                geometry_factor, x0, y0 = _letterbox_geometry(
-                    joint.shape, height, arena_width,
-                )
-                boxed_base = [
-                    _letterbox_layer(
-                        layer, geometry_factor, x0, y0, height, arena_width,
-                    ) >= 0.5
-                    for layer in layers
-                ]
-                if not any(np.any(layer) for layer in boxed_base):
-                    continue
-
-                # Per-glyph bounded offsets: the topology-preserving warp
-                # stage - each glyph keeps its own topology, only its
-                # placement moves within +/-GLYPH_SHIFT_LIMIT px.
-                for xscale in XSCALE_GRID:
-                    # Per-glyph width (audit: "per-glyph width/offset"): the
-                    # GT stroke widens glyphs while the height-driven global
-                    # factor cannot compensate width independently.
-                    boxed = [
-                        _xscale_layer(layer, xscale) for layer in boxed_base
-                    ]
-                    base = np.zeros((height, arena_width), bool)
-                    for layer in boxed:
-                        base |= layer
-                    if not np.any(base):
-                        continue
-                    # Global alignment onto the robust observed ink box.
-                    c_x0, c_x1, c_y0, c_y1 = _bbox(base)
-                    dx = int(round((obs_x0 + obs_x1) / 2 - (c_x0 + c_x1) / 2))
-                    dy = int(round((obs_y0 + obs_y1) / 2 - (c_y0 + c_y1) / 2))
-                    boxed = [_shift(layer, dx, dy) for layer in boxed]
-                    # Per-glyph CUMULATIVE offsets, left to right: each glyph
-                    # searches +/-GLYPH_SHIFT_LIMIT around the previous
-                    # glyph's correction, so a linear tracking residual
-                    # (0.5 px/glyph crosses 15 px over 32 glyphs) is absorbed
-                    # while the layout stays monotonic - the audit's
-                    # explicit-layout stage.
-                    fitted = []
-                    cumulative_dx = 0
-                    for layer in boxed:
-                        if not np.any(layer):
-                            fitted.append(layer)
-                            continue
-                        l_x0, l_x1, _l_y0, _l_y1 = _bbox(layer)
-                        best_shift = (-1.0, layer, cumulative_dx)
-                        for step in range(
-                            -GLYPH_SHIFT_LIMIT, GLYPH_SHIFT_LIMIT + 1,
-                        ):
-                            glyph_dx = cumulative_dx + step
-                            moved = _shift(layer, glyph_dx, 0)
-                            band0 = max(0, l_x0 + glyph_dx - 1)
-                            band1 = min(arena_width, l_x1 + glyph_dx + 2)
-                            if band1 <= band0:
-                                continue
-                            # Score only inside the glyph's own column band -
-                            # against the full mask a glyph is pulled toward
-                            # its neighbours' ink.
-                            score = float(np.sum(np.minimum(
-                                moved[:, band0:band1].astype(np.float32),
-                                observed_float[:, band0:band1],
-                            )))
-                            if score > best_shift[0]:
-                                best_shift = (score, moved, glyph_dx)
-                        fitted.append(best_shift[1])
-                        cumulative_dx = best_shift[2]
-                    composed = np.zeros((height, arena_width), bool)
-                    for layer in fitted:
-                        composed |= layer
-                    for stroke in STROKE_RADII:
-                        thick = composed
-                        if stroke:
-                            kernel = cv2.getStructuringElement(
-                                cv2.MORPH_ELLIPSE,
-                                (2 * stroke + 1, 2 * stroke + 1),
-                            )
-                            thick = cv2.dilate(
-                                composed.astype(np.uint8), kernel,
-                            ) > 0
-                        for effect in EFFECTS:
-                            _consider(_apply_effect(thick, effect))
-
+            if not fitted_any:
+                raise RuntimeError(f"font renders no ink for {text!r}")
             if best_observed[1] is None:
                 raise RuntimeError(f"no candidate produced for {text!r}")
             selected = best_observed[1]

@@ -1,0 +1,147 @@
+{
+  "schema": "vice-v10-preflight-state/v1",
+  "created_at": "2026-07-24T09:36:24.224245+00:00",
+  "protocol": {
+    "held_out_family_split_seed": 20260722,
+    "sample_seed": 20260724,
+    "lengths": [
+      1,
+      2,
+      4,
+      8,
+      16,
+      24,
+      32
+    ],
+    "checkpoint": "models/wordmark_prior_candidate_v1_epoch3.pt",
+    "source_snapshot": ".training_snapshots/wordmark_full_v4_20260723"
+  },
+  "identity_matrix": {
+    "clean/exact": {
+      "raw_topology": 0.96484375,
+      "decoded_topology": 0.923828125,
+      "joint_head": 0.7025669642857143,
+      "len32_raw": 0.896484375,
+      "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d"
+    },
+    "clean/corrupted": {
+      "raw_topology": 0.9642857142857143,
+      "decoded_topology": 0.908203125,
+      "joint_head": 0.671875,
+      "len32_raw": 0.900390625,
+      "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d"
+    },
+    "clean/blank": {
+      "raw_topology": 0.9132254464285714,
+      "decoded_topology": 0.8836495535714286,
+      "joint_head": 0.6102120535714286,
+      "len32_raw": 0.76171875,
+      "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d"
+    },
+    "degraded/exact": {
+      "raw_topology": 0.6453683035714286,
+      "decoded_topology": 0.6442522321428571,
+      "joint_head": 0.6166294642857143,
+      "len32_raw": 0.228515625,
+      "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d"
+    },
+    "degraded/corrupted": {
+      "raw_topology": 0.6450892857142857,
+      "decoded_topology": 0.6280691964285714,
+      "joint_head": 0.5758928571428571,
+      "len32_raw": 0.23046875,
+      "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d"
+    },
+    "degraded/blank": {
+      "raw_topology": 0.623046875,
+      "decoded_topology": 0.6135602678571429,
+      "joint_head": 0.5167410714285714,
+      "len32_raw": 0.208984375,
+      "checkpoint_sha256": "59ea36c37b9cc76c21a47dd60dce59277ddd9490d116025c691d7a914c02ae5d"
+    }
+  },
+  "template_warp_oracle": {},
+  "verdicts": {
+    "experiment_B_clean_identity": {
+      "status": "closed",
+      "fact_clean_len32_raw": 0.896484375,
+      "fact_degraded_len32_raw": 0.228515625,
+      "conclusion": "degradation inversion dominates (x3.9 gap at len 32); representation also insufficient at 32 on clean (0.896 < 0.95)"
+    },
+    "experiment_E_ocr_conditioning": {
+      "status": "closed",
+      "fact_wrong_hint_cost_raw": 0.000279,
+      "fact_blank_hint_cost_raw": 0.022321,
+      "conclusion": "hypothesis D4 (hard-OCR poisoning) falsified for v4: the mask ignores transcript content; blank hint costs ~2pt, so the transcript is used only as a generic prior - v10 needs explicit layout/content conditioning to exploit it"
+    },
+    "experiment_A_length_ppg": {
+      "status": "measured-lite",
+      "fact": "fixed 64x256 letterbox: ~39.9 px/glyph at L=1 down to ~7.6 at L=32; raw clean topology holds >=0.965 down to ~10 ppg",
+      "remaining": "training-side dynamic-width variant is a v10 decision"
+    },
+    "experiment_C_oracle_layout": {
+      "status": "parked",
+      "reason": "feeding oracle glyph boxes to the v4 model needs a new conditioning path (net-new architecture change); the fitter's per-glyph offset stage already exercises layout externally"
+    },
+    "experiment_D_oracle_template": {
+      "status": "running"
+    }
+  },
+  "standing_blocks": {
+    "v9_full_run": "forbidden (no new hypothesis; audit S6)",
+    "proposalnet_v14": "NO-TRAIN (PRE_V14_READINESS_AUDIT.md)",
+    "vai_parity": "not proven (V_ICE_CURRENT_AUDIT.md)"
+  },
+  "artifacts": [
+    {
+      "artifact": "wordmark_clean_identity_v4epoch3_3584.json",
+      "status": "present",
+      "sha256": "58b78d11925ebd3bfb4461e97d10ccf63f6e57eec81ad9560ea90360ea6af386",
+      "created_at": "2026-07-24T09:03:18.600531+00:00",
+      "schema": "vice-wordmark-clean-identity-diagnostic/v1"
+    },
+    {
+      "artifact": "wordmark_identity_clean_ocrcorrupted_3584.json",
+      "status": "present",
+      "sha256": "690dd88855895b785762c2ea5259b9aa683ecc4b707f8681e5dccc4c6ebd8149",
+      "created_at": "2026-07-24T09:09:15.141987+00:00",
+      "schema": "vice-wordmark-clean-identity-diagnostic/v1"
+    },
+    {
+      "artifact": "wordmark_identity_clean_ocrblank_3584.json",
+      "status": "present",
+      "sha256": "f560681847dc9fba40504c7d4d1afa4df75dd12e90e150dbb16b09e3e567094c",
+      "created_at": "2026-07-24T09:14:59.702602+00:00",
+      "schema": "vice-wordmark-clean-identity-diagnostic/v1"
+    },
+    {
+      "artifact": "wordmark_identity_degraded_ocrexact_3584.json",
+      "status": "present",
+      "sha256": "9a9a54a7d6ac2fdea42dfcbebfc3d9e7aa3566afa7df2db9d788a9311154799d",
+      "created_at": "2026-07-24T09:10:17.281997+00:00",
+      "schema": "vice-wordmark-clean-identity-diagnostic/v1"
+    },
+    {
+      "artifact": "wordmark_identity_degraded_ocrcorrupted_3584.json",
+      "status": "present",
+      "sha256": "cfe40b3041742bc5bdfa4afa5d664f83d99c8f8591088d63ade2ba3da7b74531",
+      "created_at": "2026-07-24T09:11:16.768265+00:00",
+      "schema": "vice-wordmark-clean-identity-diagnostic/v1"
+    },
+    {
+      "artifact": "wordmark_identity_degraded_ocrblank_3584.json",
+      "status": "present",
+      "sha256": "221bca076ce61188fb42d361adec5b2b99934dd6a774d9213320ec461baeda9b",
+      "created_at": "2026-07-24T09:15:57.184304+00:00",
+      "schema": "vice-wordmark-clean-identity-diagnostic/v1"
+    },
+    {
+      "artifact": "template_warp_oracle_fixed_896.json",
+      "status": "missing"
+    },
+    {
+      "artifact": "template_warp_oracle_dynamic_896.json",
+      "status": "missing"
+    }
+  ]
+}
