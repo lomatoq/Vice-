@@ -173,7 +173,8 @@ class ApproximateTemplateProvider:
             seed_records = tuple(
                 matcher.FontRecord(
                     self._face_names[int(position)],
-                    self._face_paths[int(position)],
+                    # font_match sorts by path.casefold(): it expects str.
+                    str(self._face_paths[int(position)]),
                 )
                 for position in order
             )
