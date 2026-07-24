@@ -1,0 +1,113 @@
+{
+  "schema": "vice-template-warp-retrieval-diagnostic/v1",
+  "created_at": "2026-07-24T10:25:19.743789+00:00",
+  "purpose": "Experiment F: approximate style retrieval + v9.5 fit cascade on degraded input, held-out families, dynamic arena",
+  "top_k": 8,
+  "exclude_gt_family": true,
+  "query_features": [
+    "stroke_width_norm",
+    "stroke_contrast",
+    "slant",
+    "density"
+  ],
+  "descriptor_bank_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "source_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\.training_snapshots\\wordmark_full_v4_20260723",
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "seed": 20260724,
+  "split_seed": 20260722,
+  "lengths": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    24,
+    32
+  ],
+  "samples_per_length": 32,
+  "overall": {
+    "samples": 224,
+    "selected_topology_accuracy": 0.39285714285714285,
+    "oracle_topology_accuracy": 0.4330357142857143,
+    "selected_topology_edit_distance": 4.808035714285714,
+    "oracle_topology_edit_distance": 3.9151785714285716,
+    "selected_iou_gt": 0.6161374591723922,
+    "oracle_iou_gt": 0.6364757690120894,
+    "gt_face_retrieved_rate": 0.0
+  },
+  "per_length": {
+    "1": {
+      "samples": 32,
+      "selected_topology_accuracy": 0.875,
+      "oracle_topology_accuracy": 0.90625,
+      "selected_topology_edit_distance": 0.15625,
+      "oracle_topology_edit_distance": 0.125,
+      "selected_iou_gt": 0.6663500195694239,
+      "oracle_iou_gt": 0.7136875683827721,
+      "gt_face_retrieved_rate": 0.0
+    },
+    "2": {
+      "samples": 32,
+      "selected_topology_accuracy": 0.6875,
+      "oracle_topology_accuracy": 0.75,
+      "selected_topology_edit_distance": 0.625,
+      "oracle_topology_edit_distance": 0.46875,
+      "selected_iou_gt": 0.6272351298674627,
+      "oracle_iou_gt": 0.6662981920202221,
+      "gt_face_retrieved_rate": 0.0
+    },
+    "4": {
+      "samples": 32,
+      "selected_topology_accuracy": 0.5,
+      "oracle_topology_accuracy": 0.53125,
+      "selected_topology_edit_distance": 2.0625,
+      "oracle_topology_edit_distance": 2.09375,
+      "selected_iou_gt": 0.6457548262763182,
+      "oracle_iou_gt": 0.6582561192273375,
+      "gt_face_retrieved_rate": 0.0
+    },
+    "8": {
+      "samples": 32,
+      "selected_topology_accuracy": 0.28125,
+      "oracle_topology_accuracy": 0.34375,
+      "selected_topology_edit_distance": 4.375,
+      "oracle_topology_edit_distance": 3.46875,
+      "selected_iou_gt": 0.5608996960793167,
+      "oracle_iou_gt": 0.5716408419268368,
+      "gt_face_retrieved_rate": 0.0
+    },
+    "16": {
+      "samples": 32,
+      "selected_topology_accuracy": 0.125,
+      "oracle_topology_accuracy": 0.1875,
+      "selected_topology_edit_distance": 6.34375,
+      "oracle_topology_edit_distance": 5.03125,
+      "selected_iou_gt": 0.6179053317237104,
+      "oracle_iou_gt": 0.62778058329089,
+      "gt_face_retrieved_rate": 0.0
+    },
+    "24": {
+      "samples": 32,
+      "selected_topology_accuracy": 0.21875,
+      "oracle_topology_accuracy": 0.1875,
+      "selected_topology_edit_distance": 9.25,
+      "oracle_topology_edit_distance": 8.625,
+      "selected_iou_gt": 0.5955077012563712,
+      "oracle_iou_gt": 0.6057933107306976,
+      "gt_face_retrieved_rate": 0.0
+    },
+    "32": {
+      "samples": 32,
+      "selected_topology_accuracy": 0.0625,
+      "oracle_topology_accuracy": 0.125,
+      "selected_topology_edit_distance": 10.84375,
+      "oracle_topology_edit_distance": 7.59375,
+      "selected_iou_gt": 0.5993095094341427,
+      "oracle_iou_gt": 0.6118737675058691,
+      "gt_face_retrieved_rate": 0.0
+    }
+  },
+  "no_candidate_samples": [],
+  "elapsed_seconds": 1219.6882392000007
+}

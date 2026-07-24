@@ -271,6 +271,87 @@ N-best у v4/v9 непрадстаўляльны (адзін hard string); ка�
 
 ---
 
+## Experiment F — approximate retrieval lane (СТАТУС: ЗАКРЫТЫ)
+
+Артэфакты: `benchmarks/pcdc_pre_v14/template_warp_retrieval_{openbank,unseenfont}_k8.json`
+(224 сэмплы кожны, dynamic-арэна, top-8 па 4 стылявых дэскрыптарах з
+`font_style_descriptors.json`; unseenfont = GT-сям'я выключана з пошуку).
+
+| рэжым | orc topo | orc edit | orc IoU-GT | gt-face@8 |
+|---|---|---|---|---|
+| oracle font (D-dynamic, даведка) | 0.5603 | 3.60 | 0.7684 | — |
+| openbank k=8 | 0.4509 | 3.84 | 0.6459 | 0.183 |
+| unseenfont k=8 | 0.4330 | 3.92 | 0.6365 | 0.000 |
+
+**Факты:**
+
+1. Страта дакладнага шрыфта каштуе ~0.11 exact topology і ~0.12 IoU —
+   набліжаны шаблон захоўвае большасць каштоўнасці лініі.
+2. **unseenfont ≈ openbank** (0.433 супраць 0.451): лінія генералізуецца
+   на шрыфты, якіх НЯМА ў банку — галоўны страх «custom lettering»
+   часткова зняты вымярэннем.
+3. Монаграмы/кароткія маркі амаль вырашаны нават без дакладнага шрыфта:
+   L=1 orc topo 0.906–0.938 пры 40 ppg.
+4. На L=1 retrieval@8 (0.9375) абыгрывае адзін oracle-шрыфт (0.8750) —
+   каштоўнасць разнастайнасці кандыдатнага мноства (§8.6 аўдыту)
+   пацверджана незалежна.
+5. Дэскрыптарны пошук пакуль слабы (gt-face@8 = 18%, blur-зрушэнне да
+   цяжкіх твараў — вядомы v0-байас), але амаль не ўплывае на вынік:
+   вузкае месца гэтага пратакола — растравы фіт/суд, не retrieval.
+
+---
+
+## Вынік фазы прэфлайту — handoff (§19 кантракта)
+
+### Current verdict
+
+Усе рашальныя эксперыменты, даступныя без трэніроўкі, закрыты за адзін
+дзень на адным чэкпойнце і адным пратаколе: **B, E, A/D3, D, F**
+(C прыпаркаваны: патрабуе новага conditioning-шляху ў мадэлі).
+Машынны стан: `benchmarks/pcdc_pre_v14/v10_preflight_state.json`.
+
+### Што сфальсіфікавана гэтай фазай
+
+- D4: «няправільны hard OCR цягне маску» — маска ігнаруе змест транскрыпту;
+- «count heads выратуе яшчэ адна форма» — яны валяцца нават на чыстым
+  уваходзе, а repair на іх аснове шкодзіць;
+- «фіксаваны канвас дапушчальны для доўгіх радкоў» — столь фізічная,
+  замерана шаблонным аракулам (0.023 exact пры 7.6 ppg).
+
+### Што пацверджана
+
+- Інверсія дэградацыі — галоўны маштабны блокер (×3.9 на len32);
+- шаблонная лінія трымае геаметрыю плоска па даўжынях пры родным ppg;
+- страта дакладнага шрыфта не фатальная; разнастайнасць кандыдатаў
+  каштоўная; лайт-суд без пасерыёру губляе 10 пт (патрэбны сапраўдны
+  fixed-posterior суд).
+
+### Дакладны наступны эксперымент
+
+Вектарная эмісія кандыдатаў лініі (template outlines + explicit operators,
+тапалогія аналітычная) → candidate topology Recall@K на ВЕКТАРНЫМ узроўні →
+Experiment H аўдыту: 100 рэальных радкоў праз існуючы PCDC-суд
+(exact font / approximate top-8 / legacy), гейты: GCR, human preference,
+non-regression, p95.
+
+### Commands to reproduce
+
+```text
+C:\Python312\python.exe diagnose_wordmark_clean_identity.py [--ocr-mode ...] [--degrade]
+C:\Python312\python.exe diagnose_template_warp_oracle.py --arena {fixed,dynamic}
+C:\Python312\python.exe build_font_style_descriptors.py
+C:\Python312\python.exe diagnose_template_warp_retrieval.py [--exclude-gt-family]
+C:\Python312\python.exe build_v10_preflight_state.py
+```
+
+### Promotion status
+
+Нічога не прамоўчана. Full v9 run забаронены; ProposalNet v14 NO-TRAIN;
+VAI-парытэт не даказаны. Усе лічбы гэтага дакумента — дыягностыкі
+ўзроўню §9.1–9.3, не promotion proof.
+
+---
+
 ## Правілы гэтага дакумента
 
 - Кожны запуск дадае нумараваны запіс з датай, seed, SHA чэкпойнта і

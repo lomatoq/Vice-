@@ -1,6 +1,6 @@
 {
   "schema": "vice-v10-preflight-state/v1",
-  "created_at": "2026-07-24T09:55:09.669250+00:00",
+  "created_at": "2026-07-24T10:32:39.042836+00:00",
   "protocol": {
     "held_out_family_split_seed": 20260722,
     "sample_seed": 20260724,
@@ -100,7 +100,24 @@
       }
     }
   },
-  "template_warp_retrieval": {},
+  "template_warp_retrieval": {
+    "openbank": {
+      "top_k": 8,
+      "selected_topology": 0.38839285714285715,
+      "oracle_topology": 0.45089285714285715,
+      "oracle_edit_distance": 3.8392857142857144,
+      "oracle_iou_gt": 0.6458950770682466,
+      "gt_face_retrieved_rate": 0.18303571428571427
+    },
+    "unseenfont": {
+      "top_k": 8,
+      "selected_topology": 0.39285714285714285,
+      "oracle_topology": 0.4330357142857143,
+      "oracle_edit_distance": 3.9151785714285716,
+      "oracle_iou_gt": 0.6364757690120894,
+      "gt_face_retrieved_rate": 0.0
+    }
+  },
   "verdicts": {
     "experiment_B_clean_identity": {
       "status": "closed",
@@ -137,7 +154,25 @@
       }
     },
     "experiment_F_retrieval_lane": {
-      "status": "running"
+      "status": "closed",
+      "modes": {
+        "openbank": {
+          "top_k": 8,
+          "selected_topology": 0.38839285714285715,
+          "oracle_topology": 0.45089285714285715,
+          "oracle_edit_distance": 3.8392857142857144,
+          "oracle_iou_gt": 0.6458950770682466,
+          "gt_face_retrieved_rate": 0.18303571428571427
+        },
+        "unseenfont": {
+          "top_k": 8,
+          "selected_topology": 0.39285714285714285,
+          "oracle_topology": 0.4330357142857143,
+          "oracle_edit_distance": 3.9151785714285716,
+          "oracle_iou_gt": 0.6364757690120894,
+          "gt_face_retrieved_rate": 0.0
+        }
+      }
     }
   },
   "standing_blocks": {
@@ -190,11 +225,17 @@
     },
     {
       "artifact": "template_warp_retrieval_openbank_k8.json",
-      "status": "missing"
+      "status": "present",
+      "sha256": "44f7f01ac3019992f535e3abbdb9a45676e52ed3853ce286df75e315c2d33102",
+      "created_at": "2026-07-24T10:04:56.638979+00:00",
+      "schema": "vice-template-warp-retrieval-diagnostic/v1"
     },
     {
       "artifact": "template_warp_retrieval_unseenfont_k8.json",
-      "status": "missing"
+      "status": "present",
+      "sha256": "6168355156abc7b38bc211563f760d14ba08593db9f33dbffc306cac789855d9",
+      "created_at": "2026-07-24T10:25:19.743789+00:00",
+      "schema": "vice-template-warp-retrieval-diagnostic/v1"
     },
     {
       "artifact": "template_warp_oracle_fixed_896.json",
