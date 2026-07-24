@@ -160,6 +160,7 @@ def main() -> None:
     oracle_iou_gt = np.zeros(total, np.float64)
     gt_face_retrieved = np.zeros(total, bool)
     sample_length = np.zeros(total, np.int64)
+    no_candidate: list[dict] = []
 
     generated = 0
     for length_index, length in enumerate(lengths):
@@ -263,7 +264,18 @@ def main() -> None:
                     face_path, text, observed_float, observed_bbox, _consider,
                 )
             if not fitted_any or best_observed[1] is None:
-                raise RuntimeError(f"no candidate produced for {text!r}")
+                # Fail-closed accounting: the sample stays in its bucket as
+                # a topology miss with IoU 0 and is listed explicitly.
+                no_candidate.append(
+                    {"length": length, "slot": slot, "text": text},
+                )
+                print(
+                    f"WARN no candidate for {text!r} (len {length})",
+                    flush=True,
+                )
+                sample_length[row] = length
+                generated += 1
+                continue
 
             selected_signature = topology_signature(best_observed[1])
             oracle_signature = topology_signature(best_gt[1])
@@ -322,6 +334,7 @@ def main() -> None:
         "per_length": {
             str(length): _bucket(sample_length == length) for length in lengths
         },
+        "no_candidate_samples": no_candidate,
         "elapsed_seconds": time.perf_counter() - started,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)

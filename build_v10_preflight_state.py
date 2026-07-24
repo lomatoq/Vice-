@@ -33,6 +33,10 @@ TEMPLATE_RUNS = {
     "fixed": "template_warp_oracle_fixed_896.json",
     "dynamic": "template_warp_oracle_dynamic_896.json",
 }
+RETRIEVAL_RUNS = {
+    "openbank": "template_warp_retrieval_openbank_k8.json",
+    "unseenfont": "template_warp_retrieval_unseenfont_k8.json",
+}
 
 
 def _sha256(path: Path) -> str:
@@ -71,6 +75,26 @@ def main() -> None:
             "joint_head": data["overall"]["joint_topology_head_accuracy"],
             "len32_raw": data["per_length"]["32"]["raw_topology_accuracy"],
             "checkpoint_sha256": data.get("checkpoint_sha256"),
+        }
+    retrieval: dict[str, dict] = {}
+    for mode, name in RETRIEVAL_RUNS.items():
+        data, meta = _load(name)
+        artifacts.append(meta)
+        if data is None:
+            continue
+        retrieval[mode] = {
+            "top_k": data["top_k"],
+            "selected_topology": data["overall"][
+                "selected_topology_accuracy"
+            ],
+            "oracle_topology": data["overall"]["oracle_topology_accuracy"],
+            "oracle_edit_distance": data["overall"][
+                "oracle_topology_edit_distance"
+            ],
+            "oracle_iou_gt": data["overall"]["oracle_iou_gt"],
+            "gt_face_retrieved_rate": data["overall"][
+                "gt_face_retrieved_rate"
+            ],
         }
     template: dict[str, dict] = {}
     for arena, name in TEMPLATE_RUNS.items():
@@ -158,6 +182,13 @@ def main() -> None:
         }
     else:
         verdicts["experiment_D_oracle_template"] = {"status": "running"}
+    if retrieval:
+        verdicts["experiment_F_retrieval_lane"] = {
+            "status": "closed" if len(retrieval) == 2 else "running",
+            "modes": retrieval,
+        }
+    else:
+        verdicts["experiment_F_retrieval_lane"] = {"status": "running"}
 
     state = {
         "schema": "vice-v10-preflight-state/v1",
@@ -172,6 +203,7 @@ def main() -> None:
         },
         "identity_matrix": matrix,
         "template_warp_oracle": template,
+        "template_warp_retrieval": retrieval,
         "verdicts": verdicts,
         "standing_blocks": {
             "v9_full_run": "forbidden (no new hypothesis; audit S6)",

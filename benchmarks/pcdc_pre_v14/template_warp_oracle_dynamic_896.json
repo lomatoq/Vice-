@@ -1,0 +1,142 @@
+{
+  "schema": "vice-template-warp-oracle-diagnostic/v3",
+  "created_at": "2026-07-24T09:45:57.628389+00:00",
+  "purpose": "Experiment D of the 2026-07-24 external audit: oracle template + layout/effect fit on degraded input, held-out families",
+  "arena": "dynamic",
+  "canvas": [
+    64,
+    4096
+  ],
+  "source_root": "C:\\Users\\nirrt\\Toolset\\v-ice part\\.training_snapshots\\wordmark_full_v4_20260723",
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "family_split_sha256": "c7b1d18aa0ee003ad86773e87b7c07649511be4b8bcf264ff2312eac7d17a3e4",
+  "seed": 20260724,
+  "split_seed": 20260722,
+  "lengths": [
+    1,
+    2,
+    4,
+    8,
+    16,
+    24,
+    32
+  ],
+  "samples_per_length": 128,
+  "tracking_policy": "analytic-from-observed-width plus refine",
+  "tracking_refine": [
+    -0.01,
+    0.0,
+    0.01
+  ],
+  "xscale_grid": [
+    0.95,
+    1.0,
+    1.05
+  ],
+  "stroke_radii": [
+    0,
+    1,
+    2,
+    3,
+    4
+  ],
+  "glyph_shift_limit": 3,
+  "effects": [
+    "none",
+    "connected1",
+    "connected2",
+    "connected3",
+    "outline"
+  ],
+  "overall": {
+    "samples": 896,
+    "pixels_per_glyph_mean": 36.848551432291664,
+    "selected_topology_accuracy": 0.4564732142857143,
+    "oracle_topology_accuracy": 0.5602678571428571,
+    "selected_topology_edit_distance": 4.3515625,
+    "oracle_topology_edit_distance": 3.6026785714285716,
+    "selected_iou_gt": 0.7199075421388546,
+    "oracle_iou_gt": 0.768435326201716,
+    "selected_iou_observed": 0.5219021031571174
+  },
+  "per_length": {
+    "1": {
+      "samples": 128,
+      "pixels_per_glyph_mean": 40.5546875,
+      "selected_topology_accuracy": 0.8359375,
+      "oracle_topology_accuracy": 0.875,
+      "selected_topology_edit_distance": 0.2109375,
+      "oracle_topology_edit_distance": 0.2109375,
+      "selected_iou_gt": 0.6803995806007967,
+      "oracle_iou_gt": 0.7476121324091389,
+      "selected_iou_observed": 0.40267882008447486
+    },
+    "2": {
+      "samples": 128,
+      "pixels_per_glyph_mean": 37.3203125,
+      "selected_topology_accuracy": 0.6875,
+      "oracle_topology_accuracy": 0.828125,
+      "selected_topology_edit_distance": 1.2421875,
+      "oracle_topology_edit_distance": 0.7890625,
+      "selected_iou_gt": 0.6969785567809645,
+      "oracle_iou_gt": 0.765289545081013,
+      "selected_iou_observed": 0.4192609881538374
+    },
+    "4": {
+      "samples": 128,
+      "pixels_per_glyph_mean": 35.904296875,
+      "selected_topology_accuracy": 0.5546875,
+      "oracle_topology_accuracy": 0.6796875,
+      "selected_topology_edit_distance": 1.3046875,
+      "oracle_topology_edit_distance": 0.7890625,
+      "selected_iou_gt": 0.7388197397235485,
+      "oracle_iou_gt": 0.8039516429884663,
+      "selected_iou_observed": 0.49982898219604976
+    },
+    "8": {
+      "samples": 128,
+      "pixels_per_glyph_mean": 37.3974609375,
+      "selected_topology_accuracy": 0.40625,
+      "oracle_topology_accuracy": 0.484375,
+      "selected_topology_edit_distance": 3.390625,
+      "oracle_topology_edit_distance": 2.546875,
+      "selected_iou_gt": 0.723719449799073,
+      "oracle_iou_gt": 0.7675869366500763,
+      "selected_iou_observed": 0.5310135942418128
+    },
+    "16": {
+      "samples": 128,
+      "pixels_per_glyph_mean": 35.2421875,
+      "selected_topology_accuracy": 0.1953125,
+      "oracle_topology_accuracy": 0.28125,
+      "selected_topology_edit_distance": 6.4375,
+      "oracle_topology_edit_distance": 5.859375,
+      "selected_iou_gt": 0.7192880178308715,
+      "oracle_iou_gt": 0.7581495893495142,
+      "selected_iou_observed": 0.57550737974816
+    },
+    "24": {
+      "samples": 128,
+      "pixels_per_glyph_mean": 36.30240885416667,
+      "selected_topology_accuracy": 0.2578125,
+      "oracle_topology_accuracy": 0.3984375,
+      "selected_topology_edit_distance": 7.1796875,
+      "oracle_topology_edit_distance": 5.046875,
+      "selected_iou_gt": 0.7496985768565798,
+      "oracle_iou_gt": 0.7801825950099329,
+      "selected_iou_observed": 0.6168464963557199
+    },
+    "32": {
+      "samples": 128,
+      "pixels_per_glyph_mean": 35.218505859375,
+      "selected_topology_accuracy": 0.2578125,
+      "oracle_topology_accuracy": 0.375,
+      "selected_topology_edit_distance": 10.6953125,
+      "oracle_topology_edit_distance": 9.9765625,
+      "selected_iou_gt": 0.7304488733801471,
+      "oracle_iou_gt": 0.7562748419238701,
+      "selected_iou_observed": 0.6081784613197669
+    }
+  },
+  "elapsed_seconds": 787.323626800001
+}

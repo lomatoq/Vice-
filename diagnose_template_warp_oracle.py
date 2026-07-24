@@ -232,16 +232,28 @@ def fit_template_line(
     if probe is None:
         return False
     probe_joint, _probe_layers = probe
-    probe_factor, _x, _y = _letterbox_geometry(
-        probe_joint.shape, height, arena_width,
-    )
+    margin_y = max(2, height // 14)
+    margin_x = max(3, arena_width // 40)
+    width_factor = (arena_width - 2 * margin_x) / max(1, probe_joint.shape[1])
+    height_factor = (height - 2 * margin_y) / max(1, probe_joint.shape[0])
+    probe_factor = min(width_factor, height_factor)
     observed_width = float(obs_x1 - obs_x0 + 1)
     observed_height = float(obs_y1 - obs_y0 + 1)
-    # Vertical scale from observed ink height when height-driven.
-    factor = min(probe_factor, observed_height / probe_joint.shape[0])
-    width_gap = observed_width / max(1e-6, factor) - probe_joint.shape[1]
-    analytic_tracking = width_gap / max(1, len(text)) / FONT_SIZE
-    analytic_tracking = float(np.clip(analytic_tracking, -0.25, 0.30))
+    if height_factor <= width_factor:
+        # Height-driven letterbox: the factor is fixed by the ink height, so
+        # the missing width must come from tracking.
+        factor = min(probe_factor, observed_height / probe_joint.shape[0])
+        width_gap = (
+            observed_width / max(1e-6, factor) - probe_joint.shape[1]
+        )
+        analytic_tracking = width_gap / max(1, len(text)) / FONT_SIZE
+        analytic_tracking = float(np.clip(analytic_tracking, -0.25, 0.30))
+    else:
+        # Width-bound letterbox (fixed arena, long lines): widening by
+        # tracking only shrinks the whole render back to the same width -
+        # the width equation is degenerate and thin strokes vanish. Stay at
+        # zero tracking and let per-glyph offsets absorb the spacing.
+        analytic_tracking = 0.0
 
     for refine in TRACKING_REFINE:
         tracking = analytic_tracking + refine
@@ -254,12 +266,18 @@ def fit_template_line(
         geometry_factor, x0, y0 = _letterbox_geometry(
             joint.shape, height, arena_width,
         )
-        boxed_base = [
+        float_layers = [
             _letterbox_layer(
                 layer, geometry_factor, x0, y0, height, arena_width,
-            ) >= 0.5
+            )
             for layer in layers
         ]
+        boxed_base = [layer >= 0.5 for layer in float_layers]
+        if not any(np.any(layer) for layer in boxed_base):
+            # Heavily squeezed thin strokes sink below 0.5 coverage; a
+            # lower binarization keeps the candidate set non-empty and the
+            # court still judges the result.
+            boxed_base = [layer >= 0.30 for layer in float_layers]
         if not any(np.any(layer) for layer in boxed_base):
             continue
 
@@ -411,6 +429,7 @@ def main() -> None:
     selected_iou_observed = np.zeros(total, np.float64)
     sample_length = np.zeros(total, np.int64)
     pixels_per_glyph = np.zeros(total, np.float64)
+    no_candidate: list[dict] = []
 
     generated = 0
     for length_index, length in enumerate(lengths):
@@ -493,10 +512,19 @@ def main() -> None:
                 str(font.path), text, observed_float,
                 (obs_x0, obs_x1, obs_y0, obs_y1), _consider,
             )
-            if not fitted_any:
-                raise RuntimeError(f"font renders no ink for {text!r}")
-            if best_observed[1] is None:
-                raise RuntimeError(f"no candidate produced for {text!r}")
+            if not fitted_any or best_observed[1] is None:
+                # Fail-closed accounting: the sample stays in its bucket as
+                # a topology miss with IoU 0 and is listed explicitly.
+                no_candidate.append(
+                    {"length": length, "slot": slot, "text": text},
+                )
+                print(
+                    f"WARN no candidate for {text!r} (len {length})",
+                    flush=True,
+                )
+                sample_length[row] = length
+                generated += 1
+                continue
             selected = best_observed[1]
             oracle = best_gt[1]
             if args.dump_dir is not None and slot < 4:
@@ -590,6 +618,7 @@ def main() -> None:
         "per_length": {
             str(length): _bucket(sample_length == length) for length in lengths
         },
+        "no_candidate_samples": no_candidate,
         "elapsed_seconds": time.perf_counter() - started,
     }
     args.out.parent.mkdir(parents=True, exist_ok=True)
