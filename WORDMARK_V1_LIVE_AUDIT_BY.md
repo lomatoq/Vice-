@@ -835,6 +835,19 @@ IoU ужо вышэй мінімальнага `0.88`, але topology далё�
     запісана (stage_d_full_run_preflight.json), поўны запуск
     24k×20 эпох ідзе (candidate-чэкпойнт).
 
+92. ПОЎНЫ Stage-D запуск — GATE PASS (2026-07-25, світанак). Першы
+    full-scale трэнінг v10 у гісторыі праекта, пад запісаным preflight
+    (24k×20 эпох, hard cap 4 гадз): unseen-family IoU 0.7619 супраць
+    Otsu 0.7391 (мадэль упершыню выйграе і па пікселях) і topology
+    edit 2.59 супраць 19.59 — перавага 7.56× пры гейце ≥3×.
+    Маштабаванне жывое (0.7345@16k → 0.7619@24k×20). Чэкпойнт:
+    models/stage_d_full_candidate_v1.pt — CANDIDATE: promotion
+    патрабуе delivered-output доказу (падключэнне як support-бустар
+    approximate-лініі і пералік Experiment H — наступная сесія).
+    На гэтым выкананы ЎСЕ пункты плана, фізічна магчымыя без
+    удзелу чалавека; чакаюць: сляпы суд (карыстальнік), Stage-D
+    у прадакшн-канвееры, промоушн-цыкл.
+
 ## Дакладны promotion gate для full checkpoint
 
 Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не
