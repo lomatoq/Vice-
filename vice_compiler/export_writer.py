@@ -1066,6 +1066,15 @@ def _loop_path(points: tuple[tuple[float, float], ...]) -> str:
     )
 
 
+# Routes whose delivered geometry is the font's true outlines (fontTools
+# at export). The approximate-template lane joined 2026-07-24: its rows
+# carry the same font_file/tracking/scale/offset parameters and pass the
+# same proof-checked outline machinery; no identity claim is implied.
+FONT_OUTLINE_ROUTES = frozenset({
+    "exact-font", "semantic-font-idealization", "approximate-template",
+})
+
+
 @lru_cache(maxsize=64)
 def _exact_font_outline_path_cached(
     font_file: str, text: str, tracking_em: float,
@@ -1245,7 +1254,7 @@ def _text_elements(
     ) -> list[str]:
         if (
             not fragments
-            or record.path in {"exact-font", "semantic-font-idealization"}
+            or record.path in FONT_OUTLINE_ROUTES
         ):
             return fragments
         baseline = _number(parameters, "baseline", float(line.baseline))
@@ -1351,7 +1360,7 @@ def _text_elements(
             f'{translate_x:.12g} {translate_y:.12g})">'
             + "".join(tracked) + "</g>"
         ]
-    if record.path in {"exact-font", "semantic-font-idealization"}:
+    if record.path in FONT_OUTLINE_ROUTES:
         element = _exact_font_element(reir, candidate, line, paint)
         return [element] if element is not None else []
     if record.effect_layers:
@@ -1499,9 +1508,7 @@ def text_delivery_svg_document(
             row for row in generated.records
             if row.candidate.id == _delivery_source_id(candidate)
         ), None)
-        if record is not None and record.path in {
-            "exact-font", "semantic-font-idealization",
-        }:
+        if record is not None and record.path in FONT_OUTLINE_ROUTES:
             return None
         path = _mask_path(support)
         if not path:
@@ -1874,9 +1881,7 @@ def scene_to_svg(
             ), None)
             if (
                 text_record is not None
-                and text_record.path in {
-                    "exact-font", "semantic-font-idealization",
-                }
+                and text_record.path in FONT_OUTLINE_ROUTES
             ):
                 raise ValueError(
                     "selected font-outline text lacks proof-checked outlines"
