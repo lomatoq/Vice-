@@ -498,6 +498,7 @@ def _oracle_ceiling(
 def evaluate_locus(
     locus: dict[str, Any], review: dict[str, Any], cache: EvidenceCache,
     *, exact_font: bool = False, template_lane: bool = False,
+    stage_d_booster: bool = False,
     review_artifacts: list[TextLineReviewArtifacts] | None = None,
 ) -> dict[str, Any]:
     reir, cache_hit = cache.get_or_build(locus["source"]["path"])
@@ -654,6 +655,10 @@ def evaluate_locus(
 
             exact_provider = ApproximateTemplateProvider(
                 reir, inner=exact_provider,
+                stage_d_checkpoint=(
+                    PROJECT / "models" / "stage_d_full_candidate_v1.pt"
+                    if stage_d_booster else None
+                ),
             )
         exact_generated = generate_text_macros(
             reir, exact_font_provider=exact_provider,
@@ -971,7 +976,7 @@ def _human_status(
 
 def build_report(
     corpus_dir: Path = CORPUS, *, exact_font: bool = True,
-    template_lane: bool = False,
+    template_lane: bool = False, stage_d_booster: bool = False,
 ) -> dict[str, Any]:
     input_identity = real_locus_input_identity(corpus_dir)
     font_catalog_identity = font_catalog_input_identity() if exact_font else None
@@ -999,7 +1004,7 @@ def build_report(
     rows = [
         evaluate_locus(
             row, reviews[row["id"]], cache, exact_font=exact_font,
-            template_lane=template_lane,
+            template_lane=template_lane, stage_d_booster=stage_d_booster,
         )
         for row in admitted
     ]
@@ -1132,11 +1137,13 @@ def main() -> int:
     parser.add_argument("--out", type=Path, default=DEFAULT_OUT)
     parser.add_argument("--font-free-only", action="store_true")
     parser.add_argument("--approximate-template", action="store_true")
+    parser.add_argument("--stage-d-booster", action="store_true")
     args = parser.parse_args()
     report = bind_report(
         build_report(
             exact_font=not args.font_free_only,
             template_lane=args.approximate_template,
+            stage_d_booster=args.stage_d_booster,
         ),
         evaluator_source=__file__,
     )

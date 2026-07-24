@@ -78,6 +78,109 @@ def _style_query(mask: np.ndarray) -> dict[str, float] | None:
     }
 
 
+class _StageDBooster:
+    """Lazy runner for the Stage-D candidate support model (fail-open).
+
+    The candidate checkpoint (ledger 92: unseen-family topology edit 7.56x
+    better than classical thresholding) cleans the fit target: the fitter
+    matches templates against the model's recovered support instead of the
+    raw thresholded line mask. Admission walls still compare against
+    line.support_mask - the booster only guides geometry.
+    """
+
+    def __init__(self, checkpoint: Path) -> None:
+        self._checkpoint = Path(checkpoint)
+        self._model = None
+        self._device = None
+
+    def _load(self) -> None:
+        import torch
+        from torch import nn
+
+        class StageDNet(nn.Module):
+            # Architecture mirror of train_v10_stage_d.StageDNet (the
+            # trainer lives outside the package; duplication is recorded).
+            def __init__(self, in_channels: int = 3) -> None:
+                super().__init__()
+
+                def down(cin, cout):
+                    return nn.Sequential(
+                        nn.Conv2d(cin, cout, 3, stride=2, padding=1),
+                        nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
+                        nn.Conv2d(cout, cout, 3, padding=1),
+                        nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
+                    )
+
+                def up(cin, cout):
+                    return nn.Sequential(
+                        nn.ConvTranspose2d(cin, cout, 2, stride=2),
+                        nn.GroupNorm(8, cout), nn.ReLU(inplace=True),
+                    )
+
+                self.d1 = down(in_channels, 32)
+                self.d2 = down(32, 64)
+                self.d3 = down(64, 128)
+                self.d4 = down(128, 256)
+                self.u3 = up(256, 128)
+                self.u2 = up(256, 64)
+                self.u1 = up(128, 32)
+                self.u0 = up(64, 32)
+                self.support_head = nn.Conv2d(32, 1, 3, padding=1)
+                self.sdf_head = nn.Conv2d(32, 1, 3, padding=1)
+
+            def forward(self, x):
+                e1 = self.d1(x)
+                e2 = self.d2(e1)
+                e3 = self.d3(e2)
+                e4 = self.d4(e3)
+                y3 = torch.cat([self.u3(e4), e3], dim=1)
+                y2 = torch.cat([self.u2(y3), e2], dim=1)
+                y1 = torch.cat([self.u1(y2), e1], dim=1)
+                y0 = self.u0(y1)
+                return self.support_head(y0), torch.sigmoid(self.sdf_head(y0))
+
+        payload = torch.load(
+            self._checkpoint, map_location="cpu", weights_only=False,
+        )
+        if payload.get("schema") != "vice-stage-d-checkpoint/v0-pilot":
+            raise ValueError("unsupported stage-d checkpoint schema")
+        model = StageDNet(3)
+        model.load_state_dict(payload["state_dict"], strict=True)
+        model.eval()
+        self._device = torch.device(
+            "cuda" if torch.cuda.is_available() else "cpu",
+        )
+        self._model = model.to(self._device)
+
+    def boost(self, gray_roi: np.ndarray) -> np.ndarray | None:
+        """gray ROI in [0,1] -> recovered support mask, or None (fail-open)."""
+        try:
+            import torch
+
+            from .wordmark_prior_data import wordmark_observation_features
+
+            if self._model is None:
+                self._load()
+            height, width = gray_roi.shape
+            pad_h = (16 - height % 16) % 16
+            pad_w = (16 - width % 16) % 16
+            padded = np.pad(
+                gray_roi.astype(np.float32),
+                ((0, pad_h), (0, pad_w)), mode="edge",
+            )
+            features = wordmark_observation_features(padded)
+            with torch.no_grad():
+                logits, _sdf = self._model(
+                    torch.from_numpy(features[None]).to(self._device),
+                )
+                support = (
+                    torch.sigmoid(logits)[0, 0].cpu().numpy() >= 0.5
+                )
+            return support[:height, :width]
+        except Exception:
+            return None
+
+
 class ApproximateTemplateProvider:
     """ExactFontProvider-protocol lane: style retrieval + bounded fits."""
 
@@ -87,6 +190,7 @@ class ApproximateTemplateProvider:
         descriptor_bank: Path = DEFAULT_DESCRIPTOR_BANK,
         top_k: int = 8, refine_rounds: int = 1,
         min_native_height: int = 8,
+        stage_d_checkpoint: Path | None = None,
     ) -> None:
         self.source_sha256 = reir.source_sha256
         self.inner = inner if inner is not None else ReirExactFontProvider(
@@ -115,6 +219,23 @@ class ApproximateTemplateProvider:
             ])
         self._matrix = np.asarray(rows, np.float64)
         self._audits: list[ExactFontAudit] = []
+        self._booster = (
+            _StageDBooster(stage_d_checkpoint)
+            if stage_d_checkpoint is not None else None
+        )
+        self._reir_gray = None
+        if self._booster is not None:
+            rgba = np.asarray(reir.raster.straight_rgba, np.float32)
+            if rgba.max() > 1.5:
+                rgba = rgba / 255.0
+            alpha = rgba[..., 3:4]
+            luminance = (
+                0.2126 * rgba[..., 0] + 0.7152 * rgba[..., 1]
+                + 0.0722 * rgba[..., 2]
+            )
+            self._reir_gray = (
+                luminance * alpha[..., 0] + 0.5 * (1.0 - alpha[..., 0])
+            ).astype(np.float32)
 
     # --- OCR surface is delegated so line gating matches the exact lane ---
 
@@ -159,6 +280,14 @@ class ApproximateTemplateProvider:
 
             x1, y1, x2, y2 = line.roi_xyxy
             target = np.asarray(line.support_mask[y1:y2, x1:x2], bool)
+            boosted = False
+            if self._booster is not None and self._reir_gray is not None:
+                recovered = self._booster.boost(
+                    self._reir_gray[y1:y2, x1:x2],
+                )
+                if recovered is not None and recovered.any():
+                    target = recovered
+                    boosted = True
             query = _style_query(target)
             if query is None:
                 raise ValueError("line support has no ink")
@@ -213,6 +342,7 @@ class ApproximateTemplateProvider:
                         "approximate-template-retrieval",
                         f"style-top{self.top_k}",
                         "no-font-identity-claim",
+                        *(("stage-d-support-booster",) if boosted else ()),
                         f"font-name:{match.font}", f"rank:{match.rank}",
                     ),
                 ))
