@@ -1067,11 +1067,14 @@ def _loop_path(points: tuple[tuple[float, float], ...]) -> str:
 
 
 # Routes whose delivered geometry is the font's true outlines (fontTools
-# at export). The approximate-template lane joined 2026-07-24: its rows
-# carry the same font_file/tracking/scale/offset parameters and pass the
-# same proof-checked outline machinery; no identity claim is implied.
+# at export). The approximate-template lane was REVERTED from this set on
+# 2026-07-24 after a measured delivered regression (text-015 candidate GCR
+# 13 -> 21: the outline render diverges from the admitted raster mask at
+# component level). Outline delivery for approximate rows may only return
+# behind a per-row render court that proves the outline is not worse than
+# the raster delivery it replaces.
 FONT_OUTLINE_ROUTES = frozenset({
-    "exact-font", "semantic-font-idealization", "approximate-template",
+    "exact-font", "semantic-font-idealization",
 })
 
 
