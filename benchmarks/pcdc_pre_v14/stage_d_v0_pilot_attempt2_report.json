@@ -1,11 +1,11 @@
 {
   "schema": "vice-v10-stage-d-pilot/v1",
-  "created_at": "2026-07-24T15:42:38.958983+00:00",
+  "created_at": "2026-07-24T15:45:52.011927+00:00",
   "mode": "representative-pilot",
   "protocol": "pairs size==96 rotate==0; family-disjoint splits",
   "metrics": {
-    "model_support_iou": 0.5959509037118988,
-    "model_topology_edit": 3.8619309654827414,
+    "model_support_iou": 0.6163960484560005,
+    "model_topology_edit": 3.5167583791895947,
     "otsu_baseline_iou": 0.6541758920749602,
     "otsu_baseline_edit": 4.337168584292146
   },
@@ -19,6 +19,6 @@
   "seed": 20260729,
   "device": "cuda",
   "authorizes_full_training": false,
-  "elapsed_seconds": 452.38855689999764,
-  "checkpoint": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\stage_d_v0_pilot.pt"
+  "elapsed_seconds": 145.0863266999986,
+  "checkpoint": "models\\stage_d_v0_pilot_attempt2.pt"
 }
