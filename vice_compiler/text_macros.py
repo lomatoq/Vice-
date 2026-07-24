@@ -2097,9 +2097,11 @@ def _stage_d_support_refinements(
     if os.environ.get("VICE_STAGE_D_UPSTREAM") != "1":
         return ()
     override = os.environ.get("VICE_STAGE_D_CHECKPOINT", "").strip()
+    # Default = the current champion (ledger 100/101: luminance-bg recipe,
+    # 0.829/8.05 across seeds; first delivered win text-006 in H9).
     checkpoint = Path(override) if override else (
         Path(__file__).resolve().parents[1]
-        / "models" / "stage_d_realft_candidate_v1.pt"
+        / "models" / "stage_d_realft_from_lumbg.pt"
     )
     if not checkpoint.is_file():
         return ()
