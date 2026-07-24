@@ -716,6 +716,17 @@ IoU ужо вышэй мінімальнага `0.88`, але topology далё�
     `v10_training_readiness.json`; зандажы `stage_a_probe_fam*.json`;
     трэнер `train_v10_stage_a_probe.py`.
 
+83. Дадзеныя v10 замацаваны (2026-07-24, вечар): (а) карыстальнік
+    атэставаў supervision 8849 brand/logo-запісаў uber-корпуса
+    (bulk-attestation з яўным паходжаннем + 316 жывых UI-адзнак;
+    `uber_supervision_attestation.json`); (б) пабудаваны family-disjoint
+    спліты §11.3 (`splits/family_disjoint`): тэкст па сем'ях шрыфтоў
+    (45 фэйсаў → 21 сям'я), iconify па калекцыях, local цалкам у test —
+    train 192,657 / calibration 42,602 / test 43,419; (в) сумленны разрыв
+    запісаны: 21 тэкставая сям'я супраць насычэння ~600 у Stage-A
+    зандажы — Stage A/B тэкст трэба перагенераваць з банка v2 да
+    поўнага запуску. Readiness трымае TRAIN.
+
 ## Дакладны promotion gate для full checkpoint
 
 Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не
