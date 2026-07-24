@@ -251,7 +251,9 @@ _MODEL_CACHE = {}
 
 
 def compact_palette(image: Image.Image, colors: int = 16,
-                    thick_core_veto: bool = True) -> np.ndarray:
+                    thick_core_veto: bool = True,
+                    audit: list[dict] | None = None,
+                    audit_boxes: list[tuple[float, float, float, float]] | None = None) -> np.ndarray:
     """Infer flat design colours without deleting small, real colour regions.
 
     Quantization alone confuses a narrow anti-aliasing band with a small logo
@@ -275,6 +277,38 @@ def compact_palette(image: Image.Image, colors: int = 16,
     used, counts = np.unique(labels, return_counts=True)
     parent = {int(i): int(i) for i in used}
 
+    def audit_fold(stage: str, folded_mask: np.ndarray,
+                   folded_color: np.ndarray | None,
+                   target_color: np.ndarray | None,
+                   reason: str) -> None:
+        if audit is None:
+            return
+        mask = np.asarray(folded_mask, bool)
+        box_mass = 0
+        per_box = []
+        for box in audit_boxes or []:
+            x0, y0, x1, y1 = box
+            xa, ya = max(0, int(math.floor(x0))), max(0, int(math.floor(y0)))
+            xb, yb = min(mask.shape[1], int(math.ceil(x1))), min(mask.shape[0], int(math.ceil(y1)))
+            mass = int(mask[ya:yb, xa:xb].sum()) if xb > xa and yb > ya else 0
+            per_box.append(mass)
+            box_mass += mass
+        delta_e = None
+        if folded_color is not None and target_color is not None:
+            pair = np.asarray((folded_color, target_color), np.float32).reshape(1, 2, 3) / 255.0
+            lab = cv2.cvtColor(pair, cv2.COLOR_RGB2LAB).reshape(2, 3)
+            delta_e = (float(deltaE_ciede2000(lab[0], lab[1]))
+                       if deltaE_ciede2000 is not None else float(np.linalg.norm(lab[0] - lab[1])))
+        audit.append({"stage": stage, "reason": reason,
+                      "folded_mass": int(mask.sum()),
+                      "sanctuary_mass": box_mass,
+                      "sanctuary_mass_by_box": per_box,
+                      "delta_e": None if delta_e is None else round(delta_e, 4),
+                      "folded_color": None if folded_color is None else
+                          [round(float(value), 2) for value in folded_color],
+                      "target_color": None if target_color is None else
+                          [round(float(value), 2) for value in target_color]})
+
     def find(i):
         if parent[i] != i:
             parent[i] = find(parent[i])
@@ -283,6 +317,8 @@ def compact_palette(image: Image.Image, colors: int = 16,
     for ia, a in enumerate(used):
         for b in used[ia + 1 :]:
             if np.linalg.norm(palette[int(a)].astype(float) - palette[int(b)].astype(float)) < 10:
+                audit_fold("median-cut-near", labels == int(b), palette[int(b)], palette[int(a)],
+                           "rgb_distance_lt_10")
                 parent[find(int(b))] = find(int(a))
     grouped: dict[int, list[tuple[int, np.ndarray, int]]] = {}
     for label, count in zip(used, counts):
@@ -444,6 +480,10 @@ def compact_palette(image: Image.Image, colors: int = 16,
                         and family.setdefault("thickness", entry_thickness(family)) >= 1.9):
                     continue
             if same_colour or same_neutral or same_dark_neutral:
+                audit_fold("hue-family", np.isin(labels, entry["labels"]),
+                           entry["color"], family["color"],
+                           "same_colour" if same_colour else (
+                               "same_neutral" if same_neutral else "same_dark_neutral"))
                 total = family["count"] + entry["count"]
                 family["color"] = (family["color"] * family["count"] + entry["color"] * entry["count"]) / total
                 family["count"] = total
@@ -569,6 +609,9 @@ def compact_palette(image: Image.Image, colors: int = 16,
         if best_pair is None:
             break
         left, right = best_pair
+        audit_fold("rag-family", np.isin(labels, families[right]["labels"]),
+                   families[right]["color"], families[left]["color"],
+                   "minimum_eligible_delta_e")
         total = families[left]["count"] + families[right]["count"]
         families[left]["color"] = (
             families[left]["color"] * families[left]["count"]
@@ -585,6 +628,8 @@ def compact_palette(image: Image.Image, colors: int = 16,
     ring_kernel = np.ones((3, 3), np.uint8)
     for family in families:
         if family["count"] < minimum:
+            audit_fold("anchor-drop", np.isin(labels, family["labels"]),
+                       family["color"], None, "below_population_floor")
             continue
         mask = np.isin(labels, family["labels"]).astype(np.uint8)
         thickness = float(cv2.distanceTransform(mask, cv2.DIST_L2, 3).max())
@@ -637,6 +682,8 @@ def compact_palette(image: Image.Image, colors: int = 16,
             #     anchors.append(max(family["candidates"],
             #         key=lambda item: item[1] * (0.35 + hsv(item[0])[1]))[0])
             #     continue
+            audit_fold("anchor-drop", mask.astype(bool), family["color"], None,
+                       "thin_low_chroma_non_extremum")
             continue
         # Use a real quantizer core instead of an average contaminated by edge
         # blends.  Saturation is a useful tie-breaker for coloured artwork.

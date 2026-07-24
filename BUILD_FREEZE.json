@@ -1,0 +1,1553 @@
+{
+  "code": [
+    {
+      "bytes": 396,
+      "path": "vice_scene/__init__.py",
+      "sha256": "80f933ce5b44b16d74a26dc2788a4195b6344415a2cb43e3b5f6f8caca9a5a0f"
+    },
+    {
+      "bytes": 1456,
+      "path": "vice_scene/__main__.py",
+      "sha256": "dabfab2443fc7bf570841e812f7d8fd51375305cb47e15b14406448c5df54909"
+    },
+    {
+      "bytes": 11377,
+      "path": "vice_scene/appearance.py",
+      "sha256": "e471a154dd717cf227f9bd8176802db4c6dd4c620cb05e453b4cf517c9e658ba"
+    },
+    {
+      "bytes": 14168,
+      "path": "vice_scene/boundary_solver.py",
+      "sha256": "03b723c29afc94257aead503d596663070bae00c20457ae1606eec7c4159d540"
+    },
+    {
+      "bytes": 2018,
+      "path": "vice_scene/config.py",
+      "sha256": "ff2e9edf74b460f63bf2b24a4fe50965519e123b339953ec5a0138bb731c3850"
+    },
+    {
+      "bytes": 17669,
+      "path": "vice_scene/contracts.py",
+      "sha256": "8ddcfc465e946dcf16450b41b72e4f2de287c341be657d246d3e5574ce5e377d"
+    },
+    {
+      "bytes": 2843,
+      "path": "vice_scene/corner_graph.py",
+      "sha256": "20d7900a18cd1954fb1b0ccddeefa00f4e443d9b0f9b28a2b1974a717b08d6f6"
+    },
+    {
+      "bytes": 2813,
+      "path": "vice_scene/evidence_cache.py",
+      "sha256": "18082ae29ff662a71bce167914a4d68502fe31e584cf728bda36d34f2590bbf2"
+    },
+    {
+      "bytes": 9814,
+      "path": "vice_scene/evidence_model.py",
+      "sha256": "4c63fcd33c54f4cb30601fe44b933cadbbf92e8d805dd2e2662769b69003b81f"
+    },
+    {
+      "bytes": 20648,
+      "path": "vice_scene/export_scene.py",
+      "sha256": "838b9ec763ab8dbb1898e65b70d4007d974aaf480b2faabdd1e8501fcf0b26a1"
+    },
+    {
+      "bytes": 7499,
+      "path": "vice_scene/font_synthetic.py",
+      "sha256": "a86a49c20b1b90a30ce6b393dfce9adb2ba9218a7af1529bcc291422da870bc3"
+    },
+    {
+      "bytes": 6043,
+      "path": "vice_scene/freeze.py",
+      "sha256": "8112887df0d1a1080220b1899efd5219607ed5aa1c78abf3cdd28461163559b1"
+    },
+    {
+      "bytes": 1260,
+      "path": "vice_scene/gap_filler.py",
+      "sha256": "ffada19d2279bc4c3a0c4230325defbf3467019b8cdf12ca6b464a8568f3f6e1"
+    },
+    {
+      "bytes": 8871,
+      "path": "vice_scene/idealize.py",
+      "sha256": "b64175001dac47309f5d52aa36029982130c703f98d8bc4bcd3eb05907cc2a49"
+    },
+    {
+      "bytes": 10408,
+      "path": "vice_scene/ingest.py",
+      "sha256": "54c1ef6baf61ccda04de02a633f8ccdfae1e72b6b5adad0c89384303fddd077a"
+    },
+    {
+      "bytes": 1533,
+      "path": "vice_scene/legacy_adapter.py",
+      "sha256": "74cbd3b5bf4cfcacfb9946145d3b6f86013754fa4b11ff4f421252f960861677"
+    },
+    {
+      "bytes": 6428,
+      "path": "vice_scene/neural_evidence.py",
+      "sha256": "b40f8234b9149cfee17d060e1e5bf089c8bee3f531e87d5beff66efb64889351"
+    },
+    {
+      "bytes": 9255,
+      "path": "vice_scene/optimizer.py",
+      "sha256": "8ee8866badcd0a84fbedf51d1b0846499bbc1d45604aaa6c5bae834109ec269a"
+    },
+    {
+      "bytes": 9202,
+      "path": "vice_scene/oracle_diagnostics.py",
+      "sha256": "339430fc0addb3b8271c64d8758b42e6f71c48262a60b2ce4aca64600471b2bb"
+    },
+    {
+      "bytes": 18570,
+      "path": "vice_scene/pipeline.py",
+      "sha256": "9f9b4d785d84daa2dca72e803662bbc54e10d5566f4e8d0339ed66680795078d"
+    },
+    {
+      "bytes": 7120,
+      "path": "vice_scene/raster_profile.py",
+      "sha256": "0761b6d10fb89ca619a3df5c4432b7f05f03dcbdd34f66ac3784bb115f23daab"
+    },
+    {
+      "bytes": 13286,
+      "path": "vice_scene/render_models.py",
+      "sha256": "9f29b1a0d95caf058f20d2f3fc14bbfc1eac3a3b4582b86e0ccfad9452ee8b13"
+    },
+    {
+      "bytes": 9090,
+      "path": "vice_scene/residual.py",
+      "sha256": "3e01809a0a022e1f049932746170555fd5fd18f26486ad0f7ba691f8d1631770"
+    },
+    {
+      "bytes": 7446,
+      "path": "vice_scene/scene_graph.py",
+      "sha256": "fe240aa5faea9f0dcc174bbebd81d95c5c35e7342c5081c9bef2177cc3f4a16b"
+    },
+    {
+      "bytes": 45968,
+      "path": "vice_scene/shape_models.py",
+      "sha256": "d4e9cf3f0e53d419bc589f839ed58ac6b383feec9092c1651f3116bfc201e18c"
+    },
+    {
+      "bytes": 23682,
+      "path": "vice_scene/synthetic.py",
+      "sha256": "3457fe4475bbd6b7ca84a801954ded4ce2b8d3707bad93b951af88e6f3e5da13"
+    },
+    {
+      "bytes": 18580,
+      "path": "vice_scene/text_scene.py",
+      "sha256": "b988af08b1c67bc8d832981c843236fdafe312e8e45467b36998d42893e159f9"
+    },
+    {
+      "bytes": 10908,
+      "path": "vice_scene/topology.py",
+      "sha256": "d78faece38e0301554082520a79335d5409667a6212af3f29e7f85b14103a5fb"
+    },
+    {
+      "bytes": 2701,
+      "path": "vice_scene/trace.py",
+      "sha256": "bf4022b432e3792dde9cda3ec9ff349266d42a47d4cece3bf65dfeb6b6691de2"
+    },
+    {
+      "bytes": 6823,
+      "path": "vice_scene/training_data.py",
+      "sha256": "cd2ef61ac6989fd3c2566f5a973f8e9b2bd16069fbc5fce53c2596cf4e4c7020"
+    },
+    {
+      "bytes": 54186,
+      "path": "benchmark_vai.py",
+      "sha256": "43189feea905a5bb6519a84e62ad86c786acfc0512644464f1424f4e908fe158"
+    },
+    {
+      "bytes": 20943,
+      "path": "build_vai_crop_court.py",
+      "sha256": "d96c72097dd651af4cc8d732ff289ae0d6358ba88c132f19472378b3ed5d3667"
+    },
+    {
+      "bytes": 8134,
+      "path": "challenge_eval.py",
+      "sha256": "e75acb14631185e1b01cc5301f96f1c185f08e9282a55c1d93e6a4671871b7fb"
+    },
+    {
+      "bytes": 2108,
+      "path": "eval_one_item.py",
+      "sha256": "04c4f08311ce12a2b12fd260ede946ceecb94f559ea2bba360a992d9f761e459"
+    },
+    {
+      "bytes": 6084,
+      "path": "generate_scene_evidence_dataset.py",
+      "sha256": "b2a4ce9b90f0eb57f3f4321882c3b16c71878d2e29d1eb7ebb3c6aa8babdb4ac"
+    },
+    {
+      "bytes": 10459,
+      "path": "run_vectorizer.py",
+      "sha256": "f1178ace8e0e03a37753db25873cc8c729008cca923cad29a5742133ef0f6210"
+    },
+    {
+      "bytes": 26706,
+      "path": "test_scene_engine.py",
+      "sha256": "93f09284ea26976715ba1f80a5fb2e330c83766175dac82c45e1756e05283760"
+    },
+    {
+      "bytes": 4125,
+      "path": "train_scene_evidence.py",
+      "sha256": "d8265a4e9b670c0841dbc13d9b6cf1f938424891d6c3e2694d1b054d15e8b029"
+    },
+    {
+      "bytes": 13532,
+      "path": "validate_scene_campaign.py",
+      "sha256": "9cd76cffec1c577f64a85c21dc3c0da285b538b857f4ac6c9686d5421171bdfa"
+    },
+    {
+      "bytes": 6813,
+      "path": "validate_scene_synthetic.py",
+      "sha256": "ed3c2363ac071c794b2024ace431c581f21a6746e8793bce645d453f87be619c"
+    },
+    {
+      "bytes": 17940,
+      "path": "vectorizer_ai_svg_forensics.py",
+      "sha256": "9773319637e3e690c8690180e33920938d5c373cb14830873ded1fd917b32a9b"
+    },
+    {
+      "bytes": 5707,
+      "path": "VICE_SCENE_IMPLEMENTATION_MATRIX_BY.md",
+      "sha256": "9a5ac05f8105c0479498a7e9df86ab08f10763ea829391f3332b8fb75e4da4e6"
+    },
+    {
+      "bytes": 5285,
+      "path": "web_preview/index.html",
+      "sha256": "4619c9a6104421c309a95216c839e06fee0b5553850339d0cc8cb341b3969e30"
+    },
+    {
+      "bytes": 11541,
+      "path": "web_preview/server.py",
+      "sha256": "74389d2480b945a3edd07c8f6ae8c58fd019296e546aa2b3d5bdd3faa5a35d46"
+    },
+    {
+      "bytes": 2419,
+      "path": "web_preview/worker.py",
+      "sha256": "0748079a2b1a52a6f827adc7ed9d7f6f9cc56600a326d118e812852c1d019b72"
+    }
+  ],
+  "config": {
+    "ablations": [],
+    "allow_legacy_fallback": false,
+    "enable_appearance": true,
+    "enable_evidence": true,
+    "enable_exact_font_path": true,
+    "enable_forward_court": true,
+    "enable_gap_filler": true,
+    "enable_idealization": true,
+    "enable_residual_repair": true,
+    "enable_shared_boundaries": true,
+    "enable_text_scene": true,
+    "enable_topology": true,
+    "enable_whole_shapes": true,
+    "engine_version": "0.1.0",
+    "evidence_checkpoint": "models/scene_evidence.promoted.pt",
+    "evidence_model": "promoted-checkpoint-or-deterministic/1",
+    "evidence_scales": [
+      1.0,
+      0.5,
+      0.25
+    ],
+    "forward_models": [
+      "clean-aa",
+      "hard",
+      "blur-0.6",
+      "gamma-1.8",
+      "jpeg-70"
+    ],
+    "legacy_fallback_mode": "paper-regions",
+    "max_colors": 24,
+    "max_input_pixels": 3145728,
+    "min_shape_area_px": 0.125,
+    "random_seed": 20260719,
+    "residual_add_threshold": 0.12,
+    "residual_min_area_px": 2,
+    "schema_version": "vice-scene-config/1",
+    "supersample": 4,
+    "topology_k": 4
+  },
+  "config_hash": "fe78d9b2babdc3bcca4ce6a8d71c8164714e3d3b307d0d19103ee765fcb64fd9",
+  "datasets": [
+    {
+      "bytes": 34079,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_crop_court_manifest.json",
+      "sha256": "036d13bbb9f4c1c4c856163509310269a45580df87e8607d554deecb171de576"
+    },
+    {
+      "bytes": 50915,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_snapshot.json",
+      "sha256": "3c602d9d2ef2f3cf733755ad0857dd981f99531aa8491942c427e7cf50d2df32"
+    },
+    {
+      "bytes": 69325,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_snapshot_production_fresh50_final.json",
+      "sha256": "20c62395ed690c2dfdc2d85cf133d891b2d31d79d9cb0dfaae7f756a7714ad2a"
+    },
+    {
+      "bytes": 287854,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_01.png",
+      "sha256": "47454fdabc1d8055c83c6c5ff43ea792f434a4ec4f57e94bb0aed623ca48dd0f"
+    },
+    {
+      "bytes": 344173,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_01_annotated.png",
+      "sha256": "cc53fbd9c47f07a1bffb358a5312b1aa6a2d413ba25a2fbd38ddce1aee3ce145"
+    },
+    {
+      "bytes": 793365,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_01_vai.svg",
+      "sha256": "e18e246a996697ec30e0efc3718eb65f7e34074e423f8bc48598230539c58b38"
+    },
+    {
+      "bytes": 337378,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_02.png",
+      "sha256": "41b5bfed24b961cf832c1be2f204f9671b0ff000e85549eb7c157bfa16616234"
+    },
+    {
+      "bytes": 365675,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_02_annotated.png",
+      "sha256": "b616fe7392b10390bf51dc0f9632cd438ca2effaa7fec2d959a2f76e23f9ece7"
+    },
+    {
+      "bytes": 518819,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_02_vai.svg",
+      "sha256": "064b32ed253421ab7d2c4a07ca47898e5d6f90831892571321d86f8c235b6a4f"
+    },
+    {
+      "bytes": 126440,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_03.png",
+      "sha256": "c63c7786defbd423c2fac90be1347c6fdec969c85fd7308b57d5ad1e5fca833a"
+    },
+    {
+      "bytes": 136065,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_03_annotated.png",
+      "sha256": "4f75e2734e48df817c948e190c90ac849ccee865543ab17030a15e1cdf7cad25"
+    },
+    {
+      "bytes": 548398,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_03_vai.svg",
+      "sha256": "c3c9e50fe93560e695f2ea4f9f3ca7ceddbb42ff8d40be69e8b9b19762f70103"
+    },
+    {
+      "bytes": 108518,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_04.png",
+      "sha256": "77d85d0ed3616577796279bab5996b1eaba7e4fc9143f6b0c2af9eb1ea99aa9a"
+    },
+    {
+      "bytes": 118012,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_04_annotated.png",
+      "sha256": "907ba4f289cede504be5c861d39c6bae3102a4d6f6d612bd8754bf071b22455c"
+    },
+    {
+      "bytes": 439870,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_04_vai.svg",
+      "sha256": "8b1f8ced619bc5b3fabe46731aa1b76e6d39b4d38e799c4aab3993ee60ebe4ed"
+    },
+    {
+      "bytes": 18057,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_layout.json",
+      "sha256": "3877ed0d81958d99b00ee05267992ac8250781653db47a36e1912b52210f7af9"
+    },
+    {
+      "bytes": 1607,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\100_icon_group_4_68_src.png",
+      "sha256": "6c7a6b2f69a38a5694624eac140bf234b0e101588c99c611351a9c9c21e8eb53"
+    },
+    {
+      "bytes": 6728,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\101_icon_group_4_69_src.png",
+      "sha256": "578a2780960d34a413af606cf8a2d4e87d9e0c0265efda287f1145dcaa2bcdb7"
+    },
+    {
+      "bytes": 14924,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\102_icon_group_4_7_src.png",
+      "sha256": "d929069d11986d18ec3e09e241f648d6f5468e0938aec6289c405fea32de2a2b"
+    },
+    {
+      "bytes": 7011,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\103_icon_group_4_70_src.png",
+      "sha256": "04703b811383f9d02a3f2fe05f7147802fe71167cda43367e106e50d47d1a2ed"
+    },
+    {
+      "bytes": 2734,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\104_icon_group_4_71_src.png",
+      "sha256": "2e90c1e7626d97b9cc06fa49ec15344c7b41333f8233590b9e6d2a4ac910aa12"
+    },
+    {
+      "bytes": 2150,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\105_icon_group_4_72_src.png",
+      "sha256": "23076d25e7e494ff7c1982c7115015656c84c5403c82ee782dc23f8385ffdd3e"
+    },
+    {
+      "bytes": 5290,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\106_icon_group_4_73_src.png",
+      "sha256": "104453089542bef360632a58d80335bd9e50dfdb5fc2226117bbc8fa8d4f5ab6"
+    },
+    {
+      "bytes": 5268,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\107_icon_group_4_74_src.png",
+      "sha256": "dc79ba517040cc1a498cb945c346b26bc1d8b7da6882fb9e50918950c8415a88"
+    },
+    {
+      "bytes": 2101,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\108_icon_group_4_75_src.png",
+      "sha256": "07af0b3229bfaa779228a548b8c852e9f133279685add7c5fc312a05018ea041"
+    },
+    {
+      "bytes": 3219,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\109_icon_group_4_76_src.png",
+      "sha256": "ea232cb6fed1d7a50e60cba46de5c5638e4b8409827bb52021796123b89d534f"
+    },
+    {
+      "bytes": 11417,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\10_goldcoinstudios_512_src.png",
+      "sha256": "732b7363fb4bc02d0b385a8a4a8b38fd7335e88955fd55e6af227213ea7e9906"
+    },
+    {
+      "bytes": 2277,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\110_icon_group_4_77_src.png",
+      "sha256": "7e8062b120eb0f61dc1d1efb89c822ec1e913ffec6c47921ff1bc919011281a1"
+    },
+    {
+      "bytes": 1583,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\111_icon_group_4_78_src.png",
+      "sha256": "687d4fa92e38e90b14b9b4f19823882010f7680f9077f6762c82c2bb72e9567a"
+    },
+    {
+      "bytes": 2664,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\112_icon_group_4_79_src.png",
+      "sha256": "0f1cec6f48c8f2d79c7efbf06459efb003b2fbba687d1453129dd73fb8d46841"
+    },
+    {
+      "bytes": 5501,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\113_icon_group_4_8_src.png",
+      "sha256": "d67dac515ca06e73aa5ae765f136ad5443793f712326930496b9f0ccea957a42"
+    },
+    {
+      "bytes": 959,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\114_icon_group_4_80_src.png",
+      "sha256": "4874da76b74bf644a3bed5ed09f863b0cca645c376bbef79393e22f681a68581"
+    },
+    {
+      "bytes": 10808,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\115_icon_group_4_9_src.png",
+      "sha256": "2db1eec6b2379921438a09bb415d7d94718f79c89055674dc04261d02dee683b"
+    },
+    {
+      "bytes": 42409,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\116_icon_group_5_src.png",
+      "sha256": "aa2a65baca8d6f9c4c6721a8e1276121c629b7f25771f53ec43be69cd39a860e"
+    },
+    {
+      "bytes": 28990,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\117_icon_group_6_src.png",
+      "sha256": "9fe8f0c9547f07027061436f56ed6c54e689f163c6dd17e7ec5517215c4f0908"
+    },
+    {
+      "bytes": 26951,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\118_icon_group_7_src.png",
+      "sha256": "29d242455aaaba8c13355285fb0b965f000ec1ea26c4c2d15a038645df527756"
+    },
+    {
+      "bytes": 46092,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\119_lightningboxgames_512_src.png",
+      "sha256": "a21bbc1ccae2de62065cacd180266ca91dd955cd3eafd33efde44dcb3c810dcf"
+    },
+    {
+      "bytes": 70007,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\11_goldenhero_512_src.png",
+      "sha256": "e264643e4d0ee726d65e7a8d190426e8cea87257592981620fb46233e4da0c17"
+    },
+    {
+      "bytes": 62069,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\120_penspiral_in_src.png",
+      "sha256": "8d846ac7009f23dbfc8b785befdbccee50e2fdca7b19971cf50e06635645cba3"
+    },
+    {
+      "bytes": 209762,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\121_pepsi_src.png",
+      "sha256": "c3df2561dc4353c1b72bb1480e347dace2560e540dd1f2e15bd5906ab991f1c1"
+    },
+    {
+      "bytes": 28576,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\123_plankgaming_512_src.png",
+      "sha256": "7b0462cdbc14b3df4cf46da133f6715a3b4430773df657fbee47d0848866547b"
+    },
+    {
+      "bytes": 10171,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\124_platipus_512_src.png",
+      "sha256": "9670009dab3a6cccf7ca35c2fe26ab7cbd84ebc5453d912b6e665994511a4c57"
+    },
+    {
+      "bytes": 53344,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\126_red7slots_512_src.png",
+      "sha256": "131a6d5d92d6362863e7dedb5fcdb2864c21c3ea38bd6723999298607cdca1ed"
+    },
+    {
+      "bytes": 12592,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\128_your_logo_src.png",
+      "sha256": "b5920fb88ddc3155ac6a4f3e432c45f3b55615cc8b3662c576f03717e85afd67"
+    },
+    {
+      "bytes": 267272,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\12_icon_group_src.png",
+      "sha256": "dc644979d4313ebca7ab4d7bca4e258f5f18991054dac8470b9b878087327c1b"
+    },
+    {
+      "bytes": 54272,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\13_icon_group_1_src.png",
+      "sha256": "5c57ee5fc008d491244613dee757c9393067a9fd566a9ad5a06596a1887c219a"
+    },
+    {
+      "bytes": 834185,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\14_icon_group_2_src.png",
+      "sha256": "888d9423080d15aee6f2252c42c3e84a1276856b33e981258804c4f90d15828d"
+    },
+    {
+      "bytes": 443666,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\16_icon_group_2_1_src.png",
+      "sha256": "c0c7fd6864d166b178d56d3b071871016fbd2a24d70e0c3c04655baf37c1611c"
+    },
+    {
+      "bytes": 88345,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\17_icon_group_2_2_src.png",
+      "sha256": "9042e39f17e953ca7d927f2ad16cb74e7b63abc7f8ee651e2fb4e7da98b96782"
+    },
+    {
+      "bytes": 113827,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\18_icon_group_2_3_src.png",
+      "sha256": "8ba0d2651766efa22956da37559c03212c371b4623bc77c559b152d85a97b518"
+    },
+    {
+      "bytes": 91434,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\19_icon_group_2_4_src.png",
+      "sha256": "51f1fe5974b6f50ceb976da61633503258a51b9c4806dfc0f82b2bb39c846577"
+    },
+    {
+      "bytes": 69013,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\20_icon_group_2_5_src.png",
+      "sha256": "6343f7644fa16ddaa4a7c352f3c05e6268032c96ef476e0af2ddf2bdf49dd89f"
+    },
+    {
+      "bytes": 258589,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\21_icon_group_3_src.png",
+      "sha256": "c00df23718dad9ec6fa65891559c5dc9a52436273a5337f1369571c5b97429ef"
+    },
+    {
+      "bytes": 34816,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\23_icon_group_3_1_src.png",
+      "sha256": "65da2be354c5c4775ab8f758f80814182e64bad0b044eaf3891d87ff377af444"
+    },
+    {
+      "bytes": 16262,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\24_icon_group_3_10_src.png",
+      "sha256": "3d4f7d25788b0fc1dde864059ce7ed4b394e2645121aaa819d72e5e370ea773e"
+    },
+    {
+      "bytes": 17268,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\25_icon_group_3_11_src.png",
+      "sha256": "77eacb0ebea526b9d193414b4b28ae81157c8242823553be8207a0cc9580bab0"
+    },
+    {
+      "bytes": 17074,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\26_icon_group_3_12_src.png",
+      "sha256": "84608fdec9c2ad3e100d5a7fbf6a44b7a9f630edc57379d12ba92b7852b852c8"
+    },
+    {
+      "bytes": 18050,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\27_icon_group_3_2_src.png",
+      "sha256": "c9de9de90f325c9e9030ba499d6edb71f75b9505917c60698671634214a423cc"
+    },
+    {
+      "bytes": 22921,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\28_icon_group_3_3_src.png",
+      "sha256": "eb94100da0cfad939c2f64e0516b5d1721ab715ca3919629e4de4aef09764e13"
+    },
+    {
+      "bytes": 32175,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\29_icon_group_3_4_src.png",
+      "sha256": "00dae2b7c97381f71c9ae9500537732b018c4e72a463d4d99d59b6a7b0ee6a02"
+    },
+    {
+      "bytes": 285041,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\2_SYNTH_SHEET_src.png",
+      "sha256": "b3ca5648cd09f615d0bffadf7847ecf6ad6f44046131066a88dac09fdb83f498"
+    },
+    {
+      "bytes": 19838,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\30_icon_group_3_5_src.png",
+      "sha256": "d301dd66bf40f7b6b032d691008a81bc6b6766617c91fc40277e446ea3b9cca4"
+    },
+    {
+      "bytes": 18243,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\31_icon_group_3_6_src.png",
+      "sha256": "20bf3303a92ac7d695b5e94169465e642c2ca545c6e8984d4814734e0e889ec5"
+    },
+    {
+      "bytes": 14491,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\32_icon_group_3_7_src.png",
+      "sha256": "98244c92fb54857340e9306ba34442a88aa15b55703f8cbd9922128f05c3a827"
+    },
+    {
+      "bytes": 21936,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\33_icon_group_3_8_src.png",
+      "sha256": "09a1f180490198e3e900f73c485b2a7ac4f5a26e65a5974a9df3a3f95bcb8a1b"
+    },
+    {
+      "bytes": 22398,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\34_icon_group_3_9_src.png",
+      "sha256": "69d305b599bdc6eb9f4548f8ca4c096154060339a87a0936207308332634670a"
+    },
+    {
+      "bytes": 36194,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\35_icon_group_4_src.png",
+      "sha256": "d6b63156c150b553e17228184ea2e183e691fcc170bb512260389381c2ab33a3"
+    },
+    {
+      "bytes": 11097,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\36_icon_group_4_1_src.png",
+      "sha256": "31c7cefb3a0f208c98ac94006533a38ee37bed6ea88ff0b19305b9a55c0c3131"
+    },
+    {
+      "bytes": 14446,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\37_icon_group_4_10_src.png",
+      "sha256": "6c1e78a84a0608c527abc31ec5d17583306bb8384aa71f87dbad61725df3295f"
+    },
+    {
+      "bytes": 8682,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\38_icon_group_4_11_src.png",
+      "sha256": "f8ee00be0d62966c7b38d9b5031e4936296ec4d4301cd0344310123590b96be0"
+    },
+    {
+      "bytes": 7565,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\39_icon_group_4_12_src.png",
+      "sha256": "436f9981d033f849985f3bbb5ebe448ce08e71bc54598c2e0a17e9fb242e6ded"
+    },
+    {
+      "bytes": 9170,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\40_icon_group_4_13_src.png",
+      "sha256": "d122fd638ad357679eb3011852518aaaba56bf9b4eb67b8cdafa4bd9ea29eca3"
+    },
+    {
+      "bytes": 5538,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\41_icon_group_4_14_src.png",
+      "sha256": "030391422c8f3ebdd62cf5b935fcdadff99c410b8c41a1c41c5e2e1ec1df1f2f"
+    },
+    {
+      "bytes": 5315,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\42_icon_group_4_15_src.png",
+      "sha256": "99149308720e48ef13edb97b40c5ccfbc26fc11e2ba1e087e44a93b3ba5db7dc"
+    },
+    {
+      "bytes": 6584,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\43_icon_group_4_16_src.png",
+      "sha256": "34ef065a19f0769518ec84d791eb766e9fde488630235f9d29ad7f9493d4c55e"
+    },
+    {
+      "bytes": 14210,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\44_icon_group_4_17_src.png",
+      "sha256": "04d3011197950b30cdbc4b131c84490908b99c6b2920596b53c6a956f090b10a"
+    },
+    {
+      "bytes": 8928,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\45_icon_group_4_18_src.png",
+      "sha256": "88e787f8f536ba7d9bf9d3929bb45d3f5ab11df1e079c889e7cae9ff6b3c41b1"
+    },
+    {
+      "bytes": 9409,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\46_icon_group_4_19_src.png",
+      "sha256": "55f4915204a5f68783b73820a6047ac154b3ae263f7d75c9cf0a4227f6af0759"
+    },
+    {
+      "bytes": 7318,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\47_icon_group_4_2_src.png",
+      "sha256": "f9fea5b14b1592f8ec845466c3340d9057b6404bb959030383106ac388f8f69c"
+    },
+    {
+      "bytes": 10361,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\48_icon_group_4_20_src.png",
+      "sha256": "6a8fef259aeabd48afb1e8471ff5f983c0915699f4e99afb9b997807cfa1ebe8"
+    },
+    {
+      "bytes": 7652,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\49_icon_group_4_21_src.png",
+      "sha256": "8f270496b1bd4cf8b93d630e2980329aec8dd4afefd7801263aa5cedeecc5fd2"
+    },
+    {
+      "bytes": 3293,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\50_icon_group_4_22_src.png",
+      "sha256": "33894f80744f74004bd551af69636c16d219628c2b7419969b5a30d90c7d1b06"
+    },
+    {
+      "bytes": 3788,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\51_icon_group_4_23_src.png",
+      "sha256": "ad890d77c612b6966bdc6682d31b10594483e01e60c41aa093020b904532d615"
+    },
+    {
+      "bytes": 4328,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\52_icon_group_4_24_src.png",
+      "sha256": "fc0c55f12bb3a0c09a7ab0ec5601ee8c87eb20572388266d673c1a7b0abcf192"
+    },
+    {
+      "bytes": 4850,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\53_icon_group_4_25_src.png",
+      "sha256": "ae29708788e2f21d2939b1040130bf5b0bec4eae8a4da8d1bbcadbec85d7907c"
+    },
+    {
+      "bytes": 11363,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\54_icon_group_4_26_src.png",
+      "sha256": "08171f1de2ae31face2a442264b5b0acce4e245c05773ae380544dfe460c1e47"
+    },
+    {
+      "bytes": 7001,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\55_icon_group_4_27_src.png",
+      "sha256": "e0c4920585413a9cbd39fa7811abc8ac36c18d3aadbc9b80b754e778a62461f6"
+    },
+    {
+      "bytes": 6984,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\56_icon_group_4_28_src.png",
+      "sha256": "5516979aa7ef5fb2c671e069be207e022f2fe6832a19640f52fd8145aa486be6"
+    },
+    {
+      "bytes": 6476,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\57_icon_group_4_29_src.png",
+      "sha256": "371147a57f9abf586671dbfa9a513f79379d1ec4580cc1487445066e0a5a29ee"
+    },
+    {
+      "bytes": 12150,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\58_icon_group_4_3_src.png",
+      "sha256": "d705491bd20c5ccc06a58f83070907cf79ffcbd494e7b38ff5e4181c5204d88e"
+    },
+    {
+      "bytes": 4649,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\59_icon_group_4_30_src.png",
+      "sha256": "e78f2c80bc663e4294005243ef6e5b80afa5b482c9e4fbb3d06608ce699d9f62"
+    },
+    {
+      "bytes": 9139,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\5_betsoft_512_src.png",
+      "sha256": "a78e2a504c6d481b0fdd698c84d88f59fe77795cc12dcdc0b3fea7818336d983"
+    },
+    {
+      "bytes": 7272,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\60_icon_group_4_31_src.png",
+      "sha256": "3bcc0634aed6549e553941d09fcb9543a6386e5a02616ebea8d27d20824f9953"
+    },
+    {
+      "bytes": 4322,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\61_icon_group_4_32_src.png",
+      "sha256": "68a3ca36c34b41c01a9a40a8e3a503fc4c9aa76f39855801fa09ce7c6002ca74"
+    },
+    {
+      "bytes": 5399,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\62_icon_group_4_33_src.png",
+      "sha256": "a385ca4968eb2620595a2d1cf41248376c400c823af8faa27a2d9ba3c080048f"
+    },
+    {
+      "bytes": 6962,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\63_icon_group_4_34_src.png",
+      "sha256": "1984eb7ebb3ecf62cad76dec332cf7e6e4ec99aa152e5e41d8cc10957df65005"
+    },
+    {
+      "bytes": 5188,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\64_icon_group_4_35_src.png",
+      "sha256": "f85f7a4539d184b2d48c50178f4916945bbafaca25425cec1b37f0b1b612cfb6"
+    },
+    {
+      "bytes": 1974,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\65_icon_group_4_36_src.png",
+      "sha256": "3c8aa6c15f7b4cc3fa0d582ae7d3b4045ff21dd12926123f7fb97f8e68d8ba57"
+    },
+    {
+      "bytes": 4346,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\66_icon_group_4_37_src.png",
+      "sha256": "17b594ebdf24e97ac3fdc354da227a03e4461770b44c6728d17a0f75a72e7699"
+    },
+    {
+      "bytes": 5697,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\67_icon_group_4_38_src.png",
+      "sha256": "857feb34b4d6e7b3943d93577239f4a766da22752b501bd66715c28aca7e0d78"
+    },
+    {
+      "bytes": 6564,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\68_icon_group_4_39_src.png",
+      "sha256": "779bb24276657b2bdccd5be3189c26cbe9557f912050962b781d70b71974f573"
+    },
+    {
+      "bytes": 11545,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\69_icon_group_4_4_src.png",
+      "sha256": "f0978e79305c549b209d24bb9a486dc7ee70cb0ccfc6aff1a290d5720ec6d540"
+    },
+    {
+      "bytes": 8028,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\70_icon_group_4_40_src.png",
+      "sha256": "8197058560e3005aa5ffc40877a10d973aa76ae217bb1b3fc81a616068170ae2"
+    },
+    {
+      "bytes": 9373,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\71_icon_group_4_41_src.png",
+      "sha256": "b9492ddcd40f1243fdcca8635aafba9c5912733ba74c65c0b9a4d413431672d7"
+    },
+    {
+      "bytes": 6620,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\72_icon_group_4_42_src.png",
+      "sha256": "5e36c985147b4604429934f37b5afb8863f699094331e2cd108e53cd5b6fe6bd"
+    },
+    {
+      "bytes": 2899,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\73_icon_group_4_43_src.png",
+      "sha256": "3550103f3ef082ff2b7f949b9807fbfc3b77d040c13bfb4819be01a796cc38d0"
+    },
+    {
+      "bytes": 4618,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\74_icon_group_4_44_src.png",
+      "sha256": "37477d1648cdf796acf88b5e6d819920d1a831d37c966c3dc20f00fbf436795c"
+    },
+    {
+      "bytes": 4988,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\75_icon_group_4_45_src.png",
+      "sha256": "ad5155eddd49cf51d8c86001c03eb41fe4f6969432b14e1cb86b6a4e0819f37a"
+    },
+    {
+      "bytes": 5487,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\76_icon_group_4_46_src.png",
+      "sha256": "ca7acf1bec863b5fb8443e93bb2586d1df2498ee5645f3abd66b9bf0bc658b7d"
+    },
+    {
+      "bytes": 7176,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\77_icon_group_4_47_src.png",
+      "sha256": "72b88d8ee184b383ee8d16667c7f4f465036e4781c71d63ea8520b9f9c517a13"
+    },
+    {
+      "bytes": 4022,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\78_icon_group_4_48_src.png",
+      "sha256": "9dd37b4b33dccc649037181796d58b35afa91bd9beebce6deb97fab403b13934"
+    },
+    {
+      "bytes": 1250,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\79_icon_group_4_49_src.png",
+      "sha256": "7a1f99e6fe0a0faf9b1ed2c1584acc4ba7f30e9ca10876e797350239f1a124bd"
+    },
+    {
+      "bytes": 28793,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\7_egtdigitalgames_512_src.png",
+      "sha256": "f67bcdabc42f39abf5cb6db30c4fded93d64d87c18ac19891c04b1b97b50536a"
+    },
+    {
+      "bytes": 18954,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\80_icon_group_4_5_src.png",
+      "sha256": "e075ffabade04e11b44a4012d8bb0af79a5cbe9a810a0fb2f5d1392678117da6"
+    },
+    {
+      "bytes": 9300,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\81_icon_group_4_50_src.png",
+      "sha256": "1ab290d60aa90fd5052c12a9dc5c72aca7785d8c365b4a4ef56018068c4ee1a3"
+    },
+    {
+      "bytes": 3517,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\82_icon_group_4_51_src.png",
+      "sha256": "4786cdf8d2cc6e665bc1cb04a47a9127a1550b9da3fb381aad1efc9574fc140b"
+    },
+    {
+      "bytes": 6839,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\83_icon_group_4_52_src.png",
+      "sha256": "b94c5e3979b0c3b6657362c53c085049d99b1970678c7b830c316672bb3973a0"
+    },
+    {
+      "bytes": 5060,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\84_icon_group_4_53_src.png",
+      "sha256": "3ba3297567199ff4903d00684fc29fb56ba1928b287ca33b3c0a431755586117"
+    },
+    {
+      "bytes": 7008,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\85_icon_group_4_54_src.png",
+      "sha256": "6f5b009dff263119a08d6e1a158ba1df4a22cfcdfa006bfc850a46efab70d6a3"
+    },
+    {
+      "bytes": 5696,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\86_icon_group_4_55_src.png",
+      "sha256": "4a5cb39af36da7c4cb0232ad8f3f195a9c02038a22a1ad819c7077a417c1df8e"
+    },
+    {
+      "bytes": 1801,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\87_icon_group_4_56_src.png",
+      "sha256": "0d5534dab8de50229f709b93b79792d70a714c5421710903e2a19f4507c2daaa"
+    },
+    {
+      "bytes": 3879,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\88_icon_group_4_57_src.png",
+      "sha256": "13869862c179ffb5f03266b5076d8e93a6ecadc4312626226b08cd8d92aef706"
+    },
+    {
+      "bytes": 3690,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\89_icon_group_4_58_src.png",
+      "sha256": "24cca38c5f7c7dc95a23020240c5b7817daba88b6d75681c4bc6f79600299cfd"
+    },
+    {
+      "bytes": 14024,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\8_eyecon_512_src.png",
+      "sha256": "0a3b059a9bd8ba59f82414216b5bc912ffa6a34c9e2a18d5194b20cf9c3f6625"
+    },
+    {
+      "bytes": 1426,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\90_icon_group_4_59_src.png",
+      "sha256": "9999f567d3d3866f37c23bc191c7d5c3626fced1ebc83e9e39d145832c663c67"
+    },
+    {
+      "bytes": 2969,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\91_icon_group_4_6_src.png",
+      "sha256": "8b7a4b7bb282bfaf22bc8321c9c7a5c875ba3669f1766841144a56f03f4c8579"
+    },
+    {
+      "bytes": 3980,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\92_icon_group_4_60_src.png",
+      "sha256": "fcf5a81780d6cf5f256a29ae29c1fa6fedf8195d487c130efbf37a24a39698c0"
+    },
+    {
+      "bytes": 5323,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\93_icon_group_4_61_src.png",
+      "sha256": "5a71b82addd5789caa55d98a18fb66cb086b892a889b93972966d4f5dd59b8cd"
+    },
+    {
+      "bytes": 5228,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\94_icon_group_4_62_src.png",
+      "sha256": "5cde7b5cccac540fb7d92d3e203c633844e8188aa6f1a64b2105e38c0e489913"
+    },
+    {
+      "bytes": 2098,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\95_icon_group_4_63_src.png",
+      "sha256": "79321822fa5fc8aae4a21c85ace7e9df01c465f120b9d088c09eb2dae9dfb3e6"
+    },
+    {
+      "bytes": 4734,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\96_icon_group_4_64_src.png",
+      "sha256": "3ba9df6bf3f8d8ed92c937563c25a82c3d0941f58d38be1303553066a3be0950"
+    },
+    {
+      "bytes": 4693,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\97_icon_group_4_65_src.png",
+      "sha256": "31163786183e7c182e43d754a12e876ac7a7488ddc0503c8e1f7ad3ee13dba51"
+    },
+    {
+      "bytes": 4414,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\98_icon_group_4_66_src.png",
+      "sha256": "2132010c89d8cc0d2c14a6e684c88457d8b52daaad0827fa5fd3479a7f5fce27"
+    },
+    {
+      "bytes": 5145,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\problem cases\\Small\\99_icon_group_4_67_src.png",
+      "sha256": "603eab3a5a667bf79aef2f243ccd3291162fcf5f8e009da1b1ff62a09c33c795"
+    },
+    {
+      "bytes": 22155,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\SYNTH_SHEET_vai.svg",
+      "sha256": "543d265e8ca434893825ff6bd0418b8edeec7783ed725f37ef4dd7c1fbf3798f"
+    },
+    {
+      "bytes": 7378,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\betsoft_512_vai.svg",
+      "sha256": "c8c4f85da632481b3fa93ea6d1420c3323b4c3293f3d7e5701b94b16431d61cd"
+    },
+    {
+      "bytes": 3483,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\egtdigitalgames_512_vai.svg",
+      "sha256": "e60a0d0360437503870fbabdcccaeaf93a7c94007876e4f347b93118abd455f2"
+    },
+    {
+      "bytes": 4529,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\eyecon_512_vai.svg",
+      "sha256": "ad0ee0812d2ca269cb4d65b9d5f0d2a6a2a85c7150c0f53c3aa160ca8157a484"
+    },
+    {
+      "bytes": 7583,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\goldcoinstudios_512_vai.svg",
+      "sha256": "eb6497d12f7f5f92ee7bd47056a1ba1cdf3da7f78d52bfcf1782f800a3840c95"
+    },
+    {
+      "bytes": 164360,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\goldenhero_512_vai.svg",
+      "sha256": "23837478212931841be2e56db4c1147ee458e5f763c6be580881b60c5b147a63"
+    },
+    {
+      "bytes": 10023,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_1_vai.svg",
+      "sha256": "bf7d931e6882192216312fb6ce732db7d9728cb32bb6c93c4b0a43dab1dd6ba8"
+    },
+    {
+      "bytes": 70625,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_2_1_vai.svg",
+      "sha256": "08a952e78c17cb7ba1bb40ba588ae8c6d31e0d09473c939889d9aa170f466730"
+    },
+    {
+      "bytes": 8474,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_2_2_vai.svg",
+      "sha256": "8eb4d6c97e6b0d2d2e73b9f81e8bd255d317502bacf0f967350e77130577dce5"
+    },
+    {
+      "bytes": 11583,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_2_3_vai.svg",
+      "sha256": "8370c3b2d16bdb1993ac5f59ef280bff3ca5a9eda384895b7a861871c8ef5712"
+    },
+    {
+      "bytes": 4080,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_2_4_vai.svg",
+      "sha256": "a5e24988322341ebda555bbe111a7e064b32c42849965fa07cbb7d3107187312"
+    },
+    {
+      "bytes": 3742,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_2_5_vai.svg",
+      "sha256": "e58c258be5422329fc0ad1aef01709da0b40847566869f0d4fd32e3287b6c545"
+    },
+    {
+      "bytes": 157689,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_2_vai.svg",
+      "sha256": "7d33d4417ee54bb580784c095aa718c358ec3181117577e7a94373c257208cad"
+    },
+    {
+      "bytes": 6957,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_10_vai.svg",
+      "sha256": "2399136b263dc7eb9990c095b23910d75fb742d765518f9db72ef2e47ada2a02"
+    },
+    {
+      "bytes": 7911,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_11_vai.svg",
+      "sha256": "a8813f9bb54e17303d84ea538bb4e99cd7250476f03315f8ba02ca1d796d879d"
+    },
+    {
+      "bytes": 37476,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_12_vai.svg",
+      "sha256": "5deefa6f3560d9522382b1a0a3626e520a679c9888477484d23de244edc1c632"
+    },
+    {
+      "bytes": 62068,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_1_vai.svg",
+      "sha256": "3ae19e92600f50f658399523d8aa7f2b72cb8fc3467255b1568589fc4ad2c9e2"
+    },
+    {
+      "bytes": 14993,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_2_vai.svg",
+      "sha256": "9ed04557524aa0cd1d341ac8aad97852b08183064d960216be93ea6a54c959e3"
+    },
+    {
+      "bytes": 29946,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_3_vai.svg",
+      "sha256": "9a41756fd6f2b78c85de1dcc24316f01594f6789ab58a497a0d257819b113677"
+    },
+    {
+      "bytes": 49365,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_4_vai.svg",
+      "sha256": "113736da48ddafb6ca68854692c06371842cfc08c123a3ea0ed4e6963e46f298"
+    },
+    {
+      "bytes": 13176,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_5_vai.svg",
+      "sha256": "eaa8fc4dec32b01bf5eef7be4f04646bbae78c17da8f8e528fa218a06fa65898"
+    },
+    {
+      "bytes": 20580,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_6_vai.svg",
+      "sha256": "1a823c42cd0684c74173a6ba6a210a7050c5fe6e0f7a9d96bf4e0d27df90523c"
+    },
+    {
+      "bytes": 11179,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_7_vai.svg",
+      "sha256": "3cdf7c18b9d05a3645e680278a6f9784b6a96e2c2bb1934fcac2581079c60489"
+    },
+    {
+      "bytes": 30743,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_8_vai.svg",
+      "sha256": "fcb98d14864a096c2ba9ae679efd630e57f441842b8dcd0ca1aae72e26ee86d8"
+    },
+    {
+      "bytes": 25413,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_9_vai.svg",
+      "sha256": "8fd2050053eac096510e9c2f7d2c093cdba21063c3cea5bed10e283521cec304"
+    },
+    {
+      "bytes": 548295,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_3_vai.svg",
+      "sha256": "d8ae2395e1acab15026ee3caf05fb0e6ef4eab9a2bbe219a480817da4319040d"
+    },
+    {
+      "bytes": 36115,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_10_vai.svg",
+      "sha256": "b90be563f020ebfb75dde6158608cee72723d487892a382b8d2928b17573e04d"
+    },
+    {
+      "bytes": 11435,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_11_vai.svg",
+      "sha256": "8ba5cc107ed3b651814a4a5f770e8634ece6c950ecff4b04c06026b932ad31b9"
+    },
+    {
+      "bytes": 18847,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_12_vai.svg",
+      "sha256": "2fdccf6df84c265e41c64e54962d0a5b17759c665cebb952d30abacfd47bc619"
+    },
+    {
+      "bytes": 17777,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_13_vai.svg",
+      "sha256": "d633115db79a13425b132b80375623a464dc034ebb7670823cb7d00dea6c0b1d"
+    },
+    {
+      "bytes": 35378,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_14_vai.svg",
+      "sha256": "86e766e641a84989de0f2b53eb302859b144a87d713da57df8c2046fa017f7a2"
+    },
+    {
+      "bytes": 10248,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_15_vai.svg",
+      "sha256": "c7c8cb7bde7abed90eee9854a117fd8a99a3e21a2f6d0af79c69752874688bd6"
+    },
+    {
+      "bytes": 19733,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_16_vai.svg",
+      "sha256": "96927c6378e979be1311c5f4601e056ff8da3b6a462ac6c91242aa7f1f35f72a"
+    },
+    {
+      "bytes": 52636,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_17_vai.svg",
+      "sha256": "9d79b3fe2fedd104e02512dee463ef4e983bb177a253acfba83a2be3d52b8cd9"
+    },
+    {
+      "bytes": 7853,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_18_vai.svg",
+      "sha256": "c21c103e9c8cd486aa6285c4e2e6893eda587a4780e07ae46f3c258a02da48ad"
+    },
+    {
+      "bytes": 29488,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_19_vai.svg",
+      "sha256": "1f5ed5f4eefbc96fcfc1ac2446f67af14a87fdf221ab8938bfda1b5c73867be6"
+    },
+    {
+      "bytes": 52710,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_1_vai.svg",
+      "sha256": "12d713fb6a3a44a8f5f62fff5421333575655d353d56788aa283ca58f1977764"
+    },
+    {
+      "bytes": 37379,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_20_vai.svg",
+      "sha256": "c31f39edff6062cfe7701cc2f5aa953884ee8292b8c275bbecde106fe7c4cf1b"
+    },
+    {
+      "bytes": 9735,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_21_vai.svg",
+      "sha256": "322d0ac68e39a886e3c05214911866381714f866627958d660165a35331cb993"
+    },
+    {
+      "bytes": 9888,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_22_vai.svg",
+      "sha256": "1762c20bf87e87752ae8961e2cf3c754f15dff33638811f8d4a35a81295f7468"
+    },
+    {
+      "bytes": 5969,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_23_vai.svg",
+      "sha256": "d1f53f83087f4e25871984c62a787c3ffdc3c0756e92e429484645f0ef436c46"
+    },
+    {
+      "bytes": 16544,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_24_vai.svg",
+      "sha256": "a354273742b4d2572e52b613d81ff02f4d4a267013acf089dc3bf22170dd7e8c"
+    },
+    {
+      "bytes": 24231,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_25_vai.svg",
+      "sha256": "41a594fe6283ed3bb18b4a1bc1b819027d5ae17cc0f0ef60c51cdd639c82028f"
+    },
+    {
+      "bytes": 61883,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_26_vai.svg",
+      "sha256": "2e847ba15e661d270435772c14ebf4054c1ebd786c12281bde52b75abc62c302"
+    },
+    {
+      "bytes": 14594,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_27_vai.svg",
+      "sha256": "5e76e25c0597c5598ac1b28af3efc945c27ad7b65ea6e65f99c9bf107d14b0b2"
+    },
+    {
+      "bytes": 27615,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_28_vai.svg",
+      "sha256": "f74522f8068147b01cb8941277c087475f7a827cddfd81e49bd9dad14847ca29"
+    },
+    {
+      "bytes": 7409,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_29_vai.svg",
+      "sha256": "a34fce762cd3eabf6f3a3481470dd3d8d51294d71b84fbd80140bd118b1536ff"
+    },
+    {
+      "bytes": 26262,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_2_vai.svg",
+      "sha256": "41994870ac19b8574de318a82e02c546f776ed7bf78240b61e9fda07d3e850c3"
+    },
+    {
+      "bytes": 7861,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_30_vai.svg",
+      "sha256": "d3275b2fe7d4a87d4c12c0474344c23ec86337025890c52d8d23bd961b009a44"
+    },
+    {
+      "bytes": 15731,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_31_vai.svg",
+      "sha256": "b392a6a800ddf7628ae24ca87f1aa7060ce1cc22deef456b443c076a0c0133e7"
+    },
+    {
+      "bytes": 7095,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_32_vai.svg",
+      "sha256": "8b46f92fc07b0b2e98da799d254cc6ce914c608c393a8039c4aeb6d250401922"
+    },
+    {
+      "bytes": 28486,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_33_vai.svg",
+      "sha256": "9e4dbb7c28adef4b9968857709a0006278c6c96f5f3cd6e8bea24a31084494bc"
+    },
+    {
+      "bytes": 19638,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_34_vai.svg",
+      "sha256": "fe852bff8aa5afefbb01f9eff4dc50dcbd3cf589fb384e98b65da6b67cb4f2d2"
+    },
+    {
+      "bytes": 20561,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_35_vai.svg",
+      "sha256": "00b0c4129d6294ebd3e27da7e8e9eb4716029784a29c78698002b8c7feb85e38"
+    },
+    {
+      "bytes": 4929,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_36_vai.svg",
+      "sha256": "789792c4cead6a646939456fb532ba858be954de9b8796ec6cd4871e19f327c1"
+    },
+    {
+      "bytes": 4030,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_37_vai.svg",
+      "sha256": "8457a4b316bcffb62f1ac538054bed50c4ebec672ffe6424364b94792b7d3573"
+    },
+    {
+      "bytes": 9164,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_38_vai.svg",
+      "sha256": "49797d0cd94740f3c2b78be6be1f7053f1f6c6bd87e3a1b63096b571a1f44efd"
+    },
+    {
+      "bytes": 9054,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_39_vai.svg",
+      "sha256": "d1c41b49ba86d8b12f74175f9a767e197f13bc09501c1fc47054b86647cb1af3"
+    },
+    {
+      "bytes": 24154,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_3_vai.svg",
+      "sha256": "4dac5cc2e97a8d2556e38a92fb6647e791e737bf445feed1a8fe832eeee2b48a"
+    },
+    {
+      "bytes": 21805,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_40_vai.svg",
+      "sha256": "8c3a9997ab06b1ad38c7119dd3476441a51f4a7b64829476ae61c883103e3111"
+    },
+    {
+      "bytes": 14020,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_41_vai.svg",
+      "sha256": "49b6b245ea1566e9fd2ef43591e4ebf805ebf5d564ebe9ef067b9e88437a16e9"
+    },
+    {
+      "bytes": 8883,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_42_vai.svg",
+      "sha256": "e7887c96f5124da1a7d4912ca9222dc27a872a05604c332513dc4cc4ab1cf7d6"
+    },
+    {
+      "bytes": 15645,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_43_vai.svg",
+      "sha256": "a791d5d917d9951f0b1c2be095852a77f7edcfc95ac7e9fea12ae6019c2ca1e8"
+    },
+    {
+      "bytes": 8149,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_44_vai.svg",
+      "sha256": "3fd9f212c5263937b9d70f928d9f2545a369111726a7cc898e051e2158297118"
+    },
+    {
+      "bytes": 7486,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_45_vai.svg",
+      "sha256": "bf346bb734abb2489314a7e72d5c9872acd5baf3232ac0039d0c24d63eb6afa8"
+    },
+    {
+      "bytes": 26781,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_46_vai.svg",
+      "sha256": "eda1d358e83e3752af4f6e6e0ea42f4019d86f49097e40e69b91b92f5e952965"
+    },
+    {
+      "bytes": 13666,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_47_vai.svg",
+      "sha256": "7cd5502b98353c7ced21b83f2ea302eb997584e635583b6c1dbc9f5ab3616fcb"
+    },
+    {
+      "bytes": 7394,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_48_vai.svg",
+      "sha256": "6db4b1ca83b5cf3a86aa4e837550ef84d87bf5dff3f2974ba20df32787d547a4"
+    },
+    {
+      "bytes": 7747,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_49_vai.svg",
+      "sha256": "41bd44b298bac339ef859124b051426edce453d7ef697010575695f3d7e69d78"
+    },
+    {
+      "bytes": 34909,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_4_vai.svg",
+      "sha256": "55fb39195d9f915ed101c4e07fbb50031d32a6090f8e22fd8239cc7d935bdcca"
+    },
+    {
+      "bytes": 6229,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_50_vai.svg",
+      "sha256": "99658cfc533e33ce8a191dcabaebf276564977f6b490109a8126c50b92211cf2"
+    },
+    {
+      "bytes": 10142,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_51_vai.svg",
+      "sha256": "11e8bf29ef116628b80456d1becffb7b89b8a883375b7658851987a0cfa68e40"
+    },
+    {
+      "bytes": 11381,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_52_vai.svg",
+      "sha256": "2c04f3163e141bca93c018914c60829e60434beb8583cd69ab87b99ae4041980"
+    },
+    {
+      "bytes": 10721,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_53_vai.svg",
+      "sha256": "a639846bb6b42d22f38a7269afb12fe1b57dd92ecaee41c310130a4bb8ae504f"
+    },
+    {
+      "bytes": 7409,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_54_vai.svg",
+      "sha256": "a7f1e74ce0d4f651878b6e2ebe935a885db06db75dda30a7f10ae20e6cc02438"
+    },
+    {
+      "bytes": 4136,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_55_vai.svg",
+      "sha256": "12f24771ae2501efac899c47529a278d7b5f6e72ae7ca0f50d8d03a4f56f9325"
+    },
+    {
+      "bytes": 14012,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_56_vai.svg",
+      "sha256": "95c5a4511eea2ef9bec6e354c6fc2125d699c2485a8e809f8b6943604220a4e5"
+    },
+    {
+      "bytes": 7784,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_57_vai.svg",
+      "sha256": "1d679430387f1c3edbece42a502d32b648efe6ead319ff4fbdbe3c24d3a3f1e2"
+    },
+    {
+      "bytes": 5816,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_58_vai.svg",
+      "sha256": "4a1e22338ae1d70bd6153c539b8efc5b9fa16121145651930becc13280a0ff98"
+    },
+    {
+      "bytes": 702,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_59_vai.svg",
+      "sha256": "dc079e134832bcec56ff59f87b4cff213bc85408ce9be3183620583fa2228a72"
+    },
+    {
+      "bytes": 62855,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_5_vai.svg",
+      "sha256": "27f7a9c1f81caa755a7968698eb8dc2411e60667982a0ecdec0d1782d892041f"
+    },
+    {
+      "bytes": 13354,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_60_vai.svg",
+      "sha256": "d51e62e80f0a1694b3f76bc6be8ecac8b90a4ad6d69ff66dd6e8bb921526db11"
+    },
+    {
+      "bytes": 17066,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_61_vai.svg",
+      "sha256": "11ca6c51a0ce750e0d2ae8866a49650fbbe3e0d2d074d218108d65c83e594a81"
+    },
+    {
+      "bytes": 22314,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_62_vai.svg",
+      "sha256": "0c1e68c80611b6fe71e5b1d5dc943d7697819e88faa5721734904730563e098e"
+    },
+    {
+      "bytes": 4430,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_63_vai.svg",
+      "sha256": "b7d0b6d8cd9983bd910cd80d9df546ea148c8edc374a2a83a0156915cf688fb7"
+    },
+    {
+      "bytes": 6019,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_64_vai.svg",
+      "sha256": "a92f7bec11dd947cb5418d9e35853e6f715f540b53a0d7ca805dad3e0b574200"
+    },
+    {
+      "bytes": 18323,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_65_vai.svg",
+      "sha256": "a554a9b2872688b50dac0dca88393b5ec8e72abf2c4b05a9f08cec26158d246c"
+    },
+    {
+      "bytes": 19777,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_66_vai.svg",
+      "sha256": "fe747a9dca8cdf196f50c01ac65503a0c8b7a2a5690a1f02590bdf6927641e19"
+    },
+    {
+      "bytes": 13240,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_67_vai.svg",
+      "sha256": "4b4f1643f072437c9ecd57aff8759519ec5bc65fa9185411a4d1ee8512372934"
+    },
+    {
+      "bytes": 1507,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_68_vai.svg",
+      "sha256": "3e8642ced9fad649edff4bf07059c4498c87d6ee473929dc3e73338e7a7a7660"
+    },
+    {
+      "bytes": 6394,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_69_vai.svg",
+      "sha256": "23f5c0691ca0ddaf6572bfc5906b1bcb4d9514b401d543ca79b01e6e5d4c2fc9"
+    },
+    {
+      "bytes": 7476,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_6_vai.svg",
+      "sha256": "ea3bc9671ab22249ae0d6047f38a59cf835e7a2c3235f3195add140bbd0287d4"
+    },
+    {
+      "bytes": 9582,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_70_vai.svg",
+      "sha256": "81c37ae4e1c3ae703afa4a664f0add172fda732b349ffe294ffbd616ab549620"
+    },
+    {
+      "bytes": 10788,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_71_vai.svg",
+      "sha256": "522c52d5d9349efae4a752397bdc029016241a79cfc219aa407f85d5e7d55b08"
+    },
+    {
+      "bytes": 8963,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_72_vai.svg",
+      "sha256": "eedb7628d756a20f555972814b4b1ea2a96e2bafe17150a4cbef777ad2053afc"
+    },
+    {
+      "bytes": 12320,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_73_vai.svg",
+      "sha256": "b347bcbb9c3dac470418ba9e53bf1147706706f1a731c716c9107098dde7552f"
+    },
+    {
+      "bytes": 13054,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_74_vai.svg",
+      "sha256": "3e280184a838a9f50f2af045a61b2154d4cde6eeace5b268fdefe0974915c2c2"
+    },
+    {
+      "bytes": 11206,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_75_vai.svg",
+      "sha256": "57cf9cb434b55a3d9ae04c3ae18d3378e80ab355057fb6328206ab256d8f11b1"
+    },
+    {
+      "bytes": 21234,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_76_vai.svg",
+      "sha256": "f5d5e59f030a6e4b9966f3f70aaccc30e29210ebc9e82510a3283b7a8a3ca012"
+    },
+    {
+      "bytes": 10232,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_77_vai.svg",
+      "sha256": "2e3e020a581ec6127ab897891fbc35ad1032e345ae51a112d1a46897973ca466"
+    },
+    {
+      "bytes": 4585,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_78_vai.svg",
+      "sha256": "b7d07a9243c686e50f85cd9a6fc3deb553bdee51b238e8f08171ea96bd1e4b4b"
+    },
+    {
+      "bytes": 9422,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_79_vai.svg",
+      "sha256": "6f9f956157bb6e177805dfd00cf755f8d26fbff7317c50c23bad7541664d82be"
+    },
+    {
+      "bytes": 31465,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_7_vai.svg",
+      "sha256": "e37f59900e9b8fb86788e9451eebfdfc17c6f092a13b100804d0e27017536be2"
+    },
+    {
+      "bytes": 10001,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_80_vai.svg",
+      "sha256": "33d9a51722f3e9d7592e7e0718a8b53a224344322ef224318824a71a17033be8"
+    },
+    {
+      "bytes": 28062,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_8_vai.svg",
+      "sha256": "0d26d79e60f2911e8596630dfe0b6e50ddc5322ca5b498e823fd3797075d5e34"
+    },
+    {
+      "bytes": 24942,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_9_vai.svg",
+      "sha256": "0ef1e3dd1ce88ed708ed331f23243d2d6b9cbd8630d96b9fde6ba584babc4c2b"
+    },
+    {
+      "bytes": 6987,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_4_vai.svg",
+      "sha256": "bb14ebda72a704b9ad3d04f7a506545f1f3b139ba24c2945ddf42e1f08ee52f1"
+    },
+    {
+      "bytes": 6805,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_5_vai.svg",
+      "sha256": "a01db7d0d5a1e988f5c8b40f02aadb23058b82cbbc3ab3b8bdd0844fb649756a"
+    },
+    {
+      "bytes": 26054,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_6_vai.svg",
+      "sha256": "43a4ba3336beaa2da8163be0f364989e153a7cce56696ea36471dc478f444681"
+    },
+    {
+      "bytes": 5807,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_7_vai.svg",
+      "sha256": "b549e702e388fa31bc36733e5ecdb045ede27f1b6daed2c08c7f52685b823707"
+    },
+    {
+      "bytes": 126507,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\icon_group_vai.svg",
+      "sha256": "5ffe0e3719adf7b5f1850457b209bcba43fbba916581680b7aa8c900d1d608c2"
+    },
+    {
+      "bytes": 340683,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\lightningboxgames_512_vai.svg",
+      "sha256": "7b935a09e7e25b51e3b379d86c51b6fb6d14e7b503edeb164b2263abe6d0ee75"
+    },
+    {
+      "bytes": 21917,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\penspiral_in_vai.svg",
+      "sha256": "b6c56107b0f0bed74ef34bf4d0a1556a1d974a141a0db6fb6cad2c1767221db9"
+    },
+    {
+      "bytes": 14373,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\pepsi_vai.svg",
+      "sha256": "e64ed334e4a3800faf2f806ad4c3779d16b0c1731784c19edddd12f028a09a52"
+    },
+    {
+      "bytes": 10443,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\plankgaming_512_vai.svg",
+      "sha256": "a9786734abcf40ed42a3f502e52b83c0a0dd243e9c40e548e9ff3f0b4c9badc0"
+    },
+    {
+      "bytes": 15519,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\platipus_512_vai.svg",
+      "sha256": "00e4f94a9c846632cdb0bc78acea6f19dee7adafe7781326cc90bfdf6740cced"
+    },
+    {
+      "bytes": 9176,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\red7slots_512_vai.svg",
+      "sha256": "de7dcc9e8655fa320e5b2cfcc7c5cc1357cd4fd8c437ace0422df81af975e952"
+    },
+    {
+      "bytes": 34839,
+      "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\vai\\your_logo_vai.svg",
+      "sha256": "17d94cb994956761fdf949156102c583fae0abf2a1b6676a5269d8302267dfc8"
+    }
+  ],
+  "engine": "vice-scene",
+  "engine_version": "0.1.0",
+  "freeze_hash": "33bc0d63e4b82734bcb5349f5d19385ac16b0fbdc6e31074814728c90238758f",
+  "models": [],
+  "plans": [
+    {
+      "bytes": 59752,
+      "path": "C:\\Users\\nirrt\\Downloads\\vectorizer_ai_clean_room_research_bundle\\VectorizerAI_clean_room_reverse_engineering_plan_by.md",
+      "sha256": "b96e9d1000295d5a3af5a96f03300c055313a98d933fa7b7d92369b400edc604"
+    }
+  ],
+  "policy": "no tuning after freeze until the validation campaign completes",
+  "runtime": {
+    "cuda_available": true,
+    "numpy": "2.4.3",
+    "opencv": "5.0.0",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "python": "3.12.1",
+    "torch": "2.6.0+cu124"
+  },
+  "schema": "vice-build-freeze/1"
+}

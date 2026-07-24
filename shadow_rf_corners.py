@@ -69,7 +69,24 @@ def to_db4(loop: np.ndarray) -> np.ndarray | None:
     lp = biggest_loop(up >= 127.5)
     if lp is None:
         return None
-    return lp - shift[None, :] * 4.0       # back into GT frame x4
+    # mask_loops reports boundary-pixel centres; after a 4x half-pixel resize
+    # the traced ring is centred half a native pixel high/right unless the
+    # pixel-centre phase is restored.  Keep the result in GT-frame x4 units.
+    return lp - shift[None, :] * 4.0 - 2.0
+
+
+def _production_classic_positions(loop: np.ndarray, lattice_scale: int) -> np.ndarray:
+    """Classic fallback used by ``process`` when the joint prerequisite defers."""
+    coarse = loop[::max(1, int(lattice_scale))]
+    positions = gv.paper_corner_positions(coarse)
+    return np.asarray(positions, float) if len(positions) else np.empty((0, 2))
+
+
+def _production_corner_positions(loop: np.ndarray, lattice_scale: int) -> tuple[np.ndarray, bool]:
+    pred = joint_corner_positions(loop, lattice_scale=lattice_scale)
+    if pred is None:
+        return _production_classic_positions(loop, lattice_scale), False
+    return pred, True
 
 
 def corpus_f1(limit: int, tolerance: float, condition: str = "native") -> dict:
@@ -78,7 +95,7 @@ def corpus_f1(limit: int, tolerance: float, condition: str = "native") -> dict:
     tp = fp = fn = 0
     loops_seen = 0
     joint_used = 0
-    scale = 4.0 if condition == "db4" else 1.0
+    lattice_scale = 4 if condition == "db4" else 1
     for points, labels, meta in iter_shard_examples(dataset, {"val"}):
         if loops_seen >= limit:
             break
@@ -91,19 +108,18 @@ def corpus_f1(limit: int, tolerance: float, condition: str = "native") -> dict:
             lp4 = to_db4(loop)
             if lp4 is None:
                 continue
-            loop = lp4
+            # Production divides the traced 4x-lattice ring before fitting.
+            # The geometry is native px; density remains 4 samples/native px.
+            loop = lp4 / 4.0
         loops_seen += 1
-        pred = joint_corner_positions(loop)
-        if pred is None:
-            positions = gv.paper_corner_positions(loop)
-            pred = np.asarray(positions, float) if len(positions) else np.empty((0, 2))
-        else:
+        pred, used_joint = _production_corner_positions(loop, lattice_scale)
+        if used_joint:
             joint_used += 1
         events = []
         for eid in np.unique(event_ids):
             if eid < 0:
                 continue
-            events.append(base_loop[event_ids == eid].mean(axis=0) * scale)
+            events.append(base_loop[event_ids == eid].mean(axis=0))
         events = np.asarray(events, float) if events else np.empty((0, 2))
         matched_e: set[int] = set()
         matched_p: set[int] = set()
@@ -176,6 +192,78 @@ def synth_counts() -> dict:
         pred = joint_corner_positions(_to_ccw(loop))
         out[name] = -1 if pred is None else len(pred)
     return out
+
+
+def _synth_loops() -> dict[str, np.ndarray]:
+    """Canonical native loops shared by the count and db4-equivalence gates."""
+    from PIL import Image, ImageDraw
+    from vectorize_papers import mask_loops
+    from benchmark_stages import _to_ccw
+    import math
+
+    masks: dict[str, np.ndarray] = {}
+    img = Image.new("L", (300, 300), 0)
+    d = ImageDraw.Draw(img)
+    pts = []
+    for i in range(10):
+        r = 130 if i % 2 == 0 else 55
+        a = -math.pi / 2 + math.pi * i / 5
+        pts.append((150 + r * math.cos(a), 150 + r * math.sin(a)))
+    d.polygon(pts, fill=255)
+    masks["star(10)"] = np.asarray(img) > 128
+    img = Image.new("L", (300, 300), 0)
+    d = ImageDraw.Draw(img)
+    d.polygon([(40, 40), (260, 40), (260, 140), (150, 140), (150, 260), (40, 260)], fill=255)
+    masks["lshape(6)"] = np.asarray(img) > 128
+    img = Image.new("L", (300, 300), 0)
+    d = ImageDraw.Draw(img)
+    d.rectangle([60, 80, 240, 220], fill=255)
+    masks["rect(4)"] = np.asarray(img) > 128
+
+    loops: dict[str, np.ndarray] = {}
+    for name, mask in masks.items():
+        loop = max(mask_loops(mask), key=len).astype(float)
+        if len(loop) > 1 and np.allclose(loop[0], loop[-1]):
+            loop = loop[:-1]
+        loops[name] = _to_ccw(loop)
+    return loops
+
+
+def synth_counts_db4() -> dict:
+    """N2 contract gate: native and db4 production arms must be equivalent.
+
+    Counts are the ideal 10/6/4 and corresponding corner positions may move
+    by at most 0.75 native px after the 4x trace is divided by four.
+    """
+    from scipy.optimize import linear_sum_assignment
+
+    expected = {"star(10)": 10, "lshape(6)": 6, "rect(4)": 4}
+    rows = {}
+    passed = True
+    for name, loop in _synth_loops().items():
+        native, _ = _production_corner_positions(loop, 1)
+        lp4 = to_db4(loop)
+        if lp4 is None:
+            rows[name] = {"expected": expected[name], "error": "to_db4 failed", "pass": False}
+            passed = False
+            continue
+        db4, _ = _production_corner_positions(lp4 / 4.0, 4)
+        max_delta = None
+        if len(native) == len(db4) and len(native):
+            dist = np.linalg.norm(native[:, None, :] - db4[None, :, :], axis=2)
+            ri, ci = linear_sum_assignment(dist)
+            max_delta = float(dist[ri, ci].max())
+        row_pass = (len(native) == expected[name] == len(db4)
+                    and max_delta is not None and max_delta <= 0.75)
+        rows[name] = {
+            "expected": expected[name],
+            "native_count": int(len(native)),
+            "db4_count": int(len(db4)),
+            "max_position_delta_px": None if max_delta is None else round(max_delta, 4),
+            "pass": bool(row_pass),
+        }
+        passed = passed and row_pass
+    return {"pass": bool(passed), "shapes": rows}
 
 
 def classifier_f1_db4(limit: int) -> dict:
@@ -258,17 +346,19 @@ def main() -> int:
                        "synth": synth_counts(),
                        "secs": round(time.time() - t0, 1)}
         print(tag, json.dumps(report[tag]), flush=True)
-    # db4-conditioned arms: the SAME val loops re-quantised the way the
-    # production deblur path sees them; tolerance scales with the lattice.
+    # db4-conditioned arms: the SAME val loops, traced on the 4x lattice but
+    # fed to the fitter in native coordinates exactly as production does.
     for tag in ("CNN_db4", "RF_db4"):
         gv._corner_probabilities = _cnn_probs if tag == "CNN_db4" else rf_corner_probabilities
         RF_LANE = "db4"
         t0 = time.time()
-        report[tag] = {"corpus": corpus_f1(limit, 12.0, condition="db4"),
+        report[tag] = {"corpus": corpus_f1(limit, 3.0, condition="db4"),
                        "secs": round(time.time() - t0, 1)}
         print(tag, json.dumps(report[tag]), flush=True)
     gv._corner_probabilities = _cnn_probs
     RF_LANE = "native"
+    report["dp4x_equivalence"] = synth_counts_db4()
+    print("dp4x_equivalence", json.dumps(report["dp4x_equivalence"]), flush=True)
     out = ROOT / "benchmarks" / "shadow_rf_corners.json"
     out.write_text(json.dumps(report, indent=1), encoding="utf-8")
     print("->", out)

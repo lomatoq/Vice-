@@ -34,7 +34,7 @@ sys.path.insert(0, str(ROOT))
 from geometry_vectorizer import process  # noqa: E402
 
 # The modes the underlying pipeline actually understands (mirrors server.py).
-SMOOTHING_MODES = ["none", "corner", "chaikin", "bspline", "cad", "uncertainty",
+SMOOTHING_MODES = ["scene", "none", "corner", "chaikin", "bspline", "cad", "uncertainty",
                    "perceptual", "perceptual-icm", "perceptual-merge", "paper",
                    "paper-native", "paper-perc", "paper-perres", "paper-regions"]
 EXTRACTORS = ["mininet", "palette"]
@@ -121,7 +121,11 @@ def run_one(source: Path, out_root: Path, modes: list[str], extractor: str, make
     for mode in modes:
         mode_root = out_root / mode
         try:
-            report = process(source, mode_root, extractor=extractor, smoothing=mode)
+            if mode == "scene":
+                from vice_scene.pipeline import process_scene
+                report = process_scene(source, mode_root)
+            else:
+                report = process(source, mode_root, extractor=extractor, smoothing=mode)
         except Exception as exc:  # keep going with the remaining modes / files
             print(f"    [{mode:11}] FAILED: {exc}")
             traceback.print_exc()

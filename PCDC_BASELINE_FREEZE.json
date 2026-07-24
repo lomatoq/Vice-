@@ -1,0 +1,369 @@
+{
+  "schema": "pcdc-baseline-freeze/v1",
+  "created_at": "2026-07-20T15:32:40.730137+00:00",
+  "strategic_target": "V-ICE Proof-Carrying Design Compiler",
+  "production_default": "V-ICE Best / paper-regions",
+  "experimental_policy": "Scene Engine is archived experimental and cannot be promoted",
+  "promotion_policy": "PCDC remains isolated until all canonical promotion gates pass",
+  "git": {
+    "head": "043f8a5706b76bbe225950103ffd84e5c997053d",
+    "dirty": true,
+    "status_sha256": "5f4e96214e5dcce88c657423e323fa0ba3436ba751bccfe5f06387a57bce01a9"
+  },
+  "runtime": {
+    "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "files": {
+    "canonical_plan": {
+      "path": "C:\\Users\\nirrt\\Downloads\\V-ICE_proof_carrying_design_compiler_plan_ru_v2.md",
+      "exists": true,
+      "size": 51583,
+      "sha256": "5fb2f288b44ad6764a1f99c5d915647aabf63220b1fe2395b50fc5433b714cbb"
+    },
+    "production_core": [
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\geometry_vectorizer.py",
+        "exists": true,
+        "size": 681121,
+        "sha256": "5d11f8d80f20f6dee016e20956feb22c6c2aadeb24f20331ed76fd174b26faef"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\vectorize_papers.py",
+        "exists": true,
+        "size": 38261,
+        "sha256": "e3c3dd062d78950bd8115b2107b18be2b8322135dc758d6160a22ba109f1aaed"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\web_preview\\worker.py",
+        "exists": true,
+        "size": 2419,
+        "sha256": "0748079a2b1a52a6f827adc7ed9d7f6f9cc56600a326d118e812852c1d019b72"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\web_preview\\server.py",
+        "exists": true,
+        "size": 26111,
+        "sha256": "d4207658a4c5e3a36d66f8cd469ec7fb6cd1ebf332e6c9dcf6bb83561bc7b299"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\web_preview\\index.html",
+        "exists": true,
+        "size": 5503,
+        "sha256": "500122fdc53d28e1cef5ba2709ba4f4db942384a2011e1d25230fb739da001ca"
+      }
+    ],
+    "models": [
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "675ff20c661dee7c0f10228428b35f2ac40942bf24fbe4ee4d8716df50068624"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_final_backup.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "c6c45529b8e54676f822910e1b0041d82614cbad7319ba44d45ce178044e7ff9"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_focused_candidate.pt",
+        "exists": true,
+        "size": 267460,
+        "sha256": "2e2e0a2d5335ee960008e02f52fef47b30f4de3fc0b25d7172f2b0f097450b5c"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_human_backup.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "16eab22ec51d6071577300bd32079e94fff825e814f473b3f75cedc247dbd2b2"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_hybrid_large_v1.pt",
+        "exists": true,
+        "size": 268513,
+        "sha256": "24118bdba80a5f5a3ec61d3447f56ec834c31ccf651d62553efffdd6aa5c00e8"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_nohuman_backup.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "73c9405e4bb8c952e7a61a3ad4d7bf30f9be83298b9087eccf9bc59ccac853b0"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_prefinal_backup.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "da424e31d855797a5edf138353e26718a79b713327beca60b3cc1ff817a10833"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_prepaper_backup.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "16eab22ec51d6071577300bd32079e94fff825e814f473b3f75cedc247dbd2b2"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_pretiling_backup.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "c6c45529b8e54676f822910e1b0041d82614cbad7319ba44d45ce178044e7ff9"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_primitives_balanced_candidate.pt",
+        "exists": true,
+        "size": 268080,
+        "sha256": "2843c13414f68a593e8931f9f767b2e29fef647cafa0bc430d487604168313af"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_primitives_batched_balanced_candidate.pt",
+        "exists": true,
+        "size": 268472,
+        "sha256": "508110db763f081b72377338cf1d5fcae60de3bdd0eb0515f8da0a6649ae5bdd"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_primitives_batched_precision_candidate.pt",
+        "exists": true,
+        "size": 268513,
+        "sha256": "24118bdba80a5f5a3ec61d3447f56ec834c31ccf651d62553efffdd6aa5c00e8"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_primitives_candidate.pt",
+        "exists": true,
+        "size": 267647,
+        "sha256": "f3055278c5374febc0b1c1657e1beea3bf63ab17b8cd194a5cdc419b1ca64588"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_primitives_precision_candidate.pt",
+        "exists": true,
+        "size": 268121,
+        "sha256": "04e9e14f9b54287008a448637f16e78190ef370751965e80769f841a7eda8335"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_text_glyph_pilot_candidate.pt",
+        "exists": true,
+        "size": 268405,
+        "sha256": "e91c5f681eede8d0fb6e6d4b98403b19be65e90b7b0303e29cdf1972e7c3f394"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_cnn_tiled_backup.pt",
+        "exists": true,
+        "size": 265954,
+        "sha256": "675ff20c661dee7c0f10228428b35f2ac40942bf24fbe4ee4d8716df50068624"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_perres_paper.joblib",
+        "exists": true,
+        "size": 44345184,
+        "sha256": "96c96fd5f8314d00797d1e3a41781fa52b791d87bee472f8f4882277067081f1"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf.joblib",
+        "exists": true,
+        "size": 109328564,
+        "sha256": "0b9e30375acc6b7c28eb02331a102242723a19b58cc7db5c96eebc780e0f3941"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_15k_backup.joblib",
+        "exists": true,
+        "size": 41010949,
+        "sha256": "cb364efd1ebddd1ee97044d66d06f25822c6e7b8618e3d86ce7d3f394d6d007a"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_40k_backup.joblib",
+        "exists": true,
+        "size": 48194164,
+        "sha256": "309f2266424f81467336f91161926c69c068b560d48847fdb154b319a3109d7a"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_allsizes_backup.joblib",
+        "exists": true,
+        "size": 43634469,
+        "sha256": "c4ed8cc824c3a01ba3e1ff982e4de3decea8980e62101594c7fc7db34bc5fca0"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_bal_backup.joblib",
+        "exists": true,
+        "size": 78581044,
+        "sha256": "9ba88e0b6297d589b6cfb5512ba1206f3870b1dd2a156698f94bb5ed8df8ee19"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_final_backup.joblib",
+        "exists": true,
+        "size": 109328564,
+        "sha256": "0b9e30375acc6b7c28eb02331a102242723a19b58cc7db5c96eebc780e0f3941"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_hpo.joblib",
+        "exists": true,
+        "size": 715822368,
+        "sha256": "2a377816f9c0544ef94f6186f104a5e6808310ff52cd53ac59e8e6638be1ef91"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_paperonly.joblib",
+        "exists": true,
+        "size": 56730960,
+        "sha256": "86df84e7938384d4cadd3a61e88af31e03bd547ab6218012c775acc12dee3a3c"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_paperrot.joblib",
+        "exists": true,
+        "size": 60415472,
+        "sha256": "fc2372d410c6bff86df98e3b1b1f74ae891071de9f403afa572002d4c46d4996"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_pre15k_backup.joblib",
+        "exists": true,
+        "size": 45875755,
+        "sha256": "94003b52ec3ccdf6f2fc392e354adcb376fb209aa3cb4209d9a72518c19b2f5a"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_precleaning_backup.joblib",
+        "exists": true,
+        "size": 54850635,
+        "sha256": "f26b4863a772f57d2079699181732ba0b70d406a929dbcd417019fcdff9201b4"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_prefinal_backup.joblib",
+        "exists": true,
+        "size": 129409519,
+        "sha256": "195bf8375d625aaf087181c6d4374fa6dab42953e6b3071130ec89a06be72fc3"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_prehuman_backup.joblib",
+        "exists": true,
+        "size": 68211444,
+        "sha256": "8c92fbdc91d7a95d5d3cfa42e48ecd7612686fe7dc531d4eda755c1dc6bbbb5c"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_prepaper_backup.joblib",
+        "exists": true,
+        "size": 92387764,
+        "sha256": "ca8d44672eba57838db48aa914e43ef5a8776112a38b58b2d494100ec88176c0"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_prestructural_backup.joblib",
+        "exists": true,
+        "size": 45875755,
+        "sha256": "94003b52ec3ccdf6f2fc392e354adcb376fb209aa3cb4209d9a72518c19b2f5a"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_realmodel_backup.joblib",
+        "exists": true,
+        "size": 40586313,
+        "sha256": "3f43d3d6605e75ed9c8d14f7b141e643168e0066d560b8a9f277e8829dae1f55"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\corner_rf_super_backup.joblib",
+        "exists": true,
+        "size": 78800244,
+        "sha256": "f47bfecff8416162b882429c14c7abef916b5dc95b36e2296fd65dd67a7cfa77"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\scene_evidence.candidate.pt",
+        "exists": true,
+        "size": 3111098,
+        "sha256": "bf6661c7d86795c8ba07cbc2afda56998edae531a504dbfc36ea33b872a2ec35"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\scene_evidence.real_ab_rejected.pt",
+        "exists": true,
+        "size": 3111142,
+        "sha256": "1f02dfa5c8ba36a248143ca040cd8f28053bcf2311aa6e36e0ee6b346158d6b5"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_4x.json",
+        "exists": true,
+        "size": 20133,
+        "sha256": "611384880326b366b22a3b7dec69276b8572e70e72d110b503f4ea8b689f2de0"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_4x.pt",
+        "exists": true,
+        "size": 636490,
+        "sha256": "5247e51b7682439507b490d4d944ffdaed23d4d978203526f670c6d6bc707fa2"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_4x_v1.json",
+        "exists": true,
+        "size": 4883,
+        "sha256": "ce1c57a49827f29744b0c84eb2f39800a4c76f00aa0e1dbdd8e5188f92d5b526"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_4x_v1.pt",
+        "exists": true,
+        "size": 635696,
+        "sha256": "c09dcd098107849b3f6f935cf88934fea1c8431113546e6f8e5b3131a6d56b8d"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_4x_v2.json",
+        "exists": true,
+        "size": 20133,
+        "sha256": "611384880326b366b22a3b7dec69276b8572e70e72d110b503f4ea8b689f2de0"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_4x_v2.pt",
+        "exists": true,
+        "size": 636490,
+        "sha256": "5247e51b7682439507b490d4d944ffdaed23d4d978203526f670c6d6bc707fa2"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_bench.json",
+        "exists": true,
+        "size": 580,
+        "sha256": "d02c5cf3b2714e7a4d5e9ff4678fee1f2f2657ee62512c4379ed3cfd6eb45d08"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_bench.pt",
+        "exists": true,
+        "size": 635722,
+        "sha256": "183efe1aaead0baceec03513fa46a3716a9968c8f703c7d6b67f3a10df29c270"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_smoke.json",
+        "exists": true,
+        "size": 577,
+        "sha256": "f5a18f2916b661615bfbd8aa75886606ae463a41ffd8e81cadc795aefa2e4a4c"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\models\\subpixel_mininet_smoke.pt",
+        "exists": true,
+        "size": 635722,
+        "sha256": "27af9f2a06be06699733f2315f8edaeb2fd5b57f86ed5419dc14c28fd7a731f4"
+      }
+    ],
+    "benchmark_truth": [
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\vai_snapshot_production_fresh50_final.json",
+        "exists": true,
+        "size": 69325,
+        "sha256": "20c62395ed690c2dfdc2d85cf133d891b2d31d79d9cb0dfaae7f756a7714ad2a"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\plates\\plate_layout.json",
+        "exists": true,
+        "size": 18057,
+        "sha256": "3877ed0d81958d99b00ee05267992ac8250781653db47a36e1912b52210f7af9"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice pictures\\challenge_pack\\eval\\report_blind_FROZEN.json",
+        "exists": true,
+        "size": 113146,
+        "sha256": "79ad582d425e69383c31c9e58694d91f2ce865475e7fd7d1497f53a12154cea6"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\benchmarks\\pcdc_phase0\\completeness_report.json",
+        "exists": true,
+        "size": 73830,
+        "sha256": "00da1674f9aff9ca7bed94e95de05e4d4def6ea743da40e1f91b4419bc327d5c"
+      },
+      {
+        "path": "C:\\Users\\nirrt\\Toolset\\v-ice part\\datasets\\pcdc_real_loci_v1\\manifest.json",
+        "exists": true,
+        "size": 305904,
+        "sha256": "4c1b470b637bfd9970dfc1579c50605b41aaf841f5abf7e353390514521d88d7"
+      }
+    ]
+  },
+  "complete": true,
+  "missing": []
+}

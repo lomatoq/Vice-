@@ -1,0 +1,639 @@
+# V-ICE PCDC — актуальны аўдыт wordmark prior і адкрытых gates
+
+Дата зрэзу: 2026-07-23. Статус: **не прамоўтнута; VAI parity не заяўлена**.
+
+## Кароткі вердыкт
+
+Стары per-glyph prior навучыўся на synthetic held-out, але не змяніў ніводнага
+з 100 фінальных TextLine SVG. Ён не з'яўляецца production-рашэннем і застаецца
+адключаным. Бягучы кандыдат — whole-line OCR-conditioned wordmark prior без
+character-cell seams. Няпоўны v3 run спынены да epoch 1, калі audit выявіў,
+што ён прапускае 1–2-сімвальныя logo. Строгі v4 preflight пройдзены, і frozen
+full run ужо навучаецца на 2 000 000 унікальных wordmarks, 4 эпохах і асобных
+па font family calibration/test splits па 20 000 прыкладаў.
+
+Production па-ранейшаму fail-closed: адна наяўнасць checkpoint не ўключае
+мадэль. Патрэбны ўсе strict synthetic gates, свежая model-OFF/model-ON
+Experiment 4, blind human court, current full regression і hash-bound promotion.
+
+## Што паказаў машынны plan audit
+
+Актуальны справаздачны файл:
+`benchmarks/pcdc_pre_v14/plan_traceability.json`.
+
+Адкрыта 8 патрабаванняў:
+
+1. Перазапусціць Experiment 1 на бягучым compiler hash.
+2. Перазапусціць Experiment 1B.
+3. Перазапусціць Experiment 2.
+4. Перазапусціць Experiment 3.
+5. Атрымаць поўны 2M wordmark checkpoint, які праходзіць unseen gates.
+6. Даказаць, што менавіта гэты checkpoint змяняе certified delivered SVG.
+7. Перазапусціць Experiment 4 OFF/ON і прайсці machine + human gates.
+8. Перазапусціць Experiment 5.
+
+Experiments 1/1B/2/3/5 раней праходзілі, але іх справаздачы цяпер састарэлі па
+compiler source SHA пасля wordmark runtime інтэграцыі. Яны не залічваюцца па
+старых лічбах.
+
+## Вымераны scaling signal, але яшчэ не production proof
+
+100k unique × 4 epochs probe:
+`benchmarks/pcdc_pre_v14/wordmark_prior_scale_probe_recalibrated_fine_thresholds.json`.
+
+- decoded support IoU: `0.92577`;
+- decoded exact topology: `0.5526`;
+- decoded complex topology: `0.53853`;
+- calibration выбрала support threshold `0.85`;
+- calibration выбрала topology-repair confidence `0.70`.
+
+IoU ужо вышэй мінімальнага `0.88`, але topology далёка ніжэй production gate
+`0.95` (`0.90` для complex). Таму гэты checkpoint правільна адхілены.
+
+Актуальны pass preflight v4:
+`benchmarks/pcdc_pre_v14/wordmark_prior_preflight_v4.json`.
+
+- serving vocabulary: `69/69`, missing `""`;
+- family disjointness/determinism/topology diversity: pass;
+- serving length range: усе 32 значэнні `1–32`;
+- 1500-step IoU: `1.000`;
+- exact/complex topology: `1.000 / 1.000`;
+- component/hole heads: `1.000 / 1.000`;
+- дзве незалежныя CUDA loss-траекторыі маюць адзін SHA
+  `8f532603a715b6761fbddc9c07eaf652e62642e6e9dafc8ec8e481ab2c88a7c5`;
+- дзве final weight states маюць адзін SHA
+  `28f7a1d90dc6c7eda8ae9d212bfff1798b1ac3923d7d5f03e94580af4f7a91c7`;
+- model/data contract SHA:
+  `61d786d233ae293424cf82b1f6f0bb23258db9df35ba0862bec7201284425d0c`;
+- trainer source SHA:
+  `9548320a0c975623bf478364269253fe00b154ff590642e3084100d4e4876d70`.
+
+## Памылкі, знойдзеныя перад/падчас поўнага навучання
+
+1. OCR encoder першапачаткова губляў парадак сімвалаў і бачыў anagram як адзін
+   bag-of-characters. Заменена на ordered bidirectional GRU + position embedding.
+2. Test threshold першапачаткова калібраваўся на самім test split. Цяпер ўсе
+   thresholds выбіраюцца толькі на calibration families і фіксуюцца на test.
+3. Outline input і target маглі супярэчыць. Цяпер coverage `>=0.5` строга
+   эквівалентны target support.
+4. Best `state_dict()` быў live alias і мог непрыкметна стаць апошняй эпохай.
+   Цяпер checkpoint snapshot immutable.
+5. Held-out evaluator назапашваў поўныя probability maps і мог патрабаваць
+   >1 GB RAM. Цяпер evaluation streaming/two-pass.
+6. Per-sample TTF reopening і oversized canvases галадалі GPU. Уведзены
+   canonical cached font rendering і bounded workers.
+7. Topology repair прымяняўся да нізкаўпэўненых выпадковых head predictions.
+   Цяпер confidence threshold выбіраецца на calibration split.
+8. Runtime inverse projection памылкова ўключаў model margins у content resize,
+   што скажала native geometry. Выпраўлена exact content projection.
+9. Runtime вылічваў contrast halo, але абразаў яго па старым damaged bbox.
+   Знешні штрых фізічна нельга было аднавіць. Цяпер core mapping захаваны
+   byte-equivalent, halo праектуецца ў model margins, а native expansion
+   абмежавана і паўторна topology/source сертыфікуецца.
+10. Whole-line vocabulary праходзіў праз стары per-glyph кантракт. Радкі кшталту
+    `A+B`/`co-op` маглі быць у training vocabulary, але не даходзілі да runtime.
+    Цяпер glyph і wordmark reachability contracts асобныя і правераныя end-to-end.
+11. Traceability мог скласці training proof аднаго checkpoint з Experiment 4
+    іншага checkpoint. Цяпер абляцыя абавязкова супадае па exact SHA-256.
+12. BUILD_FREEZE патрабаваў прамоўтнуць адхілены per-glyph prior, хаця яго
+    downstream-effect gate быў 0/100 і promotion быў немагчымы. Гэта быў
+    лагічны deadlock. Цяпер яго адсутнасць замарожваецца як explicit optional
+    disabled lane; whole-line checkpoint + manifest застаюцца required.
+13. Pre-v14 readiness прымаў толькі стары traceability schema v1, у той час як
+    актуальны аўдытар выдае v2. Дададзена fail-closed падтрымка абодвух schema.
+14. Promotion manifest захоўваў hashes training/Experiment4/full-regression,
+    але runtime не пераправяраў самі evidence-файлы. Цяпер іх падмена або
+    выдаленне адключае checkpoint, а ўсе тры справаздачы ўваходзяць у
+    BUILD_FREEZE artifact closure.
+15. Поўная promotion validation магла паўторна чытаць checkpoint і evidence на
+    кожны warm request. Дададзены stat-keyed cache: нязменны build не плаціць
+    паўторны multi-megabyte hash, але любая змена evidence інвалідуе cache.
+16. Serving vocabulary меў `&@.-_+`, але factory выкарыстоўваў зрэз першых 62
+    сімвалаў і ніколі іх не генераваў; whitespace цалкам выкідваўся, таму
+    `ACME LAB` і `ACMELAB` мелі адзін condition. Першы full run спынены да
+    эпохі 1. Recipe v3 генеруе ўсе 69/69 tokens, уключае two-word targets і
+    захоўвае нармалізаваны ordered-space token. Новы full run пачаты толькі
+    пасля паўторнага pass preflight.
+17. Model/runtime дазвалялі да 32 ordered tokens, але factory абмяжоўваўся 18;
+    радкі 19–32 былі serving-only. У v3 target range стаў `3–32`, internal
+    space увайшоў у той жа ліміт, а preflight пачаў патрабаваць абодва extremes.
+18. CUDA seed не гарантаваў deterministic kernels; жорсткі mode выявіў
+    недэтэрмінаваны `AdaptiveMaxPool2d.backward`. Ён заменены эквівалентным
+    full-spatial `torch.amax`; два 1500-step runs цяпер bit-identical.
+19. Training/evaluation source не ўваходзіў у model/data hash. Цяпер асобны
+    trainer SHA звязвае preflight, checkpoint, report і promotion; змена loss,
+    calibration ці gate-кода робіць доказ stale.
+20. Чатырохэпохавы run захоўваў checkpoint толькі ў канцы. Цяпер пасля кожнай
+    эпохі atomic `*_latest.pt` захоўвае цэласны best-so-far snapshot; canonical
+    candidate па-ранейшаму з'яўляецца толькі пасля independent held-out test.
+21. Whole-line lane памылкова атрымліваў крыніцу, выбраную па per-glyph
+    topology contract. Для joined/cursive wordmark гэта магла быць заведама
+    горшая маска. Цяпер per-glyph і whole-line lanes незалежныя: glyph lane
+    выбірае topology-cell match, wordmark lane — наймацнейшы сертыфікаваны
+    physical line і прадказвае ўласную global topology.
+22. Optional wordmark inference магла абваліць усю звычайную вектарызацыю пры
+    CUDA OOM, malformed row/tensor або памылцы native decode. Цяпер preparation,
+    output shape/finite validation, batched forward і кожны per-item decode
+    fail-open; няспраўная мадэль толькі
+    адхіляе сваю прапанову, а здаровы sibling і deterministic fallback
+    захоўваюцца. Гэта праверана асобнымі RuntimeError/per-item regressions.
+23. Promotion tool правяраў толькі адзін model-ON Experiment 4 і мог прыняць
+    checkpoint без доказу, што ён увогуле змяніў delivered SVG адносна
+    model-OFF. Цяпер promotion абавязкова прымае exact model-OFF baseline:
+    той жа current compiler, input/font/OCR identities і тыя ж 100 unique loci;
+    патрабуе хаця б адзін зменены mask/SVG, не горшы mean IoU, адсутнасць line
+    regressions і warm p95 `<200 ms/line`. Baseline report і яго SHA дададзены
+    ў runtime manifest/cache і BUILD_FREEZE artifact closure; zero-delta
+    promotion асобна праверана як забароненая.
+24. Паспяховы preflight быў абавязковы пры запуску trainer, але яго файл не
+    ўваходзіў у promotion artifact closure. Цяпер promotion асобна пераправярае
+    ўсе 9 v4 checks, bit-identical loss/state hashes, model/data/trainer/font/
+    family-split identities і роўнасць data recipe з training report. Сам
+    preflight report і SHA замарожваюцца ў runtime manifest і BUILD_FREEZE.
+25. Адзін process-global `VICE_WORDMARK_PRIOR_CHECKPOINT` мог уключыць
+    непрамоўтнуты checkpoint па-за BUILD_FREEZE. Цяпер env override дзейнічае
+    толькі разам з яўным `VICE_WORDMARK_PRIOR_EVALUATION=1`; production default
+    без гэтага флага fail-closed, а прамы Path override застаецца толькі для
+    ізаляваных probes. End-to-end Experiment 4 tests абноўлены на гэты кантракт.
+26. Font manifest быў license/hash-bound, але test suite не даказваў cmap
+    coverage whole-line serving vocabulary. Правераны ўсе 241 face з 81 family:
+    кожны мае ўсе 69 ASCII/space tokens, памылак адкрыцця і missing glyphs няма.
+    Дададзены поўны regression test; састарэлыя лічбы 36/116 у README выпраўлены
+    на фактычныя 81/241.
+27. v3 лічыў wordmark толькі радок даўжынёй ад 3 сімвалаў. Гэта цалкам выключала
+    аднагліфавыя monogram/logo і двухлітарныя HP/GE/VW як з training, так і з
+    runtime. Full run спынены да epoch 1. Data contract v4 цяпер роўна `1–32`:
+    tokenizer, procedural sampler, OCR corruption, runtime reachability,
+    traceability і promotion маюць адзін дыяпазон; асобныя unit/integration
+    tests даказваюць `Q` і `HP`. Новы full run забаронены да свежага v4
+    bit-identical preflight.
+28. v4 preflight называў праверку дыяпазону «fully covered», але фактычна
+    правяраў толькі наяўнасць крайніх даўжынь `1` і `32`. Такі gate мог прапусціць
+    непрадстаўленыя ў sample даўжыні `2…31`. Цяпер ён патрабуе дакладную роўнасць
+    назіранага мноства `{1…32}`; фіксаваны 256-sample seed фактычна пакрывае ўсе
+    32 даўжыні, а regression test патрабуе поўнае мноства, не толькі min/max.
+29. Адной праверкі tokenizer было недастаткова для сцвярджэння, што кароткі logo
+    даходзіць да inference. Дададзены end-to-end regression праз сапраўдныя
+    `build_reir -> OCR-bounded physical TextLine -> late whole-line batch` для
+    `Q` і `HP`. Абодва фактычна трапляюць у адзін bounded wordmark runtime batch;
+    такім чынам ніжнія physical-line gates не адмяняюць новы кантракт `1–32`.
+30. Promotion давяраў boolean `serving_*_fully_covered`, але не правяраў самі
+    спісы preflight evidence. Цяпер ён fail-closed патрабуе дакладны
+    `observed_text_lengths == [1…32]`, дакладны serving alphabet, усе token ids і
+    пусты missing set. Асобны regression даказвае, што нават пры пакінутым `true`
+    выдаленне адной даўжыні з evidence блакуе promotion.
+31. «Адзін сімвал» не заўсёды азначае OCR-літару. Правераны і асобны шлях для
+    невядомага аднаэлементнага logomark: ProposalNet/classical threshold
+    consensus выдае typed `CustomGlyph`, які канкуруе ў тым жа extractor і не
+    патрабуе прыдуманага OCR-тэксту. Тры актуальныя regressions (query,
+    countered inverse glyph, solid glyph) прайшлі; `Q/HP` дадаткова пакрываюць
+    OCR-conditioned whole-line шлях.
+32. `EvidenceCache` быў content-addressed толькі па input/config/schema, але не
+    па рэалізацыі REIR. Таму пасля матэматычных выпраўленняў эксперыменты маглі
+    ціха загружаць старыя proposal tokens і мераць не той код. Cache fingerprint
+    цяпер уключае SHA поўнага лакальнага REIR implementation closure і версіі
+    Python/NumPy/OpenCV/Pillow. Regression падмяняе implementation identity і
+    даказвае абавязковы miss, пасля чаго паўтор новай версіі дае hit.
+33. Менавіта stale REIR схаваў рэальны h16 solid-symbol failure
+    `text-043-e6e9f6b20c8c`: справаздача мела `0` line proposals і IoU `0.0083`
+    (адзін піксель супраць 120-pixel GT), хоць topology `(1,0)` выглядала
+    «правільнай». Свежы REIR захоўвае наймацнейшы з ідэнтычных threshold masks,
+    дапускае bounded solid isolated mark як `CustomGlyph` і дае `2` proposals,
+    `6` columns, candidate IoU `0.9167` (fresh legacy `0.75`).
+34. Experiment 4 раней gate-іў topology/GCR і сярэдняе магло схаваць амаль пусты
+    output. Дададзены machine gates: absolute minimum IoU `>=0.25`, bottom-10%
+    CVaR не горшы за legacy, candidate mean не горшы за legacy, нуль per-line
+    IoU regressions больш за `0.05`. Асобны тэст даказвае, што topology-correct
+    one-pixel output цяпер блакуе campaign.
+35. Асобны persistent cache у старой scene-first галіне меў падобную рызыку:
+    key улічваў input, scales і радок/checkpoint version, але не рэальны код
+    preprocessing, deterministic evidence і hybrid routing. Яго key цяпер
+    уключае SHA поўнага лакальнага implementation closure і версіі
+    Python/NumPy/OpenCV/Pillow; regression даказвае, што змена implementation
+    identity абавязкова стварае іншы key. In-memory `FontGlyphCache` не
+    перажывае працэс, але раней не адрозніваў REIR math/config пры аднолькавым
+    source: key цяпер уключае `reir.config_fingerprint` і exact-font mode, што
+    праверана miss/miss/hit regression. `SceneBuildCache` ствараецца асобна на
+    адзін малюнак і такой stale-рызыкі не мае.
+36. Нават раўнамерныя `1–32` training/test samples маглі быць схаваныя ў
+    агульных held-out averages: дрэнная аднагліфавая якасць складала б толькі
+    каля 3.1% test. Дададзены асобны hash-bound short-logo audit на unseen font
+    families: не менш за 2048 прыкладаў для length `1` і асобна `2`, поўны
+    visible serving alphabet у вядучай пазіцыі, exact/substituted/transposed OCR
+    hints і per-length gates IoU `>=0.88`, topology `>=0.95`, component/hole
+    heads `>=0.90`. Каб і гэта сярэдняе не схавала адну дрэнную літару/лічбу/
+    punctuation, трэці streaming pass лічыць bottom-10% IoU CVaR і метрыкі
+    кожнага з 68 visible symbols; gates патрабуюць CVaR `>=0.65`, worst-symbol
+    mean IoU `>=0.75`, topology `>=0.85`, heads `>=0.75`. Promotion і
+    production manifest fail-closed патрабуюць гэты artifact; regression
+    даказвае, што IoU `0.20` толькі для length `1` блакуе promotion пры добрых
+    агульных метрыках.
+37. PCDC `EvidenceCache` рабіў atomic replace, але ўсе concurrent cold requests
+    аднаго input/key пісалі ў адзін і той жа `<key>.pkl.tmp`; pickle streams
+    маглі перакрыцца, а адзін request мог перанесці/выдаліць temp іншага. Кожны
+    writer цяпер атрымлівае ўнікальны temp у тым жа каталогу, flush+`fsync`,
+    пасля чаго atomic replace і cleanup. Barrier regression прымушае 4 threads
+    адначасова публікаваць адзін cold key, правярае валідны наступны hit, адзін
+    final `.pkl` і адсутнасць пакінутых temp-файлаў.
+38. Адзін logo-symbol можа фізічна мець некалькі адасобленых частак (`i`, `!`,
+    `:` або кастомны знак). Glyph-group query раней правільна знаходзіў увесь
+    support, але segmenter называў dot+stem двума glyphs і таму не выпускаў/
+    не выбіраў `CustomGlyph`. Цяпер асобны physical certificate патрабуе 2–4
+    вузкія вертыкальна сумешчаныя кампаненты, native overlap `>=0.95`, не больш
+    за 2% candidate-only і 6% tiny incumbent residue, плюс render margin
+    `>=0.05`. Ён выпускае і рэальна выбірае адзін composite `CustomGlyph`;
+    side-by-side fragments/літары не атрымліваюць certificate. Абодва выпадкі
+    пакрыты regressions.
+39. Experiment 1B ужо разлічваў worst semantic-class recall (`class_floor`),
+    але забываў уключыць яго ў gate; Experiment 2 таксама паказваў per-class
+    acceptable rate, аднак прымаў рашэнне толькі па overall `>=0.98`. У абодвух
+    выпадках добры average мог схаваць поўны/вялікі правал аднаго класа. Цяпер
+    абодва gates дадаткова патрабуюць `class_floor >=0.95`; negative regressions
+    з overall `0.99` і class floor `0.20` абавязкова fail.
+40. Experiment 3 меў тую ж average-blindness па сямі adversarial certificate
+    pair types: `correct_choice_rate >=0.95` мог схаваць кепскую дыскрымінацыю
+    аднаго тыпу. Machine gate цяпер дадаткова патрабуе worst `pair_type_floor
+    >=0.90`; negative regression з overall `0.99` і type floor `0.20` fail.
+    Experiment 5 ужо выкарыстоўвае `all(...)` па кожным case/probe для limits,
+    fallback, timeout/OOM і near-linearity, таму аналагічнага прапуску там няма.
+41. Справаздачы эксперыментаў былі прывязаныя да production compiler і native
+    runtime, але не да кода самога evaluator/gate. Таму выпраўленне метрыкі або
+    парога не абавязкова рабіла старую «зялёную» справаздачу састарэлай. Цяпер
+    Experiments 1, 1B, 2, 3, 4, 5, 9, 10 і фінальная Phase-12 кампанія запісваюць
+    SHA поўнага лакальнага import-closure evaluator. Traceability, wordmark
+    promotion, ProposalNet pre-training readiness/authorization, BUILD_FREEZE і
+    фінальны proposal promotion
+    fail-closed патрабуюць менавіта актуальны evaluator SHA; model-OFF і model-ON
+    справаздачы Experiment 4 таксама павінны мець адзін актуальны evaluator.
+    Negative regressions даказваюць, што падмена гэтага SHA блакуе ablation і
+    promotion нават пры добрых метрыках і актуальным compiler SHA.
+42. «Адзін знак» нельга атаясамліваць з адной літарай або адным connected
+    contour. Phase-5 ужо мог сабраць same-ink часткі ў адзін typed whole-shape,
+    але production exporter адхіляў такі compound `Shape/free_curve`: fitter
+    чакаў фактычна адзін closed spline. Цяпер кожны кампанент фіціцца асобна,
+    compound path прымаецца толькі пры дакладнай topology, boundary F `>=0.97`
+    і native-lattice IoU `>=0.92`; інакш ён fail-closed. End-to-end regression
+    з трохчасткавым адвольным logomark даказвае `MacroKind.SHAPE`, не TextLine,
+    topology-identical SVG delivery і рэальна certified `RuntimeMacroCourt`
+    без unsupported delivery. Гэта асобны шлях ад length-1 wordmark і ад вузкага
+    multi-component `CustomGlyph`.
+43. Full-regression report таксама мог састарэць пасля дадання або ўзмацнення
+    unit tests без змены production compiler. Цяпер report захоўвае асобны SHA
+    runner-а і ўсіх `test*.py`, якія знаходзіць `unittest discover`; wordmark і
+    glyph promotion патрабуюць актуальны SHA. Таму новая compound-logomark
+    regression і ўсе наступныя тэсты рэальна становяцца promotion gate, а не
+    проста неабавязковай праверкай. Падменены regression SHA асобна блакуе
+    wordmark promotion.
+44. Правераны ранейшы канфлікт Bayesian render LCB з pixel residual і
+    color-mass bound. Абодва physical residuals цяпер лічацца пасля той жа
+    image-formation hypothesis і з candidate-independent fallback-conditioned
+    вагамі `q_F`, што і pairwise Bayes factor. Калі triangle-inequality
+    color-mass lower bound кандыдата вышэй за вымераны fallback L1, гэта hard
+    dominance: кандыдат адхіляецца яшчэ да exact atlas; паўторная праверка ёсць
+    пасля exact render. Асобны adversarial regression даказвае, што robust
+    posterior не можа выбраць кандыдат, які добра трапляе ў 93.75% пікселяў,
+    але дадае фізічна немагчымую каляровую масу на астатніх.
+45. Нават правільны promotion-time evaluator gate не інвалідаваў ужо
+    прамоўтнуты wordmark model пасля змены trainer/audit/Experiment-4/test-suite
+    кода, калі production compiler bytes не мяняліся. Runtime validation цяпер
+    не толькі правярае SHA шасці evidence-файлаў, але і параўноўвае іх унутраныя
+    trainer, short-logo audit, model-OFF/model-ON evaluator і full-regression
+    identities з жывымі source identities. Regression перападпісвае report SHA
+    у manifest, але пакідае састарэлы evaluator: runtime усё роўна fail-closed
+    адключае model.
+46. Тая ж post-promotion stale-рызыка была ў ProposalNet: candidate-evaluation
+    manifest і production sidecar мелі hashes справаздач/checkpoint, але runtime
+    не ведаў жывую версію Experiment 9 і Phase-12 evaluator. Authorization і
+    promotion цяпер запісваюць абодва evaluator SHA; candidate runtime патрабуе
+    актуальны Experiment 9, production runtime — актуальныя Experiment 9 і
+    Phase 12. Асобныя negative regressions падмяняюць гэтыя палі пры нязменным
+    checkpoint і даказваюць fail-closed.
+47. Optional per-glyph prior меў яшчэ слабейшы runtime check: правяраў толькі
+    checkpoint/model/compiler палі manifest і не перачытваў тры promotion
+    evidence-файлы. Цяпер runtime правярае training, Experiment 4 і full-tests
+    file SHA, а таксама жывую актуальнасць Experiment-4 evaluator і ўсяго test
+    suite. Regression мяняе full-tests evaluator, абнаўляе яго SHA ў manifest і
+    ўсё роўна атрымлівае fail-closed `None` замест загрузкі старой мадэлі.
+    Поўная праверка кешуецца па stat identities checkpoint/manifest/evidence:
+    два нязменныя runtime выклікі робяць адну validation, а змена evidence
+    абавязкова дае cache miss і паўторны fail-closed check.
+
+48. `glyph_prior_source_sha256()` хэшаваў увесь `glyph_prior.py`, таму чыста
+    runtime-ахоўная праўка памылкова зрабіла ўжо навучаны checkpoint «састарэлым».
+    Кантракт заменены на кананічны AST-хэш толькі навучальнай архітэктуры,
+    input/target/degradation data recipe і topology decode. Гістарычны raw-v1
+    checkpoint дапускаецца толькі праз яўную migration-сувязь і толькі пакуль
+    бягучы semantic-v2 AST мае замацаваны хэш; любая рэальная змена матэматыкі
+    аўтаматычна разрывае сумяшчальнасць. Regression правярае як станоўчы
+    migration path, так і fail-closed пры падмене semantic anchor.
+
+49. Proposal pre-v14 readiness дадаткова прывязваў glyph-prior training proof да
+    поўнага compiler SHA. Гэта паўтарала тую ж памылку ўжо на ўзроўні authorization:
+    runtime/evaluator праўка патрабавала дарагога retraining, хоць model/data/decode
+    матэматыка не змянілася. Readiness цяпер правярае checkpoint, training report і
+    semantic model/data contract; любая runtime-праўка па-ранейшаму абавязкова
+    інвалідуе і патрабуе свежыя downstream A/B, full regression і promotion proof.
+
+50. Proposal v13 mixed corpus утрымліваў толькі `typed-generator/v1`: ён меў shape
+    owners, але не меў сапраўдных positive/negative supervision для relation heads.
+    Таму добры synthetic Recall@5 не даказваў `layer_relation`,
+    `symmetry_repeat_group`, `stroke_network`, `appearance_model` і
+    `risk_hard_negative`. Створаны `typed-generator/v2` relation corpus на 8000
+    hash-bound pairs: па 1000 source prototypes для appearance, layer relation,
+    stroke network і repeat/symmetry, з яўным `query-relations/v1` contract.
+
+51. Базавы external raster/vector corpus на 60 190 pairs меў толькі незаверсіянаваны
+    `summary.json`: можна было змяніць raster/SVG payload, не змяніўшы replay
+    manifest. Дададзены fail-closed external attestation: SHA summary, pairs JSONL,
+    кожнага raster/SVG, pair/file counts і generator source. Mixed-corpus builder
+    прымае толькі правераны override і паўторна звярае payload identity; tamper
+    regression абавязкова блакуе зборку.
+
+52. Real Proposal calibration раней магла стартаваць без доказу, што reviewed
+    corpus фізічна змяшчае дастаткова model-facing labels. Новы capacity audit
+    аддзяляе Phase-0 sampling bucket ад яўнага `proposal_family`, робіць
+    source-group-disjoint split і fail-closed паказвае дакладныя дэфіцыты. Бягучы
+    набор мае 300 reviewed loci, але толькі 196 typed rows і нулявую ёмістасць для
+    repeat/risk/stroke; сінтэтыка не можа быць падстаўлена замест real calibration.
+    Гэта яшчэ не закрыты gate: патрэбна multi-instance real annotation/derivation,
+    каб 300 real loci з плана маглі даць усе патрэбныя Proposal query instances.
+
+53. Experiment 9 памылкова лічыў «адзін real locus = адна Proposal family». Гэта
+    асабліва няправільна для лагатыпа: адзін знак можа адначасова быць compound
+    whole-shape, мець appearance field, repeat/symmetry або layer relation і пры
+    гэтым не быць тэкстам. Review contract цяпер backward-compatible падтрымлівае
+    некалькі `proposal_instances` з незалежнымі mask/ROI/family на адзін locus;
+    усе instances аднаго source застаюцца ў адным leakage-safe split. Для
+    relation families дададзены яўны positive/observable `query-relations/v1`
+    contract: невядомая relation больш не навучае фальшывы negative. Phase-9
+    regressions: 46/46.
+
+54. Папярэдні one-symbol proof даказваў compound whole-shape і асобна length-1
+    wordmark, але не даказваў рэальную канкурэнцыю інтэрпрэтацый для аднаго
+    неадназначнага знака. Дададзены production regression з A-падобным mark: адзін
+    і той жа source support адначасова ўваходзіць як `glyph_group →
+    single-custom-glyph` і `whole_shape`; абодва delivery paths падтрымліваюцца
+    Runtime Court, пасля чаго text/glyph гіпотэза можа быць законна адхілена
+    фізікай, а shape — сертыфікавана. `text_line` без OCR тут не падмяняе
+    `glyph_group`: гэта розныя query contracts.
+
+55. Backend multi-instance contract без UI быў бы фармальна існуючым, але
+    непрыдатным для рэальнай разметкі. `locus_review` цяпер умее дадаваць,
+    пераключаць, абнаўляць і выдаляць асобныя Proposal masks, выбіраць
+    positive/observable relation evidence і захоўваць іх разам з нязменным
+    Phase-0 root review. Browser add→switch→save smoke на ізаляванай копіі corpus
+    захаваў `whole_shape` і `symmetry_repeat_group` з `same_group,repeat`; console
+    errors няма, арыгінальны 300-locus `review.json` застаўся byte-for-byte
+    нязменным.
+
+56. Proposal filter-cache меў схаваны end-to-end CLI ordering bug: імпарт модуля і
+    unit-level `build_filter_cache_from_scan()` працавалі, але `python -m
+    vice_compiler.proposal_filter_cache` выклікаў `main()` да аб'яўлення
+    `_write_cache`. Таму поўны 75 390-pair preflight пасля дарагога скану падаў з
+    `NameError` і не пакідаў cache. Entry point перанесены ў канец модуля; дададзены
+    subprocess-рэгрэс, які на сапраўдным PNG/SVG corpus запускае менавіта module CLI
+    і патрабуе запісаны v2 cache. Усе чатыры filter-cache tests праходзяць, Ruff
+    чысты. Поўны scan завершаны: 75 390 raw, 74 728 accepted, 662 fail-closed
+    rejected (400 `unobservable-raster`, 237
+    `owner-alignment-below-proof-floor`, 25 `invalid-clean-render-target`);
+    cache прывязаны да corpus і filter-semantics SHA.
+
+57. Поўны regression suite выявіў Windows race у content-addressed REIR cache:
+    чатыры cold requests аднаго ключа стваралі асобныя temp-файлы, але канкурэнтны
+    `os.replace()` часам падаў з `WinError 5`. Publication цяпер мае instance lock,
+    правярае валіднага пераможцу з тым жа content/implementation key і робіць
+    абмежаваны retry толькі для часовага Windows `PermissionError`; сапсаваны або
+    непублікаваны cache не маскіруецца. Дададзены асобны regression для чатырох
+    незалежных `EvidenceCache` instances. Абодва concurrency tests вытрымалі 20
+    паўторных прагонаў; пасля фікса поўны suite: 463 passed + 273 subtests.
+
+58. Пасля змены REIR былі перазапушчаны, а не перамаркіраваны старыя reports:
+    Experiment 1, 1B, 2, 3 і 5 на тым зрэзе прайшлі. Literal plan traceability
+    меў роўна тры blockers, усе ў Phase 4: фінальны wordmark checkpoint, fresh
+    OFF/ON delivered-output proof і Experiment 4 на тым жа checkpoint. Наступная
+    праўка `proposal_data_contract.py` зноў змяніла compiler closure, таму гэтыя
+    reports сумленна лічацца stale і павінны быць перазапушчаны перад readiness;
+    старыя вынікі не будуць прыняты праз падмену hash.
+
+59. Першы поўны Proposal-v14 head-supervision audit знайшоў 7 998 памылак
+    матэрыялізацыі, якіх не бачылі manifest-level праверкі. Прычынай быў auxiliary
+    `risk_hard_negative`: PairDataset законна дадаваў гэты target да typed source,
+    але relation parser памылкова патрабаваў, каб auxiliary target меў тую ж
+    semantic family, што і базавы macro. Цяпер толькі гэты дакладна вызначаны
+    auxiliary target вяртае пустое relation supervision; любы іншы family mismatch
+    па-ранейшаму падае fail-closed. Дададзены end-to-end regression, які
+    матэрыялізуе кожны generated PairDataset row, а аўдытар захоўвае поўныя
+    problem/source/split histograms замест першых ста памылак.
+
+60. External corpus attestation v1 прывязваў wrapper, але не сапраўдны generator
+    raster/vector payload. Schema v2 цяпер правярае і SHA рэальнага
+    `build_raster_vector_pairs.py`, і renderer prefix. Усе 60 190 external pairs
+    маюць attested `cairosvg-pillow-png/v1` або
+    `cairosvg-pillow-jpeg/v1`; адсутны ці падменены renderer больш не можа
+    непрыкметна трапіць у mixed corpus.
+
+61. Раней renderer holdout існаваў толькі як поле ў справаздачы, а не як
+    неперасячальная formation pipeline. Structure factory цяпер стварае рэальныя
+    WebP roundtrips толькі для hash-split TEST. Пасля новага aligned-target
+    fail-closed filter прынята 389: 94 appearance, 103 layer, 82 stroke і 110
+    repeat. У TRAIN/CAL WebP няма; PairDataset бачыць іх як codec degradation і
+    дае адпаведны risk target. Mixed corpus мае 75 390 raw / 73 368 accepted
+    pairs без undeclared renderer.
+
+62. Дададзены асобны `audit_untouched_holdout`, які павінен быць запушчаны да
+    існавання v14 checkpoint. Ён не абмяжоўваецца path/split labels: хэшуе input
+    і target payload, правярае group, renderer і degradation disjointness, мінімум
+    300 held-out rows і мінімум 80 прыкладаў кожнай з чатырох typed families.
+    Фактычны current-hash pre-training audit прайшоў на 389 WebP rows:
+    group overlap 0,
+    duplicate input payload 0, duplicate target payload 0; checkpoint на момант
+    sealing не існаваў. Такім чынам копія таго ж растра або SVG пад іншым шляхам
+    ужо лічыцца leakage.
+
+63. Кароткі лагатып не можа класіфікавацца толькі па колькасці сімвалаў. Для
+    аднаго знака production захоўвае тры розныя гіпотэзы: вядомы glyph,
+    `single-custom-glyph` і `whole_shape`/free curve. Два незалежныя regressions
+    праходзяць: складаны адзінкавы mark не прымушаецца быць тэкстам, а
+    A-падобны амбівалентны mark адначасова даходзіць да text/glyph і shape
+    delivery ў Runtime Court. Neural length-1/2 gate застаецца асобным і павінен
+    быць правераны на фінальным, а не прамежкавым checkpoint.
+
+64. Другі exhaustive v14 audit скараціў 7 998 materialization errors да аднаго,
+    але не быў памылкова прыняты за PASS. Застаўся субпіксельны
+    `synthetic-geometry` polygon: у JPEG было пяць назіраемых пікселяў, а
+    transformed clean SVG support быў пусты. Filter раней правяраў clean template,
+    але не яго фактычны recorded transform; цяпер кожны accepted row абавязаны мець
+    непусты aligned target. Той жа аўдыт паказаў, што held-out меў менш за 100
+    `mirror`, `gradient_band_explosion` і `stroke_fill_confusion` labels. Парогі
+    не паніжаны: mirror formation перабалансаваны і захоўвае адначасова законныя
+    `repeat+mirror` tokens, а appearance/stroke/layer атрымліваюць свой semantic
+    counterfactual раней за generic rotation. Structural 8k і mixed 75 390
+    перабудаваны. Current exhaustive audit цяпер прайшоў на 73 368 accepted
+    pairs: `error_count=0`, усе 9 supervision slices ва ўсіх splits, усе 10
+    hard-negative classes, усе 8 relation tokens з positive і observed-negative
+    supervision, усе 16 parameter dimensions, renderer/origin attestation,
+    split disjointness і top-5 mathematical feasibility.
+
+65. Readiness называў існуючы Proposal probe `tiny_multi_instance_overfit`, але
+    ён выбіраў толькі 32 text rows з двума/трыма owners і правяраў толькі
+    `text_line`. Такі report нічога не даказваў пра glyph, whole/small shape,
+    layer, stroke, appearance, repeat і risk heads. Probe цяпер матэрыялізуе
+    train-only набор праз сапраўдны PairDataset, патрабуе мінімум 16 instances
+    кожнай з дзевяці required slices, выключае rows з матэматычна немагчымым
+    global top-5 і прымае толькі адзін joint step, дзе ўсе family Recall@5
+    адначасова не ніжэй 0.95, text не ніжэй 0.99 і overall не ніжэй 0.97.
+    Стары text-only JSON больш не праходзіць validator.
+
+66. `anti_forgetting_pilot` і `cuda_reproducibility` у readiness раней былі
+    толькі чаканымі schema/boolean, без генератара і без binding да мадэлі.
+    Дададзены bounded pre-training dynamics audit: дзве незалежныя AMP CUDA
+    replicas пачынаюць з таго ж init checkpoint, вучацца на all-head train set і
+    правяраюцца на group-disjoint legacy text/glyph/whole/small anchors.
+    Anti-forgetting абмяжоўвае family/overall/IoU/loss drift; reproducibility
+    патрабуе аднолькавыя loss-trace SHA, final state SHA, metrics і verdict.
+    Абодва reports прывязваюцца да checkpoint, filter, label contract, config,
+    compiler і evaluator SHA і ніколі не запісваюць checkpoint.
+
+67. Поўны SVG target filter адкрыў не metric regression, а native resource
+    leak: PIL image wrappers і in-memory buffers не закрываліся яўна, а resvg
+    захоўваў process handles пры тысячах розных SVG. ThreadPool таму разрастаўся
+    да 24–27 тысяч handles і не мог быць бяспечным production proof. Усе PIL /
+    BytesIO render paths у label, owner, export і posterior кодзе цяпер
+    закрываюцца і вяртаюць незалежныя array copies. Поўны filter выконваецца
+    канечнымі ProcessPool-хвалямі па 4 workers, таму native state выдаляецца
+    пасля кожнай хвалі; Windows worker-respawn deadlock праз
+    `max_tasks_per_child` не выкарыстоўваецца. Current run завяршыўся без
+    назапашвання handles: 75 390 raw, 73 368 accepted, 2 022 rejected. З іх
+    1 548 не прайшлі alignment IoU floor, 400 мелі пусты raster support, 48 —
+    owner alignment, 25 — invalid clean render і 1 — empty aligned clean target.
+    Парог не паніжаўся. Exact PairDataset dry-run пасля filter матэрыялізаваў
+    108 train-only rows і набраў мінімум 16 instances кожнай з дзевяці required
+    supervision slices.
+
+68. Full wordmark v4 не мае права быць прамоўтнуты па добрым pixel IoU.
+    Epoch 3 на 2M-рецэпце даў calibration `decoded_support_iou=0.91793`, але
+    `decoded_topology_accuracy=0.53100` і complex topology `0.48967`. Асобная
+    2 048-sample family-disjoint дыягностыка пацвердзіла прычыну: component
+    head accuracy `0.7393`, hole head `0.5898`, joint `0.4995`; top-3 адпаведна
+    `0.9077/0.8262`, а repair пры calibration-fixed confidence 0.90 закранае
+    толькі 10.2% радкоў. Гэта не threshold tuning problem. 65-way global count
+    heads і pixel loss недастаткова вучаць дробныя counters/components пад
+    OCR corruption. Дадатковы 4 096-row slice audit паказаў, што адна-/двухзнакавыя
+    лога не з'яўляюцца крыніцай агульнага правалу: length-1 мае component/hole
+    `0.968/0.968` і raw topology `0.942`, length-2 — `0.962/0.934` і raw topology
+    `0.925`. Правал канцэнтруецца ў length 17–32: component `0.604`, hole
+    `0.417`, joint `0.296`, raw topology `0.323`. Калі observed topology яшчэ
+    цэлая, joint head дае `0.870` і raw mask `0.924`; калі degradation яе
+    разбурыў, толькі `0.401/0.425`. Значыць v5 патрабуе additive per-glyph count
+    prior, complexity-balanced supervision і topology-weighted support loss, а
+    не толькі больш эпох. Epoch 3 checkpoint захаваны толькі як diagnostic
+    (`59EA36…AE5D`) і заблакаваны. Наступны full run забаронены без
+    representative corrupted-OCR/topology pilot, topology-weighted support
+    objective і count/decode redesign.
+
+69. Current exhaustive Proposal v14 head audit фактычна прайшоў усе 15 gates,
+    але яго schema не запісвае `compiler_source_sha256` і
+    `evaluation_source_sha256`. Readiness таму слушна пакідае
+    `training_data_and_head_supervision` blocking, нягледзячы на
+    `error_count=0`. Hashes нельга дапісваць постфактум: пасля заканчэння
+    frozen wordmark run генератар audit будзе bind-нуты да current compiler /
+    evaluator source, і ўсе 73 368 accepted rows павінны быць правераны нанова.
+
+70. Першы production-AMP запуск пасля v5 redesign падаў да epoch 1, хоць
+    tiny-overfit праходзіў. `_ordinal_count_loss()` выклікаў probability-form
+    `binary_cross_entropy` у CUDA autocast, што PyTorch наўмысна забараняе.
+    Выпраўленне не замяняе loss іншай алгебрай: арыгінальная FP32 BCE аперацыя
+    ізалявана ў `autocast(enabled=False)`. Асобны CUDA FP16 forward/backward
+    regression правярае finite loss і gradients. Алгебраічна разгорнуты
+    `-y log p -(1-y) log(1-p)` варыянт быў адхілены: ён змяніў rounding,
+    tiny-overfit IoU знізіўся да `0.9347`, topology да `0.75`. Канчатковы AMP
+    fix пабайтна аднавіў стары loss/state hash.
+
+71. v5 прайшла strict preflight, але bounded 8 192-unique/10-epoch smoke на
+    2 048 unseen test font samples не прайшоў: support `0.85189`, decoded
+    topology `0.29980`, complex `0.25488`, component/hole/joint heads
+    `0.32178/0.16846/0.07861`; length 17–32 topology толькі `0.15696`.
+    Repair быў eligible на `2.69%`, таму decoder не з'яўляецца асноўнай
+    прычынай. Best fixed threshold самога degraded raster даў `0.20947` exact,
+    per-sample threshold oracle — толькі `0.33105`; head+support oracle даў
+    толькі `0.34619`. Значыць ні threshold tuning, ні просты fusion не могуць
+    закрыць gate, і 131k pilot на гэтай крывой забаронены.
+
+72. v6 праверыла гіпотэзу пра identifiable token/residual decomposition:
+    canonical per-token targets і line-effect residual supervision палепшылі
+    continuous MAE на 8k з `3.86/7.87` да `2.59/4.23`, але пагоршылі final
+    categorical joint `0.0786 → 0.0576` і не палепшылі decoded topology.
+    32 768-unique/4-epoch probe таксама застаўся на `0.30200` decoded topology;
+    heads `0.33081/0.19458/0.08765`, long topology `0.13836`. Гэта даказвае,
+    што brute-force diversity без іншай representation не дае патрэбнай
+    learning curve. v6 заблакавана.
+
+73. v7/v8 праверылі spatial component/counter density representation. v7
+    detached density head perfect-overfit-іўся, але на unseen fonts collapsed
+    да component/hole/joint `0.10986/0.10400/0.00928`; constant-count bias быў
+    каля `+8/+9` для length 1–2 і `−3.2` components для length 17–32. v8
+    асобны spatial encoder прыбраў gradient interference і хутка прайшоў
+    tiny-overfit, але 8k test усё адно даў толькі
+    `0.25684/0.12842/0.04395` heads і `0.29932` decoded topology. Абедзве
+    гіпотэзы адмоўныя і не маюць права ісці ў 32k/131k/full training.
+
+74. Актыўны v9 кантракт вяртае best-known v5 additive count architecture,
+    захоўваючы даказаныя AMP fix і decoder repairs. Decoder цяпер не хавае
+    high-confidence bridge за probability-only top-512 shortlist і ўмее
+    bounded one-/two-pixel neck cuts; regressions пакрываюць абодва выпадкі.
+    v9 300-step smoke прайшоў з support `0.98656` і
+    decoded/complex/long/head `1.0`; яго loss trace і final-state SHA пабайтна
+    супалі з добрай v5 траекторыяй. Гэта толькі стабілізацыя best-known кода,
+    не доказ promotion: representative pilot і full run усё яшчэ забаронены.
+
+## Дакладны promotion gate для full checkpoint
+
+Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не
+выканана:
+
+- `decoded_support_iou >= 0.88`;
+- `decoded_topology_accuracy >= 0.95`;
+- `decoded_complex_topology_accuracy >= 0.90`;
+- component head accuracy `>= 0.90`;
+- hole head accuracy `>= 0.90`;
+- 2 000 000 unique training variants з даўжынёй `1–32`;
+- 20 000 calibration + 20 000 unseen test samples на disjoint font families;
+- асобныя unseen length-1 і length-2 зрэзы па `>=2048` праходзяць short-logo
+  IoU/topology/head gates;
+- свежы Experiment 4 мае той жа checkpoint SHA;
+- мадэль змяняе хаця б адзін delivered mask/SVG;
+- няма line topology regressions і mean IoU не горшы за model-OFF;
+- warm p95 `<200 ms/line` у Experiment 4;
+- machine і blind human gates праходзяць;
+- current full unittest/native-runtime proof праходзіць;
+- promotion manifest прывязаны да checkpoint, model/data contract і compiler
+  source SHA.
+
+## Што яшчэ не даказана
+
+- Поўная 2M training/test справаздача яшчэ не скончана.
+- Няма свежага current-hash Experiment 4 OFF/ON для full checkpoint.
+- Няма новага blind human review для фактычна змененых SVG.
+- Не створаны новы complete BUILD_FREEZE.
+- Phase 12 (VAI50 50/50 + Challenge115 115/115 + locked blind VAI court) не
+  запушчана на гэтым build.
+- Таму сцвярджаць «лепей за VAI» зараз нельга.
+
+## Бягучая праверка кода
+
+На гэтым зрэзе прайшлі:
+
+- wordmark model/data/trainer tests: 18/18;
+- wordmark runtime: 11/11;
+- wordmark integration/reachability: 4/4;
+- checkpoint promotion tests: 1/1;
+- Experiment 4 binding/semantic tests: 10/10;
+- traceability SHA-binding tests: 2/2;
+- fixed-posterior/digital-circle court: 12/12;
+- Phase 5–8: 30/30;
+- Phase 9: 46/46;
+- Phase 11 targeted freeze verification: passed.
+- current hash-bound Python regression: 367/367.
+
+Поўны regression suite і ўсе runtime timing gates трэба паўтарыць пасля
+завяршэння GPU training, каб CPU worker contention не сказіў p95.

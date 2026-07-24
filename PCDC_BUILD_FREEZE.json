@@ -1,0 +1,678 @@
+{
+  "schema": "pcdc-build-freeze/v1",
+  "created_at": "2026-07-21T09:55:46.692524+00:00",
+  "policy": "record-only after BUILD_FREEZE; any source/model/config/annotation/renderer/threshold change requires a new freeze and full campaign",
+  "canonical_plan_sha256": "5fb2f288b44ad6764a1f99c5d915647aabf63220b1fe2395b50fc5433b714cbb",
+  "git": {
+    "head": "043f8a5706b76bbe225950103ffd84e5c997053d",
+    "dirty": true,
+    "status_sha256": "3d7f1291e9a480609f7f90bdfc1c8af0765e85cd0cf52b95a0ad539ed58e5d4e"
+  },
+  "runtime": {
+    "python": "3.12.1 (tags/v3.12.1:2305ca5, Dec  7 2023, 22:03:25) [MSC v.1937 64 bit (AMD64)]",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "numpy": "2.4.3",
+    "opencv": "5.0.0",
+    "pillow": "12.1.1"
+  },
+  "files": {
+    "canonical_plan": {
+      "path": "C:\\Users\\nirrt\\Downloads\\V-ICE_proof_carrying_design_compiler_plan_ru_v2.md",
+      "exists": true,
+      "bytes": 51583,
+      "sha256": "5fb2f288b44ad6764a1f99c5d915647aabf63220b1fe2395b50fc5433b714cbb"
+    },
+    "compiler_source": [
+      {
+        "path": "vice_compiler\\__init__.py",
+        "exists": true,
+        "bytes": 301,
+        "sha256": "caa9e9e5d5fba0b3c5c5e3cce0084733ac9256952c2783c3c831e40584b3e9bb"
+      },
+      {
+        "path": "vice_compiler\\abstraction_egraph.py",
+        "exists": true,
+        "bytes": 18413,
+        "sha256": "1acb68c016ef284c41857339d29cb6e50ac2eb11e49b6960bd1bad36a14ff941"
+      },
+      {
+        "path": "vice_compiler\\appearance_macros.py",
+        "exists": true,
+        "bytes": 19435,
+        "sha256": "64f36b831c94c0f83b35a8390a09136a155d341e2fbcfa2ea0c6ac8d9f5b82a0"
+      },
+      {
+        "path": "vice_compiler\\atlas_renderer.py",
+        "exists": true,
+        "bytes": 10853,
+        "sha256": "a29cf7ace746d40811167c4acb78f9246d3ccb2b91aeb32670d4438c03c5f132"
+      },
+      {
+        "path": "vice_compiler\\baseline_freeze.py",
+        "exists": true,
+        "bytes": 4510,
+        "sha256": "4f429b25c3660f5e67d5d78c43ff3d7d82ee9d95a3a001582e37e22c7f6cf137"
+      },
+      {
+        "path": "vice_compiler\\benchmark_completeness.py",
+        "exists": true,
+        "bytes": 9426,
+        "sha256": "aeb1d1b5c5cf2c0c97c3b7739c03ca87532568268462812f0bd8abf768b1e527"
+      },
+      {
+        "path": "vice_compiler\\benchmark_reir_runtime.py",
+        "exists": true,
+        "bytes": 4733,
+        "sha256": "5dd2db17be406a7fb87123fbe030e9eadb745dfb76501f1c6ca401ca5a1c9af0"
+      },
+      {
+        "path": "vice_compiler\\build_certificate_review.py",
+        "exists": true,
+        "bytes": 8189,
+        "sha256": "78303de992c73408f44baabeeddccb9494b28cb2a17046e658b2a7bc3b3410e4"
+      },
+      {
+        "path": "vice_compiler\\build_freeze.py",
+        "exists": true,
+        "bytes": 9821,
+        "sha256": "946df1b3232def81febcdac69894c5a70728fadee4a7dbe17db07f590c9643c6"
+      },
+      {
+        "path": "vice_compiler\\build_textline_review.py",
+        "exists": true,
+        "bytes": 9921,
+        "sha256": "a6863ee586f20b27ebf808a471159eced5d8a2c0f3e275d3af8cd8348a9e4e71"
+      },
+      {
+        "path": "vice_compiler\\cell_complex.py",
+        "exists": true,
+        "bytes": 10838,
+        "sha256": "cb39c947ad5be2c2eedbcf2ab6dd83911cec3da0f46432021437d2e82ca73f6b"
+      },
+      {
+        "path": "vice_compiler\\certificates.py",
+        "exists": true,
+        "bytes": 22894,
+        "sha256": "7462643d905037fd60796612a7dc396588f28cb6c63861d07a621f0832df30c1"
+      },
+      {
+        "path": "vice_compiler\\cleanup_macros.py",
+        "exists": true,
+        "bytes": 15484,
+        "sha256": "56e792ddcbcb55a9e6813b0c7fbe0bff68615296bec55e8562fb63806c97e0b0"
+      },
+      {
+        "path": "vice_compiler\\column_generation.py",
+        "exists": true,
+        "bytes": 4429,
+        "sha256": "af2dc824a307970d97fef5a0f77d2f7b7da6366d01836de84b9bb486f1d576e3"
+      },
+      {
+        "path": "vice_compiler\\conflict_components.py",
+        "exists": true,
+        "bytes": 1671,
+        "sha256": "80c02620e37a6ea36f6b1dcc5d32f1d11a76a75989fa8decc8b15e0e0b7de306"
+      },
+      {
+        "path": "vice_compiler\\conformal.py",
+        "exists": true,
+        "bytes": 5058,
+        "sha256": "05ebdb50acdf6ac7e6f046b66f16a9285b0c687cae4bb942a610faf115293c49"
+      },
+      {
+        "path": "vice_compiler\\continuous_refine.py",
+        "exists": true,
+        "bytes": 21449,
+        "sha256": "3939679a1e2806e9d770d16bac7c8e67d038ed7fbd907f454de852e240503bb4"
+      },
+      {
+        "path": "vice_compiler\\derive_locus_gt.py",
+        "exists": true,
+        "bytes": 20046,
+        "sha256": "0e89407245cb035c6ef52760702bddbf2db07f538d01d91be10c656b2ad25bb1"
+      },
+      {
+        "path": "vice_compiler\\design_program.py",
+        "exists": true,
+        "bytes": 14924,
+        "sha256": "a3d57bed188092631449c661d5704e04ba53de6a3512ac1d992323e83269bbc6"
+      },
+      {
+        "path": "vice_compiler\\evidence_ir.py",
+        "exists": true,
+        "bytes": 50544,
+        "sha256": "42b87879ea51cfb45c0f8e880cae097e041d762b00a365b704ea311c6ccf0448"
+      },
+      {
+        "path": "vice_compiler\\exact_font_provider.py",
+        "exists": true,
+        "bytes": 11615,
+        "sha256": "99d90300e972cb0f61234c663a1a43e3918f85aecfec896e91369939528248b7"
+      },
+      {
+        "path": "vice_compiler\\experiment10_runtime.py",
+        "exists": true,
+        "bytes": 6334,
+        "sha256": "4411e152ff4dab6d4c554816a9652bc3c8c65beb01d3fa97c37ee0719721a876"
+      },
+      {
+        "path": "vice_compiler\\experiment1_evidence_coverage.py",
+        "exists": true,
+        "bytes": 23969,
+        "sha256": "fdfd232b790417bd0844bc72f77f344561f0e7564f0ce24486d598860247b46d"
+      },
+      {
+        "path": "vice_compiler\\experiment1b_pricing_recall.py",
+        "exists": true,
+        "bytes": 11781,
+        "sha256": "98fa0db686aa3d19cf9d07cf7dd3641fdf7a0a5c9d49f7fa2e35094d0e698805"
+      },
+      {
+        "path": "vice_compiler\\experiment2_oracle_extraction.py",
+        "exists": true,
+        "bytes": 7550,
+        "sha256": "c1a340f6bbb33dbd8e6eaf7a63c3cf65e13b6f9703cfa1272b46cd4f26900cab"
+      },
+      {
+        "path": "vice_compiler\\experiment3_certificate_discrimination.py",
+        "exists": true,
+        "bytes": 19148,
+        "sha256": "912c52a2815f741d4a5f0d47dd23bc383f0ca60a711a2e09d2f5630e2b0ca01b"
+      },
+      {
+        "path": "vice_compiler\\experiment4_textline.py",
+        "exists": true,
+        "bytes": 20294,
+        "sha256": "941ab3aa77602dcc165ac02247aae26f78de03bca4f4e6e728aa0f7adbda6f5c"
+      },
+      {
+        "path": "vice_compiler\\experiment5_complexity_stress.py",
+        "exists": true,
+        "bytes": 11677,
+        "sha256": "2a77e7f7b9a518fdbe48ee105c5237e522e8dc3f202ce806ce6ead249fb5fdd5"
+      },
+      {
+        "path": "vice_compiler\\experiment9_proposal_calibration.py",
+        "exists": true,
+        "bytes": 15310,
+        "sha256": "d2ba10c26bb41793c20cae50454781dae9b6e549d0e606fe1cac69f08be16ffc"
+      },
+      {
+        "path": "vice_compiler\\export_writer.py",
+        "exists": true,
+        "bytes": 16274,
+        "sha256": "ab13a1c6df93a1d96c1e4b9c80dc41a788d75c94401639bc85ec83b11f837246"
+      },
+      {
+        "path": "vice_compiler\\hard_negative_factory.py",
+        "exists": true,
+        "bytes": 3930,
+        "sha256": "23f62555fc726fb368fa348573a321ec8ab75030024f53a2f0db654e3cac9bf4"
+      },
+      {
+        "path": "vice_compiler\\hierarchy.py",
+        "exists": true,
+        "bytes": 11267,
+        "sha256": "98993af3dc89d6854c390075c92d443acd371361ca839ddeab47e97fb67acbc5"
+      },
+      {
+        "path": "vice_compiler\\hierarchy_dp.py",
+        "exists": true,
+        "bytes": 3763,
+        "sha256": "b7ed5ed6b8f002082fba4a3c60d8321ff918dd0f6ade94fb7033285ea156309b"
+      },
+      {
+        "path": "vice_compiler\\inclusion_trees.py",
+        "exists": true,
+        "bytes": 5953,
+        "sha256": "a96eacd8925031dd98b25f5d74cf1ba57d9b05da7004bd40f06aaa56ff1816c1"
+      },
+      {
+        "path": "vice_compiler\\interface_ir.py",
+        "exists": true,
+        "bytes": 9113,
+        "sha256": "9e8c80acbd6d158aaef88888165825bb3b4c8abe47a6159ba3ae6ed7323b517c"
+      },
+      {
+        "path": "vice_compiler\\layer_solver.py",
+        "exists": true,
+        "bytes": 19729,
+        "sha256": "1761022e9dc9004bc9e4bbf7b4335e2ae948af55618ebef3de814e6014587a0b"
+      },
+      {
+        "path": "vice_compiler\\local_court.py",
+        "exists": true,
+        "bytes": 22615,
+        "sha256": "81d2b9a78bbeed0e1750f0af8fa486c16a0023a9f5a5a876d3e15386aa12143c"
+      },
+      {
+        "path": "vice_compiler\\locus_corpus.py",
+        "exists": true,
+        "bytes": 12205,
+        "sha256": "a86163b8702560447df38d72fc2a35fab328dbd3335f400b72f7f7f416d17a58"
+      },
+      {
+        "path": "vice_compiler\\macro_extractor.py",
+        "exists": true,
+        "bytes": 5731,
+        "sha256": "a57003548ebcd8d47e6841793c31b99669d3c9519ec1e74a6b4b757462352ebc"
+      },
+      {
+        "path": "vice_compiler\\macro_ir.py",
+        "exists": true,
+        "bytes": 11744,
+        "sha256": "821b8e1e8b8577192a1fbc25cb420cf28b03749d948f2018943ad10d3fbe46d9"
+      },
+      {
+        "path": "vice_compiler\\macro_registry.py",
+        "exists": true,
+        "bytes": 16409,
+        "sha256": "b10488961c01d2ffdb26490555e7412e84d7fb6f8160e4ce03621fcc620b840f"
+      },
+      {
+        "path": "vice_compiler\\master_problem.py",
+        "exists": true,
+        "bytes": 4045,
+        "sha256": "9be91690843136614bddf189f6c06f9ce62950df8a1b979129f734b2de9b5e2c"
+      },
+      {
+        "path": "vice_compiler\\native_core.py",
+        "exists": true,
+        "bytes": 6062,
+        "sha256": "6313b0c8ac476d325d949cce510d6ca7d2e2e5e722fca550355d250fc7070906"
+      },
+      {
+        "path": "vice_compiler\\phase5_macros.py",
+        "exists": true,
+        "bytes": 7214,
+        "sha256": "42e98c3f5148ac3527c05e98172f1666a875aa73ac2941d3d497c9f6e1ee69b3"
+      },
+      {
+        "path": "vice_compiler\\pricing_oracles.py",
+        "exists": true,
+        "bytes": 13520,
+        "sha256": "860a4b1418d413e389d048299515337e2cfb4d151fa3c9a457591e89e39e6c21"
+      },
+      {
+        "path": "vice_compiler\\probe_exact_font_lane.py",
+        "exists": true,
+        "bytes": 5202,
+        "sha256": "c6053c9d903a50bc311bce02c6e76984597601f2739100ad17c5895305949c33"
+      },
+      {
+        "path": "vice_compiler\\proposal_net.py",
+        "exists": true,
+        "bytes": 16275,
+        "sha256": "4ac8e426f2a283bdc7472ff27286ddf4c1c1863e64a3da3583d9d5b319b8079b"
+      },
+      {
+        "path": "vice_compiler\\renderer_posterior.py",
+        "exists": true,
+        "bytes": 10059,
+        "sha256": "bf0f65e9860fd8516e3bfb3da5bd6c3a6338d0f70376c77594180d5fb0b502a9"
+      },
+      {
+        "path": "vice_compiler\\runtime_budget.py",
+        "exists": true,
+        "bytes": 5808,
+        "sha256": "2d94d0343838a88663eac27790107ce8aed9620393be59f69e3caae18433c8ce"
+      },
+      {
+        "path": "vice_compiler\\runtime_service.py",
+        "exists": true,
+        "bytes": 25102,
+        "sha256": "922fa4bc1427c30346cdd8cbaf4ee8272da0fbf7008a4edc5604e779e39525d2"
+      },
+      {
+        "path": "vice_compiler\\shape_macros.py",
+        "exists": true,
+        "bytes": 24943,
+        "sha256": "7933676d8d98811a9950db16d33259c0dd142d1502d7f1cc6e26d51c527fb338"
+      },
+      {
+        "path": "vice_compiler\\stroke_macros.py",
+        "exists": true,
+        "bytes": 24003,
+        "sha256": "f10626f24a62f976c5e085ec305ce2e7a2513d2c52004e2b13fbd191dc464036"
+      },
+      {
+        "path": "vice_compiler\\text_macros.py",
+        "exists": true,
+        "bytes": 63368,
+        "sha256": "402073dd9a008bc473a819f9372862ff58407372a27e5e51cda9f6290b4c88f0"
+      },
+      {
+        "path": "vice_compiler\\visible_scene.py",
+        "exists": true,
+        "bytes": 1981,
+        "sha256": "a94f930970841926f38d3120b591caebf511ae03e5b33b7b50181ff2507dc3b4"
+      }
+    ],
+    "native_core": [
+      {
+        "path": "native\\pcdc_native_core\\Cargo.toml",
+        "exists": true,
+        "bytes": 179,
+        "sha256": "402328feedee55c35179e36149b59c67d974311d1310acebddc5e8ed9e47fee9"
+      },
+      {
+        "path": "native\\pcdc_native_core\\src\\lib.rs",
+        "exists": true,
+        "bytes": 3571,
+        "sha256": "0161904eeeaa179fa7d974dd4da289d5d39f0fd3e0643cc35cc296552af35151"
+      },
+      {
+        "path": "native\\pcdc_native_core\\target\\release\\pcdc_native_core.dll",
+        "exists": true,
+        "bytes": 94720,
+        "sha256": "3ec90775463ed6a18523f153494255f901f6f590f5d67d79ca9ab055f515a996"
+      }
+    ],
+    "models": [
+      {
+        "path": "models\\proposal_net_v1.pt",
+        "exists": true,
+        "bytes": 738777,
+        "sha256": "1fb455eaea1792e5abf2b03b633b9737c0519fb96684f5080647edf841af8e22"
+      }
+    ],
+    "real_locus_annotations": [
+      {
+        "path": "datasets\\pcdc_real_loci_v1\\manifest.json",
+        "exists": true,
+        "bytes": 305904,
+        "sha256": "4c1b470b637bfd9970dfc1579c50605b41aaf841f5abf7e353390514521d88d7"
+      },
+      {
+        "path": "datasets\\pcdc_real_loci_v1\\review.json",
+        "exists": true,
+        "bytes": 13032523,
+        "sha256": "e2e3e165f7451149f60ddc5d298dcbc26f0a4875faa6ec43ffcbf1e8f63e10ec"
+      },
+      {
+        "path": "datasets\\pcdc_real_loci_v1\\gt_derivation_report.json",
+        "exists": true,
+        "bytes": 226,
+        "sha256": "ffb04e0adeb9afe2697e156221057d8411ac172d5a58d94f35a73f2b5c304a06"
+      }
+    ],
+    "human_court_manifests_and_answers": [
+      {
+        "path": "datasets\\pcdc_certificate_pairs_v1\\human_manifest.json",
+        "exists": true,
+        "bytes": 13647,
+        "sha256": "52146257ebc6f02ae4aed681d2911ee792c3e57c2360c45e8f5636551118d720"
+      },
+      {
+        "path": "datasets\\pcdc_certificate_pairs_v1\\review.json",
+        "exists": true,
+        "bytes": 5825,
+        "sha256": "4754d19b629730b542d23dc0fa828790e021eafb1f835d97d503e1f9404ed683"
+      },
+      {
+        "path": "datasets\\pcdc_textline_pairs_v1\\human_manifest.json",
+        "exists": true,
+        "bytes": 59452,
+        "sha256": "e1a986b9682235ce23ebb2991ff48d2eebea97efe635748abb916af4a46fb548"
+      },
+      {
+        "path": "datasets\\pcdc_textline_pairs_v1\\review.json",
+        "exists": true,
+        "bytes": 22130,
+        "sha256": "9e223aceffcee58968380a26038ddead29196330925685814fd6b281aa3464ea"
+      }
+    ],
+    "canonical_experiment_reports": [
+      {
+        "path": "benchmarks\\pcdc_experiment1\\report.json",
+        "exists": true,
+        "bytes": 221403,
+        "sha256": "6a147e5e748e6751a3f45d150af0082e14406dc375e43626cfd52bb96e43eb89"
+      },
+      {
+        "path": "benchmarks\\pcdc_experiment1b\\report.json",
+        "exists": true,
+        "bytes": 414685,
+        "sha256": "e7cf77609d54d5f5975d1ef42829a22b146bbf0f0112eafb33ed3fa35c6f929c"
+      },
+      {
+        "path": "benchmarks\\pcdc_experiment2\\report.json",
+        "exists": true,
+        "bytes": 136130,
+        "sha256": "110d22b139ecce5ba3945a920177a0c36cd92463284fb89e7293ee7eddd6745c"
+      },
+      {
+        "path": "benchmarks\\pcdc_experiment3\\report.json",
+        "exists": true,
+        "bytes": 181496,
+        "sha256": "9291ae7add10ba90597bc1ce97f28b7aa2146d4d68c611b760e273c1e852b064"
+      },
+      {
+        "path": "benchmarks\\pcdc_experiment4\\report.json",
+        "exists": true,
+        "bytes": 271804,
+        "sha256": "7eba28e72552c76e4563edeeadac112332ac4edebc03b33bca84e46d386574f1"
+      },
+      {
+        "path": "benchmarks\\pcdc_experiment5\\report.json",
+        "exists": true,
+        "bytes": 9645,
+        "sha256": "23b7adaf6081ed5f8e708a425895afac13b5042f8a3f44b341c0d437a58ab083"
+      },
+      {
+        "path": "benchmarks\\pcdc_experiment9\\report.json",
+        "exists": true,
+        "bytes": 3379,
+        "sha256": "8dae912622e5f914ffc5c9787f582589422e36692a9ebc7e3b8db48d6d05470a"
+      },
+      {
+        "path": "benchmarks\\pcdc_experiment10\\report.json",
+        "exists": true,
+        "bytes": 141470,
+        "sha256": "7efce2ecc1c15f3af29df74e8fdfe51932815dbd2eb0ef60e4b9bb76eea71510"
+      }
+    ],
+    "renderer_sources": [
+      {
+        "path": "vice_compiler\\renderer_posterior.py",
+        "exists": true,
+        "bytes": 10059,
+        "sha256": "bf0f65e9860fd8516e3bfb3da5bd6c3a6338d0f70376c77594180d5fb0b502a9"
+      },
+      {
+        "path": "vice_compiler\\atlas_renderer.py",
+        "exists": true,
+        "bytes": 10853,
+        "sha256": "a29cf7ace746d40811167c4acb78f9246d3ccb2b91aeb32670d4438c03c5f132"
+      },
+      {
+        "path": "vice_compiler\\local_court.py",
+        "exists": true,
+        "bytes": 22615,
+        "sha256": "81d2b9a78bbeed0e1750f0af8fa486c16a0023a9f5a5a876d3e15386aa12143c"
+      }
+    ]
+  },
+  "thresholds": {
+    "quality_modes": {
+      "fast": {
+        "mode": "fast",
+        "max_dim": 384,
+        "phase5": {
+          "shape_rois": 10,
+          "shapes_per_roi": 3,
+          "stroke_rois": 6,
+          "appearance_rois": 6,
+          "appearances_per_roi": 3,
+          "codec_loci": 4
+        },
+        "text_rois": 6,
+        "text_exact_per_line": 0,
+        "proposal_queries": 24,
+        "exact_render_limit": 64,
+        "solver_ms": 35.0,
+        "refine_iterations": 0,
+        "abstraction_ms": 20.0,
+        "use_layers": false,
+        "use_exact_font": false,
+        "minimum_typed_lower": 0.42,
+        "target_p50_ms": 1000.0,
+        "target_p95_ms": 2000.0
+      },
+      "balanced": {
+        "mode": "balanced",
+        "max_dim": 512,
+        "phase5": {
+          "shape_rois": 20,
+          "shapes_per_roi": 4,
+          "stroke_rois": 12,
+          "appearance_rois": 12,
+          "appearances_per_roi": 4,
+          "codec_loci": 8
+        },
+        "text_rois": 12,
+        "text_exact_per_line": 0,
+        "proposal_queries": 48,
+        "exact_render_limit": 192,
+        "solver_ms": 100.0,
+        "refine_iterations": 8,
+        "abstraction_ms": 50.0,
+        "use_layers": true,
+        "use_exact_font": false,
+        "minimum_typed_lower": 0.0,
+        "target_p50_ms": 2000.0,
+        "target_p95_ms": 5000.0
+      },
+      "max": {
+        "mode": "max",
+        "max_dim": 512,
+        "phase5": {
+          "shape_rois": 30,
+          "shapes_per_roi": 4,
+          "stroke_rois": 20,
+          "appearance_rois": 20,
+          "appearances_per_roi": 4,
+          "codec_loci": 12
+        },
+        "text_rois": 24,
+        "text_exact_per_line": 4,
+        "proposal_queries": 64,
+        "exact_render_limit": 256,
+        "solver_ms": 250.0,
+        "refine_iterations": 16,
+        "abstraction_ms": 75.0,
+        "use_layers": true,
+        "use_exact_font": true,
+        "minimum_typed_lower": 0.0,
+        "target_p50_ms": null,
+        "target_p95_ms": null
+      }
+    },
+    "court_weights": {
+      "lambda_mdl": 0.16,
+      "lambda_struct": 0.28,
+      "lambda_risk": 0.24,
+      "confidence_z": 1.96,
+      "probability_temperature": 0.08,
+      "preference_tie_epsilon": 1e-09
+    },
+    "certificate_default_boundary_tolerance_px": 2.0,
+    "renderer_model_limit": 8,
+    "balanced_candidate_contract": {
+      "hierarchy_nodes_per_leaf": 2,
+      "typed_rois": 64,
+      "macros_per_roi_before_screening": 12,
+      "exact_finalists_per_roi": 4,
+      "exact_roi_renders": 256,
+      "visible_extractions": 1,
+      "hidden_extractions": 1,
+      "final_full_renders": 1
+    }
+  },
+  "thresholds_sha256": "9ec886a9aeff98540c6ebc7cb531b094771afaa72c45ff89f1988e4d7f451d49",
+  "calibration": {
+    "target_coverage": 0.99,
+    "thresholds": [
+      {
+        "alpha": 0.010000000000000009,
+        "calibration_count": 5,
+        "empirical_coverage": 1.0,
+        "family": "appearance_model",
+        "threshold": 1.0
+      },
+      {
+        "alpha": 0.010000000000000009,
+        "calibration_count": 6,
+        "empirical_coverage": 1.0,
+        "family": "layer_relation",
+        "threshold": 1.0
+      },
+      {
+        "alpha": 0.010000000000000009,
+        "calibration_count": 5,
+        "empirical_coverage": 1.0,
+        "family": "risk_hard_negative",
+        "threshold": 1.0
+      },
+      {
+        "alpha": 0.010000000000000009,
+        "calibration_count": 6,
+        "empirical_coverage": 1.0,
+        "family": "stroke_network",
+        "threshold": 1.0
+      },
+      {
+        "alpha": 0.010000000000000009,
+        "calibration_count": 15,
+        "empirical_coverage": 1.0,
+        "family": "text_line",
+        "threshold": 1.0
+      },
+      {
+        "alpha": 0.010000000000000009,
+        "calibration_count": 9,
+        "empirical_coverage": 1.0,
+        "family": "whole_shape",
+        "threshold": 1.0
+      }
+    ],
+    "vacuous_classes": [
+      "appearance_model",
+      "layer_relation",
+      "risk_hard_negative",
+      "stroke_network",
+      "text_line",
+      "whole_shape"
+    ],
+    "test_coverage": {
+      "appearance_model": 1.0,
+      "layer_relation": 1.0,
+      "risk_hard_negative": 1.0,
+      "stroke_network": 1.0,
+      "text_line": 1.0,
+      "whole_shape": 1.0
+    },
+    "source_report_sha256": "8dae912622e5f914ffc5c9787f582589422e36692a9ebc7e3b8db48d6d05470a"
+  },
+  "annotation_status": {
+    "real_loci": {
+      "count": 300,
+      "pending": 0
+    },
+    "certificate_human_court": {
+      "count": 35
+    },
+    "textline_human_court": {
+      "count": 100
+    }
+  },
+  "complete": true,
+  "missing": [],
+  "promotion_ready": false,
+  "promotion_blockers": [
+    "Phase-12 full campaign not frozen/passed",
+    "99% conformal sets remain vacuous on the 46-locus calibration split",
+    "locked blind VAI parity gate not yet passed"
+  ],
+  "freeze_hash": "e542adbf45e2f0ee8264274c2411db4ea30b3fc3da340a168d184603e8de3c41"
+}

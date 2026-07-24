@@ -36,13 +36,17 @@ def main() -> int:
     spec = importlib.util.spec_from_file_location("bv", ROOT / "benchmark_vai.py")
     bv = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(bv)
-    import geometry_vectorizer as gv
 
     meters: dict = {}
     svg = out_dir / crop.stem / "03_rebuilt_filled.svg"
     try:
         if not svg.exists():
-            gv.process(crop, out_dir, smoothing=mode)
+            if mode == "scene":
+                from vice_scene.pipeline import process_scene
+                process_scene(crop, out_dir)
+            else:
+                import geometry_vectorizer as gv
+                gv.process(crop, out_dir, smoothing=mode)
         meters.update(bv.geometry_meters(svg, width))
         meters.update(bv.roundness_meter(svg, width))
         meters.update(bv.raster_meters(svg, crop))

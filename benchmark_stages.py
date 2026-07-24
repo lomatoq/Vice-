@@ -110,7 +110,26 @@ def tiny_color_detail_score(report_dir: Path, src: Path) -> float:
             image, use_icm=True, merge=True, deblur=not jpeg)
     except Exception:
         return 1.0
-    rebuilt = Image.open(report_dir / "03_rebuilt_filled.png").convert("RGB")
+    # Judge the actual vector at the analysis density.  Upscaling the native
+    # diagnostic PNG first erases legal sub-pixel SVG regions before this
+    # metric ever sees them (a 0.7px counter becomes four bilinear grey
+    # samples).  Direct resvg rendering is both the physically correct court
+    # and the same renderer used by benchmark_vai; retain the PNG fallback for
+    # incomplete/debug outputs.
+    svg_path = report_dir / "03_rebuilt_filled.svg"
+    if svg_path.exists():
+        try:
+            import resvg_py
+            raw = resvg_py.svg_to_bytes(
+                svg_string=svg_path.read_text(encoding="utf-8", errors="replace"),
+                width=int(rgb.shape[1]))
+            rgba = Image.open(io.BytesIO(bytes(raw))).convert("RGBA")
+            rebuilt = Image.new("RGB", rgba.size, "white")
+            rebuilt.paste(rgba, mask=rgba.getchannel("A"))
+        except Exception:
+            rebuilt = Image.open(report_dir / "03_rebuilt_filled.png").convert("RGB")
+    else:
+        rebuilt = Image.open(report_dir / "03_rebuilt_filled.png").convert("RGB")
     rebuilt = rebuilt.resize((rgb.shape[1], rgb.shape[0]), Image.Resampling.BILINEAR)
     pixels = np.asarray(rebuilt, float)
     scores = []
@@ -165,25 +184,55 @@ def primitive_fragment_metrics(report_dir: Path) -> dict:
     }
 
 
-def fit_case(name: str, src: Path, smoothing: str = "paper") -> dict:
-    t0 = time.time()
-    rep = gv.process(src, WORK / f"{name}_{smoothing}", smoothing=smoothing)
+def _measure_case_output(name: str, src: Path, smoothing: str,
+                         rep: dict, secs: float) -> dict:
+    """Judge one already-materialized SVG with the same physical courts."""
+    templates = rep["templates"]
+    smooth_repair_loops = sum(
+        value for key, value in templates.items()
+        if key.endswith(("-g1-fallback", "-dense-fallback")))
+    pixel_fallback_loops = sum(
+        value for key, value in templates.items()
+        if key.endswith("-fallback")
+        and not key.endswith(("-g1-fallback", "-dense-fallback")))
     row = {
         "extractor": rep.get("extractor_used", "unknown"),
         "regions": rep["regions"],
+        "closed_contours": rep["closed_contours"],
         "prims": rep["rendered_primitive_count"],
         "L": rep["actual"]["L"], "C": rep["actual"]["C"],
-        "fallback_loops": sum(v for k, v in rep["templates"].items() if k.endswith("-fallback")),
+        # Keep the legacy aggregate for snapshots, but distinguish a validated
+        # smooth G1 degradation rung from the final pixel-chain fallback.  The
+        # old one-number gate called both equally catastrophic and marked the
+        # topology-exact Lion repair RED despite IoU 0.969.
+        "fallback_loops": smooth_repair_loops + pixel_fallback_loops,
+        "smooth_repair_loops": smooth_repair_loops,
+        "pixel_fallback_loops": pixel_fallback_loops,
         "strokes": rep["templates"].get("stroke", 0),
         "occl": sum(v for k, v in rep["templates"].items() if k.startswith("occlusion")),
         "scale": rep["analysis_scale"],
-        "secs": round(time.time() - t0, 1),
+        "secs": round(float(secs), 1),
     }
     report_dir = WORK / f"{name}_{smoothing}" / src.stem
     row.update(loop_metrics(report_dir, src))
     row.update(primitive_fragment_metrics(report_dir))
     row["tiny_detail"] = round(tiny_color_detail_score(report_dir, src), 4)
     return row
+
+
+def fit_case(name: str, src: Path, smoothing: str = "paper",
+             reuse: bool = False) -> dict:
+    reuse = reuse or "--reuse-artifacts" in sys.argv
+    report_dir = WORK / f"{name}_{smoothing}" / src.stem
+    report_path = report_dir / "report.json"
+    t0 = time.time()
+    if reuse and report_path.exists():
+        rep = json.loads(report_path.read_text(encoding="utf-8"))
+        secs = 0.0
+    else:
+        rep = gv.process(src, WORK / f"{name}_{smoothing}", smoothing=smoothing)
+        secs = time.time() - t0
+    return _measure_case_output(name, src, smoothing, rep, secs)
 
 
 # --------------------------------------------------------------------------- 1) synthetic
@@ -502,6 +551,7 @@ def icon_cases() -> dict:
 # --------------------------------------------------------------------------- 4) problem cases
 def problem_cases() -> dict:
     out = {}
+    reuse_artifacts = "--reuse-problem-artifacts" in sys.argv
     # IoU bars are baseline-minus-margin per case: thin wordmarks/small icons have
     # physically low fill-IoU ceilings (boundary band dominates the area).
     # (name, src, mode, min_iou, max_fallback_loops).  IoU bars sit just under the
@@ -545,33 +595,77 @@ def problem_cases() -> dict:
         "nbc_regions": ("micro_prims", 8),
         "mobil_regions": ("micro_prims", 1),
     }
+    problem_partial = OUT / "stage_problems_partial.json"
+    if "--resume-problems" in sys.argv and problem_partial.exists():
+        try:
+            out.update(json.loads(problem_partial.read_text(encoding="utf-8")))
+        except Exception:
+            pass
     for name, src, mode, min_iou, max_fb in cases:
+        if name in out and out[name].get("pass") is True:
+            print(f"[problems] RESUME {name}", flush=True)
+            continue
+        case_t0 = time.time()
+        print(f"[problems] START {name}", flush=True)
         if not src.exists():
             out[name] = {"pass": None, "note": "source missing"}
+            problem_partial.write_text(json.dumps(out, indent=1), encoding="utf-8")
             continue
-        row = fit_case(name, src, smoothing=mode)
+        row = fit_case(name, src, smoothing=mode, reuse=reuse_artifacts)
         metric, limit = micro_limits.get(name, ("micro_prims", float("inf")))
         micro_ok = row[metric] <= limit
         if name in micro_limits:
             row["micro_gate"] = f"{metric}<={limit}"
         tiny_floor = 0.40 if name == "nbc_regions" else 0.45
+        smooth_budget = max(1, int(math.ceil(0.25 * row["closed_contours"])))
+        row["smooth_repair_gate"] = f"smooth_repair_loops<={smooth_budget}"
+        row["pixel_fallback_gate"] = f"pixel_fallback_loops<={max_fb}"
         row["pass"] = bool(row["raster_iou"] >= min_iou
-                           and row["fallback_loops"] <= max_fb
+                           and row["pixel_fallback_loops"] <= max_fb
+                           and row["smooth_repair_loops"] <= smooth_budget
                            and row["topo_ok"]
                            and row["tiny_detail"] >= tiny_floor
                            and micro_ok)
         out[name] = row
+        problem_partial.write_text(json.dumps(out, indent=1), encoding="utf-8")
+        print(f"[problems] DONE  {name} ({time.time() - case_t0:.1f}s) pass={row['pass']}",
+              flush=True)
     return out
 
 
 def main() -> None:
     t0 = time.time()
-    snap = {
-        "synthetic": synth_cases(),
-        "corners_vs_human": corner_cases(),
-        "icons": icon_cases(),
-        "problems": problem_cases(),
-    }
+    partial_path = OUT / "stage_snapshot_partial.json"
+    resume_sections = "--resume-sections" in sys.argv
+    snap = {}
+    if resume_sections and partial_path.exists():
+        try:
+            snap = json.loads(partial_path.read_text(encoding="utf-8"))
+            snap.pop("partial_secs", None)
+        except Exception:
+            snap = {}
+    sections = (
+        ("synthetic", synth_cases),
+        ("corners_vs_human", corner_cases),
+        ("icons", icon_cases),
+        ("problems", problem_cases),
+    )
+    for section, function in sections:
+        # Problem cases maintain their own per-case checkpoint and must rerun
+        # any RED row.  Earlier completed sections are immutable inputs to
+        # that retry and can be reused without weakening the final gate.
+        if resume_sections and section in snap and section != "problems":
+            print(f"[stage] RESUME {section}", flush=True)
+            continue
+        section_t0 = time.time()
+        print(f"[stage] START {section}", flush=True)
+        snap[section] = function()
+        snap["partial_secs"] = round(time.time() - t0, 1)
+        partial_path.write_text(json.dumps(snap, indent=1, ensure_ascii=False),
+                                encoding="utf-8")
+        print(f"[stage] DONE  {section} ({time.time() - section_t0:.1f}s)",
+              flush=True)
+    snap.pop("partial_secs", None)
     snap["total_secs"] = round(time.time() - t0, 1)
 
     prev_path = OUT / "stage_snapshot.json"

@@ -24,7 +24,7 @@ sys.path.insert(0, str(ROOT))
 import numpy as np
 
 
-def joint_corner_positions(loop: np.ndarray) -> np.ndarray | None:
+def joint_corner_positions(loop: np.ndarray, lattice_scale: int = 1) -> np.ndarray | None:
     """The corner set the production joint fitter would weld C0 (or None when
     the joint path would defer to classic)."""
     import geometry_vectorizer as gv
@@ -36,13 +36,21 @@ def joint_corner_positions(loop: np.ndarray) -> np.ndarray | None:
     coarse = loop[::stride]
     if len(coarse) < 10:
         return None
-    probs = gv._corner_probabilities(coarse)
+    # Mirror production exactly.  In the deblur-4x lane ``loop`` is already in
+    # native coordinates (quarter-pixel vertex spacing); lattice_scale only
+    # tells the probability prerequisite how that evidence was sampled.
+    probs = gv._native_density_probabilities(loop, coarse, lattice_scale)
     if probs is None or len(probs) != len(coarse):
         return None
     above = probs >= gv._JOINT_SUPERSET_THRESHOLD
     if not bool(above.any()):
         return np.empty((0, 2))
-    fl = gv._fit_loop_joint(loop, 32.0 / max(16.0, float(np.ptp(loop[:, 0]) + np.ptp(loop[:, 1])) / 2), 1.0)
+    fl = gv._fit_loop_joint(
+        loop,
+        32.0 / max(16.0, float(np.ptp(loop[:, 0]) + np.ptp(loop[:, 1])) / 2),
+        1.0,
+        lattice_scale=lattice_scale,
+    )
     if fl is None:
         return None
     # C0 positions = joins whose tangents disagree beyond the G1 dead zone
