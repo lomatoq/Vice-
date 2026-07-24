@@ -2051,6 +2051,34 @@ def _group_aligned_components(
     return groups
 
 
+def _body_topology_signature(
+    mask: np.ndarray, min_area: int,
+) -> tuple[int, int]:
+    """(body components, body holes) ignoring speck-scale pieces.
+
+    topology_signature counts every pixel island, so removing legitimate
+    AA/JPEG specks would read as a component change.  The Stage-D guard
+    needs the body-scale signature: components and enclosed background
+    holes with at least min_area pixels.
+    """
+    source = np.asarray(mask, np.uint8)
+    _count, _labels, stats, _centroids = cv2.connectedComponentsWithStats(
+        source, 8,
+    )
+    components = int(np.sum(stats[1:, cv2.CC_STAT_AREA] >= min_area))
+    inverted = np.pad(1 - source, 1, constant_values=1)
+    count_h, labels_h, stats_h, _ = cv2.connectedComponentsWithStats(
+        inverted, 4,
+    )
+    outside = labels_h[0, 0]
+    holes = int(sum(
+        1 for index in range(1, count_h)
+        if index != outside
+        and stats_h[index, cv2.CC_STAT_AREA] >= min_area
+    ))
+    return components, holes
+
+
 def _stage_d_support_refinements(
     reir: RasterEvidenceIR, proposals: Iterable[TextLineProposal],
 ) -> tuple[TextLineProposal, ...]:
@@ -2115,6 +2143,23 @@ def _stage_d_support_refinements(
             intersection / max(1, union) < 0.30
             or not 0.40 <= area_ratio <= 2.50
             or np.array_equal(recovered, original)
+        ):
+            continue
+        # Topology guard (H8 lesson): the first live firing of this lane won
+        # the pixel court on text-015 (+0.05 IoU) while fusing 9 body
+        # components and closing 2 counters (reference [38,6], recovered
+        # [25,3], GCR 13->20).  The court cannot see reviewed-reference GCR
+        # at compile time, so the guarantee must be structural: a default
+        # recovery may clean specks, but body-scale component and hole
+        # counts must stay within a small drift of the observed support.
+        speck = max(4, int(0.0002 * recovered.size))
+        original_body = _body_topology_signature(original, speck)
+        recovered_body = _body_topology_signature(recovered, speck)
+        component_drift = abs(recovered_body[0] - original_body[0])
+        hole_drift = abs(recovered_body[1] - original_body[1])
+        if (
+            component_drift > max(1, round(0.10 * original_body[0]))
+            or hole_drift > 1
         ):
             continue
         full = np.zeros(proposal.support_mask.shape, bool)
