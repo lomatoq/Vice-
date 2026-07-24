@@ -168,6 +168,11 @@ def main() -> None:
         "tracking x shared-stroke variants)",
     )
     parser.add_argument("--exclude-gt-family", action="store_true")
+    parser.add_argument(
+        "--skip-bank-check", action="store_true",
+        help="allow a retrieval bank other than the attested runtime bank "
+        "(v2-full / subset banks for Experiment G); recorded in the report",
+    )
     parser.add_argument("--lengths", type=str, default="1,2,4,8,16,24,32")
     parser.add_argument("--samples-per-length", type=int, default=192)
     parser.add_argument("--seed", type=int, default=20260724)
@@ -219,7 +224,14 @@ def main() -> None:
         args.font_manifest, font_root=args.font_root,
     )
     if bank["font_manifest_sha256"] != str(manifest["content_sha256"]):
-        raise RuntimeError("descriptor bank is stale for this font manifest")
+        if not args.skip_bank_check:
+            raise RuntimeError(
+                "descriptor bank is stale for this font manifest"
+            )
+        print(
+            "WARN retrieval bank differs from the attested runtime bank "
+            "(Experiment G mode)", flush=True,
+        )
     split = split_font_families(fonts, seed=args.split_seed)
     test_fonts = split.test
     effect_fraction = CONNECTED_WORDMARK_FRACTION + OUTLINE_WORDMARK_FRACTION
@@ -375,6 +387,11 @@ def main() -> None:
         "composition_trackings": list(COMPOSITION_TRACKINGS),
         "composition_strokes": list(COMPOSITION_STROKES),
         "exclude_gt_family": bool(args.exclude_gt_family),
+        "retrieval_bank": str(args.descriptors.name),
+        "retrieval_bank_faces": len(faces),
+        "retrieval_bank_matches_attested": bool(
+            bank["font_manifest_sha256"] == str(manifest["content_sha256"])
+        ),
         "no_effect_samples_only": True,
         "skipped_effect_samples": int(skipped_effects),
         "unqueryable_samples": int(unqueryable),

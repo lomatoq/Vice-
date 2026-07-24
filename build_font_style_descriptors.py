@@ -64,6 +64,15 @@ def _ink_height(font: ImageFont.FreeTypeFont, text: str) -> float | None:
 
 
 def describe_face(font_path: str) -> dict[str, float] | None:
+    # The full repository contains faces PIL/Raqm cannot lay out (complex
+    # shaping, colour tables): a pathological face is a skipped face.
+    try:
+        return _describe_face_unsafe(font_path)
+    except (OSError, ValueError, ZeroDivisionError):
+        return None
+
+
+def _describe_face_unsafe(font_path: str) -> dict[str, float] | None:
     try:
         font = ImageFont.truetype(font_path, FONT_SIZE)
     except OSError:
@@ -100,25 +109,59 @@ def describe_face(font_path: str) -> dict[str, float] | None:
 
 
 def main() -> None:
+    import argparse
+
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--bank-v2", type=Path, default=None,
+        help="read faces from a v2-full bank manifest instead of the "
+        "attested runtime bank",
+    )
+    parser.add_argument(
+        "--max-faces-per-family", type=int, default=4,
+        help="v2 mode only: cap faces per family to keep the retrieval "
+        "bank style-balanced",
+    )
+    parser.add_argument("--out", type=Path, default=OUT)
+    args = parser.parse_args()
+
     sys.path.insert(0, str(ROOT / "vice_compiler"))
     sys.path.insert(0, str(ROOT))
-    from vice_compiler.glyph_prior_data import load_font_records
 
     started = time.perf_counter()
-    fonts, manifest = load_font_records(
-        ROOT / "fonts" / "google-fonts-manifest.json",
-        font_root=ROOT / "fonts" / "google-fonts",
-    )
+    if args.bank_v2 is not None:
+        bank = json.loads(args.bank_v2.read_text(encoding="utf-8"))
+        records = []
+        per_family: dict[str, int] = {}
+        for face in bank["faces"]:
+            count = per_family.get(face["family"], 0)
+            if count >= args.max_faces_per_family:
+                continue
+            per_family[face["family"]] = count + 1
+            records.append((
+                face["family"], ROOT / face["path"], face["sha256"],
+            ))
+        manifest = {"content_sha256": bank["content_sha256"]}
+    else:
+        from vice_compiler.glyph_prior_data import load_font_records
+
+        fonts, manifest = load_font_records(
+            ROOT / "fonts" / "google-fonts-manifest.json",
+            font_root=ROOT / "fonts" / "google-fonts",
+        )
+        records = [
+            (record.family, record.path, record.sha256) for record in fonts
+        ]
     faces: dict[str, dict] = {}
     skipped: list[str] = []
-    for record in fonts:
-        features = describe_face(str(record.path))
+    for family, path, sha in records:
+        features = describe_face(str(path))
         if features is None:
-            skipped.append(record.family)
+            skipped.append(family)
             continue
-        faces[record.sha256] = {
-            "family": record.family,
-            "path": str(Path(record.path).relative_to(ROOT)),
+        faces[sha] = {
+            "family": family,
+            "path": str(Path(path).relative_to(ROOT)),
             "features": features,
         }
     feature_names = sorted(next(iter(faces.values()))["features"])
@@ -145,11 +188,11 @@ def main() -> None:
         "skipped_families": skipped,
         "elapsed_seconds": time.perf_counter() - started,
     }
-    OUT.parent.mkdir(parents=True, exist_ok=True)
-    OUT.write_text(json.dumps(payload, indent=1), encoding="utf-8")
+    args.out.parent.mkdir(parents=True, exist_ok=True)
+    args.out.write_text(json.dumps(payload, indent=1), encoding="utf-8")
     print(
         f"{len(faces)} faces described, {len(skipped)} skipped, "
-        f"{payload['elapsed_seconds']:.1f}s -> {OUT}"
+        f"{payload['elapsed_seconds']:.1f}s -> {args.out}"
     )
 
 
