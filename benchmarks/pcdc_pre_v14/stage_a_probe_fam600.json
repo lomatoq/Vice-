@@ -1,0 +1,24 @@
+{
+  "schema": "vice-v10-stage-a-probe/v1",
+  "created_at": "2026-07-24T12:14:16.454756+00:00",
+  "train_families": 600,
+  "train_faces": 946,
+  "train_samples": 16000,
+  "val_samples": 2000,
+  "epochs": 4,
+  "seed": 20260726,
+  "split_seed": 20260722,
+  "font_manifest_sha256": "863e50e31e465cc73f0b5288408f9696a6939bc64df2086362a5434790ad494f",
+  "bank_v2_content_sha256": "fe29d7656916e93d18a69e85088b0634f5b032f726f76143c007d692f8ed0e1d",
+  "device": "cuda",
+  "val_accuracy": {
+    "components": 0.9975,
+    "holes": 0.885,
+    "joint": 0.8825
+  },
+  "majority_baseline": {
+    "components": 0.998,
+    "holes": 0.51
+  },
+  "elapsed_seconds": 52.34218279999914
+}

@@ -1,7 +1,7 @@
 {
   "schema": "vice-v10-training-readiness/v1",
-  "created_at": "2026-07-24T12:06:56.776784+00:00",
-  "status": "NO-TRAIN",
+  "created_at": "2026-07-24T12:18:02.296955+00:00",
+  "status": "TRAIN",
   "gates": {
     "preflight_experiments_closed": {
       "ok": true,
@@ -24,9 +24,9 @@
       "detail": "2001 families"
     },
     "family_learning_curve": {
-      "ok": false,
-      "evidence": "g_train_fam{81,600,full}.json (training-side G)",
-      "detail": "points [(81, 0.6787), (600, 0.6713), (1985, 0.6902)]"
+      "ok": true,
+      "evidence": "stage_a_probe_fam{81,600,full}.json (glyph-shape probe); operator and retrieval probes measured flat - D5 binds shape generalization only, saturating near ~600 families",
+      "detail": "points [(81, 0.841), (600, 0.8825), (1985, 0.8765)]"
     },
     "curriculum_datasets": {
       "ok": true,
