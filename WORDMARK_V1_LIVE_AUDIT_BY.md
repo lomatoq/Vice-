@@ -634,6 +634,24 @@ IoU ужо вышэй мінімальнага `0.88`, але topology далё�
     кандыдатаў, Recall@K на вектарным узроўні і Experiment H на 100
     рэальных радках праз існуючы PCDC-суд.
 
+77. v9.5 approximate-template lane пабудавана і ўпершыню змяніла рэальны
+    delivered SVG (2026-07-24). Правайдэр
+    `vice_compiler/template_warp_provider.py` (пратакол ExactFontProvider):
+    стылявое сеянне па банку 241 твару замест pricing-сцяны; top-8 фітаў
+    праз прадакшн font_match; provenance `no-font-identity-claim`. Уласны
+    маршрут `approximate-template` у `generate_text_macros` з
+    доказна-абгрунтаванай сцяной (атрыбуцыйная проба: line.score≥0.94
+    забівала 18/18 пры якасці фітаў 13/18; новыя сцены стражэй па
+    геаметрыі: IoU 0.50, падлога line.score 0.80). Experiment H на 100
+    рэальных лоці: 92 спробы, першы судовы выйгрыш — `text-015` IoU
+    0.564→0.614, нуль рэгрэсій; GCR пакуль без зруху (37/44); optional
+    p95 3.8 s — бюджэт фітаў наперадзе. Дадаткова закрыты Experiment R:
+    вектарны Recall@8 = 0.617 упіраецца ў столь кампазіцыі (truth==сума
+    гліфаў толькі 41–54% на доўгіх радках) — pair interactions (§8.11)
+    цяпер №1 чаргі v10-мадэлі. Тэсты: text 45/45, experiment4 11/11.
+    Усе ранейшыя hash-bound справаздачы лічацца застарэлымі да source
+    freeze і rerun'аў (§17 Step 9).
+
 ## Дакладны promotion gate для full checkpoint
 
 Checkpoint не можа стаць `models/wordmark_prior.pt`, пакуль адначасова не
