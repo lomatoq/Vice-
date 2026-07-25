@@ -74,6 +74,26 @@ class CourtCandidate:
     core_bits: int = 0
     interface_ids: tuple[int, ...] = ()
     provenance: tuple[str, ...] = ()
+    #: Plan S1.6/M8.1: the domain the candidate is SCORED on, which is not
+    #: the domain it OWNS.  ``claimed_support`` is ownership - what the
+    #: candidate is allowed to draw.  When a candidate silently drops a
+    #: secondary colour or a small detail, that omission lies outside its
+    #: own claim, so a claim-scoped score cannot see it.  Supplying an
+    #: evaluation support (candidate | fallback | required evidence |
+    #: salient appearance, plus an apron) makes omissions cost their real
+    #: price.  ``None`` keeps the recorded claim-scoped behaviour.
+    evaluation_support: np.ndarray | None = None
+
+    @property
+    def ownership_support(self) -> np.ndarray:
+        """Plan M8.1 naming: claimed_support IS the ownership domain."""
+        return self.claimed_support
+
+    def score_domain(self) -> np.ndarray:
+        return (
+            self.claimed_support if self.evaluation_support is None
+            else self.evaluation_support
+        )
 
     def validate(self, canvas_size: tuple[int, int]) -> None:
         if not self.id:
@@ -82,6 +102,20 @@ class CourtCandidate:
         width, height = canvas_size
         if np.asarray(self.claimed_support).shape != (height, width):
             raise ValueError("court claimed support must be canvas-sized")
+        if self.evaluation_support is not None:
+            if np.asarray(self.evaluation_support).shape != (height, width):
+                raise ValueError(
+                    "evaluation support shape differs from the canvas",
+                )
+            if not np.any(self.evaluation_support):
+                raise ValueError("evaluation support is empty")
+            if np.any(
+                np.asarray(self.claimed_support, bool)
+                & ~np.asarray(self.evaluation_support, bool)
+            ):
+                raise ValueError(
+                    "ownership support must lie inside the evaluation domain",
+                )
         if not np.any(self.claimed_support):
             raise ValueError("court candidate has empty claimed support")
         if self.certificate_alpha_mask is not None:
@@ -387,7 +421,10 @@ def compare_in_local_court(
         raise ValueError("phase-3 pair court requires a shared exact ROI")
     x1, y1, x2, y2 = candidate.request.roi_xyxy
     observed_crop = observed[y1:y2, x1:x2]
-    score_support = np.asarray(candidate.claimed_support, bool)[y1:y2, x1:x2]
+    # Plan S1.6: score on the evaluation domain (candidate | fallback |
+    # required evidence), not on the candidate's own claim - otherwise a
+    # candidate can hide an omission by simply not claiming it.
+    score_support = np.asarray(candidate.score_domain(), bool)[y1:y2, x1:x2]
     if not np.any(score_support):
         raise ValueError("court candidate has no claimed pixels inside ROI")
 
@@ -626,7 +663,16 @@ def compare_in_local_court(
         "pass" if candidate_bundle.support.valid and candidate_bundle.geometry.valid
         else "reject",
     ))
-    scored_pixels = max(1, candidate_bundle.support.scored_pixels)
+    # Plan S1.6: normalize by the domain the score integrates over.  With
+    # an evaluation domain the LCB covers more pixels, so dividing by the
+    # claim would inflate the gain of a candidate that simply claims less.
+    evaluation_pixels = (
+        int(np.sum(np.asarray(candidate.evaluation_support, bool)))
+        if candidate.evaluation_support is not None else 0
+    )
+    scored_pixels = max(
+        1, evaluation_pixels or candidate_bundle.support.scored_pixels,
+    )
     render_gain = (
         candidate_bundle.render_evidence.conservative_lower_bound
         / scored_pixels
