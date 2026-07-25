@@ -43,6 +43,7 @@ from .vector_program import (
     TextVectorProgram,
     VectorPaintLayer,
     VectorSpan,
+    interior_point,
     point_in_polygon,
     seal_program,
     solid_paint_from_straight_rgba,
@@ -726,9 +727,23 @@ def fair_program_from_observations(
                 1 for other_index, (_other_spans, other) in enumerate(rings)
                 if other_index != index and point_in_polygon(probe, other)
             )
+        role = "positive" if depth % 2 == 0 else "negative"
+        if role == "negative":
+            # Stay self-consistent with the contract's own containment
+            # test: on dense real wordmarks a ring can be nested by parity
+            # yet fail the validator's interior probe (tiny counters,
+            # coarse flattening).  The role is metadata - the even-odd
+            # fill renders identically - so demote instead of emitting a
+            # program that cannot be sealed.
+            inside = interior_point(polygon) if polygon else None
+            if inside is None or not any(
+                point_in_polygon(inside, other)
+                for other_index, (_spans, other) in enumerate(rings)
+                if other_index != index
+            ):
+                role = "positive"
         paths.append(ClosedPathProgram(
-            id=f"ring-{index:04d}",
-            role="positive" if depth % 2 == 0 else "negative",
+            id=f"ring-{index:04d}", role=role,
             spans=spans, fill_rule="evenodd",
         ))
     layer = VectorPaintLayer(

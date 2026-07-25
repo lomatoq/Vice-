@@ -276,7 +276,14 @@ def _ring_roles(rings: list[list[VectorSpan]]) -> list[str]:
             if other_index != index and other
             and point_in_polygon(probe, other)
         )
-        roles.append("positive" if depth % 2 == 0 else "negative")
+        role = "positive" if depth % 2 == 0 else "negative"
+        if role == "negative" and not any(
+            point_in_polygon(probe, other)
+            for other_index, other in enumerate(polygons)
+            if other_index != index and other
+        ):
+            role = "positive"
+        roles.append(role)
     return roles
 
 

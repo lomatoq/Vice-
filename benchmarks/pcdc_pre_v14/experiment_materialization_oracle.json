@@ -1,0 +1,1183 @@
+{
+  "schema": "pcdc-materialization-oracle/v1",
+  "created_at": "2026-07-25T14:07:12.912232+00:00",
+  "question": "with the human support held constant, does the fair materializer deliver better geometry than the current one?",
+  "cases": 24,
+  "usable": 24,
+  "human_choice_counts": {
+    "legacy": 23,
+    "candidate": 19,
+    "tie": 58
+  },
+  "summary": {
+    "legacy_mean_iou": 1.0,
+    "v2_mean_iou": 0.9976520035393756,
+    "legacy_mean_spans": 4860.666666666667,
+    "v2_mean_spans": 2421.25,
+    "legacy_mean_turning_density": 0.0,
+    "v2_mean_turning_density": 0.25367834648915016,
+    "legacy_p50_ms": 47.81314999854658,
+    "v2_p50_ms": 3156.3429000016185,
+    "v2_p95_ms": 8181.357225001556,
+    "v2_family_counts": {
+      "faithful-cell-edge": 22,
+      "fair-primitive-hybrid": 2
+    },
+    "v2_fixes_topology": 0,
+    "v2_breaks_topology": 0
+  },
+  "rows": [
+    {
+      "id": "text-000-6d4fd484d908",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 8792,
+        "turning_density": null,
+        "milliseconds": 3818.3111999969697,
+        "iou": 1.0,
+        "topology": [
+          13,
+          64
+        ],
+        "reference_topology": [
+          13,
+          64
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 4396,
+        "turning_density": 0.34248688882999284,
+        "milliseconds": 9183.559899989632,
+        "decisions": [
+          {
+            "candidate": "text-000-6d4fd484d908:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          13,
+          64
+        ],
+        "reference_topology": [
+          13,
+          64
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-001-92b7c53b3d8b",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 64,
+        "turning_density": null,
+        "milliseconds": 5.9815999993588775,
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 32,
+        "turning_density": 0.3490658503988659,
+        "milliseconds": 53.09980000311043,
+        "decisions": [
+          {
+            "candidate": "text-001-92b7c53b3d8b:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "tie-returns-fallback",
+            "render_delta": 0.009590163826942444,
+            "fairness_delta": -16995.214508833727
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-002-f6015a73f1c3",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 2984,
+        "turning_density": null,
+        "milliseconds": 53.96030000702012,
+        "iou": 1.0,
+        "topology": [
+          14,
+          5
+        ],
+        "reference_topology": [
+          14,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 1492,
+        "turning_density": 0.3665355207347497,
+        "milliseconds": 3144.839200002025,
+        "decisions": [
+          {
+            "candidate": "text-002-f6015a73f1c3:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          14,
+          5
+        ],
+        "reference_topology": [
+          14,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-003-2e1199c15aed",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 1072,
+        "turning_density": null,
+        "milliseconds": 22.8388000105042,
+        "iou": 1.0,
+        "topology": [
+          3,
+          5
+        ],
+        "reference_topology": [
+          3,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 536,
+        "turning_density": 0.5262167694762893,
+        "milliseconds": 1139.6823999966728,
+        "decisions": [
+          {
+            "candidate": "text-003-2e1199c15aed:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          3,
+          5
+        ],
+        "reference_topology": [
+          3,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-004-2b3fecb58a9c",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 352,
+        "turning_density": null,
+        "milliseconds": 11.87660000869073,
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "fair-primitive-hybrid",
+        "spans": 10,
+        "turning_density": 0.11442471787289586,
+        "milliseconds": 232.81539999879897,
+        "decisions": [
+          {
+            "candidate": "text-004-2b3fecb58a9c:fair-primitive-hybrid",
+            "selected": true,
+            "reason": "strong-render-evidence-candidate",
+            "render_delta": 0.04714220017194748,
+            "fairness_delta": -273.39528089288603
+          }
+        ],
+        "iou": 0.9658703071672355,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-005-c03bedf72488",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 6168,
+        "turning_density": null,
+        "milliseconds": 101.15770000265911,
+        "iou": 1.0,
+        "topology": [
+          3,
+          6
+        ],
+        "reference_topology": [
+          3,
+          6
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 3084,
+        "turning_density": 0.08684718307342225,
+        "milliseconds": 4468.800200003898,
+        "decisions": [
+          {
+            "candidate": "text-005-c03bedf72488:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "negative-render-evidence-fallback",
+            "render_delta": -0.01866387389600277,
+            "fairness_delta": -3856.9418030493284
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          3,
+          6
+        ],
+        "reference_topology": [
+          3,
+          6
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-006-0a22afb47c57",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 4432,
+        "turning_density": null,
+        "milliseconds": 57.40130000049248,
+        "iou": 1.0,
+        "topology": [
+          23,
+          30
+        ],
+        "reference_topology": [
+          23,
+          30
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 2216,
+        "turning_density": 0.4746229424839831,
+        "milliseconds": 3512.2909000056097,
+        "decisions": [
+          {
+            "candidate": "text-006-0a22afb47c57:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          23,
+          30
+        ],
+        "reference_topology": [
+          23,
+          30
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-007-dfd66c64bb0b",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 240,
+        "turning_density": null,
+        "milliseconds": 8.29399999929592,
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 120,
+        "turning_density": 0.09519977738150895,
+        "milliseconds": 179.72670000744984,
+        "decisions": [
+          {
+            "candidate": "text-007-dfd66c64bb0b:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "tie-returns-fallback",
+            "render_delta": 0.007946057245135307,
+            "fairness_delta": -4.594377853649814
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-008-c7519aa1983f",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 2272,
+        "turning_density": null,
+        "milliseconds": 42.92859999986831,
+        "iou": 1.0,
+        "topology": [
+          4,
+          3
+        ],
+        "reference_topology": [
+          4,
+          3
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 1136,
+        "turning_density": 0.16580790069122817,
+        "milliseconds": 1515.6340999965323,
+        "decisions": [
+          {
+            "candidate": "text-008-c7519aa1983f:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          4,
+          3
+        ],
+        "reference_topology": [
+          4,
+          3
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-009-77c2ec6fd353",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 8792,
+        "turning_density": null,
+        "milliseconds": 8.683300009579398,
+        "iou": 1.0,
+        "topology": [
+          13,
+          64
+        ],
+        "reference_topology": [
+          13,
+          64
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 4396,
+        "turning_density": 0.34248688882999284,
+        "milliseconds": 7682.245300005889,
+        "decisions": [
+          {
+            "candidate": "text-009-77c2ec6fd353:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          13,
+          64
+        ],
+        "reference_topology": [
+          13,
+          64
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-010-4f4e87cde754",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 1808,
+        "turning_density": null,
+        "milliseconds": 33.810799999628216,
+        "iou": 1.0,
+        "topology": [
+          12,
+          7
+        ],
+        "reference_topology": [
+          12,
+          7
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 904,
+        "turning_density": 0.4571796134650943,
+        "milliseconds": 1326.7001000058372,
+        "decisions": [
+          {
+            "candidate": "text-010-4f4e87cde754:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          12,
+          7
+        ],
+        "reference_topology": [
+          12,
+          7
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-011-ae701717e96a",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 2984,
+        "turning_density": null,
+        "milliseconds": 4.706799998530187,
+        "iou": 1.0,
+        "topology": [
+          14,
+          5
+        ],
+        "reference_topology": [
+          14,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 1492,
+        "turning_density": 0.3665355207347497,
+        "milliseconds": 3167.846600001212,
+        "decisions": [
+          {
+            "candidate": "text-011-ae701717e96a:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          14,
+          5
+        ],
+        "reference_topology": [
+          14,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-012-03d964452686",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 12456,
+        "turning_density": null,
+        "milliseconds": 115.66060000041034,
+        "iou": 1.0,
+        "topology": [
+          38,
+          6
+        ],
+        "reference_topology": [
+          38,
+          6
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 6228,
+        "turning_density": 0.27008225728227825,
+        "milliseconds": 8269.435800000792,
+        "decisions": [
+          {
+            "candidate": "text-012-03d964452686:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "tie-returns-fallback",
+            "render_delta": 0.007867354899644852,
+            "fairness_delta": -328668510.10465056
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          38,
+          6
+        ],
+        "reference_topology": [
+          38,
+          6
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-013-576e3a1eaa3f",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 792,
+        "turning_density": null,
+        "milliseconds": 20.997400002670474,
+        "iou": 1.0,
+        "topology": [
+          1,
+          11
+        ],
+        "reference_topology": [
+          1,
+          11
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 396,
+        "turning_density": 0.4642054816498344,
+        "milliseconds": 916.8244000029517,
+        "decisions": [
+          {
+            "candidate": "text-013-576e3a1eaa3f:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          1,
+          11
+        ],
+        "reference_topology": [
+          1,
+          11
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-014-3e2edf584c2d",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 12424,
+        "turning_density": null,
+        "milliseconds": 183.12309999600984,
+        "iou": 1.0,
+        "topology": [
+          11,
+          4
+        ],
+        "reference_topology": [
+          11,
+          4
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 6212,
+        "turning_density": 0.07735680023822707,
+        "milliseconds": 6618.952500008163,
+        "decisions": [
+          {
+            "candidate": "text-014-3e2edf584c2d:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          11,
+          4
+        ],
+        "reference_topology": [
+          11,
+          4
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-015-9ebea6188af1",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 616,
+        "turning_density": null,
+        "milliseconds": 15.175499996985309,
+        "iou": 1.0,
+        "topology": [
+          9,
+          5
+        ],
+        "reference_topology": [
+          9,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 308,
+        "turning_density": 0.37975295812623827,
+        "milliseconds": 791.0768000001553,
+        "decisions": [
+          {
+            "candidate": "text-015-9ebea6188af1:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          9,
+          5
+        ],
+        "reference_topology": [
+          9,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-016-56e830e2030f",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 120,
+        "turning_density": null,
+        "milliseconds": 5.328400002326816,
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "fair-primitive-hybrid",
+        "spans": 8,
+        "turning_density": 0.11496960604984949,
+        "milliseconds": 68.82760000007693,
+        "decisions": [
+          {
+            "candidate": "text-016-56e830e2030f:fair-primitive-hybrid",
+            "selected": true,
+            "reason": "strong-render-evidence-candidate",
+            "render_delta": 0.013482710346579552,
+            "fairness_delta": 0.08137993479951264
+          }
+        ],
+        "iou": 0.9777777777777777,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-017-dae99834c527",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 4960,
+        "turning_density": null,
+        "milliseconds": 62.45360001048539,
+        "iou": 1.0,
+        "topology": [
+          10,
+          4
+        ],
+        "reference_topology": [
+          10,
+          4
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 2480,
+        "turning_density": 0.17633418841442144,
+        "milliseconds": 2880.049899991718,
+        "decisions": [
+          {
+            "candidate": "text-017-dae99834c527:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          10,
+          4
+        ],
+        "reference_topology": [
+          10,
+          4
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-018-8af66fb22cb6",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 3000,
+        "turning_density": null,
+        "milliseconds": 52.697699997224845,
+        "iou": 1.0,
+        "topology": [
+          5,
+          10
+        ],
+        "reference_topology": [
+          5,
+          10
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 1500,
+        "turning_density": 0.3337385963445254,
+        "milliseconds": 3271.633099997416,
+        "decisions": [
+          {
+            "candidate": "text-018-8af66fb22cb6:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          5,
+          10
+        ],
+        "reference_topology": [
+          5,
+          10
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-020-c7444f88d01b",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 5776,
+        "turning_density": null,
+        "milliseconds": 106.89450000063516,
+        "iou": 1.0,
+        "topology": [
+          4,
+          3
+        ],
+        "reference_topology": [
+          4,
+          3
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 2888,
+        "turning_density": 0.07280000949680177,
+        "milliseconds": 3269.5011000032537,
+        "decisions": [
+          {
+            "candidate": "text-020-c7444f88d01b:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          4,
+          3
+        ],
+        "reference_topology": [
+          4,
+          3
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-021-32541fb76268",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 7728,
+        "turning_density": null,
+        "milliseconds": 126.34490001073573,
+        "iou": 1.0,
+        "topology": [
+          6,
+          10
+        ],
+        "reference_topology": [
+          6,
+          10
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 3864,
+        "turning_density": 0.16328303579940448,
+        "milliseconds": 6457.601899994188,
+        "decisions": [
+          {
+            "candidate": "text-021-32541fb76268:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          6,
+          10
+        ],
+        "reference_topology": [
+          6,
+          10
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-022-10e3e945f272",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 872,
+        "turning_density": null,
+        "milliseconds": 27.138699995703064,
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 436,
+        "turning_density": 0.05263350741489192,
+        "milliseconds": 798.2935000036377,
+        "decisions": [
+          {
+            "candidate": "text-022-10e3e945f272:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-023-2f7f4f4ac02c",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 13736,
+        "turning_density": null,
+        "milliseconds": 236.50179999822285,
+        "iou": 1.0,
+        "topology": [
+          1,
+          4
+        ],
+        "reference_topology": [
+          1,
+          4
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 6868,
+        "turning_density": 0.07544954871405257,
+        "milliseconds": 5522.280699995463,
+        "decisions": [
+          {
+            "candidate": "text-023-2f7f4f4ac02c:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          1,
+          4
+        ],
+        "reference_topology": [
+          1,
+          4
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-024-43d7266e3f11",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 14216,
+        "turning_density": null,
+        "milliseconds": 184.03580000449438,
+        "iou": 1.0,
+        "topology": [
+          1,
+          11
+        ],
+        "reference_topology": [
+          1,
+          11
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 7108,
+        "turning_density": 0.2202647522363057,
+        "milliseconds": 5109.063099997002,
+        "decisions": [
+          {
+            "candidate": "text-024-43d7266e3f11:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          1,
+          11
+        ],
+        "reference_topology": [
+          1,
+          11
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    }
+  ]
+}
