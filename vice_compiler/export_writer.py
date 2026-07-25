@@ -6,6 +6,7 @@ import hashlib
 import html
 import io
 import math
+import os
 import re
 from dataclasses import dataclass, replace
 from functools import lru_cache
@@ -1237,6 +1238,87 @@ def _exact_font_element(
     return element
 
 
+def _materialization_v2_coverage(
+    reir: RasterEvidenceIR, support: np.ndarray,
+) -> np.ndarray:
+    """Subpixel ink coverage for the line, or the binary support.
+
+    The coverage field is what makes a delivered curve subpixel accurate;
+    when the region is not two-colour separable (gradient, multi-ink) the
+    binary support is used instead and the corridor widens accordingly.
+    """
+    from .coverage_evidence import robust_two_color_coverage
+
+    try:
+        straight = np.asarray(reir.raster.straight_rgba, np.float32)
+        linear = np.where(
+            straight[..., :3] <= 0.04045,
+            straight[..., :3] / 12.92,
+            ((straight[..., :3] + 0.055) / 1.055) ** 2.4,
+        ).astype(np.float32)
+        estimate = robust_two_color_coverage(linear, support)
+        if estimate.separable:
+            return estimate.alpha
+    except Exception:
+        pass
+    return np.asarray(support, bool).astype(np.float32)
+
+
+def _materialization_v2_elements(
+    reir: RasterEvidenceIR, candidate: MacroCandidate, line: object,
+    record: object, paint: str, transformed,
+) -> list[str]:
+    """Serialize the program the materialization court selected (plan M10).
+
+    Returns ``[]`` whenever the route declines, so the legacy delivery
+    path stays byte-identical with the flag off - and also whenever the
+    Phase-7 refinement affine is non-identity, because baking that affine
+    into the program is M9 work and delivering a wrapped <g> around a
+    courted fragment would break the delivery-identity invariant.
+    """
+    if os.environ.get("VICE_TEXT_MATERIALIZATION_V2") != "1":
+        return []
+    from .text_vector_court import race_materializations
+
+    try:
+        support, _glyphs, _prototypes = materialize_font_free_geometry(
+            reir, line,
+        )
+    except Exception:
+        return []
+    support = np.asarray(support, bool)
+    if not support.any():
+        return []
+    probe = ['<path d="M0 0Z"/>']
+    if transformed(probe) is not probe:
+        # A non-identity refinement transform is pending; leave this row to
+        # the recorded route rather than delivering geometry the court did
+        # not judge.
+        return []
+    colour = _rgba(reir, support)
+    straight_rgba = (
+        colour[0] / 255.0, colour[1] / 255.0, colour[2] / 255.0,
+        float(colour[3]),
+    )
+    coverage = _materialization_v2_coverage(reir, support)
+    try:
+        race = race_materializations(
+            support, record_id=str(getattr(candidate, "id", "text")),
+            line_id=str(getattr(line, "id", "line")),
+            straight_rgba=straight_rgba, coverage=coverage,
+            enable_fair=os.environ.get("VICE_TEXT_FAIR_GEOMETRY", "1") == "1",
+        )
+    except Exception:
+        return []
+    if race is None:
+        return []
+    fragment = race.winner.exact_svg_fragment
+    digest = hashlib.sha256(fragment.encode("utf-8")).hexdigest()
+    if digest != race.winner.program.exact_fragment_sha256:
+        return []
+    return [fragment]
+
+
 def _approximate_outline_element(
     reir: RasterEvidenceIR, candidate: MacroCandidate,
     line: object, paint: str,
@@ -1432,6 +1514,16 @@ def _text_elements(
             f'{translate_x:.12g} {translate_y:.12g})">'
             + "".join(tracked) + "</g>"
         ]
+    # --- Materialization v2 (plan M8/M10, VICE_TEXT_MATERIALIZATION_V2) ---
+    # The court picks the final PROGRAM and the exporter serializes it
+    # verbatim.  Nothing below this branch may re-fit, re-smooth or
+    # re-partition the winner; when the route declines, delivery falls
+    # through to the recorded legacy behaviour unchanged.
+    v2_elements = _materialization_v2_elements(
+        reir, candidate, line, record, paint, transformed,
+    )
+    if v2_elements:
+        return v2_elements
     if record.path == "approximate-template":
         # Outline returns only through the per-row court; any court
         # failure falls open to the raster delivery below (H3 lesson).

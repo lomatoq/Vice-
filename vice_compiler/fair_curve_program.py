@@ -54,6 +54,9 @@ FAIR_FAMILY = "fair-primitive-hybrid"
 #: DP budget per ring (plan S10 materialization budget).
 MAX_NODES_PER_RING = 36
 MAX_SPAN_NODES = 14
+#: Physical node spacing; below this the samples stop carrying
+#: independent shape evidence and the DP only pays for them.
+NODE_SPACING_PX = 6.0
 #: A line/arc must cover at least this much arclength before it may claim
 #: an exact primitive; below it the evidence cannot distinguish families.
 MINIMUM_PRIMITIVE_LENGTH_PX = 2.5
@@ -137,10 +140,20 @@ def stable_corner_indices(
 def build_dp_nodes(
     observation: BoundaryObservation, corners: list[int],
 ) -> list[int]:
-    """Corner nodes plus a bounded regular subdivision (plan M4.4)."""
+    """Corner nodes plus a bounded regular subdivision (plan M4.4).
+
+    Node density is PHYSICAL - roughly one node per NODE_SPACING_PX of
+    boundary - and only then capped.  A small glyph ring therefore costs a
+    handful of nodes instead of the cap, which is what keeps a whole
+    wordmark (dozens of rings) inside the materialization budget.
+    """
     count = len(observation.points_xy)
     nodes = set(int(index) % count for index in corners)
-    stride = max(1, int(math.ceil(count / max(1, MAX_NODES_PER_RING))))
+    length = max(1.0, observation.length_px)
+    wanted = int(np.clip(
+        round(length / NODE_SPACING_PX), 8, MAX_NODES_PER_RING,
+    ))
+    stride = max(1, int(math.ceil(count / max(1, wanted))))
     nodes.update(range(0, count, stride))
     ordered = sorted(nodes)
     return ordered or [0]

@@ -1,0 +1,319 @@
+{
+  "schema": "pcdc-materialization-oracle/v1",
+  "created_at": "2026-07-25T13:55:43.191473+00:00",
+  "question": "with the human support held constant, does the fair materializer deliver better geometry than the current one?",
+  "cases": 6,
+  "usable": 6,
+  "human_choice_counts": {
+    "legacy": 23,
+    "candidate": 19,
+    "tie": 58
+  },
+  "summary": {
+    "legacy_mean_iou": 1.0,
+    "v2_mean_iou": 0.9943117178612059,
+    "legacy_mean_spans": 3238.6666666666665,
+    "v2_mean_spans": 1591.6666666666667,
+    "legacy_mean_turning_density": 0.0,
+    "v2_mean_turning_density": 0.2975961550643693,
+    "legacy_p50_ms": 32.63589999551186,
+    "v2_p50_ms": 1722.0910500036553,
+    "v2_p95_ms": 6999.076224998134,
+    "v2_family_counts": {
+      "faithful-cell-edge": 5,
+      "fair-primitive-hybrid": 1
+    },
+    "v2_fixes_topology": 0,
+    "v2_breaks_topology": 0
+  },
+  "rows": [
+    {
+      "id": "text-000-6d4fd484d908",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 8792,
+        "turning_density": null,
+        "milliseconds": 3147.756299993489,
+        "iou": 1.0,
+        "topology": [
+          13,
+          64
+        ],
+        "reference_topology": [
+          13,
+          64
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 4396,
+        "turning_density": 0.34248688882999284,
+        "milliseconds": 7875.846099996124,
+        "decisions": [
+          {
+            "candidate": "text-000-6d4fd484d908:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          13,
+          64
+        ],
+        "reference_topology": [
+          13,
+          64
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-001-92b7c53b3d8b",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 64,
+        "turning_density": null,
+        "milliseconds": 5.624500001431443,
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 32,
+        "turning_density": 0.3490658503988659,
+        "milliseconds": 41.5523999981815,
+        "decisions": [
+          {
+            "candidate": "text-001-92b7c53b3d8b:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "tie-returns-fallback",
+            "render_delta": 0.009590163826942444,
+            "fairness_delta": -16995.214508833727
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-002-f6015a73f1c3",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 2984,
+        "turning_density": null,
+        "milliseconds": 44.51520000293385,
+        "iou": 1.0,
+        "topology": [
+          14,
+          5
+        ],
+        "reference_topology": [
+          14,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 1492,
+        "turning_density": 0.3665355207347497,
+        "milliseconds": 2725.337700001546,
+        "decisions": [
+          {
+            "candidate": "text-002-f6015a73f1c3:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          14,
+          5
+        ],
+        "reference_topology": [
+          14,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-003-2e1199c15aed",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 1072,
+        "turning_density": null,
+        "milliseconds": 20.756599988089874,
+        "iou": 1.0,
+        "topology": [
+          3,
+          5
+        ],
+        "reference_topology": [
+          3,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 536,
+        "turning_density": 0.5262167694762893,
+        "milliseconds": 718.8444000057643,
+        "decisions": [
+          {
+            "candidate": "text-003-2e1199c15aed:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "candidate-certificate-rejected",
+            "render_delta": 0.0,
+            "fairness_delta": 0.0
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          3,
+          5
+        ],
+        "reference_topology": [
+          3,
+          5
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-004-2b3fecb58a9c",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 352,
+        "turning_density": null,
+        "milliseconds": 6.976799995754845,
+        "iou": 1.0,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "fair-primitive-hybrid",
+        "spans": 10,
+        "turning_density": 0.11442471787289586,
+        "milliseconds": 196.76169999002013,
+        "decisions": [
+          {
+            "candidate": "text-004-2b3fecb58a9c:fair-primitive-hybrid",
+            "selected": true,
+            "reason": "strong-render-evidence-candidate",
+            "render_delta": 0.04714220017194748,
+            "fairness_delta": -273.39528089288603
+          }
+        ],
+        "iou": 0.9658703071672355,
+        "topology": [
+          1,
+          0
+        ],
+        "reference_topology": [
+          1,
+          0
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    },
+    {
+      "id": "text-005-c03bedf72488",
+      "category": "",
+      "status": "ok",
+      "legacy": {
+        "family": "legacy-pixel-fallback",
+        "spans": 6168,
+        "turning_density": null,
+        "milliseconds": 83.54140000301413,
+        "iou": 1.0,
+        "topology": [
+          3,
+          6
+        ],
+        "reference_topology": [
+          3,
+          6
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      },
+      "v2": {
+        "family": "faithful-cell-edge",
+        "spans": 3084,
+        "turning_density": 0.08684718307342225,
+        "milliseconds": 4368.7666000041645,
+        "decisions": [
+          {
+            "candidate": "text-005-c03bedf72488:fair-primitive-hybrid",
+            "selected": false,
+            "reason": "negative-render-evidence-fallback",
+            "render_delta": -0.01866387389600277,
+            "fairness_delta": -3856.9418030493284
+          }
+        ],
+        "iou": 1.0,
+        "topology": [
+          3,
+          6
+        ],
+        "reference_topology": [
+          3,
+          6
+        ],
+        "correspondence_valid": true,
+        "correspondence_violations": []
+      }
+    }
+  ]
+}

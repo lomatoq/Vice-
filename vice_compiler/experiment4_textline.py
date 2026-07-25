@@ -18,6 +18,7 @@ import io
 import json
 import math
 import os
+import re
 from pathlib import Path
 import statistics
 import time
@@ -28,6 +29,8 @@ import numpy as np
 from PIL import Image
 
 from .build_identity import bind_report
+from .svg_fragment_renderer import RENDERER_VERSION
+from .vector_program import SERIALIZER_VERSION
 
 from .certificates import mask_sha256
 from .evidence_ir import EvidenceCache, RasterEvidenceIR
@@ -134,6 +137,42 @@ def _wordmark_prior_identity() -> dict[str, Any] | None:
         "path": str(checkpoint.resolve()),
         "sha256": hashlib.sha256(checkpoint.read_bytes()).hexdigest(),
         "bytes": checkpoint.stat().st_size,
+    }
+
+
+def _materialization_identity() -> dict[str, Any]:
+    """Bind the Materialization v2 route identity into the report (M2-10)."""
+    return {
+        "materialization_v2": os.environ.get(
+            "VICE_TEXT_MATERIALIZATION_V2",
+        ) == "1",
+        "fair_geometry": os.environ.get("VICE_TEXT_FAIR_GEOMETRY", "1") == "1",
+        "serializer_version": SERIALIZER_VERSION,
+        "renderer_version": RENDERER_VERSION,
+    }
+
+
+def _delivered_materialization(svg: str | None) -> dict[str, Any]:
+    """Read the delivered geometry family straight out of the fragment.
+
+    The report must describe what was SHIPPED, not what was intended, so
+    the family is parsed from the delivered SVG rather than assumed.
+    """
+    if not svg:
+        return {"family": None, "span_commands": 0, "primitive_census": {}}
+    families = sorted(set(re.findall(
+        r'data-pcdc-text-geometry="([^"]+)"', svg,
+    )))
+    census = {
+        "line": svg.count("L"), "cubic": svg.count("C"),
+        "arc": svg.count("A"), "horizontal": svg.count("H"),
+        "vertical": svg.count("V"),
+    }
+    return {
+        "family": families[0] if len(families) == 1 else families or None,
+        "families": families,
+        "span_commands": int(sum(census.values())),
+        "primitive_census": census,
     }
 
 
@@ -918,6 +957,9 @@ def evaluate_locus(
         "candidate_mask_digest": mask_sha256(candidate_mask),
         "warm_candidate_mask_digest": mask_sha256(warm_candidate_mask),
         "candidate_svg_digest": candidate_svg_digest,
+        "delivered_materialization": _delivered_materialization(
+            final_candidate_review_svg,
+        ),
         "warm_candidate_svg_digest": warm_candidate_svg_digest,
         "legacy_svg_digest": legacy_svg_digest,
         "warm_line_ms": warm_line_ms,
@@ -1028,7 +1070,7 @@ def build_report(
     ]
     if not 100 <= len(admitted) <= 200:
         return {
-            "schema": "pcdc-experiment4-textline/v2",
+            "schema": "pcdc-experiment4-textline/v3",
             "input_identity": input_identity,
             "font_catalog_identity": font_catalog_identity,
             "ocr_model_identity": ocr_model_identity,
@@ -1136,7 +1178,7 @@ def build_report(
     human["reused_from_font_free_court"] = reuse_font_free_court
     gate = bool(machine["gate_pass"] and human["gate_pass"])
     return {
-        "schema": "pcdc-experiment4-textline/v2",
+        "schema": "pcdc-experiment4-textline/v3",
         "input_identity": input_identity,
         "font_catalog_identity": font_catalog_identity,
         "ocr_model_identity": ocr_model_identity,
@@ -1165,6 +1207,7 @@ def build_report(
         "glyph_prior_checkpoint": glyph_prior_checkpoint,
         "wordmark_prior_checkpoint": wordmark_prior_checkpoint,
         "stage_d_identity": _stage_d_identity(),
+        "materialization_identity": _materialization_identity(),
         "machine": machine, "human": human, "gate_pass": gate, "rows": rows,
     }
 
