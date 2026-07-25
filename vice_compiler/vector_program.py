@@ -417,6 +417,36 @@ def point_in_polygon(point: Point, polygon: Sequence[Point]) -> bool:
     return inside
 
 
+def interior_point(polygon: Sequence[Point]) -> Point | None:
+    """A point strictly inside a simple polygon (scanline midpoint).
+
+    Vertices are NOT usable as containment probes: they lie on the ring's
+    own boundary and, for cell-edge geometry, often on a neighbour's
+    boundary too, where ray casting is undefined.
+    """
+    if len(polygon) < 3:
+        return None
+    ys = [point[1] for point in polygon]
+    low, high = min(ys), max(ys)
+    if high - low <= 0.0:
+        return None
+    for fraction in (0.5, 0.37, 0.63, 0.24, 0.76, 0.12, 0.88):
+        scan = low + (high - low) * fraction
+        crossings: list[float] = []
+        count = len(polygon)
+        for index in range(count):
+            x0, y0 = polygon[index]
+            x1, y1 = polygon[(index + 1) % count]
+            if (y0 > scan) != (y1 > scan):
+                slope = (x1 - x0) / (y1 - y0) if y1 != y0 else 0.0
+                crossings.append(x0 + (scan - y0) * slope)
+        crossings.sort()
+        for left, right in zip(crossings[0::2], crossings[1::2]):
+            if right - left > 1.0e-9:
+                return (0.5 * (left + right), scan)
+    return None
+
+
 def path_bbox(path: ClosedPathProgram) -> tuple[float, float, float, float]:
     points = flatten_path(path)
     if not points:
@@ -572,6 +602,12 @@ def validate_text_vector_program(
 
 def _validate_negative_containment(program: TextVectorProgram) -> None:
     """Every negative loop must sit inside a positive loop of the same layer."""
+    if not any(path.role in NEGATIVE_ROLES for path in program.paths):
+        # Faithful cell-edge programs carry thousands of positive runs; do
+        # not pay the flattening pass when there is nothing to contain.
+        if not program.paths:
+            raise ProgramValidationError("program has no positive path")
+        return
     positives = {
         path.id: flatten_path(path, samples=12)
         for path in program.paths if path.role not in NEGATIVE_ROLES
@@ -588,9 +624,9 @@ def _validate_negative_containment(program: TextVectorProgram) -> None:
             if path.role not in NEGATIVE_ROLES:
                 continue
             probe = flatten_path(path, samples=12)
-            if not probe:
+            sample = interior_point(probe) if probe else None
+            if sample is None:
                 continue
-            sample = probe[len(probe) // 2]
             if not any(
                 point_in_polygon(sample, outer) for outer in layer_positive
             ):
@@ -754,6 +790,33 @@ def _srgb_channel(value: float) -> float:
     return 1.055 * (linear ** (1.0 / 2.4)) - 0.055
 
 
+def srgb_to_linear(value: float) -> float:
+    """Inverse of :func:`_srgb_channel` (display sRGB in [0,1] -> linear)."""
+    display = min(1.0, max(0.0, float(value)))
+    if display <= 0.04045:
+        return display / 12.92
+    return ((display + 0.055) / 1.055) ** 2.4
+
+
+def solid_paint_from_straight_rgba(
+    rgba: Sequence[float],
+) -> "SolidPaint":
+    """Build a SolidPaint from the legacy writer's straight/display RGBA.
+
+    The program contract stores linear colour, but the delivered hex must
+    stay byte-identical to the legacy ``_paint`` output, so the display
+    value is converted with the exact inverse of the writer's transform.
+    """
+    if len(rgba) != 4:
+        raise ProgramValidationError("straight rgba must have four channels")
+    return SolidPaint(rgba_linear=(
+        quantize(srgb_to_linear(rgba[0])),
+        quantize(srgb_to_linear(rgba[1])),
+        quantize(srgb_to_linear(rgba[2])),
+        quantize(min(1.0, max(0.0, float(rgba[3])))),
+    ))
+
+
 def rgba_to_svg(rgba: RGBA) -> tuple[str, float]:
     """Linear RGBA -> (#rrggbb, alpha) exactly like the legacy writer."""
     red, green, blue, alpha = rgba
@@ -771,8 +834,10 @@ def _paint_attributes(
     if isinstance(paint, SolidPaint):
         colour, alpha = rgba_to_svg(paint.rgba_linear)
         attributes = f'fill="{colour}"'
-        if alpha < 1.0:
-            attributes += f' fill-opacity="{format_number(alpha)}"'
+        # Legacy writer parity: opacity is omitted at the same threshold, so
+        # a faithful program renders byte-identically to the legacy route.
+        if alpha < 0.9995:
+            attributes += f' fill-opacity="{alpha:.6g}"'
         return "", attributes
     stops = "".join(
         f'<stop offset="{format_number(offset)}" '
