@@ -205,3 +205,108 @@ class EvaluationDomainTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
+
+
+class MaterializationRaceTests(unittest.TestCase):
+    """Plan M8: pixel-faithful vs fair program, decided before delivery."""
+
+    @staticmethod
+    def _coverage(draw, size: int = 96, supersample: int = 4) -> np.ndarray:
+        big = np.zeros((size * supersample, size * supersample), np.float32)
+        draw(big, supersample)
+        return cv2.resize(
+            big, (size, size), interpolation=cv2.INTER_AREA,
+        ).astype(np.float32)
+
+    def _race(self, coverage: np.ndarray, name: str):
+        from vice_compiler.text_vector_court import race_materializations
+
+        return race_materializations(
+            coverage >= 0.5, record_id=f"record-{name}", line_id="line-0",
+            straight_rgba=(0.0, 0.0, 0.0, 1.0), coverage=coverage,
+        )
+
+    def test_fair_arc_beats_pixel_faithful_on_a_smooth_shape(self) -> None:
+        coverage = self._coverage(
+            lambda m, s: cv2.circle(m, (48 * s, 48 * s), 30 * s, 1.0, -1),
+        )
+        race = self._race(coverage, "disc")
+        self.assertIsNotNone(race)
+        self.assertEqual(
+            race.winner.program.geometry_family, "fair-primitive-hybrid",
+        )
+        self.assertLess(race.winner.resource_estimate.span_count, 12)
+
+    def test_fair_program_wins_a_physical_tie_on_fairness(self) -> None:
+        coverage = self._coverage(
+            lambda m, s: cv2.rectangle(
+                m, (16 * s, 28 * s), (80 * s, 68 * s), 1.0, -1,
+            ),
+        )
+        race = self._race(coverage, "rounded")
+        decision = race.decisions[-1]
+        self.assertTrue(decision.candidate_selected)
+        self.assertEqual(decision.reason, "fair-program-wins-physical-tie")
+        self.assertGreater(decision.fairness_delta, 0.0)
+        self.assertLess(abs(decision.render_delta), 0.010)
+
+    def test_pixel_faithful_wins_when_evidence_is_undecided(self) -> None:
+        size = 96
+        coverage = np.array([
+            [
+                1.0 if (abs(x - 48) < 20 and abs(y - 48) < 20
+                        and (x + y) % 7 != 0) else 0.0
+                for x in range(size)
+            ]
+            for y in range(size)
+        ], np.float32)
+        race = self._race(coverage, "jagged")
+        self.assertEqual(
+            race.winner.program.geometry_family, "faithful-cell-edge",
+        )
+        self.assertEqual(
+            race.decisions[-1].reason, "negative-render-evidence-fallback",
+        )
+
+    def test_fairness_cannot_buy_a_topology_loss(self) -> None:
+        from vice_compiler.materialization_certificates import (
+            component_correspondence,
+        )
+        from vice_compiler.text_vector_court import compare_materializations
+        from vice_compiler.text_materialization import (
+            MaterializationCertificateBundle,
+        )
+
+        coverage = self._coverage(
+            lambda m, s: cv2.ellipse(
+                m, (48 * s, 48 * s), (24 * s, 32 * s), 0, 0, 360, 1.0, 7 * s,
+            ),
+        )
+        race = self._race(coverage, "letter-o")
+        winner = race.winner
+        # Forge a candidate whose topology certificate failed: no render
+        # advantage may rescue it.
+        source = coverage >= 0.5
+        filled = np.zeros_like(source)
+        cv2.ellipse(
+            filled.view(np.uint8), (48, 48), (24, 32), 0, 0, 360, 1, -1,
+        )
+        from dataclasses import replace as dc_replace
+
+        from vice_compiler.materialization_certificates import (
+            MaterializationCertificates,
+        )
+
+        broken = dc_replace(
+            winner,
+            certificates=MaterializationCertificates(
+                topology=component_correspondence(source, filled.astype(bool)),
+            ),
+        )
+        decision = compare_materializations(
+            broken, race.candidates[0], observed_alpha=coverage,
+            candidate_fairness_cost=0.0, fallback_fairness_cost=99.0,
+        )
+        self.assertFalse(decision.candidate_selected)
+        self.assertEqual(decision.reason, "candidate-certificate-rejected")
+        self.assertTrue(decision.violations)

@@ -179,9 +179,12 @@ def _interpolate(
     denominator = vb - va
     t = 0.5 if abs(denominator) < 1.0e-12 else (level - va) / denominator
     t = min(1.0, max(0.0, t))
+    # field[y, x] samples the CENTRE of pixel (x, y), which in SVG user
+    # space is (x + 0.5, y + 0.5); without this shift every fair program
+    # is delivered half a pixel up and left of its own evidence.
     return (
-        x + ax + (bx - ax) * t,
-        y + ay + (by - ay) * t,
+        x + ax + (bx - ax) * t + 0.5,
+        y + ay + (by - ay) * t + 0.5,
     )
 
 

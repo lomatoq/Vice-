@@ -357,3 +357,38 @@ def fairness_certificate(
         faithful_fallback_span_count=faithful,
         unsupported_wobble_count=unsupported,
     )
+
+def turning_density(program) -> float:
+    """Absolute turning per unit arclength of the whole program (rad/px).
+
+    Scale invariant and representation revealing.  A smooth ring spends
+    2*pi over its full perimeter, so its density is low; a cell-edge
+    staircase spends 2*pi on every few pixels of run, so its density is
+    high - even though each individual run rectangle is convex and would
+    look perfectly "fair" when measured per path.  This is the honest
+    fairness cost of a FAITHFUL program: it is exact, but it is not fair,
+    and the tie band must be able to say so (plan M5.3 preference order).
+    """
+    from .vector_program import flatten_path
+
+    turning_total = 0.0
+    length_total = 0.0
+    for path in program.paths:
+        points = flatten_path(path, samples=8)
+        if len(points) < 4:
+            continue
+        array = np.asarray(points, float)
+        deltas = np.diff(array, axis=0)
+        lengths = np.linalg.norm(deltas, axis=1)
+        keep = lengths > 1.0e-9
+        deltas = deltas[keep]
+        length_total += float(np.sum(lengths[keep]))
+        if len(deltas) < 3:
+            continue
+        angles = np.arctan2(deltas[:, 1], deltas[:, 0])
+        turning = np.diff(np.concatenate((angles, angles[:1])))
+        turning = (turning + math.pi) % (2.0 * math.pi) - math.pi
+        turning_total += float(np.sum(np.abs(turning)))
+    if length_total <= 1.0e-9:
+        return 0.0
+    return turning_total / length_total
