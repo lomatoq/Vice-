@@ -89,7 +89,10 @@ class BoundaryEvidenceTests(unittest.TestCase):
         alpha = _disc()
         rings = marching_squares(alpha)
         self.assertEqual(len(rings), 1)
-        radius = np.linalg.norm(rings[0] - np.array([48.0, 48.0]), axis=1)
+        # field[y, x] samples the CENTRE of pixel (x, y); in SVG user space
+        # that centre is (x + 0.5, y + 0.5), so the disc centred on sample
+        # (48, 48) is centred on (48.5, 48.5) in the extracted contour.
+        radius = np.linalg.norm(rings[0] - np.array([48.5, 48.5]), axis=1)
         self.assertLess(float(np.std(radius)), 0.10)
 
     def test_topology_is_preserved_by_extraction(self) -> None:
