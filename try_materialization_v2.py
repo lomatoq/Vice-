@@ -17,6 +17,8 @@ import base64
 import html
 import io
 import os
+import shutil
+import tempfile
 import time
 import webbrowser
 from pathlib import Path
@@ -40,18 +42,36 @@ def _svg_of(result) -> str:
     return document
 
 
-def _compile_once(service, path: Path, mode: str, *, v2: bool):
+def _compile_once(path: Path, mode: str, *, v2: bool):
+    """One isolated compile.
+
+    A fresh service per run on a uniquely named copy of the input: the
+    persistent service caches by source, so reusing it silently returned
+    the FIRST result for the second run and made the two deliveries look
+    identical when they were not.
+    """
+    from vice_compiler.runtime_service import PersistentCompilerService
+
     previous = os.environ.get("VICE_TEXT_MATERIALIZATION_V2")
     os.environ["VICE_TEXT_MATERIALIZATION_V2"] = "1" if v2 else "0"
     started = time.perf_counter()
-    try:
-        result = service.compile(path, mode=mode)
-        svg = _svg_of(result)
-    finally:
-        if previous is None:
-            os.environ.pop("VICE_TEXT_MATERIALIZATION_V2", None)
-        else:
-            os.environ["VICE_TEXT_MATERIALIZATION_V2"] = previous
+    service = PersistentCompilerService()
+    with tempfile.TemporaryDirectory() as scratch:
+        copy = Path(scratch) / (
+            f"{'v2' if v2 else 'v1'}-{path.name}"
+        )
+        shutil.copyfile(path, copy)
+        try:
+            result = service.compile(copy, mode=mode)
+            svg = _svg_of(result)
+        finally:
+            close = getattr(service, "close", None)
+            if callable(close):
+                close()
+            if previous is None:
+                os.environ.pop("VICE_TEXT_MATERIALIZATION_V2", None)
+            else:
+                os.environ["VICE_TEXT_MATERIALIZATION_V2"] = previous
     return svg, (time.perf_counter() - started) * 1000.0, result
 
 
@@ -79,23 +99,11 @@ def _families(svg: str) -> str:
 
 
 def build(input_path: Path, mode: str) -> Path:
-    from vice_compiler.runtime_service import PersistentCompilerService
-
     source_uri, width, height = _source_uri(input_path)
-    service = PersistentCompilerService()
-    try:
-        print("compiling (current delivery)...")
-        svg_v1, ms_v1, result_v1 = _compile_once(
-            service, input_path, mode, v2=False,
-        )
-        print("compiling (materialization v2)...")
-        svg_v2, ms_v2, result_v2 = _compile_once(
-            service, input_path, mode, v2=True,
-        )
-    finally:
-        close = getattr(service, "close", None)
-        if callable(close):
-            close()
+    print("compiling (current delivery)...")
+    svg_v1, ms_v1, _result_v1 = _compile_once(input_path, mode, v2=False)
+    print("compiling (materialization v2)...")
+    svg_v2, ms_v2, _result_v2 = _compile_once(input_path, mode, v2=True)
 
     identical = svg_v1 == svg_v2
     page = f"""<!doctype html>

@@ -27,6 +27,84 @@ def _suppress_native_crash_dialogs() -> None:
         pass
 
 
+def _run_pcdc(
+    input_path: Path, output_root: Path, *, materialization_v2: bool,
+) -> dict:
+    """Run the PCDC compiler and publish the interface's asset triple.
+
+    The upload UI already knows how to show 01_contour.png,
+    02_primitive_map.svg and 03_rebuilt_filled.svg, so the PCDC lane
+    writes exactly those instead of growing a second interface.
+    """
+    import io as _io
+    import re as _re
+    import time as _time
+
+    os.environ["VICE_TEXT_MATERIALIZATION_V2"] = (
+        "1" if materialization_v2 else "0"
+    )
+    from PIL import Image
+
+    from vice_compiler.export_writer import scene_to_svg
+    from vice_compiler.runtime_service import PersistentCompilerService
+
+    output = output_root / input_path.stem
+    output.mkdir(parents=True, exist_ok=True)
+    service = PersistentCompilerService()
+    started = _time.perf_counter()
+    try:
+        result = service.compile(input_path, mode="balanced")
+        document, native, fallback = scene_to_svg(
+            result.reir, result.cmir, result.visible_scene,
+            phase5_bundle=result.phase5_bundle,
+            text_macros=result.text_macros,
+            layered_scene=result.layered_scene,
+            design_program=result.design_program,
+        )
+    finally:
+        close = getattr(service, "close", None)
+        if callable(close):
+            close()
+    elapsed_ms = (_time.perf_counter() - started) * 1000.0
+
+    (output / "03_rebuilt_filled.svg").write_text(document, encoding="utf-8")
+    (output / "02_primitive_map.svg").write_text(document, encoding="utf-8")
+    try:
+        import resvg_py
+
+        payload = resvg_py.svg_to_bytes(
+            svg_string=document, width=int(result.reir.width),
+        )
+        with _io.BytesIO(bytes(payload)) as stream:
+            with Image.open(stream) as rendered:
+                rendered.convert("RGBA").save(output / "01_contour.png")
+    except Exception:
+        with Image.open(input_path) as image:
+            image.convert("RGBA").save(output / "01_contour.png")
+
+    families = sorted(set(_re.findall(
+        r'data-pcdc-text-geometry="([^"]+)"', document,
+    )))
+    commands = sum(document.count(letter) for letter in "MLCAHVQSTZ")
+    return {
+        "schema": "vice-pcdc-preview/1",
+        "engine": "pcdc",
+        "materialization_v2": bool(materialization_v2),
+        "actual": {
+            "path commands": commands,
+            "native macros": int(native),
+            "fallbacks": int(fallback),
+            "ms": int(elapsed_ms),
+        },
+        "templates": {
+            "text geometry": ", ".join(families) if families else "—",
+            "mode": "balanced",
+        },
+        "text_geometry_families": families,
+        "warnings": list(result.warnings),
+    }
+
+
 def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--input", required=True)
@@ -41,7 +119,12 @@ def main() -> int:
     result_path = Path(args.result_json)
     result_path.parent.mkdir(parents=True, exist_ok=True)
     try:
-        if args.smoothing == "scene":
+        if args.smoothing in ("pcdc", "pcdc-v2"):
+            report = _run_pcdc(
+                Path(args.input), Path(args.output_root),
+                materialization_v2=args.smoothing == "pcdc-v2",
+            )
+        elif args.smoothing == "scene":
             from vice_scene.pipeline import process_scene
 
             report = process_scene(

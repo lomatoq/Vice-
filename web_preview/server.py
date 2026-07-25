@@ -84,7 +84,11 @@ def _execute_job(job_id: str) -> None:
         "--smoothing", smoothing, "--extractor", extractor, "--route", route,
     ]
     creationflags = getattr(subprocess, "CREATE_NO_WINDOW", 0) if sys.platform == "win32" else 0
-    time_limit = 45 if smoothing == "cad" else 180
+    time_limit = (
+        45 if smoothing == "cad"
+        else 900 if smoothing in ("pcdc", "pcdc-v2")
+        else 180
+    )
     stdout_path = job_root / "worker.stdout.log"
     stderr_path = job_root / "worker.stderr.log"
     try:
@@ -958,7 +962,7 @@ class Handler(BaseHTTPRequestHandler):
             smoothing = payload.get("smoothing", "paper-regions")
             extractor = payload.get("extractor", "mininet")
             route = payload.get("route", "auto")
-            if smoothing not in {"scene", "none", "corner", "chaikin", "bspline", "cad", "uncertainty", "perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}:
+            if smoothing not in {"scene", "pcdc", "pcdc-v2", "none", "corner", "chaikin", "bspline", "cad", "uncertainty", "perceptual", "perceptual-icm", "perceptual-merge", "paper", "paper-native", "paper-perc", "paper-perres", "paper-regions"}:
                 raise ValueError("Unknown contour interpolation mode")
             if extractor not in {"palette", "mininet"}:
                 raise ValueError("Unknown contour extractor")
